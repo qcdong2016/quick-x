@@ -1,5 +1,5 @@
 
-This is a fork of quick-cocos2d-x 2.2.6.
+This is a fork of [quick-cocos2d-x 2.2.6](https://github.com/chukong/quick-cocos2d-x).
 
 ## quick setup
 -   clone quick-cocos2d-x
