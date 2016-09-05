@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCAction.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionCamera.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionCatmullRom.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionEase.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid3D.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionInstant.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionInterval.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionManager.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionPageTurn3D.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionProgressTimer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionTiledGrid.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionTween.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\base_nodes\CCAtlasNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\base_nodes\CCNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\CCCamera.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\CCConfiguration.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\CCDirector.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\ccFPSImages.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\CCScheduler.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCPointArray.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCString.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\cocos2d.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\effects\CCGrabber.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\effects\CCGrid.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\aabb.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\GL\mat4stack.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\GL\matrix.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\mat3.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\mat4.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\neon_matrix_impl.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\plane.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\quaternion.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\ray2.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\utility.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\vec2.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\vec3.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\vec4.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\keypad_dispatcher\CCKeypadDelegate.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\keypad_dispatcher\CCKeypadDispatcher.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelAtlas.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelBMFont.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelTTF.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCLayer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCScene.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransition.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransitionPageTurn.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransitionProgress.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenu.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenuItem.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCClippingNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCClippingRegionNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCRenderTexture.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleBatchNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleExamples.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystem.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystemQuad.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCImageCommonWebp.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCThread.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCZipFile.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\platform.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCAccelerometer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCApplication.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCCommon.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCDevice.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCImage.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\CCGLProgram.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\ccGLStateCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\CCShaderCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\ccShaders.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCAnimation.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCAnimationCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSprite.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteBatchNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrame.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrameCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\base64.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCPointExtension.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCProfiling.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\ccUTF8.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\ccUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCVertex.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\component\CCComponent.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\component\CCComponentContainer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\data_support\ccCArray.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\image_support\TGAlib.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\TransformUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\xxtea.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\unzip.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ZipUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTexture2D.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTextureAtlas.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTextureCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTextureETC.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTexturePVR.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\text_input_node\CCIMEDispatcher.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\text_input_node\CCTextFieldTTF.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCParallaxNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTileMapAtlas.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXLayer.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXObjectGroup.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXTiledMap.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXXMLParser.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouch.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDispatcher.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchHandler.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\CocosDenshion\win32\MciPlayer.cpp" />
+    <ClCompile Include="..\cocos2d-x\CocosDenshion\win32\SimpleAudioEngine.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos\ProcessUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos\RefCounted.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControl.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlButton.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlColourPicker.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlHuePicker.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlPotentiometer.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSlider.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlStepper.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSwitch.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlUtils.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCInvocation.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCScale9Sprite.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\CocosGUI.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\UIHelper.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\UITouchGroup.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIListView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIPageView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIButton.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UICheckBox.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIImageView.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabel.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelAtlas.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelBMFont.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILoadingBar.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIRichText.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.cpp" />
+    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.c" />
+    <ClCompile Include="..\cocos2d-x\external\extra\crypto\CCCrypto.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\crypto\md5\md5.c" />
+    <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\network\CCNetwork.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCCryptoWin32.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNative.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.cpp" />
+    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNetworkWin32.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\imgui_cocos2dx.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\PlayerUI.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaValue.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\Cocos2dxLuaLoader.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaCocos2d.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaCocoStudio.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaTable.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\snapshot.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lapi.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lauxlib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lbaselib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lcode.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ldblib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ldebug.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ldo.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ldump.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lfunc.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lgc.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\linit.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\liolib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\llex.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lmathlib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lmem.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\loadlib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lobject.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lopcodes.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\loslib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lparser.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lstate.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lstring.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lstrlib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ltable.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ltablib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\ltm.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lundump.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lvm.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\lzio.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua\print.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\fpconv.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\lua_cjson.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\strbuf.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\debugger\debugger.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\filesystem\lfs.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lpack\lpack.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\lsqlite3.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\sqlite3.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lua_extensions.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\auxiliar.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\except.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\inet.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket_buffer.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket_io.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\mime.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\options.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\select.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\socket_scripts.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\tcp.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\timeout.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\udp.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\wsocket.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_event.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_is.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_map.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_push.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_to.c" />
+    <ClCompile Include="..\cocos2d-x\spine\PolygonBatch.cpp" />
+    <ClCompile Include="..\cocos2d-x\spine\SkeletonAnimation.cpp" />
+    <ClCompile Include="..\cocos2d-x\spine\spine-cocos2dx.cpp" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Animation.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\AnimationState.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Atlas.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\AtlasAttachmentLoader.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Attachment.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\AttachmentLoader.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Bone.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\BoneData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\BoundingBoxAttachment.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Event.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\EventData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\extension.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\IkConstraint.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\IkConstraintData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Json.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\MeshAttachment.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\RegionAttachment.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Skeleton.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\SkeletonBounds.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\SkeletonData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\SkeletonJson.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Skin.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\SkinnedMeshAttachment.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\Slot.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine\SlotData.c" />
+    <ClCompile Include="..\cocos2d-x\spine\spine_luabinding.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionCamera.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionCatmullRom.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionEase.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid3D.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionInstant.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionInterval.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionManager.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionPageTurn3D.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionProgressTimer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionTiledGrid.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionTween.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\base_nodes\CCAtlasNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\base_nodes\CCNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\CCCamera.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\CCConfiguration.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\CCDirector.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccFPSImages.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\CCScheduler.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCBool.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDouble.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCFloat.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCInteger.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCPointArray.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCString.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrabber.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrid.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCEventType.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCProtocols.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypeInfo.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\include\cocos2d.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\aabb.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\mat4stack.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\matrix.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\kazmath.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\mat3.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\mat4.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\neon_matrix_impl.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\plane.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\quaternion.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\ray2.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\utility.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\vec2.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\vec3.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\vec4.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\keypad_dispatcher\CCKeypadDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\keypad_dispatcher\CCKeypadDispatcher.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelAtlas.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelBMFont.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\label_nodes\CCLabelTTF.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCLayer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCScene.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransition.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransitionPageTurn.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCTransitionProgress.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenu.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenuItem.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\misc_nodes\CCClippingNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\misc_nodes\CCClippingRegionNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\misc_nodes\CCRenderTexture.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleBatchNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleExamples.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystem.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystemQuad.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\firePngData.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCAccelerometerDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCApplicationProtocol.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCCommon.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCDevice.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCImage.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCImageCommon_cpp.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCPlatformConfig.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCPlatformMacros.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCThread.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCZipFile.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\platform.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\curl.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\curlbuild.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\curlrules.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\curlver.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\easy.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\mprintf.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\multi.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\stdcheaders.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\curl\typecheck-gcc.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\iconv\iconv.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jconfig.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jconfig_linux.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jconfig_win.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jerror.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jmorecfg.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg\jpeglib.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libpng\png.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libpng\pngconf.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libwebp\decode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libwebp\encode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\libwebp\types.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\OGLES\GL\glew.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\OGLES\GL\glxew.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\OGLES\GL\wglew.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\pthread\pthread.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\pthread\sched.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\pthread\semaphore.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\zlib\zconf.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\third_party\win32\zlib\zlib.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCAccelerometer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCApplication.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCGL.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCPlatformDefine.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\compat\stdint.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\CCGLProgram.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccGLStateCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\CCShaderCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShaderEx_SwitchMask_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShaders.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionColorLengthTexture_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionColorLengthTexture_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionColor_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionColor_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTextureA8Color_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTextureA8Color_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTextureColorAlphaTest_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTextureColor_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTextureColor_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTexture_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTexture_uColor_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTexture_uColor_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_PositionTexture_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_Position_uColor_frag.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\ccShader_Position_uColor_vert.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCAnimation.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCAnimationCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSprite.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteBatchNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrame.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrameCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\base64.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCPointExtension.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCProfiling.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\ccUTF8.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\ccUtils.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCVertex.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\component\CCComponent.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\component\CCComponentContainer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\data_support\ccCArray.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\data_support\uthash.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\data_support\utlist.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\image_support\TGAlib.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\TransformUtils.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\xxtea.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\unzip.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ZipUtils.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTexture2D.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTextureAtlas.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTextureCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTextureETC.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTexturePVR.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\text_input_node\CCIMEDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\text_input_node\CCIMEDispatcher.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\text_input_node\CCTextFieldTTF.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCParallaxNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTileMapAtlas.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXLayer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXObjectGroup.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXTiledMap.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXXMLParser.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouch.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDelegateProtocol.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDispatcher.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchHandler.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.h" />
+    <ClInclude Include="..\cocos2d-x\CocosDenshion\include\Export.h" />
+    <ClInclude Include="..\cocos2d-x\CocosDenshion\include\SimpleAudioEngine.h" />
+    <ClInclude Include="..\cocos2d-x\CocosDenshion\win32\MciPlayer.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\ProcessUtils.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\Ptr.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\RefCounted.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\cocos-ext.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\ExtensionMacros.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControl.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlButton.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlColourPicker.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlExtensions.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlHuePicker.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlPotentiometer.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSlider.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlStepper.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSwitch.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlUtils.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCInvocation.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCScale9Sprite.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImpl.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplIOS.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplMac.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\CocosGUI.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\GUIDefine.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\UIHelper.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\UITouchGroup.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\Compatible\CompatibleClasses.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIListView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIPageView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollInterface.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIButton.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UICheckBox.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIImageView.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabel.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelAtlas.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelBMFont.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILoadingBar.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIRichText.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.h" />
+    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\cocos2dx_extra.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\crypto\CCCrypto.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\crypto\md5\md5.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\native\CCAlertViewDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\native\CCNative.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequestDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\network\CCNetwork.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.h" />
+    <ClInclude Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32def.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\imconfig.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui_internal.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_rect_pack.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_textedit.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_truetype.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\imgui_cocos2dx.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\PlayerUI.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaValue.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\Cocos2dxLuaLoader.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaCocos2d.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaCocoStudio.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaTable.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\snapshot.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\xxdefaultkey.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lapi.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lauxlib.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lcode.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\ldebug.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\ldo.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lfunc.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lgc.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\llex.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\llimits.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lmem.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lobject.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lopcodes.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lparser.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lstate.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lstring.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\ltable.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\ltm.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lua.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\luaconf.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lualib.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lundump.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lvm.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua\lzio.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\fpconv.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\lua_cjson.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\strbuf.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\debugger\debugger.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\filesystem\lfs.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lpack\lpack.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\lsqlite3.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\sqlite3.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lua_extensions.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\auxiliar.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\except.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\inet.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket_buffer.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\luasocket_io.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\mime.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\options.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\select.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\socket.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\socket_scripts.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\tcp.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\timeout.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\udp.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\wsocket.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\tolua\tolua++.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\tolua\tolua_event.h" />
+    <ClInclude Include="..\cocos2d-x\spine\PolygonBatch.h" />
+    <ClInclude Include="..\cocos2d-x\spine\SkeletonAnimation.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine-cocos2dx.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Animation.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\AnimationState.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Atlas.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\AtlasAttachmentLoader.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Attachment.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\AttachmentLoader.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Bone.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\BoneData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\BoundingBoxAttachment.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Event.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\EventData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\extension.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\IkConstraint.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\IkConstraintData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Json.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\MeshAttachment.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\RegionAttachment.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Skeleton.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\SkeletonBounds.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\SkeletonData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\SkeletonJson.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Skin.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\SkinnedMeshAttachment.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\Slot.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\SlotData.h" />
+    <ClInclude Include="..\cocos2d-x\spine\spine\spine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\cocos2d-x\imgui\imgui\LICENSE" />
+    <None Include="..\cocos2d-x\imgui\imgui\README.md" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9E05AA4B-1A09-433C-B1DF-BCE6675EC0D5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>quickcocos2dx</RootNamespace>
+    <ProjectName>cocos2dx</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>cocos2dx</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>cocos2dx</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CC_LUA_ENGINE_ENABLED=1;CURL_STATICLIB;GLEW_STATIC;GLEW_NO_GLU;CC_CURL_ENABLED=1;CC_JPEG_ENABLED=1;CC_TIFF_ENABLED=1;CC_WEBP_ENABLED=1;CC_PHYSICS_ENABLED=1;CC_SQLITE_ENABLED=1;CC_CCSTUDIO_ENABLED=1;CC_CCB_ENABLED=1;CC_DRAGONBONES_ENABLED=1;CC_FILTERS_ENABLED=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\spine;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\kazmath\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\support;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\support\tinyxml2;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\curl;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\iconv;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libpng;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libtiff;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libwebp;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\OGLES;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\pthread;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\zlib;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\CocosDenshion\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\CocosDenshion\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\cocoslua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCControlExtension;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCEditBox;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCScrollView;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy\tolua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy\ui;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\crypto;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\luabinding;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\native;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\network;$(QUICK_COCOS2DX_ROOT)\lib\ccos2d-x\external\extra\platform\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <CompileAs>Default</CompileAs>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libraries;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\lua\luajit\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;wsock32.lib;opengl32.lib;glew32.lib;libcurl_imp.lib;libiconv.lib;libjpeg.lib;libpng.lib;libtiff.lib;libzlib.lib;pthreadVCE2.lib;lua51.lib;winmm.lib;libwebp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+    </Link>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;CURL_STATICLIB;GLEW_STATIC;GLEW_NO_GLU;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CC_LUA_ENGINE_ENABLED=1;CC_CURL_ENABLED=1;CC_JPEG_ENABLED=1;CC_TIFF_ENABLED=1;CC_WEBP_ENABLED=1;CC_PHYSICS_ENABLED=1;CC_SQLITE_ENABLED=1;CC_CCSTUDIO_ENABLED=1;CC_CCB_ENABLED=1;CC_DRAGONBONES_ENABLED=1;CC_FILTERS_ENABLED=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\spine;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\kazmath\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\support;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\support\tinyxml2;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\curl;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\iconv;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libjpeg;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libpng;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libtiff;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\libwebp;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\OGLES;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\pthread;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\cocos2dx\platform\third_party\win32\zlib;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\CocosDenshion\include;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\CocosDenshion\win32;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\scripting\cocoslua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCControlExtension;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCEditBox;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\extensions\GUI\CCScrollView;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy\tolua;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\luaproxy\ui;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\crypto;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\luabinding;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\native;$(QUICK_COCOS2DX_ROOT)\lib\cocos2d-x\external\extra\network;$(QUICK_COCOS2DX_ROOT)\lib\ccos2d-x\external\extra\platform\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>
+      <MinimalRebuild>true</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

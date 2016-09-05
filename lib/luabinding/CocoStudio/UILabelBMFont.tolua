@@ -1,0 +1,16 @@
+   
+class LabelBMFont : public Widget
+{
+    LabelBMFont();
+    virtual ~LabelBMFont();
+    static LabelBMFont* create();
+    void setFntFile(const char* fileName);
+    const std::string& getFntFile();
+
+    void setText(const char* value);
+    const char* getStringValue();
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual const CCSize& getContentSize() const;
+    virtual CCNode* getVirtualRenderer();
+    virtual std::string getDescription() const;
+};

@@ -1,0 +1,26 @@
+
+class LabelAtlas : public Widget
+{
+    LabelAtlas();
+    virtual ~LabelAtlas();
+    static LabelAtlas* create();
+    void setProperty(const std::string& stringValue,const std::string& charMapFile, int itemWidth, int itemHeight, const std::string& startCharMap);
+    void setStringValue(const std::string& value);
+    const char* getStringValue() const;
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual const CCSize& getContentSize() const;
+    virtual CCNode* getVirtualRenderer();
+    virtual std::string getDescription() const;
+
+    void setTexture(const std::string& filename);
+    const std::string& getTexture();
+
+    void setStartChar(const std::string& startCharMap);
+    const std::string& getStartChar();
+
+    void setCharSize(const CCSize& sz);
+    const CCSize& getCharSize();
+
+    void setText(const std::string& txt) ;
+    const char* getText() const;
+};
