@@ -76,7 +76,6 @@ LOCAL_SRC_FILES := cocoslua/CCLuaEngine.cpp \
     cocoslua/LuaFunction.cpp \
     cocoslua/LuaTable.cpp \
     cocoslua/lua_cocos2dx_cocostudio_manual.cpp \
-    cocoslua/lua_cocos2dx_extensions_manual.cpp \
     cocoslua/LuaCocoStudio.cpp
 
 ifeq ($(CC_SQLITE_ENABLED),1)

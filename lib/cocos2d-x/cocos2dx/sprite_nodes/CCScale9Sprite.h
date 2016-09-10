@@ -29,7 +29,7 @@ THE SOFTWARE.
 #define __CCScale9Sprite_H__
 
 #include "cocos2d.h"
-#include "CCPlatformMacros.h"
+#include "platform/CCPlatformMacros.h"
 
 NS_CC_BEGIN
 

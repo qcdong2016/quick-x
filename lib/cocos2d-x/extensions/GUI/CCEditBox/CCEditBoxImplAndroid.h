@@ -34,6 +34,7 @@
 #include "CCEditBoxImpl.h"
 
 NS_CC_BEGIN
+namespace ui {
 
 class CCEditBox;
 
@@ -88,7 +89,7 @@ private:
     CCSize m_EditSize;
 };
 
-
+}
 NS_CC_END
 
 #endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) */

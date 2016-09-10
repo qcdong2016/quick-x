@@ -110,6 +110,7 @@ LOCAL_SRC_FILES := \
     sprite_nodes/CCSpriteBatchNode.cpp \
     sprite_nodes/CCSpriteFrame.cpp \
     sprite_nodes/CCSpriteFrameCache.cpp \
+    sprite_nodes/CCScale9Sprite.cpp \
     support/ccUTF8.cpp \
     support/CCNotificationCenter.cpp \
     support/CCProfiling.cpp \

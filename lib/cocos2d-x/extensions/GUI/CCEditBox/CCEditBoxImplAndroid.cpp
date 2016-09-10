@@ -33,6 +33,7 @@
 
 
 NS_CC_BEGIN
+namespace ui {
 
 CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox)
 {
@@ -259,25 +260,25 @@ static void editBoxCallbackFunc(const char* pText, void* ctx)
     CCEditBox* pEditBox = thiz->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
+        CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
 
-        cocos2d::KeyboardReturnType returnType = pEditBox->getReturnType();
+        KeyboardReturnType returnType = pEditBox->getReturnType();
         int handler = pEditBox->getScriptEditBoxHandler();
         pEngine->executeEvent(handler, "changed",pEditBox);
 
-        if (returnType == cocos2d::kKeyboardReturnTypeDone)
+        if (returnType == kKeyboardReturnTypeDone)
         {
             pEngine->executeEvent(handler, "returnDone", pEditBox);
     }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSend)
+        else if (returnType == kKeyboardReturnTypeSend)
         {
             pEngine->executeEvent(handler, "returnSend", pEditBox);
 }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSearch)
+        else if (returnType == kKeyboardReturnTypeSearch)
         {
             pEngine->executeEvent(handler, "returnSearch", pEditBox);
         }
-        else if (returnType == cocos2d::kKeyboardReturnTypeGo)
+        else if (returnType == kKeyboardReturnTypeGo)
         {
             pEngine->executeEvent(handler, "returnGo", pEditBox);
         }
@@ -298,7 +299,7 @@ void CCEditBoxImplAndroid::openKeyboard()
     CCEditBox* pEditBox = this->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
+        CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
         pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
     }
 	
@@ -318,6 +319,7 @@ void CCEditBoxImplAndroid::closeKeyboard()
 	releaseEdit();
 }
 
+}
 NS_CC_END
 
 #endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) */
