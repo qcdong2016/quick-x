@@ -109,10 +109,6 @@ THE SOFTWARE.
 #include "layers_scenes_transitions_nodes/CCTransitionPageTurn.h"
 #include "layers_scenes_transitions_nodes/CCTransitionProgress.h"
 
-// menu_nodes
-#include "menu_nodes/CCMenu.h"
-#include "menu_nodes/CCMenuItem.h"
-
 // misc_nodes
 #include "misc_nodes/CCClippingNode.h"
 #include "misc_nodes/CCClippingRegionNode.h"

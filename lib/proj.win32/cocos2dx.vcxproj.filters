@@ -67,9 +67,6 @@
     <Filter Include="cocos2d-x\cocos2dx\layers_scenes_transitions_nodes">
       <UniqueIdentifier>{05f5762d-e976-438c-910a-7cf32e6ecab6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\cocos2dx\menu_nodes">
-      <UniqueIdentifier>{d8efb264-92c3-41da-baf4-29bd9e0c99db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\cocos2dx\misc_nodes">
       <UniqueIdentifier>{17011d4b-7b34-4349-ac14-21e0cab58a7d}</UniqueIdentifier>
     </Filter>
@@ -383,12 +380,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCScene.cpp">
       <Filter>cocos2d-x\cocos2dx\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenuItem.cpp">
-      <Filter>cocos2d-x\cocos2dx\menu_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenu.cpp">
-      <Filter>cocos2d-x\cocos2dx\menu_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.cpp">
       <Filter>cocos2d-x\cocos2dx\misc_nodes</Filter>
@@ -1300,12 +1291,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\layers_scenes_transitions_nodes\CCScene.h">
       <Filter>cocos2d-x\cocos2dx\layers_scenes_transitions_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenuItem.h">
-      <Filter>cocos2d-x\cocos2dx\menu_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\menu_nodes\CCMenu.h">
-      <Filter>cocos2d-x\cocos2dx\menu_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.h">
       <Filter>cocos2d-x\cocos2dx\misc_nodes</Filter>

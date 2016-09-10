@@ -1,5 +1,13 @@
 
 $#include "LuaCocos2d.h"
+$#include "CCControlButton.h"
+$#include "CCControlPotentiometer.h"
+$#include "CCControlStepper.h"
+$#include "CCControlSwitch.h"
+$#include "CCScrollView.h"
+$#include "CCEditBox.h"
+$#include "CCTableViewCell.h"
+$#include "CCTableView.h"
 
 $pfile "cocos2dx/include/ccTypes.tolua"
 
@@ -91,9 +99,6 @@ $pfile "cocos2dx/label_nodes/CCLabelAtlas.tolua"
 $pfile "cocos2dx/label_nodes/CCLabelBMFont.tolua"
 $pfile "cocos2dx/label_nodes/CCLabelTTF.tolua"
 $pfile "cocos2dx/text_input_node/CCTextFieldTTF.tolua"
-
-$pfile "cocos2dx/menu_nodes/CCMenu.tolua"
-$pfile "cocos2dx/menu_nodes/CCMenuItem.tolua"
 
 $pfile "cocos2dx/CCDirector.tolua"
 $pfile "cocos2dx/CCScheduler.tolua"

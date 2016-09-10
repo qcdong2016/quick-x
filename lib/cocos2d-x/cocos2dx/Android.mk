@@ -69,8 +69,6 @@ LOCAL_SRC_FILES := \
     layers_scenes_transitions_nodes/CCTransitionPageTurn.cpp \
     layers_scenes_transitions_nodes/CCTransition.cpp \
     layers_scenes_transitions_nodes/CCTransitionProgress.cpp \
-    menu_nodes/CCMenu.cpp \
-    menu_nodes/CCMenuItem.cpp \
     misc_nodes/CCClippingNode.cpp \
     misc_nodes/CCClippingRegionNode.cpp \
     misc_nodes/CCProgressTimer.cpp \

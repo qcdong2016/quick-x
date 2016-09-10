@@ -30,7 +30,6 @@
 #include "CCControl.h"
 #include "CCDirector.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
-#include "menu_nodes/CCMenu.h"
 #include "touch_dispatcher/CCTouch.h"
 
 NS_CC_BEGIN

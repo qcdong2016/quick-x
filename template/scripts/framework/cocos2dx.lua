@@ -60,5 +60,5 @@ require(p .. "NodeEx")
 require(p .. "SceneEx")
 require(p .. "SpriteEx")
 require(p .. "DrawNodeEx")
-require(p .. "MenuItemEx")
+require(p .. "WidgetEx")
 

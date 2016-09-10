@@ -161,6 +161,7 @@ int CCLuaEngine::executeNodeEnterFrameEvent(CCNode* pNode, float dt)
 
 int CCLuaEngine::executeMenuItemEvent(CCMenuItem* pMenuItem)
 {
+	/*
     CCArray *listeners = pMenuItem->getAllScriptEventListeners();
     CCScriptHandlePair *p;
     for (int i = listeners->count() - 1; i >= 0; --i)
@@ -172,6 +173,7 @@ int CCLuaEngine::executeMenuItemEvent(CCMenuItem* pMenuItem)
         m_stack->executeFunctionByHandler(p->listener, 2);
         m_stack->clean();
     }
+	*/
     return 0;
 }
 
