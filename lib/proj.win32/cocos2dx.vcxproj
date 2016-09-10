@@ -152,10 +152,6 @@
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.cpp" />
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.cpp" />
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.cpp" />
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.cpp" />
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.cpp" />
@@ -201,7 +197,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaTable.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.cpp" />
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\snapshot.c" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.c" />
@@ -512,10 +507,6 @@
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplMac.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.h" />
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.h" />
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.h" />
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.h" />
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.h" />
@@ -569,7 +560,6 @@
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaTable.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\snapshot.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.h" />

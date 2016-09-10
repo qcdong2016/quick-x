@@ -1,7 +1,0 @@
-
-$using namespace std;
-$#include "CCTableViewCell.h"
-$#include "CCTableView.h"
-
-$pfile "extensions/GUI/CCScrollView/CCScrollView.tolua"
-$pfile "extensions/GUI/CCScrollView/CCTableView.tolua"

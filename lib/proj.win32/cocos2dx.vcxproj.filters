@@ -190,9 +190,6 @@
     <Filter Include="cocos2d-x\extensions\GUI">
       <UniqueIdentifier>{882d5094-4f5f-4d01-8b79-c286e28260dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\extensions\GUI\CCScrollView">
-      <UniqueIdentifier>{25890518-7956-4cad-93bc-508d6779e62e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\extensions\GUI\CCEditBox">
       <UniqueIdentifier>{34ecd737-a495-4e54-80a1-69ccb01a6069}</UniqueIdentifier>
     </Filter>
@@ -741,18 +738,6 @@
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollView.cpp">
       <Filter>cocos2d-x\extensions\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.cpp">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
     </ClCompile>
@@ -883,9 +868,6 @@
       <Filter>cocos2d-x\scripting\cocoslua</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.cpp">
       <Filter>cocos2d-x\scripting\cocoslua</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.cpp">
@@ -1820,18 +1802,6 @@
     <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\Compatible\CompatibleClasses.h">
       <Filter>cocos2d-x\extensions\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCScrollView.h">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCSorting.h">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableView.h">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCScrollView\CCTableViewCell.h">
-      <Filter>cocos2d-x\extensions\GUI\CCScrollView</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.h">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
     </ClInclude>
@@ -1986,9 +1956,6 @@
       <Filter>cocos2d-x\scripting\cocoslua</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_extensions_manual.h">
       <Filter>cocos2d-x\scripting\cocoslua</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.h">

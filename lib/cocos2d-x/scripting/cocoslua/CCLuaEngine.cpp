@@ -27,7 +27,6 @@
 #include "cocoa/CCArray.h"
 #include "cocoa/CCScriptEventDispatcher.h"
 #include "CCScheduler.h"
-#include "CCTableView.h"
 
 NS_CC_BEGIN
 
@@ -481,61 +480,6 @@ int CCLuaEngine::reallocateScriptHandler(int nHandler)
 {
     int nRet = m_stack->reallocateScriptHandler(nHandler);
     m_stack->clean();
-    return nRet;
-}
-
-int CCLuaEngine::executeTableViewEvent(int nEventType,CCTableView* pTableView,void* pValue, CCArray* pResultArray)
-{
-    if (NULL == pTableView)
-        return 0;
-
-    int nHanlder = pTableView->getScriptHandler(nEventType);
-    if (0 == nHanlder)
-        return 0;
-
-    int nRet = 0;
-    switch (nEventType)
-    {
-        case CCTableView::kTableViewScroll:
-        case CCTableView::kTableViewZoom:
-        {
-            m_stack->pushCCObject(pTableView, "CCTableView");
-            nRet = m_stack->executeFunctionByHandler(nHanlder, 1);
-        }
-            break;
-        case CCTableView::kTableCellTouched:
-        case CCTableView::kTableCellHighLight:
-        case CCTableView::kTableCellUnhighLight:
-        case CCTableView::kTableCellWillRecycle:
-        {
-            m_stack->pushCCObject(pTableView, "CCTableView");
-            m_stack->pushCCObject(static_cast<CCTableViewCell*>(pValue), "CCTableViewCell");
-            nRet = m_stack->executeFunctionByHandler(nHanlder, 2);
-        }
-            break;
-        case CCTableView::kTableCellSizeForIndex:
-        {
-            m_stack->pushCCObject(pTableView, "CCTableView");
-            m_stack->pushInt(*((int*)pValue));
-            nRet = m_stack->executeFunctionReturnArray(nHanlder, 2, 2, pResultArray);
-        }
-            break;
-        case CCTableView::kTableCellSizeAtIndex:
-        {
-            m_stack->pushCCObject(pTableView, "CCTableView");
-            m_stack->pushInt(*((int*)pValue));
-            nRet = m_stack->executeFunctionReturnArray(nHanlder, 2, 1, pResultArray);
-        }
-            break;
-        case CCTableView::kNumberOfCellsInTableView:
-        {
-            m_stack->pushCCObject(pTableView, "CCTableView");
-            nRet = m_stack->executeFunctionReturnArray(nHanlder, 1, 1, pResultArray);
-        }
-            break;
-        default:
-            break;
-    }
     return nRet;
 }
 

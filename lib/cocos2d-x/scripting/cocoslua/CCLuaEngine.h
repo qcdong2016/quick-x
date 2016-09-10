@@ -124,8 +124,6 @@ public:
     virtual int executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue);
     virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL);
 
-    int executeTableViewEvent(int nEventType,CCTableView* pTableView,void* pValue = NULL, CCArray* pResultArray = NULL);
-
     virtual int executeEventWithArgs(int nHandler, CCArray* pArgs);
 
     virtual bool handleAssert(const char *msg);
