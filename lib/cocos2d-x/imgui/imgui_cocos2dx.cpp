@@ -5,6 +5,7 @@
 #include "CCDirector.h"
 #include "CCEGLView.h"
 #include "PlayerUI.h"
+#include "../cocos/ProcessUtils.h"
 
 NS_CC_BEGIN;
 static double       g_Time = 0.0f;
@@ -179,6 +180,8 @@ void ImGuiCC::init()
 {
 	static bool inited = false;
 	if (!inited) {
+		g_visible = getIntArgument("menu") == 1;
+
 		inited = true;
 		ImGui_ImplGlfwGL3_Init(true);
 		//_program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionColor);
@@ -293,11 +296,13 @@ bool ImGuiCC::setMousePos(int x, int y)
 void ImGuiCC::toggleVisible()
 {
 	g_visible = !g_visible;
+	setArgument("menu", !!g_visible);
 }
 
 void ImGuiCC::setVisible(bool v)
 {
 	g_visible = v;
+	setArgument("menu", !!v);
 }
 
 void ImGuiCC::draw()
