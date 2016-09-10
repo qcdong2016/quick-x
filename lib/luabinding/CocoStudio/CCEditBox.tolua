@@ -120,13 +120,13 @@ enum EditBoxInputFlag
  *
  */
 
-class CCEditBox : public CCControlButton
+class CCEditBox : public Button
 {
     /**
      * create a edit box with size.
      * @return An autorelease pointer of CCEditBox, you don't need to release it only if you retain it again.
      */
-    static CCEditBox* create(CCSize size, CCScale9Sprite* pNormal9SpriteBg, CCScale9Sprite* pPressed9SpriteBg = NULL, CCScale9Sprite* pDisabled9SpriteBg = NULL);
+    static CCEditBox* create();
 
     /**
      * Registers a script function that will be called for EditBox events.

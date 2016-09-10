@@ -28,10 +28,12 @@
 
 #include "cocos2d.h"
 #include "CCPlatformMacros.h"
-#include "../CCControlExtension/CCControlExtensions.h"
+#include "../UIWidgets/UIButton.h"
+#include "sprite_nodes/CCScale9Sprite.h"
 
 NS_CC_BEGIN
 
+namespace ui {
 
 enum KeyboardReturnType {
     kKeyboardReturnTypeDefault = 0,
@@ -172,7 +174,7 @@ public:
  */
  
 class CC_DLL CCEditBox
-: public CCControlButton
+: public Button
 , public CCIMEDelegate
 {
 public:
@@ -190,13 +192,13 @@ public:
      * create a edit box with size.
      * @return An autorelease pointer of CCEditBox, you don't need to release it only if you retain it again.
      */
-    static CCEditBox* create(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg, CCScale9Sprite* pPressed9SpriteBg = NULL, CCScale9Sprite* pDisabled9SpriteBg = NULL);
-    
+    //static CCEditBox* create(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg, CCScale9Sprite* pPressed9SpriteBg = NULL, CCScale9Sprite* pDisabled9SpriteBg = NULL);
+	static CCEditBox* create();
     /**
      * Init edit box with specified size. This method should be invoked right after constructor.
      * @param size The size of edit box.
      */
-    bool initWithSizeAndBackgroundSprite(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg);
+    //bool initWithSizeAndBackgroundSprite(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg);
     
     /**
      * Gets/Sets the delegate for edit box.
@@ -393,12 +395,9 @@ public:
      *  @lua NA
      */
     virtual void keyboardDidHide(CCIMEKeyboardNotificationInfo& info);
-    
-    /** callback funtions 
-     *  @js NA
-     */
-    void touchDownAction(CCObject *sender, CCControlEvent controlEvent);
-    
+
+	virtual void onPressStateChangedToPressed();
+
 protected:
     CCEditBoxImpl*      m_pEditBoxImpl;
     CCEditBoxDelegate*  m_pDelegate;
@@ -423,6 +422,8 @@ protected:
     float m_fAdjustHeight;
     int   m_nScriptEditBoxHandler;
 };
+
+}
 
 NS_CC_END
 

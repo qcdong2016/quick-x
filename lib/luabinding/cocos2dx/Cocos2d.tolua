@@ -1,13 +1,5 @@
 
 $#include "LuaCocos2d.h"
-$#include "CCControlButton.h"
-$#include "CCControlPotentiometer.h"
-$#include "CCControlStepper.h"
-$#include "CCControlSwitch.h"
-$#include "CCScrollView.h"
-$#include "CCEditBox.h"
-$#include "CCTableViewCell.h"
-$#include "CCTableView.h"
 
 $pfile "cocos2dx/include/ccTypes.tolua"
 

@@ -31,6 +31,7 @@
 #include "CCEditBox.h"
 
 NS_CC_BEGIN
+namespace ui {
 
 
 class CCEditBoxImpl
@@ -84,7 +85,7 @@ protected:
 // This method must be implemented at each subclass of CCEditBoxImpl.
 extern CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox);
 
-
+}
 NS_CC_END
 
 #endif /* __CCEditBoxIMPL_H__ */

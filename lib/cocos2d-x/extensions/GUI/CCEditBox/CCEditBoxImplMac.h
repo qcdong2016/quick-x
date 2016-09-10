@@ -64,6 +64,7 @@
 @end
 
 NS_CC_BEGIN
+namespace ui {
 
 class CCEditBox;
 /**
@@ -111,6 +112,7 @@ private:
     EditBoxImplMac*  m_pSysEdit;
 };
 
+}
 
 NS_CC_END
 

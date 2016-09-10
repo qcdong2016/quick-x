@@ -143,11 +143,11 @@ extern "C" {
 #include "cocos2d.h"
 #include "CCLuaEngine.h"
 #include "SimpleAudioEngine.h"
-#include "cocos-ext.h"
+#include "GUI/System/CocosGUI.h"
+#include "GUI/CCEditBox/CCEditBox.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
-using namespace cocos2d::extension;
 using namespace CocosDenshion;]])
 
       replace([[/* Exported function */

@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIImageView.h"
-#include "GUI/CCControlExtension/CCScale9Sprite.h"
+#include "sprite_nodes/CCScale9Sprite.h"
 
 NS_CC_BEGIN
 

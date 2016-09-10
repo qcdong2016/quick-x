@@ -2,6 +2,7 @@
 $#include "LuaCocoStudio.h"
 
 
+$pfile "CocoStudio/CCEditBox.tolua"
 $pfile "CocoStudio/UIHelper.tolua"
 $pfile "CocoStudio/UIWidget.tolua"
 $pfile "CocoStudio/UILayout.tolua"

@@ -27,6 +27,7 @@
 #include "CCEditBoxImpl.h"
 
 NS_CC_BEGIN
+namespace ui {
 
 const static unsigned char transImgData[] = {
 	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00,
@@ -84,55 +85,21 @@ CCEditBox::~CCEditBox(void)
     unregisterScriptEditBoxHandler();
 }
 
-
-void CCEditBox::touchDownAction(CCObject *sender, CCControlEvent controlEvent)
+void CCEditBox::onPressStateChangedToPressed()
 {
-    m_pEditBoxImpl->openKeyboard();
+	m_pEditBoxImpl->openKeyboard();
 }
 
-CCEditBox* CCEditBox::create(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg, CCScale9Sprite* pPressed9SpriteBg/* = NULL*/, CCScale9Sprite* pDisabled9SpriteBg/* = NULL*/)
+CCEditBox* CCEditBox::create()
 {
-    CCEditBox* pRet = new CCEditBox();
-    
-    if (NULL == pNormal9SpriteBg) {
-        pNormal9SpriteBg = newTransParentSprite();
-    }
-    if (pRet != NULL && pRet->initWithSizeAndBackgroundSprite(size, pNormal9SpriteBg))
-    {
-        if (pPressed9SpriteBg != NULL)
-        {
-            pRet->setBackgroundSpriteForState(pPressed9SpriteBg, CCControlStateHighlighted);
-        }
-        
-        if (pDisabled9SpriteBg != NULL)
-        {
-            pRet->setBackgroundSpriteForState(pDisabled9SpriteBg, CCControlStateDisabled);
-        }
-        pRet->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(pRet);
-    }
-    
-    return pRet;
-}
-
-bool CCEditBox::initWithSizeAndBackgroundSprite(const CCSize& size, CCScale9Sprite* pPressed9SpriteBg)
-{
-    if (CCControlButton::initWithBackgroundSprite(pPressed9SpriteBg))
-    {
-        m_pEditBoxImpl = __createSystemEditBox(this);
-        m_pEditBoxImpl->initWithSize(size);
-        
-        this->setZoomOnTouchDown(false);
-        this->setPreferredSize(size);
-        this->setPosition(ccp(0, 0));
-        this->addTargetWithActionForControlEvent(this, cccontrol_selector(CCEditBox::touchDownAction), CCControlEventTouchUpInside);
-        
-        return true;
-    }
-    return false;
+	CCEditBox* pRet = new CCEditBox();
+	if (pRet && pRet->init())
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	CC_SAFE_DELETE(pRet);
+	return nullptr;
 }
 
 void CCEditBox::setDelegate(CCEditBoxDelegate* pDelegate)
@@ -320,7 +287,7 @@ KeyboardReturnType CCEditBox::getReturnType()
 /* override function */
 void CCEditBox::setPosition(const CCPoint& pos)
 {
-    CCControlButton::setPosition(pos);
+	Button::setPosition(pos);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setPosition(pos);
@@ -329,7 +296,7 @@ void CCEditBox::setPosition(const CCPoint& pos)
 
 void CCEditBox::setVisible(bool visible)
 {
-    CCControlButton::setVisible(visible);
+	Button::setVisible(visible);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setVisible(visible);
@@ -338,7 +305,7 @@ void CCEditBox::setVisible(bool visible)
 
 void CCEditBox::setContentSize(const CCSize& size)
 {
-    CCControlButton::setContentSize(size);
+	Button::setContentSize(size);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setContentSize(size);
@@ -347,7 +314,7 @@ void CCEditBox::setContentSize(const CCSize& size)
 
 void CCEditBox::setAnchorPoint(const CCPoint& anchorPoint)
 {
-    CCControlButton::setAnchorPoint(anchorPoint);
+	Button::setAnchorPoint(anchorPoint);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setAnchorPoint(anchorPoint);
@@ -356,7 +323,7 @@ void CCEditBox::setAnchorPoint(const CCPoint& anchorPoint)
 
 void CCEditBox::visit(void)
 {
-    CCControlButton::visit();
+	Button::visit();
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->visit();
@@ -365,7 +332,7 @@ void CCEditBox::visit(void)
 
 void CCEditBox::onEnter(void)
 {
-    CCControlButton::onEnter();
+	Button::onEnter();
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->onEnter();
@@ -374,7 +341,7 @@ void CCEditBox::onEnter(void)
 
 void CCEditBox::onExit(void)
 {
-    CCControlButton::onExit();
+	Button::onExit();
     if (m_pEditBoxImpl != NULL)
     {
         // remove system edit control
@@ -447,5 +414,5 @@ void CCEditBox::unregisterScriptEditBoxHandler(void)
     }
 }
 
-
+}
 NS_CC_END

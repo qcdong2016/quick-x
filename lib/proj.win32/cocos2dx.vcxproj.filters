@@ -196,9 +196,6 @@
     <Filter Include="cocos2d-x\extensions\GUI\CCEditBox">
       <UniqueIdentifier>{34ecd737-a495-4e54-80a1-69ccb01a6069}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\extensions\GUI\CCControlExtension">
-      <UniqueIdentifier>{d4aaf24a-5ae0-434b-bfa6-be5ac62673df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\spine">
       <UniqueIdentifier>{8f7f20d3-6f2f-43d1-a466-4d3fad8f5ad0}</UniqueIdentifier>
     </Filter>
@@ -762,42 +759,6 @@
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.cpp">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControl.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlButton.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlColourPicker.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlHuePicker.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlPotentiometer.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSlider.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlStepper.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSwitch.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlUtils.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCInvocation.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCScale9Sprite.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c">
       <Filter>cocos2d-x\spine\spine</Filter>
     </ClCompile>
@@ -1130,6 +1091,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.cpp">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.cpp">
+      <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1883,45 +1847,6 @@
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.h">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControl.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlButton.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlColourPicker.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlExtensions.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlHuePicker.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlPotentiometer.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSlider.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlStepper.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlSwitch.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCControlUtils.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCInvocation.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCControlExtension\CCScale9Sprite.h">
-      <Filter>cocos2d-x\extensions\GUI\CCControlExtension</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
       <Filter>cocos2d-x\spine\spine</Filter>
     </ClInclude>
@@ -2242,6 +2167,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.h">
       <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.h">
+      <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

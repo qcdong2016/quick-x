@@ -34,6 +34,7 @@
 #include "CCEditBoxImpl.h"
 
 NS_CC_BEGIN
+namespace ui {
 
 class CCEditBox;
 /**
@@ -94,7 +95,7 @@ private:
 	*/
 };
 
-
+}
 NS_CC_END
 
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */

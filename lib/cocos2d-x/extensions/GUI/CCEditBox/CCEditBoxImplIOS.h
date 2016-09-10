@@ -65,6 +65,7 @@
 @end
 
 NS_CC_BEGIN
+namespace ui {
 
 class CCEditBox;
 /**
@@ -120,6 +121,7 @@ private:
 };
 
 
+}
 NS_CC_END
 
 
