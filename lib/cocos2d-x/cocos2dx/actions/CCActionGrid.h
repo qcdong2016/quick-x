@@ -40,16 +40,17 @@ class CCGridBase;
 /** @brief Base class for Grid actions */
 class CC_DLL CCGridAction : public CCActionInterval
 {
+    CCOBJECT(CCGridAction, CCActionInterval)
 public:
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+	virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode *pTarget);
     virtual CCActionInterval* reverse(void);
 
-    /** initializes the action with size and duration */
+	/** initializes the action with size and duration */
     virtual bool initWithDuration(float duration, const CCSize& gridSize);
 
     /** returns the grid */
@@ -73,6 +74,7 @@ protected:
  */
 class CC_DLL CCGrid3DAction : public CCGridAction
 {
+    CCOBJECT(CCGrid3DAction, CCGridAction)
 public:
     /** returns the grid */
     virtual CCGridBase* getGrid(void);
@@ -94,6 +96,7 @@ public:
 /** @brief Base class for CCTiledGrid3D actions */
 class CC_DLL CCTiledGrid3DAction : public CCGridAction
 {
+    CCOBJECT(CCTiledGrid3DAction, CCGridAction)
 public:
     /** returns the tile that belongs to a certain position of the grid */
     ccQuad3 tile(const CCPoint& position);
@@ -116,6 +119,7 @@ public:
 /** @brief CCAccelDeccelAmplitude action */
 class CC_DLL CCAccelDeccelAmplitude : public CCActionInterval
 {
+    CCOBJECT(CCAccelDeccelAmplitude, CCActionInterval)
 public:
     /**
      *  @js NA
@@ -146,6 +150,7 @@ protected:
 /** @brief CCAccelAmplitude action */
 class CC_DLL CCAccelAmplitude : public CCActionInterval
 {
+    CCOBJECT(CCAccelAmplitude, CCActionInterval)
 public:
     /**
      *  @js NA
@@ -175,6 +180,7 @@ protected:
 /** @brief CCDeccelAmplitude action */
 class CC_DLL CCDeccelAmplitude : public CCActionInterval
 {
+    CCOBJECT(CCDeccelAmplitude, CCActionInterval)
 public:
     /**
      *  @js NA
@@ -209,6 +215,7 @@ protected:
  */
 class CC_DLL CCStopGrid : public CCActionInstant
 {
+    CCOBJECT(CCStopGrid, CCActionInstant)
 public:
     virtual void startWithTarget(CCNode *pTarget);
 
@@ -220,6 +227,7 @@ public:
 /** @brief CCReuseGrid action */
 class CC_DLL CCReuseGrid : public CCActionInstant
 {
+    CCOBJECT(CCReuseGrid, CCActionInstant)
 public:
     /** initializes an action with the number of times that the current grid will be reused */
     bool initWithTimes(int times);

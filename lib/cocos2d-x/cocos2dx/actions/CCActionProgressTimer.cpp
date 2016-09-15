@@ -24,7 +24,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCActionProgressTimer.h"
 #include "misc_nodes/CCProgressTimer.h"
-#include "cocoa/CCZone.h"
 
 NS_CC_BEGIN
 
@@ -53,27 +52,10 @@ bool CCProgressTo::initWithDuration(float duration, float fPercent)
     return false;
 }
 
-CCObject* CCProgressTo::copyWithZone(CCZone *pZone)
+void CCProgressTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCProgressTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCProgressTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCProgressTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_fTo);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+	Super::paste(o);
+	O->initWithDuration(m_fDuration, m_fTo);
 }
 
 void CCProgressTo::startWithTarget(CCNode *pTarget)
@@ -118,27 +100,10 @@ bool CCProgressFromTo::initWithDuration(float duration, float fFromPercentage, f
     return false;
 }
 
-CCObject* CCProgressFromTo::copyWithZone(CCZone *pZone)
+void CCProgressFromTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCProgressFromTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCProgressFromTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCProgressFromTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_fFrom, m_fTo);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+	Super::paste(o);
+	O->initWithDuration(m_fDuration, m_fFrom, m_fTo);
 }
 
 CCActionInterval* CCProgressFromTo::reverse(void)

@@ -43,6 +43,7 @@ NS_CC_BEGIN
 
 class CC_DLL CCString : public CCObject
 {
+	CCOBJECT(CCString, CCObject)
 public:
     /**
      * @lua NA
@@ -103,7 +104,7 @@ public:
      * @lua NA
      * @js  NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+	virtual void paste(CCObject* o);
     virtual bool isEqual(const CCObject* pObject);
 
     /** create a string with std string, you can also pass a c string pointer because the default constructor of std::string can access a c string pointer. 

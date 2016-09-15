@@ -35,7 +35,6 @@
 #include "ccMacros.h"
 #include "support/CCPointExtension.h"
 #include "CCActionCatmullRom.h"
-#include "cocoa/CCZone.h"
 
 using namespace std;
 
@@ -124,26 +123,10 @@ void CCCardinalSplineTo::startWithTarget(cocos2d::CCNode *pTarget)
     m_accumulatedDiff = CCPointZero;
 }
 
-CCCardinalSplineTo* CCCardinalSplineTo::copyWithZone(cocos2d::CCZone *pZone)
+void CCCardinalSplineTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCCardinalSplineTo* pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-    {
-        pRet = (CCCardinalSplineTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCCardinalSplineTo();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pRet->initWithDuration(this->getDuration(), this->m_pPoints, this->m_fTension);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+	Super::paste(o);
+    O->initWithDuration(this->getDuration(), this->m_pPoints, this->m_fTension);
 }
 
 void CCCardinalSplineTo::update(float time)

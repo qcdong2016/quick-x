@@ -25,7 +25,6 @@ THE SOFTWARE.
 #include "CCActionGrid3D.h"
 #include "support/CCPointExtension.h"
 #include "CCDirector.h"
-#include "cocoa/CCZone.h"
 #include <stdlib.h>
 
 NS_CC_BEGIN
@@ -64,28 +63,10 @@ bool CCWaves3D::initWithDuration(float duration, const CCSize& gridSize, unsigne
     return false;
 }
 
-CCObject* CCWaves3D::copyWithZone(CCZone *pZone)
+void CCWaves3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCWaves3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCWaves3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCWaves3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude);
 }
 
 void CCWaves3D::update(float time)
@@ -142,27 +123,10 @@ bool CCFlipX3D::initWithSize(const CCSize& gridSize, float duration)
     return CCGrid3DAction::initWithDuration(duration, gridSize);
 }
 
-CCObject* CCFlipX3D::copyWithZone(CCZone *pZone)
+void CCFlipX3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCFlipX3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCFlipX3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCFlipX3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithSize(m_sGridSize, m_fDuration);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithSize(m_sGridSize, m_fDuration);
 }
 
 void CCFlipX3D::update(float time)
@@ -250,27 +214,10 @@ CCFlipY3D* CCFlipY3D::create(float duration)
     return pAction;
 }
 
-CCObject* CCFlipY3D::copyWithZone(CCZone* pZone)
+void CCFlipY3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCFlipY3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCFlipY3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCFlipY3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCFlipX3D::copyWithZone(pZone);
-
-    pCopy->initWithSize(m_sGridSize, m_fDuration);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithSize(m_sGridSize, m_fDuration);
 }
 
 void CCFlipY3D::update(float time)
@@ -376,27 +323,10 @@ bool CCLens3D::initWithDuration(float duration, const CCSize& gridSize, const CC
     return false;
 }
 
-CCObject* CCLens3D::copyWithZone(CCZone *pZone)
+void CCLens3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCLens3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCLens3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCLens3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_position, m_fRadius);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_position, m_fRadius);
 }
 
 void CCLens3D::setPosition(const CCPoint& pos)
@@ -493,27 +423,10 @@ void CCRipple3D::setPosition(const CCPoint& position)
     m_position = position;
 }
 
-CCObject* CCRipple3D::copyWithZone(CCZone *pZone)
+void CCRipple3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCRipple3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCRipple3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCRipple3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_position, m_fRadius, m_nWaves, m_fAmplitude);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_position, m_fRadius, m_nWaves, m_fAmplitude);
 }
 
 void CCRipple3D::update(float time)
@@ -574,27 +487,10 @@ bool CCShaky3D::initWithDuration(float duration, const CCSize& gridSize, int ran
     return false;
 }
 
-CCObject* CCShaky3D::copyWithZone(CCZone *pZone)
+void CCShaky3D::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCShaky3D* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCShaky3D*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCShaky3D();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_nRandrange, m_bShakeZ);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_nRandrange, m_bShakeZ);
 }
 
 void CCShaky3D::update(float time)
@@ -654,27 +550,10 @@ bool CCLiquid::initWithDuration(float duration, const CCSize& gridSize, unsigned
     return false;
 }
 
-CCObject* CCLiquid::copyWithZone(CCZone *pZone)
+void CCLiquid::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCLiquid* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCLiquid*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCLiquid();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude);
 }
 
 void CCLiquid::update(float time)
@@ -730,27 +609,10 @@ bool CCWaves::initWithDuration(float duration, const CCSize& gridSize, unsigned 
     return false;
 }
 
-CCObject* CCWaves::copyWithZone(CCZone *pZone)
+void CCWaves::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCWaves* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCWaves*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCWaves();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude, m_bHorizontal, m_bVertical);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_nWaves, m_fAmplitude, m_bHorizontal, m_bVertical);
 }
 
 void CCWaves::update(float time)
@@ -819,28 +681,10 @@ void CCTwirl::setPosition(const CCPoint& position)
     m_position = position;
 }
 
-CCObject* CCTwirl::copyWithZone(CCZone *pZone)
+void CCTwirl::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCTwirl* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCTwirl*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCTwirl();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCGrid3DAction::copyWithZone(pZone);
-
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize, m_position, m_nTwirls, m_fAmplitude);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize, m_position, m_nTwirls, m_fAmplitude);
 }
 
 void CCTwirl::update(float time)

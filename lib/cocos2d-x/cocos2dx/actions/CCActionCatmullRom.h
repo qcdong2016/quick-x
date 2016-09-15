@@ -57,6 +57,7 @@ NS_CC_BEGIN;
  */
 class CC_DLL CCCardinalSplineTo : public CCActionInterval
 {
+    CCOBJECT(CCCardinalSplineTo, CCActionInterval)
 public:
 
     /** creates an action with a Cardinal Spline array of points and tension 
@@ -82,13 +83,12 @@ public:
      */
     bool initWithDuration(float duration, CCPointArray* points, float tension);
     
-    // super virtual functions
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCCardinalSplineTo* copyWithZone(CCZone* pZone);
-    /**
+	virtual void paste(CCObject* o);
+	/**
      *  @lua NA
      */
     virtual void startWithTarget(CCNode *pTarget);
@@ -162,6 +162,7 @@ protected:
  */
 class CC_DLL CCCatmullRomTo : public CCCardinalSplineTo
 {
+    CCOBJECT(CCCatmullRomTo, CCCardinalSplineTo)
 public:
     
     /** creates an action with a Cardinal Spline array of points and tension 
@@ -186,6 +187,7 @@ public:
  */
 class CC_DLL CCCatmullRomBy : public CCCardinalSplineBy
 {
+    CCOBJECT(CCCatmullRomBy, CCCardinalSplineBy)
 public:
     
     /** creates an action with a Cardinal Spline array of points and tension 

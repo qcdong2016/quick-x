@@ -113,6 +113,7 @@ NS_CC_BEGIN
  */
 class CC_DLL CCArray : public CCObject
 {
+	CCOBJECT(CCArray, CCObject)
 public:
     /**
      * @lua NA
@@ -229,7 +230,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+	virtual void paste(CCObject* o);
 
     /* override functions */
     virtual void acceptVisitor(CCDataVisitor &visitor);

@@ -41,8 +41,9 @@ class CCCamera;
 @brief Base class for CCCamera actions
 @ingroup Actions
 */
-class CC_DLL CCActionCamera : public CCActionInterval //<NSCopying> 
+class CC_DLL CCActionCamera : public CCActionInterval
 {
+	CCOBJECT(CCActionCamera, CCActionInterval)
 public:
     /**
      *  @js ctor
@@ -85,8 +86,9 @@ protected:
 Orbits the camera around the center of the screen using spherical coordinates
 @ingroup Actions
 */
-class CC_DLL CCOrbitCamera : public CCActionCamera //<NSCopying> 
+class CC_DLL CCOrbitCamera : public CCActionCamera
 {
+	CCOBJECT(CCOrbitCamera, CCActionCamera)
 public:
     /**
      *  @js ctor
@@ -112,7 +114,7 @@ public:
     /** creates a CCOrbitCamera action with radius, delta-radius,  z, deltaZ, x, deltaX */
     static CCOrbitCamera* create(float t, float radius, float deltaRadius, float angleZ, float deltaAngleZ, float angleX, float deltaAngleX);
     
-    /** initializes a CCOrbitCamera action with radius, delta-radius,  z, deltaZ, x, deltaX */
+	/** initializes a CCOrbitCamera action with radius, delta-radius,  z, deltaZ, x, deltaX */
     bool initWithDuration(float t, float radius, float deltaRadius, float angleZ, float deltaAngleZ, float angleX, float deltaAngleX);
     /** positions the camera according to spherical coordinates */
     void sphericalRadius(float *r, float *zenith, float *azimuth);
@@ -121,7 +123,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+	virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
 

@@ -44,6 +44,7 @@ class CCZone;
  */
 class CC_DLL CCActionEase : public CCActionInterval
 {
+    CCOBJECT(CCActionEase, CCActionInterval)
 public:
     /**
      *  @js NA
@@ -57,7 +58,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode *pTarget);
     virtual void stop(void);
     virtual void update(float time);
@@ -80,6 +81,7 @@ protected:
  */
 class CC_DLL CCEaseRateAction : public CCActionEase
 {
+    CCOBJECT(CCEaseRateAction, CCActionEase)
 public:
     /**
      *  @js NA
@@ -98,7 +100,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse(void);
 
 public:
@@ -116,6 +118,7 @@ protected:
  */
 class CC_DLL CCEaseIn : public CCEaseRateAction
 {
+    CCOBJECT(CCEaseIn, CCEaseRateAction)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -123,7 +126,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 public:
 
     /** Creates the action with the inner action and the rate parameter */
@@ -136,6 +139,7 @@ public:
  */
 class CC_DLL CCEaseOut : public CCEaseRateAction
 {
+    CCOBJECT(CCEaseOut, CCEaseRateAction)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse();
@@ -143,7 +147,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -157,13 +161,14 @@ public:
  */
 class CC_DLL CCEaseInOut : public CCEaseRateAction
 {
+    CCOBJECT(CCEaseInOut, CCEaseRateAction)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse(void);
 
 public:
@@ -178,6 +183,7 @@ public:
  */
 class CC_DLL CCEaseExponentialIn : public CCActionEase
 {
+    CCOBJECT(CCEaseExponentialIn, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -185,7 +191,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
     /** creates the action */
@@ -198,6 +204,7 @@ public:
  */
 class CC_DLL CCEaseExponentialOut : public CCActionEase
 {
+    CCOBJECT(CCEaseExponentialOut, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -205,7 +212,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
     /** creates the action */
@@ -218,13 +225,14 @@ public:
  */
 class CC_DLL CCEaseExponentialInOut : public CCActionEase
 {
+    CCOBJECT(CCEaseExponentialInOut, CCActionEase)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse();
 
 public:
@@ -239,6 +247,7 @@ public:
  */
 class CC_DLL CCEaseSineIn : public CCActionEase
 {
+    CCOBJECT(CCEaseSineIn, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -246,7 +255,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
     /** creates the action */
@@ -259,6 +268,7 @@ public:
  */
 class CC_DLL CCEaseSineOut : public CCActionEase
 {
+    CCOBJECT(CCEaseSineOut, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -266,7 +276,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -280,13 +290,14 @@ public:
  */
 class CC_DLL CCEaseSineInOut : public CCActionEase
 {
+    CCOBJECT(CCEaseSineInOut, CCActionEase)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse();
 
 public:
@@ -302,6 +313,7 @@ public:
  */
 class CC_DLL CCEaseElastic : public CCActionEase
 {
+    CCOBJECT(CCEaseElastic, CCActionEase)
 public:
     /** get period of the wave in radians. default is 0.3 */
     inline float getPeriod(void) { return m_fPeriod; }
@@ -316,7 +328,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -335,6 +347,7 @@ protected:
  */
 class CC_DLL CCEaseElasticIn : public CCEaseElastic
 {
+    CCOBJECT(CCEaseElasticIn, CCEaseElastic)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -342,7 +355,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -359,6 +372,7 @@ public:
  */
 class CC_DLL CCEaseElasticOut : public CCEaseElastic
 {
+    CCOBJECT(CCEaseElasticOut, CCEaseElastic)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -366,7 +380,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -383,6 +397,7 @@ public:
  */
 class CC_DLL CCEaseElasticInOut : public CCEaseElastic
 {
+    CCOBJECT(CCEaseElasticInOut, CCEaseElastic)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -390,7 +405,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -406,13 +421,14 @@ public:
 */
 class CC_DLL CCEaseBounce : public CCActionEase
 {
+    CCOBJECT(CCEaseBounce, CCActionEase)
 public:
     float bounceTime(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse();
 
 public:
@@ -429,6 +445,7 @@ public:
 */
 class CC_DLL CCEaseBounceIn : public CCEaseBounce
 {
+    CCOBJECT(CCEaseBounceIn, CCEaseBounce)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -436,7 +453,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -452,6 +469,7 @@ public:
  */
 class CC_DLL CCEaseBounceOut : public CCEaseBounce
 {
+    CCOBJECT(CCEaseBounceOut, CCEaseBounce)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -459,7 +477,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -475,13 +493,14 @@ public:
  */
 class CC_DLL CCEaseBounceInOut : public CCEaseBounce
 {
+    CCOBJECT(CCEaseBounceInOut, CCEaseBounce)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse();
 
 public:
@@ -498,6 +517,7 @@ public:
  */
 class CC_DLL CCEaseBackIn : public CCActionEase
 {
+    CCOBJECT(CCEaseBackIn, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -505,7 +525,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -521,6 +541,7 @@ public:
  */
 class CC_DLL CCEaseBackOut : public CCActionEase
 {
+    CCOBJECT(CCEaseBackOut, CCActionEase)
 public:
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
@@ -528,7 +549,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
 
@@ -544,13 +565,14 @@ public:
  */
 class CC_DLL CCEaseBackInOut : public CCActionEase
 {
+    CCOBJECT(CCEaseBackInOut, CCActionEase)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse();
 
 public:

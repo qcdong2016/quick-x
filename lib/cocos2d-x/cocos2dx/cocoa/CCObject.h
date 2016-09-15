@@ -38,25 +38,19 @@ NS_CC_BEGIN
  * @{
  */
 
-class CCZone;
 class CCObject;
 class CCNode;
 class CCEvent;
 
-/**
- * @js NA
- * @lua NA
- */
-class CC_DLL CCCopying
-{
-public:
-    virtual CCObject* copyWithZone(CCZone* pZone);
-};
+#define CCOBJECT(self_type, parent_type) \
+	typedef self_type SelfType; \
+	typedef parent_type Super;
+#define O dynamic_cast<SelfType*>(o)
 
 /**
  * @js NA
  */
-class CC_DLL CCObject : public CCCopying
+class CC_DLL CCObject
 {
 public:
     // object id, CCScriptSupport need public m_uID
@@ -80,13 +74,15 @@ public:
     void release(void);
     void retain(void);
     CCObject* autorelease(void);
-    CCObject* copy(void);
     bool isSingleReference(void) const;
-    unsigned int retainCount(void) const;
-    virtual bool isEqual(const CCObject* pObject);
+	unsigned int retainCount(void) const;
 
+	CCObject* copy(void);
+	// paste this proprty to o;
+	virtual void paste(CCObject* o);
+
+	virtual bool isEqual(const CCObject* pObject);
     virtual void acceptVisitor(CCDataVisitor &visitor);
-
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
     
     friend class CCAutoreleasePool;

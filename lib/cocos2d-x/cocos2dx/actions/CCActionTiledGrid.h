@@ -37,14 +37,16 @@ NS_CC_BEGIN
 /** @brief CCShakyTiles3D action */
 class CC_DLL CCShakyTiles3D : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCShakyTiles3D, CCTiledGrid3DAction)
 public:
     /** initializes the action with a range, whether or not to shake Z vertices, a grid size, and duration */
     virtual bool initWithDuration(float duration, const CCSize& gridSize, int nRange, bool bShakeZ);
-    /**
+	
+	/**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -60,6 +62,7 @@ protected:
 /** @brief CCShatteredTiles3D action */
 class CC_DLL CCShatteredTiles3D : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCShatteredTiles3D, CCTiledGrid3DAction)
 public:
     /** initializes the action with a range, whether or not to shatter Z vertices, a grid size and duration */
     virtual bool initWithDuration(float duration, const CCSize& gridSize, int nRange, bool bShatterZ);
@@ -67,7 +70,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -86,6 +89,7 @@ struct Tile;
  */
 class CC_DLL CCShuffleTiles : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCShuffleTiles, CCTiledGrid3DAction)
 public:
     /**
      *  @js NA
@@ -104,7 +108,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
     /** creates the action with a random seed, the grid size and the duration */
@@ -121,6 +125,7 @@ protected:
  */
 class CC_DLL CCFadeOutTRTiles : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCFadeOutTRTiles, CCTiledGrid3DAction)
 public:
     virtual float testFunc(const CCSize& pos, float time);
     void turnOnTile(const CCPoint& pos);
@@ -139,6 +144,7 @@ public:
  */
 class CC_DLL CCFadeOutBLTiles : public CCFadeOutTRTiles
 {
+    CCOBJECT(CCFadeOutBLTiles, CCFadeOutTRTiles)
 public:
     virtual float testFunc(const CCSize& pos, float time);
 
@@ -153,6 +159,7 @@ public:
  */
 class CC_DLL CCFadeOutUpTiles : public CCFadeOutTRTiles
 {
+    CCOBJECT(CCFadeOutUpTiles, CCFadeOutTRTiles)
 public:
     virtual float testFunc(const CCSize& pos, float time);
     virtual void transformTile(const CCPoint& pos, float distance);
@@ -168,6 +175,7 @@ public:
  */
 class CC_DLL CCFadeOutDownTiles : public CCFadeOutUpTiles
 {
+    CCOBJECT(CCFadeOutDownTiles, CCFadeOutUpTiles)
 public:
     virtual float testFunc(const CCSize& pos, float time);
 
@@ -182,6 +190,7 @@ public:
  */
 class CC_DLL CCTurnOffTiles : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCTurnOffTiles, CCTiledGrid3DAction)
 public:
     /**
      *  @js NA
@@ -197,7 +206,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
 
@@ -217,6 +226,7 @@ protected:
 /** @brief CCWavesTiles3D action. */
 class CC_DLL CCWavesTiles3D : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCWavesTiles3D, CCTiledGrid3DAction)
 public:
     /** waves amplitude */
     inline float getAmplitude(void) { return m_fAmplitude; }
@@ -232,7 +242,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -249,6 +259,7 @@ protected:
  */
 class CC_DLL CCJumpTiles3D : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCJumpTiles3D, CCTiledGrid3DAction)
 public:
     /** amplitude of the sin*/
     inline float getAmplitude(void) { return m_fAmplitude; }
@@ -264,7 +275,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -280,6 +291,7 @@ protected:
 /** @brief CCSplitRows action */
 class CC_DLL CCSplitRows : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCSplitRows, CCTiledGrid3DAction)
 public :
     /** initializes the action with the number of rows to split and the duration */
     virtual bool initWithDuration(float duration, unsigned int nRows);
@@ -287,7 +299,7 @@ public :
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
     virtual void startWithTarget(CCNode *pTarget);
 
@@ -303,6 +315,7 @@ protected:
 /** @brief CCSplitCols action */
 class CC_DLL CCSplitCols : public CCTiledGrid3DAction
 {
+    CCOBJECT(CCSplitCols, CCTiledGrid3DAction)
 public:
     /** initializes the action with the number of columns to split and the duration */
     virtual bool initWithDuration(float duration, unsigned int nCols);
@@ -310,7 +323,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
     virtual void startWithTarget(CCNode *pTarget);
 

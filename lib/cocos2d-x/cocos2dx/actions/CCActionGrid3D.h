@@ -39,6 +39,7 @@ NS_CC_BEGIN
 */
 class CC_DLL CCWaves3D : public CCGrid3DAction
 {
+    CCOBJECT(CCWaves3D, CCGrid3DAction)
 public:
     inline float getAmplitude(void) { return m_fAmplitude; }
     inline void setAmplitude(float fAmplitude) { m_fAmplitude = fAmplitude; }
@@ -52,7 +53,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -67,6 +68,7 @@ protected:
 /** @brief CCFlipX3D action */
 class CC_DLL CCFlipX3D : public CCGrid3DAction
 {
+    CCOBJECT(CCFlipX3D, CCGrid3DAction)
 public:
     /** initializes the action with duration */
     virtual bool initWithDuration(float duration);
@@ -75,7 +77,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -86,13 +88,14 @@ public:
 /** @brief CCFlipY3D action */
 class CC_DLL CCFlipY3D : public CCFlipX3D
 {
+    CCOBJECT(CCFlipY3D, CCFlipX3D)
 public:
     virtual void update(float time);
     /**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
 public:
     /** creates the action with duration */
@@ -102,6 +105,7 @@ public:
 /** @brief CCLens3D action */
 class CC_DLL CCLens3D : public CCGrid3DAction
 {
+    CCOBJECT(CCLens3D, CCGrid3DAction)
 public:
     /** Get lens center position */
     inline float getLensEffect(void) { return m_fLensEffect; }
@@ -119,7 +123,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -140,6 +144,7 @@ protected:
 /** @brief CCRipple3D action */
 class CC_DLL CCRipple3D : public CCGrid3DAction
 {
+    CCOBJECT(CCRipple3D, CCGrid3DAction)
 public:
     /** get center position */
     inline const CCPoint& getPosition(void) { return m_position; }
@@ -158,7 +163,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -176,6 +181,7 @@ protected:
 /** @brief CCShaky3D action */
 class CC_DLL CCShaky3D : public CCGrid3DAction
 {
+    CCOBJECT(CCShaky3D, CCGrid3DAction)
 public:
     /** initializes the action with a range, shake Z vertices, a grid and duration */
     bool initWithDuration(float duration, const CCSize& gridSize, int range, bool shakeZ);
@@ -183,7 +189,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -197,6 +203,7 @@ protected:
 /** @brief CCLiquid action */
 class CC_DLL CCLiquid : public CCGrid3DAction
 {
+    CCOBJECT(CCLiquid, CCGrid3DAction)
 public:
     inline float getAmplitude(void) { return m_fAmplitude; }
     inline void setAmplitude(float fAmplitude) { m_fAmplitude = fAmplitude; }
@@ -210,7 +217,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -225,6 +232,7 @@ protected:
 /** @brief CCWaves action */
 class CC_DLL CCWaves : public CCGrid3DAction
 {
+    CCOBJECT(CCWaves, CCGrid3DAction)
 public:
     inline float getAmplitude(void) { return m_fAmplitude; }
     inline void setAmplitude(float fAmplitude) { m_fAmplitude = fAmplitude; }
@@ -238,7 +246,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:
@@ -256,6 +264,7 @@ protected:
 /** @brief CCTwirl action */
 class CC_DLL CCTwirl : public CCGrid3DAction
 {
+    CCOBJECT(CCTwirl, CCGrid3DAction)
 public:
     /** get twirl center */
     inline const CCPoint& getPosition(void) { return m_position; }
@@ -274,7 +283,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
     virtual void update(float time);
 
 public:

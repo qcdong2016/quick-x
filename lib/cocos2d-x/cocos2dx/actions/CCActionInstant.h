@@ -42,8 +42,9 @@ NS_CC_BEGIN
 @brief Instant actions are immediate actions. They don't have a duration like
 the CCIntervalAction actions.
 */ 
-class CC_DLL CCActionInstant : public CCFiniteTimeAction //<NSCopying>
+class CC_DLL CCActionInstant : public CCFiniteTimeAction
 {
+	CCOBJECT(CCActionInstant, CCFiniteTimeAction)
 public:
     /**
      *  @js ctor
@@ -59,7 +60,6 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
     virtual bool isDone(void);
     virtual void step(float dt);
     virtual void update(float time);
@@ -71,6 +71,7 @@ public:
 */
 class CC_DLL CCShow : public CCActionInstant
 {
+    CCOBJECT(CCShow, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -85,11 +86,7 @@ public:
     //super methods
     virtual void update(float time);
     virtual CCFiniteTimeAction * reverse(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+
 public:
 
     /** Allocates and initializes the action */
@@ -103,6 +100,7 @@ public:
 */
 class CC_DLL CCHide : public CCActionInstant
 {
+    CCOBJECT(CCHide, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -120,11 +118,7 @@ public:
      */
     virtual void update(float time);
     virtual CCFiniteTimeAction * reverse(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+
 public:
 
     /** Allocates and initializes the action */
@@ -135,6 +129,7 @@ public:
 */
 class CC_DLL CCToggleVisibility : public CCActionInstant
 {
+    CCOBJECT(CCToggleVisibility, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -147,11 +142,7 @@ public:
     virtual ~CCToggleVisibility(){}
     //super method
     virtual void update(float time);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+
 public:
 
     /** Allocates and initializes the action */
@@ -165,13 +156,14 @@ public:
  */
 class CC_DLL CCRemoveSelf : public CCActionInstant
 {
+    CCOBJECT(CCRemoveSelf, CCActionInstant)
 public:
 	CCRemoveSelf(){}
 	virtual ~CCRemoveSelf(){}
 	//super methods
 	virtual void update(float time);
 	virtual CCFiniteTimeAction * reverse(void);
-	virtual CCObject* copyWithZone(CCZone *pZone);
+	virtual void paste(CCObject* o);
 public:
 	/** create the action */
 	static CCRemoveSelf * create(bool isNeedCleanUp = true);
@@ -188,6 +180,7 @@ protected:
 */
 class CC_DLL CCFlipX : public CCActionInstant
 {
+    CCOBJECT(CCFlipX, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -212,7 +205,7 @@ public:
     /**
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
 
 protected:
     bool    m_bFlipX;
@@ -225,6 +218,7 @@ protected:
 */
 class CC_DLL CCFlipY : public CCActionInstant
 {
+    CCOBJECT(CCFlipY, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -249,7 +243,7 @@ public:
     /**
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
 
 protected:
     bool    m_bFlipY;
@@ -257,8 +251,9 @@ protected:
 
 /** @brief Places the node in a certain position
 */
-class CC_DLL CCPlace : public CCActionInstant //<NSCopying>
+class CC_DLL CCPlace : public CCActionInstant
 {
+	CCOBJECT(CCPlace, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -280,15 +275,16 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
 protected:
     CCPoint m_tPosition;
 };
 
 /** @brief Calls a 'callback'
 */
-class CC_DLL CCCallFunc : public CCActionInstant //<NSCopying>
+class CC_DLL CCCallFunc : public CCActionInstant
 {
+	CCOBJECT(CCCallFunc, CCActionInstant)
 public:
     /**
      *  @js ctor
@@ -335,7 +331,7 @@ public:
      * @js  NA
      * @lua NA
      */
-    CCObject * copyWithZone(CCZone *pZone);
+	virtual void paste(CCObject* o);
     /**
      * @lua NA
      */
@@ -381,6 +377,7 @@ N means Node
 */
 class CC_DLL CCCallFuncN : public CCCallFunc, public TypeInfo
 {
+	CCOBJECT(CCCallFuncN, CCCallFunc)
 public:
     /**
      * @js ctor
@@ -420,7 +417,7 @@ public:
      * @js  NA
      * @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     /**
      * @lua NA
      */
@@ -436,6 +433,7 @@ public:
 */
 class CC_DLL CCCallFuncND : public CCCallFuncN
 {
+    CCOBJECT(CCCallFuncND, CCCallFuncN)
 public:
     virtual long getClassTypeInfo() {
         static const long id = cocos2d::getHashCodeByString(typeid(cocos2d::CCCallFunc).name());
@@ -452,7 +450,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     virtual void execute();
 
 protected:
@@ -470,6 +468,7 @@ O means Object.
 
 class CC_DLL CCCallFuncO : public CCCallFunc, public TypeInfo
 {
+	CCOBJECT(CCCallFuncO, CCCallFunc)
 public:
     CCCallFuncO();
     virtual ~CCCallFuncO();
@@ -495,7 +494,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     virtual void execute();
 
     inline CCObject* getObject()

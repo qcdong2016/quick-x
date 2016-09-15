@@ -54,6 +54,7 @@ class CCSpriteFrame;
  */
 class CC_DLL CCAnimationFrame : public CCObject
 {
+	CCOBJECT(CCAnimationFrame, CCObject)
 public:
     /**
      * @js ctor
@@ -64,12 +65,12 @@ public:
      *  @lua NA
      */
     virtual ~CCAnimationFrame();
-    /**
+	/**
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
-    /** initializes the animation frame with a spriteframe, number of delay units and a notification user info */
+	virtual void paste(CCObject* o);
+	/** initializes the animation frame with a spriteframe, number of delay units and a notification user info */
     bool initWithSpriteFrame(CCSpriteFrame* spriteFrame, float delayUnits, CCDictionary* userInfo);
 
     /** CCSpriteFrameName to be used */
@@ -95,6 +96,7 @@ public:
  */
 class CC_DLL CCAnimation : public CCObject
 {
+	CCOBJECT(CCAnimation, CCObject)
 public:
     /**
      * @js ctor
@@ -143,7 +145,7 @@ public:
      Added to facilitate the migration from v0.8 to v0.9.
      */
     void addSpriteFrameWithTexture(CCTexture2D* pobTexture, const CCRect& rect);
-    /**
+	/**
      * @lua NA
      */
     bool init();
@@ -163,7 +165,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void paste(CCObject* o);
 
     /** total Delay units of the CCAnimation. */
     CC_SYNTHESIZE_READONLY(float, m_fTotalDelayUnits, TotalDelayUnits)

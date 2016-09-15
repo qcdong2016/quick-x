@@ -30,7 +30,6 @@ THE SOFTWARE.
 #include "support/CCPointExtension.h"
 #include "CCStdC.h"
 #include "CCActionInstant.h"
-#include "cocoa/CCZone.h"
 #include <stdarg.h>
 
 NS_CC_BEGIN
@@ -40,7 +39,6 @@ class ExtraAction : public CCFiniteTimeAction
 {
 public:
     static ExtraAction* create();
-    virtual CCObject* copyWithZone(CCZone* pZone);
     virtual ExtraAction* reverse(void);
     virtual void update(float time);
     virtual void step(float dt);
@@ -53,13 +51,6 @@ ExtraAction* ExtraAction::create()
     {
         pRet->autorelease();
     }
-    return pRet;
-}
-
-CCObject* ExtraAction::copyWithZone(CCZone* pZone)
-{
-    CC_UNUSED_PARAM(pZone);
-    ExtraAction* pRet = new ExtraAction();
     return pRet;
 }
 
@@ -108,29 +99,10 @@ bool CCActionInterval::initWithDuration(float d)
     return true;
 }
 
-CCObject* CCActionInterval::copyWithZone(CCZone *pZone)
+void CCActionInterval::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCActionInterval* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCActionInterval*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCActionInterval();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    
-    CCFiniteTimeAction::copyWithZone(pZone);
-
-    CC_SAFE_DELETE(pNewZone);
-
-    pCopy->initWithDuration(m_fDuration);
-
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration);
 }
 
 bool CCActionInterval::isDone(void)
@@ -283,28 +255,11 @@ bool CCSequence::initWithTwoActions(CCFiniteTimeAction *pActionOne, CCFiniteTime
     return true;
 }
 
-CCObject* CCSequence::copyWithZone(CCZone *pZone)
+void CCSequence::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCSequence* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCSequence*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCSequence();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithTwoActions((CCFiniteTimeAction*)(m_pActions[0]->copy()->autorelease()), 
-                (CCFiniteTimeAction*)(m_pActions[1]->copy()->autorelease()));
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithTwoActions((CCFiniteTimeAction*)(m_pActions[0]->copy()), 
+                (CCFiniteTimeAction*)(m_pActions[1]->copy()));
 }
 
 CCSequence::~CCSequence(void)
@@ -435,28 +390,10 @@ bool CCRepeat::initWithAction(CCFiniteTimeAction *pAction, unsigned int times)
     return false;
 }
 
-CCObject* CCRepeat::copyWithZone(CCZone *pZone)
+void CCRepeat::paste(CCObject* o)
 {
-    
-    CCZone* pNewZone = NULL;
-    CCRepeat* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCRepeat*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCRepeat();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithAction((CCFiniteTimeAction*)(m_pInnerAction->copy()->autorelease()), m_uTimes);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithAction((CCFiniteTimeAction*)(m_pInnerAction->copy()), m_uTimes);
 }
 
 CCRepeat::~CCRepeat(void)
@@ -559,24 +496,10 @@ bool CCRepeatForever::initWithAction(CCActionInterval *pAction)
     m_pInnerAction = pAction;
     return true;
 }
-CCObject* CCRepeatForever::copyWithZone(CCZone *pZone)
+void CCRepeatForever::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCRepeatForever* pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-    {
-        pRet = (CCRepeatForever*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCRepeatForever();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-    CCActionInterval::copyWithZone(pZone);
-    // win32 : use the m_pOther's copy object.
-    pRet->initWithAction((CCActionInterval*)(m_pInnerAction->copy()->autorelease())); 
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+    Super::paste(o);
+    O->initWithAction((CCActionInterval*)(m_pInnerAction->copy())); 
 }
 
 void CCRepeatForever::startWithTarget(CCNode* pTarget)
@@ -721,29 +644,11 @@ bool CCSpawn:: initWithTwoActions(CCFiniteTimeAction *pAction1, CCFiniteTimeActi
     return bRet;
 }
 
-CCObject* CCSpawn::copyWithZone(CCZone *pZone)
+void CCSpawn::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCSpawn* pCopy = NULL;
-
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCSpawn*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCSpawn();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithTwoActions((CCFiniteTimeAction*)(m_pOne->copy()->autorelease()), 
-                    (CCFiniteTimeAction*)(m_pTwo->copy()->autorelease()));
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithTwoActions((CCFiniteTimeAction*)(m_pOne->copy()), 
+                    (CCFiniteTimeAction*)(m_pTwo->copy()));
 }
 
 CCSpawn::~CCSpawn(void)
@@ -829,28 +734,10 @@ bool CCRotateTo::initWithDuration(float fDuration, float fDeltaAngleX, float fDe
     return false;
 }
 
-CCObject* CCRotateTo::copyWithZone(CCZone *pZone)
+void CCRotateTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCRotateTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCRotateTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCRotateTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_fDstAngleX, m_fDstAngleY);
-
-    //Action *copy = [[[self class] allocWithZone: zone] initWithDuration:[self duration] angle: angle];
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fDstAngleX, m_fDstAngleY);
 }
 
 void CCRotateTo::startWithTarget(CCNode *pTarget)
@@ -956,27 +843,10 @@ bool CCRotateBy::initWithDuration(float fDuration, float fDeltaAngleX, float fDe
     return false;
 }
 
-CCObject* CCRotateBy::copyWithZone(CCZone *pZone)
+void CCRotateBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCRotateBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCRotateBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCRotateBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_fAngleX, m_fAngleY);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fAngleX, m_fAngleY);
 }
 
 void CCRotateBy::startWithTarget(CCNode *pTarget)
@@ -1025,27 +895,10 @@ bool CCMoveBy::initWithDuration(float duration, const CCPoint& deltaPosition)
     return false;
 }
 
-CCObject* CCMoveBy::copyWithZone(CCZone *pZone)
+void CCMoveBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCMoveBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCMoveBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCMoveBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_positionDelta);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_positionDelta);
 }
 
 void CCMoveBy::startWithTarget(CCNode *pTarget)
@@ -1101,27 +954,10 @@ bool CCMoveTo::initWithDuration(float duration, const CCPoint& position)
     return false;
 }
 
-CCObject* CCMoveTo::copyWithZone(CCZone *pZone)
+void CCMoveTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCMoveTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCMoveTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCMoveTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCMoveBy::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_endPosition);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_endPosition);
 }
 
 void CCMoveTo::startWithTarget(CCNode *pTarget)
@@ -1167,27 +1003,10 @@ bool CCSkewTo::initWithDuration(float t, float sx, float sy)
     return bRet;
 }
 
-CCObject* CCSkewTo::copyWithZone(CCZone* pZone)
+void CCSkewTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCSkewTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCSkewTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCSkewTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_fEndSkewX, m_fEndSkewY);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fEndSkewX, m_fEndSkewY);
 }
 
 void CCSkewTo::startWithTarget(CCNode *pTarget)
@@ -1334,27 +1153,10 @@ bool CCJumpBy::initWithDuration(float duration, const CCPoint& position, float h
     return false;
 }
 
-CCObject* CCJumpBy::copyWithZone(CCZone *pZone)
+void CCJumpBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCJumpBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCJumpBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCJumpBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_delta, m_height, m_nJumps);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_delta, m_height, m_nJumps);
 }
 
 void CCJumpBy::startWithTarget(CCNode *pTarget)
@@ -1408,27 +1210,10 @@ CCJumpTo* CCJumpTo::create(float duration, const CCPoint& position, float height
     return pJumpTo;
 }
 
-CCObject* CCJumpTo::copyWithZone(CCZone* pZone)
+void CCJumpTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCJumpTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCJumpTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCJumpTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCJumpBy::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_delta, m_height, m_nJumps);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_delta, m_height, m_nJumps);
 }
 
 void CCJumpTo::startWithTarget(CCNode *pTarget)
@@ -1479,27 +1264,10 @@ void CCBezierBy::startWithTarget(CCNode *pTarget)
     m_previousPosition = m_startPosition = pTarget->getPosition();
 }
 
-CCObject* CCBezierBy::copyWithZone(CCZone *pZone)
+void CCBezierBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCBezierBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCBezierBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCBezierBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sConfig);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sConfig);
 }
 
 void CCBezierBy::update(float time)
@@ -1571,27 +1339,10 @@ bool CCBezierTo::initWithDuration(float t, const ccBezierConfig &c)
     return bRet;
 }
 
-CCObject* CCBezierTo::copyWithZone(CCZone *pZone)
+void CCBezierTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCBezierBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCBezierTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCBezierTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCBezierBy::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sConfig);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sConfig);
 }
 
 void CCBezierTo::startWithTarget(CCNode *pTarget)
@@ -1649,28 +1400,10 @@ bool CCScaleTo::initWithDuration(float duration, float sx, float sy)
     return false;
 }
 
-CCObject* CCScaleTo::copyWithZone(CCZone *pZone)
+void CCScaleTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCScaleTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCScaleTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCScaleTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-
-    pCopy->initWithDuration(m_fDuration, m_fEndScaleX, m_fEndScaleY);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fEndScaleX, m_fEndScaleY);
 }
 
 void CCScaleTo::startWithTarget(CCNode *pTarget)
@@ -1713,28 +1446,10 @@ CCScaleBy* CCScaleBy::create(float duration, float sx, float sy)
     return pScaleBy;
 }
 
-CCObject* CCScaleBy::copyWithZone(CCZone *pZone)
+void CCScaleBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCScaleTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCScaleBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCScaleBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCScaleTo::copyWithZone(pZone);
-
-
-    pCopy->initWithDuration(m_fDuration, m_fEndScaleX, m_fEndScaleY);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fEndScaleX, m_fEndScaleY);
 }
 
 void CCScaleBy::startWithTarget(CCNode *pTarget)
@@ -1785,28 +1500,10 @@ void CCBlink::startWithTarget(CCNode *pTarget)
     m_bOriginalState = pTarget->isVisible();
 }
 
-CCObject* CCBlink::copyWithZone(CCZone *pZone)
+void CCBlink::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCBlink* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCBlink*)(pZone->m_pCopyObject);
-
-    }
-    else
-    {
-        pCopy = new CCBlink();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, (unsigned int)m_nTimes);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, (unsigned int)m_nTimes);
 }
 
 void CCBlink::update(float time)
@@ -1839,28 +1536,6 @@ CCFadeIn* CCFadeIn::create(float d)
     return pAction;
 }
 
-CCObject* CCFadeIn::copyWithZone(CCZone *pZone)
-{
-    CCZone* pNewZone = NULL;
-    CCFadeIn* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCFadeIn*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCFadeIn();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-    
-    CCActionInterval::copyWithZone(pZone);
-
-    CC_SAFE_DELETE(pNewZone);
-
-    return pCopy;
-}
-
 void CCFadeIn::update(float time)
 {
     m_pTarget->setOpacity((GLubyte)(255 * time));
@@ -1883,28 +1558,6 @@ CCFadeOut* CCFadeOut::create(float d)
     pAction->autorelease();
 
     return pAction;
-}
-
-CCObject* CCFadeOut::copyWithZone(CCZone *pZone)
-{
-    CCZone* pNewZone = NULL;
-    CCFadeOut* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCFadeOut*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCFadeOut();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    CC_SAFE_DELETE(pNewZone);
-
-    return pCopy;
 }
 
 void CCFadeOut::update(float time)
@@ -1941,27 +1594,10 @@ bool CCFadeTo::initWithDuration(float duration, GLubyte opacity)
     return false;
 }
 
-CCObject* CCFadeTo::copyWithZone(CCZone *pZone)
+void CCFadeTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCFadeTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCFadeTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCFadeTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_toOpacity);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_toOpacity);
 }
 
 void CCFadeTo::startWithTarget(CCNode *pTarget)
@@ -1998,27 +1634,10 @@ bool CCTintTo::initWithDuration(float duration, GLubyte red, GLubyte green, GLub
     return false;
 }
 
-CCObject* CCTintTo::copyWithZone(CCZone *pZone)
+void CCTintTo::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCTintTo* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCTintTo*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCTintTo();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_to.r, m_to.g, m_to.b);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, m_to.r, m_to.g, m_to.b);
 }
 
 void CCTintTo::startWithTarget(CCNode *pTarget)
@@ -2061,27 +1680,10 @@ bool CCTintBy::initWithDuration(float duration, GLshort deltaRed, GLshort deltaG
     return false;
 }
 
-CCObject* CCTintBy::copyWithZone(CCZone *pZone)
+void CCTintBy::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCTintBy* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCTintBy*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCTintBy();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, (GLubyte)m_deltaR, (GLubyte)m_deltaG, (GLubyte)m_deltaB);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithDuration(m_fDuration, (GLubyte)m_deltaR, (GLubyte)m_deltaG, (GLubyte)m_deltaB);
 }
 
 void CCTintBy::startWithTarget(CCNode *pTarget)
@@ -2117,29 +1719,6 @@ CCDelayTime* CCDelayTime::create(float d)
     pAction->autorelease();
 
     return pAction;
-}
-
-CCObject* CCDelayTime::copyWithZone(CCZone *pZone)
-{
-    CCZone* pNewZone = NULL;
-    CCDelayTime* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCDelayTime*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCDelayTime();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    
-    CCActionInterval::copyWithZone(pZone);
-
-    CC_SAFE_DELETE(pNewZone);
-
-    return pCopy;
 }
 
 void CCDelayTime::update(float time)
@@ -2186,27 +1765,10 @@ bool CCReverseTime::initWithAction(CCFiniteTimeAction *pAction)
     return false;
 }
 
-CCObject* CCReverseTime::copyWithZone(CCZone *pZone)
+void CCReverseTime::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCReverseTime* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCReverseTime*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCReverseTime();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithAction((CCFiniteTimeAction*)(m_pOther->copy()->autorelease()));
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithAction((CCFiniteTimeAction*)(m_pOther->copy()));
 }
 
 CCReverseTime::CCReverseTime() : m_pOther(NULL) 
@@ -2241,7 +1803,7 @@ void CCReverseTime::update(float time)
 
 CCActionInterval* CCReverseTime::reverse(void)
 {
-    return (CCActionInterval*)(m_pOther->copy()->autorelease());
+    return (CCActionInterval*)(m_pOther->copy());
 }
 
 //
@@ -2290,27 +1852,10 @@ bool CCAnimate::initWithAnimation(CCAnimation *pAnimation)
     return false;
 }
 
-CCObject* CCAnimate::copyWithZone(CCZone *pZone)
+void CCAnimate::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCAnimate* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCAnimate*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCAnimate();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithAnimation((CCAnimation*)m_pAnimation->copy()->autorelease());
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+    Super::paste(o);
+    O->initWithAnimation((CCAnimation*)m_pAnimation->copy());
 }
 
 CCAnimate::CCAnimate()
@@ -2417,7 +1962,7 @@ CCActionInterval* CCAnimate::reverse(void)
                 break;
             }
 
-            pNewArray->addObject((CCAnimationFrame*)(pElement->copy()->autorelease()));
+            pNewArray->addObject((CCAnimationFrame*)(pElement->copy()));
         }
     }
 
@@ -2463,24 +2008,10 @@ bool CCTargetedAction::initWithTarget(CCNode* pTarget, CCFiniteTimeAction* pActi
     return false;
 }
 
-CCObject* CCTargetedAction::copyWithZone(CCZone* pZone)
+void CCTargetedAction::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCTargetedAction* pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-    {
-        pRet = (CCTargetedAction*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCTargetedAction();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-    CCActionInterval::copyWithZone(pZone);
-    // win32 : use the m_pOther's copy object.
-    pRet->initWithTarget(m_pForcedTarget, (CCFiniteTimeAction*)m_pAction->copy()->autorelease()); 
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+    Super::paste(o);
+    O->initWithTarget(m_pForcedTarget, (CCFiniteTimeAction*)m_pAction->copy()); 
 }
 
 void CCTargetedAction::startWithTarget(CCNode *pTarget)

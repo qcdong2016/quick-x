@@ -35,8 +35,10 @@ bool CCPointArray::initWithCapacity(unsigned int capacity)
     return true;
 }
 
-CCObject* CCPointArray::copyWithZone(cocos2d::CCZone *zone)
+void CCPointArray::paste(CCObject* o)
 {
+	Super::paste(o);
+
     vector<CCPoint*> *newArray = new vector<CCPoint*>();
     vector<CCPoint*>::iterator iter;
     for (iter = m_pPoints->begin(); iter != m_pPoints->end(); ++iter)
@@ -44,11 +46,9 @@ CCObject* CCPointArray::copyWithZone(cocos2d::CCZone *zone)
         newArray->push_back(new CCPoint((*iter)->x, (*iter)->y));
     }
 
-    CCPointArray *points = new CCPointArray();
+    CCPointArray *points = O;
     points->initWithCapacity(10);
     points->setPoints(newArray);
-
-    return points;
 }
 
 CCPointArray::~CCPointArray()

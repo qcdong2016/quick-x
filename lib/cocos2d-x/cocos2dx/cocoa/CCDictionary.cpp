@@ -333,10 +333,11 @@ void CCDictionary::removeAllObjects()
     }
 }
 
-CCObject* CCDictionary::copyWithZone(CCZone* pZone)
+void CCDictionary::paste(CCObject* o)
 {
-    CCAssert(pZone == NULL, "CCDictionary should not be inherited.");
-    CCDictionary* pNewDict = new CCDictionary();
+	Super::paste(o);
+
+	CCDictionary* pNewDict = O;
 
     CCDictElement* pElement = NULL;
     CCObject* pTmpObj = NULL;
@@ -359,8 +360,6 @@ CCObject* CCDictionary::copyWithZone(CCZone* pZone)
             pTmpObj->release();
         }
     }
-
-    return pNewDict;
 }
 
 CCObject* CCDictionary::randomObject()

@@ -38,6 +38,7 @@ NS_CC_BEGIN
  */
 class CC_DLL CCPointArray : public CCObject
 {
+	CCOBJECT(CCPointArray, CCObject)
 public:
 
     /** creates and initializes a Points array with capacity */
@@ -76,7 +77,7 @@ public:
     /** reverse the current point array inline, without generating a new one */
     void reverseInline(void);
 
-    virtual CCObject* copyWithZone(CCZone *zone);
+	virtual void paste(CCObject* o);
 
     const std::vector<CCPoint*>* getPoints(void);
     void setPoints(std::vector<CCPoint*> *points);

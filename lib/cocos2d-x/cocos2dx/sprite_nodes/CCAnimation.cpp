@@ -28,7 +28,6 @@
 #include "textures/CCTexture2D.h"
 #include "ccMacros.h"
 #include "sprite_nodes/CCSpriteFrame.h"
-#include "cocoa/CCZone.h"
 
 NS_CC_BEGIN
 
@@ -57,26 +56,11 @@ CCAnimationFrame::~CCAnimationFrame()
     CC_SAFE_RELEASE(m_pUserInfo);
 }
 
-CCObject* CCAnimationFrame::copyWithZone(CCZone* pZone)
+void CCAnimationFrame::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCAnimationFrame* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCAnimationFrame*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCAnimationFrame();
-        pNewZone = new CCZone(pCopy);
-    }
-
-    pCopy->initWithSpriteFrame((CCSpriteFrame*)m_pSpriteFrame->copy()->autorelease(),
-                               m_fDelayUnits, m_pUserInfo != NULL ? (CCDictionary*)m_pUserInfo->copy()->autorelease() : NULL);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+	Super::paste(o);
+    O->initWithSpriteFrame((CCSpriteFrame*)m_pSpriteFrame->copy(),
+                               m_fDelayUnits, m_pUserInfo != NULL ? (CCDictionary*)m_pUserInfo->copy() : NULL);
 }
 
 // implementation of CCAnimation
@@ -205,26 +189,11 @@ float CCAnimation::getDuration(void)
     return m_fTotalDelayUnits * m_fDelayPerUnit;
 }
 
-CCObject* CCAnimation::copyWithZone(CCZone* pZone)
+void CCAnimation::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCAnimation* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject)
-    {
-        //in case of being called at sub class
-        pCopy = (CCAnimation*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCAnimation();
-        pNewZone = new CCZone(pCopy);
-    }
-
-    pCopy->initWithAnimationFrames(m_pFrames, m_fDelayPerUnit, m_uLoops);
-    pCopy->setRestoreOriginalFrame(m_bRestoreOriginalFrame);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+	Super::paste(o);
+    O->initWithAnimationFrames(m_pFrames, m_fDelayPerUnit, m_uLoops);
+    O->setRestoreOriginalFrame(m_bRestoreOriginalFrame);
 }
 
 NS_CC_END

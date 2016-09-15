@@ -129,11 +129,10 @@ int CCString::compare(const char * pStr) const
     return strcmp(getCString(), pStr);
 }
 
-CCObject* CCString::copyWithZone(CCZone* pZone)
+void CCString::paste(CCObject* o)
 {
-    CCAssert(pZone == NULL, "CCString should not be inherited.");
-    CCString* pStr = new CCString(m_sString.c_str());
-    return pStr;
+	Super::paste(o);
+	O->m_sString = m_sString;
 }
 
 bool CCString::isEqual(const CCObject* pObject)

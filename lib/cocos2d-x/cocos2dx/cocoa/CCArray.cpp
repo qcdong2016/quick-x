@@ -374,10 +374,11 @@ CCArray::~CCArray()
     ccArrayFree(data);
 }
 
-CCObject* CCArray::copyWithZone(CCZone* pZone)
+void CCArray::paste(CCObject* o)
 {
-    CCAssert(pZone == NULL, "CCArray should not be inherited.");
-    CCArray* pArray = new CCArray();
+	Super::paste(o);
+
+    CCArray* pArray = O;
     pArray->initWithCapacity(this->data->num > 0 ? this->data->num : 1);
 
     CCObject* pObj = NULL;
@@ -388,7 +389,6 @@ CCObject* CCArray::copyWithZone(CCZone* pZone)
         pArray->addObject(pTmpObj);
         pTmpObj->release();
     }
-    return pArray;
 }
 
 void CCArray::acceptVisitor(CCDataVisitor &visitor)

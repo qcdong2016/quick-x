@@ -56,6 +56,7 @@ struct _hashElement;
  */
 class CC_DLL CCActionManager : public CCObject
 {
+    CCOBJECT(CCActionManager, CCObject)
 public:
     /**
      *  @js ctor

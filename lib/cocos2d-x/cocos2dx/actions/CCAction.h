@@ -48,6 +48,7 @@ enum {
  */
 class CC_DLL CCAction : public CCObject 
 {
+	CCOBJECT(CCAction, CCObject)
 public:
     /**
      * @js ctor
@@ -67,7 +68,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
 
     //! return true if the action has finished
     virtual bool isDone(void);
@@ -135,6 +136,7 @@ protected:
  */
 class CC_DLL CCFiniteTimeAction : public CCAction
 {
+    CCOBJECT(CCFiniteTimeAction, CCAction)
 public:
     /**
      *  @js ctor
@@ -170,6 +172,7 @@ class CCRepeatForever;
  */
 class CC_DLL CCSpeed : public CCAction
 {
+    CCOBJECT(CCSpeed, CCAction)
 public:
     /**
      *  @js ctor
@@ -194,7 +197,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode* pTarget);
     virtual void stop();
     virtual void step(float dt);
@@ -227,6 +230,7 @@ Instead of using CCCamera as a "follower", use this action instead.
 */
 class CC_DLL CCFollow : public CCAction
 {
+    CCOBJECT(CCFollow, CCAction)
 public:
     /**
      *  @js ctor
@@ -252,11 +256,7 @@ public:
 
     /** initializes the action with a set boundary */
     bool initWithTarget(CCNode *pFollowedNode, const CCRect& rect = CCRectZero);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+
     virtual void step(float dt);
     virtual bool isDone(void);
     virtual void stop(void);

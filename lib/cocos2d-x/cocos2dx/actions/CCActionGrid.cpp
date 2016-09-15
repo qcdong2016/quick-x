@@ -25,7 +25,6 @@ THE SOFTWARE.
 #include "CCActionGrid.h"
 #include "CCDirector.h"
 #include "effects/CCGrid.h"
-#include "cocoa/CCZone.h"
 
 NS_CC_BEGIN
 // implementation of CCGridAction
@@ -106,27 +105,10 @@ CCActionInterval* CCGridAction::reverse(void)
     return CCReverseTime::create(this);
 }
 
-CCObject* CCGridAction::copyWithZone(CCZone *pZone)
+void CCGridAction::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCGridAction* pCopy = NULL;
-    if(pZone && pZone->m_pCopyObject) 
-    {
-        //in case of being called at sub class
-        pCopy = (CCGridAction*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pCopy = new CCGridAction();
-        pZone = pNewZone = new CCZone(pCopy);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pCopy->initWithDuration(m_fDuration, m_sGridSize);
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pCopy;
+	Super::paste(o);
+    O->initWithDuration(m_fDuration, m_sGridSize);
 }
 
 // implementation of Grid3DAction

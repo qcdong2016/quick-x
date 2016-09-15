@@ -65,6 +65,7 @@ public:
  */
 class CC_DLL CCActionTween : public CCActionInterval
 {
+    CCOBJECT(CCActionTween, CCActionInterval)
 public:
     /** creates an initializes the action with the property name (key), and the from and to parameters. */
     static CCActionTween* create(float aDuration, const char* key, float from, float to);

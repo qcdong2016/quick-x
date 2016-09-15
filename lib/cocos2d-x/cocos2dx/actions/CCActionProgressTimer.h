@@ -40,6 +40,7 @@ NS_CC_BEGIN
 */
 class CC_DLL CCProgressTo : public CCActionInterval
 {
+    CCOBJECT(CCProgressTo, CCActionInterval)
 public:
     /** Initializes with a duration and a percent */
     bool initWithDuration(float duration, float fPercent);
@@ -47,7 +48,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
 
@@ -65,6 +66,7 @@ protected:
 */
 class CC_DLL CCProgressFromTo : public CCActionInterval
 {
+    CCOBJECT(CCProgressFromTo, CCActionInterval)
 public:
     /** Initializes the action with a duration, a "from" percentage and a "to" percentage */
     bool initWithDuration(float duration, float fFromPercentage, float fToPercentage);
@@ -72,7 +74,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+    virtual void paste(CCObject* o);
     virtual CCActionInterval* reverse(void);
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);

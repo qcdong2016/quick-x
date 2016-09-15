@@ -35,13 +35,6 @@ int CCObject::s_removedInFrameCount = 0;
 int CCObject::s_livingCount = 0;
 #endif
 
-CCObject* CCCopying::copyWithZone(CCZone *pZone)
-{
-    CC_UNUSED_PARAM(pZone);
-    CCAssert(0, "not implement");
-    return 0;
-}
-
 CCObject::CCObject(void)
 : m_nLuaID(0)
 , m_uReference(1) // when the object is created, the reference count of it is 1
@@ -87,8 +80,16 @@ CCObject::~CCObject(void)
 
 CCObject* CCObject::copy()
 {
-    return copyWithZone(0);
+	CCObject* o = new CCObject();
+	o->autorelease();
+	paste(o);
+	return o;
 }
+
+void CCObject::paste(CCObject* o)
+{
+}
+
 
 void CCObject::release(void)
 {

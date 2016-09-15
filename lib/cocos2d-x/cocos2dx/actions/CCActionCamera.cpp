@@ -27,7 +27,6 @@ THE SOFTWARE.
 #include "base_nodes/CCNode.h"
 #include "CCCamera.h"
 #include "CCStdC.h"
-#include "cocoa/CCZone.h"
 
 NS_CC_BEGIN
 //
@@ -63,24 +62,10 @@ CCOrbitCamera * CCOrbitCamera::create(float t, float radius, float deltaRadius, 
     return NULL;
 }
 
-CCObject * CCOrbitCamera::copyWithZone(CCZone *pZone)
+void CCOrbitCamera::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCOrbitCamera* pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-        pRet = (CCOrbitCamera*)(pZone->m_pCopyObject);
-    else
-    {
-        pRet = new CCOrbitCamera();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-
-    CCActionInterval::copyWithZone(pZone);
-
-    pRet->initWithDuration(m_fDuration, m_fRadius, m_fDeltaRadius, m_fAngleZ, m_fDeltaAngleZ, m_fAngleX, m_fDeltaAngleX);
-
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+	Super::paste(o);
+    O->initWithDuration(m_fDuration, m_fRadius, m_fDeltaRadius, m_fAngleZ, m_fDeltaAngleZ, m_fAngleX, m_fDeltaAngleX);
 }
 
 bool CCOrbitCamera::initWithDuration(float t, float radius, float deltaRadius, float angleZ, float deltaAngleZ, float angleX, float deltaAngleX)

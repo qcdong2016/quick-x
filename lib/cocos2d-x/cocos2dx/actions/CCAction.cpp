@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include "base_nodes/CCNode.h"
 #include "support/CCPointExtension.h"
 #include "CCDirector.h"
-#include "cocoa/CCZone.h"
 
 NS_CC_BEGIN
 //
@@ -60,23 +59,10 @@ const char* CCAction::description()
     return CCString::createWithFormat("<CCAction | Tag = %d>", m_nTag)->getCString();
 }
 
-CCObject* CCAction::copyWithZone(CCZone *pZone)
+void CCAction::paste(CCObject* o)
 {
-    CCZone *pNewZone = NULL;
-    CCAction *pRet = NULL;
-    if (pZone && pZone->m_pCopyObject)
-    {
-        pRet = (CCAction*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCAction();
-        pNewZone = new CCZone(pRet);
-    }
-    //copy member data
-    pRet->m_nTag = m_nTag;
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+    Super::paste(o);
+    O->m_nTag = m_nTag;
 }
 
 void CCAction::startWithTarget(CCNode *aTarget)
@@ -145,25 +131,10 @@ bool CCSpeed::initWithAction(CCActionInterval *pAction, float fSpeed)
     return true;
 }
 
-CCObject *CCSpeed::copyWithZone(CCZone *pZone)
+void CCSpeed::paste(CCObject* o)
 {
-    CCZone* pNewZone = NULL;
-    CCSpeed* pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-    {
-        pRet = (CCSpeed*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCSpeed();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-    CCAction::copyWithZone(pZone);
-
-    pRet->initWithAction( (CCActionInterval*)(m_pInnerAction->copy()->autorelease()) , m_fSpeed );
-    
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
+    Super::paste(o);
+	O->initWithAction( (CCActionInterval*)(m_pInnerAction->copy()) , m_fSpeed );
 }
 
 void CCSpeed::startWithTarget(CCNode* pTarget)
@@ -271,26 +242,6 @@ bool CCFollow::initWithTarget(CCNode *pFollowedNode, const CCRect& rect/* = CCRe
     }
     
     return true;
-}
-
-CCObject *CCFollow::copyWithZone(CCZone *pZone)
-{
-    CCZone *pNewZone = NULL;
-    CCFollow *pRet = NULL;
-    if(pZone && pZone->m_pCopyObject) //in case of being called at sub class
-    {
-        pRet = (CCFollow*)(pZone->m_pCopyObject);
-    }
-    else
-    {
-        pRet = new CCFollow();
-        pZone = pNewZone = new CCZone(pRet);
-    }
-    CCAction::copyWithZone(pZone);
-    // copy member data
-    pRet->m_nTag = m_nTag;
-    CC_SAFE_DELETE(pNewZone);
-    return pRet;
 }
 
 void CCFollow::step(float dt)
