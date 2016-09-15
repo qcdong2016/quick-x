@@ -37,7 +37,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCPointArray.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.cpp" />
@@ -321,7 +320,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCFloat.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCInteger.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCPointArray.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.h" />

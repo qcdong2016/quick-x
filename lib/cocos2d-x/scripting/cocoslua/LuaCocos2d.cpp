@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on 09/10/16 23:41:02.
+** Generated automatically by tolua++-1.0.92 on 09/15/16 16:15:36.
 */
 
 /****************************************************************************
@@ -6992,123 +6992,6 @@ static int tolua_Cocos2d_CCPointArray_fetchPoints00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'fetchPoints'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: CCRectFromString */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCRectFromString00
-static int tolua_Cocos2d_CCRectFromString00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* pszContent = ((const char*)  tolua_tostring(tolua_S,1,0));
-  {
-   CCRect tolua_ret = (CCRect)  CCRectFromString(pszContent);
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((CCRect)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCRect");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCRect));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCRect");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'CCRectFromString'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: CCPointFromString */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCPointFromString00
-static int tolua_Cocos2d_CCPointFromString00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* pszContent = ((const char*)  tolua_tostring(tolua_S,1,0));
-  {
-   CCPoint tolua_ret = (CCPoint)  CCPointFromString(pszContent);
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'CCPointFromString'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: CCSizeFromString */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCSizeFromString00
-static int tolua_Cocos2d_CCSizeFromString00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isstring(tolua_S,1,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* pszContent = ((const char*)  tolua_tostring(tolua_S,1,0));
-  {
-   CCSize tolua_ret = (CCSize)  CCSizeFromString(pszContent);
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((CCSize)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCSize");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCSize));
-     tolua_pushusertype(tolua_S,tolua_obj,"CCSize");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'CCSizeFromString'.",&tolua_err);
  return 0;
 #endif
 }
@@ -47043,9 +46926,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"reverseInline",tolua_Cocos2d_CCPointArray_reverseInline00);
    tolua_function(tolua_S,"fetchPoints",tolua_Cocos2d_CCPointArray_fetchPoints00);
   tolua_endmodule(tolua_S);
-  tolua_function(tolua_S,"CCRectFromString",tolua_Cocos2d_CCRectFromString00);
-  tolua_function(tolua_S,"CCPointFromString",tolua_Cocos2d_CCPointFromString00);
-  tolua_function(tolua_S,"CCSizeFromString",tolua_Cocos2d_CCSizeFromString00);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"CCBool","CCBool","CCObject",tolua_collect_CCBool);
   #else

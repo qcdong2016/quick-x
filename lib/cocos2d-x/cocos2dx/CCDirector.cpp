@@ -32,7 +32,6 @@ THE SOFTWARE.
 #include "ccFPSImages.h"
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "CCConfiguration.h"
-#include "cocoa/CCNS.h"
 #include "layers_scenes_transitions_nodes/CCScene.h"
 #include "cocoa/CCArray.h"
 #include "CCScheduler.h"

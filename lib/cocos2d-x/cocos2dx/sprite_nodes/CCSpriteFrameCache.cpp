@@ -26,7 +26,6 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "cocoa/CCNS.h"
 #include "ccMacros.h"
 #include "textures/CCTextureCache.h"
 #include "CCSpriteFrameCache.h"
@@ -42,6 +41,158 @@
 using namespace std;
 
 NS_CC_BEGIN
+
+typedef std::vector<std::string> strArray;
+
+// string toolkit
+static inline void split(std::string src, const char* token, strArray& vect)
+{
+	size_t nend = 0;
+	size_t nbegin = 0;
+	while (nend != std::string::npos)
+	{
+		nend = src.find(token, nbegin);
+		if (nend == -1)
+			vect.push_back(src.substr(nbegin, src.length() - nbegin));
+		else
+			vect.push_back(src.substr(nbegin, nend - nbegin));
+		nbegin = nend + strlen(token);
+	}
+}
+
+// first, judge whether the form of the string like this: {x,y}
+// if the form is right,the string will be split into the parameter strs;
+// or the parameter strs will be empty.
+// if the form is right return true,else return false.
+static bool splitWithForm(const char* pStr, strArray& strs)
+{
+	bool bRet = false;
+
+	do
+	{
+		CC_BREAK_IF(!pStr);
+
+		// string is empty
+		std::string content = pStr;
+		CC_BREAK_IF(content.length() == 0);
+
+		size_t nPosLeft = content.find('{');
+		size_t nPosRight = content.find('}');
+
+		// don't have '{' and '}'
+		CC_BREAK_IF(nPosLeft == std::string::npos || nPosRight == std::string::npos);
+		// '}' is before '{'
+		CC_BREAK_IF(nPosLeft > nPosRight);
+
+		std::string pointStr = content.substr(nPosLeft + 1, nPosRight - nPosLeft - 1);
+		// nothing between '{' and '}'
+		CC_BREAK_IF(pointStr.length() == 0);
+
+		size_t nPos1 = pointStr.find('{');
+		size_t nPos2 = pointStr.find('}');
+		// contain '{' or '}' 
+		CC_BREAK_IF(nPos1 != std::string::npos || nPos2 != std::string::npos);
+
+		split(pointStr, ",", strs);
+		if (strs.size() != 2 || strs[0].length() == 0 || strs[1].length() == 0)
+		{
+			strs.clear();
+			break;
+		}
+
+		bRet = true;
+	} while (0);
+
+	return bRet;
+}
+
+// implement the functions
+
+CCRect CCRectFromString(const char* pszContent)
+{
+	CCRect result = CCRectZero;
+
+	do
+	{
+		CC_BREAK_IF(!pszContent);
+		std::string content = pszContent;
+
+		// find the first '{' and the third '}'
+		size_t nPosLeft = content.find('{');
+		size_t nPosRight = content.find('}');
+		for (int i = 1; i < 3; ++i)
+		{
+			if (nPosRight == std::string::npos)
+			{
+				break;
+			}
+			nPosRight = content.find('}', nPosRight + 1);
+		}
+		CC_BREAK_IF(nPosLeft == std::string::npos || nPosRight == std::string::npos);
+
+		content = content.substr(nPosLeft + 1, nPosRight - nPosLeft - 1);
+		size_t nPointEnd = content.find('}');
+		CC_BREAK_IF(nPointEnd == std::string::npos);
+		nPointEnd = content.find(',', nPointEnd);
+		CC_BREAK_IF(nPointEnd == std::string::npos);
+
+		// get the point string and size string
+		std::string pointStr = content.substr(0, nPointEnd);
+		std::string sizeStr = content.substr(nPointEnd + 1, content.length() - nPointEnd);
+
+		// split the string with ','
+		strArray pointInfo;
+		CC_BREAK_IF(!splitWithForm(pointStr.c_str(), pointInfo));
+		strArray sizeInfo;
+		CC_BREAK_IF(!splitWithForm(sizeStr.c_str(), sizeInfo));
+
+		float x = (float)atof(pointInfo[0].c_str());
+		float y = (float)atof(pointInfo[1].c_str());
+		float width = (float)atof(sizeInfo[0].c_str());
+		float height = (float)atof(sizeInfo[1].c_str());
+
+		result = CCRectMake(x, y, width, height);
+	} while (0);
+
+	return result;
+}
+
+CCPoint CCPointFromString(const char* pszContent)
+{
+	CCPoint ret = CCPointZero;
+
+	do
+	{
+		strArray strs;
+		CC_BREAK_IF(!splitWithForm(pszContent, strs));
+
+		float x = (float)atof(strs[0].c_str());
+		float y = (float)atof(strs[1].c_str());
+
+		ret = CCPointMake(x, y);
+	} while (0);
+
+	return ret;
+}
+
+CCSize CCSizeFromString(const char* pszContent)
+{
+	CCSize ret = CCSizeZero;
+
+	do
+	{
+		strArray strs;
+		CC_BREAK_IF(!splitWithForm(pszContent, strs));
+
+		float width = (float)atof(strs[0].c_str());
+		float height = (float)atof(strs[1].c_str());
+
+		ret = CCSizeMake(width, height);
+	} while (0);
+
+	return ret;
+}
+
 
 static CCSpriteFrameCache *pSharedSpriteFrameCache = NULL;
 

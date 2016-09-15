@@ -600,9 +600,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.cpp">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.cpp">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.cpp">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
@@ -1647,9 +1644,6 @@
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCInteger.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCNS.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.h">
