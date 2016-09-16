@@ -43,6 +43,10 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCString.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocos2d.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\CCCrypto.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\libbase64.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\md5.c" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\xxtea.c" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.cpp" />
@@ -106,7 +110,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteBatchNode.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrame.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrameCache.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\support\base64.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCPointExtension.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCProfiling.cpp" />
@@ -120,7 +123,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\TransformUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\support\xxtea.c" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\unzip.cpp" />
@@ -170,14 +172,10 @@
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIRichText.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.c" />
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\CCCrypto.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\md5\md5.c" />
     <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\network\CCNetwork.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCCryptoWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNative.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNetworkWin32.cpp" />
@@ -322,6 +320,11 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCString.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocos2d.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\CCCrypto.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\libbase64.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\md5.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\xxtea.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.h" />
@@ -330,9 +333,7 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCEventType.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypeInfo.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\cocos2d.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\aabb.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\mat4stack.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\matrix.h" />
@@ -445,7 +446,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrame.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrameCache.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\support\base64.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCPointExtension.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCProfiling.h" />
@@ -461,7 +461,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\TransformUtils.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\support\xxtea.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\unzip.h" />
@@ -524,9 +523,6 @@
     <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\cocos2dx_extra.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\CCCrypto.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\md5\md5.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\native\CCAlertViewDelegate.h" />

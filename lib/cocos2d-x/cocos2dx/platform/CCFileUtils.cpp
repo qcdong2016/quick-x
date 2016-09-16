@@ -834,7 +834,7 @@ void CCFileUtils::updateSearchPathArrayCheck(void)
 
 extern "C"
 {
-#include "support/xxtea.h"
+#include "crypto/xxtea.h"
 }
 
 bool DecoderXXTea::is(unsigned char* data, size_t size)

@@ -33,8 +33,8 @@ THE SOFTWARE.
 #include "platform/CCFileUtils.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
-#include "support/base64.h"
 #include "platform/platform.h"
+#include "crypto/CCCrypto.h"
 
 using namespace std;
 /*
@@ -694,7 +694,7 @@ void CCTMXMapInfo::endElement(void *ctx, const char *name)
     CCTMXMapInfo *pTMXMapInfo = this;
     std::string elementName = (char*)name;
 
-    int len = 0;
+    unsigned long len = 0;
 
     if(elementName == "data" && pTMXMapInfo->getLayerAttribs()&TMXLayerAttribBase64) 
     {
@@ -703,8 +703,8 @@ void CCTMXMapInfo::endElement(void *ctx, const char *name)
         CCTMXLayerInfo* layer = (CCTMXLayerInfo*)pTMXMapInfo->getLayers()->lastObject();
 
         std::string currentString = pTMXMapInfo->getCurrentString();
-        unsigned char *buffer;
-        len = base64Decode((unsigned char*)currentString.c_str(), (unsigned int)currentString.length(), &buffer);
+		len = (unsigned int)currentString.length();
+        char *buffer = CCCrypto::decodeBase64(currentString.c_str(), len);
         if( ! buffer ) 
         {
             CCLOG("cocos2d: TiledMap: decode data error");
@@ -718,13 +718,12 @@ void CCTMXMapInfo::endElement(void *ctx, const char *name)
             // int sizeHint = s.width * s.height * sizeof(uint32_t);
             int sizeHint = (int)(s.width * s.height * sizeof(unsigned int));
 
-            int inflatedLen = ZipUtils::ccInflateMemoryWithHint(buffer, len, &deflated, sizeHint);
+            int inflatedLen = ZipUtils::ccInflateMemoryWithHint((unsigned char*)buffer, len, &deflated, sizeHint);
             CCAssert(inflatedLen == sizeHint, "");
 
             inflatedLen = (int)((size_t)&inflatedLen); // XXX: to avoid warnings in compiler
             
-            delete [] buffer;
-            buffer = NULL;
+			CC_SAFE_DELETE_ARRAY(buffer);
 
             if( ! deflated ) 
             {

@@ -396,6 +396,18 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
     }
     if (buffer) delete[] buffer;]])
 
+    replace([[   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((LUA_STRING)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"LUA_STRING");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(LUA_STRING));
+     tolua_pushusertype(tolua_S,tolua_obj,"LUA_STRING");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }]], [[]])
+
     replace('\t', '    ')
 
     result = string.gsub(result,

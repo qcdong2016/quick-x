@@ -12,6 +12,8 @@ $pfile "cocos2dx/cocoa/CCSet.tolua"
 $pfile "cocos2dx/cocoa/CCPointArray.tolua"
 $pfile "cocos2dx/cocoa/CCScriptEventDispatcher.tolua"
 
+$pfile "cocos2dx/crypto/CCCrypto.tolua"
+
 $pfile "cocos2dx/platform/CCCommon.tolua"
 $pfile "cocos2dx/platform/CCDevice.tolua"
 $pfile "cocos2dx/platform/platform.tolua"

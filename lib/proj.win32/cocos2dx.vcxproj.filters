@@ -163,15 +163,6 @@
     <Filter Include="cocos2d-x\external\extra">
       <UniqueIdentifier>{4acbd3bb-b2f9-4863-b5fb-9eca13ad18ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\external\extra\crypto">
-      <UniqueIdentifier>{c94083aa-38ec-4f9a-ad4b-7fff9967e8a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\external\extra\crypto\base64">
-      <UniqueIdentifier>{66e5d0d7-eeba-4006-9ee7-0408a1957d12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\external\extra\crypto\md5">
-      <UniqueIdentifier>{ea5c27da-0735-4cb3-9b12-a59e21d0a4a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\external\extra\luabinding">
       <UniqueIdentifier>{2d1c7052-5584-4631-8c09-093adf42c4ce}</UniqueIdentifier>
     </Filter>
@@ -240,6 +231,9 @@
     </Filter>
     <Filter Include="cocos2d-x\scripting\lua_extensions\zlib">
       <UniqueIdentifier>{80b3ac20-64c5-4ef4-85f2-91db4fbbfd23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\cocos2dx\crypto">
+      <UniqueIdentifier>{b45c5635-c4a6-48eb-8557-78b1abd30e92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -428,9 +422,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\text_input_node\CCTextFieldTTF.cpp">
       <Filter>cocos2d-x\cocos2dx\text_input_node</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\support\base64.cpp">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.cpp">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
@@ -624,12 +615,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTextureETC.cpp">
       <Filter>cocos2d-x\cocos2dx\textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\CCCrypto.cpp">
-      <Filter>cocos2d-x\external\extra\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\md5\md5.c">
-      <Filter>cocos2d-x\external\extra\crypto\md5</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.cpp">
       <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClCompile>
@@ -645,20 +630,11 @@
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNetworkWin32.cpp">
       <Filter>cocos2d-x\external\extra\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCCryptoWin32.cpp">
-      <Filter>cocos2d-x\external\extra\platform\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNative.cpp">
       <Filter>cocos2d-x\external\extra\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionManager.cpp">
       <Filter>cocos2d-x\cocos2dx\actions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.c">
-      <Filter>cocos2d-x\external\extra\crypto\base64</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\support\xxtea.c">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.cpp">
       <Filter>cocos2d-x\cocos2dx\support\zip_support</Filter>
@@ -1074,6 +1050,18 @@
     <ClCompile Include="..\cocos2d-x\cocos\Variant.cpp">
       <Filter>cocos2d-x\cocos</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\md5.c">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\xxtea.c">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\CCCrypto.cpp">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\libbase64.c">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\CocosDenshion\include\Export.h">
@@ -1148,13 +1136,7 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h">
       <Filter>cocos2d-x\cocos2dx\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypeInfo.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\cocos2d.h">
       <Filter>cocos2d-x\cocos2dx\include</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h">
@@ -1291,9 +1273,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\text_input_node\CCIMEDelegate.h">
       <Filter>cocos2d-x\cocos2dx\text_input_node</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\support\base64.h">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.h">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
@@ -1658,12 +1637,6 @@
     <ClInclude Include="..\cocos2d-x\extensions\cocos-ext.h">
       <Filter>cocos2d-x\extensions</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\CCCrypto.h">
-      <Filter>cocos2d-x\external\extra\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\md5\md5.h">
-      <Filter>cocos2d-x\external\extra\crypto\md5</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.h">
       <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClInclude>
@@ -1693,12 +1666,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionManager.h">
       <Filter>cocos2d-x\cocos2dx\actions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\crypto\base64\libbase64.h">
-      <Filter>cocos2d-x\external\extra\crypto\base64</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\support\xxtea.h">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\zip_support\ioapi_mem.h">
       <Filter>cocos2d-x\cocos2dx\support\zip_support</Filter>
@@ -2119,6 +2086,21 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos\Variant.h">
       <Filter>cocos2d-x\cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\cocos2d.h">
+      <Filter>cocos2d-x\cocos2dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\libbase64.h">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\md5.h">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\xxtea.h">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\CCCrypto.h">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

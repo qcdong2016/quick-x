@@ -35,7 +35,6 @@ THE SOFTWARE.
 #include "CCGL.h"
 #include "kazmath/mat4.h"
 #include "label_nodes/CCLabelAtlas.h"
-#include "ccTypeInfo.h"
 
 
 NS_CC_BEGIN
@@ -103,7 +102,7 @@ and when to execute the Scenes.
   - GL_COLOR_ARRAY is enabled
   - GL_TEXTURE_COORD_ARRAY is enabled
 */
-class CC_DLL CCDirector : public CCObject, public TypeInfo
+class CC_DLL CCDirector : public CCObject
 {
 public:
     /**
@@ -116,14 +115,6 @@ public:
      */
     virtual ~CCDirector(void);
     virtual bool init(void);
-    /**
-     * @js NA
-     * @lua NA
-     */
-    virtual long getClassTypeInfo() {
-		static const long id = cocos2d::getHashCodeByString(typeid(cocos2d::CCDirector).name());
-		return id;
-    }
 
     // attribute
 

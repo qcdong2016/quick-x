@@ -46,7 +46,6 @@ THE SOFTWARE.
 #include "ccTypes.h"
 #include "textures/CCTextureCache.h"
 #include "textures/CCTextureAtlas.h"
-#include "support/base64.h"
 #include "support/CCPointExtension.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
@@ -58,6 +57,7 @@ THE SOFTWARE.
 #include "CCGL.h"
 
 #include <string>
+#include "crypto/CCCrypto.h"
 
 using namespace std;
 
@@ -199,7 +199,7 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary)
 bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *dirname)
 {
     bool bRet = false;
-    unsigned char *buffer = NULL;
+    char *buffer = NULL;
     unsigned char *deflated = NULL;
     CCImage *image = NULL;
     do 
@@ -357,15 +357,15 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *
                     const char *textureData = dictionary->valueForKey("textureImageData")->getCString();
                     CCAssert(textureData, "");
                     
-                    size_t dataLen = strlen(textureData);
+                    unsigned long dataLen = strlen(textureData);
                     if(dataLen)
                     {
                         // if it fails, try to get it from the base64-gzipped data    
-                        int decodeLen = base64Decode((unsigned char*)textureData, (unsigned int)dataLen, &buffer);
+						buffer = CCCrypto::decodeBase64(textureData, dataLen);
                         CCAssert( buffer != NULL, "CCParticleSystem: error decoding textureImageData");
                         CC_BREAK_IF(!buffer);
                         
-                        int deflatedLen = ZipUtils::ccInflateMemory(buffer, decodeLen, &deflated);
+                        int deflatedLen = ZipUtils::ccInflateMemory((unsigned char*)buffer, dataLen, &deflated);
                         CCAssert( deflated != NULL, "CCParticleSystem: error ungzipping textureImageData");
                         CC_BREAK_IF(!deflated);
                         

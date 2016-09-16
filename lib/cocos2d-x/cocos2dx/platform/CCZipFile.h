@@ -27,7 +27,6 @@
 
 #include <string>
 #include "cocoa/CCObject.h"
-#include "ccTypeInfo.h"
 #include "support/zip_support/unzip.h"
 
 NS_CC_BEGIN
@@ -35,15 +34,6 @@ NS_CC_BEGIN
 class CC_DLL CCZipFile : public CCObject
 {
 public:
-    /**
-     *  Returns an unique ID for this class.
-     *  @note It's only used for JSBindings now.
-     *  @return The unique ID for this class.
-     */
-    virtual long getClassTypeInfo() {
-		static const long id = cocos2d::getHashCodeByString(typeid(cocos2d::CCZipFile).name());
-		return id;
-    }
     
     static CCZipFile *create(const char *zipFilename);
     static CCZipFile *createWithBuffer(const void* buffer, uLong size);
