@@ -2,7 +2,7 @@
 #include "network/CCNetwork.h"
 #import "ReachabilityIOSMac.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 bool CCNetwork::isLocalWiFiAvailable(void)
 {
@@ -28,4 +28,4 @@ int CCNetwork::getInternetConnectionStatus(void)
     return kCCNetworkStatusNotReachable;
 }
 
-NS_CC_EXTRA_END
+NS_CC_END
