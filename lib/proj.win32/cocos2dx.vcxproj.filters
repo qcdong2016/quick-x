@@ -2099,9 +2099,6 @@
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.h">
-      <Filter>cocos2d-x\network</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE">

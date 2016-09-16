@@ -5,12 +5,13 @@
 
 #if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-#include "cocos2dx_httprequest_luabinding.h"
 #include "CCLuaEngine.h"
 
-using namespace cocos2d;
-
-
+extern "C" {
+#include "lua.h"
+#include "tolua++.h"
+#include "tolua_fix.h"
+}
 
 
 #include "CCNetwork.h"
