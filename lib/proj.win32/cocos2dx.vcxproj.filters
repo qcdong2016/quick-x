@@ -1038,15 +1038,6 @@
     <ClCompile Include="..\cocos2d-x\ui\CocosGUI.cpp">
       <Filter>cocos2d-x\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplAndroid.cpp">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplNone.cpp">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplQt.cpp">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.cpp">
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClCompile>
@@ -2063,18 +2054,6 @@
     <ClInclude Include="..\cocos2d-x\ui\CocosGUI.h">
       <Filter>cocos2d-x\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplAndroid.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplIOS.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplMac.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplQt.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.h">
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClInclude>
@@ -2118,12 +2097,6 @@
     </None>
     <None Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.tolua">
       <Filter>cocos2d-x\network</Filter>
-    </None>
-    <None Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplIOS.mm">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </None>
-    <None Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplMac.mm">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
     </None>
   </ItemGroup>
 </Project>
