@@ -169,9 +169,6 @@
     <Filter Include="cocos2d-x\external\extra\native">
       <UniqueIdentifier>{7e7c6f8e-59b5-4322-8e08-9b9ef0e97b5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\external\extra\network">
-      <UniqueIdentifier>{450d1a7f-96b2-46cf-9f51-66342af548b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\external\extra\platform">
       <UniqueIdentifier>{516fad88-1d8a-4f77-92d3-7785da7f6ac8}</UniqueIdentifier>
     </Filter>
@@ -234,6 +231,9 @@
     </Filter>
     <Filter Include="cocos2d-x\cocos2dx\crypto">
       <UniqueIdentifier>{b45c5635-c4a6-48eb-8557-78b1abd30e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\network">
+      <UniqueIdentifier>{6b1129bc-5677-49f5-bc68-f3ea24f1ebaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -618,16 +618,7 @@
     <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.cpp">
       <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.cpp">
-      <Filter>cocos2d-x\external\extra\network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\network\CCNetwork.cpp">
-      <Filter>cocos2d-x\external\extra\network</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.cpp">
-      <Filter>cocos2d-x\external\extra\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNetworkWin32.cpp">
       <Filter>cocos2d-x\external\extra\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNative.cpp">
@@ -644,9 +635,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.cpp">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.cpp">
-      <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.cpp">
       <Filter>cocos2d-x\extensions\GUI</Filter>
@@ -1061,6 +1049,18 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\libbase64.c">
       <Filter>cocos2d-x\cocos2dx\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\network\CCNetwork.cpp">
+      <Filter>cocos2d-x\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\network\CCNetworkWin32.cpp">
+      <Filter>cocos2d-x\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.cpp">
+      <Filter>cocos2d-x\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\network\CCHTTPRequest.cpp">
+      <Filter>cocos2d-x\network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1646,15 +1646,6 @@
     <ClInclude Include="..\cocos2d-x\external\extra\native\CCNative.h">
       <Filter>cocos2d-x\external\extra\native</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.h">
-      <Filter>cocos2d-x\external\extra\network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequestDelegate.h">
-      <Filter>cocos2d-x\external\extra\network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCNetwork.h">
-      <Filter>cocos2d-x\external\extra\network</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.h">
       <Filter>cocos2d-x\external\extra\platform\win32</Filter>
     </ClInclude>
@@ -1675,9 +1666,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.h">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.h">
-      <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.h">
       <Filter>cocos2d-x\extensions\GUI</Filter>
@@ -2102,6 +2090,18 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\crypto\CCCrypto.h">
       <Filter>cocos2d-x\cocos2dx\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequest.h">
+      <Filter>cocos2d-x\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequestDelegate.h">
+      <Filter>cocos2d-x\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\network\CCNetwork.h">
+      <Filter>cocos2d-x\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.h">
+      <Filter>cocos2d-x\network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE">
@@ -2109,6 +2109,9 @@
     </None>
     <None Include="..\cocos2d-x\imgui\imgui\README.md">
       <Filter>cocos2d-x\imgui\imgui</Filter>
+    </None>
+    <None Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.tolua">
+      <Filter>cocos2d-x\network</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 
-#include "network/CCNetwork.h"
+#include "CCNetwork.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
@@ -27,4 +27,4 @@ CCHTTPRequest* CCNetwork::createHTTPRequestLua(LUA_FUNCTION listener,
 
 #endif // CC_CURL_ENABLED
 
-NS_CC_EXTRA_END
+NS_CC_END

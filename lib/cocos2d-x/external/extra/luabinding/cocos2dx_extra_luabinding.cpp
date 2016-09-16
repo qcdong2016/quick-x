@@ -12,7 +12,6 @@ using namespace cocos2d;
 
 
 #include "native/CCNative.h"
-#include "network/CCNetwork.h"
 using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extra;
@@ -27,7 +26,6 @@ using namespace cocos2d::extra;
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"CCNetwork"); toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCNetwork)), "CCNetwork");
  tolua_usertype(tolua_S,"CCNative"); toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCNative)), "CCNative");
 }
 
@@ -350,120 +348,6 @@ static int tolua_cocos2dx_extra_luabinding_CCNative_vibrate00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: isLocalWiFiAvailable of class  CCNetwork */
-#ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCNetwork_isLocalWiFiAvailable00
-static int tolua_cocos2dx_extra_luabinding_CCNetwork_isLocalWiFiAvailable00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCNetwork",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  CCNetwork::isLocalWiFiAvailable();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isLocalWiFiAvailable'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: isInternetConnectionAvailable of class  CCNetwork */
-#ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCNetwork_isInternetConnectionAvailable00
-static int tolua_cocos2dx_extra_luabinding_CCNetwork_isInternetConnectionAvailable00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCNetwork",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   bool tolua_ret = (bool)  CCNetwork::isInternetConnectionAvailable();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isInternetConnectionAvailable'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: isHostNameReachable of class  CCNetwork */
-#ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCNetwork_isHostNameReachable00
-static int tolua_cocos2dx_extra_luabinding_CCNetwork_isHostNameReachable00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCNetwork",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* hostName = ((const char*)  tolua_tostring(tolua_S,2,0));
-  {
-   bool tolua_ret = (bool)  CCNetwork::isHostNameReachable(hostName);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isHostNameReachable'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getInternetConnectionStatus of class  CCNetwork */
-#ifndef TOLUA_DISABLE_tolua_cocos2dx_extra_luabinding_CCNetwork_getInternetConnectionStatus00
-static int tolua_cocos2dx_extra_luabinding_CCNetwork_getInternetConnectionStatus00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCNetwork",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   int tolua_ret = (int)  CCNetwork::getInternetConnectionStatus();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getInternetConnectionStatus'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* Open function */
 TOLUA_API int tolua_cocos2dx_extra_luabinding_open (lua_State* tolua_S)
 {
@@ -484,16 +368,6 @@ TOLUA_API int tolua_cocos2dx_extra_luabinding_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getInputText",tolua_cocos2dx_extra_luabinding_CCNative_getInputText00);
    tolua_function(tolua_S,"getDeviceName",tolua_cocos2dx_extra_luabinding_CCNative_getDeviceName00);
    tolua_function(tolua_S,"vibrate",tolua_cocos2dx_extra_luabinding_CCNative_vibrate00);
-  tolua_endmodule(tolua_S);
-  tolua_constant(tolua_S,"kCCNetworkStatusNotReachable",kCCNetworkStatusNotReachable);
-  tolua_constant(tolua_S,"kCCNetworkStatusReachableViaWiFi",kCCNetworkStatusReachableViaWiFi);
-  tolua_constant(tolua_S,"kCCNetworkStatusReachableViaWWAN",kCCNetworkStatusReachableViaWWAN);
-  tolua_cclass(tolua_S,"CCNetwork","CCNetwork","",NULL);
-  tolua_beginmodule(tolua_S,"CCNetwork");
-   tolua_function(tolua_S,"isLocalWiFiAvailable",tolua_cocos2dx_extra_luabinding_CCNetwork_isLocalWiFiAvailable00);
-   tolua_function(tolua_S,"isInternetConnectionAvailable",tolua_cocos2dx_extra_luabinding_CCNetwork_isInternetConnectionAvailable00);
-   tolua_function(tolua_S,"isHostNameReachable",tolua_cocos2dx_extra_luabinding_CCNetwork_isHostNameReachable00);
-   tolua_function(tolua_S,"getInternetConnectionStatus",tolua_cocos2dx_extra_luabinding_CCNetwork_getInternetConnectionStatus00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

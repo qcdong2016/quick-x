@@ -4,7 +4,7 @@
 
 #include "cocos2dx_extra.h"
 #include "cocos2d.h"
-#include "network/CCHTTPRequestDelegate.h"
+#include "CCHTTPRequestDelegate.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
@@ -28,9 +28,8 @@
 #endif
 
 using namespace std;
-USING_NS_CC;
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #define kCCHTTPRequestMethodGET                 0
 #define kCCHTTPRequestMethodPOST                1
@@ -278,6 +277,6 @@ private:
 
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif /* __CC_HTTP_REQUEST_H_ */

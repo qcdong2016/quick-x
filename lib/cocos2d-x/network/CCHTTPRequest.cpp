@@ -1,4 +1,4 @@
-#include "network/CCHTTPRequest.h"
+#include "CCHTTPRequest.h"
 #include <stdio.h>
 #include <iostream>
 
@@ -11,7 +11,7 @@ extern "C" {
 
 using namespace cocos2d;
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 unsigned int CCHTTPRequest::s_id = 0;
 
@@ -597,4 +597,4 @@ int CCHTTPRequest::progressCURL(void *userdata, double dltotal, double dlnow, do
     return static_cast<CCHTTPRequest*>(userdata)->onProgress(dltotal, dlnow, ultotal, ulnow);
 }
 
-NS_CC_EXTRA_END
+NS_CC_END

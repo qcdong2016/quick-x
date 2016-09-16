@@ -1,9 +1,8 @@
 
-$#include "network/CCNetwork.h"
+$#include "CCNetwork.h"
 
 $using namespace std;
 $using namespace cocos2d;
-$using namespace cocos2d::extra;
 
 #define kCCHTTPRequestMethodGET                 0
 #define kCCHTTPRequestMethodPOST                1

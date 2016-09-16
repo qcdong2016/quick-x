@@ -173,17 +173,17 @@
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\network\CCNetwork.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNative.cpp" />
     <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.cpp" />
-    <ClCompile Include="..\cocos2d-x\external\extra\platform\win32\CCNetworkWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui_cocos2dx.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\PlayerUI.cpp" />
+    <ClCompile Include="..\cocos2d-x\network\CCHTTPRequest.cpp" />
+    <ClCompile Include="..\cocos2d-x\network\CCNetwork.cpp" />
+    <ClCompile Include="..\cocos2d-x\network\CCNetworkWin32.cpp" />
+    <ClCompile Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.cpp" />
@@ -524,12 +524,8 @@
     <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\cocos2dx_extra.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_httprequest_luabinding.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\native\CCAlertViewDelegate.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\native\CCNative.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequest.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCHTTPRequestDelegate.h" />
-    <ClInclude Include="..\cocos2d-x\external\extra\network\CCNetwork.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32.h" />
     <ClInclude Include="..\cocos2d-x\external\extra\platform\win32\CCNativeWin32def.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imconfig.h" />
@@ -540,6 +536,10 @@
     <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_truetype.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui_cocos2dx.h" />
     <ClInclude Include="..\cocos2d-x\imgui\PlayerUI.h" />
+    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequest.h" />
+    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequestDelegate.h" />
+    <ClInclude Include="..\cocos2d-x\network\CCNetwork.h" />
+    <ClInclude Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.h" />
     <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.h" />
@@ -638,6 +638,7 @@
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE" />
     <None Include="..\cocos2d-x\imgui\imgui\README.md" />
+    <None Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.tolua" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9E05AA4B-1A09-433C-B1DF-BCE6675EC0D5}</ProjectGuid>

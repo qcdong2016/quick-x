@@ -1,4 +1,4 @@
-#include "network/CCHTTPRequest.h"
+#include "CCHTTPRequest.h"
 #include <stdio.h>
 #include <iostream>
 #include <thread>
@@ -13,7 +13,7 @@ extern "C" {
 #include <sstream>
 
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 unsigned int CCHTTPRequest::s_id = 0;
 
@@ -1078,4 +1078,4 @@ int CCHTTPRequest::getCStrFromJByteArray(jbyteArray jba, JNIEnv* env, char** ppD
 
 
 
-NS_CC_EXTRA_END
+NS_CC_END

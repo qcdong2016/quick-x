@@ -5,12 +5,11 @@
 #include "cocos2dx_extra.h"
 
 #if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "network/CCHTTPRequest.h"
-#include "network/CCHTTPRequestDelegate.h"
+#include "CCHTTPRequest.h"
+#include "CCHTTPRequestDelegate.h"
 #endif
 
-using namespace cocos2d;
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #define kCCNetworkStatusNotReachable     0
 #define kCCNetworkStatusReachableViaWiFi 1
@@ -48,6 +47,6 @@ private:
     CCNetwork(void) {}
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCNETWORK_H_

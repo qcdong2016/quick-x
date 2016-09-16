@@ -57,7 +57,7 @@ extern "C" {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     #include "cocos2dx_httprequest_luabinding.h"
 #elif (CC_CURL_ENABLED > 0)
-    #include "cocos2dx_httprequest_luabinding.h"
+TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 // cocos2dx_extra luabinding
