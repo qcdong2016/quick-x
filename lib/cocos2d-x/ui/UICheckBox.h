@@ -25,7 +25,7 @@
 #ifndef __UICHECKBOX_H__
 #define __UICHECKBOX_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "ui/UIWidget.h"
 
 NS_CC_BEGIN
 

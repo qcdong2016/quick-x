@@ -25,7 +25,7 @@
 #ifndef __LAYOUT_H__
 #define __LAYOUT_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "ui/UIWidget.h"
 
 NS_CC_BEGIN
 

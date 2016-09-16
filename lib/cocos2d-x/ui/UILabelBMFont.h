@@ -25,7 +25,7 @@
 #ifndef __UILABELBMFONT_H__
 #define __UILABELBMFONT_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 

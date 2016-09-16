@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIListView.h"
-#include "../../System/UIHelper.h"
+#include "ui/UIHelper.h"
 
 NS_CC_BEGIN
 

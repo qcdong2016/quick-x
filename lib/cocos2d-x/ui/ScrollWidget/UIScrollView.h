@@ -25,7 +25,7 @@
 #ifndef __UISCROLLVIEW_H__
 #define __UISCROLLVIEW_H__
 
-#include "../../Layouts/UILayout.h"
+#include "ui/Layouts/UILayout.h"
 #include "UIScrollInterface.h"
 
 NS_CC_BEGIN

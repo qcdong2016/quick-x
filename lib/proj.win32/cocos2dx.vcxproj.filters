@@ -10,9 +10,6 @@
     <Filter Include="cocos2d-x\CocosDenshion">
       <UniqueIdentifier>{5bdfb152-7e2d-491a-88f3-34fb63173eaa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\extensions">
-      <UniqueIdentifier>{705b2ab4-d9ea-480d-9e70-a06a217c7a34}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\scripting">
       <UniqueIdentifier>{d7229a83-70ec-42a9-92cd-359352bea614}</UniqueIdentifier>
     </Filter>
@@ -175,12 +172,6 @@
     <Filter Include="cocos2d-x\external\extra\platform\win32">
       <UniqueIdentifier>{76a0faba-3262-4cf2-aa5c-4a62c40367e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\extensions\GUI">
-      <UniqueIdentifier>{882d5094-4f5f-4d01-8b79-c286e28260dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\extensions\GUI\CCEditBox">
-      <UniqueIdentifier>{34ecd737-a495-4e54-80a1-69ccb01a6069}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\spine">
       <UniqueIdentifier>{8f7f20d3-6f2f-43d1-a466-4d3fad8f5ad0}</UniqueIdentifier>
     </Filter>
@@ -234,6 +225,18 @@
     </Filter>
     <Filter Include="cocos2d-x\network">
       <UniqueIdentifier>{6b1129bc-5677-49f5-bc68-f3ea24f1ebaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\ui">
+      <UniqueIdentifier>{b7bdac3a-8bc6-4387-8ab4-85456e918034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\ui\EditBox">
+      <UniqueIdentifier>{0156f111-80f2-4b44-9901-64a8cd3a51b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\ui\Layouts">
+      <UniqueIdentifier>{a847427b-cebe-436e-b0f2-3c4d4867ada2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\ui\ScrollWidget">
+      <UniqueIdentifier>{2594e086-9ac7-440b-8be9-c516a12084ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -636,72 +639,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.cpp">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\CocosGUI.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\UIHelper.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\System\UITouchGroup.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIButton.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UICheckBox.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIImageView.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabel.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelAtlas.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelBMFont.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILoadingBar.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIRichText.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIListView.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIPageView.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollView.cpp">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c">
       <Filter>cocos2d-x\spine\spine</Filter>
     </ClCompile>
@@ -1029,9 +966,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.c">
       <Filter>cocos2d-x\scripting\lua_extensions\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.cpp">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.cpp">
       <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
     </ClCompile>
@@ -1061,6 +995,84 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\network\CCHTTPRequest.cpp">
       <Filter>cocos2d-x\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UIButton.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UICheckBox.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UIHelper.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UIImageView.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UILabel.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UILabelAtlas.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UILabelBMFont.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UILoadingBar.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UIRichText.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UISlider.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UITextField.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UITouchGroup.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\UIWidget.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\CocosGUI.cpp">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplAndroid.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplNone.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplQt.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\Win32InputBox.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBox.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.cpp">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayoutParameter.cpp">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayout.cpp">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\ScrollWidget\UIPageView.cpp">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\ScrollWidget\UIScrollView.cpp">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\ScrollWidget\UIListView.cpp">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1586,9 +1598,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.h">
       <Filter>cocos2d-x\cocos2dx\support\user_default</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\ExtensionMacros.h">
-      <Filter>cocos2d-x\extensions</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\ccUTF8.h">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClInclude>
@@ -1634,9 +1643,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTextureETC.h">
       <Filter>cocos2d-x\cocos2dx\textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\cocos-ext.h">
-      <Filter>cocos2d-x\extensions</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\external\extra\luabinding\cocos2dx_extra_luabinding.h">
       <Filter>cocos2d-x\external\extra\luabinding</Filter>
     </ClInclude>
@@ -1666,90 +1672,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.h">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayout.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutDefine.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\Layouts\UILayoutParameter.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\CocosGUI.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\GUIDefine.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\UIHelper.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\System\UITouchGroup.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIButton.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UICheckBox.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIImageView.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabel.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelAtlas.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILabelBMFont.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UILoadingBar.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UIRichText.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UISlider.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\UITextField.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIListView.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIPageView.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollInterface.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\ScrollWidget\UIScrollView.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\UIWidgets\Compatible\CompatibleClasses.h">
-      <Filter>cocos2d-x\extensions\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImpl.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplIOS.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplMac.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
       <Filter>cocos2d-x\spine\spine</Filter>
@@ -2066,9 +1988,6 @@
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.h">
       <Filter>cocos2d-x\scripting\lua_extensions\zlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\extensions\GUI\CCEditBox\Win32InputBox.h">
-      <Filter>cocos2d-x\extensions\GUI\CCEditBox</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.h">
       <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
     </ClInclude>
@@ -2099,6 +2018,96 @@
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\GUIDefine.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UIButton.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UICheckBox.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UIHelper.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UIImageView.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UILabel.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UILabelAtlas.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UILabelBMFont.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UILoadingBar.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UIRichText.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UISlider.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UITextField.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UITouchGroup.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\UIWidget.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\CocosGUI.h">
+      <Filter>cocos2d-x\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplAndroid.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplIOS.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplMac.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplQt.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\Win32InputBox.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBox.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImpl.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.h">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayoutParameter.h">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayout.h">
+      <Filter>cocos2d-x\ui\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIPageView.h">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIScrollInterface.h">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIScrollView.h">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIListView.h">
+      <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE">
@@ -2109,6 +2118,12 @@
     </None>
     <None Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.tolua">
       <Filter>cocos2d-x\network</Filter>
+    </None>
+    <None Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplIOS.mm">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </None>
+    <None Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplMac.mm">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
     </None>
   </ItemGroup>
 </Project>

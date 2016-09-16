@@ -28,7 +28,7 @@
 
 #include "cocos2d.h"
 #include "CCPlatformMacros.h"
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 

@@ -12,13 +12,13 @@ extern "C" {
 #include "CCLuaStack.h"
 #include "CCLuaValue.h"
 #include "CCLuaEngine.h"
-#include "../BaseClasses/UIWidget.h"
-#include "../UIWidgets/UICheckBox.h"
-#include "../UIWidgets/UISlider.h"
-#include "../UIWidgets/UITextField.h"
-#include "../UIWidgets/ScrollWidget/UIPageView.h"
-#include "../UIWidgets/ScrollWidget/UIScrollView.h"
-#include "../UIWidgets/ScrollWidget/UIListView.h"
+#include "ui/UIWidget.h"
+#include "ui/UICheckBox.h"
+#include "ui/UISlider.h"
+#include "ui/UITextField.h"
+#include "ui/ScrollWidget/UIPageView.h"
+#include "ui/ScrollWidget/UIScrollView.h"
+#include "ui/ScrollWidget/UIListView.h"
 
 
 USING_NS_CC;

@@ -28,7 +28,7 @@
 
 #include "cocos2d.h"
 #include "CCPlatformMacros.h"
-#include "../UIWidgets/UIButton.h"
+#include "ui/UIButton.h"
 #include "sprite_nodes/CCScale9Sprite.h"
 
 NS_CC_BEGIN

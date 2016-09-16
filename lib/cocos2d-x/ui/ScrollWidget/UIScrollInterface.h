@@ -22,33 +22,28 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOSGUI_H__
-#define __COCOSGUI_H__
+#ifndef __UISCROLLDELEGATE_H__
+#define __UISCROLLDELEGATE_H__
 
+#include "ui/UIWidget.h"
 
-#include "../BaseClasses/UIWidget.h"
-#include "../Layouts/UILayout.h"
-#include "../UIWidgets/UIButton.h"
-#include "../UIWidgets/UICheckBox.h"
-#include "../UIWidgets/UIImageView.h"
-#include "../UIWidgets/UILabel.h"
-#include "../UIWidgets/UILabelAtlas.h"
-#include "../UIWidgets/UILoadingBar.h"
-#include "../UIWidgets/ScrollWidget/UIScrollView.h"
-#include "../UIWidgets/UISlider.h"
-#include "../UIWidgets/UITextField.h"
-#include "../UIWidgets/ScrollWidget/UIListView.h"
-#include "../UIWidgets/UILabelBMFont.h"
-#include "../UIWidgets/ScrollWidget/UIPageView.h"
-#include "UIHelper.h"
-#include "UITouchGroup.h"
-#include "../UIWidgets/Compatible/CompatibleClasses.h"
-#include "../UIWidgets/UIRichText.h"
+NS_CC_BEGIN
 
-//NS_CC_BEGIN
+namespace ui {
 
-CC_DLL const char* CocosGUIVersion();
+class CC_DLL UIScrollInterface
+{
+public:
+    virtual ~UIScrollInterface() {}
 
-//NS_CC_END
+protected:
+    virtual void handlePressLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleMoveLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleReleaseLogic(const CCPoint &touchPoint) = 0;
+    virtual void interceptTouchEvent(int handleState, Widget* sender, const CCPoint &touchPoint) = 0;
+};
 
-#endif /* defined(__CocosGUITest__Cocos__) */
+}
+NS_CC_END
+
+#endif /* defined(__UIScrollDelegate__) */

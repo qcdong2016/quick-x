@@ -22,28 +22,33 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UISCROLLDELEGATE_H__
-#define __UISCROLLDELEGATE_H__
+#ifndef __COCOSGUI_H__
+#define __COCOSGUI_H__
 
-#include "../../BaseClasses/UIWidget.h"
 
-NS_CC_BEGIN
+#include "UIWidget.h"
+#include "Layouts/UILayout.h"
+#include "UIButton.h"
+#include "UICheckBox.h"
+#include "UIImageView.h"
+#include "UILabel.h"
+#include "UILabelAtlas.h"
+#include "UILoadingBar.h"
+#include "ScrollWidget/UIScrollView.h"
+#include "UISlider.h"
+#include "UITextField.h"
+#include "ScrollWidget/UIListView.h"
+#include "UILabelBMFont.h"
+#include "ScrollWidget/UIPageView.h"
+#include "UIHelper.h"
+#include "UITouchGroup.h"
+#include "Compatible/CompatibleClasses.h"
+#include "UIRichText.h"
 
-namespace ui {
+//NS_CC_BEGIN
 
-class CC_DLL UIScrollInterface
-{
-public:
-    virtual ~UIScrollInterface() {}
+CC_DLL const char* CocosGUIVersion();
 
-protected:
-    virtual void handlePressLogic(const CCPoint &touchPoint) = 0;
-    virtual void handleMoveLogic(const CCPoint &touchPoint) = 0;
-    virtual void handleReleaseLogic(const CCPoint &touchPoint) = 0;
-    virtual void interceptTouchEvent(int handleState, Widget* sender, const CCPoint &touchPoint) = 0;
-};
+//NS_CC_END
 
-}
-NS_CC_END
-
-#endif /* defined(__UIScrollDelegate__) */
+#endif /* defined(__CocosGUITest__Cocos__) */

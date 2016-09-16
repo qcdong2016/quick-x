@@ -22,141 +22,109 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UILOADINGBAR_H__
-#define __UILOADINGBAR_H__
+#ifndef __UIIMAGEVIEW_H__
+#define __UIIMAGEVIEW_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 
 namespace ui {
 
-typedef enum
-{
-    LoadingBarTypeLeft,
-    LoadingBarTypeRight
-}LoadingBarType;
 /**
 *   @js NA
 *   @lua NA
 */
-class CC_DLL LoadingBar : public Widget
+class CC_DLL ImageView : public Widget
 {
-    
     DECLARE_CLASS_GUI_INFO
     
 public:
     /**
      * Default constructor
      */
-    LoadingBar();
+    ImageView();
     
     /**
      * Default destructor
      */
-    virtual ~LoadingBar();
+    virtual ~ImageView();
     
     /**
      * Allocates and initializes.
      */
-    static LoadingBar* create();
+    static ImageView* create();
     
     /**
-     * Changes the progress direction of loadingbar.
-     *
-     * @see LoadingBarType  LoadingBarTypeLeft means progress left to right, LoadingBarTypeRight otherwise.
-     *
-     * @param LoadingBarType
-     */
-    void setDirection(LoadingBarType dir);
-    
-    /**
-     * Gets the progress direction of loadingbar.
-     *
-     * @see LoadingBarType  LoadingBarTypeLeft means progress left to right, LoadingBarTypeRight otherwise.
-     *
-     * @param LoadingBarType
-     */
-    int getDirection();
-    
-    /**
-     * Load texture for loadingbar.
+     * Load texture for imageview.
      *
      * @param fileName   file name of texture.
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTexture(const char* texture,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
     const std::string& getTexture() { return _textureFile; }
 
     /**
-     * Changes the progress direction of loadingbar.
-     *
-     * @param percent    percent value from 1 to 100.
+     * Updates the texture rect of the ImageView in points.
+     * It will call setTextureRect:rotated:untrimmedSize with rotated = NO, and utrimmedSize = rect.size.
      */
-    void setPercent(int percent);
+    void setTextureRect(const CCRect& rect);
     
     /**
-     * Gets the progress direction of loadingbar.
-     *
-     * @return percent    percent value from 1 to 100.
-     */
-    int getPercent();
-    
-    /**
-     * Sets if loadingbar is using scale9 renderer.
+     * Sets if imageview is using scale9 renderer.
      *
      * @param true that using scale9 renderer, false otherwise.
      */
-    void setScale9Enabled(bool enabled);
+    void setScale9Enabled(bool able);
     
     bool isScale9Enabled();
     
     /**
-     * Sets capinsets for loadingbar, if loadingbar is using scale9 renderer.
+     * Sets capinsets for imageview, if imageview is using scale9 renderer.
      *
-     * @param capInsets    capinsets for loadingbar
+     * @param capInsets    capinsets for imageview
      */
     void setCapInsets(const CCRect &capInsets);
     
     const CCRect& getCapInsets();
     
+    //override "setAnchorPoint" method of widget.
+    virtual void setAnchorPoint(const CCPoint &pt);
+    
     //override "ignoreContentAdaptWithSize" method of widget.
     virtual void ignoreContentAdaptWithSize(bool ignore);
-    
-    //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
-    
-    //override "getVirtualRenderer" method of widget.
-    virtual CCNode* getVirtualRenderer();
     
     /**
      * Returns the "class name" of widget.
      */
     virtual std::string getDescription() const;
+    
+    virtual const CCSize& getContentSize() const;
+    virtual CCNode* getVirtualRenderer();
 protected:
     virtual void initRenderer();
     virtual void onSizeChanged();
     virtual void updateTextureColor();
     virtual void updateTextureOpacity();
     virtual void updateTextureRGBA();
-    void setScale9Scale();
-    void barRendererScaleChangedWithSize();
+    virtual void updateFlippedX();
+    virtual void updateFlippedY();
+    void imageTextureScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
 protected:
-    LoadingBarType _barType;
-    int _percent;
-    float _totalLength;
-    CCNode* _barRenderer;
-    TextureResType _renderBarTexType;
-    CCSize _barRendererTextureSize;
     bool _scale9Enabled;
     bool _prevIgnoreSize;
     CCRect _capInsets;
+    CCNode* _imageRenderer;
     std::string _textureFile;
+    TextureResType _imageTexType;
+    CCSize _imageTextureSize;
 };
 
 }
+
 NS_CC_END
-#endif /* defined(__CocoGUI__LoadingBar__) */
+
+#endif /* defined(__CocoGUI__ImageView__) */

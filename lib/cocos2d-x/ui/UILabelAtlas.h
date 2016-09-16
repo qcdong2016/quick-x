@@ -25,7 +25,7 @@
 #ifndef __UILABELATLAS_H__
 #define __UILABELATLAS_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 

@@ -25,7 +25,7 @@
 #ifndef __UIRICHTEXT_H__
 #define __UIRICHTEXT_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 

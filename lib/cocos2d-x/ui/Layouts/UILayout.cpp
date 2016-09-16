@@ -23,8 +23,8 @@
  ****************************************************************************/
 
 #include "UILayout.h"
-#include "../System/UIHelper.h"
-#include "sprite_nodes//CCScale9Sprite.h"
+#include "ui/UIHelper.h"
+#include "sprite_nodes/CCScale9Sprite.h"
 
 NS_CC_BEGIN
 

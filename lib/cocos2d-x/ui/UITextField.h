@@ -25,7 +25,7 @@
 #ifndef __UITEXTFIELD_H__
 #define __UITEXTFIELD_H__
 
-#include "../BaseClasses/UIWidget.h"
+#include "UIWidget.h"
 
 NS_CC_BEGIN
 

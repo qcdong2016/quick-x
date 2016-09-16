@@ -23,8 +23,8 @@
  ****************************************************************************/
 
 #include "UIWidget.h"
-#include "../Layouts/UILayout.h"
-#include "../System/UIHelper.h"
+#include "Layouts/UILayout.h"
+#include "UIHelper.h"
 
 NS_CC_BEGIN
 
