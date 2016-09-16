@@ -29,7 +29,6 @@
 #define __CC_SPRITE_BATCH_NODE_H__
 
 #include "base_nodes/CCNode.h"
-#include "CCProtocols.h"
 #include "textures/CCTextureAtlas.h"
 #include "ccMacros.h"
 #include "cocoa/CCArray.h"
@@ -60,7 +59,7 @@ class CCSprite;
  *
  * @since v0.7.1
  */
-class CC_DLL CCSpriteBatchNode : public CCNode, public CCTextureProtocol
+class CC_DLL CCSpriteBatchNode : public CCNode
 {
 public:
     /**

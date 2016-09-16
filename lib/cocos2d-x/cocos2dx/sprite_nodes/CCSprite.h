@@ -28,7 +28,6 @@
 #define __SPITE_NODE_CCSPRITE_H__
 
 #include "base_nodes/CCNode.h"
-#include "CCProtocols.h"
 #include "textures/CCTextureAtlas.h"
 #include "ccTypes.h"
 #include "cocoa/CCDictionary.h"
@@ -79,7 +78,7 @@ struct transformValues_;
  *
  * The default anchorPoint in CCSprite is (0.5, 0.5).
  */
-class CC_DLL CCSprite : public CCNode, public CCTextureProtocol
+class CC_DLL CCSprite : public CCNode
 #ifdef EMSCRIPTEN
 , public CCGLBufferedNode
 #endif // EMSCRIPTEN

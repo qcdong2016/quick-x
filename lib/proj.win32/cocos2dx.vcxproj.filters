@@ -612,9 +612,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCString.cpp">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.cpp">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.cpp">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
@@ -1074,6 +1071,9 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.cpp">
       <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos\Variant.cpp">
+      <Filter>cocos2d-x\cocos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\CocosDenshion\include\Export.h">
@@ -1146,9 +1146,6 @@
       <Filter>cocos2d-x\cocos2dx\include</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCProtocols.h">
       <Filter>cocos2d-x\cocos2dx\include</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypeInfo.h">
@@ -1625,19 +1622,10 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCBool.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDouble.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCFloat.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.h">
@@ -1656,9 +1644,6 @@
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCString.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\component\CCComponent.h">
@@ -2131,6 +2116,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCScale9Sprite.h">
       <Filter>cocos2d-x\cocos2dx\sprite_nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos\Variant.h">
+      <Filter>cocos2d-x\cocos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

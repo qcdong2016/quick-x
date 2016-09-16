@@ -30,7 +30,6 @@
 #define __CCPARTICLEBATCHNODE_H__
 
 #include "base_nodes/CCNode.h"
-#include "CCProtocols.h"
 
 NS_CC_BEGIN
 
@@ -64,7 +63,7 @@ class CCParticleSystem;
  * @since v1.1
  */
 
-class CC_DLL CCParticleBatchNode : public CCNode, public CCTextureProtocol
+class CC_DLL CCParticleBatchNode : public CCNode
 {
 public:
     /**

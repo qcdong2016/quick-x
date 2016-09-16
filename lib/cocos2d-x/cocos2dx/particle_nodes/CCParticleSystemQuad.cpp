@@ -40,6 +40,7 @@ THE SOFTWARE.
 
 // extern
 #include "kazmath/GL/matrix.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 

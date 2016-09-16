@@ -36,9 +36,9 @@
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCGLProgram.h"
 #include "kazmath/kazmath.h"
-#include "CCProtocols.h"
 #include "touch_dispatcher/CCTouchDelegateProtocol.h"
 #include "script_support/CCScriptSupport.h"
+#include "ccTypes.h"
 
 NS_CC_BEGIN
 
@@ -47,13 +47,13 @@ class CCGridBase;
 class CCPoint;
 class CCTouch;
 class CCAction;
-class CCLabelProtocol;
 class CCScheduler;
 class CCActionManager;
 class CCComponent;
 class CCDictionary;
 class CCComponentContainer;
 class CCScene;
+class CCTexture2D;
 
 /**
  * @addtogroup base_nodes

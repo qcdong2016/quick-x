@@ -1,7 +1,6 @@
 ------------------------------------------------------------------------------
 --Load origin framework
 ------------------------------------------------------------------------------
-CCLuaLoadChunksFromZIP("res/framework_precompiled.zip")
 
 ------------------------------------------------------------------------------
 --If you would update the modoules which have been require here,

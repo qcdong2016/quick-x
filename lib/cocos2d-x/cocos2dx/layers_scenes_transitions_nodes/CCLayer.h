@@ -28,7 +28,6 @@ THE SOFTWARE.
 #define __CCLAYER_H__
 
 #include "base_nodes/CCNode.h"
-#include "CCProtocols.h"
 #include "platform/CCAccelerometerDelegate.h"
 #include "keypad_dispatcher/CCKeypadDelegate.h"
 #include "cocoa/CCArray.h"
@@ -120,7 +119,7 @@ All features from CCLayer are valid, plus the following new features:
 - opacity
 - RGB colors
 */
-class CC_DLL CCLayerColor : public CCLayer, public CCBlendProtocol
+class CC_DLL CCLayerColor : public CCLayer
 #ifdef EMSCRIPTEN
 , public CCGLBufferedNode
 #endif // EMSCRIPTEN

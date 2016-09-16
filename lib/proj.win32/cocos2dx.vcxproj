@@ -42,7 +42,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCString.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocos2d.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.cpp" />
@@ -147,6 +146,7 @@
     <ClCompile Include="..\cocos2d-x\CocosDenshion\win32\SimpleAudioEngine.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos\ProcessUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos\RefCounted.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos\Variant.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBox.cpp" />
     <ClCompile Include="..\cocos2d-x\extensions\GUI\CCEditBox\CCEditBoxImplWin.cpp" />
@@ -313,11 +313,8 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCBool.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDouble.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCFloat.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCInteger.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.h" />
@@ -325,7 +322,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCScriptEventDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCSet.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCString.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCZone.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawingPrimitives.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCDrawNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.h" />
@@ -334,7 +330,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCEventType.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCProtocols.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypeInfo.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\include\cocos2d.h" />
@@ -496,6 +491,7 @@
     <ClInclude Include="..\cocos2d-x\cocos\ProcessUtils.h" />
     <ClInclude Include="..\cocos2d-x\cocos\Ptr.h" />
     <ClInclude Include="..\cocos2d-x\cocos\RefCounted.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\Variant.h" />
     <ClInclude Include="..\cocos2d-x\extensions\cocos-ext.h" />
     <ClInclude Include="..\cocos2d-x\extensions\ExtensionMacros.h" />
     <ClInclude Include="..\cocos2d-x\extensions\GUI\BaseClasses\UIWidget.h" />

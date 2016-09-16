@@ -54,7 +54,7 @@ NS_CC_BEGIN
  * @endcode
  *
  */
-class CC_DLL CCLabelTTF : public CCSprite, public CCLabelProtocol
+class CC_DLL CCLabelTTF : public CCSprite
 {
 public:
     /**

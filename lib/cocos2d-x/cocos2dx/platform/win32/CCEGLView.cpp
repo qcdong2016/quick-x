@@ -33,7 +33,6 @@ THE SOFTWARE.
 #include "support/CCPointExtension.h"
 #include "CCApplication.h"
 #include "CCNotificationCenter.h"
-#include "cocoa/CCInteger.h"
 #include "../imgui/imgui_cocos2dx.h"
 #include "../imgui/PlayerUI.h"
 
@@ -465,8 +464,6 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_KEYDOWN:
-        CCNotificationCenter::sharedNotificationCenter()
-            ->postNotification("keydown", CCInteger::create(wParam));
 
         if (wParam == VK_F1 || wParam == VK_F2)
         {
@@ -494,8 +491,6 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		ImGuiCC::setKeyDown(wParam);
 		break;
     case WM_KEYUP:
-        CCNotificationCenter::sharedNotificationCenter()
-            ->postNotification("keyup", CCInteger::create(wParam));
         if ( m_lpfnAccelerometerKeyHook!=NULL )
         {
             (*m_lpfnAccelerometerKeyHook)( message,wParam,lParam );

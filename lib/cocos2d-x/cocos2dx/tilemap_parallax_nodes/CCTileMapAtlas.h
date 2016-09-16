@@ -97,7 +97,8 @@ private:
 
 protected:
     //! x,y to atlas dictionary
-    CCDictionary* m_pPosToAtlasIndex;
+	std::map<std::string, int> m_posToAtlasIdx;
+    //CCDictionary* m_pPosToAtlasIndex;
     //! numbers of tiles to render
     int m_nItemsToRender;
 };

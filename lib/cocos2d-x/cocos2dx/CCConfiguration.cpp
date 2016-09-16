@@ -28,8 +28,6 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include <string.h>
 #include "cocoa/CCDictionary.h"
-#include "cocoa/CCInteger.h"
-#include "cocoa/CCBool.h"
 #include "cocos2d.h"
 #include "platform/CCFileUtils.h"
 
@@ -64,15 +62,15 @@ bool CCConfiguration::init(void)
 
 
 #if CC_ENABLE_PROFILERS
-	m_pValueDict->setObject( CCBool::create(true), "cocos2d.x.compiled_with_profiler");
+	m_pValueDict->setObject(CCString::create("true"), "cocos2d.x.compiled_with_profiler");
 #else
-	m_pValueDict->setObject( CCBool::create(false), "cocos2d.x.compiled_with_profiler");
+	m_pValueDict->setObject(CCString::create("false"), "cocos2d.x.compiled_with_profiler");
 #endif
 
 #if CC_ENABLE_GL_STATE_CACHE == 0
-	m_pValueDict->setObject( CCBool::create(false), "cocos2d.x.compiled_with_gl_state_cache");
+	m_pValueDict->setObject(CCString::create("false"), "cocos2d.x.compiled_with_gl_state_cache");
 #else
-	m_pValueDict->setObject( CCBool::create(true), "cocos2d.x.compiled_with_gl_state_cache");
+	m_pValueDict->setObject(CCString::create("true"), "cocos2d.x.compiled_with_gl_state_cache");
 #endif
 
 	return true;
@@ -106,6 +104,8 @@ void CCConfiguration::dumpInfo(void) const
 
 }
 
+
+
 void CCConfiguration::gatherGPUInfo()
 {
 	m_pValueDict->setObject( CCString::create( (const char*)glGetString(GL_VENDOR)), "gl.vendor");
@@ -115,30 +115,30 @@ void CCConfiguration::gatherGPUInfo()
     m_pGlExtensions = (char *)glGetString(GL_EXTENSIONS);
 
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_nMaxTextureSize);
-	m_pValueDict->setObject( CCInteger::create((int)m_nMaxTextureSize), "gl.max_texture_size");
+	m_pValueDict->setObject( CCString::createWithFormat("%d", (int)m_nMaxTextureSize), "gl.max_texture_size");
 
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &m_nMaxTextureUnits);
-	m_pValueDict->setObject( CCInteger::create((int)m_nMaxTextureUnits), "gl.max_texture_units");
+	m_pValueDict->setObject(CCString::createWithFormat("%d", (int)m_nMaxTextureUnits), "gl.max_texture_units");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     glGetIntegerv(GL_MAX_SAMPLES_APPLE, &m_nMaxSamplesAllowed);
-	m_pValueDict->setObject( CCInteger::create((int)m_nMaxSamplesAllowed), "gl.max_samples_allowed");
+	m_pValueDict->setObject(CCString::createWithFormat("%d", (int)m_nMaxSamplesAllowed), "gl.max_samples_allowed");
 #endif
 
     m_bSupportsPVRTC = checkForGLExtension("GL_IMG_texture_compression_pvrtc");
-	m_pValueDict->setObject( CCBool::create(m_bSupportsPVRTC), "gl.supports_PVRTC");
+	m_pValueDict->setObject(CCString::create(m_bSupportsPVRTC ? "true" : "false"), "gl.supports_PVRTC");
 
     m_bSupportsNPOT = true;
-	m_pValueDict->setObject( CCBool::create(m_bSupportsNPOT), "gl.supports_NPOT");
+	m_pValueDict->setObject(CCString::create(m_bSupportsNPOT ? "true" : "false"), "gl.supports_NPOT");
 	
     m_bSupportsBGRA8888 = checkForGLExtension("GL_IMG_texture_format_BGRA888");
-	m_pValueDict->setObject( CCBool::create(m_bSupportsBGRA8888), "gl.supports_BGRA8888");
+	m_pValueDict->setObject(CCString::create(m_bSupportsBGRA8888 ? "true" : "false"), "gl.supports_BGRA8888");
 
     m_bSupportsDiscardFramebuffer = checkForGLExtension("GL_EXT_discard_framebuffer");
-	m_pValueDict->setObject( CCBool::create(m_bSupportsDiscardFramebuffer), "gl.supports_discard_framebuffer");
+	m_pValueDict->setObject(CCString::create(m_bSupportsDiscardFramebuffer ? "true" : "false"), "gl.supports_discard_framebuffer");
 
     m_bSupportsShareableVAO = checkForGLExtension("vertex_array_object");
-	m_pValueDict->setObject( CCBool::create(m_bSupportsShareableVAO), "gl.supports_vertex_array_object");
+	m_pValueDict->setObject(CCString::create(m_bSupportsShareableVAO ? "true" : "false"), "gl.supports_vertex_array_object");
     
     CHECK_GL_ERROR_DEBUG();
 }
@@ -239,8 +239,6 @@ bool CCConfiguration::getBool( const char *key, bool default_value ) const
 {
 	CCObject *ret = m_pValueDict->objectForKey(key);
 	if( ret ) {
-		if( CCBool *boolobj=dynamic_cast<CCBool*>(ret) )
-			return boolobj->getValue();
 		if( CCString *strobj=dynamic_cast<CCString*>(ret) )
 			return strobj->boolValue();
 		CCAssert(false, "Key found, but from different type");
@@ -255,12 +253,6 @@ double CCConfiguration::getNumber( const char *key, double default_value ) const
 {
 	CCObject *ret = m_pValueDict->objectForKey(key);
 	if( ret ) {
-		if( CCDouble *obj=dynamic_cast<CCDouble*>(ret) )
-			return obj->getValue();
-
-		if( CCInteger *obj=dynamic_cast<CCInteger*>(ret) )
-			return obj->getValue();
-
 		if( CCString *strobj=dynamic_cast<CCString*>(ret) )
 			return strobj->doubleValue();
 

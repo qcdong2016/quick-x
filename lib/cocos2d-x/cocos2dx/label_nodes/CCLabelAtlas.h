@@ -48,7 +48,7 @@ CCLabelAtlas versus CCLabel:
 
 A more flexible class is CCLabelBMFont. It supports variable width characters and it also has a nice editor.
 */
-class CC_DLL CCLabelAtlas : public CCAtlasNode, public CCLabelProtocol
+class CC_DLL CCLabelAtlas : public CCAtlasNode
 {
 public:
     /**

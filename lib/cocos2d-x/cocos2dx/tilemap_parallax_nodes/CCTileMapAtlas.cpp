@@ -29,9 +29,9 @@ THE SOFTWARE.
 #include "support/image_support/TGAlib.h"
 #include "ccConfig.h"
 #include "cocoa/CCDictionary.h"
-#include "cocoa/CCInteger.h"
 #include "CCDirector.h"
 #include "support/CCPointExtension.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 
@@ -56,7 +56,6 @@ bool CCTileMapAtlas::initWithTileFile(const char *tile, const char *mapFile, int
 
     if( CCAtlasNode::initWithTileFile(tile, tileWidth, tileHeight, m_nItemsToRender) )
     {
-        m_pPosToAtlasIndex = new CCDictionary();
         this->updateAtlasValues();
         this->setContentSize(CCSizeMake((float)(m_pTGAInfo->width*m_uItemWidth),
                                         (float)(m_pTGAInfo->height*m_uItemHeight)));
@@ -67,7 +66,6 @@ bool CCTileMapAtlas::initWithTileFile(const char *tile, const char *mapFile, int
 
 CCTileMapAtlas::CCTileMapAtlas()
     :m_pTGAInfo(NULL)
-    ,m_pPosToAtlasIndex(NULL)
     ,m_nItemsToRender(0)
 {
 }
@@ -78,7 +76,6 @@ CCTileMapAtlas::~CCTileMapAtlas()
     {
         tgaDestroy(m_pTGAInfo);
     }
-    CC_SAFE_RELEASE(m_pPosToAtlasIndex);
 }
 
 void CCTileMapAtlas::releaseMap()
@@ -88,8 +85,6 @@ void CCTileMapAtlas::releaseMap()
         tgaDestroy(m_pTGAInfo);
     }
     m_pTGAInfo = NULL;
-
-    CC_SAFE_RELEASE_NULL(m_pPosToAtlasIndex);
 }
 
 void CCTileMapAtlas::calculateItemsToRender()
@@ -135,7 +130,6 @@ void CCTileMapAtlas::loadTGAfile(const char *file)
 void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
 {
     CCAssert(m_pTGAInfo != NULL, "tgaInfo must not be nil");
-    CCAssert(m_pPosToAtlasIndex != NULL, "posToAtlasIndex must not be nil");
     CCAssert(position.x < m_pTGAInfo->width, "Invalid position.x");
     CCAssert(position.y < m_pTGAInfo->height, "Invalid position.x");
     CCAssert(tile.r != 0, "R component must be non 0");
@@ -152,10 +146,10 @@ void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
 
         // XXX: this method consumes a lot of memory
         // XXX: a tree of something like that shall be implemented
-        CCInteger *num = (CCInteger*)m_pPosToAtlasIndex->objectForKey(CCString::createWithFormat("%ld,%ld", 
-                                                                                                 (long)position.x, 
-                                                                                                 (long)position.y)->getCString());
-        this->updateAtlasValueAt(position, tile, num->getValue());
+
+
+        int n = m_posToAtlasIdx[CCString::createWithFormat("%ld,%ld",  (long)position.x, (long)position.y)->getCString()];
+        this->updateAtlasValueAt(position, tile, n);
     }    
 }
 
@@ -255,8 +249,7 @@ void CCTileMapAtlas::updateAtlasValues()
                     this->updateAtlasValueAt(ccp(x,y), value, total);
 
                     CCString *key = CCString::createWithFormat("%d,%d", x,y);
-                    CCInteger *num = CCInteger::create(total);
-                    m_pPosToAtlasIndex->setObject(num, key->getCString());
+					m_posToAtlasIdx[key->getCString()] = total;
 
                     total++;
                 }

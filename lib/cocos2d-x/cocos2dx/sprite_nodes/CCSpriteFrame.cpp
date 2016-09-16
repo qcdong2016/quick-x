@@ -120,14 +120,13 @@ CCSpriteFrame::~CCSpriteFrame(void)
     CC_SAFE_RELEASE(m_pobTexture);
 }
 
-CCObject* CCSpriteFrame::copyWithZone(CCZone *pZone)
+void CCSpriteFrame::paste(CCObject* o)
 {
-    CC_UNUSED_PARAM(pZone);
-    CCSpriteFrame *pCopy = new CCSpriteFrame();
+	Super::paste(o);
+	CCSpriteFrame *pCopy = O;
 
     pCopy->initWithTextureFilename(m_strTextureFilename.c_str(), m_obRectInPixels, m_bRotated, m_obOffsetInPixels, m_obOriginalSizeInPixels);
     pCopy->setTexture(m_pobTexture);
-    return pCopy;
 }
 
 void CCSpriteFrame::setRect(const CCRect& rect)

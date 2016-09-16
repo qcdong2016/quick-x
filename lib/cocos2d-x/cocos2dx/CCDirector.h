@@ -40,6 +40,15 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
+class CC_DLL CCDirectorDelegate
+{
+public:
+	/**
+	* Will be called by CCDirector when the projection is updated, and "custom" projection is used
+	*/
+	virtual void updateProjection(void) = 0;
+};
+
 /**
  * @addtogroup base_nodes
  * @{

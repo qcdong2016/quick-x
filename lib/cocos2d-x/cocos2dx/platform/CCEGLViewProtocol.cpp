@@ -4,13 +4,14 @@
 #include "CCDirector.h"
 #include "cocoa/CCSet.h"
 #include "cocoa/CCDictionary.h"
-#include "cocoa/CCInteger.h"
 
 NS_CC_BEGIN
 
 static CCTouch* s_pTouches[CC_MAX_TOUCHES] = { NULL };
 static unsigned int s_indexBitsUsed = 0;
-static CCDictionary s_TouchesIntergerDict;
+//static CCDictionary s_TouchesIntergerDict;
+
+std::map<int, int> s_touchesDict;
 
 static int getUnUsedIndex()
 {
@@ -203,11 +204,12 @@ void CCEGLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float
         float x = xs[i];
         float y = ys[i];
 
-        CCInteger* pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
+        //CCInteger* pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
+		auto iter = s_touchesDict.find(id);
         int nUnusedIndex = 0;
 
         // it is a new touch
-        if (pIndex == NULL)
+        if (iter == s_touchesDict.end())
         {
             nUnusedIndex = getUnUsedIndex();
 
@@ -223,10 +225,8 @@ void CCEGLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float
             
             //CCLOG("x = %f y = %f", pTouch->getLocationInView().x, pTouch->getLocationInView().y);
             
-            CCInteger* pInterObj = new CCInteger(nUnusedIndex);
-            s_TouchesIntergerDict.setObject(pInterObj, id);
+			s_touchesDict[nUnusedIndex] = id;
             set.addObject(pTouch);
-            pInterObj->release();
         }
     }
 
@@ -248,17 +248,18 @@ void CCEGLViewProtocol::handleTouchesMove(int num, int ids[], float xs[], float 
         float x = xs[i];
         float y = ys[i];
 
-        CCInteger* pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
-        if (pIndex == NULL) {
+		auto iter = s_touchesDict.find(id);
+		if (iter == s_touchesDict.end()) {
             CCLOG("if the index doesn't exist, it is an error");
             continue;
         }
 
+		int value = iter->second;
         CCLOGINFO("Moving touches with id: %d, x=%f, y=%f", id, x, y);
-        CCTouch* pTouch = s_pTouches[pIndex->getValue()];
+        CCTouch* pTouch = s_pTouches[value];
         if (pTouch)
         {
-			pTouch->setTouchInfo(pIndex->getValue(), (x - m_obViewPortRect.origin.x) / m_fScaleX, 
+			pTouch->setTouchInfo(value, (x - m_obViewPortRect.origin.x) / m_fScaleX,
 								(y - m_obViewPortRect.origin.y) / m_fScaleY);
             
             set.addObject(pTouch);
@@ -288,28 +289,28 @@ void CCEGLViewProtocol::getSetOfTouchesEndOrCancel(CCSet& set, int num, int ids[
         float x = xs[i];
         float y = ys[i];
 
-        CCInteger* pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
-        if (pIndex == NULL)
-        {
+		auto iter = s_touchesDict.find(id);
+		if (iter == s_touchesDict.end()) {
             CCLOG("if the index doesn't exist, it is an error");
             continue;
         }
-        /* Add to the set to send to the director */
-        CCTouch* pTouch = s_pTouches[pIndex->getValue()];        
+		int value = iter->second;
+		/* Add to the set to send to the director */
+        CCTouch* pTouch = s_pTouches[value];        
         if (pTouch)
         {
             CCLOGINFO("Ending touches with id: %d, x=%f, y=%f", id, x, y);
-			pTouch->setTouchInfo(pIndex->getValue(), (x - m_obViewPortRect.origin.x) / m_fScaleX, 
+			pTouch->setTouchInfo(value, (x - m_obViewPortRect.origin.x) / m_fScaleX,
 								(y - m_obViewPortRect.origin.y) / m_fScaleY);
 
             set.addObject(pTouch);
 
             // release the object
             pTouch->release();
-            s_pTouches[pIndex->getValue()] = NULL;
-            removeUsedIndexBit(pIndex->getValue());
+            s_pTouches[value] = NULL;
+            removeUsedIndexBit(value);
 
-            s_TouchesIntergerDict.removeObjectForKey(id);
+			s_touchesDict.erase(id);
 
         } 
         else

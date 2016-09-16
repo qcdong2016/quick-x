@@ -779,25 +779,25 @@ int CCLuaStack::executeFunctionReturnArray(int nHandler,int nNumArgs,int nNummRe
 
             for (int i = 0 ; i < nNummResults; i++)
             {
-                if (lua_type(m_state, -1) == LUA_TBOOLEAN) {
-
-                    bool value = lua_toboolean(m_state, -1);
-                    pResultArray->addObject(CCBool::create(value)) ;
-
-                }else if (lua_type(m_state, -1) == LUA_TNUMBER) {
-
-                    double value = lua_tonumber(m_state, -1);
-                    pResultArray->addObject(CCDouble::create(value));
-
-                }else if (lua_type(m_state, -1) == LUA_TSTRING) {
-
-                    const char *value = lua_tostring(m_state, -1);
-                    pResultArray->addObject(CCString::create(value));
-
-                }else{
+//                 if (lua_type(m_state, -1) == LUA_TBOOLEAN) {
+// 
+//                     bool value = lua_toboolean(m_state, -1);
+//                     pResultArray->addObject(CCBool::create(value)) ;
+// 
+//                 }else if (lua_type(m_state, -1) == LUA_TNUMBER) {
+// 
+//                     double value = lua_tonumber(m_state, -1);
+//                     pResultArray->addObject(CCDouble::create(value));
+// 
+//                 }else if (lua_type(m_state, -1) == LUA_TSTRING) {
+// 
+//                     const char *value = lua_tostring(m_state, -1);
+//                     pResultArray->addObject(CCString::create(value));
+// 
+//                 }else{
 
                     pResultArray->addObject(static_cast<CCObject*>(tolua_tousertype(m_state, -1, NULL)));
-                }
+                //}
                 // remove return value from stack
                 lua_pop(m_state, 1);                                                /* L: ... [G] ret1 ret2 ... ret*/
             }

@@ -64,10 +64,6 @@ THE SOFTWARE.
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCSet.h"
 #include "cocoa/CCAutoreleasePool.h"
-#include "cocoa/CCInteger.h"
-#include "cocoa/CCFloat.h"
-#include "cocoa/CCDouble.h"
-#include "cocoa/CCBool.h"
 #include "cocoa/CCString.h"
 #include "cocoa/CCPointArray.h"
 
@@ -82,7 +78,6 @@ THE SOFTWARE.
 
 // include
 #include "CCEventType.h"
-#include "CCProtocols.h"
 #include "ccConfig.h"
 #include "ccMacros.h"
 #include "ccTypes.h"

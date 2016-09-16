@@ -28,14 +28,11 @@
 #define __SPRITE_CCSPRITE_FRAME_H__
 
 #include "base_nodes/CCNode.h"
-#include "CCProtocols.h"
 #include "cocoa/CCObject.h"
 #include "cocoa/CCGeometry.h"
 
 NS_CC_BEGIN
 
-class CCTexture2D;
-class CCZone;
 
 /**
  * @addtogroup sprite_nodes
@@ -54,6 +51,7 @@ class CCZone;
  */
 class CC_DLL CCSpriteFrame : public CCObject
 {
+	CCOBJECT(CCSpriteFrame, CCObject)
 public:
     // attributes
 
@@ -101,7 +99,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual CCObject* copyWithZone(CCZone *pZone);
+	virtual void paste(CCObject* o);
 
     /** Create a CCSpriteFrame with a texture filename, rect in points.
      It is assumed that the frame was not trimmed.

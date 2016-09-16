@@ -28,8 +28,6 @@ THE SOFTWARE.
 #define __CCATLAS_NODE_H__
 
 #include "CCNode.h"
-#include "CCProtocols.h"
-#include "ccTypes.h"
 
 NS_CC_BEGIN
 
@@ -48,7 +46,7 @@ If you are going to render a TextureAtlas consider subclassing CCAtlasNode (or a
 All features from CCNode are valid, plus the following features:
 - opacity and RGB colors
 */
-class CC_DLL CCAtlasNode : public CCNode, public CCTextureProtocol
+class CC_DLL CCAtlasNode : public CCNode
 {
 protected:
 

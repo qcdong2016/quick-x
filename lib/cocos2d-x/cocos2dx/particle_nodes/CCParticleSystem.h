@@ -26,7 +26,6 @@ THE SOFTWARE.
 #ifndef __CCPARTICLE_SYSTEM_H__
 #define __CCPARTICLE_SYSTEM_H__
 
-#include "CCProtocols.h"
 #include "base_nodes/CCNode.h"
 #include "cocoa/CCDictionary.h"
 #include "cocoa/CCString.h"
@@ -172,7 +171,7 @@ emitter.startSpin = 0;
 @endcode
 
 */
-class CC_DLL CCParticleSystem : public CCNode, public CCTextureProtocol
+class CC_DLL CCParticleSystem : public CCNode
 {    
 protected:
     std::string m_sPlistFile;

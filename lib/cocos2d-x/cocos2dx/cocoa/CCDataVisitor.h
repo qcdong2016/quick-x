@@ -31,10 +31,7 @@
 NS_CC_BEGIN
 
 class CCObject;
-class CCBool;
 class CCInteger;
-class CCFloat;
-class CCDouble;
 class CCString;
 class CCArray;
 class CCDictionary;
@@ -69,10 +66,7 @@ public:
     /** default method, called from non-overloaded methods and for unrecognized objects */
     virtual void visitObject(const CCObject *p) = 0;
 
-    virtual void visit(const CCBool *p);
     virtual void visit(const CCInteger *p);
-    virtual void visit(const CCFloat *p);
-    virtual void visit(const CCDouble *p);
     virtual void visit(const CCString *p);
     virtual void visit(const CCArray *p);
     virtual void visit(const CCDictionary *p);
@@ -92,10 +86,7 @@ public:
     virtual std::string getResult();
     
     virtual void visitObject(const CCObject *p);
-    virtual void visit(const CCBool * p);
     virtual void visit(const CCInteger *p);
-    virtual void visit(const CCFloat *p);
-    virtual void visit(const CCDouble *p);
     virtual void visit(const CCString *p);
     virtual void visit(const CCArray *p);
     virtual void visit(const CCDictionary *p);

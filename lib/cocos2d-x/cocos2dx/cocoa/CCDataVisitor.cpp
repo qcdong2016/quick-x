@@ -23,33 +23,15 @@
  ****************************************************************************/
 
 #include "CCObject.h"
-#include "CCBool.h"
-#include "CCInteger.h"
-#include "CCFloat.h"
-#include "CCDouble.h"
 #include "CCString.h"
 #include "CCArray.h"
 #include "CCDictionary.h"
 #include "CCSet.h"
+#include "CCInteger.h"
 
 NS_CC_BEGIN
 
-void CCDataVisitor::visit(const CCBool *value)
-{
-    visitObject(value);
-}
-
 void CCDataVisitor::visit(const CCInteger *value)
-{
-    visitObject(value);
-}
-
-void CCDataVisitor::visit(const CCFloat *value)
-{
-    visitObject(value);
-}
-
-void CCDataVisitor::visit(const CCDouble *value)
 {
     visitObject(value);
 }
@@ -94,34 +76,13 @@ void CCPrettyPrinter::visitObject(const CCObject *p)
 {
     char buf[50] = {0};
     sprintf(buf, "%p", p);
-    _result += buf;
-}
-
-void CCPrettyPrinter::visit(const CCBool * p)
-{
-    char buf[50] = {0};
-    sprintf(buf, "%s", p->getValue() ? "true" : "false");
-   _result += buf;
+	_result += buf;
 }
 
 void CCPrettyPrinter::visit(const CCInteger *p)
 {
     char buf[50] = {0};
     sprintf(buf, "%d", p->getValue());
-    _result += buf;
-}
-
-void CCPrettyPrinter::visit(const CCFloat *p)
-{
-    char buf[50] = {0};
-    sprintf(buf, "%f", p->getValue());
-    _result += buf;
-}
-
-void CCPrettyPrinter::visit(const CCDouble *p)
-{
-    char buf[50] = {0};
-    sprintf(buf, "%lf", p->getValue());
     _result += buf;
 }
 
