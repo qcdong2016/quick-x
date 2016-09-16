@@ -30,15 +30,17 @@ LOCAL_SRC_FILES := \
     cocoa/CCGeometry.cpp \
     cocoa/CCAutoreleasePool.cpp \
     cocoa/CCDictionary.cpp \
-    cocoa/CCNS.cpp \
     cocoa/CCObject.cpp \
-    cocoa/CCSet.cpp \
     cocoa/CCString.cpp \
-    cocoa/CCZone.cpp \
     cocoa/CCArray.cpp \
     cocoa/CCDataVisitor.cpp \
     cocoa/CCScriptEventDispatcher.cpp \
     cocoa/CCPointArray.cpp \
+    cocoa/CCSet.cpp \
+    crypto/CCCrypto.cpp \
+    crypto/libbase64.c \
+    crypto/md5.cpp \
+    crypto/xxtea.c \
     cocos2d.cpp \
     CCDirector.cpp \
     draw_nodes/CCDrawingPrimitives.cpp \
@@ -117,10 +119,7 @@ LOCAL_SRC_FILES := \
     support/CCPointExtension.cpp \
     support/TransformUtils.cpp \
     support/user_default/CCUserDefaultAndroid.cpp \
-    support/base64.cpp \
-    support/ccUtils.cpp \
     support/CCVertex.cpp \
-    support/xxtea.c \
     support/data_support/ccCArray.cpp \
     support/tinyxml2/tinyxml2.cpp \
     support/zip_support/ZipUtils.cpp \
@@ -160,10 +159,15 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/support
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
+					$(LOCAL_PATH)/../ \
+					$(LOCAL_PATH)/../scripting/cocoslua \
+					$(LOCAL_PATH)/../scripting/lua \
+					$(LOCAL_PATH)/../scripting/tolua \
                     $(LOCAL_PATH)/include \
                     $(LOCAL_PATH)/kazmath/include \
+                    $(LOCAL_PATH)/platform/ \
                     $(LOCAL_PATH)/platform/android \
-$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra
+					$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra
 
 LOCAL_EXPORT_LDLIBS := -lGLESv2 \
                        -llog

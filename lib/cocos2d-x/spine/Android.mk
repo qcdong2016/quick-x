@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := spine_static
+LOCAL_MODULE := cocos_spine_static
 LOCAL_MODULE_FILENAME := libspine
 
 LOCAL_SRC_FILES := spine/Animation.c \

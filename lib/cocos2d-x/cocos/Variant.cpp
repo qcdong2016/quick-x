@@ -22,6 +22,9 @@
 
 #include <cstring>
 #include "Variant.h"
+#include <string>
+#include <stdlib.h>
+#include <sstream>
 
 namespace cocos2d
 {
@@ -188,6 +191,14 @@ void Variant::FromString(VariantType type, const char* value)
     }
 }
 
+template<typename T>
+static std::string to_string(T v)
+{
+	std::stringstream s;
+	s << v;
+	return s.str();
+}
+
 static std::string STRING_EMPTY;
 
 const std::string& Variant::GetString() const
@@ -205,13 +216,13 @@ std::string Variant::ToString() const
     switch (type_)
     {
     case VAR_INT:
-        return std::to_string(value_.int_);
+        return to_string(value_.int_);
 
     case VAR_BOOL:
-        return std::to_string(value_.bool_);
+        return to_string(value_.bool_);
 
     case VAR_FLOAT:
-        return std::to_string(value_.float_);
+        return to_string(value_.float_);
 
     case VAR_STRING:
 		return *static_cast<const std::string*>(value_.ptr_);
@@ -222,7 +233,7 @@ std::string Variant::ToString() const
         return std::string();
 
     case VAR_DOUBLE:
-        return std::to_string(*reinterpret_cast<const double*>(&value_));
+        return to_string(*reinterpret_cast<const double*>(&value_));
 
     default:
         // VAR_RESOURCEREF, VAR_RESOURCEREFLIST, VAR_VARIANTVECTOR, VAR_STRINGVECTOR, VAR_VARIANTMAP

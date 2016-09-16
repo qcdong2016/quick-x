@@ -969,9 +969,6 @@
     <ClCompile Include="..\cocos2d-x\cocos\Variant.cpp">
       <Filter>cocos2d-x\cocos</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\md5.c">
-      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\xxtea.c">
       <Filter>cocos2d-x\cocos2dx\crypto</Filter>
     </ClCompile>
@@ -1061,6 +1058,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos\MathDefs.cpp">
       <Filter>cocos2d-x\cocos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\crypto\md5.cpp">
+      <Filter>cocos2d-x\cocos2dx\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

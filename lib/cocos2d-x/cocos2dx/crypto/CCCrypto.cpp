@@ -1,20 +1,19 @@
 
 #include "crypto/CCCrypto.h"
 
+#include "md5.h"
 extern "C" {
 #include "libbase64.h"
-#include "md5.h"
 #include "xxtea.h"
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
+#include "CCLuaStack.h"
 
 extern "C" {
 #include "lua.h"
 #include "tolua_fix.h"
 }
-#endif
 
 NS_CC_BEGIN
 
@@ -106,7 +105,7 @@ void CCCrypto::MD5File(const char* path, unsigned char* output)
     MD5_Final(output, &ctx);
 }
 
-const string CCCrypto::MD5String(void* input, int inputLength)
+const std::string CCCrypto::MD5String(void* input, int inputLength)
 {
     unsigned char buffer[MD5_BUFFER_LENGTH];
     MD5(static_cast<void*>(input), inputLength, buffer);
@@ -115,13 +114,12 @@ const string CCCrypto::MD5String(void* input, int inputLength)
     stack->clean();
 
     char* hex = bin2hex(buffer, MD5_BUFFER_LENGTH);
-    string ret(hex);
+	std::string ret(hex);
     delete[] hex;
     return ret;
 }
 
 
-#if CC_LUA_ENGINE_ENABLED > 0
 
 LUA_STRING CCCrypto::encryptXXTEALua(const char* plaintext,
                                      int plaintextLength,
@@ -255,6 +253,5 @@ char* CCCrypto::bin2hex(unsigned char* bin, int binLength)
     return hex;
 }
 
-#endif
 
 NS_CC_END

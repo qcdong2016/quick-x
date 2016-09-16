@@ -34,12 +34,10 @@
  * optimizations are not included to reduce source code size and avoid
  * compile-time configuration.
  */
-
-#ifndef HAVE_OPENSSL
-
+#include "md5.h"
 #include <string.h>
 
-#include "md5.h"
+namespace cocos2d {
 
 /*
  * The basic MD5 functions.
@@ -95,7 +93,7 @@ static void *body(MD5_CTX *ctx, void *data, unsigned long size)
 	MD5_u32plus a, b, c, d;
 	MD5_u32plus saved_a, saved_b, saved_c, saved_d;
 
-	ptr = data;
+	ptr = (unsigned char*)data;
 
 	a = ctx->a;
 	b = ctx->b;
@@ -292,4 +290,4 @@ void MD5_Final(unsigned char *result, MD5_CTX *ctx)
 	memset(ctx, 0, sizeof(*ctx));
 }
 
-#endif
+}

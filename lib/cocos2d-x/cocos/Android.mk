@@ -5,7 +5,9 @@ LOCAL_MODULE := cocos_static
 LOCAL_MODULE_FILENAME := libcocos
 
 LOCAL_SRC_FILES := ProcessUtils.cpp   \
-					RefCounted.cpp
+					RefCounted.cpp \
+					MathDefs.cpp \
+					Variant.cpp
 
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)

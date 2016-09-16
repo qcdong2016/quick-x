@@ -2,9 +2,8 @@
 #ifndef __CC_EXTENSION_CCCRYPTO_H_
 #define __CC_EXTENSION_CCCRYPTO_H_
 
-#include "cocos2dx_extra.h"
-
-
+#include "CCPlatformMacros.h"
+#include <string>
 
 NS_CC_BEGIN
 
@@ -47,13 +46,11 @@ public:
     
     
 
-    static const string MD5String(void* input, int inputLength);
+    static const std::string MD5String(void* input, int inputLength);
     
 #pragma mark -
 #pragma mark for Lua
     
-#if CC_LUA_ENGINE_ENABLED > 0
-
     
     /** @brief Encrypt data with XXTEA algorithm, return ciphertext string and length, return nil if failed */
     static int encryptXXTEALua(const char* plaintext,
@@ -84,24 +81,11 @@ public:
 
     static int MD5FileLua(const char* path);
 
-#endif /* CC_LUA_ENGINE_ENABLED */
-    
-#pragma mark -
-#pragma mark private methods
-    
 private:
     CCCrypto(void) {}
     
-#if CC_LUA_ENGINE_ENABLED > 0
-
-    
-    static int encodingBase64Lua(bool isDecoding,
-                                        const char* input,
-                                        int inputLength);
-    
+    static int encodingBase64Lua(bool isDecoding, const char* input, int inputLength);
     static char* bin2hex(unsigned char* bin, int binLength);
-#endif /* CC_LUA_ENGINE_ENABLED */
-    
 };
 
 NS_CC_END

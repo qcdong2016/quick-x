@@ -92,6 +92,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 		                   $(LOCAL_PATH)/lua_extensions
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
+                    $(LOCAL_PATH)/.. \
                     $(LOCAL_PATH)/lua \
                     $(LOCAL_PATH)/tolua \
                     $(LOCAL_PATH)/cocoslua \
@@ -102,10 +103,10 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/../cocos2dx/platform/android \
                     $(LOCAL_PATH)/../cocos2dx/kazmath/include \
                     $(LOCAL_PATH)/../CocosDenshion/include \
-                    $(LOCAL_PATH)/../extensions \
+                    $(LOCAL_PATH)/../ui \
                     $(LOCAL_PATH)/../external
 
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cocos_ui_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_external_static
 
 ifeq ($(CC_CURL_ENABLED),1)
@@ -116,5 +117,5 @@ LOCAL_CFLAGS += -Wno-psabi -DCC_LUA_ENGINE_ENABLED=1 $(ANDROID_COCOS2D_BUILD_FLA
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,extensions)
+$(call import-module,ui)
 $(call import-module,external)
