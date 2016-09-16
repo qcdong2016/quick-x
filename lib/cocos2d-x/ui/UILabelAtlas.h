@@ -63,7 +63,7 @@ public:
  */
 class CC_DLL LabelAtlas : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
+    
     
 public:
     /**

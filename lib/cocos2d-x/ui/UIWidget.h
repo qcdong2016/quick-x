@@ -28,7 +28,6 @@
 #include "cocos2d.h"
 #include "Layouts/UILayoutDefine.h"
 #include "Layouts/UILayoutParameter.h"
-#include "GUIDefine.h"
 
 NS_CC_BEGIN
 

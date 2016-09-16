@@ -48,7 +48,7 @@ typedef enum {
 class CC_DLL PageView : public Layout , public UIScrollInterface
 {
     
-    DECLARE_CLASS_GUI_INFO
+    
     
 public:
     /**

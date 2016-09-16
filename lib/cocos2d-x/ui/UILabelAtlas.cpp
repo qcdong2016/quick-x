@@ -81,7 +81,7 @@ void UICCLabelAtlas::updateDisplayedOpacity(GLubyte opacity)
 
 
     
-IMPLEMENT_CLASS_GUI_INFO(LabelAtlas)
+
     
 
 LabelAtlas::LabelAtlas():

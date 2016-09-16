@@ -37,7 +37,7 @@ namespace ui {
 */    
 class CC_DLL LabelBMFont : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
+    
     
 public:
     /**

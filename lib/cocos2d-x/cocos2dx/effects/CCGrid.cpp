@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include "effects/CCGrid.h"
 #include "CCDirector.h"
 #include "effects/CCGrabber.h"
-#include "support/ccUtils.h"
+#include "cocos/MathDefs.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
@@ -114,8 +114,8 @@ bool CCGridBase::initWithSize(const CCSize& gridSize)
     CCDirector *pDirector = CCDirector::sharedDirector();
     CCSize s = pDirector->getWinSizeInPixels();
     
-    unsigned long POTWide = ccNextPOT((unsigned int)s.width);
-    unsigned long POTHigh = ccNextPOT((unsigned int)s.height);
+    unsigned long POTWide = NextPowerOfTwo((unsigned int)s.width);
+    unsigned long POTHigh = NextPowerOfTwo((unsigned int)s.height);
 
     // we only use rgba8888
     CCTexture2DPixelFormat format = kCCTexture2DPixelFormat_RGBA8888;

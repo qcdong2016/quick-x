@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "platform/CCFileUtils.h"
 #include "platform/CCThread.h"
 #include "platform/CCImage.h"
-#include "support/ccUtils.h"
+#include "cocos/MathDefs.h"
 #include "CCScheduler.h"
 #include "cocoa/CCString.h"
 #include "script_support/CCScriptSupport.h"

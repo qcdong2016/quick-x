@@ -37,7 +37,6 @@ namespace ui{
 */
 class CC_DLL Button : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
     
 public:
     /**

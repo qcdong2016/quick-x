@@ -58,8 +58,6 @@ typedef enum {
 class CC_DLL Layout : public Widget
 {
     
-    DECLARE_CLASS_GUI_INFO
-    
 public:
     /**
      * Default constructor

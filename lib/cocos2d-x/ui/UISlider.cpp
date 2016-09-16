@@ -33,7 +33,7 @@ static const int BASEBAR_RENDERER_Z = (-3);
 static const int PROGRESSBAR_RENDERER_Z = (-2);
 static const int SLIDBALL_RENDERER_Z = (-1);
     
-IMPLEMENT_CLASS_GUI_INFO(Slider)
+
 
 Slider::Slider():
 _barRenderer(NULL),

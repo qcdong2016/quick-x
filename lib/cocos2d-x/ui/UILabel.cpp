@@ -30,7 +30,7 @@ namespace ui {
 
 static const int LABEL_RENDERER_Z = (-1);
     
-IMPLEMENT_CLASS_GUI_INFO(Label)
+
 
 Label::Label():
 _touchScaleChangeEnabled(false),

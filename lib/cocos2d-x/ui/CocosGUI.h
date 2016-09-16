@@ -45,10 +45,4 @@
 #include "Compatible/CompatibleClasses.h"
 #include "UIRichText.h"
 
-//NS_CC_BEGIN
-
-CC_DLL const char* CocosGUIVersion();
-
-//NS_CC_END
-
 #endif /* defined(__CocosGUITest__Cocos__) */

@@ -37,8 +37,6 @@ namespace ui {
 */
 class CC_DLL ImageView : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
-    
 public:
     /**
      * Default constructor

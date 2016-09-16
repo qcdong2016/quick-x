@@ -31,7 +31,7 @@ namespace ui {
     
 static const int BAR_RENDERER_Z = (-1);
     
-IMPLEMENT_CLASS_GUI_INFO(LoadingBar)
+
     
 LoadingBar::LoadingBar():
 _barType(LoadingBarTypeLeft),

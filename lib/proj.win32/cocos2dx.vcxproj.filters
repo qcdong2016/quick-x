@@ -435,9 +435,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCProfiling.cpp">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\support\ccUtils.cpp">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\CCVertex.cpp">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClCompile>
@@ -1035,9 +1032,6 @@
     <ClCompile Include="..\cocos2d-x\ui\UIWidget.cpp">
       <Filter>cocos2d-x\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\CocosGUI.cpp">
-      <Filter>cocos2d-x\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.cpp">
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClCompile>
@@ -1064,6 +1058,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\ScrollWidget\UIListView.cpp">
       <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos\MathDefs.cpp">
+      <Filter>cocos2d-x\cocos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1284,9 +1281,6 @@
       <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCProfiling.h">
-      <Filter>cocos2d-x\cocos2dx\support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\support\ccUtils.h">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCVertex.h">
@@ -2009,9 +2003,6 @@
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\GUIDefine.h">
-      <Filter>cocos2d-x\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\UIButton.h">
       <Filter>cocos2d-x\ui</Filter>
     </ClInclude>
@@ -2086,6 +2077,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIListView.h">
       <Filter>cocos2d-x\ui\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos\MathDefs.h">
+      <Filter>cocos2d-x\cocos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

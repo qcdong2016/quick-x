@@ -46,7 +46,6 @@ typedef void (CCObject::*SEL_SelectedStateEvent)(CCObject*,CheckBoxEventType);
 */
 class CC_DLL CheckBox : public Widget
 {
-    DECLARE_CLASS_GUI_INFO
     
 public:
     /**
