@@ -1,6 +1,6 @@
 /*
 ** Lua binding: CocoStudio
-** Generated automatically by tolua++-1.0.92 on 10/05/16 13:50:02.
+** Generated automatically by tolua++-1.0.92 on 10/06/16 00:46:20.
 */
 
 /****************************************************************************
@@ -19227,15 +19227,15 @@ static int tolua_CocoStudio_WebView_setScalesPageToFit00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setBackgroundColor of class  WebView */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_setBackgroundColor00
-static int tolua_CocoStudio_WebView_setBackgroundColor00(lua_State* tolua_S)
+/* method: setOpaque of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_setOpaque00
+static int tolua_CocoStudio_WebView_setOpaque00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -19243,18 +19243,18 @@ static int tolua_CocoStudio_WebView_setBackgroundColor00(lua_State* tolua_S)
 #endif
  {
   WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
-  int color = ((int)  tolua_tonumber(tolua_S,2,0));
+  bool yes = ((bool)  tolua_toboolean(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBackgroundColor'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setOpaque'", NULL);
 #endif
   {
-   self->setBackgroundColor(color);
+   self->setOpaque(yes);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setBackgroundColor'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'setOpaque'.",&tolua_err);
  return 0;
 #endif
 }
@@ -20150,7 +20150,7 @@ TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S)
    tolua_function(tolua_S,"goForward",tolua_CocoStudio_WebView_goForward00);
    tolua_function(tolua_S,"evaluateJS",tolua_CocoStudio_WebView_evaluateJS00);
    tolua_function(tolua_S,"setScalesPageToFit",tolua_CocoStudio_WebView_setScalesPageToFit00);
-   tolua_function(tolua_S,"setBackgroundColor",tolua_CocoStudio_WebView_setBackgroundColor00);
+   tolua_function(tolua_S,"setOpaque",tolua_CocoStudio_WebView_setOpaque00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;
