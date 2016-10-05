@@ -1,6 +1,6 @@
 /*
 ** Lua binding: CocoStudio
-** Generated automatically by tolua++-1.0.92 on 09/10/16 23:34:57.
+** Generated automatically by tolua++-1.0.92 on 10/05/16 13:50:02.
 */
 
 /****************************************************************************
@@ -37,7 +37,6 @@ extern "C" {
 #include "CCLuaEngine.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include "ui/EditBox/CCEditBox.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
@@ -46,6 +45,8 @@ using namespace CocosDenshion;
 
 
 #include "LuaCocoStudio.h"
+#include "ui/EditBox/CCEditBox.h"
+#include "ui/webview/UIWebView.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -253,6 +254,8 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(LayoutParameter)), "LayoutParameter");
  tolua_usertype(tolua_S,"LabelBMFont");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(LabelBMFont)), "LabelBMFont");
+ tolua_usertype(tolua_S,"WebView");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(WebView)), "WebView");
  tolua_usertype(tolua_S,"RichText");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichText)), "RichText");
  tolua_usertype(tolua_S,"RichElementCustomNode");
@@ -18730,6 +18733,533 @@ static int tolua_CocoStudio_RichText_ignoreContentAdaptWithSize00(lua_State* tol
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_create00
+static int tolua_CocoStudio_WebView_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   WebView* tolua_ret = (WebView*)  WebView::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"WebView");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setJavascriptInterfaceScheme of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_setJavascriptInterfaceScheme00
+static int tolua_CocoStudio_WebView_setJavascriptInterfaceScheme00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string scheme = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setJavascriptInterfaceScheme'", NULL);
+#endif
+  {
+   self->setJavascriptInterfaceScheme(scheme);
+   tolua_pushcppstring(tolua_S,(const char*)scheme);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setJavascriptInterfaceScheme'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadData of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_loadData00
+static int tolua_CocoStudio_WebView_loadData00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string data = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string MIMEType = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+  const std::string encoding = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
+  const std::string baseURL = ((const std::string)  tolua_tocppstring(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadData'", NULL);
+#endif
+  {
+   self->loadData(data,MIMEType,encoding,baseURL);
+   tolua_pushcppstring(tolua_S,(const char*)data);
+   tolua_pushcppstring(tolua_S,(const char*)MIMEType);
+   tolua_pushcppstring(tolua_S,(const char*)encoding);
+   tolua_pushcppstring(tolua_S,(const char*)baseURL);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'loadData'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadHTMLString of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_loadHTMLString00
+static int tolua_CocoStudio_WebView_loadHTMLString00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string html = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadHTMLString'", NULL);
+#endif
+  {
+   self->loadHTMLString(html);
+   tolua_pushcppstring(tolua_S,(const char*)html);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'loadHTMLString'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadHTMLString of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_loadHTMLString01
+static int tolua_CocoStudio_WebView_loadHTMLString01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string html = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string baseURL = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadHTMLString'", NULL);
+#endif
+  {
+   self->loadHTMLString(html,baseURL);
+   tolua_pushcppstring(tolua_S,(const char*)html);
+   tolua_pushcppstring(tolua_S,(const char*)baseURL);
+  }
+ }
+ return 2;
+tolua_lerror:
+ return tolua_CocoStudio_WebView_loadHTMLString00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadURL of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_loadURL00
+static int tolua_CocoStudio_WebView_loadURL00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string url = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadURL'", NULL);
+#endif
+  {
+   self->loadURL(url);
+   tolua_pushcppstring(tolua_S,(const char*)url);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'loadURL'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadFile of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_loadFile00
+static int tolua_CocoStudio_WebView_loadFile00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string fileName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadFile'", NULL);
+#endif
+  {
+   self->loadFile(fileName);
+   tolua_pushcppstring(tolua_S,(const char*)fileName);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'loadFile'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: stopLoading of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_stopLoading00
+static int tolua_CocoStudio_WebView_stopLoading00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'stopLoading'", NULL);
+#endif
+  {
+   self->stopLoading();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'stopLoading'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: reload of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_reload00
+static int tolua_CocoStudio_WebView_reload00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'reload'", NULL);
+#endif
+  {
+   self->reload();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'reload'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: canGoBack of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_canGoBack00
+static int tolua_CocoStudio_WebView_canGoBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'canGoBack'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->canGoBack();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'canGoBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: canGoForward of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_canGoForward00
+static int tolua_CocoStudio_WebView_canGoForward00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'canGoForward'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->canGoForward();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'canGoForward'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: goBack of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_goBack00
+static int tolua_CocoStudio_WebView_goBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'goBack'", NULL);
+#endif
+  {
+   self->goBack();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'goBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: goForward of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_goForward00
+static int tolua_CocoStudio_WebView_goForward00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'goForward'", NULL);
+#endif
+  {
+   self->goForward();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'goForward'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: evaluateJS of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_evaluateJS00
+static int tolua_CocoStudio_WebView_evaluateJS00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const std::string js = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateJS'", NULL);
+#endif
+  {
+   self->evaluateJS(js);
+   tolua_pushcppstring(tolua_S,(const char*)js);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'evaluateJS'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScalesPageToFit of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_setScalesPageToFit00
+static int tolua_CocoStudio_WebView_setScalesPageToFit00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  const bool scalesPageToFit = ((const bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScalesPageToFit'", NULL);
+#endif
+  {
+   self->setScalesPageToFit(scalesPageToFit);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScalesPageToFit'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBackgroundColor of class  WebView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_WebView_setBackgroundColor00
+static int tolua_CocoStudio_WebView_setBackgroundColor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"WebView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  WebView* self = (WebView*)  tolua_tousertype(tolua_S,1,0);
+  int color = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBackgroundColor'", NULL);
+#endif
+  {
+   self->setBackgroundColor(color);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBackgroundColor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S)
 {
@@ -19602,6 +20132,25 @@ TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getContentSize",tolua_CocoStudio_RichText_getContentSize00);
    tolua_function(tolua_S,"formatText",tolua_CocoStudio_RichText_formatText00);
    tolua_function(tolua_S,"ignoreContentAdaptWithSize",tolua_CocoStudio_RichText_ignoreContentAdaptWithSize00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"WebView","WebView","Layout",NULL);
+  tolua_beginmodule(tolua_S,"WebView");
+   tolua_function(tolua_S,"create",tolua_CocoStudio_WebView_create00);
+   tolua_function(tolua_S,"setJavascriptInterfaceScheme",tolua_CocoStudio_WebView_setJavascriptInterfaceScheme00);
+   tolua_function(tolua_S,"loadData",tolua_CocoStudio_WebView_loadData00);
+   tolua_function(tolua_S,"loadHTMLString",tolua_CocoStudio_WebView_loadHTMLString00);
+   tolua_function(tolua_S,"loadHTMLString",tolua_CocoStudio_WebView_loadHTMLString01);
+   tolua_function(tolua_S,"loadURL",tolua_CocoStudio_WebView_loadURL00);
+   tolua_function(tolua_S,"loadFile",tolua_CocoStudio_WebView_loadFile00);
+   tolua_function(tolua_S,"stopLoading",tolua_CocoStudio_WebView_stopLoading00);
+   tolua_function(tolua_S,"reload",tolua_CocoStudio_WebView_reload00);
+   tolua_function(tolua_S,"canGoBack",tolua_CocoStudio_WebView_canGoBack00);
+   tolua_function(tolua_S,"canGoForward",tolua_CocoStudio_WebView_canGoForward00);
+   tolua_function(tolua_S,"goBack",tolua_CocoStudio_WebView_goBack00);
+   tolua_function(tolua_S,"goForward",tolua_CocoStudio_WebView_goForward00);
+   tolua_function(tolua_S,"evaluateJS",tolua_CocoStudio_WebView_evaluateJS00);
+   tolua_function(tolua_S,"setScalesPageToFit",tolua_CocoStudio_WebView_setScalesPageToFit00);
+   tolua_function(tolua_S,"setBackgroundColor",tolua_CocoStudio_WebView_setBackgroundColor00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

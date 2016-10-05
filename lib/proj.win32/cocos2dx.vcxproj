@@ -285,6 +285,7 @@
     <ClCompile Include="..\cocos2d-x\ui\UITextField.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UITouchGroup.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UIWidget.cpp" />
+    <ClCompile Include="..\cocos2d-x\ui\webview\UIWebView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h" />
@@ -626,6 +627,8 @@
     <ClInclude Include="..\cocos2d-x\ui\UITextField.h" />
     <ClInclude Include="..\cocos2d-x\ui\UITouchGroup.h" />
     <ClInclude Include="..\cocos2d-x\ui\UIWidget.h" />
+    <ClInclude Include="..\cocos2d-x\ui\webview\UIWebView-inl.h" />
+    <ClInclude Include="..\cocos2d-x\ui\webview\UIWebView.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE" />
