@@ -43,6 +43,7 @@
 #include "UIHelper.h"
 #include "UITouchGroup.h"
 #include "UIRichText.h"
+#include "ui/webview/UIWebView.h"
 
 
 //class type define

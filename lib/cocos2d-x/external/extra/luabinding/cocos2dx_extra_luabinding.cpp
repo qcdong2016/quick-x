@@ -14,7 +14,6 @@ using namespace cocos2d;
 #include "native/CCNative.h"
 using namespace std;
 using namespace cocos2d;
-using namespace cocos2d::extra;
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

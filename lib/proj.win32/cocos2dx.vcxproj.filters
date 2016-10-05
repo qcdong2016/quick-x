@@ -510,9 +510,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCImageCommonWebp.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>

@@ -85,7 +85,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystemQuad.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCImageCommonWebp.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCZipFile.cpp" />

@@ -2,7 +2,7 @@
 #include "native/CCNative.h"
 #include "platform/win32/CCNativeWin32.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 void CCNative::showActivityIndicator(void)
 {
@@ -66,7 +66,7 @@ const std::string CCNative::getInputText(const char* title, const char* message,
 	return CCNativeWin32::sharedInstance()->getInputText(title, message, defaultValue);
 }
 
-const string CCNative::getDeviceName(void)
+const std::string CCNative::getDeviceName(void)
 {
     return "Win32";
 }
@@ -76,4 +76,4 @@ void CCNative::vibrate()
 }
 
 
-NS_CC_EXTRA_END
+NS_CC_END

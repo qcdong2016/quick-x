@@ -2,8 +2,6 @@
 #ifndef __CC_EXTENSION_CCNETWORK_H_
 #define __CC_EXTENSION_CCNETWORK_H_
 
-#include "cocos2dx_extra.h"
-
 #if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "CCHTTPRequest.h"
 #include "CCHTTPRequestDelegate.h"

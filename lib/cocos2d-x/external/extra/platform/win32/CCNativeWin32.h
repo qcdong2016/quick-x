@@ -6,11 +6,10 @@
 #endif
 
 #include <string>
+#include <string>
 
-using namespace std;
 
 USING_NS_CC;
-USING_NS_CC_EXTRA;
 
 class CCNativeWin32
 {
@@ -33,16 +32,16 @@ public:
 	void removeAlertViewLuaListener(void);
 #endif
 
-	const string getInputText(const char* title, const char* message, const char* defaultValue);
+	const std::string getInputText(const char* title, const char* message, const char* defaultValue);
 
-	const string getUDID();
+	const std::string getUDID();
 private:
 	static CCNativeWin32* s_sharedInstance;
 
 	CCNativeWin32(void);
 
-	string m_alertViewTitle;
-	string m_alertViewMessage;
+	std::string m_alertViewTitle;
+	std::string m_alertViewMessage;
 
-	string m_macAddress;
+	std::string m_macAddress;
 };

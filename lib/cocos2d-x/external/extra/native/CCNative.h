@@ -2,14 +2,14 @@
 #ifndef __CC_EXTENSION_CCNATIVE_H_
 #define __CC_EXTENSION_CCNATIVE_H_
 
-#include "cocos2dx_extra.h"
 #include "CCAlertViewDelegate.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
 #endif
+#include <string>
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 class CCNative
 {
@@ -44,7 +44,7 @@ public:
 #pragma mark OpenUDID
     
     /** @brief Get OpenUDID value */
-    static const string getOpenUDID(void);
+    static const std::string getOpenUDID(void);
     
 #pragma mark -
 #pragma mark misc
@@ -53,12 +53,12 @@ public:
     static void openURL(const char* url);
     
 	/** @brief Show alert view, and get user input */
-    static const string getInputText(const char* title, const char* message, const char* defaultValue);
+    static const std::string getInputText(const char* title, const char* message, const char* defaultValue);
     
 #pragma mark -
 #pragma mark helper
     
-    static const string getDeviceName(void);
+    static const std::string getDeviceName(void);
     static void vibrate();
     
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -74,6 +74,6 @@ private:
     CCNative(void) {}
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCNATIVE_H_

@@ -1,6 +1,6 @@
 #include "store/CCStorePaymentTransactionWrapper.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 CCStorePaymentTransactionWrapper* CCStorePaymentTransactionWrapper::createWithTransaction(void* transactionObj)
 {
@@ -14,4 +14,4 @@ CCStorePaymentTransactionWrapper::~CCStorePaymentTransactionWrapper(void)
 
 }
 
-NS_CC_EXTRA_END
+NS_CC_END

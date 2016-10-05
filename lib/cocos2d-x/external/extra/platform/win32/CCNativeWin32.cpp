@@ -35,8 +35,8 @@ void CCNativeWin32::hideActivityIndicator(void)
 
 void CCNativeWin32::createAlertView(const char* title, const char *message, const char* cancelButtonTitle)
 {
-    m_alertViewTitle = string(title ? title : "");
-    m_alertViewMessage = string(message ? message : "");
+    m_alertViewTitle = std::string(title ? title : "");
+    m_alertViewMessage = std::string(message ? message : "");
 }
 
 int CCNativeWin32::addAlertButton(const char* buttonTitle)
@@ -138,7 +138,7 @@ void CCNativeWin32::removeAlertViewLuaListener(void)
 }
 #endif
 
-const string CCNativeWin32::getInputText(const char* title, const char* message, const char* defaultValue)
+const std::string CCNativeWin32::getInputText(const char* title, const char* message, const char* defaultValue)
 {
 #if (CC_TARGET_PLATFORM==CC_PLATFORM_QT)
     bool ok;
@@ -153,9 +153,9 @@ const string CCNativeWin32::getInputText(const char* title, const char* message,
     HWND handle = CCEGLView::sharedOpenGLView()->getHWnd();
 
     CCNativeWin32InputBoxStruct inputbox;
-    inputbox.title = string(title ? title : "INPUT TEXT");
-    inputbox.message = string(message ? message : "INPUT TEXT, PRESS ENTER");
-    inputbox.value = string(defaultValue ? defaultValue : "");
+    inputbox.title = std::string(title ? title : "INPUT TEXT");
+    inputbox.message = std::string(message ? message : "INPUT TEXT, PRESS ENTER");
+    inputbox.value = std::string(defaultValue ? defaultValue : "");
     SendMessage(handle, WM_CUT, 998, (LPARAM)&inputbox);
     return inputbox.value;
 #endif
@@ -163,7 +163,7 @@ const string CCNativeWin32::getInputText(const char* title, const char* message,
 
 // 
 //
-static bool getMacAddress(string& macstring)
+static bool getMacAddress(std::string& macstring)
 {
 	bool ret = false;
 	ULONG ulOutBufLen = sizeof(IP_ADAPTER_INFO);
@@ -215,7 +215,7 @@ static bool getMacAddress(string& macstring)
 	return ret;
 }
 
-const string CCNativeWin32::getUDID()
+const std::string CCNativeWin32::getUDID()
 {
 	if (m_macAddress.length() <= 0)
 	{
