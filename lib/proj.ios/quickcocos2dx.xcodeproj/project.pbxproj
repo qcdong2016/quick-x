@@ -39,6 +39,8 @@
 		B17812D81D6949C90093D282 /* Slot.c in Sources */ = {isa = PBXBuildFile; fileRef = B17812B51D6949C90093D282 /* Slot.c */; };
 		B17812D91D6949C90093D282 /* SlotData.c in Sources */ = {isa = PBXBuildFile; fileRef = B17812B71D6949C90093D282 /* SlotData.c */; };
 		B17812DB1D6949C90093D282 /* spine_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B17812BC1D6949C90093D282 /* spine_luabinding.cpp */; };
+		B18923621DA5430C007EADCE /* UIWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B189235A1DA5430C007EADCE /* UIWebView.cpp */; };
+		B18923651DA5430C007EADCE /* UIWebViewImpl-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = B18923611DA5430C007EADCE /* UIWebViewImpl-ios.mm */; };
 		B1B895B71D8C65B800F80112 /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895B41D8C65B800F80112 /* Variant.cpp */; };
 		B1B895B81D8C65B800F80112 /* MathDefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895B61D8C65B800F80112 /* MathDefs.cpp */; };
 		B1B895C21D8C65D700F80112 /* CCCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895BA1D8C65D700F80112 /* CCCrypto.cpp */; };
@@ -160,7 +162,6 @@
 		F428250917575D88001479DC /* cocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428240D17575D87001479DC /* cocos2d.cpp */; };
 		F428259117575DA8001479DC /* CCEGLViewProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256117575DA8001479DC /* CCEGLViewProtocol.cpp */; };
 		F428259217575DA8001479DC /* CCFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256317575DA8001479DC /* CCFileUtils.cpp */; };
-		F428259317575DA8001479DC /* CCImageCommonWebp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256717575DA8001479DC /* CCImageCommonWebp.cpp */; };
 		F428259417575DA8001479DC /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256A17575DA8001479DC /* CCSAXParser.cpp */; };
 		F428259517575DA8001479DC /* CCThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256C17575DA8001479DC /* CCThread.cpp */; };
 		F428259617575DA8001479DC /* CCZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256E17575DA8001479DC /* CCZipFile.cpp */; };
@@ -381,6 +382,11 @@
 		B17812B81D6949C90093D282 /* SlotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlotData.h; sourceTree = "<group>"; };
 		B17812BB1D6949C90093D282 /* spine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spine.h; sourceTree = "<group>"; };
 		B17812BC1D6949C90093D282 /* spine_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spine_luabinding.cpp; sourceTree = "<group>"; };
+		B18923591DA5430C007EADCE /* UIWebView-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView-inl.h"; sourceTree = "<group>"; };
+		B189235A1DA5430C007EADCE /* UIWebView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWebView.cpp; sourceTree = "<group>"; };
+		B189235B1DA5430C007EADCE /* UIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebView.h; sourceTree = "<group>"; };
+		B18923601DA5430C007EADCE /* UIWebViewImpl-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebViewImpl-ios.h"; sourceTree = "<group>"; };
+		B18923611DA5430C007EADCE /* UIWebViewImpl-ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIWebViewImpl-ios.mm"; sourceTree = "<group>"; };
 		B1B895B31D8C65B800F80112 /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variant.h; sourceTree = "<group>"; };
 		B1B895B41D8C65B800F80112 /* Variant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Variant.cpp; sourceTree = "<group>"; };
 		B1B895B51D8C65B800F80112 /* MathDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathDefs.h; sourceTree = "<group>"; };
@@ -626,7 +632,6 @@
 		F428256417575DA8001479DC /* CCFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtils.h; sourceTree = "<group>"; };
 		F428256517575DA8001479DC /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
 		F428256617575DA8001479DC /* CCImageCommon_cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImageCommon_cpp.h; sourceTree = "<group>"; };
-		F428256717575DA8001479DC /* CCImageCommonWebp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImageCommonWebp.cpp; sourceTree = "<group>"; };
 		F428256817575DA8001479DC /* CCPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformConfig.h; sourceTree = "<group>"; };
 		F428256917575DA8001479DC /* CCPlatformMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformMacros.h; sourceTree = "<group>"; };
 		F428256A17575DA8001479DC /* CCSAXParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSAXParser.cpp; sourceTree = "<group>"; };
@@ -1088,6 +1093,18 @@
 			path = spine;
 			sourceTree = "<group>";
 		};
+		B18923581DA5430C007EADCE /* webview */ = {
+			isa = PBXGroup;
+			children = (
+				B18923591DA5430C007EADCE /* UIWebView-inl.h */,
+				B189235A1DA5430C007EADCE /* UIWebView.cpp */,
+				B189235B1DA5430C007EADCE /* UIWebView.h */,
+				B18923601DA5430C007EADCE /* UIWebViewImpl-ios.h */,
+				B18923611DA5430C007EADCE /* UIWebViewImpl-ios.mm */,
+			);
+			path = webview;
+			sourceTree = "<group>";
+		};
 		B1B895B91D8C65D700F80112 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1125,7 @@
 			children = (
 				B1B895C71D8C664C00F80112 /* Android.mk */,
 				B1B895C81D8C664C00F80112 /* CocosGUI.h */,
+				B18923581DA5430C007EADCE /* webview */,
 				B1B895C91D8C664C00F80112 /* Compatible */,
 				B1B895CB1D8C664C00F80112 /* EditBox */,
 				B1B895D91D8C664C00F80112 /* Layouts */,
@@ -1515,7 +1533,6 @@
 				F428256417575DA8001479DC /* CCFileUtils.h */,
 				F428256517575DA8001479DC /* CCImage.h */,
 				F428256617575DA8001479DC /* CCImageCommon_cpp.h */,
-				F428256717575DA8001479DC /* CCImageCommonWebp.cpp */,
 				F428256817575DA8001479DC /* CCPlatformConfig.h */,
 				F428256917575DA8001479DC /* CCPlatformMacros.h */,
 				F428256A17575DA8001479DC /* CCSAXParser.cpp */,
@@ -2426,11 +2443,11 @@
 				B1F871211D7D796F00AF7173 /* except.c in Sources */,
 				F428250917575D88001479DC /* cocos2d.cpp in Sources */,
 				B1B895C41D8C65D700F80112 /* md5.cpp in Sources */,
+				B18923621DA5430C007EADCE /* UIWebView.cpp in Sources */,
 				F428259117575DA8001479DC /* CCEGLViewProtocol.cpp in Sources */,
 				B1F871011D7D796F00AF7173 /* lfunc.c in Sources */,
 				B1F871191D7D796F00AF7173 /* strbuf.c in Sources */,
 				F428259217575DA8001479DC /* CCFileUtils.cpp in Sources */,
-				F428259317575DA8001479DC /* CCImageCommonWebp.cpp in Sources */,
 				F459EA79180D04D8006CBDF1 /* CCStore.mm in Sources */,
 				F428259417575DA8001479DC /* CCSAXParser.cpp in Sources */,
 				F428259517575DA8001479DC /* CCThread.cpp in Sources */,
@@ -2550,6 +2567,7 @@
 				F459EA78180D04D8006CBDF1 /* CCNativeIOS.mm in Sources */,
 				B1F871361D7D796F00AF7173 /* tolua_to.c in Sources */,
 				B1F8712E1D7D796F00AF7173 /* unix.c in Sources */,
+				B18923651DA5430C007EADCE /* UIWebViewImpl-ios.mm in Sources */,
 				B1B896091D8C664C00F80112 /* UILayoutDefine.cpp in Sources */,
 				B17812D31D6949C90093D282 /* SkeletonData.c in Sources */,
 				F4E882E3177015C400577406 /* CCProgressTimer.cpp in Sources */,

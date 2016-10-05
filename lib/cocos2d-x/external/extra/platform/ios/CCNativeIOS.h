@@ -9,7 +9,6 @@
 #endif
 
 USING_NS_CC;
-USING_NS_CC_EXTRA;
 
 @interface CCNativeIOS : NSObject < UIAlertViewDelegate >
 {

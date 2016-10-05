@@ -2,9 +2,8 @@
 #ifndef __CC_EXTENSION_CCSTORE_PRODUCTS_REQUEST_DELEGATE_H_
 #define __CC_EXTENSION_CCSTORE_PRODUCTS_REQUEST_DELEGATE_H_
 
-#include "cocos2dx_extra.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 static const int CCStoreProductsRequestErrorPreviousRequestNotCompleted = -2;
 static const int CCStoreProductsRequestErrorCancelled = -1;
@@ -17,6 +16,6 @@ public:
     virtual void requestProductsFailed(int errorCode, const char* errorString) = 0;
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCSTORE_PRODUCTS_REQUEST_DELEGATE_H_

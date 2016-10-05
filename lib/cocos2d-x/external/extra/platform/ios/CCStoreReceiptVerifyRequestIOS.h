@@ -6,7 +6,7 @@
 #include "network/CCHTTPRequestDelegate.h"
 #include "network/CCHTTPRequest.h"
 
-USING_NS_CC_EXTRA;
+USING_NS_CC;
 
 class CCStoreReceiptVerifyRequestIOS : public cocos2d::CCObject, public CCHTTPRequestDelegate
 {

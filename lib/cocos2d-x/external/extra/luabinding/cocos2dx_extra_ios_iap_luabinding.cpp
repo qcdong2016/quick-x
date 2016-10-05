@@ -14,7 +14,6 @@ using namespace cocos2d;
 #include "store/CCStore.h"
 using namespace std;
 using namespace cocos2d;
-using namespace cocos2d::extra;
 
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)

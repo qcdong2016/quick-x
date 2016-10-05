@@ -28,10 +28,10 @@
 
 #include "UIWebViewImpl-ios.h"
 #include "platform/CCFileUtils.h"
-#include "webview/UIWebView.h"
+#include "UIWebView.h"
 #include "platform/ios/EAGLView.h"
 
-using namespace cocos2d;
+
 
 static std::string getFixedBaseUrl(const std::string& baseUrl)
 {
@@ -247,6 +247,9 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 @end
 
 
+namespace cocos2d {
+    namespace ui {
+        
 WebViewImpl::WebViewImpl(WebView *webView)
         : _uiWebViewWrapper([UIWebViewWrapper webViewWrapper]),
         _webView(webView) {
@@ -376,3 +379,4 @@ void WebViewImpl::setVisible(bool visible){
     [_uiWebViewWrapper setVisible:visible];
 }
 
+}}

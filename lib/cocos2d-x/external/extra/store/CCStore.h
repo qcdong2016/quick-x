@@ -2,13 +2,12 @@
 #ifndef  __CC_EXTENSION_CCSTORE_H_
 #define  __CC_EXTENSION_CCSTORE_H_
 
-#include "cocos2dx_extra.h"
 #include "store/CCStoreProduct.h"
 #include "store/CCStorePaymentTransaction.h"
 #include "store/CCStoreTransactionObserver.h"
 #include "store/CCStoreProductsRequestDelegate.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 typedef bool CCStoreIsSandbox;
 
@@ -89,6 +88,6 @@ private:
 #endif
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCSTORE_H_

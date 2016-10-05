@@ -2,7 +2,7 @@
 #include "store/CCStorePaymentTransactionWrapper.h"
 #import <StoreKit/StoreKit.h>
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 CCStorePaymentTransactionWrapper* CCStorePaymentTransactionWrapper::createWithTransaction(void* transactionObj)
 {
@@ -17,4 +17,4 @@ CCStorePaymentTransactionWrapper::~CCStorePaymentTransactionWrapper(void)
     [(SKPaymentTransaction *)m_transactionObj release];
 }
 
-NS_CC_EXTRA_END
+NS_CC_END

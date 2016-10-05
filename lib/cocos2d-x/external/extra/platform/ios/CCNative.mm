@@ -5,7 +5,7 @@
 #import "platform/ios/openudid/OpenUDIDIOS.h"
 #import "AudioToolbox/AudioServices.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #pragma mark -
 #pragma mark activity indicator
@@ -58,21 +58,21 @@ void CCNative::openURL(const char* url)
     [[UIApplication sharedApplication] openURL:nsurl];
 }
 
-const string CCNative::getInputText(const char* title, const char* message, const char* defaultValue)
+const std::string CCNative::getInputText(const char* title, const char* message, const char* defaultValue)
 {
     CCLOG("CCNative::getInputText() - not support this platform.");
-    return string("");
+    return std::string("");
 }
 
 #pragma mark -
 #pragma mark OpenUDID
 
-const string CCNative::getOpenUDID(void)
+const std::string CCNative::getOpenUDID(void)
 {
-    return string([[OpenUDIDIOS value] cStringUsingEncoding:NSUTF8StringEncoding]);
+    return std::string([[OpenUDIDIOS value] cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-const string CCNative::getDeviceName(void)
+const std::string CCNative::getDeviceName(void)
 {
     UIDevice *device = [UIDevice currentDevice];
     return [[device name] cStringUsingEncoding:NSUTF8StringEncoding];
@@ -102,4 +102,4 @@ void CCNative::showAlertLua(cocos2d::LUA_FUNCTION listener)
 }
 #endif
 
-NS_CC_EXTRA_END
+NS_CC_END

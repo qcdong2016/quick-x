@@ -10,7 +10,7 @@ extern "C" {
 }
 #endif
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 CCStore* CCStore::s_sharedStore = NULL;
 
@@ -328,4 +328,4 @@ void CCStore::passCCStorePaymentTransactionToLuaListener(CCStorePaymentTransacti
 }
 #endif
 
-NS_CC_EXTRA_END
+NS_CC_END

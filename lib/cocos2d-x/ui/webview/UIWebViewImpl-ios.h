@@ -27,7 +27,10 @@
 /// @cond DO_NOT_SHOW
 
 #include <iosfwd>
-    
+
+namespace cocos2d {
+    namespace ui {
+        
 class WebView;
 
 class WebViewImpl {
@@ -74,6 +77,8 @@ private:
     void* _uiWebViewWrapper;
     WebView *_webView;
 };
+    
+}}
 
 /// @endcond
 #endif /* __COCOS2D_UI_WEBVIEWIMPL_IOS_H_ */

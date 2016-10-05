@@ -2,14 +2,13 @@
 #ifndef __CC_EXTENSION_CCSTORE_PAYMENT_TRANSACTION_H_
 #define __CC_EXTENSION_CCSTORE_PAYMENT_TRANSACTION_H_
 
-#include "cocos2dx_extra.h"
 #include "store/CCStorePaymentTransactionWrapper.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
 #endif
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 typedef enum {
     CCStoreReceiptVerifyModeNone = 0,
@@ -162,6 +161,6 @@ private:
     CCStoreReceiptVerifyStatus          m_receiptVerifyStatus;
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCSTORE_PAYMENT_TRANSACTION_H_

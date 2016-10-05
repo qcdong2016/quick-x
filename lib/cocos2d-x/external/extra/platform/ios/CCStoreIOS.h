@@ -4,7 +4,7 @@
 #include "store/CCStore.h"
 #include "store/CCStoreProductsRequestDelegate.h"
 
-USING_NS_CC_EXTRA;
+USING_NS_CC;
 
 class CCStoreReceiptVerifyRequestIOS;
 

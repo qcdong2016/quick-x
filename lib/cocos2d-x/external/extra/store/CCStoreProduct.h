@@ -2,10 +2,9 @@
 #ifndef __CC_EXTENSION_CCSTORE_PRODUCT_H_
 #define __CC_EXTENSION_CCSTORE_PRODUCT_H_
 
-#include "cocos2dx_extra.h"
 #include "cocos2d.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #pragma mark -
 #pragma mark CCStoreProduct
@@ -59,6 +58,6 @@ private:
     std::string m_priceLocale;
 };
 
-NS_CC_EXTRA_END
+NS_CC_END
 
 #endif // __CC_EXTENSION_CCSTORE_PRODUCT_H_

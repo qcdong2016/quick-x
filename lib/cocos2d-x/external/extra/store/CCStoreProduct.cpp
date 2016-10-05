@@ -1,7 +1,7 @@
 
 #include "store/CCStoreProduct.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 CCStoreProduct* CCStoreProduct::productWithId(const char* productIdentifier,
                                               const char* localizedTitle,
@@ -29,4 +29,4 @@ bool CCStoreProduct::initWithId(const char* productIdentifier,
     return true;
 }
 
-NS_CC_EXTRA_END
+NS_CC_END
