@@ -31,7 +31,7 @@
 #include "CCEditBox.h"
 #import "EAGLView.h"
 
-#define getEditBoxImplIOS() ((cocos2d::CCEditBoxImplIOS*)editBox_)
+#define getEditBoxImplIOS() ((cocos2d::ui::CCEditBoxImplIOS*)editBox_)
 
 static const int CC_EDIT_BOX_PADDING = 5;
 
@@ -148,13 +148,17 @@ static const int CC_EDIT_BOX_PADDING = 5;
     {
         [self performSelector:@selector(animationSelector) withObject:nil afterDelay:0.0f];
     }
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
+    
+    
+    using namespace cocos2d::ui;
+    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
+    
     if (pDelegate != NULL)
     {
         pDelegate->editBoxEditingDidBegin(getEditBoxImplIOS()->getCCEditBox());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
+    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -167,35 +171,41 @@ static const int CC_EDIT_BOX_PADDING = 5;
 {
     //    CCLOG("textFieldShouldEndEditing...");
     editState_ = NO;
-    getEditBoxImplIOS()->setText(getEditBoxImplIOS()->getText());
     
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
+    using namespace cocos2d::ui;
+    
+    cocos2d::ui::CCEditBoxImplIOS* iosEdit = (cocos2d::ui::CCEditBoxImplIOS*)editBox_;
+    
+    iosEdit->setText(iosEdit->getText());
+    
+    CCEditBoxDelegate* pDelegate = iosEdit->getDelegate();
+    
     if (pDelegate != NULL)
     {
-        pDelegate->editBoxEditingDidEnd(getEditBoxImplIOS()->getCCEditBox());
-        pDelegate->editBoxReturn(getEditBoxImplIOS()->getCCEditBox());
+        pDelegate->editBoxEditingDidEnd(iosEdit->getCCEditBox());
+        pDelegate->editBoxReturn(iosEdit->getCCEditBox());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
+    CCEditBox*  pEditBox= iosEdit->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
 
-        cocos2d::KeyboardReturnType returnType = getEditBoxImplIOS()->getCCEditBox()->getReturnType();
+        KeyboardReturnType returnType = iosEdit->getCCEditBox()->getReturnType();
         int handler = pEditBox->getScriptEditBoxHandler();
-        if (returnType == cocos2d::kKeyboardReturnTypeDone)
+        if (returnType == kKeyboardReturnTypeDone)
         {
             pEngine->executeEvent(handler, "returnDone", pEditBox);
     }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSend)
+        else if (returnType == kKeyboardReturnTypeSend)
         {
             pEngine->executeEvent(handler, "returnSend", pEditBox);
         }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSearch)
+        else if (returnType == kKeyboardReturnTypeSearch)
         {
             pEngine->executeEvent(handler, "returnSearch", pEditBox);
         }
-        else if (returnType == cocos2d::kKeyboardReturnTypeGo)
+        else if (returnType == kKeyboardReturnTypeGo)
         {
             pEngine->executeEvent(handler, "returnGo", pEditBox);
         }
@@ -208,7 +218,7 @@ static const int CC_EDIT_BOX_PADDING = 5;
 	
 	if(editBox_ != nil)
 	{
-		getEditBoxImplIOS()->onEndEditing();
+		iosEdit->onEndEditing();
 	}
     return YES;
 }
@@ -242,13 +252,13 @@ static const int CC_EDIT_BOX_PADDING = 5;
 - (void) textChanged
 {
     // NSLog(@"text is %@", self.textField.text);
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
+    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
     if (pDelegate != NULL)
     {
         pDelegate->editBoxTextChanged(getEditBoxImplIOS()->getCCEditBox(), getEditBoxImplIOS()->getText());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
+    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -261,7 +271,8 @@ static const int CC_EDIT_BOX_PADDING = 5;
 
 
 NS_CC_BEGIN
-
+namespace ui {
+    
 CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox)
 {
     return new CCEditBoxImplIOS(pEditBox);
@@ -629,6 +640,8 @@ void CCEditBoxImplIOS::onEndEditing()
 		m_pLabelPlaceHolder->setVisible(false);
 		setInactiveText(getText());
 	}
+}
+
 }
 
 NS_CC_END
