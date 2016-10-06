@@ -225,7 +225,7 @@ void CCEGLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float
             
             //CCLOG("x = %f y = %f", pTouch->getLocationInView().x, pTouch->getLocationInView().y);
             
-			s_touchesDict[nUnusedIndex] = id;
+			s_touchesDict[id] = nUnusedIndex;
             set.addObject(pTouch);
         }
     }

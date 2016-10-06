@@ -191,7 +191,7 @@ public:
      * Toggle visibility of WebView.
      */
     virtual void setVisible(bool visible) ;
-    void setBackgroundColor(int color);
+    void setOpaque(bool yes);
     
 protected:
     virtual cocos2d::ui::Widget* createCloneInstance() ;

@@ -382,7 +382,6 @@
 		B17812B81D6949C90093D282 /* SlotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlotData.h; sourceTree = "<group>"; };
 		B17812BB1D6949C90093D282 /* spine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spine.h; sourceTree = "<group>"; };
 		B17812BC1D6949C90093D282 /* spine_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spine_luabinding.cpp; sourceTree = "<group>"; };
-		B18923591DA5430C007EADCE /* UIWebView-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView-inl.h"; sourceTree = "<group>"; };
 		B189235A1DA5430C007EADCE /* UIWebView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWebView.cpp; sourceTree = "<group>"; };
 		B189235B1DA5430C007EADCE /* UIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebView.h; sourceTree = "<group>"; };
 		B18923601DA5430C007EADCE /* UIWebViewImpl-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebViewImpl-ios.h"; sourceTree = "<group>"; };
@@ -401,7 +400,6 @@
 		B1B895C11D8C65D700F80112 /* xxtea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xxtea.h; sourceTree = "<group>"; };
 		B1B895C71D8C664C00F80112 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1B895C81D8C664C00F80112 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
-		B1B895CA1D8C664C00F80112 /* CompatibleClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatibleClasses.h; sourceTree = "<group>"; };
 		B1B895CC1D8C664C00F80112 /* CCEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBox.cpp; sourceTree = "<group>"; };
 		B1B895CD1D8C664C00F80112 /* CCEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBox.h; sourceTree = "<group>"; };
 		B1B895CE1D8C664C00F80112 /* CCEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImpl.h; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 		F42825B617575DBE001479DC /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
 		F42825B717575DBE001479DC /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
 		F42825B817575DBE001479DC /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		F459E9F7180D04D8006CBDF1 /* cocos2dx_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocos2dx_extra.h; sourceTree = "<group>"; };
 		F459EA07180D04D8006CBDF1 /* cocos2dx_extra_ios_iap_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_extra_ios_iap_luabinding.cpp; sourceTree = "<group>"; };
 		F459EA08180D04D8006CBDF1 /* cocos2dx_extra_ios_iap_luabinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocos2dx_extra_ios_iap_luabinding.h; sourceTree = "<group>"; };
 		F459EA0A180D04D8006CBDF1 /* cocos2dx_extra_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_extra_luabinding.cpp; sourceTree = "<group>"; };
@@ -1096,7 +1093,6 @@
 		B18923581DA5430C007EADCE /* webview */ = {
 			isa = PBXGroup;
 			children = (
-				B18923591DA5430C007EADCE /* UIWebView-inl.h */,
 				B189235A1DA5430C007EADCE /* UIWebView.cpp */,
 				B189235B1DA5430C007EADCE /* UIWebView.h */,
 				B18923601DA5430C007EADCE /* UIWebViewImpl-ios.h */,
@@ -1126,7 +1122,6 @@
 				B1B895C71D8C664C00F80112 /* Android.mk */,
 				B1B895C81D8C664C00F80112 /* CocosGUI.h */,
 				B18923581DA5430C007EADCE /* webview */,
-				B1B895C91D8C664C00F80112 /* Compatible */,
 				B1B895CB1D8C664C00F80112 /* EditBox */,
 				B1B895D91D8C664C00F80112 /* Layouts */,
 				B1B895E01D8C664C00F80112 /* ScrollWidget */,
@@ -1158,14 +1153,6 @@
 				B1B896011D8C664C00F80112 /* UIWidget.h */,
 			);
 			path = ui;
-			sourceTree = "<group>";
-		};
-		B1B895C91D8C664C00F80112 /* Compatible */ = {
-			isa = PBXGroup;
-			children = (
-				B1B895CA1D8C664C00F80112 /* CompatibleClasses.h */,
-			);
-			path = Compatible;
 			sourceTree = "<group>";
 		};
 		B1B895CB1D8C664C00F80112 /* EditBox */ = {
@@ -1605,7 +1592,6 @@
 		F459E9F6180D04D8006CBDF1 /* extra */ = {
 			isa = PBXGroup;
 			children = (
-				F459E9F7180D04D8006CBDF1 /* cocos2dx_extra.h */,
 				F459EA04180D04D8006CBDF1 /* luabinding */,
 				F459EA0D180D04D8006CBDF1 /* native */,
 				F459EA16180D04D8006CBDF1 /* platform */,

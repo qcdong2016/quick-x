@@ -71,7 +71,7 @@ public:
     virtual void draw();
 
     virtual void setVisible(bool visible);
-    void setBackgroundColor(int color);
+    void setOpaque(bool yes);
 
 private:
     void* _uiWebViewWrapper;

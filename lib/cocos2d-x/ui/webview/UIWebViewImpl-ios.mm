@@ -93,6 +93,8 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 - (void)goForward;
 
 - (void)setScalesPageToFit:(const bool)scalesPageToFit;
+
+- (void)setOpaque: (bool) yes;
 @end
 
 
@@ -213,6 +215,12 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 - (void)setScalesPageToFit:(const bool)scalesPageToFit {
     if (!self.uiWebView) {[self setupWebView];}
     self.uiWebView.scalesPageToFit = scalesPageToFit;
+}
+
+- (void)setOpaque: (bool) yes {
+    if (!self.uiWebView) {[self setupWebView];}
+    [self.uiWebView setBackgroundColor: [UIColor clearColor]];
+    [self.uiWebView setOpaque: yes];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -344,8 +352,9 @@ void WebViewImpl::setScalesPageToFit(const bool scalesPageToFit) {
     [_uiWebViewWrapper setScalesPageToFit:scalesPageToFit];
 }
 
-void WebViewImpl::setBackgroundColor(int color)
+void WebViewImpl::setOpaque(bool yes)
 {
+    [_uiWebViewWrapper setOpaque : yes];
 }
 
 void WebViewImpl::draw() {
