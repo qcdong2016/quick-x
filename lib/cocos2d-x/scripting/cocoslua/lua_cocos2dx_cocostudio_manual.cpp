@@ -408,7 +408,7 @@ tolua_lerror:
 
 static void extendScrollView(lua_State* tolua_S)
 {
-    lua_pushstring(tolua_S, "ListView");
+    lua_pushstring(tolua_S, "ScrollView");
     lua_rawget(tolua_S, LUA_REGISTRYINDEX);
     if (lua_istable(tolua_S,-1))
     {

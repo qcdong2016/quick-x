@@ -129,6 +129,8 @@ public:
     void addEventListenerPageView(CCObject *target, SEL_PageViewEvent selector);
 
     
+	void setPageSize(const CCSize& sz);
+	const CCSize& getPageSize();
 
     
     virtual bool onTouchBegan(CCTouch *touch, CCEvent *unusedEvent);
@@ -186,7 +188,6 @@ protected:
     virtual bool scrollPages(float touchOffset);
     void movePages(float offset);
     void pageTurningEvent();
-    void updateChildrenSize();
     void updateChildrenPosition();
     virtual void onSizeChanged();
     virtual Widget* createCloneInstance();
@@ -195,6 +196,7 @@ protected:
     virtual void setClippingEnabled(bool enabled) {Layout::setClippingEnabled(enabled);};
     virtual void doLayout() {if (!_doLayoutDirty){return;} _doLayoutDirty = false;};
 protected:
+	CCSize _pageSize;
     int _curPageIdx;
     CCArray* _pages;
     PVTouchDir _touchMoveDir;
@@ -203,8 +205,6 @@ protected:
     CCPoint _movePagePoint;
     Widget* _leftChild;
     Widget* _rightChild;
-    float _leftBoundary;
-    float _rightBoundary;
     bool _isAutoScrolling;
     float _autoScrollDistance;
     float _autoScrollSpeed;

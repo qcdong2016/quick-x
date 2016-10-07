@@ -1,6 +1,6 @@
 /*
 ** Lua binding: CocoStudio
-** Generated automatically by tolua++-1.0.92 on 10/06/16 00:46:20.
+** Generated automatically by tolua++-1.0.92 on 10/07/16 17:04:42.
 */
 
 /****************************************************************************
@@ -15384,6 +15384,71 @@ static int tolua_CocoStudio_PageView_getPage00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setPageSize of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_PageView_setPageSize00
+static int tolua_CocoStudio_PageView_setPageSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const CCSize",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  const CCSize* sz = ((const CCSize*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPageSize'", NULL);
+#endif
+  {
+   self->setPageSize(*sz);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setPageSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPageSize of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_PageView_getPageSize00
+static int tolua_CocoStudio_PageView_getPageSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPageSize'", NULL);
+#endif
+  {
+   const CCSize& tolua_ret = (const CCSize&)  self->getPageSize();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCSize");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPageSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: onTouchBegan of class  PageView */
 #ifndef TOLUA_DISABLE_tolua_CocoStudio_PageView_onTouchBegan00
 static int tolua_CocoStudio_PageView_onTouchBegan00(lua_State* tolua_S)
@@ -19905,6 +19970,8 @@ TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getCurPageIndex",tolua_CocoStudio_PageView_getCurPageIndex00);
    tolua_function(tolua_S,"getPages",tolua_CocoStudio_PageView_getPages00);
    tolua_function(tolua_S,"getPage",tolua_CocoStudio_PageView_getPage00);
+   tolua_function(tolua_S,"setPageSize",tolua_CocoStudio_PageView_setPageSize00);
+   tolua_function(tolua_S,"getPageSize",tolua_CocoStudio_PageView_getPageSize00);
    tolua_function(tolua_S,"onTouchBegan",tolua_CocoStudio_PageView_onTouchBegan00);
    tolua_function(tolua_S,"onTouchMoved",tolua_CocoStudio_PageView_onTouchMoved00);
    tolua_function(tolua_S,"onTouchEnded",tolua_CocoStudio_PageView_onTouchEnded00);

@@ -25,6 +25,9 @@ class PageView : public Layout , public UIScrollInterface
     CCArray* getPages();
     Layout* getPage(int index);
 
+    void setPageSize(const CCSize& sz);
+    const CCSize& getPageSize();
+
     virtual bool onTouchBegan(CCTouch *touch, CCEvent *unusedEvent);
     virtual void onTouchMoved(CCTouch *touch, CCEvent *unusedEvent);
     virtual void onTouchEnded(CCTouch *touch, CCEvent *unusedEvent);

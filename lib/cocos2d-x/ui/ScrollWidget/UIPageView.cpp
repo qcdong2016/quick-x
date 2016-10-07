@@ -39,8 +39,6 @@ _touchMoveStartLocation(0.0f),
 _movePagePoint(CCPointZero),
 _leftChild(NULL),
 _rightChild(NULL),
-_leftBoundary(0.0f),
-_rightBoundary(0.0f),
 _isAutoScrolling(false),
 _autoScrollDistance(0.0f),
 _autoScrollSpeed(0.0f),
@@ -124,7 +122,7 @@ void PageView::addWidgetToPage(Widget *widget, int pageIdx, bool forceCreate)
 Layout* PageView::createPage()
 {
     Layout* newPage = Layout::create();
-    newPage->setSize(getSize());
+    newPage->setSize(_pageSize);
     return newPage;
 }
 
@@ -143,11 +141,10 @@ void PageView::addPage(Layout* page)
         return;
     }
     CCSize pSize = page->getSize();
-    CCSize pvSize = getSize();
-    if (!pSize.equals(pvSize))
+    if (!pSize.equals(_pageSize))
     {
         CCLOG("page size does not match pageview size, it will be force sized!");
-        page->setSize(pvSize);
+        page->setSize(_pageSize);
     }
     page->setPosition(CCPoint(getPositionXByIndex(_pages->count()), 0));
     _pages->addObject(page);
@@ -185,17 +182,16 @@ void PageView::insertPage(Layout* page, int idx)
         page->setPosition(CCPoint(getPositionXByIndex(idx), 0));
         addChild(page);
         CCSize pSize = page->getSize();
-        CCSize pvSize = getSize();
-        if (!pSize.equals(pvSize))
+        if (!pSize.equals(_pageSize))
         {
             CCLOG("page size does not match pageview size, it will be force sized!");
-            page->setSize(pvSize);
+            page->setSize(_pageSize);
         }
         int length = _pages->count();
         for (int i=(idx+1); i<length; i++){
             Widget* behindPage = static_cast<Widget*>(_pages->objectAtIndex(i));
             CCPoint formerPos = behindPage->getPosition();
-            behindPage->setPosition(CCPoint(formerPos.x+getSize().width, 0));
+            behindPage->setPosition(CCPoint(formerPos.x + _pageSize.width, 0));
         }
         updateBoundaryPages();
     }
@@ -239,9 +235,33 @@ void PageView::updateBoundaryPages()
     _rightChild = static_cast<Widget*>(_pages->objectAtIndex(_pages->count()-1));
 }
 
+void PageView::setPageSize(const CCSize& sz)
+{
+	_pageSize = sz;
+
+	if (!_pages)
+	{
+		return;
+	}
+	int startX = getSize().width / 2 - _pageSize.width / 2;
+	ccArray* arrayPages = _pages->data;
+	int length = arrayPages->num;
+	for (int i = 0; i < length; i++)
+	{
+		Layout* page = static_cast<Layout*>(arrayPages->arr[i]);
+		page->setSize(_pageSize);
+		page->setPosition(CCPoint(startX + (i - _curPageIdx)*_pageSize.width, 0));
+	}
+}
+
+const CCSize& PageView::getPageSize()
+{
+	return _pageSize;
+}
+
 float PageView::getPositionXByIndex(int idx)
 {
-    return (getSize().width*(idx-_curPageIdx));
+    return (getPageSize().width*(idx-_curPageIdx));
 }
     
 void PageView::addChild(CCNode *child)
@@ -276,25 +296,7 @@ void PageView::removeChild(CCNode *child, bool cleanup)
 void PageView::onSizeChanged()
 {
     Layout::onSizeChanged();
-    _rightBoundary = getSize().width;
-    updateChildrenSize();
     updateChildrenPosition();
-}
-
-void PageView::updateChildrenSize()
-{
-    if (!_pages)
-    {
-        return;
-    }
-    CCSize selfSize = getSize();
-    ccArray* arrayPages = _pages->data;
-    int length = arrayPages->num;
-    for (int i=0; i<length; i++)
-    {
-        Layout* page = static_cast<Layout*>(arrayPages->arr[i]);
-        page->setSize(selfSize);
-    }
 }
 
 void PageView::updateChildrenPosition()
@@ -313,12 +315,13 @@ void PageView::updateChildrenPosition()
     {
         _curPageIdx = pageCount-1;
     }
-    float pageWidth = getSize().width;
-    for (int i=0; i<pageCount; i++)
+    float pageWidth = getPageSize().width;
+	int startX = getSize().width / 2 - _pageSize.width / 2;
+	for (int i = 0; i < pageCount; i++)
     {
         Layout* page = static_cast<Layout*>(_pages->objectAtIndex(i));
-        page->setPosition(CCPoint((i-_curPageIdx)*pageWidth, 0));
-    }
+        page->setPosition(CCPoint(startX + (i-_curPageIdx)*pageWidth, 0));
+	}
 }
 
 void PageView::removeAllChildren()
@@ -341,7 +344,8 @@ void PageView::scrollToPage(int idx)
     }
     _curPageIdx = idx;
     Widget* curPage = static_cast<Widget*>(_pages->objectAtIndex(idx));
-    _autoScrollDistance = -(curPage->getPosition().x);
+	int startX = getSize().width / 2 - _pageSize.width / 2;
+    _autoScrollDistance = -(curPage->getPosition().x - startX);
     _autoScrollSpeed = fabs(_autoScrollDistance)/0.2f;
     _autoScrollDir = _autoScrollDistance > 0 ? 1 : 0;
     _isAutoScrolling = true;
@@ -403,7 +407,7 @@ void PageView::update(float dt)
 bool PageView::onTouchBegan(CCTouch *touch, CCEvent *unusedEvent)
 {
     bool pass = Layout::onTouchBegan(touch, unusedEvent);
-    if (_hitted)
+	if (_hitted)
     {
         handlePressLogic(touch->getLocation());
     }
@@ -414,7 +418,7 @@ void PageView::onTouchMoved(CCTouch *touch, CCEvent *unusedEvent)
 {
     _touchMovePos = touch->getLocation();
     handleMoveLogic(_touchMovePos);
-    Widget* widgetParent = getWidgetParent();
+	Widget* widgetParent = getWidgetParent();
     if (widgetParent)
     {
         widgetParent->checkChildInfo(1,this,_touchMovePos);
@@ -460,27 +464,33 @@ bool PageView::scrollPages(float touchOffset)
     }
     
     float realOffset = touchOffset;
-    
-    switch (_touchMoveDir)
-    {
-        case PAGEVIEW_TOUCHLEFT: // left
-            if (_rightChild->getRightInParent() + touchOffset <= _rightBoundary)
-            {
-                realOffset = _rightBoundary - _rightChild->getRightInParent();
-                movePages(realOffset);
-                return false;
-            }
-            break;
-            
-        case PAGEVIEW_TOUCHRIGHT: // right
-            if (_leftChild->getLeftInParent() + touchOffset >= _leftBoundary)
-            {
-                realOffset = _leftBoundary - _leftChild->getLeftInParent();
-                movePages(realOffset);
-                return false;
-            }
-            break;
-        default:
+	int selfWidth = getSize().width;
+	int startX = getSize().width / 2 - _pageSize.width / 2;
+
+	switch (_touchMoveDir)
+	{
+	case PAGEVIEW_TOUCHLEFT: // left
+		{
+			int right = _rightChild->getPositionX();
+			right += _pageSize.width / 2;
+			
+			if (right + touchOffset <= selfWidth / 2)
+			{
+				return false;
+			}
+			break;
+		}
+        case PAGEVIEW_TOUCHRIGHT: // right 
+		{
+			int left = _leftChild->getPositionX();
+			left += _pageSize.width / 2;
+			if (left + touchOffset >= selfWidth / 2)
+			{
+				return false;
+			}
+			break;
+		}
+		default:
             break;
     }
     
@@ -524,8 +534,9 @@ void PageView::handleReleaseLogic(const CCPoint &touchPoint)
     {
         CCPoint curPagePos = curPage->getPosition();
         int pageCount = _pages->count();
-        float curPageLocation = curPagePos.x;
-        float pageWidth = getSize().width;
+		int startX = getSize().width / 2 - _pageSize.width / 2;
+		float curPageLocation = curPagePos.x - startX;
+        float pageWidth = getPageSize().width;
         float boundary = pageWidth/2.0f;
         if (curPageLocation <= -boundary)
         {
