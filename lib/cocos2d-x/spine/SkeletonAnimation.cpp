@@ -252,7 +252,7 @@ void SkeletonAnimation::onAnimationStateEvent (int trackIndex, spEventType type,
 	case SP_ANIMATION_START: call(startListener, trackIndex, loopCount); break;
 	case SP_ANIMATION_END:   call(endListener, trackIndex, loopCount); break;
 	case SP_ANIMATION_COMPLETE:call(completeListener,trackIndex, loopCount); break;
-	case SP_ANIMATION_EVENT:  call(eventListener, trackIndex, loopCount); break;
+	case SP_ANIMATION_EVENT:  call(eventListener, trackIndex, loopCount, event); break;
 	}
 }
 
