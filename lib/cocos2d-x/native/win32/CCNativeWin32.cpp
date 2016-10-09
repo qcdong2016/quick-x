@@ -1,5 +1,5 @@
-#include "platform/win32/CCNativeWin32.h"
-#include "platform/win32/CCNativeWin32def.h"
+#include "CCNativeWin32.h"
+#include "CCNativeWin32def.h"
 #include "CCEGLView.h"
 
 // for mac address
