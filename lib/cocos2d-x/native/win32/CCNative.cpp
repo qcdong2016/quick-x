@@ -1,6 +1,6 @@
 
 #include "native/CCNative.h"
-#include "platform/win32/CCNativeWin32.h"
+#include "CCNativeWin32.h"
 
 NS_CC_BEGIN
 

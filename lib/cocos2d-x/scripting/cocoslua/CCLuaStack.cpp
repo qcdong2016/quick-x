@@ -61,7 +61,7 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 // cocos2dx_extra luabinding
-#include "cocos2dx_extra_luabinding.h"
+#include "native/cocos2dx_extra_luabinding.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "cocos2dx_extra_ios_iap_luabinding.h"
 #endif
