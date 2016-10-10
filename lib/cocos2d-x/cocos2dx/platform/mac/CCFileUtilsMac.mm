@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "CCSAXParser.h"
 #include "CCDictionary.h"
 #include "support/zip_support/unzip.h"
-#include "apptools/HelperFunc.h"
+//#include "apptools/HelperFunc.h"
 
 NS_CC_BEGIN
 

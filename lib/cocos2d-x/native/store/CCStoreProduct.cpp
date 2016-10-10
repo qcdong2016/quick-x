@@ -1,5 +1,5 @@
 
-#include "store/CCStoreProduct.h"
+#include "CCStoreProduct.h"
 
 NS_CC_BEGIN
 

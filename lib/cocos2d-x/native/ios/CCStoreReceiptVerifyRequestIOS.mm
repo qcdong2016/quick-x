@@ -1,5 +1,5 @@
 
-#include "platform/ios/CCStoreReceiptVerifyRequestIOS.h"
+#include "native/ios/CCStoreReceiptVerifyRequestIOS.h"
 
 CCStoreReceiptVerifyRequestIOS* CCStoreReceiptVerifyRequestIOS::create(CCStoreIOS* store,
                                                                            SKPaymentTransaction* transaction,

@@ -30,7 +30,7 @@
 #include "CCEditBox.h"
 #import "EAGLView.h"
 
-#define getEditBoxImplMac() ((cocos2d::CCEditBoxImplMac*)editBox_)
+#define getEditBoxImplMac() ((cocos2d::ui::CCEditBoxImplMac*)editBox_)
 
 @implementation CustomNSTextField
 
@@ -141,13 +141,13 @@
 - (BOOL)textFieldShouldBeginEditing:(NSTextField *)sender        // return NO to disallow editing.
 {
     editState_ = YES;
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
+    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
     if (pDelegate != NULL)
     {
         pDelegate->editBoxEditingDidBegin(getEditBoxImplMac()->getCCEditBox());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -159,32 +159,32 @@
 - (BOOL)textFieldShouldEndEditing:(NSTextField *)sender
 {
     editState_ = NO;
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
+    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
     if (pDelegate != NULL)
     {
         pDelegate->editBoxEditingDidEnd(getEditBoxImplMac()->getCCEditBox());
         pDelegate->editBoxReturn(getEditBoxImplMac()->getCCEditBox());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
-        cocos2d::KeyboardReturnType returnType = pEditBox->getReturnType();
+        cocos2d::ui::KeyboardReturnType returnType = pEditBox->getReturnType();
         int handler = pEditBox->getScriptEditBoxHandler();
-        if (returnType == cocos2d::kKeyboardReturnTypeDone)
+        if (returnType == cocos2d::ui::kKeyboardReturnTypeDone)
         {
             pEngine->executeEvent(handler, "returnDone", pEditBox);
     }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSend)
+        else if (returnType == cocos2d::ui::kKeyboardReturnTypeSend)
         {
             pEngine->executeEvent(handler, "returnSend", pEditBox);
         }
-        else if (returnType == cocos2d::kKeyboardReturnTypeSearch)
+        else if (returnType == cocos2d::ui::kKeyboardReturnTypeSearch)
         {
             pEngine->executeEvent(handler, "returnSearch", pEditBox);
         }
-        else if (returnType == cocos2d::kKeyboardReturnTypeGo)
+        else if (returnType == cocos2d::ui::kKeyboardReturnTypeGo)
         {
             pEngine->executeEvent(handler, "returnGo", pEditBox);
         }
@@ -225,13 +225,13 @@
  */
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    cocos2d::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
+    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplMac()->getDelegate();
     if (pDelegate != NULL)
     {
         pDelegate->editBoxTextChanged(getEditBoxImplMac()->getCCEditBox(), getEditBoxImplMac()->getText());
     }
     
-    cocos2d::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -242,6 +242,8 @@
 @end
 
 NS_CC_BEGIN
+
+namespace ui {
 
 CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox)
 {
@@ -433,6 +435,7 @@ void CCEditBoxImplMac::onEnter(void)
     adjustTextFieldPosition();
 }
 
+} // namespace ui {
 NS_CC_END
 
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
