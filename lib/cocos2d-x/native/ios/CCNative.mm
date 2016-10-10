@@ -1,8 +1,8 @@
 
 #include "native/CCNative.h"
 #import <UIKit/UIKit.h>
-#import "platform/ios/CCNativeIOS.h"
-#import "platform/ios/openudid/OpenUDIDIOS.h"
+#import "native/ios/CCNativeIOS.h"
+#import "native/ios/openudid/OpenUDIDIOS.h"
 #import "AudioToolbox/AudioServices.h"
 
 NS_CC_BEGIN

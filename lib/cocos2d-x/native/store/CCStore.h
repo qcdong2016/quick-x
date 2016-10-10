@@ -2,10 +2,10 @@
 #ifndef  __CC_EXTENSION_CCSTORE_H_
 #define  __CC_EXTENSION_CCSTORE_H_
 
-#include "store/CCStoreProduct.h"
-#include "store/CCStorePaymentTransaction.h"
-#include "store/CCStoreTransactionObserver.h"
-#include "store/CCStoreProductsRequestDelegate.h"
+#include "CCStoreProduct.h"
+#include "CCStorePaymentTransaction.h"
+#include "CCStoreTransactionObserver.h"
+#include "CCStoreProductsRequestDelegate.h"
 
 NS_CC_BEGIN
 
@@ -22,16 +22,16 @@ class CCStore: public CCStoreTransactionObserver
 public:
     static CCStore* sharedStore(void);
     static void purgeSharedStore(void);
-    
+
     ~CCStore(void);
-    
+
     void postInitWithTransactionObserver(CCStoreTransactionObserver* observer);
 #if CC_LUA_ENGINE_ENABLED > 0
     void postInitWithTransactionListenerLua(cocos2d::LUA_FUNCTION listener);
 #endif
-    
+
     bool canMakePurchases(void);
-    
+
     void loadProducts(CCArray* productsId, CCStoreProductsRequestDelegate* delegate);
 #if CC_LUA_ENGINE_ENABLED > 0
     void loadProductsLua(cocos2d::LUA_TABLE __LUA_TABLE__, cocos2d::LUA_FUNCTION callback);
@@ -49,19 +49,19 @@ public:
     void setReceiptVerifyMode(CCStoreReceiptVerifyMode mode, CCStoreIsSandbox isSandbox = true);
     const char* getReceiptVerifyServerUrl(void);
     void setReceiptVerifyServerUrl(const char* url);
-    
+
 #pragma mark -
 #pragma mark delegates
-    
+
     virtual void transactionCompleted(CCStorePaymentTransaction* transaction);
     virtual void transactionFailed(CCStorePaymentTransaction* transaction);
     virtual void transactionRestored(CCStorePaymentTransaction* transaction);
-    
+
 #if CC_LUA_ENGINE_ENABLED > 0
     virtual void requestProductsCompleted(cocos2d::CCArray* products, cocos2d::CCArray* invalidProductsId = NULL);
     virtual void requestProductsFailed(int errorCode, const char* errorString);
 #endif
-    
+
 private:
     CCStore(void)
     : m_observer(NULL)
@@ -73,7 +73,7 @@ private:
     {
     }
     bool init(void);
-    
+
     static CCStore*             s_sharedStore;
     CCStoreTransactionObserver* m_observer;
 #if CC_LUA_ENGINE_ENABLED > 0
@@ -82,7 +82,7 @@ private:
 #endif
     bool                        m_isLoadProductsLuaNotCompleted;
     CCStorePaymentTransactions  m_transactions;
-    
+
 #if CC_LUA_ENGINE_ENABLED > 0
     void passCCStorePaymentTransactionToLuaListener(CCStorePaymentTransaction* transaction);
 #endif
