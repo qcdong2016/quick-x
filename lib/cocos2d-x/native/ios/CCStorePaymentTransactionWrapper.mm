@@ -1,5 +1,5 @@
 
-#include "store/CCStorePaymentTransactionWrapper.h"
+#include "native/store/CCStorePaymentTransactionWrapper.h"
 #import <StoreKit/StoreKit.h>
 
 NS_CC_BEGIN

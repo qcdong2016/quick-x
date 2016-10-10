@@ -1,5 +1,5 @@
 
-#include "store/CCStorePaymentTransaction.h"
+#include "CCStorePaymentTransaction.h"
 
 NS_CC_BEGIN
 

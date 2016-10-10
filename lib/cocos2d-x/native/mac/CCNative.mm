@@ -1,10 +1,11 @@
 
 #include "native/CCNative.h"
 #include <sys/sysctl.h>
-#import "platform/mac/CCNativeMac.h"
-#import "platform/mac/openudid/OpenUDIDMac.h"
+#include <string>
+#import "CCNativeMac.h"
+#import "openudid/OpenUDIDMac.h"
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 #pragma mark -
 #pragma mark activity indicator
@@ -75,7 +76,7 @@ void CCNative::openURL(const char* url)
     [[NSWorkspace sharedWorkspace] openURL:nsurl];
 }
 
-const string CCNative::getInputText(const char* title, const char* message, const char* defaultValue)
+const std::string CCNative::getInputText(const char* title, const char* message, const char* defaultValue)
 {
     NSString *title_ = [NSString stringWithUTF8String:title ? title : ""];
     NSString *message_ = [NSString stringWithUTF8String:message ? message : ""];
@@ -83,19 +84,19 @@ const string CCNative::getInputText(const char* title, const char* message, cons
     NSString *input = [[CCNativeMac sharedInstance] getInputText:title_
                                                            message:message_
                                                       defaultValue:defaultValue_];
-    return string([input cStringUsingEncoding:NSUTF8StringEncoding]);
+    return std::string([input cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 
 #pragma mark -
 #pragma mark OpenUDID
 
-const string CCNative::getOpenUDID(void)
+const std::string CCNative::getOpenUDID(void)
 {
-    return string([[OpenUDIDMac value] cStringUsingEncoding:NSUTF8StringEncoding]);
+    return std::string([[OpenUDIDMac value] cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-const string CCNative::getDeviceName(void)
+const std::string CCNative::getDeviceName(void)
 {
     size_t len = 0;
     sysctlbyname("hw.model", NULL, &len, NULL, 0);
@@ -103,13 +104,13 @@ const string CCNative::getDeviceName(void)
     {
         char* model = static_cast<char*>(malloc(len * sizeof(char)));
         sysctlbyname("hw.model", model, &len, NULL, 0);
-        string modelStr(model);
+        std::string modelStr(model);
         free(model);
         return modelStr;
     }
 
     CCLog("CCNative::getDeviceName() not support on this platform.");
-    return string("");
+    return std::string("");
 }
 
 void CCNative::vibrate()
@@ -117,4 +118,4 @@ void CCNative::vibrate()
     CCLog("CCNative::vibrate() not support on this platform.");
 }
 
-NS_CC_EXTRA_END
+NS_CC_END

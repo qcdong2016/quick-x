@@ -1,8 +1,8 @@
 
 #import <StoreKit/StoreKit.h>
 
-#include "store/CCStore.h"
-#include "store/CCStoreProductsRequestDelegate.h"
+#include "native/store/CCStore.h"
+#include "native/store/CCStoreProductsRequestDelegate.h"
 
 USING_NS_CC;
 

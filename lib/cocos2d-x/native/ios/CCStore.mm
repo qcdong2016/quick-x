@@ -1,7 +1,7 @@
 
-#include "store/CCStore.h"
+#include "native/store/CCStore.h"
 
-#import "platform/ios/CCStoreIOS.h"
+#import "native/ios/CCStoreIOS.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 extern "C" {
