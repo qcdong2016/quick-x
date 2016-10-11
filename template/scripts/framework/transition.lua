@@ -377,38 +377,6 @@ end
 
 --[[--
 
-创建一个动作序列对象。
-
-~~~ lua
-
-local sequence = transition.sequence({
-    CCMoveTo:create(0.5, CCPoint(display.cx, display.cy)),
-    CCFadeOut:create(0.2),
-    CCDelayTime:create(0.5),
-    CCFadeIn:create(0.3),
-})
-sprite:runAction(sequence)
-
-~~~
-
-@param table args 动作的表格对象
-
-@return CCSequence 动作序列对象
-
-]]
-function transition.sequence(actions)
-    if #actions < 1 then return end
-    if #actions < 2 then return actions[1] end
-
-    local prev = actions[1]
-    for i = 2, #actions do
-        prev = CCSequence:createWithTwoActions(prev, actions[i])
-    end
-    return prev
-end
-
---[[--
-
 在显示对象上播放一次动画，并返回 CCAction 动作对象。 
 
 ~~~ lua
