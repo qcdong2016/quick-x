@@ -37,7 +37,7 @@ typedef enum {
 @class CCKeypadDispatcher
 @brief Dispatch the keypad message from the phone
 */
-class CCKeypadDispatcher : public CCObject
+class CCKeypadDispatcher : public SubSystem
 {
     /**
     @brief dispatch the key pad msg

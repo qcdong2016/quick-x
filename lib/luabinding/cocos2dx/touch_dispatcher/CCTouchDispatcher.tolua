@@ -44,7 +44,7 @@ THE SOFTWARE.
 
  @since v0.8.0
  */
-class CCTouchDispatcher : public CCObject
+class CCTouchDispatcher : public SubSystem
 {
     /** Removes all touch delegates, releasing all the delegates */
     void removeAllDelegates(void);

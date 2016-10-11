@@ -42,7 +42,7 @@ THE SOFTWARE.
 
  @since v0.8
  */
-class CCActionManager : public CCObject
+class CCActionManager : public SubSystem
 {
     // actions
 
