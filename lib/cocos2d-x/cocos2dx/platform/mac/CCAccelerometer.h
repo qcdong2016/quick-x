@@ -26,11 +26,13 @@ THE SOFTWARE.
 #define __PLATFORM_MAC_CCACCELEROMETER_H__
 
 #include "platform/CCAccelerometerDelegate.h"
+#include "SubSystem.h"
 
 NS_CC_BEGIN
 
-class CC_DLL CCAccelerometer
+class CC_DLL CCAccelerometer : public SubSystem
 {
+    CCOBJECT(CCAccelerometer, SubSystem)
 public:
     CCAccelerometer() {}
     ~CCAccelerometer() {}
