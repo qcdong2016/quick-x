@@ -36,7 +36,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "support/TransformUtils.h"
 #include "support/CCNotificationCenter.h"
-#include "CCEventType.h"
 
 // extern
 #include "kazmath/GL/matrix.h"

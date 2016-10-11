@@ -25,7 +25,6 @@
 #include "shaders/CCShaderCache.h"
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"
-#include "CCEventType.h"
 
 NS_CC_BEGIN
 

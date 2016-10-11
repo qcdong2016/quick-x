@@ -31,7 +31,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "support/CCNotificationCenter.h"
-#include "CCEventType.h"
 #include "CCGL.h"
 // support
 #include "CCTexture2D.h"

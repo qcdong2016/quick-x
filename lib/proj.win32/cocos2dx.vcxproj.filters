@@ -25,9 +25,6 @@
     <Filter Include="cocos2d-x\cocos2dx\effects">
       <UniqueIdentifier>{8e5a447b-7217-425d-b517-cdb71b772b12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\cocos2dx\include">
-      <UniqueIdentifier>{dceebc07-e2ad-42f0-bdc3-bdb3859191fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\cocos2dx\kazmath">
       <UniqueIdentifier>{31e67f7a-1249-4518-8a0c-a876a5f4d963}</UniqueIdentifier>
     </Filter>
@@ -1103,18 +1100,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrid.h">
       <Filter>cocos2d-x\cocos2dx\effects</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCEventType.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h">
-      <Filter>cocos2d-x\cocos2dx\include</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\mat4stack.h">
       <Filter>cocos2d-x\cocos2dx\kazmath\include\kazmath\GL</Filter>
     </ClInclude>
@@ -2062,6 +2047,15 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\particle\CCParticleExamples.h">
       <Filter>cocos2d-x\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccConfig.h">
+      <Filter>cocos2d-x\cocos2dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccMacros.h">
+      <Filter>cocos2d-x\cocos2dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccTypes.h">
+      <Filter>cocos2d-x\cocos2dx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
