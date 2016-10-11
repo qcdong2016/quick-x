@@ -77,7 +77,6 @@ THE SOFTWARE.
 #include "effects/CCGrid.h"
 
 // include
-#include "CCEventType.h"
 #include "ccConfig.h"
 #include "ccMacros.h"
 #include "ccTypes.h"

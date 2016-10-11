@@ -305,10 +305,13 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\base_nodes\CCAtlasNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\base_nodes\CCNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\CCCamera.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccConfig.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\CCConfiguration.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\CCDirector.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\ccFPSImages.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccMacros.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\CCScheduler.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\ccTypes.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h" />
@@ -331,10 +334,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrabber.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrid.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccConfig.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\CCEventType.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccMacros.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\include\ccTypes.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\aabb.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\mat4stack.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\matrix.h" />
