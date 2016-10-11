@@ -1,37 +1,8 @@
-/****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2008-2010 Ricardo Quesada
-Copyright (c) 2011      Zynga Inc.
 
-http://www.cocos2d-x.org
+class SubSystem : public CCObject
+{
+}
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-****************************************************************************/
-
-/**
- * @addtogroup base_nodes
- * @{
- */
-
-/** @typedef ccDirectorProjection
- Possible OpenGL projections used by director
- */
 typedef enum {
     /// sets a 2D projection (orthogonal projection)
     kCCDirectorProjection2D,
@@ -46,26 +17,6 @@ typedef enum {
     kCCDirectorProjectionDefault = kCCDirectorProjection3D,
 } ccDirectorProjection;
 
-/**
-@brief Class that creates and handle the main Window and manages how
-and when to execute the Scenes.
-
- The CCDirector is also responsible for:
-  - initializing the OpenGL context
-  - setting the OpenGL pixel format (default on is RGB565)
-  - setting the OpenGL buffer depth (default one is 0-bit)
-  - setting the projection (default one is 3D)
-  - setting the orientation (default one is Portrait)
-
- Since the CCDirector is a singleton, the standard way to use it is by calling:
-  _ CCDirector::sharedDirector()->methodName();
-
- The CCDirector also sets the default OpenGL context:
-  - GL_TEXTURE_2D is enabled
-  - GL_VERTEX_ARRAY is enabled
-  - GL_COLOR_ARRAY is enabled
-  - GL_TEXTURE_COORD_ARRAY is enabled
-*/
 class CCDirector : public CCObject
 {
     /** Get current running Scene. Director can only run one Scene at the time */
@@ -244,32 +195,21 @@ class CCDirector : public CCObject
      */
     CCScheduler* getScheduler();
 
-    /** CCActionManager associated with this director
-     @since v2.0
-     */
-    CCActionManager* getActionManager();
-
-    /** CCTouchDispatcher associated with this director
-     @since v2.0
-     */
-    CCTouchDispatcher* getTouchDispatcher();
-
-    /** CCKeypadDispatcher associated with this director
-     @since v2.0
-     */
-    CCKeypadDispatcher* getKeypadDispatcher();
-
-    /** CCAccelerometer associated with this director
-     @since v2.0
-     */
-    CCAccelerometer* getAccelerometer();
-
     /* delta time since last tick to main loop */
     float getDeltaTime();
 
     /** returns a shared instance of the director */
     static CCDirector* sharedDirector(void);
+
+    SubSystem* getSubSystem(const std::string& name);
 };
 
-// end of base_node group
-/// @}
+$[
+    local director = CCDirector:sharedDirector()
+    director.actionManager = tolua.cast(director:getSubSystem('CCActionManager'), "CCActionManager")
+    director.touchDispatcher = tolua.cast(director:getSubSystem('CCTouchDispatcher'), "CCTouchDispatcher")
+    director.accelerometer = tolua.cast(director:getSubSystem('CCAccelerometer'), "CCAccelerometer")
+    director.keypadDispatcher = tolua.cast(director:getSubSystem('CCKeypadDispatcher'), "CCKeypadDispatcher")
+$]
+
+

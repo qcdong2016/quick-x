@@ -28,7 +28,7 @@ THE SOFTWARE.
 #define __CCINSTANT_ACTION_H__
 
 #include <string>
-#include "CCAction.h"
+#include "CCActionFiniteTime.h"
 
 NS_CC_BEGIN
 

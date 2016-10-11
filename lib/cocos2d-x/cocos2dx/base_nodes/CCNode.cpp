@@ -109,7 +109,7 @@ CCNode::CCNode(void)
 {
     // set default scheduler and actionManager
     CCDirector *director = CCDirector::sharedDirector();
-    m_pActionManager = director->getActionManager();
+    m_pActionManager = director->getSubSystem<CCActionManager>();
     m_pActionManager->retain();
     m_pScheduler = director->getScheduler();
     m_pScheduler->retain();

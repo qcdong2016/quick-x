@@ -17,6 +17,7 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionCamera.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionCatmullRom.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionEase.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionFiniteTime.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid3D.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionInstant.cpp" />
@@ -293,6 +294,7 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionCamera.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionCatmullRom.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionEase.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionFiniteTime.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionGrid3D.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCActionInstant.h" />
@@ -441,6 +443,7 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrame.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\sprite_nodes\CCSpriteFrameCache.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\SubSystem.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCNotificationCenter.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCPointExtension.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\support\CCProfiling.h" />

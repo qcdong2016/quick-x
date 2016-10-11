@@ -351,7 +351,7 @@ extern "C" {
 #include <string>
 #include "cocos2d.h"
 #include "CCLuaEngine.h"
-#include "SimpleAudioEngine.h"
+#include "audio/SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;]])

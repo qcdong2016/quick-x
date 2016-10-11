@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "CCAction.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCObject.h"
+#include "CCDirector.h"
 
 NS_CC_BEGIN
 
@@ -54,9 +55,9 @@ struct _hashElement;
  
  @since v0.8
  */
-class CC_DLL CCActionManager : public CCObject
+class CC_DLL CCActionManager : public SubSystem
 {
-    CCOBJECT(CCActionManager, CCObject)
+    CCOBJECT(CCActionManager, SubSystem)
 public:
     /**
      *  @js ctor

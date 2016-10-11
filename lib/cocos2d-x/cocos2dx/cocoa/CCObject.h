@@ -26,10 +26,7 @@ THE SOFTWARE.
 #define __CCOBJECT_H__
 
 #include "CCDataVisitor.h"
-
-#ifdef EMSCRIPTEN
-#include <GLES2/gl2.h>
-#endif // EMSCRIPTEN
+#include "cocos/RefCounted.h"
 
 NS_CC_BEGIN
 
@@ -44,13 +41,19 @@ class CCEvent;
 
 #define CCOBJECT(self_type, parent_type) \
 	typedef self_type SelfType; \
-	typedef parent_type Super;
+	typedef parent_type Super; \
+	public:\
+	static const std::string& getTypeName() {\
+		static const std::string typeNameStatic = #self_type;\
+		return typeNameStatic; \
+	}
+
 #define O dynamic_cast<SelfType*>(o)
 
 /**
  * @js NA
  */
-class CC_DLL CCObject
+class CC_DLL CCObject : public RefCounted
 {
 public:
     // object id, CCScriptSupport need public m_uID

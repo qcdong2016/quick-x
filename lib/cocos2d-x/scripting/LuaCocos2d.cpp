@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on 09/16/16 11:55:28.
+** Generated automatically by tolua++-1.0.92 on 10/11/16 21:23:34.
 */
 
 /****************************************************************************
@@ -266,6 +266,8 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCTransitionSlideInB)), "CCTransitionSlideInB");
  tolua_usertype(tolua_S,"CCConfiguration");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCConfiguration)), "CCConfiguration");
+ tolua_usertype(tolua_S,"CCScheduler");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCScheduler)), "CCScheduler");
  tolua_usertype(tolua_S,"CCKeypadDispatcher");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCKeypadDispatcher)), "CCKeypadDispatcher");
  tolua_usertype(tolua_S,"CCSkewBy");
@@ -274,14 +276,14 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCFlipX)), "CCFlipX");
  tolua_usertype(tolua_S,"CCOrbitCamera");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCOrbitCamera)), "CCOrbitCamera");
- tolua_usertype(tolua_S,"CCScheduler");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCScheduler)), "CCScheduler");
+ tolua_usertype(tolua_S,"CCDirector");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCDirector)), "CCDirector");
  tolua_usertype(tolua_S,"CCTransitionSlideInT");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCTransitionSlideInT)), "CCTransitionSlideInT");
  tolua_usertype(tolua_S,"CCLabelTTF");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCLabelTTF)), "CCLabelTTF");
- tolua_usertype(tolua_S,"CCDirector");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCDirector)), "CCDirector");
+ tolua_usertype(tolua_S,"SubSystem");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(SubSystem)), "SubSystem");
  tolua_usertype(tolua_S,"CCEaseExponentialOut");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCEaseExponentialOut)), "CCEaseExponentialOut");
  tolua_usertype(tolua_S,"CCCatmullRomTo");
@@ -44372,140 +44374,6 @@ static int tolua_Cocos2d_CCDirector_getScheduler00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getActionManager of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getActionManager00
-static int tolua_Cocos2d_CCDirector_getActionManager00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getActionManager'", NULL);
-#endif
-  {
-   CCActionManager* tolua_ret = (CCActionManager*)  self->getActionManager();
-    int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
-    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
-    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCActionManager");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getActionManager'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getTouchDispatcher of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getTouchDispatcher00
-static int tolua_Cocos2d_CCDirector_getTouchDispatcher00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchDispatcher'", NULL);
-#endif
-  {
-   CCTouchDispatcher* tolua_ret = (CCTouchDispatcher*)  self->getTouchDispatcher();
-    int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
-    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
-    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCTouchDispatcher");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getTouchDispatcher'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getKeypadDispatcher of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getKeypadDispatcher00
-static int tolua_Cocos2d_CCDirector_getKeypadDispatcher00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getKeypadDispatcher'", NULL);
-#endif
-  {
-   CCKeypadDispatcher* tolua_ret = (CCKeypadDispatcher*)  self->getKeypadDispatcher();
-    int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
-    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
-    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCKeypadDispatcher");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getKeypadDispatcher'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getAccelerometer of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getAccelerometer00
-static int tolua_Cocos2d_CCDirector_getAccelerometer00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAccelerometer'", NULL);
-#endif
-  {
-   CCAccelerometer* tolua_ret = (CCAccelerometer*)  self->getAccelerometer();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCAccelerometer");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getAccelerometer'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getDeltaTime of class  CCDirector */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getDeltaTime00
 static int tolua_Cocos2d_CCDirector_getDeltaTime00(lua_State* tolua_S)
@@ -44563,6 +44431,41 @@ static int tolua_Cocos2d_CCDirector_sharedDirector00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'sharedDirector'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getSubSystem of class  CCDirector */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getSubSystem00
+static int tolua_Cocos2d_CCDirector_getSubSystem00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
+  const std::string name = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSubSystem'", NULL);
+#endif
+  {
+   SubSystem* tolua_ret = (SubSystem*)  self->getSubSystem(name);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"SubSystem");
+   tolua_pushcppstring(tolua_S,(const char*)name);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getSubSystem'.",&tolua_err);
  return 0;
 #endif
 }
@@ -48454,6 +48357,9 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setSecureTextEntry",tolua_Cocos2d_CCTextFieldTTF_setSecureTextEntry00);
    tolua_function(tolua_S,"isSecureTextEntry",tolua_Cocos2d_CCTextFieldTTF_isSecureTextEntry00);
   tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"SubSystem","SubSystem","CCObject",NULL);
+  tolua_beginmodule(tolua_S,"SubSystem");
+  tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"kCCDirectorProjection2D",kCCDirectorProjection2D);
   tolua_constant(tolua_S,"kCCDirectorProjection3D",kCCDirectorProjection3D);
   tolua_constant(tolua_S,"kCCDirectorProjectionCustom",kCCDirectorProjectionCustom);
@@ -48499,13 +48405,50 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getNotificationNode",tolua_Cocos2d_CCDirector_getNotificationNode00);
    tolua_function(tolua_S,"setNotificationNode",tolua_Cocos2d_CCDirector_setNotificationNode00);
    tolua_function(tolua_S,"getScheduler",tolua_Cocos2d_CCDirector_getScheduler00);
-   tolua_function(tolua_S,"getActionManager",tolua_Cocos2d_CCDirector_getActionManager00);
-   tolua_function(tolua_S,"getTouchDispatcher",tolua_Cocos2d_CCDirector_getTouchDispatcher00);
-   tolua_function(tolua_S,"getKeypadDispatcher",tolua_Cocos2d_CCDirector_getKeypadDispatcher00);
-   tolua_function(tolua_S,"getAccelerometer",tolua_Cocos2d_CCDirector_getAccelerometer00);
    tolua_function(tolua_S,"getDeltaTime",tolua_Cocos2d_CCDirector_getDeltaTime00);
    tolua_function(tolua_S,"sharedDirector",tolua_Cocos2d_CCDirector_sharedDirector00);
+   tolua_function(tolua_S,"getSubSystem",tolua_Cocos2d_CCDirector_getSubSystem00);
   tolua_endmodule(tolua_S);
+
+  { /* begin embedded lua code */
+   int top = lua_gettop(tolua_S);
+   static const unsigned char B[] = {
+    10,108,111, 99, 97,108, 32,100,105,114,101, 99,116,111,114,
+     32, 61, 32, 67, 67, 68,105,114,101, 99,116,111,114, 58,115,
+    104, 97,114,101,100, 68,105,114,101, 99,116,111,114, 40, 41,
+     10,100,105,114,101, 99,116,111,114, 46, 97, 99,116,105,111,
+    110, 77, 97,110, 97,103,101,114, 32, 61, 32,116,111,108,117,
+     97, 46, 99, 97,115,116, 40,100,105,114,101, 99,116,111,114,
+     58,103,101,116, 83,117, 98, 83,121,115,116,101,109, 40, 39,
+     67, 67, 65, 99,116,105,111,110, 77, 97,110, 97,103,101,114,
+     39, 41, 44, 32, 34, 67, 67, 65, 99,116,105,111,110, 77, 97,
+    110, 97,103,101,114, 34, 41, 10,100,105,114,101, 99,116,111,
+    114, 46,116,111,117, 99,104, 68,105,115,112, 97,116, 99,104,
+    101,114, 32, 61, 32,116,111,108,117, 97, 46, 99, 97,115,116,
+     40,100,105,114,101, 99,116,111,114, 58,103,101,116, 83,117,
+     98, 83,121,115,116,101,109, 40, 39, 67, 67, 84,111,117, 99,
+    104, 68,105,115,112, 97,116, 99,104,101,114, 39, 41, 44, 32,
+     34, 67, 67, 84,111,117, 99,104, 68,105,115,112, 97,116, 99,
+    104,101,114, 34, 41, 10,100,105,114,101, 99,116,111,114, 46,
+     97, 99, 99,101,108,101,114,111,109,101,116,101,114, 32, 61,
+     32,116,111,108,117, 97, 46, 99, 97,115,116, 40,100,105,114,
+    101, 99,116,111,114, 58,103,101,116, 83,117, 98, 83,121,115,
+    116,101,109, 40, 39, 67, 67, 65, 99, 99,101,108,101,114,111,
+    109,101,116,101,114, 39, 41, 44, 32, 34, 67, 67, 65, 99, 99,
+    101,108,101,114,111,109,101,116,101,114, 34, 41, 10,100,105,
+    114,101, 99,116,111,114, 46,107,101,121,112, 97,100, 68,105,
+    115,112, 97,116, 99,104,101,114, 32, 61, 32,116,111,108,117,
+     97, 46, 99, 97,115,116, 40,100,105,114,101, 99,116,111,114,
+     58,103,101,116, 83,117, 98, 83,121,115,116,101,109, 40, 39,
+     67, 67, 75,101,121,112, 97,100, 68,105,115,112, 97,116, 99,
+    104,101,114, 39, 41, 44, 32, 34, 67, 67, 75,101,121,112, 97,
+    100, 68,105,115,112, 97,116, 99,104,101,114, 34, 41, 45, 45,
+     45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,32
+   };
+   tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua: embedded Lua code 1");
+   lua_settop(tolua_S, top);
+  } /* end of embedded lua code */
+
   tolua_cclass(tolua_S,"CCScheduler","CCScheduler","CCObject",NULL);
   tolua_beginmodule(tolua_S,"CCScheduler");
    tolua_function(tolua_S,"getTimeScale",tolua_Cocos2d_CCScheduler_getTimeScale00);
@@ -48583,7 +48526,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
      32, 61, 32, 99,102,117,110, 99,116,105,111,110, 10,101,110,
     100, 10,101,110,100, 45, 45, 45, 45, 45,32
    };
-   tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua: embedded Lua code 1");
+   tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua: embedded Lua code 2");
    lua_settop(tolua_S, top);
   } /* end of embedded lua code */
 
