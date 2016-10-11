@@ -7,10 +7,10 @@ function HelloUI:ctor()
     
     local hello = display.newSprite('HelloWorld.png'):addTo(self)
 
-    hello:runAction(CCRepeatForever:create(transition.sequence({
+    hello:runAction(CCRepeatForever:create(CCSequence:create(
         CCScaleTo:create(3, 0.5),
         CCScaleTo:create(1, 1)
-    })))
+    )))
 
     hello:runAction(CCScaleTo:create(3, 0.5))
 
