@@ -29,10 +29,10 @@ function App:run()
     self:enterState("Menu")
 end
 
-function AppBase:onEnterBackground()
+function App:onEnterBackground()
 end
 
-function AppBase:onEnterForeground()
+function App:onEnterForeground()
 end
 
 return App

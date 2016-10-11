@@ -149,17 +149,13 @@ bool CCDirector::init(void)
     // scheduler
     m_pScheduler = new CCScheduler();
     // action manager
-    m_pActionManager = new CCActionManager();
-    m_pScheduler->scheduleUpdateForTarget(m_pActionManager, kCCPrioritySystem, false);
-    // touchDispatcher
-    m_pTouchDispatcher = new CCTouchDispatcher();
-    m_pTouchDispatcher->init();
 
-    // KeypadDispatcher
-    m_pKeypadDispatcher = new CCKeypadDispatcher();
+	CCActionManager* am = addSubSystem<CCActionManager>();
+    m_pScheduler->scheduleUpdateForTarget(am, kCCPrioritySystem, false);
 
-    // Accelerometer
-    m_pAccelerometer = new CCAccelerometer();
+	addSubSystem<CCTouchDispatcher>();
+	addSubSystem<CCKeypadDispatcher>();
+	addSubSystem<CCAccelerometer>();
 
     // create autorelease pool
     CCPoolManager::sharedPoolManager()->push();
@@ -179,10 +175,6 @@ CCDirector::~CCDirector(void)
     CC_SAFE_RELEASE(m_pNotificationNode);
     CC_SAFE_RELEASE(m_pobScenesStack);
     CC_SAFE_RELEASE(m_pScheduler);
-    CC_SAFE_RELEASE(m_pActionManager);
-    CC_SAFE_RELEASE(m_pTouchDispatcher);
-    CC_SAFE_RELEASE(m_pKeypadDispatcher);
-    CC_SAFE_DELETE(m_pAccelerometer);
 
     // pop the autorelease pool
     CCPoolManager::sharedPoolManager()->pop();
@@ -373,8 +365,9 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         
         CHECK_GL_ERROR_DEBUG();
 
-        m_pobOpenGLView->setTouchDelegate(m_pTouchDispatcher);
-        m_pTouchDispatcher->setDispatchEvents(true);
+		CCTouchDispatcher* td = getSubSystem<CCTouchDispatcher>();
+        m_pobOpenGLView->setTouchDelegate(td);
+        td->setDispatchEvents(true);
     }
 }
 
@@ -710,7 +703,7 @@ void CCDirector::purgeDirector()
     
     // don't release the event handlers
     // They are needed in case the director is run again
-    m_pTouchDispatcher->removeAllDelegates();
+    getSubSystem<CCTouchDispatcher>()->removeAllDelegates();
 
     if (m_pRunningScene)
     {
@@ -1002,62 +995,6 @@ void CCDirector::setScheduler(CCScheduler* pScheduler)
 CCScheduler* CCDirector::getScheduler()
 {
     return m_pScheduler;
-}
-
-void CCDirector::setActionManager(CCActionManager* pActionManager)
-{
-    if (m_pActionManager != pActionManager)
-    {
-        CC_SAFE_RETAIN(pActionManager);
-        CC_SAFE_RELEASE(m_pActionManager);
-        m_pActionManager = pActionManager;
-    }    
-}
-
-CCActionManager* CCDirector::getActionManager()
-{
-    return m_pActionManager;
-}
-
-void CCDirector::setTouchDispatcher(CCTouchDispatcher* pTouchDispatcher)
-{
-    if (m_pTouchDispatcher != pTouchDispatcher)
-    {
-        CC_SAFE_RETAIN(pTouchDispatcher);
-        CC_SAFE_RELEASE(m_pTouchDispatcher);
-        m_pTouchDispatcher = pTouchDispatcher;
-    }    
-}
-
-CCTouchDispatcher* CCDirector::getTouchDispatcher()
-{
-    return m_pTouchDispatcher;
-}
-
-void CCDirector::setKeypadDispatcher(CCKeypadDispatcher* pKeypadDispatcher)
-{
-    CC_SAFE_RETAIN(pKeypadDispatcher);
-    CC_SAFE_RELEASE(m_pKeypadDispatcher);
-    m_pKeypadDispatcher = pKeypadDispatcher;
-}
-
-CCKeypadDispatcher* CCDirector::getKeypadDispatcher()
-{
-    return m_pKeypadDispatcher;
-}
-
-void CCDirector::setAccelerometer(CCAccelerometer* pAccelerometer)
-{
-    if (m_pAccelerometer != pAccelerometer)
-    {
-        CC_SAFE_DELETE(m_pAccelerometer);
-        m_pAccelerometer = pAccelerometer;
-    }
-}
-
-CCAccelerometer* CCDirector::getAccelerometer()
-{
-    return m_pAccelerometer;
 }
 
 /***************************************************

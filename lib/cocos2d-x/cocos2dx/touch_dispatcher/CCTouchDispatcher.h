@@ -29,6 +29,7 @@ THE SOFTWARE.
 #include "cocoa/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "CCTouchDelegateProtocol.h"
+#include "SubSystem.h"
 
 NS_CC_BEGIN
 
@@ -113,17 +114,15 @@ struct _ccCArray;
  @since v0.8.0
  @js NA
  */
-class CC_DLL CCTouchDispatcher : public CCObject, public EGLTouchDelegate
+class CC_DLL CCTouchDispatcher : public SubSystem, public EGLTouchDelegate
 {
+	CCOBJECT(CCTouchDispatcher, SubSystem)
 public:
     /**
      * @lua NA
      */
     ~CCTouchDispatcher();
-    /**
-     * @lua NA
-     */
-    bool init(void);
+
     /**
      * @lua NA
      */
@@ -133,7 +132,9 @@ public:
         , m_pHandlersToAdd(NULL)
         , m_pHandlersToRemove(NULL)
         
-    {}
+    {
+		init();
+	}
 
 public:
     /** Whether or not the events are going to be dispatched. Default: true */
@@ -202,6 +203,7 @@ protected:
     void forceRemoveAllDelegates(void);
     void rearrangeHandlers(CCArray* pArray);
     CCTouchHandler* findHandler(CCArray* pArray, CCTouchDelegate *pDelegate);
+	bool init(void);
 
 protected:
      CCArray* m_pTargetedHandlers;

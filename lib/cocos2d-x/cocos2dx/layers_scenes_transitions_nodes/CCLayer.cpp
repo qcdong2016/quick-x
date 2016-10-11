@@ -103,11 +103,11 @@ void CCLayer::setAccelerometerEnabled(bool enabled)
             CCDirector* pDirector = CCDirector::sharedDirector();
             if (enabled)
             {
-                pDirector->getAccelerometer()->setDelegate(this);
+                pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
             }
             else
             {
-                pDirector->getAccelerometer()->setDelegate(NULL);
+                pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
             }
         }
     }
@@ -120,7 +120,7 @@ void CCLayer::setAccelerometerInterval(double interval) {
         if (m_bRunning)
         {
             CCDirector* pDirector = CCDirector::sharedDirector();
-            pDirector->getAccelerometer()->setAccelerometerInterval(interval);
+            pDirector->getSubSystem<CCAccelerometer>()->setAccelerometerInterval(interval);
         }
     }
 }
@@ -152,11 +152,11 @@ void CCLayer::setKeypadEnabled(bool enabled)
             CCDirector* pDirector = CCDirector::sharedDirector();
             if (enabled)
             {
-                pDirector->getKeypadDispatcher()->addDelegate(this);
+                pDirector->getSubSystem<CCKeypadDispatcher>()->addDelegate(this);
             }
             else
             {
-                pDirector->getKeypadDispatcher()->removeDelegate(this);
+                pDirector->getSubSystem<CCKeypadDispatcher>()->removeDelegate(this);
             }
         }
     }
@@ -189,13 +189,13 @@ void CCLayer::onEnter()
     // add this layer to concern the Accelerometer Sensor
     if (m_bAccelerometerEnabled)
     {
-        pDirector->getAccelerometer()->setDelegate(this);
+        pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
     }
 
     // add this layer to concern the keypad msg
     if (m_bKeypadEnabled)
     {
-        pDirector->getKeypadDispatcher()->addDelegate(this);
+        pDirector->getSubSystem<CCKeypadDispatcher>()->addDelegate(this);
     }
 }
 
@@ -206,13 +206,13 @@ void CCLayer::onExit()
     // remove this layer from the delegates who concern Accelerometer Sensor
     if (m_bAccelerometerEnabled)
     {
-        pDirector->getAccelerometer()->setDelegate(NULL);
+		pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
     }
 
     // remove this layer from the delegates who concern the keypad msg
     if (m_bKeypadEnabled)
     {
-        pDirector->getKeypadDispatcher()->removeDelegate(this);
+		pDirector->getSubSystem<CCKeypadDispatcher>()->removeDelegate(this);
     }
 
     CCNode::onExit();
@@ -223,7 +223,7 @@ void CCLayer::onEnterTransitionDidFinish()
     if (m_bAccelerometerEnabled)
     {
         CCDirector* pDirector = CCDirector::sharedDirector();
-        pDirector->getAccelerometer()->setDelegate(this);
+		pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
     }
 
     CCNode::onEnterTransitionDidFinish();

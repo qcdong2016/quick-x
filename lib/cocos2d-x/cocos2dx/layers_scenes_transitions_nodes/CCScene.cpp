@@ -291,7 +291,7 @@ void CCScene::cleanup(void)
     m_touchRegistered = false;
     m_touchableNodes->removeAllObjects();
     m_touchingTargets->removeAllObjects();
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    CCDirector::sharedDirector()->getSubSystem<CCTouchDispatcher>()->removeDelegate(this);
 
     CCLayer::cleanup();
 }
@@ -329,7 +329,7 @@ void CCScene::enableTouchDispatching()
 {
     if (!m_touchRegistered)
     {
-        CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
+		CCDirector::sharedDirector()->getSubSystem<CCTouchDispatcher>()->addStandardDelegate(this, 0);
         m_touchRegistered = true;
     }
     m_touchDispatchingEnabled = true;

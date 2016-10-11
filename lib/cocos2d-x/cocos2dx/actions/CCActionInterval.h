@@ -27,11 +27,12 @@ THE SOFTWARE.
 #ifndef __ACTION_CCINTERVAL_ACTION_H__
 #define __ACTION_CCINTERVAL_ACTION_H__
 
+#include <vector>
 #include "base_nodes/CCNode.h"
 #include "CCAction.h"
 #include "sprite_nodes/CCSpriteFrame.h"
 #include "sprite_nodes/CCAnimation.h"
-#include <vector>
+#include "CCActionFiniteTime.h"
 
 NS_CC_BEGIN
 

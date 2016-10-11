@@ -27,17 +27,21 @@ THE SOFTWARE.
 #ifndef __CCDIRECTOR_H__
 #define __CCDIRECTOR_H__
 
+#include "ccTypes.h"
+#include "CCGL.h"
 #include "platform/CCPlatformMacros.h"
 #include "cocoa/CCObject.h"
-#include "ccTypes.h"
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCArray.h"
-#include "CCGL.h"
 #include "kazmath/mat4.h"
 #include "label_nodes/CCLabelAtlas.h"
 
+#include "SubSystem.h"
+#include "cocos/Ptr.h"
+
 
 NS_CC_BEGIN
+
 
 class CC_DLL CCDirectorDelegate
 {
@@ -331,31 +335,34 @@ public:
      */
     CC_PROPERTY(CCScheduler*, m_pScheduler, Scheduler);
 
-    /** CCActionManager associated with this director
-     @since v2.0
-     */
-    CC_PROPERTY(CCActionManager*, m_pActionManager, ActionManager);
-
-    /** CCTouchDispatcher associated with this director
-     @since v2.0
-     */
-    CC_PROPERTY(CCTouchDispatcher*, m_pTouchDispatcher, TouchDispatcher);
-
-    /** CCKeypadDispatcher associated with this director
-     @since v2.0
-     */
-    CC_PROPERTY(CCKeypadDispatcher*, m_pKeypadDispatcher, KeypadDispatcher);
-
-    /** CCAccelerometer associated with this director
-     @since v2.0
-     @js NA
-     @lua NA
-     */
-    CC_PROPERTY(CCAccelerometer*, m_pAccelerometer, Accelerometer);
-
     /* delta time since last tick to main loop */
 	CC_PROPERTY_READONLY(float, m_fDeltaTime, DeltaTime);
 	
+	template<typename T>
+	T* addSubSystem() 
+	{
+		T* ss = new T;
+		addSubSystem(T::getTypeName(), ss);
+		return ss;
+	}
+
+	template<typename T>
+	T* getSubSystem() 
+	{
+		return static_cast<T*>(getSubSystem(T::getTypeName()));
+	}
+
+	void addSubSystem(const std::string& name, SubSystem* ss)
+	{
+		_subSustems[name] = ss;
+	}
+
+	SubSystem* getSubSystem(const std::string& name)
+	{
+		auto it = _subSustems.find(name);
+		return (it != _subSustems.end()) ? it->second.Get() : nullptr;
+	}
+
 public:
     /** returns a shared instance of the director 
      *  @js getInstance
@@ -377,6 +384,9 @@ protected:
     /** calculates delta time since last time it was called */    
     void calculateDeltaTime();
 protected:
+
+	std::map<std::string, SharedPtr<SubSystem> > _subSustems;
+
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;
 

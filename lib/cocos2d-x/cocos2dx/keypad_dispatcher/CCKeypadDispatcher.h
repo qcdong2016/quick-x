@@ -27,6 +27,7 @@ THE SOFTWARE.
 
 #include "CCKeypadDelegate.h"
 #include "cocoa/CCArray.h"
+#include "SubSystem.h"
 
 NS_CC_BEGIN
 
@@ -48,8 +49,9 @@ struct _ccCArray;
 @js NA
 @lua NA
 */
-class CC_DLL CCKeypadDispatcher : public CCObject
+class CC_DLL CCKeypadDispatcher : public SubSystem
 {
+	CCOBJECT(CCKeypadDispatcher, SubSystem)
 public:
     CCKeypadDispatcher();
     ~CCKeypadDispatcher();
