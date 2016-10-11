@@ -1,7 +1,7 @@
 
 #include "cocos2d.h"
 #include "AppDelegate.h"
-#include "SimpleAudioEngine.h"
+#include "audio/SimpleAudioEngine.h"
 #include "support/CCNotificationCenter.h"
 #include "CCLuaEngine.h"
 #include <string>

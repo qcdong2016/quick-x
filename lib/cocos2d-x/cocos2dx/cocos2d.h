@@ -109,10 +109,10 @@ THE SOFTWARE.
 #include "misc_nodes/CCRenderTexture.h"
 
 // particle_nodes
-#include "particle_nodes/CCParticleBatchNode.h"
-#include "particle_nodes/CCParticleSystem.h"
-#include "particle_nodes/CCParticleExamples.h"
-#include "particle_nodes/CCParticleSystemQuad.h"
+#include "particle/CCParticleBatchNode.h"
+#include "particle/CCParticleSystem.h"
+#include "particle/CCParticleExamples.h"
+#include "particle/CCParticleSystemQuad.h"
 
 // platform
 #include "platform/CCDevice.h"
@@ -267,12 +267,12 @@ THE SOFTWARE.
 #include "textures/CCTexturePVR.h"
 
 // tilemap_parallax_nodes
-#include "tilemap_parallax_nodes/CCParallaxNode.h"
-#include "tilemap_parallax_nodes/CCTMXLayer.h"
-#include "tilemap_parallax_nodes/CCTMXObjectGroup.h"
-#include "tilemap_parallax_nodes/CCTMXTiledMap.h"
-#include "tilemap_parallax_nodes/CCTMXXMLParser.h"
-#include "tilemap_parallax_nodes/CCTileMapAtlas.h"
+#include "tilemap/CCParallaxNode.h"
+#include "tilemap/CCTMXLayer.h"
+#include "tilemap/CCTMXObjectGroup.h"
+#include "tilemap/CCTMXTiledMap.h"
+#include "tilemap/CCTMXXMLParser.h"
+#include "tilemap/CCTileMapAtlas.h"
 
 // touch_dispatcher
 #include "touch_dispatcher/CCTouch.h"
