@@ -27,7 +27,6 @@ THE SOFTWARE.
 #define _SIMPLE_AUDIO_ENGINE_H_
 
 #include <stddef.h>
-#include "Export.h"
 #include <typeinfo>
 #include <ctype.h>
 #include <string.h>

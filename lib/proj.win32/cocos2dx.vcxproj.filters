@@ -7,17 +7,8 @@
     <Filter Include="cocos2d-x\cocos2dx">
       <UniqueIdentifier>{6013147b-433f-4a04-b85f-ebac33bd33f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\CocosDenshion">
-      <UniqueIdentifier>{5bdfb152-7e2d-491a-88f3-34fb63173eaa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\scripting">
       <UniqueIdentifier>{d7229a83-70ec-42a9-92cd-359352bea614}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\CocosDenshion\include">
-      <UniqueIdentifier>{a1a4b776-ba16-411d-bcb4-af569e1a22fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\CocosDenshion\win32">
-      <UniqueIdentifier>{73deda69-3755-4d3f-b8d4-1352f8f8c89a}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\cocos2dx\actions">
       <UniqueIdentifier>{d6f7d283-7ec1-47c8-9568-c2f649f3e8b4}</UniqueIdentifier>
@@ -67,9 +58,6 @@
     <Filter Include="cocos2d-x\cocos2dx\misc_nodes">
       <UniqueIdentifier>{17011d4b-7b34-4349-ac14-21e0cab58a7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\cocos2dx\particle_nodes">
-      <UniqueIdentifier>{b663d2ad-cdaf-41d9-af35-91ad9d53af0d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\cocos2dx\platform">
       <UniqueIdentifier>{7e9b3e2f-4653-4dab-9ad4-7250f1910c63}</UniqueIdentifier>
     </Filter>
@@ -90,9 +78,6 @@
     </Filter>
     <Filter Include="cocos2d-x\cocos2dx\textures">
       <UniqueIdentifier>{85cf7c1c-ea9a-4f7e-a5e6-646525615492}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\cocos2dx\tilemap_parallax_nodes">
-      <UniqueIdentifier>{0f496bea-4e30-4390-b351-d001f26d205e}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\cocos2dx\touch_dispatcher">
       <UniqueIdentifier>{7df83a18-d713-46ad-bee4-f03c1ac27958}</UniqueIdentifier>
@@ -169,9 +154,6 @@
     <Filter Include="cocos2d-x\cocos">
       <UniqueIdentifier>{18ba7d20-d1b1-4c60-9549-6b1b27faa6c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\scripting\cocoslua">
-      <UniqueIdentifier>{9e5ebf98-6181-432b-a393-adc762fff342}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\scripting\lua">
       <UniqueIdentifier>{cd2b7f64-fefc-4047-b104-4ed29a5ff67a}</UniqueIdentifier>
     </Filter>
@@ -229,14 +211,17 @@
     <Filter Include="cocos2d-x\native\win32">
       <UniqueIdentifier>{e056c864-e3f2-499d-a05b-912680a5df6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cocos2d-x\audio">
+      <UniqueIdentifier>{e106b45e-af51-47c3-a675-4bc281bbcf34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\tilemap">
+      <UniqueIdentifier>{e5333938-29a1-46ab-b639-2dff0b95ccfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\particle">
+      <UniqueIdentifier>{364583ba-a74d-46a4-bd7f-e2e13d317888}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cocos2d-x\CocosDenshion\win32\MciPlayer.cpp">
-      <Filter>cocos2d-x\CocosDenshion\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\CocosDenshion\win32\SimpleAudioEngine.cpp">
-      <Filter>cocos2d-x\CocosDenshion\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCAction.cpp">
       <Filter>cocos2d-x\cocos2dx\actions</Filter>
     </ClCompile>
@@ -381,24 +366,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouch.cpp">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXLayer.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXObjectGroup.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXTiledMap.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXXMLParser.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCParallaxNode.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTileMapAtlas.cpp">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\textures\CCTextureAtlas.cpp">
       <Filter>cocos2d-x\cocos2dx\textures</Filter>
     </ClCompile>
@@ -479,18 +446,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.cpp">
       <Filter>cocos2d-x\cocos2dx\script_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystem.cpp">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystemQuad.cpp">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleBatchNode.cpp">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleExamples.cpp">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
@@ -725,45 +680,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos\RefCounted.cpp">
       <Filter>cocos2d-x\cocos</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaValue.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\Cocos2dxLuaLoader.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaCocos2d.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaCocoStudio.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\LuaTable.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\snapshot.c">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.c">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.cpp">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_map.c">
       <Filter>cocos2d-x\scripting\tolua</Filter>
@@ -1053,17 +969,83 @@
     <ClCompile Include="..\cocos2d-x\native\win32\CCNativeWin32.cpp">
       <Filter>cocos2d-x\native\win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\audio\win32\MciPlayer.cpp">
+      <Filter>cocos2d-x\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\audio\win32\SimpleAudioEngine.cpp">
+      <Filter>cocos2d-x\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\LuaCocos2d.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\LuaCocoStudio.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\LuaFunction.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\LuaTable.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\snapshot.c">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\tolua_fix.c">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\CCLuaBridge.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\CCLuaEngine.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\CCLuaStack.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\CCLuaValue.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCParallaxNode.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCTileMapAtlas.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCTMXLayer.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCTMXObjectGroup.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCTMXTiledMap.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\tilemap\CCTMXXMLParser.cpp">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\particle\CCParticleSystemQuad.cpp">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\particle\CCParticleBatchNode.cpp">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\particle\CCParticleExamples.cpp">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\particle\CCParticleSystem.cpp">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cocos2d-x\CocosDenshion\include\Export.h">
-      <Filter>cocos2d-x\CocosDenshion\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\CocosDenshion\include\SimpleAudioEngine.h">
-      <Filter>cocos2d-x\CocosDenshion\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\CocosDenshion\win32\MciPlayer.h">
-      <Filter>cocos2d-x\CocosDenshion\win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
       <Filter>cocos2d-x\cocos2dx\actions</Filter>
     </ClInclude>
@@ -1226,24 +1208,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDelegateProtocol.h">
       <Filter>cocos2d-x\cocos2dx\touch_dispatcher</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTileMapAtlas.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXLayer.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXObjectGroup.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXTiledMap.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCTMXXMLParser.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\tilemap_parallax_nodes\CCParallaxNode.h">
-      <Filter>cocos2d-x\cocos2dx\tilemap_parallax_nodes</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\textures\CCTextureAtlas.h">
       <Filter>cocos2d-x\cocos2dx\textures</Filter>
     </ClInclude>
@@ -1381,21 +1345,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.h">
       <Filter>cocos2d-x\cocos2dx\script_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystem.h">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleSystemQuad.h">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\firePngData.h">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleBatchNode.h">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\particle_nodes\CCParticleExamples.h">
-      <Filter>cocos2d-x\cocos2dx\particle_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCAccelerometerDelegate.h">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
@@ -1754,48 +1703,6 @@
     <ClInclude Include="..\cocos2d-x\cocos\Ptr.h">
       <Filter>cocos2d-x\cocos</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaBridge.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaEngine.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaStack.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\CCLuaValue.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\Cocos2dxLuaLoader.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_cocostudio_manual.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\lua_cocos2dx_manual.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaCocos2d.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaCocoStudio.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaFunction.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\LuaTable.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\snapshot.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\tolua_fix.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\cocoslua\xxdefaultkey.h">
-      <Filter>cocos2d-x\scripting\cocoslua</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\tolua\tolua++.h">
       <Filter>cocos2d-x\scripting\tolua</Filter>
     </ClInclude>
@@ -2074,6 +1981,87 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\native\win32\CCNativeWin32def.h">
       <Filter>cocos2d-x\native\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\audio\SimpleAudioEngine.h">
+      <Filter>cocos2d-x\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\audio\win32\MciPlayer.h">
+      <Filter>cocos2d-x\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\LuaCocoStudio.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\LuaFunction.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\LuaTable.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\snapshot.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\tolua_fix.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\xxdefaultkey.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\CCLuaBridge.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\CCLuaEngine.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\CCLuaStack.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\CCLuaValue.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.h">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCParallaxNode.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCTileMapAtlas.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCTMXLayer.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCTMXObjectGroup.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCTMXTiledMap.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\tilemap\CCTMXXMLParser.h">
+      <Filter>cocos2d-x\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\particle\CCParticleSystem.h">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\particle\CCParticleSystemQuad.h">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\particle\firePngData.h">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\particle\CCParticleBatchNode.h">
+      <Filter>cocos2d-x\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\particle\CCParticleExamples.h">
+      <Filter>cocos2d-x\particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

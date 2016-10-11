@@ -35,7 +35,7 @@ extern "C" {
 #include <string>
 #include "cocos2d.h"
 #include "CCLuaEngine.h"
-#include "SimpleAudioEngine.h"
+#include "audio/SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
 
 using namespace cocos2d;
