@@ -222,7 +222,6 @@
 		F4E882B6177015C400577406 /* CCAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881A6177015C400577406 /* CCAffineTransform.cpp */; };
 		F4E882B7177015C400577406 /* CCArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881A8177015C400577406 /* CCArray.cpp */; };
 		F4E882B8177015C400577406 /* CCAutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881AA177015C400577406 /* CCAutoreleasePool.cpp */; };
-		F4E882B9177015C400577406 /* CCDataVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881AD177015C400577406 /* CCDataVisitor.cpp */; };
 		F4E882BA177015C400577406 /* CCDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881AF177015C400577406 /* CCDictionary.cpp */; };
 		F4E882BB177015C400577406 /* CCGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881B3177015C400577406 /* CCGeometry.cpp */; };
 		F4E882BD177015C400577406 /* CCObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E881B8177015C400577406 /* CCObject.cpp */; };
@@ -775,8 +774,6 @@
 		F4E881A9177015C400577406 /* CCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCArray.h; sourceTree = "<group>"; };
 		F4E881AA177015C400577406 /* CCAutoreleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAutoreleasePool.cpp; sourceTree = "<group>"; };
 		F4E881AB177015C400577406 /* CCAutoreleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAutoreleasePool.h; sourceTree = "<group>"; };
-		F4E881AD177015C400577406 /* CCDataVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDataVisitor.cpp; sourceTree = "<group>"; };
-		F4E881AE177015C400577406 /* CCDataVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataVisitor.h; sourceTree = "<group>"; };
 		F4E881AF177015C400577406 /* CCDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDictionary.cpp; sourceTree = "<group>"; };
 		F4E881B0177015C400577406 /* CCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDictionary.h; sourceTree = "<group>"; };
 		F4E881B3177015C400577406 /* CCGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGeometry.cpp; sourceTree = "<group>"; };
@@ -1737,7 +1734,7 @@
 			isa = PBXGroup;
 			children = (
 				F45A2BB2166B07FC00760194 /* quickcocos2dx.pch */,
-				F45A2BA2166B07B600760194 /* libquickcocos2dx */,
+				F45A2BC0166B151300760194 /* cocos2d-x */,
 				F45A2B9F166B07B600760194 /* Frameworks */,
 				F45A2B9E166B07B600760194 /* Products */,
 			);
@@ -1759,15 +1756,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F45A2BA2166B07B600760194 /* libquickcocos2dx */ = {
-			isa = PBXGroup;
-			children = (
-				F45A2BC0166B151300760194 /* cocos2d-x */,
-			);
-			name = libquickcocos2dx;
-			path = lib;
-			sourceTree = QUICK_COCOS2DX_ROOT;
-		};
 		F45A2BC0166B151300760194 /* cocos2d-x */ = {
 			isa = PBXGroup;
 			children = (
@@ -1782,7 +1770,8 @@
 				9F1FE6A61DAD3921008FE0C7 /* tilemap */,
 				B1B895C61D8C664C00F80112 /* ui */,
 			);
-			path = "cocos2d-x";
+			name = "cocos2d-x";
+			path = "../cocos2d-x";
 			sourceTree = "<group>";
 		};
 		F45A2BC1166B15CA00760194 /* cocos2dx */ = {
@@ -1881,8 +1870,6 @@
 				F4E881A9177015C400577406 /* CCArray.h */,
 				F4E881AA177015C400577406 /* CCAutoreleasePool.cpp */,
 				F4E881AB177015C400577406 /* CCAutoreleasePool.h */,
-				F4E881AD177015C400577406 /* CCDataVisitor.cpp */,
-				F4E881AE177015C400577406 /* CCDataVisitor.h */,
 				F4E881AF177015C400577406 /* CCDictionary.cpp */,
 				F4E881B0177015C400577406 /* CCDictionary.h */,
 				F4E881B3177015C400577406 /* CCGeometry.cpp */,
@@ -2437,7 +2424,6 @@
 				F4E882B8177015C400577406 /* CCAutoreleasePool.cpp in Sources */,
 				B1B8960D1D8C664C00F80112 /* UIScrollView.cpp in Sources */,
 				9F1FE68D1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp in Sources */,
-				F4E882B9177015C400577406 /* CCDataVisitor.cpp in Sources */,
 				F4E882BA177015C400577406 /* CCDictionary.cpp in Sources */,
 				F4E882BB177015C400577406 /* CCGeometry.cpp in Sources */,
 				F4E882BD177015C400577406 /* CCObject.cpp in Sources */,

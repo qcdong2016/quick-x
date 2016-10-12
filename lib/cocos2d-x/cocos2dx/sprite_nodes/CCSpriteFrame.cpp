@@ -31,6 +31,15 @@ NS_CC_BEGIN
 
 // implementation of CCSpriteFrame
 
+CCSpriteFrame* CCSpriteFrame::create(const char* filename)
+{
+    CCTexture2D* tex = CCTextureCache::sharedTextureCache()->addImage(filename);
+    CCRect rect;
+    rect.size = tex->getContentSize();
+    
+    return createWithTexture(tex, rect);
+}
+
 CCSpriteFrame* CCSpriteFrame::create(const char* filename, const CCRect& rect)
 {
     CCSpriteFrame *pSpriteFrame = new CCSpriteFrame();;

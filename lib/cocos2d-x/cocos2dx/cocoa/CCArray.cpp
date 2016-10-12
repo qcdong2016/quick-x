@@ -391,9 +391,4 @@ void CCArray::paste(CCObject* o)
     }
 }
 
-void CCArray::acceptVisitor(CCDataVisitor &visitor)
-{
-    visitor.visit(this);
-}
-
 NS_CC_END
