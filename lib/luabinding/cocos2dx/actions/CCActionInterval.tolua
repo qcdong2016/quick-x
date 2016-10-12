@@ -1,3 +1,9 @@
+
+class CCActionInterval : public CCFiniteTimeAction
+{
+    CCActionInterval *copy(void);
+};
+
 class CCSequence : public CCActionInterval
 {
     static CCSequence* createWithTwoActions(CCFiniteTimeAction *pActionOne, CCFiniteTimeAction *pActionTwo);
@@ -31,43 +37,32 @@ $[
         return create(CCSpawn, ...)
     end
 $]
-    
-
-
-
-class CCActionInterval : public CCFiniteTimeAction
-{
-    CCActionInterval *copy(void);
-};
-
-
-
 
 class CCRepeat : public CCActionInterval
 {
-    
+
     static CCRepeat* create(CCFiniteTimeAction *pAction, unsigned int times);
 };
 
 
 class CCRepeatForever : public CCActionInterval
 {
-    
+
     static CCRepeatForever* create(CCActionInterval *pAction);
 };
 
 class CCRotateTo : public CCActionInterval
 {
-    
+
     static CCRotateTo* create(float fDuration, float fDeltaAngleX, float fDeltaAngleY);
-    
+
     static CCRotateTo* create(float fDuration, float fDeltaAngle);
 };
 
 
 class CCRotateBy : public CCActionInterval
 {
-    
+
     static CCRotateBy* create(float fDuration, float fDeltaAngleX, float fDeltaAngleY);
     static CCRotateBy* create(float fDuration, float fDeltaAngle);
 };
@@ -75,42 +70,42 @@ class CCRotateBy : public CCActionInterval
 
 class CCMoveBy : public CCActionInterval
 {
-    
+
     static CCMoveBy* create(float duration, CCPoint deltaPosition);
 };
 
 
 class CCMoveTo : public CCMoveBy
 {
-    
+
     static CCMoveTo* create(float duration, CCPoint position);
 };
 
 
 class CCSkewTo : public CCActionInterval
 {
-    
+
     static CCSkewTo* create(float t, float sx, float sy);
 };
 
 
 class CCSkewBy : public CCSkewTo
 {
-    
+
     static CCSkewBy* create(float t, float deltaSkewX, float deltaSkewY);
 };
 
 
 class CCJumpBy : public CCActionInterval
 {
-    
+
     static CCJumpBy* create(float duration, CCPoint position, float height, unsigned int jumps);
 };
 
 
 class CCJumpTo : public CCJumpBy
 {
-    
+
     static CCJumpTo* create(float duration, CCPoint position, float height, int jumps);
 };
 
@@ -130,102 +125,102 @@ class ccBezierConfig
 
 class CCBezierBy : public CCActionInterval
 {
-    
+
     static CCBezierBy* create(float t, ccBezierConfig c);
 };
 
 
 class CCBezierTo : public CCBezierBy
 {
-    
+
     static CCBezierTo* create(float t, ccBezierConfig c);
 };
 
 
 class CCScaleTo : public CCActionInterval
 {
-    
+
     static CCScaleTo* create(float duration, float sx, float sy);
-    
+
     static CCScaleTo* create(float duration, float s);
 };
 
 
 class CCScaleBy : public CCScaleTo
 {
-    
+
     static CCScaleBy* create(float duration, float sx, float sy);
-    
+
     static CCScaleBy* create(float duration, float s);
 };
 
 
 class CCBlink : public CCActionInterval
 {
-    
+
     static CCBlink* create(float duration, unsigned int uBlinks);
 };
 
 
 class CCFadeIn : public CCActionInterval
 {
-    
+
     static CCFadeIn* create(float d);
 };
 
 
 class CCFadeOut : public CCActionInterval
 {
-    
+
     static CCFadeOut* create(float d);
 };
 
 
 class CCFadeTo : public CCActionInterval
 {
-    
+
     static CCFadeTo* create(float duration, GLubyte opacity);
 };
 
 
 class CCTintTo : public CCActionInterval
 {
-    
+
     static CCTintTo* create(float duration, GLubyte red, GLubyte green, GLubyte blue);
 };
 
 
 class CCTintBy : public CCActionInterval
 {
-    
+
     static CCTintBy* create(float duration, GLshort deltaRed, GLshort deltaGreen, GLshort deltaBlue);
 };
 
 
 class CCDelayTime : public CCActionInterval
 {
-    
+
     static CCDelayTime* create(float d);
 };
 
 
 class CCReverseTime : public CCActionInterval
 {
-    
+
     static CCReverseTime* create(CCFiniteTimeAction *pAction);
 };
 
 
 class CCAnimate : public CCActionInterval
 {
-    
+
     static CCAnimate* create(CCAnimation *pAnimation);
 };
 
 
 class CCTargetedAction : public CCActionInterval
 {
-    
+
     static CCTargetedAction* create(CCNode* pTarget, CCFiniteTimeAction* pAction);
 };
 

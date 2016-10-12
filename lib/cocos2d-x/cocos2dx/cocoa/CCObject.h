@@ -55,6 +55,7 @@ class CCEvent;
  */
 class CC_DLL CCObject : public RefCounted
 {
+    CCOBJECT(CCObject, CCObject)
 public:
     // object id, CCScriptSupport need public m_uID
     unsigned int        m_uID;
