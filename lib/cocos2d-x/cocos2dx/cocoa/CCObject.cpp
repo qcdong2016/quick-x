@@ -78,14 +78,6 @@ CCObject::~CCObject(void)
     }
 }
 
-CCObject* CCObject::copy()
-{
-	CCObject* o = new SelfType(); // CCObject
-	o->autorelease();
-	paste(o);
-	return o;
-}
-
 void CCObject::paste(CCObject* o)
 {
 }
