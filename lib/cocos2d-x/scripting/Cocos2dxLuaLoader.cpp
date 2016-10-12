@@ -26,6 +26,7 @@
 #include <algorithm>
 
 #include "CCLuaStack.h"
+#include "IO\FileSystem.h"
 
 using namespace cocos2d;
 
@@ -58,8 +59,6 @@ extern "C"
         filename.append(".lua");
 
         // search file in package.path
-        unsigned char* chunk = NULL;
-        unsigned long chunkSize = 0;
         std::string chunkName;
         CCFileUtils* utils = CCFileUtils::sharedFileUtils();
 
@@ -69,6 +68,8 @@ extern "C"
         lua_pop(L, 1);
         size_t begin = 0;
         size_t next = searchpath.find_first_of(";", 0);
+
+		SharedPtr<MemBuffer> bf;
 
         do
         {
@@ -84,7 +85,7 @@ extern "C"
             chunkName = utils->fullPathForFilename(chunkName.c_str());
             if (utils->isFileExist(chunkName))
             {
-                chunk = utils->getFileData(chunkName.c_str(), "rb", &chunkSize);
+				bf = FileSystem::readAll(chunkName);
                 break;
             }
 
@@ -92,16 +93,11 @@ extern "C"
             next = searchpath.find_first_of(";", begin);
         }while ( begin < (size_t)searchpath.length());
 
-        if (chunk)
+        if (bf.Get() && !bf->isNull())
         {
-            CCLuaStack::lua_loadbuffer(L, (char*)chunk, (int)chunkSize, chunkName.c_str());
-            delete []chunk;
+            CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
+			return 1;
         }
-        else
-        {
-            return 0;
-        }
-
-        return 1;
+        return 0;
     }
 }

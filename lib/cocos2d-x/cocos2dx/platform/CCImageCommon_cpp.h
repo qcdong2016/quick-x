@@ -52,6 +52,7 @@ THE SOFTWARE.
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #endif // EMSCRIPTEN
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -114,53 +115,17 @@ CCImage::~CCImage()
 
 bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = eFmtPng*/)
 {
-    bool bRet = false;
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(strPath);
 
-#ifdef EMSCRIPTEN
-    // Emscripten includes a re-implementation of SDL that uses HTML5 canvas
-    // operations underneath. Consequently, loading images via IMG_Load (an SDL
-    // API) will be a lot faster than running libpng et al as compiled with
-    // Emscripten.
-    SDL_Surface *iSurf = IMG_Load(strPath);
+	if (!bf->isNull())
+		return initWithImageData(bf->getData(), bf->getSize(), eImgFmt);
 
-    int size = 4 * (iSurf->w * iSurf->h);
-    bRet = _initWithRawData((void*)iSurf->pixels, size, iSurf->w, iSurf->h, 8, true);
-
-    unsigned int *tmp = (unsigned int *)m_pData;
-    int nrPixels = iSurf->w * iSurf->h;
-    for(int i = 0; i < nrPixels; i++)
-    {
-        unsigned char *p = m_pData + i * 4;
-        tmp[i] = CC_RGB_PREMULTIPLY_ALPHA( p[0], p[1], p[2], p[3] );
-    }
-
-    SDL_FreeSurface(iSurf);
-#else
-    unsigned long nSize = 0;
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(strPath);
-    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(fullPath.c_str(), "rb", &nSize);
-    if (pBuffer != NULL && nSize > 0)
-    {
-        bRet = initWithImageData(pBuffer, nSize, eImgFmt);
-    }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
-#endif // EMSCRIPTEN
-
-    return bRet;
+    return false;
 }
 
 bool CCImage::initWithImageFileThreadSafe(const char *fullpath, EImageFormat imageType)
 {
-    bool bRet = false;
-    unsigned long nSize = 0;
-	unsigned char *pBuffer = CCFileUtils::sharedFileUtils()->getFileData(fullpath, "rb", &nSize);
-
-    if (pBuffer != NULL && nSize > 0)
-    {
-        bRet = initWithImageData(pBuffer, nSize, imageType);
-    }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
-    return bRet;
+	return initWithImageFile(fullpath, imageType);
 }
 
 bool CCImage::initWithImageData(void * pData, 

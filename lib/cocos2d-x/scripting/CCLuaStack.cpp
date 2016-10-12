@@ -74,6 +74,7 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 #include <string>
+#include "IO/FileSystem.h"
 
 using namespace std;
 
@@ -253,14 +254,13 @@ int CCLuaStack::executeScriptFile(const char *filename)
     CCAssert(filename, "CCLuaStack::executeScriptFile() - invalid filename");
 
     std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filename);
-    unsigned long chunkSize = 0;
-    unsigned char *chunk = CCFileUtils::sharedFileUtils()->getFileData(fullPath.c_str(), "rb", &chunkSize);
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(filename);
+
     int rn = 0;
-    if (chunk) {
-        if (lua_loadbuffer(m_state, (const char*)chunk, (int)chunkSize, fullPath.c_str()) == 0) {
+    if (!bf->isNull()) {
+        if (lua_loadbuffer(m_state, (const char*)bf->getData(), (int)bf->getSize(), fullPath.c_str()) == 0) {
             rn = executeFunction(0);
         }
-        delete chunk;
     }
     return rn;
 }
@@ -639,11 +639,10 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 
     do
     {
-        unsigned long size = 0;
-        unsigned char *zipFileData = utils->getFileData(zipFilePath.c_str(), "rb", &size);
+		SharedPtr<MemBuffer> bf = FileSystem::readAll(zipFilePath);
 
 		CCZipFile *zip = NULL;
-		zip = CCZipFile::createWithBuffer(zipFileData, size);
+		zip = CCZipFile::createWithBuffer(bf->getData(), bf->getSize());
 
         if (zip)
         {
@@ -678,10 +677,6 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
             lua_pushboolean(L, 0);
         }
 
-        if (zipFileData)
-        {
-            delete []zipFileData;
-        }
     } while (0);
 
     return 1;

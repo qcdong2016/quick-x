@@ -3,6 +3,7 @@
 #include "ccMacros.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -190,13 +191,8 @@ CCString* CCString::createWithFormat(const char* format, ...)
 
 CCString* CCString::createWithContentsOfFile(const char* pszFileName)
 {
-    unsigned long size = 0;
-    unsigned char* pData = 0;
-    CCString* pRet = NULL;
-    pData = CCFileUtils::sharedFileUtils()->getFileData(pszFileName, "rb", &size);
-    pRet = CCString::createWithData(pData, size);
-    CC_SAFE_DELETE_ARRAY(pData);
-    return pRet;
+	SharedPtr<MemBuffer> data = FileSystem::readAll(pszFileName);
+    return CCString::createWithData(data->getData(), data->getSize());;
 }
 
 NS_CC_END

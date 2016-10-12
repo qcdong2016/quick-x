@@ -102,7 +102,7 @@ public:
      *  @warning Recall: you are responsible for calling delete[] on any Non-NULL pointer returned.
      *  @js NA
      */
-    virtual unsigned char* getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize);
+	CC_DEPRECATED_ATTRIBUTE virtual unsigned char* getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize);
 
     /**
      *  Gets resource file data from a zip file.
@@ -271,6 +271,9 @@ public:
      * Set search root path.
       */
     void setSearchRootPath(const char* path);
+	const std::string& getSearchRootPath() {
+		return m_strDefaultResRootPath;
+	}
 
     /**
       * Add search path.

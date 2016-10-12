@@ -28,6 +28,7 @@
 #include "support/tinyxml2/tinyxml2.h"
 
 #include <vector> // because its based on windows 8 build :P
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -114,15 +115,12 @@ bool CCSAXParser::parse(const char* pXMLData, unsigned int uDataLength)
 
 bool CCSAXParser::parse(const char *pszFile)
 {
-    bool bRet = false;
-    unsigned long size = 0;
-    char* pBuffer = (char*)CCFileUtils::sharedFileUtils()->getFileData(pszFile, "rt", &size);
-    if (pBuffer != NULL && size > 0)
-    {
-        bRet = parse(pBuffer, (unsigned int)size);
-    }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
-    return bRet;
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(pszFile);
+	
+	if (!bf->isNull())
+		return parse((const char*)bf->getData(), (unsigned int)bf->getSize());
+
+	return false;
 }
 
 void CCSAXParser::startElement(void *ctx, const CC_XML_CHAR *name, const CC_XML_CHAR **atts)
