@@ -533,6 +533,7 @@ bool CCImage::_initWithRawData(void * pData, int nDatalen, int nWidth, int nHeig
     return bRet;
 }
 
+#if CC_WEBP_ENABLED > 0
 #include "decode.h"
 
 bool CCImage::_initWithWebpData(void *pData, int nDataLen)
@@ -570,6 +571,7 @@ bool CCImage::_initWithWebpData(void *pData, int nDataLen)
 	} while (0);
 	return bRet;
 }
+#endif // CC_WEBP_ENABLED
 
 bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
 {

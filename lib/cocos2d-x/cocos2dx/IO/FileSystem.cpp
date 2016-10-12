@@ -44,11 +44,12 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 {
 	std::string path(CCFileUtils::sharedFileUtils()->getSearchRootPath());
 
-#ifdef WIN32
     if (!dirPath.empty())
     {
         path.append(dirPath);
     }
+#ifdef WIN32
+
     path.append("/*");
     // Convert char to wchar
     std::basic_string<TCHAR> wPath;
@@ -75,11 +76,9 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 
     FindClose(hFind);
     return true;
+
 #else
-    if (dirPath && strlen(dirPath) > 0)
-    {
-        path.append(dirPath);
-    }
+
     path.append("/.");
     bool result = false;
 
@@ -203,8 +202,8 @@ std::string FileSystem::getDirectoryName(const std::string& path)
 #else
     // dirname() modifies the input string so create a temp string
     std::string dirname;
-    char* tempPath = new char[strlen(path) + 1];
-    strcpy(tempPath, path);
+    char* tempPath = new char[path.size() + 1];
+    strcpy(tempPath, path.c_str());
     char* dir = ::dirname(tempPath);
     if (dir && strlen(dir) > 0)
     {
@@ -212,7 +211,7 @@ std::string FileSystem::getDirectoryName(const std::string& path)
         // dirname() strips off the trailing '/' so add it back to be consistent with Windows
         dirname.append("/");
     }
-    SAFE_DELETE_ARRAY(tempPath);
+    CC_SAFE_DELETE(tempPath);
     return dirname;
 #endif
 }
