@@ -39,14 +39,21 @@ class CCObject;
 class CCNode;
 class CCEvent;
 
-#define CCOBJECT(self_type, parent_type) \
-	typedef self_type SelfType; \
-	typedef parent_type Super; \
-	public:\
-	static const std::string& getTypeName() {\
-		static const std::string typeNameStatic = #self_type;\
-		return typeNameStatic; \
-	}
+#define CCOBJECT(self_type, parent_type)                       \
+	typedef self_type SelfType;                                \
+	typedef parent_type Super;                                 \
+	public:                                                    \
+	static const std::string& getTypeName() {                  \
+		static const std::string typeNameStatic = #self_type;  \
+		return typeNameStatic;                                 \
+	}                                                          \
+    virtual CCObject* copy()                                   \
+    {                                                          \
+        CCObject* o = new SelfType();                          \
+        o->autorelease();                                      \
+        paste(o);                                              \
+        return o;                                              \
+    }
 
 #define O dynamic_cast<SelfType*>(o)
 
@@ -74,21 +81,20 @@ public:
      *  @lua NA
      */
     virtual ~CCObject(void);
-    
+
     void release(void);
     void retain(void);
     CCObject* autorelease(void);
     bool isSingleReference(void) const;
 	unsigned int retainCount(void) const;
 
-	CCObject* copy(void);
 	// paste this proprty to o;
 	virtual void paste(CCObject* o);
 
 	virtual bool isEqual(const CCObject* pObject);
     virtual void acceptVisitor(CCDataVisitor &visitor);
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
-    
+
     friend class CCAutoreleasePool;
 
 #if COCOS2D_DEBUG > 0
