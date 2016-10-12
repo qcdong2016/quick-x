@@ -27,6 +27,7 @@ THE SOFTWARE.
 
 #include "TGAlib.h"
 #include "platform/CCFileUtils.h"
+#include "IO/FileSystem.h"
 
 namespace cocos2d {
 
@@ -198,8 +199,10 @@ tImageTGA * tgaLoad(const char *pszFilename)
     int mode,total;
     tImageTGA *info = NULL;
     
-    unsigned long nSize = 0;
-    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(pszFilename, "rb", &nSize);
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(pszFilename);
+
+	unsigned long nSize = bf->getSize();
+	unsigned char* pBuffer = bf->getData();
 
     do
     {
@@ -269,8 +272,6 @@ tImageTGA * tgaLoad(const char *pszFilename)
             }
         }
     } while(0);
-
-    CC_SAFE_DELETE_ARRAY(pBuffer);
 
     return info;
 }

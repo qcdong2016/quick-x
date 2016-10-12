@@ -25,6 +25,7 @@ THE SOFTWARE.
 #include "platform/CCCommon.h"
 #include "platform/CCFileUtils.h"
 #include "../tinyxml2/tinyxml2.h"
+#include "IO/FileSystem.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 
@@ -56,17 +57,17 @@ static tinyxml2::XMLElement* getXMLNodeForKey(const char* pKey, tinyxml2::XMLEle
     {
  		tinyxml2::XMLDocument* xmlDoc = new tinyxml2::XMLDocument();
 		*doc = xmlDoc;
-		//CCFileData data(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str(),"rt");
-		unsigned long nSize;
-		const char* pXmlBuffer = (const char*)CCFileUtils::sharedFileUtils()->getFileData(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str(), "rb", &nSize);
-		//const char* pXmlBuffer = (const char*)data.getBuffer();
-		if(NULL == pXmlBuffer)
+		
+		std::string filename = CCUserDefault::sharedUserDefault()->getXMLFilePath();
+		SharedPtr<MemBuffer> bf = FileSystem::readAll(filename);
+
+		if(bf->isNull())
 		{
 			CCLOG("can not read xml file");
 			break;
 		}
-		xmlDoc->Parse(pXmlBuffer, nSize);
-        delete[] pXmlBuffer;
+		xmlDoc->Parse((const char*)bf->getData(), bf->getSize());
+
 		// get root node
 		*rootNode = xmlDoc->RootElement();
 		if (NULL == *rootNode)

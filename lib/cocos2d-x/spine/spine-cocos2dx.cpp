@@ -31,6 +31,7 @@
 
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
+#include "IO/FileSystem.h"
 
 USING_NS_CC;
 
@@ -47,9 +48,11 @@ void _spAtlasPage_disposeTexture (spAtlasPage* self) {
 }
 
 char* _spUtil_readFile (const char* path, int* length) {
-	unsigned long size;
-	char* data = reinterpret_cast<char*>(CCFileUtils::sharedFileUtils()->getFileData(
-	CCFileUtils::sharedFileUtils()->fullPathForFilename(path).c_str(), "r", &size));
-	*length = size;
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(path);
+
+	char* data = (char*)malloc(bf->getSize());
+	memcpy(data, bf->getData(), bf->getSize());
+	*length = bf->getSize();
+
 	return data;
 }

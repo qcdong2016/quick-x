@@ -37,7 +37,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCObject.cpp" />
@@ -55,6 +54,7 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\effects\CCGrabber.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\effects\CCGrid.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\IO\FileSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\aabb.c" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\GL\mat4stack.c" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\kazmath\src\GL\matrix.c" />
@@ -317,7 +317,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAffineTransform.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCArray.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCInteger.h" />
@@ -336,6 +335,7 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\draw_nodes\CCShapeNode.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrabber.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\effects\CCGrid.h" />
+    <ClInclude Include="..\cocos2d-x\cocos2dx\IO\FileSystem.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\aabb.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\mat4stack.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\kazmath\include\kazmath\GL\matrix.h" />

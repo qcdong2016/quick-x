@@ -217,6 +217,9 @@
     <Filter Include="cocos2d-x\particle">
       <UniqueIdentifier>{364583ba-a74d-46a4-bd7f-e2e13d317888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cocos2d-x\cocos2dx\IO">
+      <UniqueIdentifier>{d243a75d-ca96-4ddc-819d-4b762f508422}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCAction.cpp">
@@ -520,9 +523,6 @@
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.cpp">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.cpp">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.cpp">
@@ -1044,6 +1044,9 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\actions\CCActionFiniteTime.cpp">
       <Filter>cocos2d-x\cocos2dx\actions</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\IO\FileSystem.cpp">
+      <Filter>cocos2d-x\cocos2dx\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
@@ -1521,9 +1524,6 @@
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCAutoreleasePool.h">
-      <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDataVisitor.h">
       <Filter>cocos2d-x\cocos2dx\cocoa</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\cocoa\CCDictionary.h">
@@ -2065,6 +2065,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\SubSystem.h">
       <Filter>cocos2d-x\cocos2dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos2dx\IO\FileSystem.h">
+      <Filter>cocos2d-x\cocos2dx\IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
