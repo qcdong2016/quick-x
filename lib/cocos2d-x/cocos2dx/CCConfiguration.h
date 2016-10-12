@@ -27,8 +27,9 @@ THE SOFTWARE.
 #define __CCCONFIGURATION_H__
 
 #include "cocoa/CCObject.h"
+#include "cocoa/CCDictionary.h"
+
 #include "CCGL.h"
-#include "cocoa/CCString.h"
 #include <string>
 
 

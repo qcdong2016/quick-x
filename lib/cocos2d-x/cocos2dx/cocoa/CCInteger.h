@@ -25,11 +25,6 @@ public:
         return pRet;
     }
 
-    /* override functions 
-     * @lua NA
-     */
-    virtual void acceptVisitor(CCDataVisitor &visitor) { visitor.visit(this); }
-
 private:
     int m_nValue;
 };

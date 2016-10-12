@@ -33,6 +33,7 @@ extern "C" {
 
 #include "ccTypes.h"
 #include "cocoa/CCObject.h"
+#include "cocoa/CCArray.h"
 #include "CCLuaValue.h"
 #include "platform/platform.h"
 

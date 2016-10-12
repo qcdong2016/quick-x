@@ -83,13 +83,14 @@ CCConfiguration::~CCConfiguration(void)
 
 void CCConfiguration::dumpInfo(void) const
 {
+    /*
 	// Dump
 	CCPrettyPrinter visitor(0);
 	m_pValueDict->acceptVisitor(visitor);
 
 	CCLOG("%s", visitor.getResult().c_str());
 
-
+*/
 	// And Dump some warnings as well
 #if CC_ENABLE_PROFILERS
     CCLOG("cocos2d: **** WARNING **** CC_ENABLE_PROFILERS is defined. Disable it when you finish profiling (from ccConfig.h)");

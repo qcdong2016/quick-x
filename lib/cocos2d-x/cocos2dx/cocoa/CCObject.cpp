@@ -82,6 +82,14 @@ void CCObject::paste(CCObject* o)
 {
 }
 
+CCObject* CCObject::copy()
+{
+    CCObject* o = new CCObject();
+    o->autorelease();
+    
+    return o;
+}
+
 
 void CCObject::release(void)
 {
@@ -120,11 +128,6 @@ unsigned int CCObject::retainCount(void) const
 bool CCObject::isEqual(const CCObject *pObject)
 {
     return this == pObject;
-}
-
-void CCObject::acceptVisitor(CCDataVisitor &visitor)
-{
-    visitor.visitObject(this);
 }
 
 NS_CC_END

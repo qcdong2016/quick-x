@@ -132,10 +132,6 @@ public:
      *          it means that you needn't do a release operation unless you retain it.
      */
     static CCString* createWithContentsOfFile(const char* pszFileName);
-    /**
-     * @lua NA
-     */
-    virtual void acceptVisitor(CCDataVisitor &visitor);
 
 private:
 

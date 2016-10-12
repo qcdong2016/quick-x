@@ -25,8 +25,9 @@ THE SOFTWARE.
 #ifndef __CCOBJECT_H__
 #define __CCOBJECT_H__
 
-#include "CCDataVisitor.h"
+#include "CCPlatformMacros.h"
 #include "cocos/RefCounted.h"
+#include <string>
 
 NS_CC_BEGIN
 
@@ -35,9 +36,6 @@ NS_CC_BEGIN
  * @{
  */
 
-class CCObject;
-class CCNode;
-class CCEvent;
 
 #define CCOBJECT(self_type, parent_type)                       \
 	typedef self_type SelfType;                                \
@@ -62,7 +60,7 @@ class CCEvent;
  */
 class CC_DLL CCObject : public RefCounted
 {
-    CCOBJECT(CCObject, CCObject)
+    
 public:
     // object id, CCScriptSupport need public m_uID
     unsigned int        m_uID;
@@ -92,8 +90,8 @@ public:
 	virtual void paste(CCObject* o);
 
 	virtual bool isEqual(const CCObject* pObject);
-    virtual void acceptVisitor(CCDataVisitor &visitor);
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
+    virtual CCObject* copy();
 
     friend class CCAutoreleasePool;
 
@@ -109,6 +107,9 @@ public:
 #endif
 };
 
+class CCObject;
+class CCNode;
+class CCEvent;
 
 typedef void (CCObject::*SEL_SCHEDULE)(float);
 typedef void (CCObject::*SEL_CallFunc)();

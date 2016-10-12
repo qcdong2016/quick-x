@@ -101,6 +101,7 @@ public:
      */
 	virtual void paste(CCObject* o);
 
+    static CCSpriteFrame* create(const char* filaname);
     /** Create a CCSpriteFrame with a texture filename, rect in points.
      It is assumed that the frame was not trimmed.
      */

@@ -232,9 +232,6 @@ public:
      */
 	virtual void paste(CCObject* o);
 
-    /* override functions */
-    virtual void acceptVisitor(CCDataVisitor &visitor);
-
 public:
     ccArray* data;
     /**
