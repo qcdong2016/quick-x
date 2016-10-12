@@ -80,7 +80,7 @@ CCObject::~CCObject(void)
 
 CCObject* CCObject::copy()
 {
-	CCObject* o = new CCObject();
+	CCObject* o = new SelfType(); // CCObject
 	o->autorelease();
 	paste(o);
 	return o;
