@@ -3,7 +3,7 @@
 #include "AppDelegate.h"
 #include "audio/SimpleAudioEngine.h"
 #include "support/CCNotificationCenter.h"
-#include "CCLuaEngine.h"
+#include "scripting/CCLuaEngine.h"
 #include <string>
 
 using namespace std;

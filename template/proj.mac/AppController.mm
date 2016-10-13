@@ -32,13 +32,12 @@
 
 #include "AppDelegate.h"
 #include "CCDirector.h"
-#include "SimpleAudioEngine.h"
+#include "audio/SimpleAudioEngine.h"
 #include "platform/CCFileUtils.h"
 #include "native/CCNative.h"
 
 using namespace std;
 using namespace cocos2d;
-using namespace cocos2d::extra;
 
 @implementation AppController
 
@@ -56,8 +55,8 @@ using namespace cocos2d::extra;
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     isAlwaysOnTop = NO;
+    _scale = 100;
 
-    [self updateProjectConfigFromCommandLineArgs:&projectConfig];
     [self createWindowAndGLView];
     [self startup];
     [self initUI];
@@ -88,11 +87,14 @@ using namespace cocos2d::extra;
 
 - (void) createWindowAndGLView
 {
-    const CCSize frameSize = projectConfig.getFrameSize();
+//    float __SCREEN_WIDTH__ = 640;
+//    float __SCREEN_HEIGHT__ = 960;
+    const CCSize frameSize(__SCREEN_WIDTH__, __SCREEN_HEIGHT__);
     float left = 10;
     float bottom = NSHeight([[NSScreen mainScreen] visibleFrame]) - frameSize.height;
     bottom -= [[[NSApplication sharedApplication] menu] menuBarHeight] + 10;
 
+    int posx = 0, posy = 0;
     NSDictionary *state = [[NSUserDefaults standardUserDefaults] objectForKey:@"last-state"];
     if (state)
     {
@@ -100,12 +102,13 @@ using namespace cocos2d::extra;
         NSNumber *y = [state objectForKey:@"y"];
         if (x && y)
         {
-            projectConfig.setWindowOffset(CCPoint([x floatValue], [y floatValue]));
+            posx = [x intValue];
+            posy = [y intValue];
         }
         NSNumber *scale = [state objectForKey:@"scale"];
         if (scale)
         {
-            projectConfig.setFrameScale([scale floatValue]);
+            _scale = [scale intValue];
         }
     }
 
@@ -129,14 +132,13 @@ using namespace cocos2d::extra;
     [window setTitle:@"__PROJECT_PACKAGE_LAST_NAME_L__"];
     [window center];
 
-    if (projectConfig.getProjectDir().length())
+    if (_scale != 100)
     {
-        [self setZoom:projectConfig.getFrameScale()];
-        CCPoint pos = projectConfig.getWindowOffset();
-        if (pos.x != 0 && pos.y != 0)
-        {
-            [window setFrameOrigin:NSMakePoint(pos.x, pos.y)];
-        }
+        [self setZoom:_scale];
+    }
+    if (posx != 0 && posy != 0)
+    {
+        [window setFrameOrigin:NSMakePoint(posx, posy)];
     }
 
     [window becomeFirstResponder];
@@ -146,62 +148,41 @@ using namespace cocos2d::extra;
 
 - (void) startup
 {
-    const string projectDir = projectConfig.getProjectDir();
+    const string projectDir = [[NSBundle mainBundle] resourcePath].UTF8String;
     if (projectDir.length())
     {
         CCFileUtils::sharedFileUtils()->setSearchRootPath(projectDir.c_str());
     }
 
-    const string writablePath = projectConfig.getWritableRealPath();
-    if (writablePath.length())
-    {
-        CCFileUtils::sharedFileUtils()->setWritablePath(writablePath.c_str());
-    }
-
     app = new AppDelegate();
-    app->setProjectConfig(projectConfig);
     app->run();
 }
 
 - (void) initUI
 {
-    NSMenu *submenu = [[[window menu] itemWithTitle:@"Screen"] submenu];
-
-    SimulatorConfig *config = SimulatorConfig::sharedDefaults();
-    int current = config->checkScreenSize(projectConfig.getFrameSize());
-    for (int i = config->getScreenSizeCount() - 1; i >= 0; --i)
-    {
-        SimulatorScreenSize size = config->getScreenSize(i);
-        NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithCString:size.title.c_str() encoding:NSUTF8StringEncoding]
-                                                       action:@selector(onScreenChangeFrameSize:)
-                                                keyEquivalent:@""] autorelease];
-        [item setTag:i];
-
-        if (i == current)
-        {
-            [item setState:NSOnState];
-        }
-        [submenu insertItem:item atIndex:0];
-    }
+//    NSMenu *submenu = [[[window menu] itemWithTitle:@"Screen"] submenu];
+//
+//    SimulatorConfig *config = SimulatorConfig::sharedDefaults();
+//    int current = config->checkScreenSize(projectConfig.getFrameSize());
+//    for (int i = config->getScreenSizeCount() - 1; i >= 0; --i)
+//    {
+//        SimulatorScreenSize size = config->getScreenSize(i);
+//        NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithCString:size.title.c_str() encoding:NSUTF8StringEncoding]
+//                                                       action:@selector(onScreenChangeFrameSize:)
+//                                                keyEquivalent:@""] autorelease];
+//        [item setTag:i];
+//
+//        if (i == current)
+//        {
+//            [item setState:NSOnState];
+//        }
+//        [submenu insertItem:item atIndex:0];
+//    }
 }
 
 - (void) updateUI
 {
     NSMenu *menuScreen = [[[window menu] itemWithTitle:@"Screen"] submenu];
-    NSMenuItem *itemPortait = [menuScreen itemWithTitle:@"Portait"];
-    NSMenuItem *itemLandscape = [menuScreen itemWithTitle:@"Landscape"];
-    if (projectConfig.isLandscapeFrame())
-    {
-        [itemPortait setState:NSOffState];
-        [itemLandscape setState:NSOnState];
-    }
-    else
-    {
-        [itemPortait setState:NSOnState];
-        [itemLandscape setState:NSOffState];
-    }
-
-    int scale = projectConfig.getFrameScale() * 100;
 
     NSMenuItem *itemZoom100 = [menuScreen itemWithTitle:@"Actual (100%)"];
     NSMenuItem *itemZoom75 = [menuScreen itemWithTitle:@"Zoom Out (75%)"];
@@ -211,49 +192,24 @@ using namespace cocos2d::extra;
     [itemZoom75 setState:NSOffState];
     [itemZoom50 setState:NSOffState];
     [itemZoom25 setState:NSOffState];
-    if (scale == 100)
+    if (_scale == 100)
     {
         [itemZoom100 setState:NSOnState];
     }
-    else if (scale == 75)
+    else if (_scale == 75)
     {
         [itemZoom75 setState:NSOnState];
     }
-    else if (scale == 50)
+    else if (_scale == 50)
     {
         [itemZoom50 setState:NSOnState];
     }
-    else if (scale == 25)
+    else if (_scale == 25)
     {
         [itemZoom25 setState:NSOnState];
     }
 
-    [window setTitle:[NSString stringWithFormat:@"__PROJECT_PACKAGE_LAST_NAME_L__ (%0.0f%%)", projectConfig.getFrameScale() * 100]];
-}
-
-- (NSMutableArray*) makeCommandLineArgsFromProjectConfig
-{
-    return [self makeCommandLineArgsFromProjectConfig:kProjectConfigAll];
-}
-
-- (NSMutableArray*) makeCommandLineArgsFromProjectConfig:(unsigned int)mask
-{
-    projectConfig.setWindowOffset(CCPoint(window.frame.origin.x, window.frame.origin.y));
-    NSString *commandLine = [NSString stringWithCString:projectConfig.makeCommandLine(mask).c_str()
-                                               encoding:NSUTF8StringEncoding];
-    return [NSMutableArray arrayWithArray:[commandLine componentsSeparatedByString:@" "]];
-}
-
-- (void) updateProjectConfigFromCommandLineArgs:(ProjectConfig *)config
-{
-    NSArray *nsargs = [[NSProcessInfo processInfo] arguments];
-    vector<string> args;
-    for (int i = 0; i < [nsargs count]; ++i)
-    {
-        args.push_back([[nsargs objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding]);
-    }
-    config->parseCommandLine(args);
-    config->dump();
+    [window setTitle:[NSString stringWithFormat:@"__PROJECT_PACKAGE_LAST_NAME_L__"]];
 }
 
 - (void) launch:(NSArray*)args
@@ -270,20 +226,14 @@ using namespace cocos2d::extra;
 - (void) relaunch:(NSArray*)args
 {
     [self saveLastState];
-    if (projectConfig.isExitWhenRelaunch())
-    {
-        exit(99);
-    }
-    else
-    {
-        [self launch:args];
-        [[NSApplication sharedApplication] terminate:self];
-    }
+    [self launch:args];
+    [[NSApplication sharedApplication] terminate:self];
+
 }
 
 - (void) relaunch
 {
-    [self relaunch:[self makeCommandLineArgsFromProjectConfig]];
+    [self relaunch:[NSArray array]];
 }
 
 - (void) showAlertWithoutSheet:(NSString*)message withTitle:(NSString*)title
@@ -298,8 +248,8 @@ using namespace cocos2d::extra;
 
 - (void) setZoom:(float)scale
 {
+    _scale = scale * 100;
     [glView setFrameZoomFactor:scale];
-    projectConfig.setFrameScale(scale);
 }
 
 -(void) setAlwaysOnTop:(BOOL)alwaysOnTop
@@ -324,7 +274,7 @@ using namespace cocos2d::extra;
     NSMutableDictionary *state = [NSMutableDictionary dictionary];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.x] forKey:@"x"];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.y] forKey:@"y"];
-    [state setObject:[NSNumber numberWithFloat:projectConfig.getFrameScale()] forKey:@"scale"];
+    [state setObject:[NSNumber numberWithInt:_scale] forKey:@"scale"];
     [[NSUserDefaults standardUserDefaults] setObject:state forKey:@"last-state"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -339,14 +289,6 @@ using namespace cocos2d::extra;
 
 - (IBAction) onScreenChangeFrameSize:(id)sender
 {
-    NSInteger i = [sender tag];
-    if (i >= 0 && i < SimulatorConfig::sharedDefaults()->getScreenSizeCount())
-    {
-        SimulatorScreenSize size = SimulatorConfig::sharedDefaults()->getScreenSize((int)i);
-        projectConfig.setFrameSize(projectConfig.isLandscapeFrame() ? CCSize(size.height, size.width) : CCSize(size.width, size.height));
-        projectConfig.setFrameScale(1.0f);
-        [self relaunch];
-    }
 }
 
 - (IBAction) onScreenPortait:(id)sender
@@ -354,7 +296,6 @@ using namespace cocos2d::extra;
     if ([sender state] == NSOnState) return;
     [sender setState:NSOnState];
     [[[[[window menu] itemWithTitle:@"Screen"] submenu] itemWithTitle:@"Landscape"] setState:NSOffState];
-    projectConfig.changeFrameOrientationToPortait();
     [self relaunch];
 }
 
@@ -363,7 +304,6 @@ using namespace cocos2d::extra;
     if ([sender state] == NSOnState) return;
     [sender setState:NSOnState];
     [[[[[window menu] itemWithTitle:@"Screen"] submenu] itemWithTitle:@"Portait"] setState:NSOffState];
-    projectConfig.changeFrameOrientationToLandscape();
     [self relaunch];
 }
 

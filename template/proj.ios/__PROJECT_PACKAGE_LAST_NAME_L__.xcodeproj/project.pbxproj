@@ -326,29 +326,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/cocos2dx_support\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extensions_luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/cjson\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/zlib\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/CSArmature\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions/cjson\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions/zlib\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				SDKROOT = iphoneos;
@@ -372,29 +358,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
 					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/cocos2dx_support\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extensions_luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/cjson\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/zlib\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/CSArmature\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions/cjson\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/scripting/lua_extensions/zlib\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -428,38 +400,10 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/cocos2dx_support\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/lua/lua-5.1.5/src\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extensions_luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/cjson\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/zlib\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/CSArmature\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios/libraries\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/ios\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
@@ -497,38 +441,10 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/cocos2dx_support\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/lua/lua-5.1.5/src\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extensions_luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2dx_extra/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/cjson\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/lua_extensions/zlib\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/CSArmature\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios/libraries\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua/luajit/ios\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
