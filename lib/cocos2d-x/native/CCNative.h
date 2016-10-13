@@ -5,7 +5,7 @@
 #include "CCAlertViewDelegate.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
-#include "CCLuaEngine.h"
+#include "scripting/CCLuaEngine.h"
 #endif
 #include <string>
 

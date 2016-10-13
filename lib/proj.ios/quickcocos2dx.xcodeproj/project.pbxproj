@@ -37,6 +37,7 @@
 		9F1FE6B71DAD3921008FE0C7 /* CCTMXTiledMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6AF1DAD3921008FE0C7 /* CCTMXTiledMap.cpp */; };
 		9F1FE6B81DAD3921008FE0C7 /* CCTMXXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6B11DAD3921008FE0C7 /* CCTMXXMLParser.cpp */; };
 		9F1FE7541DAD3D17008FE0C7 /* CCActionFiniteTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE7521DAD3D17008FE0C7 /* CCActionFiniteTime.cpp */; };
+		9F7D6BED1DAE8FA40070D235 /* FileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D6BEB1DAE8FA40070D235 /* FileSystem.cpp */; };
 		9F9A37D81DAB85F800236246 /* cocos2dx_extra_ios_iap_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37A21DAB85F800236246 /* cocos2dx_extra_ios_iap_luabinding.cpp */; };
 		9F9A37D91DAB85F800236246 /* cocos2dx_extra_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37A51DAB85F800236246 /* cocos2dx_extra_luabinding.cpp */; };
 		9F9A37DA1DAB85F800236246 /* CCNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37A91DAB85F800236246 /* CCNative.mm */; };
@@ -379,6 +380,8 @@
 		9F1FE6B21DAD3921008FE0C7 /* CCTMXXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTMXXMLParser.h; sourceTree = "<group>"; };
 		9F1FE7521DAD3D17008FE0C7 /* CCActionFiniteTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFiniteTime.cpp; sourceTree = "<group>"; };
 		9F1FE7531DAD3D17008FE0C7 /* CCActionFiniteTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionFiniteTime.h; sourceTree = "<group>"; };
+		9F7D6BEB1DAE8FA40070D235 /* FileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileSystem.cpp; sourceTree = "<group>"; };
+		9F7D6BEC1DAE8FA40070D235 /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
 		9F9A379D1DAB85F800236246 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		9F9A379E1DAB85F800236246 /* build.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.bat; sourceTree = "<group>"; };
 		9F9A379F1DAB85F800236246 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -1076,6 +1079,15 @@
 				9F1FE6B21DAD3921008FE0C7 /* CCTMXXMLParser.h */,
 			);
 			path = tilemap;
+			sourceTree = "<group>";
+		};
+		9F7D6BEA1DAE8FA40070D235 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				9F7D6BEB1DAE8FA40070D235 /* FileSystem.cpp */,
+				9F7D6BEC1DAE8FA40070D235 /* FileSystem.h */,
+			);
+			path = IO;
 			sourceTree = "<group>";
 		};
 		9F9A379A1DAB85F800236246 /* native */ = {
@@ -1795,6 +1807,7 @@
 				F4E881C2177015C400577406 /* draw_nodes */,
 				F4E881C9177015C400577406 /* effects */,
 				F4E881CE177015C400577406 /* include */,
+				9F7D6BEA1DAE8FA40070D235 /* IO */,
 				F4E881D6177015C400577406 /* kazmath */,
 				F4E881F9177015C400577406 /* keypad_dispatcher */,
 				F4E881FE177015C400577406 /* label_nodes */,
@@ -2534,6 +2547,7 @@
 				B1F870F91D7D796F00AF7173 /* lapi.c in Sources */,
 				B1F8711A1D7D796F00AF7173 /* debugger.c in Sources */,
 				F4E882EE177015C400577406 /* CCAnimation.cpp in Sources */,
+				9F7D6BED1DAE8FA40070D235 /* FileSystem.cpp in Sources */,
 				B1F871171D7D796F00AF7173 /* fpconv.c in Sources */,
 				9F1FE6B31DAD3921008FE0C7 /* CCParallaxNode.cpp in Sources */,
 				B17812D21D6949C90093D282 /* SkeletonBounds.c in Sources */,

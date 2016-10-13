@@ -23,6 +23,9 @@ THE SOFTWARE.
 ****************************************************************************/
 #include <Foundation/Foundation.h>
 #include <Cocoa/Cocoa.h>
+
+//#define __CC_PLATFORM_IMAGE_CPP__
+//#include "platform/CCImageCommon_cpp.h"
 #include "CCDirector.h"
 #include "ccMacros.h"
 #include "CCImage.h"
@@ -844,7 +847,9 @@ bool CCImage::initWithImageData(void * pData,
         }
         else if (eFmt == kFmtWebp)
         {
+#if CC_WEBP_ENABLED > 0
             bRet = _initWithWebpData(pData, nDataLen);
+#endif
         }
         else
         {
@@ -1016,7 +1021,47 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
     return true;
 }
 
+#if CC_WEBP_ENABLED > 0
+#include "webp/decode.h"
 
+bool CCImage::_initWithWebpData(void *pData, int nDataLen)
+{
+    bool bRet = false;
+#if 0
+    do
+    {
+        WebPDecoderConfig config;
+        if (WebPInitDecoderConfig(&config) == 0) break;
+        if (WebPGetFeatures((uint8_t*)pData, nDataLen, &config.input) != VP8_STATUS_OK) break;
+        if (config.input.width == 0 || config.input.height == 0) break;
+
+        config.output.colorspace = MODE_RGBA;
+        m_nBitsPerComponent = 8;
+        m_nWidth = config.input.width;
+        m_nHeight = config.input.height;
+        m_bHasAlpha = true;
+
+        int bufferSize = m_nWidth * m_nHeight * 4;
+        m_pData = new unsigned char[bufferSize];
+
+        config.output.u.RGBA.rgba = (uint8_t*)m_pData;
+        config.output.u.RGBA.stride = m_nWidth * 4;
+        config.output.u.RGBA.size = bufferSize;
+        config.output.is_external_memory = 1;
+
+        if (WebPDecode((uint8_t*)pData, nDataLen, &config) != VP8_STATUS_OK)
+        {
+            delete[]m_pData;
+            m_pData = NULL;
+            break;
+        }
+        
+        bRet = true;
+    } while (0);
+#endif
+    return bRet;
+}
+#endif // CC_WEBP_ENABLED
 
 NS_CC_END
 
