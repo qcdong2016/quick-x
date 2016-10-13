@@ -24,8 +24,6 @@
 
 #import "EAGLView.h"
 
-#include <string>
-#include "ProjectConfig/SimulatorConfig.h"
 #include "AppDelegate.h"
 
 @interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
@@ -35,9 +33,9 @@
     NSMenu *menu;
 
     BOOL isAlwaysOnTop;
+    int _scale;
 
     AppDelegate *app;
-    ProjectConfig projectConfig;
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;
