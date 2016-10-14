@@ -134,8 +134,9 @@ bool ImGui_ImplIOS_CreateFontsTexture()
 
 	// Store our identifier
 	io.Fonts->TexID = (void *)(intptr_t)g_FontTexture;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 	io.ImeWindowHandle = CCEGLView::sharedOpenGLView()->getHWnd();
-
+#endif
 	// Restore state
 	glBindTexture(GL_TEXTURE_2D, last_texture);
 
@@ -152,7 +153,7 @@ bool    ImGui_ImplGlfwGL3_Init(bool install_callbacks)
 	style.WindowRounding = 0;
 	style.WindowMinSize.y = 0;
 	style.ItemSpacing = ImVec2(4, 4);
-
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 	io.KeyMap[ImGuiKey_Tab] = VK_TAB;                         // Keyboard mapping. ImGui will use those indices to peek into the io.KeyDown[] array.
 	io.KeyMap[ImGuiKey_LeftArrow] = VK_LEFT;
 	io.KeyMap[ImGuiKey_RightArrow] = VK_RIGHT;
@@ -166,6 +167,9 @@ bool    ImGui_ImplGlfwGL3_Init(bool install_callbacks)
 	io.KeyMap[ImGuiKey_Backspace] = VK_BACK;
 	io.KeyMap[ImGuiKey_Enter] = VK_RETURN;
 	io.KeyMap[ImGuiKey_Escape] = VK_ESCAPE;
+#else
+    
+#endif
 	io.KeyMap[ImGuiKey_A] = 'A';
 	io.KeyMap[ImGuiKey_C] = 'C';
 	io.KeyMap[ImGuiKey_V] = 'V';
@@ -211,7 +215,7 @@ void ImGuiCC::init()
 			"varying vec4 Frag_Color;\n"
 			"void main()\n"
 			"{\n"
-			"	gl_FragColor = Frag_Color * texture( Texture, Frag_UV);\n"
+			"	gl_FragColor = Frag_Color * texture2D( Texture, Frag_UV);\n"
 			"}\n";
 
 		g_ShaderHandle = glCreateProgram();
@@ -262,10 +266,11 @@ void ImGuiCC::setKeyDown(int k)
 {
 	ImGuiIO& io = ImGui::GetIO();
 	io.KeysDown[k] = true;
-
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 	io.KeyCtrl = io.KeysDown[VK_CONTROL];
 	io.KeyShift = io.KeysDown[VK_SHIFT];
 	io.KeyAlt = io.KeysDown[VK_MENU];
+#endif
 }
 void ImGuiCC::setKeyUp(int k)
 {
@@ -307,8 +312,8 @@ void ImGuiCC::setVisible(bool v)
 
 void ImGuiCC::draw()
 {
-	if (!g_visible)
-		return;
+//	if (!g_visible)
+//		return;
 
 	//glUseProgram(0);
 	ImGuiIO& io = ImGui::GetIO();
@@ -316,8 +321,8 @@ void ImGuiCC::draw()
 
 	// Setup display size (every frame to accommodate for window resizing)
 	CCSize sz = CCEGLView::sharedOpenGLView()->getFrameSize();
-	int w = sz.width * CCEGLView::sharedOpenGLView()->getFrameZoomFactor();
-	int h = sz.height* CCEGLView::sharedOpenGLView()->getFrameZoomFactor();
+    int w = sz.width;
+    int h = sz.height;
 	int display_w = w, display_h = h;
 
 	io.DisplaySize = ImVec2((float)w, (float)h);
@@ -346,7 +351,8 @@ void ImGuiCC::draw()
 
 NS_CC_END;
 
-
+extern "C" {
+    
 void imgui_draw()
 {
 	cocos2d::ImGuiCC::draw();
@@ -355,5 +361,7 @@ void imgui_draw()
 void imgui_init()
 {
 	cocos2d::ImGuiCC::init();
-	//cocos2d::ImGuiCC::setUIInterface<cocos2d::PlayerUI>();
+	cocos2d::ImGuiCC::setUIInterface<cocos2d::PlayerUI>();
+}
+
 }

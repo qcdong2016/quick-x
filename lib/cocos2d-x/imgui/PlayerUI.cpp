@@ -174,8 +174,8 @@ void PlayerUI::setFrameSize(int w, int h)
 void PlayerUI::setZoom(float zoom)
 {
 	CCEGLView* v = CCEGLView::sharedOpenGLView();
-	v->setFrameZoomFactor(zoom);
-	v->resize(v->getFrameSize().width * zoom, v->getFrameSize().height * zoom);
+//	v->setFrameZoomFactor(zoom);
+//	v->resize(v->getFrameSize().width * zoom, v->getFrameSize().height * zoom);
 
 	setArgument("zoom", zoom);
 }

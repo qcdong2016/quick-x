@@ -24,7 +24,6 @@
 
 #import "EAGLView.h"
 
-#include "AppDelegate.h"
 
 @interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
 {
@@ -35,7 +34,6 @@
     BOOL isAlwaysOnTop;
     int _scale;
 
-    AppDelegate *app;
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;

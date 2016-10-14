@@ -36,6 +36,8 @@
 #include "platform/CCFileUtils.h"
 #include "native/CCNative.h"
 
+#include "AppDelegate.h"
+
 using namespace std;
 using namespace cocos2d;
 
@@ -59,8 +61,6 @@ using namespace cocos2d;
 
     [self createWindowAndGLView];
     [self startup];
-    [self initUI];
-    [self updateUI];
 
     [window orderFrontRegardless];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
@@ -87,8 +87,8 @@ using namespace cocos2d;
 
 - (void) createWindowAndGLView
 {
-//    float __SCREEN_WIDTH__ = 640;
-//    float __SCREEN_HEIGHT__ = 960;
+    float __SCREEN_WIDTH__ = 640;
+    float __SCREEN_HEIGHT__ = 640;
     const CCSize frameSize(__SCREEN_WIDTH__, __SCREEN_HEIGHT__);
     float left = 10;
     float bottom = NSHeight([[NSScreen mainScreen] visibleFrame]) - frameSize.height;
@@ -154,62 +154,8 @@ using namespace cocos2d;
         CCFileUtils::sharedFileUtils()->setSearchRootPath(projectDir.c_str());
     }
 
-    app = new AppDelegate();
+    AppDelegate* app = new AppDelegate();
     app->run();
-}
-
-- (void) initUI
-{
-//    NSMenu *submenu = [[[window menu] itemWithTitle:@"Screen"] submenu];
-//
-//    SimulatorConfig *config = SimulatorConfig::sharedDefaults();
-//    int current = config->checkScreenSize(projectConfig.getFrameSize());
-//    for (int i = config->getScreenSizeCount() - 1; i >= 0; --i)
-//    {
-//        SimulatorScreenSize size = config->getScreenSize(i);
-//        NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithCString:size.title.c_str() encoding:NSUTF8StringEncoding]
-//                                                       action:@selector(onScreenChangeFrameSize:)
-//                                                keyEquivalent:@""] autorelease];
-//        [item setTag:i];
-//
-//        if (i == current)
-//        {
-//            [item setState:NSOnState];
-//        }
-//        [submenu insertItem:item atIndex:0];
-//    }
-}
-
-- (void) updateUI
-{
-    NSMenu *menuScreen = [[[window menu] itemWithTitle:@"Screen"] submenu];
-
-    NSMenuItem *itemZoom100 = [menuScreen itemWithTitle:@"Actual (100%)"];
-    NSMenuItem *itemZoom75 = [menuScreen itemWithTitle:@"Zoom Out (75%)"];
-    NSMenuItem *itemZoom50 = [menuScreen itemWithTitle:@"Zoom Out (50%)"];
-    NSMenuItem *itemZoom25 = [menuScreen itemWithTitle:@"Zoom Out (25%)"];
-    [itemZoom100 setState:NSOffState];
-    [itemZoom75 setState:NSOffState];
-    [itemZoom50 setState:NSOffState];
-    [itemZoom25 setState:NSOffState];
-    if (_scale == 100)
-    {
-        [itemZoom100 setState:NSOnState];
-    }
-    else if (_scale == 75)
-    {
-        [itemZoom75 setState:NSOnState];
-    }
-    else if (_scale == 50)
-    {
-        [itemZoom50 setState:NSOnState];
-    }
-    else if (_scale == 25)
-    {
-        [itemZoom25 setState:NSOnState];
-    }
-
-    [window setTitle:[NSString stringWithFormat:@"__PROJECT_PACKAGE_LAST_NAME_L__"]];
 }
 
 - (void) launch:(NSArray*)args

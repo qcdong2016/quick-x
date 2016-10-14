@@ -65,7 +65,6 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 
 
-
 /**
  Position of the FPS
  
@@ -104,13 +103,17 @@ CCDirector::CCDirector(void)
     CCLOG("alloc CCDirector %p", this);
 }
 
+extern "C" {
+void imgui_init();
+void imgui_draw();
+}
 bool CCDirector::init(void)
 {
 	setDefaultValues();
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-	void imgui_init();
-	imgui_init();
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+    imgui_init();
 #endif
+
     // scenes
     m_pRunningScene = NULL;
     m_pNextScene = NULL;
@@ -274,9 +277,8 @@ void CCDirector::drawScene(void)
         m_pNotificationNode->visit();
     }
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-	void imgui_draw();
-	imgui_draw();
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+    imgui_draw();
 #endif
 
     if (m_bDisplayStats)

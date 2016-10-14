@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CCGL_H__
 #define __CCGL_H__
 
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 #import <OpenGL/glu.h>
 #import <OpenGL/glext.h>
 
