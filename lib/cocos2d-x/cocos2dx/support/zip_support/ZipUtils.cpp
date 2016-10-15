@@ -27,9 +27,9 @@
 
 #include "ZipUtils.h"
 #include "ccMacros.h"
-#include "platform/CCFileUtils.h"
 #include "unzip.h"
 #include <map>
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -305,18 +305,15 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
     CCAssert(&*out, "");
     
     // load file into memory
-    unsigned char* compressed = NULL;
+	SharedPtr<MemBuffer> buf = FileSystem::readAll(path);
     
-    unsigned long fileLen = 0;
-    compressed = CCFileUtils::sharedFileUtils()->getFileData(path, "rb", &fileLen);
-    
-    if(NULL == compressed || 0 == fileLen)
+    if (buf->isNull())
     {
         CCLOG("cocos2d: Error loading CCZ compressed file");
         return -1;
     }
     
-    struct CCZHeader *header = (struct CCZHeader*) compressed;
+    struct CCZHeader *header = (struct CCZHeader*) buf->getData();
     
     // verify header
     if( header->sig[0] == 'C' && header->sig[1] == 'C' && header->sig[2] == 'Z' && header->sig[3] == '!' )
@@ -326,7 +323,6 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
         if( version > 2 )
         {
             CCLOG("cocos2d: Unsupported CCZ header format");
-            delete [] compressed;
             return -1;
         }
         
@@ -334,21 +330,19 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
         if( CC_SWAP_INT16_BIG_TO_HOST(header->compression_type) != CCZ_COMPRESSION_ZLIB )
         {
             CCLOG("cocos2d: CCZ Unsupported compression method");
-            delete [] compressed;
             return -1;
         }
     }
     else if( header->sig[0] == 'C' && header->sig[1] == 'C' && header->sig[2] == 'Z' && header->sig[3] == 'p' )
     {
         // encrypted ccz file
-        header = (struct CCZHeader*) compressed;
+        header = (struct CCZHeader*) buf->getData();
         
         // verify header version
         unsigned int version = CC_SWAP_INT16_BIG_TO_HOST( header->version );
         if( version > 0 )
         {
             CCLOG("cocos2d: Unsupported CCZ header format");
-            delete [] compressed;
             return -1;
         }
         
@@ -356,13 +350,12 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
         if( CC_SWAP_INT16_BIG_TO_HOST(header->compression_type) != CCZ_COMPRESSION_ZLIB )
         {
             CCLOG("cocos2d: CCZ Unsupported compression method");
-            delete [] compressed;
             return -1;
         }
         
         // decrypt
-        unsigned int* ints = (unsigned int*)(compressed+12);
-        int enclen = (int)(fileLen - 12) / 4;
+        unsigned int* ints = (unsigned int*)(buf->getData()+12);
+        int enclen = (int)(buf->getSize() - 12) / 4;
         
         ccDecodeEncodedPvr(ints, enclen);
                 
@@ -374,7 +367,6 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
         if(calculated != required)
         {
             CCLOG("cocos2d: Can't decrypt image file. Is the decryption key valid?");
-            delete [] compressed;
             return -1;
         }
 #endif
@@ -382,7 +374,6 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
     else
     {
         CCLOG("cocos2d: Invalid CCZ file");
-        delete [] compressed;
         return -1;
     }
     
@@ -392,15 +383,12 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
     if(! *out )
     {
         CCLOG("cocos2d: CCZ: Failed to allocate memory for texture");
-        delete [] compressed;
         return -1;
     }
     
     unsigned long destlen = len;
-    unsigned long source = (unsigned long) compressed + sizeof(*header);
-    int ret = uncompress(*out, &destlen, (Bytef*)source, fileLen - sizeof(*header) );
-    
-    delete [] compressed;
+    unsigned long source = (unsigned long) buf->getData() + sizeof(*header);
+    int ret = uncompress(*out, &destlen, (Bytef*)source, buf->getSize() - sizeof(*header) );
     
     if( ret != Z_OK )
     {

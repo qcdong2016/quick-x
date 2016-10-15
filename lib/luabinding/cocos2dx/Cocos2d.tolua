@@ -14,11 +14,11 @@ $pfile "cocos2dx/cocoa/CCScriptEventDispatcher.tolua"
 
 $pfile "cocos2dx/crypto/CCCrypto.tolua"
 
+$pfile "cocos2dx/IO/FileSystem.tolua"
 $pfile "cocos2dx/platform/CCCommon.tolua"
 $pfile "cocos2dx/platform/CCDevice.tolua"
 $pfile "cocos2dx/platform/platform.tolua"
 $pfile "cocos2dx/platform/CCApplication.tolua"
-$pfile "cocos2dx/platform/CCFileUtils.tolua"
 $pfile "cocos2dx/platform/CCImage.tolua"
 $pfile "cocos2dx/platform/CCEGLViewProtocol.tolua"
 $pfile "cocos2dx/platform/CCAccelerometer.tolua"

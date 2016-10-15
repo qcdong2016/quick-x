@@ -44,7 +44,6 @@ THE SOFTWARE.
 #include "sprite_nodes/CCSpriteFrameCache.h"
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/platform.h"
-#include "platform/CCFileUtils.h"
 #include "CCApplication.h"
 #include "label_nodes/CCLabelBMFont.h"
 #include "label_nodes/CCLabelAtlas.h"
@@ -466,7 +465,6 @@ void CCDirector::purgeCachedData(void)
         CCTextureCache::sharedTextureCache()->dumpCachedTextureInfo();
 #endif
     }
-    CCFileUtils::sharedFileUtils()->purgeCachedEntries();
 }
 
 float CCDirector::getZEye(void)
@@ -737,7 +735,6 @@ void CCDirector::purgeDirector()
     CCSpriteFrameCache::purgeSharedSpriteFrameCache();
     CCTextureCache::purgeSharedTextureCache();
     CCShaderCache::purgeSharedShaderCache();
-    CCFileUtils::purgeFileUtils();
     CCConfiguration::purgeConfiguration();
 
     // cocos2d-x specific data structures
@@ -892,7 +889,6 @@ void CCDirector::createStatsLabel()
         CC_SAFE_RELEASE_NULL(m_pSPFLabel);
         CC_SAFE_RELEASE_NULL(m_pDrawsLabel);
         textureCache->removeTextureForKey("cc_fps_images");
-        CCFileUtils::sharedFileUtils()->purgeCachedEntries();
     }
 
     CCTexture2DPixelFormat currentFormat = CCTexture2D::defaultAlphaPixelFormat();

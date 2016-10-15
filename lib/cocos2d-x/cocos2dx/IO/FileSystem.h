@@ -8,6 +8,27 @@
 
 NS_CC_BEGIN
 
+class CC_DLL Decoder : public RefCounted
+{
+public:
+	virtual ~Decoder() {}
+
+	virtual unsigned char* decode(unsigned char* data, size_t& size_inout) = 0;
+	virtual bool is(unsigned char* data, size_t size) = 0;
+};
+
+class CC_DLL DecoderXXTea : public Decoder
+{
+public:
+	DecoderXXTea(const std::string& sign, const std::string& key) : _sign(sign), _key(key) {}
+	virtual unsigned char* decode(unsigned char* data, size_t& size_inout);
+	virtual bool is(unsigned char* data, size_t size);
+
+private:
+	std::string _sign;
+	std::string _key;
+};
+
 class MemBuffer : public RefCounted
 {
 public:
@@ -35,15 +56,31 @@ protected:
 class FileSystem
 {
 public:
-	static void addResourcePath(const std::string& path);
-
+	template<typename T> 
+	static void setDecoder() { _dataDecoder = SharedPtr<Decoder>(new T); }
+	static Decoder* getDecoder() { return _dataDecoder; }
 	static SharedPtr<MemBuffer> readAll(const std::string& filePath);
+	static std::string readAllString(const std::string& filePath);
+
+	static void setResourceRoot(const std::string& root);
+	static void addResourcePath(const std::string& path);
+	static std::string fullPathOfFile(const std::string& filename);
+
+	static std::string getWritablePath();
 
 	static bool listFiles(const std::string& dirPath, std::vector<std::string>& files);
-	static bool fileExists(const std::string& filePath);
+	static bool isFileExist(const std::string& filePath);
 	static bool isAbsolutePath(const std::string& filePath);
+
+	static std::string getName(const std::string& name);
+	static std::string getBaseName(const std::string& name);
 	static std::string getDirectoryName(const std::string& path);
+	static std::string getDirectory(const std::string& path);
+	static std::string join(const std::string& a, const std::string& b);
 	static std::string getExtension(const std::string& path);
+
+private:
+	static SharedPtr<Decoder> _dataDecoder;
 };
 
 NS_CC_END

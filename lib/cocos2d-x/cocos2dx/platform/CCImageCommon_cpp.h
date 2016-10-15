@@ -30,7 +30,6 @@ THE SOFTWARE.
 #include "CCImage.h"
 #include "CCCommon.h"
 #include "CCStdC.h"
-#include "CCFileUtils.h"
 #include "png.h"
 
 #if CC_JPEG_ENABLED > 0

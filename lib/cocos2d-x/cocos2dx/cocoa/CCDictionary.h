@@ -369,14 +369,7 @@ public:
      *  @see create(), createWithDictionary(CCDictionary*), createWithContentsOfFileThreadSafe(const char*).
      */
     static CCDictionary* createWithContentsOfFile(const char *pFileName);
-    
-    /**
-     *  Write a dictionary to a plist file.
-     *  @param fullPath The full path of the plist file. You can get writeable path by getWritablePath()
-     *  @return true if successed, false if failed
-     *  @lua NA
-     */
-    bool writeToFile(const char *fullPath);
+	static CCArray* createArrayWithContentsOfFile(const char* pFileName);
      
     /**
      *  Create a dictionary with a plist file.

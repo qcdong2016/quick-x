@@ -238,7 +238,6 @@ c.ParticleSystemQuad           = CCParticleSystemQuad
 c.Application                  = CCApplication
 c.Device                       = CCDevice
 c.EGLView                      = CCEGLView
-c.FileUtils                    = CCFileUtils
 c.Image                        = CCImage
 c.Time                         = CCTime
 

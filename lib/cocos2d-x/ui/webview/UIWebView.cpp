@@ -35,7 +35,6 @@
 #endif
 
 #include "UIWebView.h"
-#include "platform/CCFileUtils.h"
 
 
 namespace cocos2d {

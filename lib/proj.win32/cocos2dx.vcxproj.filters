@@ -450,9 +450,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>
@@ -472,9 +469,6 @@
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.cpp">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCImage.cpp">
@@ -1349,9 +1343,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.h">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.h">
-      <Filter>cocos2d-x\cocos2dx\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCImage.h">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClInclude>
@@ -1380,9 +1371,6 @@
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.h">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.h">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCGL.h">

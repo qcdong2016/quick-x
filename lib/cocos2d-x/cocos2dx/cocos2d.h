@@ -116,7 +116,6 @@ THE SOFTWARE.
 // platform
 #include "platform/CCDevice.h"
 #include "platform/CCCommon.h"
-#include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
 #include "platform/CCSAXParser.h"
 #include "platform/CCThread.h"

@@ -32,11 +32,11 @@
 #include "CCSpriteFrame.h"
 #include "CCSprite.h"
 #include "support/TransformUtils.h"
-#include "platform/CCFileUtils.h"
 #include "cocoa/CCString.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCDictionary.h"
 #include <vector>
+#include "IO/FileSystem.h"
 
 using namespace std;
 
@@ -358,7 +358,7 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist, CCTexture
     {
         return;//We already added it
     }
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszPlist);
+    std::string fullPath = FileSystem::fullPathOfFile(pszPlist);
     CCDictionary *dict = CCDictionary::createWithContentsOfFileThreadSafe(fullPath.c_str());
 
     addSpriteFramesWithDictionary(dict, pobTexture);
@@ -388,7 +388,7 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
 
     if (m_pLoadedFileNames->find(pszPlist) == m_pLoadedFileNames->end())
     {
-        std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszPlist);
+        std::string fullPath = FileSystem::fullPathOfFile(pszPlist);
         CCDictionary *dict = CCDictionary::createWithContentsOfFileThreadSafe(fullPath.c_str());
 
         string texturePath("");
@@ -403,8 +403,8 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
         if (! texturePath.empty())
         {
             // build texture path relative to plist file
-            texturePath = CCFileUtils::sharedFileUtils()->fullPathFromRelativeFile(texturePath.c_str(), pszPlist);
-        }
+			texturePath = FileSystem::join(FileSystem::getDirectory(pszPlist), texturePath);
+		}
         else
         {
             // build texture path by replacing file extension
@@ -499,7 +499,7 @@ void CCSpriteFrameCache::removeSpriteFrameByName(const char *pszName)
 
 void CCSpriteFrameCache::removeSpriteFramesFromFile(const char* plist)
 {
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(plist);
+    std::string fullPath = FileSystem::fullPathOfFile(plist);
     CCDictionary* dict = CCDictionary::createWithContentsOfFileThreadSafe(fullPath.c_str());
 
     removeSpriteFramesFromDictionary((CCDictionary*)dict);

@@ -30,11 +30,11 @@ THE SOFTWARE.
 #include "CCTMXXMLParser.h"
 #include "CCTMXTiledMap.h"
 #include "ccMacros.h"
-#include "platform/CCFileUtils.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
 #include "platform/platform.h"
 #include "crypto/CCCrypto.h"
+#include "IO/FileSystem.h"
 
 using namespace std;
 /*
@@ -159,7 +159,7 @@ void CCTMXMapInfo::internalInit(const char* tmxFileName, const char* resourcePat
 
     if (tmxFileName != NULL)
     {
-        m_sTMXFileName = CCFileUtils::sharedFileUtils()->fullPathForFilename(tmxFileName);
+        m_sTMXFileName = FileSystem::fullPathOfFile(tmxFileName);
     }
     
     if (resourcePath != NULL)
@@ -307,7 +307,7 @@ bool CCTMXMapInfo::parseXMLFile(const char *xmlFilename)
     
     parser.setDelegator(this);
 
-    return parser.parse(CCFileUtils::sharedFileUtils()->fullPathForFilename(xmlFilename).c_str());
+    return parser.parse(FileSystem::fullPathOfFile(xmlFilename).c_str());
 }
 
 
@@ -372,7 +372,7 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             {
                 externalTilesetFilename = m_sResources + "/" + externalTilesetFilename;
             }
-            externalTilesetFilename = CCFileUtils::sharedFileUtils()->fullPathForFilename(externalTilesetFilename.c_str());
+            externalTilesetFilename = FileSystem::fullPathOfFile(externalTilesetFilename);
             
             m_uCurrentFirstGID = (unsigned int)atoi(valueForKey("firstgid", attributeDict));
             

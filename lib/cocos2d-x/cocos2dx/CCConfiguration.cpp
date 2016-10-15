@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include <string.h>
 #include "cocoa/CCDictionary.h"
 #include "cocos2d.h"
-#include "platform/CCFileUtils.h"
 
 using namespace std;
 

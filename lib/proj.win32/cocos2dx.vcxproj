@@ -83,7 +83,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCRenderTexture.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCZipFile.cpp" />
@@ -93,7 +92,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCCommon.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCDevice.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCImage.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.cpp" />
@@ -369,7 +367,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCCommon.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCDevice.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCFileUtils.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCImage.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCImageCommon_cpp.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\CCPlatformConfig.h" />
@@ -410,7 +407,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCAccelerometer.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCApplication.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCFileUtilsWin32.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCPlatformDefine.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.h" />

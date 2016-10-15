@@ -24,11 +24,10 @@
 
 #include "CCSAXParser.h"
 #include "cocoa/CCDictionary.h"
-#include "CCFileUtils.h"
+#include "IO/FileSystem.h"
 #include "support/tinyxml2/tinyxml2.h"
 
 #include <vector> // because its based on windows 8 build :P
-#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 

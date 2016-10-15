@@ -30,7 +30,6 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "CCDirector.h"
 #include "platform/platform.h"
-#include "platform/CCFileUtils.h"
 #include "platform/CCThread.h"
 #include "platform/CCImage.h"
 #include "cocos/MathDefs.h"
@@ -47,6 +46,7 @@ THE SOFTWARE.
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include "IO/FileSystem.h"
 
 using namespace std;
 NS_CC_BEGIN
@@ -256,7 +256,7 @@ void CCTextureCache::addImageAsyncImpl(const char *path, CCObject *target, SEL_C
 
     std::string pathKey = path;
 
-    pathKey = CCFileUtils::sharedFileUtils()->fullPathForFilename(pathKey.c_str());
+    pathKey = FileSystem::fullPathOfFile(pathKey);
 
     texture = (CCTexture2D*)m_pTextures->objectForKey(pathKey.c_str());
 
@@ -387,14 +387,14 @@ CCTexture2D * CCTextureCache::addImage(const char * path)
 
     std::string pathKey = path;
 
-    pathKey = CCFileUtils::sharedFileUtils()->fullPathForFilename(pathKey.c_str());
+    pathKey = FileSystem::fullPathOfFile(pathKey);
     if (pathKey.size() == 0)
     {
         return NULL;
     }
     texture = (CCTexture2D*)m_pTextures->objectForKey(pathKey.c_str());
 
-    std::string fullpath = pathKey; // (CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(path));
+    std::string fullpath = pathKey;
     if (! texture) 
     {
         std::string lowerCase(pathKey);
@@ -481,7 +481,7 @@ CCTexture2D * CCTextureCache::addPVRImage(const char* path)
     }
 
     // Split up directory and filename
-    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(key.c_str());
+    std::string fullpath = FileSystem::fullPathOfFile(key);
     texture = new CCTexture2D();
     if(texture != NULL && texture->initWithPVRFile(fullpath.c_str()) )
     {
@@ -514,7 +514,7 @@ CCTexture2D* CCTextureCache::addETCImage(const char* path)
     }
     
     // Split up directory and filename
-    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(key.c_str());
+    std::string fullpath = FileSystem::fullPathOfFile(key);
     texture = new CCTexture2D();
     if(texture != NULL && texture->initWithETCFile(fullpath.c_str()))
     {
@@ -539,7 +539,7 @@ CCTexture2D* CCTextureCache::addUIImage(CCImage *image, const char *key)
     std::string forKey;
     if (key)
     {
-        forKey = CCFileUtils::sharedFileUtils()->fullPathForFilename(key);
+        forKey = FileSystem::fullPathOfFile(key);
     }
 
     // Don't have to lock here, because addImageAsync() will not 
@@ -578,7 +578,7 @@ CCTexture2D* CCTextureCache::addUIImage(CCImage *image, const char *key)
 
 bool CCTextureCache::reloadTexture(const char* fileName)
 {
-    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName);
+    std::string fullpath = FileSystem::fullPathOfFile(fileName);
     if (fullpath.size() == 0)
     {
         return false;
@@ -674,7 +674,7 @@ void CCTextureCache::removeTextureForKey(const char *textureKeyName)
         return;
     }
 
-    string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(textureKeyName);
+    string fullPath = FileSystem::fullPathOfFile(textureKeyName);
     m_pTextures->removeObjectForKey(fullPath);
 }
 
@@ -694,7 +694,7 @@ const char* CCTextureCache::keyForTexture(CCTexture2D *texture)
 
 CCTexture2D* CCTextureCache::textureForKey(const char* key)
 {
-    return (CCTexture2D*)m_pTextures->objectForKey(CCFileUtils::sharedFileUtils()->fullPathForFilename(key));
+    return (CCTexture2D*)m_pTextures->objectForKey(FileSystem::fullPathOfFile(key));
 }
 
 void CCTextureCache::reloadAllTextures()
@@ -904,10 +904,9 @@ void VolatileTexture::reloadAllTextures()
                 else 
                 {
                     CCImage* pImage = new CCImage();
-                    unsigned long nSize = 0;
-                    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(vt->m_strFileName.c_str(), "rb", &nSize);
+					SharedPtr<MemBuffer> bf = FileSystem::readAll(vt->m_strFileName);
 
-                    if (pImage && pImage->initWithImageData((void*)pBuffer, nSize, vt->m_FmtImage))
+                    if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize(), vt->m_FmtImage))
                     {
                         CCTexture2DPixelFormat oldPixelFormat = CCTexture2D::defaultAlphaPixelFormat();
                         CCTexture2D::setDefaultAlphaPixelFormat(vt->m_PixelFormat);
@@ -915,7 +914,6 @@ void VolatileTexture::reloadAllTextures()
                         CCTexture2D::setDefaultAlphaPixelFormat(oldPixelFormat);
                     }
 
-                    CC_SAFE_DELETE_ARRAY(pBuffer);
                     CC_SAFE_RELEASE(pImage);
                 }
             }

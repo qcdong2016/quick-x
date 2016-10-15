@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include "CCGLProgram.h"
 #include "ccGLStateCache.h"
 #include "ccMacros.h"
-#include "platform/CCFileUtils.h"
 #include "support/data_support/uthash.h"
 #include "cocoa/CCString.h"
 // extern
@@ -39,6 +38,7 @@ THE SOFTWARE.
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
 #include "CCPrecompiledShaders.h"
 #endif
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -165,8 +165,8 @@ bool CCGLProgram::initWithPrecompiledProgramByteArray(const GLchar* vShaderByteA
 
 bool CCGLProgram::initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename)
 {
-    const GLchar * vertexSource = (GLchar*) CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(vShaderFilename).c_str())->getCString();
-    const GLchar * fragmentSource = (GLchar*) CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(fShaderFilename).c_str())->getCString();
+    const GLchar * vertexSource = (GLchar*) CCString::createWithContentsOfFile(FileSystem::fullPathOfFile(vShaderFilename).c_str())->getCString();
+    const GLchar * fragmentSource = (GLchar*) CCString::createWithContentsOfFile(FileSystem::fullPathOfFile(fShaderFilename).c_str())->getCString();
 
     return initWithVertexShaderByteArray(vertexSource, fragmentSource);
 }

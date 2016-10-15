@@ -24,7 +24,7 @@ function App:run()
 
     display.replaceScene(self.scene_)
 
-    CCFileUtils:sharedFileUtils():addSearchPath("res/")
+    FileSystem:addResourcePath("res/")
 
     self:enterState("Menu")
 end

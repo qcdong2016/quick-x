@@ -29,7 +29,7 @@
 #include "CCSpriteFrame.h"
 #include "CCSpriteFrameCache.h"
 #include "cocoa/CCString.h"
-#include "platform/CCFileUtils.h"
+#include "IO/FileSystem.h"
 
 using namespace std;
 
@@ -225,8 +225,8 @@ void CCAnimationCache::addAnimationsWithDictionary(CCDictionary* dictionary,cons
             CCString* name = (CCString*)(pObj);
             if (plist)
             {
-                const char* path = CCFileUtils::sharedFileUtils()->fullPathFromRelativeFile(name->getCString(),plist);
-                CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(path);
+				std::string path = FileSystem::join(FileSystem::getDirectory(plist), name->getCString());
+				CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(path.c_str());
             }
             else
             {
@@ -252,7 +252,7 @@ void CCAnimationCache::addAnimationsWithFile(const char* plist)
 {
     CCAssert( plist, "Invalid texture file name");
     
-    std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename(plist);
+    std::string path = FileSystem::fullPathOfFile(plist);
     CCDictionary* dict = CCDictionary::createWithContentsOfFile(path.c_str());
     
     CCAssert( dict, "CCAnimationCache: File could not be found");

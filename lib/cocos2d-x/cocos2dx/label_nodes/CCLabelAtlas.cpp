@@ -34,9 +34,9 @@ THE SOFTWARE.
 #include "shaders/ccGLStateCache.h"
 #include "CCDirector.h"
 #include "support/TransformUtils.h"
-#include "platform/CCFileUtils.h"
 // external
 #include "kazmath/GL/matrix.h"
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -147,7 +147,7 @@ CCLabelAtlas* CCLabelAtlas::create(const char *string, const char *fntFile)
 
 bool CCLabelAtlas::initWithString(const char *theString, const char *fntFile)
 {
-  std::string pathStr = CCFileUtils::sharedFileUtils()->fullPathForFilename(fntFile);
+  std::string pathStr = FileSystem::fullPathOfFile(fntFile);
   std::string relPathStr = pathStr.substr(0, pathStr.find_last_of("/"))+"/";
   CCDictionary *dict = CCDictionary::createWithContentsOfFile(pathStr.c_str());
   

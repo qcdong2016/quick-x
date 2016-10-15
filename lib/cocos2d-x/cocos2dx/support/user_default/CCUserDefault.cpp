@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCUserDefault.h"
 #include "platform/CCCommon.h"
-#include "platform/CCFileUtils.h"
 #include "../tinyxml2/tinyxml2.h"
 #include "IO/FileSystem.h"
 
@@ -399,7 +398,7 @@ void CCUserDefault::initXMLFilePath()
 {
     if (! m_sbIsFilePathInitialized)
     {
-        m_sFilePath += CCFileUtils::sharedFileUtils()->getWritablePath() + XML_FILE_NAME;
+		m_sFilePath += FileSystem::getWritablePath() +XML_FILE_NAME;
         m_sbIsFilePathInitialized = true;
     }    
 }

@@ -24,7 +24,6 @@
 
 #include "CCTextureETC.h"
 #include "platform/CCPlatformConfig.h"
-#include "platform/CCFileUtils.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
@@ -47,7 +46,7 @@ bool CCTextureETC::initWithFile(const char *file)
 {
     // Only Android supports ETC file format
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    bool ret = loadTexture(CCFileUtils::sharedFileUtils()->fullPathForFilename(file).c_str());
+    bool ret = loadTexture(FileSystem::fullPathOfFile(file).c_str());
     return ret;
 #else
     return false;

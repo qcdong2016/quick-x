@@ -99,8 +99,8 @@ else
 end
 
 device.language = language_
-device.writablePath = CCFileUtils:sharedFileUtils():getWritablePath()
-device.cachePath = CCFileUtils:sharedFileUtils():getCachePath()
+device.writablePath = FileSystem:getWritablePath()
+device.cachePath = ''--CCFileUtils:sharedFileUtils():getCachePath()
 device.directorySeparator = "/"
 device.pathSeparator = ":"
 if device.platform == "windows" then

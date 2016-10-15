@@ -60,7 +60,6 @@ extern "C"
 
         // search file in package.path
         std::string chunkName;
-        CCFileUtils* utils = CCFileUtils::sharedFileUtils();
 
         lua_getglobal(L, "package");
         lua_getfield(L, -1, "path");
@@ -82,8 +81,8 @@ extern "C"
 
             pos = prefix.find("?.lua");
             chunkName = prefix.substr(0, pos).append(filename);
-            chunkName = utils->fullPathForFilename(chunkName.c_str());
-            if (utils->isFileExist(chunkName))
+            chunkName = FileSystem::fullPathOfFile(chunkName);
+            if (FileSystem::isFileExist(chunkName))
             {
 				bf = FileSystem::readAll(chunkName);
                 break;

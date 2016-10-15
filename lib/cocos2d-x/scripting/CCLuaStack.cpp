@@ -35,7 +35,6 @@ extern "C" {
 
 #include "ccMacros.h"
 #include "platform/CCZipFile.h"
-#include "platform/CCFileUtils.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || (CC_TARGET_PLATFORM == CC_PLATFORM_QT && defined(Q_OS_MAC)))
 #include "platform/ios/CCLuaObjcBridge.h"
@@ -253,7 +252,7 @@ int CCLuaStack::executeScriptFile(const char *filename)
 {
     CCAssert(filename, "CCLuaStack::executeScriptFile() - invalid filename");
 
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filename);
+    std::string fullPath = FileSystem::fullPathOfFile(filename);
 	SharedPtr<MemBuffer> bf = FileSystem::readAll(filename);
 
     int rn = 0;
@@ -631,8 +630,7 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 
     const char *zipFilename = lua_tostring(L, -1);
     lua_settop(L, 0);
-    CCFileUtils *utils = CCFileUtils::sharedFileUtils();
-    string zipFilePath = utils->fullPathForFilename(zipFilename);
+    string zipFilePath = FileSystem::fullPathOfFile(zipFilename);
     zipFilename = NULL;
 
     CCLuaStack *stack = CCLuaStack::stack(L);
@@ -684,7 +682,7 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 
 int CCLuaStack::lua_loadbuffer(lua_State *L, const char *chunk, int chunkSize, const char *chunkName)
 {
-	Decoder* d = CCFileUtils::sharedFileUtils()->getDecoder();
+	Decoder* d = FileSystem::getDecoder();
 
 	if (d && d->is((unsigned char*)chunk, chunkSize))
 	{

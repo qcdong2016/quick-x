@@ -1,6 +1,6 @@
 #include "FileSystem.h"
 #include "CCPlatformMacros.h"
-#include "CCFileUtils.h"
+#include "ccMacros.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -29,20 +29,85 @@
 NS_CC_BEGIN
 
 
+extern "C"
+{
+#include "crypto/xxtea.h"
+}
+
+bool DecoderXXTea::is(unsigned char* data, size_t size)
+{
+	return (memcmp(data, _sign.c_str(), _sign.length()) == 0);
+}
+
+
+unsigned char* DecoderXXTea::decode(unsigned char* data, size_t& size_inout)
+{
+	// decrypt XXTEA
+	xxtea_long len = 0;
+	unsigned char* tbuff = xxtea_decrypt(data + _sign.length(), (xxtea_long)size_inout - (xxtea_long)_sign.length(),
+		(unsigned char*)_key.c_str(), (xxtea_long)_key.length(), &len);
+
+	unsigned char* buffer = new unsigned char[len];
+	size_inout = len;
+
+	memcpy(buffer, tbuff, len);
+	free(tbuff);
+
+	return buffer;
+}
+
+
 MemBuffer::~MemBuffer()
 {
 	CC_SAFE_DELETE_ARRAY(_data);
 }
 
+static std::vector<std::string> s_searchPath;
+static std::string s_searchRoot = ".";
+
+void cocos2d::FileSystem::setResourceRoot(const std::string& root)
+{
+	s_searchRoot = root;
+}
 
 void FileSystem::addResourcePath(const std::string& path)
 {
-	CCFileUtils::sharedFileUtils()->addSearchPath(path.c_str());
+	if (!isAbsolutePath(path))
+		s_searchPath.push_back(join(s_searchRoot, path));
+	else
+		s_searchPath.push_back(path);
+}
+
+std::string FileSystem::getWritablePath()
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+	return ".";// the exe path;
+#else
+
+#endif
+}
+
+std::string FileSystem::fullPathOfFile(const std::string& filename)
+{
+	std::string test = join(s_searchRoot, filename);
+
+	if (isFileExist(test))
+		return test;
+
+	// very slow, fix me
+	for (std::string& ps : s_searchPath) {
+		test = join(ps, filename);
+		if (isFileExist(test)) {
+			return test;
+		}
+	}
+
+	return filename;
 }
 
 bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>& files)
 {
-	std::string path(CCFileUtils::sharedFileUtils()->getSearchRootPath());
+	std::string path;// (CCFileUtils::sharedFileUtils()->getSearchRootPath());
 
     if (!dirPath.empty())
     {
@@ -131,10 +196,8 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 #endif
 }
 
-bool FileSystem::fileExists(const std::string& filePath)
+bool FileSystem::isFileExist(const std::string& filePath)
 {
-    std::string fullPath;
-
 #ifdef __ANDROID__
     // fullPath = __assetPath;
     // fullPath += resolvePath(filePath);
@@ -145,18 +208,66 @@ bool FileSystem::fileExists(const std::string& filePath)
     // }
 #endif
 
-	fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filePath.c_str());
-
     gp_stat_struct s;
-    return stat(fullPath.c_str(), &s) == 0;
+    return stat(filePath.c_str(), &s) == 0;
 
+}
+
+unsigned char* readFile(const std::string& fullPath, size_t* pSize)
+{
+	unsigned char * pBuffer = NULL;
+	CCAssert(!fullPath.empty() && pSize != NULL, "Invalid parameters.");
+	*pSize = 0;
+	do
+	{
+		// read the file from hardware
+		FILE *fp = fopen(fullPath.c_str(), "rb");
+		CC_BREAK_IF(!fp);
+
+		fseek(fp, 0, SEEK_END);
+		*pSize = ftell(fp);
+		fseek(fp, 0, SEEK_SET);
+		pBuffer = new unsigned char[*pSize];
+		*pSize = fread(pBuffer, sizeof(unsigned char), *pSize, fp);
+		fclose(fp);
+	} while (0);
+
+	if (!pBuffer)
+	{
+		std::string msg = "Get data from file(";
+		msg.append(fullPath).append(") failed!");
+
+		CCLOG("%s", msg.c_str());
+	}
+
+	return pBuffer;
 }
 
 SharedPtr<MemBuffer> FileSystem::readAll(const std::string& filePath)
 {
-	unsigned long size;
-	unsigned char* data = CCFileUtils::sharedFileUtils()->getFileData(filePath.c_str(), "rb", &size);
+
+	size_t size;
+	unsigned char* data = readFile(fullPathOfFile(filePath), &size);
+
+	if (data && _dataDecoder.Get() && _dataDecoder->is(data, size))
+	{
+		unsigned char* buf = _dataDecoder->decode(data, size);
+		delete[] data;
+
+		data = buf;
+	}
+
 	return SharedPtr<MemBuffer>(new MemBuffer(data, size));
+}
+
+std::string FileSystem::readAllString(const std::string& filePath)
+{
+	SharedPtr<MemBuffer> bf = readAll(filePath);
+
+	if (bf->isNull())
+		return "";
+
+	return std::string((char*)bf->getData(), bf->getSize());
 }
 
 bool FileSystem::isAbsolutePath(const std::string& filePath)
@@ -175,45 +286,47 @@ bool FileSystem::isAbsolutePath(const std::string& filePath)
 #endif
 }
 
+std::string FileSystem::getName(const std::string& name)
+{
+	int i = name.find_last_of("/\\");
+	if (i != -1)
+		return name.substr(i + 1);
+	else
+		return name;
+}
+
+std::string FileSystem::getBaseName(const std::string& name)
+{
+	std::string fullname = getName(name);
+	int i = fullname.find_last_of('.');
+
+	if (i != -1)
+		return fullname.substr(0, i);
+	else
+		return fullname;
+}
+
 std::string FileSystem::getDirectoryName(const std::string& path)
 {
-    if (path.empty())
-    {
-        return "";
-    }
-#ifdef WIN32
-    char drive[_MAX_DRIVE];
-    char dir[_MAX_DIR];
-    _splitpath(path.c_str(), drive, dir, NULL, NULL);
-    std::string dirname;
-    size_t driveLength = strlen(drive);
-    if (driveLength > 0)
-    {
-        dirname.reserve(driveLength + strlen(dir));
-        dirname.append(drive);
-        dirname.append(dir);
-    }
-    else
-    {
-        dirname.assign(dir);
-    }
-    std::replace(dirname.begin(), dirname.end(), '\\', '/');
-    return dirname;
-#else
-    // dirname() modifies the input string so create a temp string
-    std::string dirname;
-    char* tempPath = new char[path.size() + 1];
-    strcpy(tempPath, path.c_str());
-    char* dir = ::dirname(tempPath);
-    if (dir && strlen(dir) > 0)
-    {
-        dirname.assign(dir);
-        // dirname() strips off the trailing '/' so add it back to be consistent with Windows
-        dirname.append("/");
-    }
-    CC_SAFE_DELETE(tempPath);
-    return dirname;
-#endif
+	return getName(getDirectory(path));
+}
+
+std::string FileSystem::getDirectory(const std::string& path)
+{
+	int i = path.find_last_of("/\\");
+	if (i != -1)
+		return path.substr(0, i);
+
+	return ".";
+}
+
+std::string FileSystem::join(const std::string& a, const std::string& b)
+{
+	int i = a.find_last_of("/\\");
+	if (i != a.length() - 1)
+		return a + '/' + b;
+	else
+		return a + b;
 }
 
 std::string FileSystem::getExtension(const std::string& path)
@@ -225,5 +338,7 @@ std::string FileSystem::getExtension(const std::string& path)
 		return std::string();
 }
 
+SharedPtr<Decoder> FileSystem::_dataDecoder;
 
 NS_CC_END
+

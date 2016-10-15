@@ -33,13 +33,13 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 #include "cocos/MathDefs.h"
 #include "textures/CCTextureCache.h"
-#include "platform/CCFileUtils.h"
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"
 #include "effects/CCGrid.h"
 // extern
 #include "kazmath/GL/matrix.h"
 #include "CCEGLView.h"
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -640,7 +640,7 @@ bool CCRenderTexture::saveToFile(const char *fileName, EImageFormat format)
     CCImage *pImage = newCCImage(true);
     if (pImage)
     {
-        std::string fullpath = CCFileUtils::sharedFileUtils()->getWritablePath() + fileName;
+        std::string fullpath = FileSystem::getWritablePath() + fileName;
         
         bRet = pImage->saveToFile(fullpath.c_str(), true);
     }

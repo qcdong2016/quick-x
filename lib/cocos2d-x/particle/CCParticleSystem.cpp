@@ -47,7 +47,6 @@ THE SOFTWARE.
 #include "textures/CCTextureCache.h"
 #include "textures/CCTextureAtlas.h"
 #include "support/CCPointExtension.h"
-#include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
 #include "platform/platform.h"
 #include "support/zip_support/ZipUtils.h"
@@ -58,6 +57,7 @@ THE SOFTWARE.
 
 #include <string>
 #include "crypto/CCCrypto.h"
+#include "IO/FileSystem.h"
 
 using namespace std;
 
@@ -169,7 +169,7 @@ bool CCParticleSystem::init()
 bool CCParticleSystem::initWithFile(const char *plistFile)
 {
     bool bRet = false;
-    m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathForFilename(plistFile);
+    m_sPlistFile = FileSystem::fullPathOfFile(plistFile);
     CCDictionary *dict = CCDictionary::createWithContentsOfFileThreadSafe(m_sPlistFile.c_str());
 
     CCAssert( dict != NULL, "Particles: file not found");
@@ -340,12 +340,7 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *
                 
                 if (textureName.length() > 0)
                 {
-                    // set not pop-up message box when load image failed
-                    bool bNotify = CCFileUtils::sharedFileUtils()->isPopupNotify();
-                    CCFileUtils::sharedFileUtils()->setPopupNotify(false);
                     tex = CCTextureCache::sharedTextureCache()->addImage(textureName.c_str());
-                    // reset the value of UIImage notify
-                    CCFileUtils::sharedFileUtils()->setPopupNotify(bNotify);
                 }
                 
                 if (tex)

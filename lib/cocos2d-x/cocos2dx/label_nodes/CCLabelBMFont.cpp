@@ -38,10 +38,10 @@
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "sprite_nodes/CCSprite.h"
 #include "support/CCPointExtension.h"
-#include "platform/CCFileUtils.h"
 #include "CCDirector.h"
 #include "textures/CCTextureCache.h"
 #include "support/ccUTF8.h"
+#include "IO/FileSystem.h"
 
 using namespace std;
 
@@ -183,7 +183,7 @@ void CCBMFontConfiguration::purgeFontDefDictionary()
 
 std::set<unsigned int>* CCBMFontConfiguration::parseConfigFile(const char *controlFile)
 {
-    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(controlFile);
+    std::string fullpath = FileSystem::fullPathOfFile(controlFile);
     CCString *contents = CCString::createWithContentsOfFile(fullpath.c_str());
 
     CCAssert(contents, "CCBMFontConfiguration::parseConfigFile | Open file error.");
@@ -277,7 +277,7 @@ void CCBMFontConfiguration::parseImageFileName(std::string line, const char *fnt
     index2 = line.find('"', index);
     value = line.substr(index, index2-index);
 
-    m_sAtlasName = CCFileUtils::sharedFileUtils()->fullPathFromRelativeFile(value.c_str(), fntFile);
+	m_sAtlasName = FileSystem::join(FileSystem::getDirectory(fntFile), value);
 }
 
 void CCBMFontConfiguration::parseInfoArguments(std::string line)

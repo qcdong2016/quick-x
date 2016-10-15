@@ -30,11 +30,12 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 #include "cocos/MathDefs.h"
 #include "CCStdC.h"
-#include "platform/CCFileUtils.h"
 #include "support/zip_support/ZipUtils.h"
 #include "shaders/ccGLStateCache.h"
 #include <ctype.h>
 #include <cctype>
+#include "cocos/Ptr.h"
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -613,6 +614,8 @@ bool CCTexturePVR::createGLTexture()
 
 bool CCTexturePVR::initWithContentsOfFile(const char* path)
 {
+	SharedPtr<MemBuffer> buf;
+
     unsigned char* pvrdata = NULL;
     int pvrlen = 0;
     
@@ -625,15 +628,17 @@ bool CCTexturePVR::initWithContentsOfFile(const char* path)
     if (lowerCase.find(".ccz") != std::string::npos)
     {
         pvrlen = ZipUtils::ccInflateCCZFile(path, &pvrdata);
+		buf = SharedPtr<MemBuffer>(new MemBuffer(pvrdata, pvrlen));
     }
     else if (lowerCase.find(".gz") != std::string::npos)
     {
         pvrlen = ZipUtils::ccInflateGZipFile(path, &pvrdata);
-    }
+		buf = SharedPtr<MemBuffer>(new MemBuffer(pvrdata, pvrlen));
+	}
     else
     {
-        pvrdata = CCFileUtils::sharedFileUtils()->getFileData(path, "rb", (unsigned long *)(&pvrlen));
-    }
+		buf = FileSystem::readAll(path);
+	}
     
     if (pvrlen < 0)
     {
@@ -659,8 +664,6 @@ bool CCTexturePVR::initWithContentsOfFile(const char* path)
         return false;
     }
 
-    CC_SAFE_DELETE_ARRAY(pvrdata);
-    
     return true;
 }
 

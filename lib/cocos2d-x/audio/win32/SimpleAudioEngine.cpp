@@ -5,6 +5,7 @@
 
 #include "MciPlayer.h"
 #include "cocos2d.h"
+#include "IO/FileSystem.h"
 USING_NS_CC;
 
 using namespace std;
@@ -258,7 +259,7 @@ void SimpleAudioEngine::setEffectsVolume(float volume)
 
 static std::string _FullPath(const char * szPath)
 {
-    return CCFileUtils::sharedFileUtils()->fullPathForFilename(szPath);
+    return FileSystem::fullPathOfFile(szPath);
 }
 
 unsigned int _Hash(const char *key)

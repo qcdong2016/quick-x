@@ -24,7 +24,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCTileMapAtlas.h"
-#include "platform/CCFileUtils.h"
 #include "textures/CCTextureAtlas.h"
 #include "support/image_support/TGAlib.h"
 #include "ccConfig.h"
@@ -32,6 +31,7 @@ THE SOFTWARE.
 #include "CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "textures/CCTexture2D.h"
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -110,7 +110,7 @@ void CCTileMapAtlas::loadTGAfile(const char *file)
 {
     CCAssert( file != NULL, "file must be non-nil");
 
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(file);
+    std::string fullPath = FileSystem::fullPathOfFile(file);
 
     //    //Find the path of the file
     //    NSBundle *mainBndl = [CCDirector sharedDirector].loadingBundle;

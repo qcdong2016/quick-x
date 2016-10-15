@@ -24,7 +24,8 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCArray.h"
-#include "platform/CCFileUtils.h"
+#include "IO/FileSystem.h"
+#include "CCDictionary.h"
 
 NS_CC_BEGIN
 
@@ -134,7 +135,7 @@ CCArray* CCArray::createWithContentsOfFile(const char* pFileName)
 
 CCArray* CCArray::createWithContentsOfFileThreadSafe(const char* pFileName)
 {
-    return CCFileUtils::sharedFileUtils()->createCCArrayWithContentsOfFile(pFileName);
+	return CCDictionary::createArrayWithContentsOfFile(pFileName);
 }
 
 bool CCArray::init()
