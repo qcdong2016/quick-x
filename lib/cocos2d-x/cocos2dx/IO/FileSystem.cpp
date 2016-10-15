@@ -6,6 +6,10 @@
 #include <sys/stat.h>
 #include <algorithm>
 
+extern "C"
+{
+#include "crypto/xxtea.h"
+}
 #ifdef WIN32
     #include <windows.h>
     #include <tchar.h>
@@ -21,18 +25,16 @@
     #define gp_stat_struct struct stat
 #endif
 
-#ifdef __ANDROID__
-#include <android/asset_manager.h>
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+// #include <android/asset_manager.h>
 // extern AAssetManager* __assetManager;
 #endif
 
+#include "support/zip_support/ZipUtils.h"
+
 NS_CC_BEGIN
 
-
-extern "C"
-{
-#include "crypto/xxtea.h"
-}
 
 bool DecoderXXTea::is(unsigned char* data, size_t size)
 {
@@ -63,11 +65,28 @@ MemBuffer::~MemBuffer()
 }
 
 static std::vector<std::string> s_searchPath;
-static std::string s_searchRoot = ".";
+static SharedPtr<ZipFile> s_pZipFile;
 
-void cocos2d::FileSystem::setResourceRoot(const std::string& root)
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+static std::string s_searchRoot = "assets";
+#else
+static std::string s_searchRoot = ".";
+#endif
+
+void FileSystem::init()
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	std::string resourcePath = getApkPath();
+	s_pZipFile = SharedPtr<ZipFile>(new ZipFile(resourcePath, "assets/"));
+#endif
+}
+
+void FileSystem::setResourceRoot(const std::string& root)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#else
 	s_searchRoot = root;
+#endif
 }
 
 void FileSystem::addResourcePath(const std::string& path)
@@ -82,19 +101,23 @@ std::string FileSystem::getWritablePath()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 	return ".";// the exe path;
-#else
-
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	return getFileDirectoryJNI();
 #endif
 }
 
 std::string FileSystem::fullPathOfFile(const std::string& filename)
 {
-	std::string test = join(s_searchRoot, filename);
+	std::string test;
+
+	if (!isAbsolutePath(filename))
+		test = join(s_searchRoot, filename);
+	else
+		test = filename;
 
 	if (isFileExist(test))
 		return test;
 
-	// very slow, fix me
 	for (std::string& ps : s_searchPath) {
 		test = join(ps, filename);
 		if (isFileExist(test)) {
@@ -198,14 +221,9 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 
 bool FileSystem::isFileExist(const std::string& filePath)
 {
-#ifdef __ANDROID__
-    // fullPath = __assetPath;
-    // fullPath += resolvePath(filePath);
-
-    // if (androidFileExists(fullPath.c_str()))
-    // {
-    //     return true;
-    // }
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	if (!isAbsolutePath(filePath))
+		return s_pZipFile->fileExists(filePath);
 #endif
 
     gp_stat_struct s;
@@ -218,6 +236,14 @@ unsigned char* readFile(const std::string& fullPath, size_t* pSize)
 	unsigned char * pBuffer = NULL;
 	CCAssert(!fullPath.empty() && pSize != NULL, "Invalid parameters.");
 	*pSize = 0;
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	pBuffer = s_pZipFile->getFileData(fullPath.c_str(), (unsigned long*)pSize);
+
+	if (pBuffer)
+		return pBuffer;
+#endif
+
 	do
 	{
 		// read the file from hardware
@@ -239,6 +265,7 @@ unsigned char* readFile(const std::string& fullPath, size_t* pSize)
 
 		CCLOG("%s", msg.c_str());
 	}
+
 
 	return pBuffer;
 }

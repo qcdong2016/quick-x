@@ -4,6 +4,7 @@
 #include <string>
 #include "JniHelper.h"
 #include "cocoa/CCString.h"
+#include "IO/FileSystem.h"
 #include "Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 
 
@@ -24,6 +25,7 @@ extern "C" {
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath) {
         g_apkPath = JniHelper::jstring2string(apkPath);
+        FileSystem::init();
     }
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetContext(JNIEnv*  env, jobject thiz, jobject context) {
         JniHelper::setClassLoaderFrom(context);

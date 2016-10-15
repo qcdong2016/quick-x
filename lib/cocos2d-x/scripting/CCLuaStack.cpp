@@ -252,12 +252,11 @@ int CCLuaStack::executeScriptFile(const char *filename)
 {
     CCAssert(filename, "CCLuaStack::executeScriptFile() - invalid filename");
 
-    std::string fullPath = FileSystem::fullPathOfFile(filename);
 	SharedPtr<MemBuffer> bf = FileSystem::readAll(filename);
 
     int rn = 0;
     if (!bf->isNull()) {
-        if (lua_loadbuffer(m_state, (const char*)bf->getData(), (int)bf->getSize(), fullPath.c_str()) == 0) {
+        if (lua_loadbuffer(m_state, (const char*)bf->getData(), (int)bf->getSize(), filename) == 0) {
             rn = executeFunction(0);
         }
     }

@@ -85,18 +85,14 @@ extern "C"
             if (FileSystem::isFileExist(chunkName))
             {
 				bf = FileSystem::readAll(chunkName);
-                break;
+				CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
+				return 1;
             }
 
             begin = next + 1;
             next = searchpath.find_first_of(";", begin);
-        }while ( begin < (size_t)searchpath.length());
+        } while ( begin < (size_t)searchpath.length());
 
-        if (bf.Get() && !bf->isNull())
-        {
-            CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
-			return 1;
-        }
         return 0;
     }
 }

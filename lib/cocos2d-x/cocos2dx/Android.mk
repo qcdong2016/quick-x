@@ -75,10 +75,10 @@ LOCAL_SRC_FILES := \
     misc_nodes/CCClippingRegionNode.cpp \
     misc_nodes/CCProgressTimer.cpp \
     misc_nodes/CCRenderTexture.cpp \
+    IO/FileSystem.cpp \
     platform/CCCommon.cpp \
     platform/CCSAXParser.cpp \
     platform/CCThread.cpp \
-    platform/CCFileUtils.cpp \
     platform/CCZipFile.cpp \
     platform/platform.cpp \
     platform/CCEGLViewProtocol.cpp \
@@ -87,7 +87,6 @@ LOCAL_SRC_FILES := \
     platform/android/CCAccelerometer.cpp \
     platform/android/CCApplication.cpp \
     platform/android/CCCommon.cpp \
-    platform/android/CCFileUtilsAndroid.cpp \
     platform/android/CCImage.cpp \
     platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp \
     platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp \
@@ -135,7 +134,6 @@ LOCAL_SRC_FILES := \
     touch_dispatcher/CCTouchTargetNode.cpp \
     support/image_support/TGAlib.cpp \
     textures/CCTextureETC.cpp \
-    IO/FileSystem.cpp \
     textures/CCTexturePVR.cpp
 
 

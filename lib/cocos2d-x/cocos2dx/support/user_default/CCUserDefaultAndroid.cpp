@@ -24,6 +24,7 @@ THE SOFTWARE.
 #include "CCUserDefault.h"
 #include "platform/CCPlatformConfig.h"
 #include "platform/CCCommon.h"
+#include "IO/FileSystem.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
@@ -36,7 +37,6 @@ THE SOFTWARE.
 #define XML_FILE_NAME "UserDefault.xml"
 
 #ifdef KEEP_COMPATABILITY
-#include "platform/CCFileUtils.h"
 #include "../tinyxml2/tinyxml2.h"
 #endif
 
@@ -73,16 +73,13 @@ static tinyxml2::XMLElement* getXMLNodeForKey(const char* pKey, tinyxml2::XMLDoc
     {
         tinyxml2::XMLDocument* xmlDoc = new tinyxml2::XMLDocument();
         *doc = xmlDoc;
-        unsigned long nSize;
-        const char* pXmlBuffer = (const char*)CCFileUtils::sharedFileUtils()->getFileData(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str(), "rb", &nSize);
-        //const char* pXmlBuffer = (const char*)data.getBuffer();
-        if(NULL == pXmlBuffer)
+        SharedPtr<MemBuffer> bf = FileSystem::readAll(CCUserDefault::sharedUserDefault()->getXMLFilePath());
+        if(bf->isNull())
         {
             CCLOG("can not read xml file");
             break;
         }
-        xmlDoc->Parse(pXmlBuffer);
-		delete[] pXmlBuffer;
+        xmlDoc->Parse((const char*)bf->getData());
         // get root node
         rootNode = xmlDoc->RootElement();
         if (NULL == rootNode)

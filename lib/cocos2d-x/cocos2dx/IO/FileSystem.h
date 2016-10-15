@@ -29,7 +29,7 @@ private:
 	std::string _key;
 };
 
-class MemBuffer : public RefCounted
+class CC_DLL MemBuffer : public RefCounted
 {
 public:
 
@@ -53,7 +53,7 @@ protected:
 	unsigned long _size;
 };
 
-class FileSystem
+class CC_DLL FileSystem
 {
 public:
 	template<typename T> 
@@ -79,6 +79,7 @@ public:
 	static std::string join(const std::string& a, const std::string& b);
 	static std::string getExtension(const std::string& path);
 
+	static void init();
 private:
 	static SharedPtr<Decoder> _dataDecoder;
 };

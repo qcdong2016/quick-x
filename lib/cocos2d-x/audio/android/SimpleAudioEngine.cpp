@@ -29,6 +29,7 @@ THE SOFTWARE.
 #include <cstring>
 #include <android/log.h>
 #include <jni/JniHelper.h>
+#include <IO/FileSystem.h>
 #include <jni.h>
 
 #define  I9100_MODEL "GT-I9100"
@@ -49,7 +50,7 @@ namespace CocosDenshion {
 static std::string getFullPathWithoutAssetsPrefix(const char* pszFilename)
 {
 	// Changing file path to full path
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszFilename);
+    std::string fullPath = FileSystem::fullPathOfFile(pszFilename);
     // Removing `assets` since it isn't needed for the API of playing sound.
     size_t pos = fullPath.find("assets/");
     if (pos == 0)

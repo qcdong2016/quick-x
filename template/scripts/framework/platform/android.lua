@@ -6,7 +6,7 @@ function io.exists(path)
 end
 
 function io.readfile(path)
-    return FileSystem::readAll(path)
+    return FileSystem:readAll(path)
 end
 
 function device.showAlertAndroid(title, message, buttonLabels, listener)

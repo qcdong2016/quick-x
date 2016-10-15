@@ -31,6 +31,7 @@
 #include <stdlib.h>
 #include <string>
 #include "jni/JniHelper.h"
+#include "IO/FileSystem.h"
 #include <jni.h>
 
 #include "cocos2d.h"
@@ -326,7 +327,7 @@ void setBackgroundColorJNI(const int index, int color) {
 std::string getUrlStringByFileName(const std::string &fileName) {
     // LOGD("error: %s,%d",__func__,__LINE__);
     const std::string basePath("file:///android_asset/");
-    std::string fullPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName.c_str());
+    std::string fullPath = FileSystem::fullPathOfFile(fileName);
     const std::string assetsPath("assets/");
 
     std::string urlString;

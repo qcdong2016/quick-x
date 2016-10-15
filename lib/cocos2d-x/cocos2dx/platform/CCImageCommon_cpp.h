@@ -40,10 +40,6 @@ THE SOFTWARE.
 #include "CCFreeTypeFont.h"
 #endif
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "platform/android/CCFileUtilsAndroid.h"
-#endif
-
 #include <string>
 #include <ctype.h>
 

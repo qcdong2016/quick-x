@@ -1,8 +1,6 @@
 #include "JniHelper.h"
 #include <string.h>
 #include "CCDirector.h"
-#include "../CCApplication.h"
-#include "platform/CCFileUtils.h"
 #include "support/CCNotificationCenter.h"
 #include <jni.h>
 

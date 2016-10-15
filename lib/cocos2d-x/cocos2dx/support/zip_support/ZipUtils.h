@@ -27,10 +27,7 @@ THE SOFTWARE.
 #include <string>
 #include "CCPlatformDefine.h"
 #include "platform/CCPlatformConfig.h"
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "platform/android/CCFileUtilsAndroid.h"
-#endif
+#include "cocos/RefCounted.h"
 
 namespace cocos2d
 {
@@ -168,13 +165,9 @@ namespace cocos2d
     *
     * @since v2.0.5
     */
-    class ZipFile
+    class ZipFile : public RefCounted
     {
     public:
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-        friend class CCFileUtilsAndroid;
-#endif
-        
         /**
         * Constructor, open zip file and store file list.
         *
