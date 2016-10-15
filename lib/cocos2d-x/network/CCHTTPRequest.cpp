@@ -2,12 +2,10 @@
 #include <stdio.h>
 #include <iostream>
 
-#if CC_LUA_ENGINE_ENABLED > 0
 extern "C" {
 #include "lua.h"
 }
 #include "CCLuaEngine.h"
-#endif
 
 using namespace cocos2d;
 
@@ -25,7 +23,7 @@ CCHTTPRequest *CCHTTPRequest::createWithUrl(CCHTTPRequestDelegate *delegate,
     return request;
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
+
 CCHTTPRequest *CCHTTPRequest::createWithUrlLua(LUA_FUNCTION listener,
                                                const char *url,
                                                int method)
@@ -35,7 +33,7 @@ CCHTTPRequest *CCHTTPRequest::createWithUrlLua(LUA_FUNCTION listener,
     request->autorelease();
     return request;
 }
-#endif
+
 
 bool CCHTTPRequest::initWithDelegate(CCHTTPRequestDelegate *delegate, const char *url, int method)
 {
@@ -43,13 +41,12 @@ bool CCHTTPRequest::initWithDelegate(CCHTTPRequestDelegate *delegate, const char
     return initWithUrl(url, method);
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
+
 bool CCHTTPRequest::initWithListener(LUA_FUNCTION listener, const char *url, int method)
 {
     m_listener = listener;
     return initWithUrl(url, method);
 }
-#endif
 
 bool CCHTTPRequest::initWithUrl(const char *url, int method)
 {
@@ -305,7 +302,7 @@ void *CCHTTPRequest::getResponseData(void)
     return buff;
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
+
 LUA_STRING CCHTTPRequest::getResponseDataLua(void)
 {
     CCAssert(m_state == kCCHTTPRequestStateCompleted, "CCHTTPRequest::getResponseDataLua() - request not completed");
@@ -314,7 +311,6 @@ LUA_STRING CCHTTPRequest::getResponseDataLua(void)
     stack->pushString(static_cast<char*>(m_responseBuffer), (int)m_responseDataLength);
     return 1;
 }
-#endif
 
 int CCHTTPRequest::getResponseDataLength(void)
 {
@@ -367,7 +363,7 @@ void CCHTTPRequest::update(float dt)
 {
     if (m_state == kCCHTTPRequestStateInProgress)
     {
-#if CC_LUA_ENGINE_ENABLED > 0
+
         if (m_listener)
         {
             CCLuaValueDict dict;
@@ -383,7 +379,6 @@ void CCHTTPRequest::update(float dt)
             stack->pushCCLuaValueDict(dict);
             stack->executeFunctionByHandler(m_listener, 1);
         }
-#endif
         return;
     }
     CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
@@ -403,7 +398,7 @@ void CCHTTPRequest::update(float dt)
         if (m_delegate) m_delegate->requestFailed(this);
     }
 
-#if CC_LUA_ENGINE_ENABLED > 0
+
     if (m_listener)
     {
         CCLuaValueDict dict;
@@ -431,7 +426,6 @@ void CCHTTPRequest::update(float dt)
         stack->pushCCLuaValueDict(dict);
         stack->executeFunctionByHandler(m_listener, 1);
     }
-#endif
 }
 
 // instance callback

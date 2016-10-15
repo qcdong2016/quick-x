@@ -5,20 +5,11 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := cocos_lua_static
 LOCAL_MODULE_FILENAME := liblua
 
-LOCAL_SRC_FILES := cocoslua/CCLuaEngine.cpp \
-    cocoslua/CCLuaStack.cpp \
-    cocoslua/CCLuaValue.cpp \
-    cocoslua/Cocos2dxLuaLoader.cpp \
-    cocoslua/tolua_fix.c \
-    cocoslua/snapshot.c \
-    cocoslua/platform/android/CCLuaJavaBridge.cpp \
-    cocoslua/platform/android/org_cocos2dx_lib_Cocos2dxLuaJavaBridge.cpp \
-    tolua/tolua_event.c \
+LOCAL_SRC_FILES := tolua/tolua_event.c \
     tolua/tolua_is.c \
     tolua/tolua_map.c \
     tolua/tolua_push.c \
     tolua/tolua_to.c \
-    cocoslua/LuaCocos2d.cpp \
     lua_extensions/cjson/fpconv.c \
     lua_extensions/cjson/lua_cjson.c \
     lua_extensions/cjson/strbuf.c \
@@ -41,7 +32,6 @@ LOCAL_SRC_FILES := cocoslua/CCLuaEngine.cpp \
     lua_extensions/socket/usocket.c \
     lua_extensions/filesystem/lfs.c \
     lua_extensions/lpack/lpack.c \
-    cocoslua/lua_cocos2dx_manual.cpp \
     lua_extensions/lua_extensions.c \
     lua/lapi.c \
     lua/lauxlib.c \
@@ -73,10 +63,20 @@ LOCAL_SRC_FILES := cocoslua/CCLuaEngine.cpp \
     lua/lvm.c \
     lua/lzio.c \
     lua/print.c \
-    cocoslua/LuaFunction.cpp \
-    cocoslua/LuaTable.cpp \
-    cocoslua/lua_cocos2dx_cocostudio_manual.cpp \
-    cocoslua/LuaCocoStudio.cpp
+    lua_cocos2dx_manual.cpp \
+    LuaFunction.cpp \
+    LuaTable.cpp \
+    CCLuaEngine.cpp \
+    CCLuaStack.cpp \
+    CCLuaValue.cpp \
+    Cocos2dxLuaLoader.cpp \
+    tolua_fix.c \
+    snapshot.c \
+    platform/android/CCLuaJavaBridge.cpp \
+    platform/android/org_cocos2dx_lib_Cocos2dxLuaJavaBridge.cpp \
+    LuaCocos2d.cpp \
+    lua_cocos2dx_cocostudio_manual.cpp \
+    LuaCocoStudio.cpp
 
 ifeq ($(CC_SQLITE_ENABLED),1)
 LOCAL_SRC_FILES += \
@@ -88,14 +88,12 @@ endif
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                            $(LOCAL_PATH)/lua \
 		                   $(LOCAL_PATH)/tolua \
-		                   $(LOCAL_PATH)/cocoslua \
 		                   $(LOCAL_PATH)/lua_extensions
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/.. \
                     $(LOCAL_PATH)/lua \
                     $(LOCAL_PATH)/tolua \
-                    $(LOCAL_PATH)/cocoslua \
                     $(LOCAL_PATH)/lua_extensions \
                     $(LOCAL_PATH)/../cocos2dx \
                     $(LOCAL_PATH)/../cocos2dx/include \
@@ -113,9 +111,8 @@ ifeq ($(CC_CURL_ENABLED),1)
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_curl_static
 endif
 
-LOCAL_CFLAGS += -Wno-psabi -DCC_LUA_ENGINE_ENABLED=1 $(ANDROID_COCOS2D_BUILD_FLAGS)
+LOCAL_CFLAGS += -DCC_LUA_ENGINE_ENABLED=1 $(ANDROID_COCOS2D_BUILD_FLAGS)
 
 include $(BUILD_STATIC_LIBRARY)
 
 $(call import-module,ui)
-$(call import-module,external)

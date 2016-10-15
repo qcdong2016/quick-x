@@ -28,7 +28,8 @@
 
 #include <iosfwd>
 
-
+namespace cocos2d {
+    namespace ui {
 class WebView;
 
 
@@ -64,6 +65,8 @@ public:
 
     void setScalesPageToFit(const bool scalesPageToFit);
 
+    void setOpaque(bool yes);
+
     virtual void draw();
     virtual void setVisible(bool visible);
     void setBackgroundColor(int color);
@@ -78,6 +81,7 @@ private:
     WebView *_webView;
 };
 
+}}
 
 /// @endcond
 #endif /* __COCOS2D__UI__WEBVIEWIMPL_ANDROID_H_ */

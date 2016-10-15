@@ -9,7 +9,7 @@
 
 using namespace cocos2d;
 
-NS_CC_EXTRA_BEGIN
+NS_CC_BEGIN
 
 //  activity indicator
 
@@ -165,4 +165,4 @@ void CCNative::vibrate()
     }
 }
 
-NS_CC_EXTRA_END
+NS_CC_END

@@ -40,13 +40,13 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 					$(LOCAL_PATH)/spine
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 					$(LOCAL_PATH)/spine \
+					$(LOCAL_PATH)/../ \
 					$(LOCAL_PATH)/../cocos2dx \
                     $(LOCAL_PATH)/../cocos2dx/include \
                     $(LOCAL_PATH)/../cocos2dx/platform \
                     $(LOCAL_PATH)/../cocos2dx/platform/android \
                     $(LOCAL_PATH)/../cocos2dx/kazmath/include \
-                    $(LOCAL_PATH)/../CocosDenshion/include \
-					$(LOCAL_PATH)/../scripting/cocoslua \
+					$(LOCAL_PATH)/../scripting/ \
 					$(LOCAL_PATH)/../scripting/tolua \
 					$(LOCAL_PATH)/../scripting/lua
 

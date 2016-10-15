@@ -2,7 +2,6 @@
 #include "CCDirector.h"
 #include "../CCApplication.h"
 #include "platform/CCFileUtils.h"
-#include "CCEventType.h"
 #include "support/CCNotificationCenter.h"
 #include "JniHelper.h"
 #include <jni.h>

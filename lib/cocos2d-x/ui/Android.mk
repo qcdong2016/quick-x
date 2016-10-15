@@ -17,6 +17,8 @@ LOCAL_SRC_FILES := \
     ScrollWidget/UIListView.cpp \
     ScrollWidget/UIPageView.cpp \
     ScrollWidget/UIScrollView.cpp \
+    webview/UIWebView.cpp \
+    webview/UIWebViewImpl-android.cpp \
     UIButton.cpp \
     UICheckBox.cpp \
     UIImageView.cpp \
@@ -29,12 +31,8 @@ LOCAL_SRC_FILES := \
     UISlider.cpp
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_lua_static
 
-ifeq ($(CC_CURL_ENABLED),1)
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_curl_static
-endif
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 							$(LOCAL_PATH)/../ \
@@ -48,6 +46,6 @@ LOCAL_CFLAGS := -fexceptions
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,cocos2dx)
-$(call import-module,CocosDenshion/android)
-$(call import-module,scripting)
+$(call import-module, cocos2dx)
+$(call import-module, audio/android)
+$(call import-module, scripting)

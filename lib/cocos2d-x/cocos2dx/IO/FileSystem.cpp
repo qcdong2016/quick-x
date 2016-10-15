@@ -23,7 +23,7 @@
 
 #ifdef __ANDROID__
 #include <android/asset_manager.h>
-extern AAssetManager* __assetManager;
+// extern AAssetManager* __assetManager;
 #endif
 
 NS_CC_BEGIN
@@ -108,23 +108,23 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 
 #ifdef __ANDROID__
     // List the files that are in the android APK at this path
-    AAssetDir* assetDir = AAssetManager_openDir(__assetManager, dirPath);
-    if (assetDir != NULL)
-    {
-        AAssetDir_rewind(assetDir);
-        const char* file = NULL;
-        while ((file = AAssetDir_getNextFileName(assetDir)) != NULL)
-        {
-            std::string filename(file);
-            // Check if this file was already added to the list because it was copied to the SD card.
-            if (find(files.begin(), files.end(), filename) == files.end())
-            {
-                files.push_back(filename);
-            }
-        }
-        AAssetDir_close(assetDir);
-        result = true;
-    }
+    // AAssetDir* assetDir = AAssetManager_openDir(__assetManager, dirPath);
+    // if (assetDir != NULL)
+    // {
+    //     AAssetDir_rewind(assetDir);
+    //     const char* file = NULL;
+    //     while ((file = AAssetDir_getNextFileName(assetDir)) != NULL)
+    //     {
+    //         std::string filename(file);
+    //         // Check if this file was already added to the list because it was copied to the SD card.
+    //         if (find(files.begin(), files.end(), filename) == files.end())
+    //         {
+    //             files.push_back(filename);
+    //         }
+    //     }
+    //     AAssetDir_close(assetDir);
+    //     result = true;
+    // }
 #endif
 
     return result;
@@ -136,13 +136,13 @@ bool FileSystem::fileExists(const std::string& filePath)
     std::string fullPath;
 
 #ifdef __ANDROID__
-    fullPath = __assetPath;
-    fullPath += resolvePath(filePath);
+    // fullPath = __assetPath;
+    // fullPath += resolvePath(filePath);
 
-    if (androidFileExists(fullPath.c_str()))
-    {
-        return true;
-    }
+    // if (androidFileExists(fullPath.c_str()))
+    // {
+    //     return true;
+    // }
 #endif
 
 	fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filePath.c_str());

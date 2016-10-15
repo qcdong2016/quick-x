@@ -39,6 +39,9 @@
 
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,"",__VA_ARGS__)
 
+namespace cocos2d {
+    namespace ui {
+
 static const std::string s_defaultBaseUrl = "file:///android_asset/";
 static const std::string s_sdRootBaseUrl = "file://";
 
@@ -474,5 +477,12 @@ void WebViewImpl::setVisible(bool visible) {
     setWebViewVisibleJNI(_viewTag, visible);
 }
 
+void WebViewImpl::setOpaque(bool yes)
+{
+    
+}
+
+
+}}
 
 #endif // __ANDROID__

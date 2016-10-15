@@ -26,12 +26,15 @@ THE SOFTWARE.
 #define __PLATFORM_ANDROID_CCACCELEROMETER_H__
 
 #include "platform/CCCommon.h"
+#include "cocoa/CCObject.h"
 #include "platform/CCAccelerometerDelegate.h"
+#include "SubSystem.h"
 
 namespace   cocos2d {
 
-class CC_DLL CCAccelerometer
+class CC_DLL CCAccelerometer : public SubSystem
 {
+	CCOBJECT(CCAccelerometer, CCObject)
 public:
     CCAccelerometer();
     ~CCAccelerometer();

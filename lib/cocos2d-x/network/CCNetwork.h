@@ -33,11 +33,9 @@ public:
                                             const char* url,
                                             int method = kCCHTTPRequestMethodGET);
 
-#if CC_LUA_ENGINE_ENABLED > 0
     static CCHTTPRequest* createHTTPRequestLua(cocos2d::LUA_FUNCTION listener,
                                                const char* url,
                                                int method = kCCHTTPRequestMethodGET);
-#endif
 
 #endif // CC_CURL_ENABLED
 

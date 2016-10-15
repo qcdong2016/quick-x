@@ -42,6 +42,8 @@ class CCArray;
 class CC_DLL Decoder
 {
 public:
+    virtual ~Decoder() {}
+    
 	virtual unsigned char* decode(unsigned char* data, size_t& size_inout) = 0;
 	virtual bool is(unsigned char* data, size_t size) = 0;
 };

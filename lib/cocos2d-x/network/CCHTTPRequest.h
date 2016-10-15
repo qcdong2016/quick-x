@@ -5,9 +5,7 @@
 #include "cocos2d.h"
 #include "CCHTTPRequestDelegate.h"
 
-#if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
-#endif
 
 #ifdef _WINDOWS_
 #include <Windows.h>
@@ -58,11 +56,9 @@ public:
                                         const char *url,
                                         int method = kCCHTTPRequestMethodGET);
 
-#if CC_LUA_ENGINE_ENABLED > 0
     static CCHTTPRequest* createWithUrlLua(LUA_FUNCTION listener,
                                            const char *url,
                                            int method = kCCHTTPRequestMethodGET);
-#endif
 
     ~CCHTTPRequest(void);
 
@@ -117,9 +113,7 @@ public:
     /** @brief Alloc memory block, return response data. use free() release memory block */
     void *getResponseData(void);
 
-#if CC_LUA_ENGINE_ENABLED > 0
     LUA_STRING getResponseDataLua(void);
-#endif
 
     /** @brief Get response data length (bytes). */
     int getResponseDataLength(void);
@@ -168,9 +162,7 @@ private:
     {
     }
     bool initWithDelegate(CCHTTPRequestDelegate* delegate, const char *url, int method);
-#if CC_LUA_ENGINE_ENABLED > 0
     bool initWithListener(LUA_FUNCTION listener, const char *url, int method);
-#endif
     bool initWithUrl(const char *url, int method);
 
     enum {

@@ -14,7 +14,6 @@ CCHTTPRequest* CCNetwork::createHTTPRequest(CCHTTPRequestDelegate* delegate,
     return request;
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
 CCHTTPRequest* CCNetwork::createHTTPRequestLua(LUA_FUNCTION listener,
                                                const char* url,
                                                int method)
@@ -23,7 +22,6 @@ CCHTTPRequest* CCNetwork::createHTTPRequestLua(LUA_FUNCTION listener,
     request->start();
     return request;
 }
-#endif
 
 #endif // CC_CURL_ENABLED
 

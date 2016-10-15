@@ -12,6 +12,7 @@ LOCAL_SRC_FILES := \
     CCCamera.cpp \
     ccFPSImages.c \
     actions/CCAction.cpp \
+    actions/CCActionFiniteTime.cpp \
     actions/CCActionCamera.cpp \
     actions/CCActionCatmullRom.cpp \
     actions/CCActionEase.cpp \
@@ -33,7 +34,6 @@ LOCAL_SRC_FILES := \
     cocoa/CCObject.cpp \
     cocoa/CCString.cpp \
     cocoa/CCArray.cpp \
-    cocoa/CCDataVisitor.cpp \
     cocoa/CCScriptEventDispatcher.cpp \
     cocoa/CCPointArray.cpp \
     cocoa/CCSet.cpp \
@@ -75,10 +75,6 @@ LOCAL_SRC_FILES := \
     misc_nodes/CCClippingRegionNode.cpp \
     misc_nodes/CCProgressTimer.cpp \
     misc_nodes/CCRenderTexture.cpp \
-    particle_nodes/CCParticleExamples.cpp \
-    particle_nodes/CCParticleSystem.cpp \
-    particle_nodes/CCParticleBatchNode.cpp \
-    particle_nodes/CCParticleSystemQuad.cpp \
     platform/CCCommon.cpp \
     platform/CCSAXParser.cpp \
     platform/CCThread.cpp \
@@ -139,18 +135,9 @@ LOCAL_SRC_FILES := \
     touch_dispatcher/CCTouchTargetNode.cpp \
     support/image_support/TGAlib.cpp \
     textures/CCTextureETC.cpp \
-    textures/CCTexturePVR.cpp \
-    tilemap_parallax_nodes/CCParallaxNode.cpp \
-    tilemap_parallax_nodes/CCTMXLayer.cpp \
-    tilemap_parallax_nodes/CCTMXObjectGroup.cpp \
-    tilemap_parallax_nodes/CCTMXTiledMap.cpp \
-    tilemap_parallax_nodes/CCTMXXMLParser.cpp \
-    tilemap_parallax_nodes/CCTileMapAtlas.cpp
+    IO/FileSystem.cpp \
+    textures/CCTexturePVR.cpp
 
-ifeq ($(CC_WEBP_ENABLED),1)
-LOCAL_SRC_FILES += \
-    platform/CCImageCommonWebp.cpp
-endif
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/include \
@@ -160,10 +147,10 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 					$(LOCAL_PATH)/../ \
-					$(LOCAL_PATH)/../scripting/cocoslua \
+					$(LOCAL_PATH)/cocoa/ \
+					$(LOCAL_PATH)/../scripting/ \
 					$(LOCAL_PATH)/../scripting/lua \
 					$(LOCAL_PATH)/../scripting/tolua \
-                    $(LOCAL_PATH)/include \
                     $(LOCAL_PATH)/kazmath/include \
                     $(LOCAL_PATH)/platform/ \
                     $(LOCAL_PATH)/platform/android \
@@ -185,8 +172,8 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocos_libwebp_static
 endif
 
 # define the macro to compile through support/zip_support/ioapi.c
-LOCAL_CFLAGS := -Wno-psabi -DUSE_FILE32API $(ANDROID_COCOS2D_BUILD_FLAGS)
-LOCAL_EXPORT_CFLAGS := -Wno-psabi -DUSE_FILE32API
+LOCAL_CFLAGS := -DUSE_FILE32API $(ANDROID_COCOS2D_BUILD_FLAGS)
+LOCAL_EXPORT_CFLAGS := -DUSE_FILE32API
 
 include $(BUILD_STATIC_LIBRARY)
 
