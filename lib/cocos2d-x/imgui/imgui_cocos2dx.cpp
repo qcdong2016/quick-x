@@ -260,7 +260,6 @@ void ImGuiCC::init()
 	}
 }
 
-cocos2d::UIInterface* cocos2d::ImGuiCC::_interface = nullptr;
 
 void ImGuiCC::setKeyDown(int k)
 {
@@ -310,10 +309,12 @@ void ImGuiCC::setVisible(bool v)
 	setArgument("menu", !!v);
 }
 
+std::map<std::string, SharedPtr<UIInterface> > ImGuiCC::_interfaces;
+
 void ImGuiCC::draw()
 {
-//	if (!g_visible)
-//		return;
+	if (!g_visible)
+		return;
 
 	//glUseProgram(0);
 	ImGuiIO& io = ImGui::GetIO();
@@ -341,8 +342,10 @@ void ImGuiCC::draw()
 	// Start the frame
 	ImGui::NewFrame();
 
-	if (_interface)
-		_interface->draw();
+	for (auto& it : _interfaces) {
+		if (it.second->visible)
+			it.second->draw();
+	}
 
 	ImGui::Render();
 }
@@ -361,7 +364,8 @@ void imgui_draw()
 void imgui_init()
 {
 	cocos2d::ImGuiCC::init();
-	cocos2d::ImGuiCC::setUIInterface<cocos2d::PlayerUI>();
+	cocos2d::ImGuiCC::add<cocos2d::PlayerUI>();
+	cocos2d::ImGuiCC::add<cocos2d::LuaUI>();
 }
 
 }

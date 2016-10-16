@@ -1,6 +1,6 @@
 #include "imgui/imgui.h"
 #include "PlayerUI.h"
-#include "../cocos/ProcessUtils.h"
+#include "cocos/ProcessUtils.h"
 #include "CCEGLView.h"
 
 #define _count_of(_ARR)      ((int)(sizeof(_ARR)/sizeof(*_ARR)))
@@ -210,6 +210,14 @@ void PlayerUI::relunch()
 		ExitProcess(0);
 	}
 #endif
+}
+
+void LuaUI::draw()
+{
+	for (auto& f : _functions) {
+		f->BeginCall();
+		f->EndCall();
+	}
 }
 
 NS_CC_END 

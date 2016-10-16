@@ -1,5 +1,10 @@
 #include "scripting/CCLuaEngine.h"
 #include "imgui/imgui.h"
+#include "LuaFunction.h"
+#include "cocos/Ptr.h"
+#include <vector>
+#include "imgui_cocos2dx.h"
+#include "PlayerUI.h"
 USING_NS_CC;
 
 static int lua_push_ImVec2(lua_State* L, const ImVec2& vec2)
@@ -1604,8 +1609,44 @@ static int imgui_lua_GetVersion(lua_State* L) {
 	return 1;
 }
 
+//
+
+//     IMGUI_API bool          Button(const char* label, const ImVec2& size = ImVec2(0,0));            
+static int imgui_lua_Button(lua_State* L) {
+	int arg = 1;
+	const char* text = lua_tostring(L, arg++);
+	bool ret;
+	if (lua_type(L, 2) == LUA_TNUMBER) 
+	{
+		float w = lua_tonumber(L, arg++);
+		float h = lua_tonumber(L, arg++);
+		ret = ImGui::Button(text, ImVec2(w, h));
+	}
+	else
+	{
+		ret = ImGui::Button(text);
+	}
+
+	lua_pushboolean(L, ret);
+	return 1;
+}
+
+static int addDrawFunction(lua_State* L)
+{
+	SharedPtr<LuaFunction> func(new LuaFunction(L, 1));
+
+	ImGuiCC::get<LuaUI>()->addFunction(func);
+
+	return 0;
+}
+
 static luaL_Reg lua_imgui_auto_funcs[] = {
-	 { "NewFrame", imgui_lua_NewFrame },
+
+	{ "addDraw", addDrawFunction },
+
+	{ "Button", imgui_lua_Button },
+
+	{ "NewFrame", imgui_lua_NewFrame },
 	 { "Render", imgui_lua_Render },
 	 { "ShowUserGuide", imgui_lua_ShowUserGuide },
 	 { "ShowTestWindow", imgui_lua_ShowTestWindow },
@@ -1792,6 +1833,8 @@ static luaL_Reg lua_imgui_auto_funcs[] = {
 TOLUA_API
 int luaopen_imgui(lua_State *L) {
 	luaL_newlib(L, lua_imgui_auto_funcs);
+	lua_pushvalue(L, -1);
+	lua_setglobal(L, "imgui");
 	return 1;
 }
 
@@ -1838,7 +1881,6 @@ int luaopen_imgui(lua_State *L) {
 //     IMGUI_API void          LabelTextV(const char* label, const char* fmt, va_list args);
 //     IMGUI_API void          BulletText(const char* fmt, ...) IM_PRINTFARGS(1);                      
 //     IMGUI_API void          BulletTextV(const char* fmt, va_list args);
-//     IMGUI_API bool          Button(const char* label, const ImVec2& size = ImVec2(0,0));            
 //     IMGUI_API bool          InvisibleButton(const char* str_id, const ImVec2& size);
 //     IMGUI_API void          Image(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0,0), const ImVec2& uv1 = ImVec2(1,1), const ImVec4& tint_col = ImVec4(1,1,1,1), const ImVec4& border_col = ImVec4(0,0,0,0));
 //     IMGUI_API bool          ImageButton(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0,0),  const ImVec2& uv1 = ImVec2(1,1), int frame_padding = -1, const ImVec4& bg_col = ImVec4(0,0,0,0), const ImVec4& tint_col = ImVec4(1,1,1,1));    

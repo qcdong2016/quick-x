@@ -3,13 +3,24 @@
 
 
 #include "CCPlatformMacros.h"
+#include "cocos/Ptr.h"
+#include "cocos/RefCounted.h"
+#include <string>
+#include <map>
+#include "cocoa/CCObject.h"
 
 NS_CC_BEGIN;
 
-class UIInterface
+class UIInterface : public CCObject
 {
 public:
 	virtual void draw() = 0;
+
+	bool visible;
+
+	UIInterface() : visible(true)
+	{
+	}
 };
 
 
@@ -30,13 +41,23 @@ public:
 	static void setVisible(bool v);
 
 	template<typename T>
-	static void setUIInterface()
+	static void add()
 	{
-		CC_SAFE_DELETE(_interface);
-		_interface = new T;
+		SharedPtr<UIInterface> ui(new T);
+		_interfaces[T::name()] = ui;
 	}
 
-	static UIInterface* _interface;
+	template<typename T>
+	static T* get()
+	{
+		auto& it = _interfaces.find(T::name());
+		if (it == _interfaces.end())
+			return nullptr;
+
+		return (T*)it->second.Get();
+	}
+
+	static std::map<std::string, SharedPtr<UIInterface> > _interfaces;
 };
 
 NS_CC_END;

@@ -606,8 +606,8 @@ bool CCTexturePVR::createGLTexture()
 			return false;
 		}
         
-		width = Max(width >> 1, 1);
-		height = Max(height >> 1, 1);
+		width = Max(width >> 1, (unsigned int)1);
+		height = Max(height >> 1, (unsigned int)1);
     }
         
     return true;

@@ -20,7 +20,7 @@ int CCDevice::getDPI()
     return dpi;
 }
 
-void CCDevice::LogS(const char* str)
+void CCDevice::logS(const char* str)
 {
     int size = 0;
     unsigned short* s = cc_utf8_to_utf16(str, &size);
