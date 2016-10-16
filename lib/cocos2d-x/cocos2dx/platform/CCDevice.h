@@ -47,18 +47,18 @@ class CC_DLL CCDevice
 private:
     CCDevice();
 public:
-    
+
     /**
      @brief Output Debug message.
      */
-    static void Log(const char * fmt, ...);
-	static void LogV(const char * fmt, va_list args);
-	static void LogS(const char * str);
+    static void log(const char * fmt, ...);
+	static void logV(const char * fmt, va_list args);
+	static void logS(const char * str);
 
     /**
      @brief Pop out a message box
      */
-    static void ShowMessageBox(const char * pszMsg, const char * pszTitle);
+    static void showMessageBox(const char * pszMsg, const char * pszTitle);
 
     /**
      *  Gets the DPI of device

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Sun Oct 16 19:29:28 2016.
+** Generated automatically by tolua++-1.0.92 on Sun Oct 16 21:50:19 2016.
 */
 
 /****************************************************************************
@@ -7704,9 +7704,9 @@ static int tolua_Cocos2d_CCDevice_getDPI00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: ShowMessageBox of class  CCDevice */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_ShowMessageBox00
-static int tolua_Cocos2d_CCDevice_ShowMessageBox00(lua_State* tolua_S)
+/* method: showMessageBox of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_showMessageBox00
+static int tolua_Cocos2d_CCDevice_showMessageBox00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -7723,13 +7723,13 @@ static int tolua_Cocos2d_CCDevice_ShowMessageBox00(lua_State* tolua_S)
   const char* pszMsg = ((const char*)  tolua_tostring(tolua_S,2,0));
   const char* pszTitle = ((const char*)  tolua_tostring(tolua_S,3,0));
   {
-   CCDevice::ShowMessageBox(pszMsg,pszTitle);
+   CCDevice::showMessageBox(pszMsg,pszTitle);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'ShowMessageBox'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'showMessageBox'.",&tolua_err);
  return 0;
 #endif
 }
@@ -46140,7 +46140,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"CCDevice","CCDevice","",NULL);
   tolua_beginmodule(tolua_S,"CCDevice");
    tolua_function(tolua_S,"getDPI",tolua_Cocos2d_CCDevice_getDPI00);
-   tolua_function(tolua_S,"ShowMessageBox",tolua_Cocos2d_CCDevice_ShowMessageBox00);
+   tolua_function(tolua_S,"showMessageBox",tolua_Cocos2d_CCDevice_showMessageBox00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"cc_timeval","cc_timeval","",tolua_collect_cc_timeval);

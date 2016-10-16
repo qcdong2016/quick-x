@@ -159,7 +159,7 @@ bool CCLuaStack::init(void)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     luaopen_cocos2dx_extra_ios_iap_luabinding(m_state);
 #endif
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     luaopen_cocos2dx_httprequest_luabinding(m_state);
 #elif (CC_CURL_ENABLED > 0)
@@ -549,7 +549,7 @@ int CCLuaStack::lua_print(lua_State *L)
         if (i!=nargs)
             t += "  ";
     }
-    CCDevice::LogS(t.c_str());
+    CCDevice::logS(t.c_str());
 //    CCLuaLog(t.c_str());
 
     return 0;
@@ -773,20 +773,20 @@ int CCLuaStack::executeFunctionReturnArray(int nHandler,int nNumArgs,int nNummRe
             for (int i = 0 ; i < nNummResults; i++)
             {
 //                 if (lua_type(m_state, -1) == LUA_TBOOLEAN) {
-// 
+//
 //                     bool value = lua_toboolean(m_state, -1);
 //                     pResultArray->addObject(CCBool::create(value)) ;
-// 
+//
 //                 }else if (lua_type(m_state, -1) == LUA_TNUMBER) {
-// 
+//
 //                     double value = lua_tonumber(m_state, -1);
 //                     pResultArray->addObject(CCDouble::create(value));
-// 
+//
 //                 }else if (lua_type(m_state, -1) == LUA_TSTRING) {
-// 
+//
 //                     const char *value = lua_tostring(m_state, -1);
 //                     pResultArray->addObject(CCString::create(value));
-// 
+//
 //                 }else{
 
                     pResultArray->addObject(static_cast<CCObject*>(tolua_tousertype(m_state, -1, NULL)));
@@ -861,10 +861,10 @@ TOLUA_API int toluafix_pushusertype_ccobject(lua_State *L,
         lua_pushstring(L, type ? type : vtype);                     /* stack: refid_type refid type */
         lua_rawset(L, -3);                /* refid_type[refid] = type, stack: refid_type */
         lua_pop(L, 1);                                              /* stack: - */
-        
+
         //printf("[LUA] push CCObject OK - refid: %d, ptr: %x, type: %s\n", *p_refid, (int)ptr, type);
     }
-    
+
     tolua_pushusertype_and_addtoroot(L, ptr, type ? type : vtype);
     return 0;
 }
