@@ -32,6 +32,7 @@ extern "C"
 #endif
 
 #include "support/zip_support/ZipUtils.h"
+#include "CCDevice.h"
 
 NS_CC_BEGIN
 
@@ -103,6 +104,8 @@ std::string FileSystem::getWritablePath()
 	return ".";// the exe path;
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	return getFileDirectoryJNI();
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+    return CCDevice::getWritablePath();
 #endif
 }
 

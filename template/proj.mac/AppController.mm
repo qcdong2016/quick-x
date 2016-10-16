@@ -33,8 +33,9 @@
 #include "AppDelegate.h"
 #include "CCDirector.h"
 #include "audio/SimpleAudioEngine.h"
-#include "platform/CCFileUtils.h"
 #include "native/CCNative.h"
+
+#include "IO/FileSystem.h"
 
 #include "AppDelegate.h"
 
@@ -151,7 +152,7 @@ using namespace cocos2d;
     const string projectDir = [[NSBundle mainBundle] resourcePath].UTF8String;
     if (projectDir.length())
     {
-        CCFileUtils::sharedFileUtils()->setSearchRootPath(projectDir.c_str());
+        FileSystem::setResourceRoot(projectDir);
     }
 
     AppDelegate* app = new AppDelegate();

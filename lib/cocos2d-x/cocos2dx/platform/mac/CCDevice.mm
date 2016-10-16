@@ -8,4 +8,14 @@ int CCDevice::getDPI()
     return 160;
 }
 
+std::string CCDevice::getWritablePath()
+{
+    // save to document folder
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    std::string strRet = [documentsDirectory UTF8String];
+    strRet.append("/");
+    return strRet;
+}
+
 NS_CC_END

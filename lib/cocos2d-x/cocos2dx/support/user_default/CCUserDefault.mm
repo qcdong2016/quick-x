@@ -24,10 +24,10 @@
 
 #import "CCUserDefault.h"
 #import <string>
-#import "platform/CCFileUtils.h"
 #import "../tinyxml2/tinyxml2.h"
 #import "platform/CCPlatformConfig.h"
 #import "platform/CCPlatformMacros.h"
+#include "IO/FileSystem.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
@@ -72,16 +72,14 @@ static tinyxml2::XMLElement* getXMLNodeForKey(const char* pKey, tinyxml2::XMLDoc
     {
  		tinyxml2::XMLDocument* xmlDoc = new tinyxml2::XMLDocument();
 		*doc = xmlDoc;
-		unsigned long nSize;
-		const char* pXmlBuffer = (const char*)CCFileUtils::sharedFileUtils()->getFileData(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str(), "rb", &nSize);
-		//const char* pXmlBuffer = (const char*)data.getBuffer();
-		if(NULL == pXmlBuffer)
+        SharedPtr<MemBuffer> buf = FileSystem::readAll(CCUserDefault::sharedUserDefault()->getXMLFilePath());
+
+		if(!buf.Get() || buf->isNull())
 		{
             NSLog(@"can not read xml file");
 			break;
 		}
-		xmlDoc->Parse(pXmlBuffer);
-        delete[] pXmlBuffer;
+		xmlDoc->Parse((char*)buf->getData());
 		// get root node
 		rootNode = xmlDoc->RootElement();
 		if (NULL == rootNode)

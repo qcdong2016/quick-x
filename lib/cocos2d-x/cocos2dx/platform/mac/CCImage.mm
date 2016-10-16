@@ -29,13 +29,12 @@ THE SOFTWARE.
 #include "CCDirector.h"
 #include "ccMacros.h"
 #include "CCImage.h"
-#include "CCFileUtils.h"
 #include "CCTexture2D.h"
 #include <string>
 #include <sys/stat.h>
 #include <stdio.h>
 #include <unistd.h>
-//#include "apptools/HelperFunc.h"
+#include "IO/FileSystem.h"
 
 typedef struct
 {
@@ -272,15 +271,12 @@ static bool _initWithFile(const char* path, tImageInfo *pImageinfo)
     NSImage                    *jpg;
     //NSImage                    *png;
     bool            ret;
+    USING_NS_CC;
     
     // convert jpg to png before loading the texture
+    SharedPtr<MemBuffer> bf = FileSystem::readAll(path);
+    NSData *adata = [[NSData alloc] initWithBytes:bf->getData() length:bf->getSize()];
     
-    //NSString *fullPath = [NSString stringWithUTF8String:path];
-	unsigned long fileSize = 0;
-    unsigned char* pFileData = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(path, "rb", &fileSize);
-//	unsigned char* pFileData = cocos2d::CZHelperFunc::getFileData(path, "rb", &fileSize);
-    NSData *adata = [[NSData alloc] initWithBytes:pFileData length:fileSize];
-	delete []pFileData;
     jpg = [[NSImage alloc] initWithData:adata];
     //jpg = [[NSImage alloc] initWithContentsOfFile: fullPath];
     //png = [[NSImage alloc] initWithData:UIImagePNGRepresentation(jpg)];
@@ -586,7 +582,7 @@ CCImage::~CCImage()
 
 bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = eFmtPng*/)
 {
-    std::string strTemp = CCFileUtils::sharedFileUtils()->fullPathForFilename(strPath);
+    std::string strTemp = FileSystem::fullPathOfFile(strPath);
 	if (m_bEnabledScale)
 	{
 		if (!isFileExists(strTemp.c_str()))
@@ -617,32 +613,22 @@ bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = e
 		}
 	}
 	
-//	CCFileData tempData(strTemp.c_str(), "rb");			
-//	return initWithImageData(tempData.getBuffer(), tempData.getSize(), eImgFmt);
-
-	unsigned long fileSize = 0;
-	unsigned char* pFileData = CCFileUtils::sharedFileUtils()->getFileData(strTemp.c_str(), "rb", &fileSize);
-//	unsigned char* pFileData = CZHelperFunc::getFileData(strTemp.c_str(), "rb", &fileSize);
-	bool ret = initWithImageData(pFileData, (int)fileSize, eImgFmt);
-	delete []pFileData;
+    SharedPtr<MemBuffer> bf = FileSystem::readAll(strTemp);
+    
+	bool ret = initWithImageData(bf->getData(), (int)bf->getSize(), eImgFmt);
 	return ret;
 }
 
 bool CCImage::initWithImageFileThreadSafe(const char *fullpath, EImageFormat imageType)
 {
-    /*
-     * CCFileUtils::fullPathFromRelativePath() is not thread-safe, it use autorelease().
-     */
-    bool bRet = false;
-    unsigned long nSize = 0;
-    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(fullpath, "rb", &nSize);
-//    unsigned char* pBuffer = CZHelperFunc::getFileData(fullpath, "rb", &nSize);
-    if (pBuffer != NULL && nSize > 0)
+    SharedPtr<MemBuffer> bf = FileSystem::readAll(fullpath);
+    
+    if (bf.Get() && !bf->isNull())
     {
-        bRet = initWithImageData(pBuffer, (int)nSize, imageType);
+        return initWithImageData(bf->getData(), (int)bf->getSize(), imageType);
     }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
-    return bRet;
+    
+    return false;
 }
 
 

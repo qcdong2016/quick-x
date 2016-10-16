@@ -2,6 +2,7 @@
 #define __CCDEVICE_H__
 
 #include "CCPlatformMacros.h"
+#include <string>
 
 NS_CC_BEGIN
 /**
@@ -18,6 +19,7 @@ public:
      *  @return The DPI of device.
      */
     static int getDPI();
+    static std::string getWritablePath();
 };
 
 

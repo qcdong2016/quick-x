@@ -25,10 +25,10 @@
 #import "CCApplication.h"
 #import <Cocoa/Cocoa.h>
 #include <algorithm>
-#include "platform/CCFileUtils.h"
 #include "CCGeometry.h"
 #include "CCDirector.h"
 #import "CCDirectorCaller.h"
+#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 
@@ -140,15 +140,7 @@ ccLanguageType CCApplication::getCurrentLanguage()
 
 void CCApplication::setResourceRootPath(const std::string& rootResDir)
 {
-    m_resourceRootPath = rootResDir;
-    if (m_resourceRootPath[m_resourceRootPath.length() - 1] != '/')
-    {
-        m_resourceRootPath += '/';
-    }
-    CCFileUtils* pFileUtils = CCFileUtils::sharedFileUtils();
-    std::vector<std::string> searchPaths = pFileUtils->getSearchPaths();
-    searchPaths.insert(searchPaths.begin(), m_resourceRootPath);
-    pFileUtils->setSearchPaths(searchPaths);
+    FileSystem::setResourceRoot(rootResDir);
 }
 
 const std::string& CCApplication::getResourceRootPath(void)
