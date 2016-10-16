@@ -7,11 +7,11 @@ NS_CC_BEGIN
 
 int CCDevice::getDPI()
 {
-//TODO: 
+//TODO:
     return 160;
 }
 
-void CCDevice::ShowMessageBox(const char *pszMsg, const char *pszTitle)
+void CCDevice::showMessageBox(const char *pszMsg, const char *pszTitle)
 {
     NSString * title = (pszTitle) ? [NSString stringWithUTF8String : pszTitle] : nil;
     NSString * msg = (pszMsg) ? [NSString stringWithUTF8String : pszMsg] : nil;
@@ -39,7 +39,7 @@ std::string CCDevice::getWritablePath()
     return strRet;
 }
 
-void CCDevice::LogS(const char * str)
+void CCDevice::logS(const char * str)
 {
     printf("%s\n", str);
     fflush(stdout);

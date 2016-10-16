@@ -9,25 +9,25 @@ NS_CC_BEGIN
 static const int kMaxLogLen = 16 * 1024;
 static char logbuff[sizeof(char) * (kMaxLogLen + 1)];
 
-void CCDevice::Log(const char * fmt, ...)
+void CCDevice::log(const char * fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	LogV(fmt, args);
+	logV(fmt, args);
 	va_end(args);
 }
 
-void CCDevice::LogV(const char * fmt, va_list args)
+void CCDevice::logV(const char * fmt, va_list args)
 {
 	vsnprintf(logbuff, sizeof(logbuff), fmt, args);
-	LogS(logbuff);
+	logS(logbuff);
 }
 
 void CCLog(const char* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	CCDevice::LogV(fmt, args);
+	CCDevice::logV(fmt, args);
 	va_end(args);
 }
 
