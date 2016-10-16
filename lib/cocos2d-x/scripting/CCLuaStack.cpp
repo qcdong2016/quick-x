@@ -549,7 +549,8 @@ int CCLuaStack::lua_print(lua_State *L)
         if (i!=nargs)
             t += "  ";
     }
-    CCLuaLog(t.c_str());
+    CCDevice::LuaLog(t.c_str());
+//    CCLuaLog(t.c_str());
 
     return 0;
 }

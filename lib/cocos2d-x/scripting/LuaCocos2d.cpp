@@ -7752,7 +7752,7 @@ static int tolua_Cocos2d_CCLuaLog00(lua_State* tolua_S)
  {
   const char* pszMsg = ((const char*)  tolua_tostring(tolua_S,1,0));
  {
-  CCLuaLog(pszMsg);
+     CCDevice::LuaLog(pszMsg);
  }
  }
  return 0;
@@ -7782,7 +7782,7 @@ static int tolua_Cocos2d_CCMessageBox00(lua_State* tolua_S)
   const char* pszMsg = ((const char*)  tolua_tostring(tolua_S,1,0));
   const char* pszTitle = ((const char*)  tolua_tostring(tolua_S,2,0));
  {
-  CCMessageBox(pszMsg,pszTitle);
+  cocos2d::CCDevice::MessageBox(pszMsg,pszTitle);
  }
  }
  return 0;

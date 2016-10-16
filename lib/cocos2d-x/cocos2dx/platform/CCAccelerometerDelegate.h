@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CCACCELEROMETER_DELEGATE_H__
 #define __CCACCELEROMETER_DELEGATE_H__
 
-#include "CCCommon.h"
+#include "CCPlatformMacros.h"
 
 NS_CC_BEGIN
 /**

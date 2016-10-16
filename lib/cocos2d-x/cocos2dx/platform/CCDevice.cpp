@@ -2,15 +2,21 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include "CCCommon.h"
+#include "CCDevice.h"
 
-NS_CC_BEGIN
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 
+
+/// The max length of CCLog message.
+static const int kMaxLogLen = 16*1024;
 static char logbuff[sizeof(char) * (kMaxLogLen + 1)];
 
-void CCLog(const char * pszFormat, ...)
+NS_CC_BEGIN
+
+
+
+void CCDevice::Log(const char * pszFormat, ...)
 {
     printf("Cocos2d: ");
     va_list ap;
@@ -23,7 +29,8 @@ void CCLog(const char * pszFormat, ...)
     fflush(stdout);
 }
 
-void CCLuaLog(const char * pszLog)
+
+void CCDevice::LuaLog(const char * pszLog)
 {
     printf("Cocos2d: ");
     if (strlen(pszLog) > 65536)
@@ -39,6 +46,24 @@ void CCLuaLog(const char * pszLog)
     }
 }
 
-#endif
+void CCDevice::MessageBox(const char * pszMsg, const char * pszTitle)
+{
+    
+}
 
 NS_CC_END
+
+#endif
+
+void CCLog(const char* pszFormat, ...)
+{
+    printf("Cocos2d: ");
+    va_list ap;
+    va_start(ap, pszFormat);
+    memset(logbuff, 0, sizeof(logbuff));
+    vsnprintf(logbuff, kMaxLogLen, pszFormat, ap);
+    va_end(ap);
+    printf("%s", logbuff);
+    printf("\n");
+    fflush(stdout);
+}

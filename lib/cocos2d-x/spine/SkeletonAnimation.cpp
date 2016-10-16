@@ -195,7 +195,7 @@ void SkeletonAnimation::setMix (const char* fromAnimation, const char* toAnimati
 spTrackEntry* SkeletonAnimation::setAnimation (int trackIndex, const char* name, bool loop) {
 	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
 	if (!animation) {
-		CCLog("Spine: Animation not found: %s", name);
+		CCLOG("Spine: Animation not found: %s", name);
 		return 0;
 	}
 	return spAnimationState_setAnimation(state, trackIndex, animation, loop);
@@ -204,7 +204,7 @@ spTrackEntry* SkeletonAnimation::setAnimation (int trackIndex, const char* name,
 spTrackEntry* SkeletonAnimation::addAnimation (int trackIndex, const char* name, bool loop, float delay) {
 	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
 	if (!animation) {
-		CCLog("Spine: Animation not found: %s", name);
+		CCLOG("Spine: Animation not found: %s", name);
 		return 0;
 	}
 	return spAnimationState_addAnimation(state, trackIndex, animation, loop, delay);

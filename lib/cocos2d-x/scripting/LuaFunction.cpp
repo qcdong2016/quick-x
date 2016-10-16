@@ -1,6 +1,6 @@
 #include "LuaFunction.h"
 #include "CCPlatformMacros.h"
-#include "CCCommon.h"
+#include "ccMacros.h"
 #include <assert.h>
 #include "tolua++.h"
 

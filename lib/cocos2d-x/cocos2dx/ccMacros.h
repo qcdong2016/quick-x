@@ -31,8 +31,9 @@ THE SOFTWARE.
 #define _USE_MATH_DEFINES
 #endif
 
-#include "platform/CCCommon.h"
 #include "CCStdC.h"
+
+CC_DLL void CCLog(const char*, ...);
 
 #ifndef CCAssert
 #if COCOS2D_DEBUG > 0
@@ -40,7 +41,7 @@ extern bool CC_DLL cc_assert_script_compatible(const char *msg);
 #define CCAssert(cond, msg) do {                              \
       if (!(cond)) {                                          \
         if (!cc_assert_script_compatible(msg) && strlen(msg)) \
-          cocos2d::CCLog("Assert failed: %s", msg);           \
+          CCLog("Assert failed: %s", msg);           \
         CC_ASSERT(cond);                                      \
       } \
     } while (0)

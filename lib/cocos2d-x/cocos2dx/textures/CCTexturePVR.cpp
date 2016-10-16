@@ -37,6 +37,8 @@ THE SOFTWARE.
 #include "cocos/Ptr.h"
 #include "IO/FileSystem.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 #define PVR_TEXTURE_FLAG_TYPE_MASK    0xff
@@ -384,8 +386,8 @@ bool CCTexturePVR::unpackPVRv2Data(unsigned char* data, unsigned int len)
                 dataOffset += packetLength;
                 
                 //Update width and height to the next lower power of two 
-                width = MAX(width >> 1, 1);
-                height = MAX(height >> 1, 1);
+                width = Max(width >> 1, 1);
+                height = Max(height >> 1, 1);
             }
             
             //Mark pass as success
@@ -523,8 +525,8 @@ bool CCTexturePVR::unpackPVRv3Data(unsigned char* dataPointer, unsigned int data
 		CCAssert(dataOffset <= dataLength, "CCTexurePVR: Invalid lenght");
 		
 		
-		width = MAX(width >> 1, 1);
-		height = MAX(height >> 1, 1);
+		width = Max(width >> 1, 1);
+		height = Max(height >> 1, 1);
 	}
 	
 	return true;
@@ -604,8 +606,8 @@ bool CCTexturePVR::createGLTexture()
 			return false;
 		}
         
-		width = MAX(width >> 1, 1);
-		height = MAX(height >> 1, 1);
+		width = Max(width >> 1, 1);
+		height = Max(height >> 1, 1);
     }
         
     return true;

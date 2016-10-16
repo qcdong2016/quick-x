@@ -32,6 +32,8 @@ THE SOFTWARE.
 #include "CCActionInstant.h"
 #include <stdarg.h>
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 // Extra action for making a CCSequence or CCSpawn when only adding one action to it.
@@ -122,9 +124,9 @@ void CCActionInterval::step(float dt)
         m_elapsed += dt;
     }
     
-    this->update(MAX (0,                                  // needed for rewind. elapsed could be negative
-                      MIN(1, m_elapsed /
-                          MAX(m_fDuration, FLT_EPSILON)   // division by 0
+    this->update(Max (0,                                  // needed for rewind. elapsed could be negative
+                      Min(1, m_elapsed /
+                          Max(m_fDuration, FLT_EPSILON)   // division by 0
                           )
                       )
                  );
@@ -620,7 +622,7 @@ bool CCSpawn:: initWithTwoActions(CCFiniteTimeAction *pAction1, CCFiniteTimeActi
     float d1 = pAction1->getDuration();
     float d2 = pAction2->getDuration();
 
-    if (CCActionInterval::initWithDuration(MAX(d1, d2)))
+    if (CCActionInterval::initWithDuration(Max(d1, d2)))
     {
         m_pOne = pAction1;
         m_pTwo = pAction2;

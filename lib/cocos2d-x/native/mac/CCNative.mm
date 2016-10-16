@@ -4,6 +4,7 @@
 #include <string>
 #import "CCNativeMac.h"
 #import "openudid/OpenUDIDMac.h"
+#include "CCDevice.h"
 
 NS_CC_BEGIN
 
@@ -109,13 +110,13 @@ const std::string CCNative::getDeviceName(void)
         return modelStr;
     }
 
-    CCLog("CCNative::getDeviceName() not support on this platform.");
+    CCLOG("CCNative::getDeviceName() not support on this platform.");
     return std::string("");
 }
 
 void CCNative::vibrate()
 {
-    CCLog("CCNative::vibrate() not support on this platform.");
+    CCLOG("CCNative::vibrate() not support on this platform.");
 }
 
 NS_CC_END

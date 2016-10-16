@@ -628,7 +628,7 @@ CCScale9Sprite* CCScale9Sprite::createWithSpriteFrameName(const char* spriteFram
     }
     CC_SAFE_DELETE(pReturn);
 
-    CCLog("Could not allocate CCScale9Sprite()");
+    CCLOG("Could not allocate CCScale9Sprite()");
     return NULL;
     
 }

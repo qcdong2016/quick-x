@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCUserDefault.h"
-#include "platform/CCCommon.h"
 #include "../tinyxml2/tinyxml2.h"
 #include "IO/FileSystem.h"
+#include "ccMacros.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 

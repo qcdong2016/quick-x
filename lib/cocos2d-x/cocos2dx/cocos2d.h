@@ -115,7 +115,6 @@ THE SOFTWARE.
 
 // platform
 #include "platform/CCDevice.h"
-#include "platform/CCCommon.h"
 #include "platform/CCImage.h"
 #include "platform/CCSAXParser.h"
 #include "platform/CCThread.h"
@@ -178,7 +177,6 @@ THE SOFTWARE.
 	#include "platform/mac/CCApplication.h"
 	#include "platform/mac/CCEGLView.h"
 	#include "platform/mac/CCGL.h"
-	#include "platform/mac/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 

@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIRichText.h"
-
+#include "cocos/MathDefs.h"
 
 NS_CC_BEGIN
 
@@ -348,7 +348,7 @@ void RichText::formarRenderers()
             _elementRenderersContainer->addChild(l, 1, j);
             CCSize iSize = l->getContentSize();
             newContentSizeWidth += iSize.width;
-            newContentSizeHeight = MAX(newContentSizeHeight, iSize.height);
+            newContentSizeHeight = Max(newContentSizeHeight, iSize.height);
             nextPosX += iSize.width;
         }
         _elementRenderersContainer->setContentSize(CCSizeMake(newContentSizeWidth, newContentSizeHeight));
@@ -365,7 +365,7 @@ void RichText::formarRenderers()
             for (unsigned int j=0; j<row->count(); j++)
             {
                 CCNode* l = (CCNode*)(row->objectAtIndex(j));
-                maxHeight = MAX(l->getContentSize().height, maxHeight);
+                maxHeight = Max(l->getContentSize().height, maxHeight);
             }
             maxHeights[i] = maxHeight;
             newContentSizeHeight += maxHeights[i];

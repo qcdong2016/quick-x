@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCUserDefault.h"
 #include "platform/CCPlatformConfig.h"
-#include "platform/CCCommon.h"
 #include "IO/FileSystem.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

@@ -25,6 +25,8 @@ THE SOFTWARE.
 #include "CCActionPageTurn3D.h"
 #include "support/CCPointExtension.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 CCPageTurn3D* CCPageTurn3D::create(float duration, const CCSize& gridSize)
@@ -52,7 +54,7 @@ CCPageTurn3D* CCPageTurn3D::create(float duration, const CCSize& gridSize)
  */
 void CCPageTurn3D::update(float time)
 {
-    float tt = MAX(0, time - 0.25f);
+    float tt = Max(0, time - 0.25f);
     float deltaAy = (tt * tt * 500);
     float ay = -100 - deltaAy;
     

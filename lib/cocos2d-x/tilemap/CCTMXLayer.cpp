@@ -34,6 +34,8 @@ THE SOFTWARE.
 #include "support/data_support/ccCArray.h"
 #include "CCDirector.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 
@@ -188,8 +190,8 @@ void CCTMXLayer::setupTiles()
                 this->appendTileForGID(gid, ccp(x, y));
 
                 // Optimization: update min and max GID rendered by the layer
-                m_uMinGID = MIN(gid, m_uMinGID);
-                m_uMaxGID = MAX(gid, m_uMaxGID);
+                m_uMinGID = Min(gid, m_uMinGID);
+                m_uMaxGID = Max(gid, m_uMaxGID);
             }
         }
     }

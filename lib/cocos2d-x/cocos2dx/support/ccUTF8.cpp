@@ -24,7 +24,6 @@
  ****************************************************************************/
 
 #include "ccUTF8.h"
-#include "platform/CCCommon.h"
 
 /** source code from ConvertUTF.c */
 

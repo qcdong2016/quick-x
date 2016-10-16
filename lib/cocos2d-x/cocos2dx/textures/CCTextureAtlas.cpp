@@ -37,6 +37,8 @@ THE SOFTWARE.
 #include "cocoa/CCString.h"
 #include <stdlib.h>
 
+#include "cocos/MathDefs.h"
+
 //According to some tests GL_TRIANGLE_STRIP is slower, MUCH slower. Probably I'm doing something very wrong
 
 // implementation CCTextureAtlas
@@ -311,7 +313,7 @@ void CCTextureAtlas::updateQuad(ccV3F_C4B_T2F_Quad *quad, unsigned int index)
 {
     CCAssert( index >= 0 && index < m_uCapacity, "updateQuadWithTexture: Invalid index");
 
-    m_uTotalQuads = MAX( index+1, m_uTotalQuads);
+    m_uTotalQuads = Max( index+1, m_uTotalQuads);
 
     m_pQuads[index] = *quad;    
 
@@ -456,7 +458,7 @@ bool CCTextureAtlas::resizeCapacity(unsigned int newCapacity)
     }
     unsigned int uOldCapactiy = m_uCapacity; 
     // update capacity and totolQuads
-    m_uTotalQuads = MIN(m_uTotalQuads, newCapacity);
+    m_uTotalQuads = Min(m_uTotalQuads, newCapacity);
     m_uCapacity = newCapacity;
 
     ccV3F_C4B_T2F_Quad* tmpQuads = NULL;

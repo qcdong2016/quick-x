@@ -26,6 +26,8 @@
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 // ccVertex2F == CGPoint in 32-bits, but not in 64-bits (OS X)
@@ -145,7 +147,7 @@ void CCDrawNode::ensureCapacity(unsigned int count)
 {
     if(m_nBufferCount + count > m_uBufferCapacity)
     {
-		m_uBufferCapacity += MAX(m_uBufferCapacity, count);
+		m_uBufferCapacity += Max(m_uBufferCapacity, count);
 		m_pBuffer = (ccV2F_C4B_T2F*)realloc(m_pBuffer, m_uBufferCapacity*sizeof(ccV2F_C4B_T2F));
 	}
 }

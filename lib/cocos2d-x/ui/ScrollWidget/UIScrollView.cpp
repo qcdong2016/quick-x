@@ -24,6 +24,8 @@
 
 #include "UIScrollView.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 namespace ui {
@@ -170,8 +172,8 @@ void ScrollView::onSizeChanged()
     CCSize innerSize = _innerContainer->getSize();
     float orginInnerSizeWidth = innerSize.width;
     float orginInnerSizeHeight = innerSize.height;
-    float innerSizeWidth = MAX(orginInnerSizeWidth, _size.width);
-    float innerSizeHeight = MAX(orginInnerSizeHeight, _size.height);
+    float innerSizeWidth = Max(orginInnerSizeWidth, _size.width);
+    float innerSizeHeight = Max(orginInnerSizeHeight, _size.height);
     _innerContainer->setSize(CCSize(innerSizeWidth, innerSizeHeight));
     _innerContainer->setPosition(CCPoint(0, _size.height - _innerContainer->getSize().height));
 }
@@ -589,23 +591,23 @@ void ScrollView::jumpToDestination(const CCPoint &des)
         case SCROLLVIEW_DIR_VERTICAL:
             if (des.y <= 0)
             {
-                finalOffsetY = MAX(des.y, _size.height - _innerContainer->getSize().height);
+                finalOffsetY = Max(des.y, _size.height - _innerContainer->getSize().height);
             }
             break;
         case SCROLLVIEW_DIR_HORIZONTAL:
             if (des.x <= 0)
             {
-                finalOffsetX = MAX(des.x, _size.width - _innerContainer->getSize().width);
+                finalOffsetX = Max(des.x, _size.width - _innerContainer->getSize().width);
             }
             break;
         case SCROLLVIEW_DIR_BOTH:
             if (des.y <= 0)
             {
-                finalOffsetY = MAX(des.y, _size.height - _innerContainer->getSize().height);
+                finalOffsetY = Max(des.y, _size.height - _innerContainer->getSize().height);
             }
             if (des.x <= 0)
             {
-                finalOffsetX = MAX(des.x, _size.width - _innerContainer->getSize().width);
+                finalOffsetX = Max(des.x, _size.width - _innerContainer->getSize().width);
             }
             break;
         default:
@@ -1458,7 +1460,7 @@ void ScrollView::endRecordSlidAction()
             default:
                 break;
         }
-        float orSpeed = MIN(fabs(totalDis)/(_slidTime), AUTOSCROLLMAXSPEED);
+        float orSpeed = Min(fabs(totalDis)/(_slidTime), AUTOSCROLLMAXSPEED);
         startAutoScrollChildrenWithOriginalSpeed(dir, orSpeed, true, -1000);
         _slidTime = 0.0f;
     }

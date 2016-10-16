@@ -25,7 +25,6 @@ THE SOFTWARE.
 #ifndef __CC_APPLICATION_MAC_H__
 #define __CC_APPLICATION_MAC_H__
 
-#include "platform/CCCommon.h"
 #include "platform/CCApplicationProtocol.h"
 #include <string>
 

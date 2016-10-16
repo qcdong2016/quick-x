@@ -29,6 +29,8 @@ THE SOFTWARE.
 #include "sprite_nodes/CCSprite.h"
 #include "support/CCPointExtension.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 // implementation CCTMXTiledMap
@@ -220,8 +222,8 @@ void CCTMXTiledMap::buildWithMapInfo(CCTMXMapInfo* mapInfo)
                 // update content size with the max size
                 const CCSize& childSize = child->getContentSize();
                 CCSize currentSize = this->getContentSize();
-                currentSize.width = MAX( currentSize.width, childSize.width );
-                currentSize.height = MAX( currentSize.height, childSize.height );
+                currentSize.width = Max( currentSize.width, childSize.width );
+                currentSize.height = Max( currentSize.height, childSize.height );
                 this->setContentSize(currentSize);
 
                 idx++;

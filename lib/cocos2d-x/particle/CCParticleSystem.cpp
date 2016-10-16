@@ -59,6 +59,8 @@ THE SOFTWARE.
 #include "crypto/CCCrypto.h"
 #include "IO/FileSystem.h"
 
+#include "cocos/MathDefs.h"
+
 using namespace std;
 
 
@@ -466,7 +468,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
     // timeToLive
     // no negative life. prevent division by 0
     particle->timeToLive = m_fLife + m_fLifeVar * CCRANDOM_MINUS1_1();
-    particle->timeToLive = MAX(0, particle->timeToLive);
+    particle->timeToLive = Max(0, particle->timeToLive);
 
     // position
     particle->pos.x = m_tSourcePosition.x + m_tPosVar.x * CCRANDOM_MINUS1_1();
@@ -495,7 +497,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
 
     // size
     float startS = m_fStartSize + m_fStartSizeVar * CCRANDOM_MINUS1_1();
-    startS = MAX(0, startS); // No negative value
+    startS = Max(0, startS); // No negative value
 
     particle->size = startS;
 
@@ -506,7 +508,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
     else
     {
         float endS = m_fEndSize + m_fEndSizeVar * CCRANDOM_MINUS1_1();
-        endS = MAX(0, endS); // No negative values
+        endS = Max(0, endS); // No negative values
         particle->deltaSize = (endS - startS) / particle->timeToLive;
     }
 
@@ -693,7 +695,7 @@ void CCParticleSystem::update(float dt)
 
                 // size
                 p->size += (p->deltaSize * dt);
-                p->size = MAX( 0, p->size );
+                p->size = Max( 0, p->size );
 
                 // angle
                 p->rotation += (p->deltaRotation * dt);

@@ -22,8 +22,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 #include <Cocoa/Cocoa.h>
-
-#include "platform/CCCommon.h"
+#include "CCPlatformMacros.h"
 
 #include <stdarg.h>
 #include <stdio.h>

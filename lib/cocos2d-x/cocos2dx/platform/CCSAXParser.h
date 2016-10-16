@@ -24,8 +24,9 @@
 #ifndef __CCSAXPARSER_H__
 #define __CCSAXPARSER_H__
 
+
+#include "CCPlatformMacros.h"
 #include "CCPlatformConfig.h"
-#include "CCCommon.h"
 
 NS_CC_BEGIN
 

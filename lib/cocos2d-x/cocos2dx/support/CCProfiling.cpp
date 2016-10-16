@@ -24,6 +24,8 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCProfiling.h"
 
+#include "cocos/MathDefs.h"
+
 using namespace std;
 
 NS_CC_BEGIN
@@ -164,8 +166,8 @@ void CCProfilingEndTimingBlock(const char *timerName)
     timer->totalTime += duration;
     timer->m_dAverageTime1 = (timer->m_dAverageTime1 + duration) / 2.0f;
     timer->m_dAverageTime2 = timer->totalTime / timer->numberOfCalls;
-    timer->maxTime = MAX( timer->maxTime, duration);
-    timer->minTime = MIN( timer->minTime, duration);
+    timer->maxTime = Max( timer->maxTime, duration);
+    timer->minTime = Min( timer->minTime, duration);
 }
 
 void CCProfilingResetTimingBlock(const char *timerName)

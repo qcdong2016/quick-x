@@ -5,6 +5,7 @@
 #include "cocoa/CCSet.h"
 #include "cocoa/CCDictionary.h"
 
+#include "cocos/MathDefs.h"
 NS_CC_BEGIN
 
 static CCTouch* s_pTouches[CC_MAX_TOUCHES] = { NULL };
@@ -72,12 +73,12 @@ void CCEGLViewProtocol::setDesignResolutionSize(float width, float height, Resol
     
     if (resolutionPolicy == kResolutionNoBorder)
     {
-        m_fScaleX = m_fScaleY = MAX(m_fScaleX, m_fScaleY);
+        m_fScaleX = m_fScaleY = Max(m_fScaleX, m_fScaleY);
     }
     
     if (resolutionPolicy == kResolutionShowAll)
     {
-        m_fScaleX = m_fScaleY = MIN(m_fScaleX, m_fScaleY);
+        m_fScaleX = m_fScaleY = Min(m_fScaleX, m_fScaleY);
     }
 
     if ( resolutionPolicy == kResolutionFixedHeight) {

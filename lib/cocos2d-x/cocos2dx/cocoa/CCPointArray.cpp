@@ -2,6 +2,8 @@
 #include "cocoa/CCPointArray.h"
 #include "ccMacros.h"
 
+#include "cocos/MathDefs.h"
+
 NS_CC_BEGIN
 
 /*
@@ -92,7 +94,7 @@ void CCPointArray::insert(CCPoint &point, unsigned int index)
 
 const CCPoint CCPointArray::get(unsigned int index)
 {
-    index = MIN((unsigned int)m_pPoints->size() - 1, MAX(index, 0));
+    index = Min((unsigned int)m_pPoints->size() - 1, Max(index, 0));
     return *(m_pPoints->at(index));
 }
 
