@@ -40,9 +40,11 @@ THE SOFTWARE.
 #import "CCEventDispatcherMac.h"
 #import "CCEGLView.h"
 
+#import "imgui_cocos2dx.h"
 
 //USING_NS_CC;
 static EAGLView *view;
+static bool touch_in_imgui = false;
 
 @implementation EAGLView
 
@@ -332,7 +334,12 @@ static EAGLView *view;
 	xs[0] = x / frameZoomFactor_;
 	ys[0] = y / frameZoomFactor_;
 
-	cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesBegin(1, ids, xs, ys);
+    cocos2d::ImGuiCC::setMouseDown(true);
+    touch_in_imgui = cocos2d::ImGuiCC::setMousePos(xs[0], ys[0]);
+    if (!touch_in_imgui)
+    {
+        cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesBegin(1, ids, xs, ys);
+    }
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
@@ -356,7 +363,11 @@ static EAGLView *view;
 	xs[0] = x / frameZoomFactor_;
 	ys[0] = y / frameZoomFactor_;
 
-	cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesMove(1, ids, xs, ys);
+    cocos2d::ImGuiCC::setMousePos(xs[0], ys[0]);
+    if (!touch_in_imgui)
+    {
+        cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesMove(1, ids, xs, ys);
+    }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
@@ -375,7 +386,13 @@ static EAGLView *view;
 	xs[0] = x / frameZoomFactor_;
 	ys[0] = y / frameZoomFactor_;
 
-	cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesEnd(1, ids, xs, ys);
+    cocos2d::ImGuiCC::setMouseDown(false);
+    cocos2d::ImGuiCC::setMousePos(xs[0], ys[0]);
+    if (!touch_in_imgui)
+    {
+        cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesEnd(1, ids, xs, ys);
+    }
+    touch_in_imgui = false;
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
