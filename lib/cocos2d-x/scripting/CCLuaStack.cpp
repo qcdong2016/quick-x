@@ -79,6 +79,11 @@ using namespace std;
 
 
 TOLUA_API int  tolua_spine_open(lua_State* tolua_S);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+TOLUA_API int luaopen_imgui(lua_State *L);
+#endif
+
 NS_CC_BEGIN
 
 struct cc_timeval CCLuaStack::m_lasttime = {0};
@@ -130,6 +135,9 @@ bool CCLuaStack::init(void)
     tolua_CocoStudio_open(m_state);
     register_all_cocos2dx_studio_manual(m_state);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+	luaopen_imgui(m_state);
+#endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || (CC_TARGET_PLATFORM == CC_PLATFORM_QT && defined(Q_OS_MAC)))
     CCLuaObjcBridge::luaopen_luaoc(m_state);

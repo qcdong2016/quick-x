@@ -1038,6 +1038,9 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\imgui\imgui_binding.cpp">
+      <Filter>cocos2d-x\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
