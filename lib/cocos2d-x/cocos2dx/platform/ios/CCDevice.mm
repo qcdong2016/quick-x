@@ -27,7 +27,7 @@ int CCDevice::getDPI()
     return dpi;
 }
 
-void CCDevice::MessageBox(const char * pszMsg, const char * pszTitle)
+void CCDevice::ShowMessageBox(const char * pszMsg, const char * pszTitle)
 {
     NSString * title = (pszTitle) ? [NSString stringWithUTF8String : pszTitle] : nil;
     NSString * msg = (pszMsg) ? [NSString stringWithUTF8String : pszMsg] : nil;
@@ -48,6 +48,12 @@ std::string CCDevice::getWritablePath()
     std::string strRet = [documentsDirectory UTF8String];
     strRet.append("/");
     return strRet;
+}
+
+void CCDevice::LogS(const char * str)
+{
+    printf("%s\n", str);
+    fflush(stdout);
 }
 
 NS_CC_END

@@ -82,6 +82,7 @@
 		9F7366B61DAD491400D0B435 /* CCNetworkIOSMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366AE1DAD491400D0B435 /* CCNetworkIOSMac.mm */; };
 		9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366B01DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp */; };
 		9F7366BB1DAD496A00D0B435 /* CCScale9Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366B91DAD496A00D0B435 /* CCScale9Sprite.cpp */; };
+		9F74441D1DB39A4900C476D9 /* CCDevice_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F74441C1DB39A4900C476D9 /* CCDevice_mac.mm */; };
 		9F7D6BF61DAE92900070D235 /* FileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D6BF41DAE92900070D235 /* FileSystem.cpp */; };
 		9F9A382C1DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37F61DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp */; };
 		9F9A382D1DAB889100236246 /* cocos2dx_extra_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37F91DAB889100236246 /* cocos2dx_extra_luabinding.cpp */; };
@@ -291,7 +292,6 @@
 		F4E880DA1770074500577406 /* CCZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E880BA1770074500577406 /* CCZipFile.cpp */; };
 		F4E880DB1770074500577406 /* CCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880BF1770074500577406 /* CCApplication.mm */; };
 		F4E880DC1770074500577406 /* CCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880C01770074500577406 /* CCCommon.mm */; };
-		F4E880DD1770074500577406 /* CCDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880C11770074500577406 /* CCDevice.mm */; };
 		F4E880DE1770074500577406 /* CCDirectorCaller.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880C31770074500577406 /* CCDirectorCaller.mm */; };
 		F4E880DF1770074500577406 /* CCEGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880C51770074500577406 /* CCEGLView.mm */; };
 		F4E880E01770074500577406 /* CCEventDispatcherMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E880C71770074500577406 /* CCEventDispatcherMac.mm */; };
@@ -460,6 +460,7 @@
 		9F7366B91DAD496A00D0B435 /* CCScale9Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScale9Sprite.cpp; sourceTree = "<group>"; };
 		9F7366BA1DAD496A00D0B435 /* CCScale9Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScale9Sprite.h; sourceTree = "<group>"; };
 		9F7366BD1DAD4D9200D0B435 /* ccConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccConfig.h; sourceTree = "<group>"; };
+		9F74441C1DB39A4900C476D9 /* CCDevice_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDevice_mac.mm; path = ../CCDevice_mac.mm; sourceTree = "<group>"; };
 		9F7D6BF41DAE92900070D235 /* FileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileSystem.cpp; sourceTree = "<group>"; };
 		9F7D6BF51DAE92900070D235 /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
 		9F9A37F41DAB889100236246 /* CCAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAlertViewDelegate.h; sourceTree = "<group>"; };
@@ -916,7 +917,6 @@
 		F4E880BE1770074500577406 /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
 		F4E880BF1770074500577406 /* CCApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCApplication.mm; sourceTree = "<group>"; };
 		F4E880C01770074500577406 /* CCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCommon.mm; sourceTree = "<group>"; };
-		F4E880C11770074500577406 /* CCDevice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDevice.mm; sourceTree = "<group>"; };
 		F4E880C21770074500577406 /* CCDirectorCaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDirectorCaller.h; sourceTree = "<group>"; };
 		F4E880C31770074500577406 /* CCDirectorCaller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDirectorCaller.mm; sourceTree = "<group>"; };
 		F4E880C41770074500577406 /* CCEGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEGLView.h; sourceTree = "<group>"; };
@@ -2125,7 +2125,7 @@
 				F4E880BE1770074500577406 /* CCApplication.h */,
 				F4E880BF1770074500577406 /* CCApplication.mm */,
 				F4E880C01770074500577406 /* CCCommon.mm */,
-				F4E880C11770074500577406 /* CCDevice.mm */,
+				9F74441C1DB39A4900C476D9 /* CCDevice_mac.mm */,
 				F4E880C21770074500577406 /* CCDirectorCaller.h */,
 				F4E880C31770074500577406 /* CCDirectorCaller.mm */,
 				F4E880C41770074500577406 /* CCEGLView.h */,
@@ -2383,6 +2383,7 @@
 				9F73669D1DAD484700D0B435 /* SkeletonData.c in Sources */,
 				F4E8808C1770071600577406 /* CCVertex.cpp in Sources */,
 				F4E8808D1770071600577406 /* CCComponent.cpp in Sources */,
+				9F74441D1DB39A4900C476D9 /* CCDevice_mac.mm in Sources */,
 				F4E8808E1770071600577406 /* CCComponentContainer.cpp in Sources */,
 				F4E8808F1770071600577406 /* ccCArray.cpp in Sources */,
 				F4E880901770071600577406 /* TGAlib.cpp in Sources */,
@@ -2440,7 +2441,6 @@
 				F4E880DA1770074500577406 /* CCZipFile.cpp in Sources */,
 				F4E880DB1770074500577406 /* CCApplication.mm in Sources */,
 				F4E880DC1770074500577406 /* CCCommon.mm in Sources */,
-				F4E880DD1770074500577406 /* CCDevice.mm in Sources */,
 				F4E880DE1770074500577406 /* CCDirectorCaller.mm in Sources */,
 				9F31F7DE1DAB8AFB00D1666B /* Variant.cpp in Sources */,
 				9F31F7EA1DAB8C8000D1666B /* md5.cpp in Sources */,

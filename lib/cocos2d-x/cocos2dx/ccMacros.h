@@ -42,7 +42,7 @@ extern bool CC_DLL cc_assert_script_compatible(const char *msg);
 #define CCAssert(cond, msg) do {                              \
       if (!(cond)) {                                          \
         if (!cc_assert_script_compatible(msg) && strlen(msg)) \
-          CCLog("Assert failed: %s", msg);           \
+          cocos2d::CCLog("Assert failed: %s", msg);           \
         CC_ASSERT(cond);                                      \
       } \
     } while (0)
