@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 #include "platform.h"
 
+#include "ccMacros.h"
 #include "CCStdC.h"
 
 NS_CC_BEGIN

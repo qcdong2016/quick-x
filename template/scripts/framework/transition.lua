@@ -52,7 +52,7 @@ ACTION_EASING["SINEIN"]           = {CCEaseSineIn, 1}
 ACTION_EASING["SINEINOUT"]        = {CCEaseSineInOut, 1}
 ACTION_EASING["SINEOUT"]          = {CCEaseSineOut, 1}
 
-local actionManager = CCDirector:sharedDirector().actionManager
+local actionManager = CCDirector:sharedDirector():getSubSystem("CCActionManager") --getActionManager()
 
 function transition.newEasing(action, easingName, more)
     local key = string.upper(tostring(easingName))
@@ -158,7 +158,7 @@ transition.execute() 支持的缓动效果：
 @param CCAction action 动作对象
 @param table args 参数表格对象
 
-@return mixed 结果 
+@return mixed 结果
 
 ]]
 function transition.execute(target, action, args)
@@ -224,7 +224,7 @@ end
 
 --[[
 
-将显示对象移动一定距离，并返回 CCAction 动作对象。 
+将显示对象移动一定距离，并返回 CCAction 动作对象。
 
 ~~~ lua
 
@@ -253,11 +253,11 @@ end
 
 --[[
 
-淡入显示对象，并返回 CCAction 动作对象。 
+淡入显示对象，并返回 CCAction 动作对象。
 
 fadeIn 操作会首先将对象的透明度设置为 0（0%，完全透明），然后再逐步增加为 255（100%，完全不透明）。
 
-如果不希望改变对象当前的透明度，应该用 fadeTo()。 
+如果不希望改变对象当前的透明度，应该用 fadeTo()。
 
 ~~~ lua
 
@@ -283,7 +283,7 @@ end
 
 fadeOut 操作会首先将对象的透明度设置为 255（100%，完全不透明），然后再逐步减少为 0（0%，完全透明）。
 
-如果不希望改变对象当前的透明度，应该用 fadeTo()。 
+如果不希望改变对象当前的透明度，应该用 fadeTo()。
 
 ~~~ lua
 
@@ -305,7 +305,7 @@ end
 
 --[[--
 
-将显示对象的透明度改变为指定值，并返回 CCAction 动作对象。 
+将显示对象的透明度改变为指定值，并返回 CCAction 动作对象。
 
 ~~~ lua
 
@@ -377,7 +377,7 @@ end
 
 --[[--
 
-在显示对象上播放一次动画，并返回 CCAction 动作对象。 
+在显示对象上播放一次动画，并返回 CCAction 动作对象。
 
 ~~~ lua
 
@@ -397,20 +397,20 @@ sprite:playAnimationOnce(animation)
 
 ~~~
 
-playAnimationOnce() 提供了丰富的功能，例如在动画播放完成后就删除用于播放动画的 CCSprite 对象。例如一个爆炸效果： 
+playAnimationOnce() 提供了丰富的功能，例如在动画播放完成后就删除用于播放动画的 CCSprite 对象。例如一个爆炸效果：
 
 ~~~ lua
 
 local frames = display.newFrames("Boom%04d.png", 1, 8)
 local boom = display.newSprite(frames[1])
- 
+
 -- playAnimationOnce() 第二个参数为 true 表示动画播放完后删除 boom 这个 CCSprite 对象
 -- 这样爆炸动画播放完毕，就自动清理了不需要的显示对象
 boom:playAnimationOnce(display.newAnimation(frames, 0.3/ 8), true)
 
 ~~~
 
-此外，playAnimationOnce() 还允许在动画播放完成后执行一个指定的函数，以及播放动画前等待一段时间。合理运用这些功能，可以大大简化我们的游戏代码。 
+此外，playAnimationOnce() 还允许在动画播放完成后执行一个指定的函数，以及播放动画前等待一段时间。合理运用这些功能，可以大大简化我们的游戏代码。
 
 @param CCNode target 显示对象
 @param CCNode animation 动作对象
@@ -521,7 +521,7 @@ transition.stopTarget(sprite)
 
 ~~~
 
-注意:显示对象的 performWithDelay() 方法是用动作来实现延时回调操作的，所以如果停止显示对象上的所有动作，会清除该对象上的延时回调操作。 
+注意:显示对象的 performWithDelay() 方法是用动作来实现延时回调操作的，所以如果停止显示对象上的所有动作，会清除该对象上的延时回调操作。
 
 @param mixed target
 

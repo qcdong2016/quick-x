@@ -113,6 +113,9 @@ THE SOFTWARE.
 #include "particle/CCParticleExamples.h"
 #include "particle/CCParticleSystemQuad.h"
 
+// io
+#include "IO/FileSystem.h"
+
 // platform
 #include "platform/CCDevice.h"
 #include "platform/CCImage.h"

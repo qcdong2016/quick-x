@@ -27,7 +27,7 @@
 #include "cocos2d.h"
 
 #include "UIWebViewImpl-ios.h"
-#include "platform/CCFileUtils.h"
+#include "IO/FileSystem.h"
 #include "UIWebView.h"
 #include "platform/ios/EAGLView.h"
 
@@ -314,7 +314,7 @@ void WebViewImpl::loadURL(const std::string &url) {
 }
 
 void WebViewImpl::loadFile(const std::string &fileName) {
-    auto fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName.c_str());
+    auto fullPath = FileSystem::fullPathOfFile(fileName);
     [_uiWebViewWrapper loadFile:fullPath];
 }
 
