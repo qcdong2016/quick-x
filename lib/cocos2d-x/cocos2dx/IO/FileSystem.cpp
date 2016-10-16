@@ -104,7 +104,7 @@ std::string FileSystem::getWritablePath()
 	return ".";// the exe path;
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	return getFileDirectoryJNI();
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     return CCDevice::getWritablePath();
 #endif
 }

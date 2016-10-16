@@ -46,11 +46,6 @@ void CCDevice::LuaLog(const char * pszLog)
     }
 }
 
-void CCDevice::MessageBox(const char * pszMsg, const char * pszTitle)
-{
-    
-}
-
 NS_CC_END
 
 #endif

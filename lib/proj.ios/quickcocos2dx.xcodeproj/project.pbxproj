@@ -54,6 +54,7 @@
 		9F9A37E51DAB85F800236246 /* ReachabilityIOSMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37C01DAB85F800236246 /* ReachabilityIOSMac.m */; };
 		9F9A37E91DAB85F800236246 /* CCStorePaymentTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37CA1DAB85F800236246 /* CCStorePaymentTransaction.cpp */; };
 		9F9A37EA1DAB85F800236246 /* CCStoreProduct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37CD1DAB85F800236246 /* CCStoreProduct.cpp */; };
+		9FCE9C081DB3475800AACF31 /* CCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE9C071DB3475800AACF31 /* CCDevice.cpp */; };
 		B15C9C961D78088F004A5244 /* spine-cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15C9C8F1D78088F004A5244 /* spine-cocos2dx.cpp */; };
 		B15C9C981D78088F004A5244 /* SkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15C9C931D78088F004A5244 /* SkeletonAnimation.cpp */; };
 		B15C9C991D78088F004A5244 /* PolygonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15C9C951D78088F004A5244 /* PolygonBatch.cpp */; };
@@ -186,7 +187,6 @@
 		B1F871351D7D796F00AF7173 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870E61D7D796F00AF7173 /* tolua_push.c */; };
 		B1F871361D7D796F00AF7173 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870E71D7D796F00AF7173 /* tolua_to.c */; };
 		DA56D2FE1A3819B3007350D6 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42825B317575DBE001479DC /* libcurl.a */; };
-		F426146B17E817B400D37B8D /* CCCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426146A17E817B400D37B8D /* CCCommon.cpp */; };
 		F42824FA17575D88001479DC /* CCCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EA17575D87001479DC /* CCCamera.cpp */; };
 		F42824FB17575D88001479DC /* CCConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EC17575D87001479DC /* CCConfiguration.cpp */; };
 		F42824FC17575D88001479DC /* CCDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EE17575D87001479DC /* CCDirector.cpp */; };
@@ -194,7 +194,6 @@
 		F42824FE17575D88001479DC /* CCScheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823F217575D87001479DC /* CCScheduler.cpp */; };
 		F428250917575D88001479DC /* cocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428240D17575D87001479DC /* cocos2d.cpp */; };
 		F428259117575DA8001479DC /* CCEGLViewProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256117575DA8001479DC /* CCEGLViewProtocol.cpp */; };
-		F428259217575DA8001479DC /* CCFileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256317575DA8001479DC /* CCFileUtils.cpp */; };
 		F428259417575DA8001479DC /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256A17575DA8001479DC /* CCSAXParser.cpp */; };
 		F428259517575DA8001479DC /* CCThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256C17575DA8001479DC /* CCThread.cpp */; };
 		F428259617575DA8001479DC /* CCZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256E17575DA8001479DC /* CCZipFile.cpp */; };
@@ -302,12 +301,10 @@
 		F4E88336177015FF00577406 /* AccelerometerDelegateWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88319177015FF00577406 /* AccelerometerDelegateWrapper.mm */; };
 		F4E88337177015FF00577406 /* CCAccelerometer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831B177015FF00577406 /* CCAccelerometer.mm */; };
 		F4E88338177015FF00577406 /* CCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831D177015FF00577406 /* CCApplication.mm */; };
-		F4E88339177015FF00577406 /* CCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831E177015FF00577406 /* CCCommon.mm */; };
 		F4E8833A177015FF00577406 /* CCDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831F177015FF00577406 /* CCDevice.mm */; };
 		F4E8833B177015FF00577406 /* CCDirectorCaller.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88321177015FF00577406 /* CCDirectorCaller.mm */; };
 		F4E8833C177015FF00577406 /* CCEGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88323177015FF00577406 /* CCEGLView.mm */; };
 		F4E8833D177015FF00577406 /* CCES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E88325177015FF00577406 /* CCES2Renderer.m */; };
-		F4E8833E177015FF00577406 /* CCFileUtilsIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88328177015FF00577406 /* CCFileUtilsIOS.mm */; };
 		F4E8833F177015FF00577406 /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832A177015FF00577406 /* CCImage.mm */; };
 		F4E88340177015FF00577406 /* CCLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832B177015FF00577406 /* CCLock.cpp */; };
 		F4E88341177015FF00577406 /* CCThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832F177015FF00577406 /* CCThread.mm */; };
@@ -422,6 +419,7 @@
 		9F9A37CE1DAB85F800236246 /* CCStoreProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStoreProduct.h; sourceTree = "<group>"; };
 		9F9A37CF1DAB85F800236246 /* CCStoreProductsRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStoreProductsRequestDelegate.h; sourceTree = "<group>"; };
 		9F9A37D01DAB85F800236246 /* CCStoreTransactionObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStoreTransactionObserver.h; sourceTree = "<group>"; };
+		9FCE9C071DB3475800AACF31 /* CCDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDevice.cpp; sourceTree = "<group>"; };
 		B15C9C8E1D78088F004A5244 /* spine-cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spine-cocos2dx.h"; sourceTree = "<group>"; };
 		B15C9C8F1D78088F004A5244 /* spine-cocos2dx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "spine-cocos2dx.cpp"; sourceTree = "<group>"; };
 		B15C9C921D78088F004A5244 /* SkeletonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeletonAnimation.h; sourceTree = "<group>"; };
@@ -684,7 +682,6 @@
 		B1F870E51D7D796F00AF7173 /* tolua_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_map.c; sourceTree = "<group>"; };
 		B1F870E61D7D796F00AF7173 /* tolua_push.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_push.c; sourceTree = "<group>"; };
 		B1F870E71D7D796F00AF7173 /* tolua_to.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_to.c; sourceTree = "<group>"; };
-		F426146A17E817B400D37B8D /* CCCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCCommon.cpp; sourceTree = "<group>"; };
 		F42823EA17575D87001479DC /* CCCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCCamera.cpp; sourceTree = "<group>"; };
 		F42823EB17575D87001479DC /* CCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCamera.h; sourceTree = "<group>"; };
 		F42823EC17575D87001479DC /* CCConfiguration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCConfiguration.cpp; sourceTree = "<group>"; };
@@ -698,12 +695,9 @@
 		F428240D17575D87001479DC /* cocos2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2d.cpp; sourceTree = "<group>"; };
 		F428255D17575DA8001479DC /* CCAccelerometerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometerDelegate.h; sourceTree = "<group>"; };
 		F428255E17575DA8001479DC /* CCApplicationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplicationProtocol.h; sourceTree = "<group>"; };
-		F428255F17575DA8001479DC /* CCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCommon.h; sourceTree = "<group>"; };
 		F428256017575DA8001479DC /* CCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDevice.h; sourceTree = "<group>"; };
 		F428256117575DA8001479DC /* CCEGLViewProtocol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEGLViewProtocol.cpp; sourceTree = "<group>"; };
 		F428256217575DA8001479DC /* CCEGLViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEGLViewProtocol.h; sourceTree = "<group>"; };
-		F428256317575DA8001479DC /* CCFileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCFileUtils.cpp; sourceTree = "<group>"; };
-		F428256417575DA8001479DC /* CCFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtils.h; sourceTree = "<group>"; };
 		F428256517575DA8001479DC /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
 		F428256617575DA8001479DC /* CCImageCommon_cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImageCommon_cpp.h; sourceTree = "<group>"; };
 		F428256817575DA8001479DC /* CCPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformConfig.h; sourceTree = "<group>"; };
@@ -964,7 +958,6 @@
 		F4E8831B177015FF00577406 /* CCAccelerometer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCAccelerometer.mm; sourceTree = "<group>"; };
 		F4E8831C177015FF00577406 /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
 		F4E8831D177015FF00577406 /* CCApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCApplication.mm; sourceTree = "<group>"; };
-		F4E8831E177015FF00577406 /* CCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCommon.mm; sourceTree = "<group>"; };
 		F4E8831F177015FF00577406 /* CCDevice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDevice.mm; sourceTree = "<group>"; };
 		F4E88320177015FF00577406 /* CCDirectorCaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDirectorCaller.h; sourceTree = "<group>"; };
 		F4E88321177015FF00577406 /* CCDirectorCaller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDirectorCaller.mm; sourceTree = "<group>"; };
@@ -973,8 +966,6 @@
 		F4E88324177015FF00577406 /* CCES2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCES2Renderer.h; sourceTree = "<group>"; };
 		F4E88325177015FF00577406 /* CCES2Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCES2Renderer.m; sourceTree = "<group>"; };
 		F4E88326177015FF00577406 /* CCESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCESRenderer.h; sourceTree = "<group>"; };
-		F4E88327177015FF00577406 /* CCFileUtilsIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtilsIOS.h; sourceTree = "<group>"; };
-		F4E88328177015FF00577406 /* CCFileUtilsIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCFileUtilsIOS.mm; sourceTree = "<group>"; };
 		F4E88329177015FF00577406 /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		F4E8832A177015FF00577406 /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
 		F4E8832B177015FF00577406 /* CCLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLock.cpp; sourceTree = "<group>"; };
@@ -1664,13 +1655,10 @@
 			children = (
 				F428255D17575DA8001479DC /* CCAccelerometerDelegate.h */,
 				F428255E17575DA8001479DC /* CCApplicationProtocol.h */,
-				F426146A17E817B400D37B8D /* CCCommon.cpp */,
-				F428255F17575DA8001479DC /* CCCommon.h */,
 				F428256017575DA8001479DC /* CCDevice.h */,
+				9FCE9C071DB3475800AACF31 /* CCDevice.cpp */,
 				F428256117575DA8001479DC /* CCEGLViewProtocol.cpp */,
 				F428256217575DA8001479DC /* CCEGLViewProtocol.h */,
-				F428256317575DA8001479DC /* CCFileUtils.cpp */,
-				F428256417575DA8001479DC /* CCFileUtils.h */,
 				F428256517575DA8001479DC /* CCImage.h */,
 				F428256617575DA8001479DC /* CCImageCommon_cpp.h */,
 				F428256817575DA8001479DC /* CCPlatformConfig.h */,
@@ -2278,7 +2266,6 @@
 				F4E8831B177015FF00577406 /* CCAccelerometer.mm */,
 				F4E8831C177015FF00577406 /* CCApplication.h */,
 				F4E8831D177015FF00577406 /* CCApplication.mm */,
-				F4E8831E177015FF00577406 /* CCCommon.mm */,
 				F4E8831F177015FF00577406 /* CCDevice.mm */,
 				F4E88320177015FF00577406 /* CCDirectorCaller.h */,
 				F4E88321177015FF00577406 /* CCDirectorCaller.mm */,
@@ -2287,8 +2274,6 @@
 				F4E88324177015FF00577406 /* CCES2Renderer.h */,
 				F4E88325177015FF00577406 /* CCES2Renderer.m */,
 				F4E88326177015FF00577406 /* CCESRenderer.h */,
-				F4E88327177015FF00577406 /* CCFileUtilsIOS.h */,
-				F4E88328177015FF00577406 /* CCFileUtilsIOS.mm */,
 				F4E88329177015FF00577406 /* CCGL.h */,
 				F4E8832A177015FF00577406 /* CCImage.mm */,
 				F4E8832B177015FF00577406 /* CCLock.cpp */,
@@ -2395,7 +2380,6 @@
 				F428259117575DA8001479DC /* CCEGLViewProtocol.cpp in Sources */,
 				B1F871011D7D796F00AF7173 /* lfunc.c in Sources */,
 				B1F871191D7D796F00AF7173 /* strbuf.c in Sources */,
-				F428259217575DA8001479DC /* CCFileUtils.cpp in Sources */,
 				9F1FE6881DAD389E008FE0C7 /* CCLuaBridge.cpp in Sources */,
 				F428259417575DA8001479DC /* CCSAXParser.cpp in Sources */,
 				F428259517575DA8001479DC /* CCThread.cpp in Sources */,
@@ -2423,6 +2407,7 @@
 				F4E882B0177015C400577406 /* CCActionProgressTimer.cpp in Sources */,
 				F4E882B1177015C400577406 /* CCActionTiledGrid.cpp in Sources */,
 				F4E882B2177015C400577406 /* CCActionTween.cpp in Sources */,
+				9FCE9C081DB3475800AACF31 /* CCDevice.cpp in Sources */,
 				B1B896041D8C664C00F80112 /* CCEditBoxImplIOS.mm in Sources */,
 				9F1FE6961DAD389E008FE0C7 /* snapshot.c in Sources */,
 				F4E882B3177015C400577406 /* CCAtlasNode.cpp in Sources */,
@@ -2620,7 +2605,6 @@
 				F4E88338177015FF00577406 /* CCApplication.mm in Sources */,
 				9F9A37E91DAB85F800236246 /* CCStorePaymentTransaction.cpp in Sources */,
 				B1F871281D7D796F00AF7173 /* select.c in Sources */,
-				F4E88339177015FF00577406 /* CCCommon.mm in Sources */,
 				F4E8833A177015FF00577406 /* CCDevice.mm in Sources */,
 				F4E8833B177015FF00577406 /* CCDirectorCaller.mm in Sources */,
 				9F1FE6B51DAD3921008FE0C7 /* CCTMXLayer.cpp in Sources */,
@@ -2629,7 +2613,6 @@
 				B1F8710B1D7D796F00AF7173 /* loslib.c in Sources */,
 				B1F871271D7D796F00AF7173 /* options.c in Sources */,
 				F4E8833D177015FF00577406 /* CCES2Renderer.m in Sources */,
-				F4E8833E177015FF00577406 /* CCFileUtilsIOS.mm in Sources */,
 				F4E8833F177015FF00577406 /* CCImage.mm in Sources */,
 				B17812C31D6949C90093D282 /* AttachmentLoader.c in Sources */,
 				F4E88340177015FF00577406 /* CCLock.cpp in Sources */,
@@ -2648,7 +2631,6 @@
 				B1F8711E1D7D796F00AF7173 /* sqlite3.c in Sources */,
 				B1F8712D1D7D796F00AF7173 /* udp.c in Sources */,
 				B1F871351D7D796F00AF7173 /* tolua_push.c in Sources */,
-				F426146B17E817B400D37B8D /* CCCommon.cpp in Sources */,
 				B17812C81D6949C90093D282 /* EventData.c in Sources */,
 				B1F871081D7D796F00AF7173 /* loadlib.c in Sources */,
 				B15C9C961D78088F004A5244 /* spine-cocos2dx.cpp in Sources */,

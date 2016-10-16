@@ -65,6 +65,7 @@ static AppDelegate s_sharedApplication;
     [window setRootViewController:viewController];
     [window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
+    cocos2d::FileSystem::setResourceRoot([[NSBundle mainBundle] resourcePath].UTF8String);
     cocos2d::CCApplication::sharedApplication()->run();
 
     return YES;

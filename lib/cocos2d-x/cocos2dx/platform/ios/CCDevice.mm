@@ -1,5 +1,6 @@
 #include "CCDevice.h"
 #import <UIKit/UIKit.h>
+#import <UIKit/UIAlert.h>
 
 NS_CC_BEGIN
 
@@ -24,6 +25,29 @@ int CCDevice::getDPI()
         }
     }
     return dpi;
+}
+
+void CCDevice::MessageBox(const char * pszMsg, const char * pszTitle)
+{
+    NSString * title = (pszTitle) ? [NSString stringWithUTF8String : pszTitle] : nil;
+    NSString * msg = (pszMsg) ? [NSString stringWithUTF8String : pszMsg] : nil;
+    UIAlertView * messageBox = [[UIAlertView alloc] initWithTitle: title
+                                                          message: msg
+                                                         delegate: nil
+                                                cancelButtonTitle: @"OK"
+                                                otherButtonTitles: nil];
+    [messageBox autorelease];
+    [messageBox show];
+}
+
+std::string CCDevice::getWritablePath()
+{
+    // save to document folder
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    std::string strRet = [documentsDirectory UTF8String];
+    strRet.append("/");
+    return strRet;
 }
 
 NS_CC_END

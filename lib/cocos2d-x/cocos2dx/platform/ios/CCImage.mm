@@ -22,8 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #import "CCImage.h"
-#import "CCFileUtils.h"
-#import "CCCommon.h"
+#import "IO/FileSystem.h"
 #import <string>
 
 #import <Foundation/Foundation.h>
@@ -132,10 +131,8 @@ static bool _initWithFile(const char* path, tImageInfo *pImageinfo)
     // convert jpg to png before loading the texture
     
     //NSString *fullPath = [NSString stringWithUTF8String:path];
-	unsigned long fileSize = 0;
-    unsigned char* pFileData = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(path, "rb", &fileSize);
-    NSData *adata = [[NSData alloc] initWithBytes:pFileData length:fileSize];
-	delete []pFileData;
+    cocos2d::SharedPtr<cocos2d::MemBuffer> bf = cocos2d::FileSystem::readAll(path);
+    NSData *adata = [[NSData alloc] initWithBytes:bf->getData() length:bf->getSize()];
     jpg = [[UIImage alloc] initWithData:adata];
     //jpg = [[UIImage alloc] initWithContentsOfFile: fullPath];
     png = [[UIImage alloc] initWithData:UIImagePNGRepresentation(jpg)];
@@ -442,17 +439,11 @@ CCImage::~CCImage()
 bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = eFmtPng*/)
 {
 	bool bRet = false;
-    unsigned long nSize = 0;
-    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(
-				CCFileUtils::sharedFileUtils()->fullPathForFilename(strPath).c_str(),
-				"rb",
-				&nSize);
-				
-    if (pBuffer != NULL && nSize > 0)
+    SharedPtr<MemBuffer> bf = FileSystem::readAll(strPath);
+    if (!bf->isNull() && bf->getSize() > 0)
     {
-        bRet = initWithImageData(pBuffer, nSize, eImgFmt);
+        bRet = initWithImageData(bf->getData(), bf->getSize(), eImgFmt);
     }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
     return bRet;
 }
 
@@ -462,14 +453,11 @@ bool CCImage::initWithImageFileThreadSafe(const char *fullpath, EImageFormat ima
      * CCFileUtils::fullPathFromRelativePath() is not thread-safe, it use autorelease().
      */
     bool bRet = false;
-    unsigned long nSize = 0;
-    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(fullpath, "rb", &nSize);
-    
-    if (pBuffer != NULL && nSize > 0)
+    SharedPtr<MemBuffer> bf = FileSystem::readAll(fullpath);
+    if (!bf->isNull() && bf->getSize() > 0)
     {
-        bRet = initWithImageData(pBuffer, nSize, imageType);
+        bRet = initWithImageData(bf->getData(), bf->getSize(), imageType);
     }
-    CC_SAFE_DELETE_ARRAY(pBuffer);
     return bRet;
 }
 
