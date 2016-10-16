@@ -1,64 +1,36 @@
+#include "CCDevice.h"
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include "CCDevice.h"
 
-
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
-
-
-/// The max length of CCLog message.
-static const int kMaxLogLen = 16*1024;
-static char logbuff[sizeof(char) * (kMaxLogLen + 1)];
 
 NS_CC_BEGIN
+static const int kMaxLogLen = 16 * 1024;
+static char logbuff[sizeof(char) * (kMaxLogLen + 1)];
 
-
-
-void CCDevice::Log(const char * pszFormat, ...)
+void CCDevice::Log(const char * fmt, ...)
 {
-    printf("Cocos2d: ");
-    va_list ap;
-    va_start(ap, pszFormat);
-    memset(logbuff, 0, sizeof(logbuff));
-    vsnprintf(logbuff, kMaxLogLen, pszFormat, ap);
-    va_end(ap);
-    printf("%s", logbuff);
-    printf("\n");
-    fflush(stdout);
+	va_list args;
+	va_start(args, fmt);
+	LogV(fmt, args);
+	va_end(args);
 }
 
-
-void CCDevice::LuaLog(const char * pszLog)
+void CCDevice::LogV(const char * fmt, va_list args)
 {
-    printf("Cocos2d: ");
-    if (strlen(pszLog) > 65536)
-    {
-        printf("Cocos2d: [WARNING] log too long, max size is %0.2fKB, actual size is %0.2fKB\n", (float)kMaxLogLen / 1024.0f, (float)strlen(pszLog) / 1024.0f);
-        memset(logbuff, 0, sizeof(logbuff));
-        strncpy(logbuff, pszLog, kMaxLogLen);
-        puts(logbuff);
-    }
-    else
-    {
-        puts(pszLog);
-    }
+	vsnprintf(logbuff, sizeof(logbuff), fmt, args);
+	LogS(logbuff);
+}
+
+void CCLog(const char* fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	CCDevice::LogV(fmt, args);
+	va_end(args);
 }
 
 NS_CC_END
 
-#endif
 
-void CCLog(const char* pszFormat, ...)
-{
-    printf("Cocos2d: ");
-    va_list ap;
-    va_start(ap, pszFormat);
-    memset(logbuff, 0, sizeof(logbuff));
-    vsnprintf(logbuff, kMaxLogLen, pszFormat, ap);
-    va_end(ap);
-    printf("%s", logbuff);
-    printf("\n");
-    fflush(stdout);
-}

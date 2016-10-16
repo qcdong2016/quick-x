@@ -216,14 +216,14 @@ bool CCEGLView::initGL()
         sprintf(strComplain,
 		"OpenGL 1.5 or higher is required (your version is %s). Please upgrade the driver of your video card.",
 		glVersion);
-		CCMessageBox(strComplain, "OpenGL version too old");
+		CCDevice::ShowMessageBox(strComplain, "OpenGL version too old");
 		return false;
     }
 
     GLenum GlewInitResult = glewInit();
     if (GLEW_OK != GlewInitResult)
     {
-		CCMessageBox((char *)glewGetErrorString(GlewInitResult), "OpenGL error");
+		CCDevice::ShowMessageBox((char *)glewGetErrorString(GlewInitResult), "OpenGL error");
         return false;
     }
 
@@ -247,7 +247,7 @@ bool CCEGLView::initGL()
 
     if(glew_dynamic_binding() == false)
 	{
-		CCMessageBox("No OpenGL framebuffer support. Please upgrade the driver of your video card.", "OpenGL error");
+		CCDevice::ShowMessageBox("No OpenGL framebuffer support. Please upgrade the driver of your video card.", "OpenGL error");
 		return false;
 	}
 

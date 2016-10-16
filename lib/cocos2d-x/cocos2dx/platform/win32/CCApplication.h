@@ -2,7 +2,6 @@
 #define __CC_APPLICATION_WIN32_H__
 
 #include "CCStdC.h"
-#include "platform/CCCommon.h"
 #include "platform/CCApplicationProtocol.h"
 #include <string>
 

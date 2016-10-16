@@ -465,16 +465,10 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCApplication.cpp">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCCommon.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.cpp">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCImage.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.cpp">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\CCCamera.cpp">
@@ -506,9 +500,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\user_default\CCUserDefault.cpp">
       <Filter>cocos2d-x\cocos2dx\support\user_default</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCDevice.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\support\ccUTF8.cpp">
       <Filter>cocos2d-x\cocos2dx\support</Filter>
@@ -1041,6 +1032,12 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\IO\FileSystem.cpp">
       <Filter>cocos2d-x\cocos2dx\IO</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice_win32.cpp">
+      <Filter>cocos2d-x\cocos2dx\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice.cpp">
+      <Filter>cocos2d-x\cocos2dx\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
@@ -1377,9 +1374,6 @@
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCPlatformDefine.h">
-      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.h">
       <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\compat\stdint.h">

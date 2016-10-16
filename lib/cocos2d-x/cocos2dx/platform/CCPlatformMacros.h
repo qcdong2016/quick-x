@@ -214,15 +214,15 @@ public: virtual void set##funName(varType var)   \
 #define CCLOGWARN(...)   do {} while (0)
 
 #elif COCOS2D_DEBUG == 1
-#define CCLOG(format, ...)      CCLog(format, ##__VA_ARGS__)
-#define CCLOGERROR(format,...)  CCLog(format, ##__VA_ARGS__)
+#define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)
 #define CCLOGINFO(format,...)   do {} while (0)
 #define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
 
 #elif COCOS2D_DEBUG > 1
-#define CCLOG(format, ...)      CCLog(format, ##__VA_ARGS__)
-#define CCLOGERROR(format,...)  CCLog(format, ##__VA_ARGS__)
-#define CCLOGINFO(format,...)   CCLog(format, ##__VA_ARGS__)
+#define CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)
+#define CCLOGINFO(format,...)   cocos2d::CCLog(format, ##__VA_ARGS__)
 #define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
 #endif // COCOS2D_DEBUG
 
@@ -230,7 +230,7 @@ public: virtual void set##funName(varType var)   \
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0 || CC_LUA_ENGINE_DEBUG == 0
 #define LUALOG(...)
 #else
-#define LUALOG(format, ...)     cocos2d::CCDevice::Log(format, ##__VA_ARGS__)
+#define LUALOG(format, ...)     cocos2d::CCLog(format, ##__VA_ARGS__)
 #endif // Lua engine debug
 
 #if defined(__GNUC__) && ((__GNUC__ >= 5) || ((__GNUG__ == 4) && (__GNUC_MINOR__ >= 4))) \

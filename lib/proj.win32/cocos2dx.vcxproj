@@ -82,6 +82,8 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCClippingRegionNode.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCProgressTimer.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\misc_nodes\CCRenderTexture.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice_win32.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCEGLViewProtocol.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCThread.cpp" />
@@ -89,11 +91,8 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\platform.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCAccelerometer.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCApplication.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCCommon.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCDevice.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCImage.cpp" />
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\CCGLProgram.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\shaders\ccGLStateCache.cpp" />
@@ -409,7 +408,6 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCEGLView.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCPlatformDefine.h" />
-    <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\CCStdC.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\platform\win32\compat\stdint.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\script_support\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\shaders\CCGLProgram.h" />

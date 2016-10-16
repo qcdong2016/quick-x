@@ -1,7 +1,6 @@
 #ifndef __CC_APPLICATION_ANDROID_H__
 #define __CC_APPLICATION_ANDROID_H__
 
-#include "platform/CCCommon.h"
 #include "platform/CCApplicationProtocol.h"
 
 NS_CC_BEGIN

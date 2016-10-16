@@ -30,8 +30,6 @@ THE SOFTWARE.
 
 local c = cc
 
-c.LuaLog                        = CCLuaLog
-c.MessageBox                    = CCMessageBox
 c.LoadChunksFromZIP             = CCLuaLoadChunksFromZIP
 c.StackSnapshot                 = CCLuaStackSnapshot
 

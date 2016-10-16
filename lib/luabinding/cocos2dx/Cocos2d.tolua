@@ -15,7 +15,6 @@ $pfile "cocos2dx/cocoa/CCScriptEventDispatcher.tolua"
 $pfile "cocos2dx/crypto/CCCrypto.tolua"
 
 $pfile "cocos2dx/IO/FileSystem.tolua"
-$pfile "cocos2dx/platform/CCCommon.tolua"
 $pfile "cocos2dx/platform/CCDevice.tolua"
 $pfile "cocos2dx/platform/platform.tolua"
 $pfile "cocos2dx/platform/CCApplication.tolua"

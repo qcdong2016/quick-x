@@ -28,7 +28,6 @@ THE SOFTWARE.
 #endif /* __CC_PLATFORM_IMAGE_CPP__ */
 
 #include "CCImage.h"
-#include "CCCommon.h"
 #include "CCStdC.h"
 #include "png.h"
 
@@ -48,6 +47,7 @@ THE SOFTWARE.
 #include <SDL/SDL_image.h>
 #endif // EMSCRIPTEN
 #include "IO/FileSystem.h"
+#include "ccMacros.h"
 
 NS_CC_BEGIN
 

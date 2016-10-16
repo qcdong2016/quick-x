@@ -1,3 +1,19 @@
+enum
+{
+    kLanguageEnglish = 0,
+    kLanguageChinese,
+    kLanguageFrench,
+    kLanguageItalian,
+    kLanguageGerman,
+    kLanguageSpanish,
+    kLanguageRussian,
+    kLanguageKorean,
+    kLanguageJapanese,
+    kLanguageHungarian,
+    kLanguagePortuguese,
+    kLanguageArabic,
+    kLanguageChineseTW
+};
 
 class CCDevice
 {
@@ -6,4 +22,5 @@ class CCDevice
      *  @return The DPI of device.
      */
     static int getDPI();
+        static void ShowMessageBox(const char * pszMsg, const char * pszTitle);
 };

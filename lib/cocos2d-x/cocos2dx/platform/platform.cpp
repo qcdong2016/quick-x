@@ -26,6 +26,7 @@ THE SOFTWARE.
 
 #include "ccMacros.h"
 #include "CCStdC.h"
+#include <string.h>
 
 NS_CC_BEGIN
 
@@ -70,4 +71,21 @@ double CCTime::timersubCocos2d(struct cc_timeval *start, struct cc_timeval *end)
     return ((end->tv_sec*1000.0+end->tv_usec/1000.0) - (start->tv_sec*1000.0+start->tv_usec/1000.0));
 }
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+
+int gettimeofday(struct timeval * val, struct timezone *)
+{
+	if (val)
+	{
+		LARGE_INTEGER liTime, liFreq;
+		QueryPerformanceFrequency(&liFreq);
+		QueryPerformanceCounter(&liTime);
+		val->tv_sec = (long)(liTime.QuadPart / liFreq.QuadPart);
+		val->tv_usec = (long)(liTime.QuadPart * 1000000.0 / liFreq.QuadPart - val->tv_sec * 1000000.0);
+	}
+	return 0;
+}
+#endif
+
 NS_CC_END
+

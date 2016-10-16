@@ -26,6 +26,7 @@ THE SOFTWARE.
 #include "CCArray.h"
 #include "IO/FileSystem.h"
 #include "CCDictionary.h"
+#include <math.h>
 
 NS_CC_BEGIN
 

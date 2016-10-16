@@ -138,7 +138,6 @@ THE SOFTWARE.
     #include "platform/android/CCApplication.h"
     #include "platform/android/CCEGLView.h"
     #include "platform/android/CCGL.h"
-    #include "platform/android/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY)
@@ -154,7 +153,6 @@ THE SOFTWARE.
 	#include "platform/win32/CCApplication.h"
 	#include "platform/win32/CCEGLView.h"
 	#include "platform/win32/CCGL.h"
-	#include "platform/win32/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)

@@ -31,6 +31,7 @@
 
 #include "PolygonBatch.h"
 #include <spine/extension.h>
+#include "CCDevice.h"
 
 USING_NS_CC;
 

@@ -76,17 +76,16 @@ LOCAL_SRC_FILES := \
     misc_nodes/CCProgressTimer.cpp \
     misc_nodes/CCRenderTexture.cpp \
     IO/FileSystem.cpp \
-    platform/CCCommon.cpp \
     platform/CCSAXParser.cpp \
     platform/CCThread.cpp \
     platform/CCZipFile.cpp \
     platform/platform.cpp \
     platform/CCEGLViewProtocol.cpp \
-    platform/android/CCDevice.cpp \
+    platform/CCDevice_android.cpp \
+    platform/CCDevice.cpp \
     platform/android/CCEGLView.cpp \
     platform/android/CCAccelerometer.cpp \
     platform/android/CCApplication.cpp \
-    platform/android/CCCommon.cpp \
     platform/android/CCImage.cpp \
     platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp \
     platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp \

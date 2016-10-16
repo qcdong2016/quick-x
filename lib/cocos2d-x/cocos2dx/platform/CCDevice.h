@@ -38,7 +38,6 @@ typedef enum LanguageType
 /// @}
 
 
-
 /**
  @js NA
  @lua NA
@@ -52,17 +51,14 @@ public:
     /**
      @brief Output Debug message.
      */
-    static void Log(const char * pszFormat, ...) CC_FORMAT_PRINTF(1, 2);
-    
-    /**
-     * lua can not deal with ...
-     */
-    static void LuaLog(const char * pszFormat);
-    
+    static void Log(const char * fmt, ...);
+	static void LogV(const char * fmt, va_list args);
+	static void LogS(const char * str);
+
     /**
      @brief Pop out a message box
      */
-    static void MessageBox(const char * pszMsg, const char * pszTitle);
+    static void ShowMessageBox(const char * pszMsg, const char * pszTitle);
 
     /**
      *  Gets the DPI of device
@@ -72,10 +68,8 @@ public:
     static std::string getWritablePath();
 };
 
+CC_DLL void CCLog(const char* fmt, ...);
 
 NS_CC_END
-
-
-CC_DLL void CCLog(const char* pszFormat, ...);
 
 #endif /* __CCDEVICE_H__ */

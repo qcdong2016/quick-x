@@ -32,8 +32,9 @@ THE SOFTWARE.
 #endif
 
 #include "CCStdC.h"
-
-CC_DLL void CCLog(const char*, ...);
+namespace cocos2d {
+	CC_DLL void CCLog(const char*, ...);
+}
 
 #ifndef CCAssert
 #if COCOS2D_DEBUG > 0
@@ -237,7 +238,7 @@ It should work same as apples CFSwapInt32LittleToHost(..)
     do { \
         GLenum __error = glGetError(); \
         if(__error) { \
-            CCLog("OpenGL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
+            cocos2d::CCLog("OpenGL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
         } \
     } while (false)
 #endif

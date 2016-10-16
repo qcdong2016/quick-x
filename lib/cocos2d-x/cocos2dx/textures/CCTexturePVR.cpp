@@ -386,8 +386,8 @@ bool CCTexturePVR::unpackPVRv2Data(unsigned char* data, unsigned int len)
                 dataOffset += packetLength;
                 
                 //Update width and height to the next lower power of two 
-                width = Max(width >> 1, 1);
-                height = Max(height >> 1, 1);
+                width = Max(width >> 1, (unsigned int)1);
+                height = Max(height >> 1, (unsigned int)1);
             }
             
             //Mark pass as success
@@ -525,8 +525,8 @@ bool CCTexturePVR::unpackPVRv3Data(unsigned char* dataPointer, unsigned int data
 		CCAssert(dataOffset <= dataLength, "CCTexurePVR: Invalid lenght");
 		
 		
-		width = Max(width >> 1, 1);
-		height = Max(height >> 1, 1);
+		width = Max(width >> 1, (unsigned int)1);
+		height = Max(height >> 1, (unsigned int)1);
 	}
 	
 	return true;
