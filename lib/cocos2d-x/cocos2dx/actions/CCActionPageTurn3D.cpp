@@ -54,7 +54,7 @@ CCPageTurn3D* CCPageTurn3D::create(float duration, const CCSize& gridSize)
  */
 void CCPageTurn3D::update(float time)
 {
-    float tt = Max(0, time - 0.25f);
+    float tt = Max(0.0f, time - 0.25f);
     float deltaAy = (tt * tt * 500);
     float ay = -100 - deltaAy;
     

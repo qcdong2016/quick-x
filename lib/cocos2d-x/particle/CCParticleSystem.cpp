@@ -497,7 +497,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
 
     // size
     float startS = m_fStartSize + m_fStartSizeVar * CCRANDOM_MINUS1_1();
-    startS = Max(0, startS); // No negative value
+    startS = Max(0.0f, startS); // No negative value
 
     particle->size = startS;
 
@@ -508,7 +508,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
     else
     {
         float endS = m_fEndSize + m_fEndSizeVar * CCRANDOM_MINUS1_1();
-        endS = Max(0, endS); // No negative values
+        endS = Max(0.0f, endS); // No negative values
         particle->deltaSize = (endS - startS) / particle->timeToLive;
     }
 
@@ -695,7 +695,7 @@ void CCParticleSystem::update(float dt)
 
                 // size
                 p->size += (p->deltaSize * dt);
-                p->size = Max( 0, p->size );
+                p->size = Max(0.0f, p->size );
 
                 // angle
                 p->rotation += (p->deltaRotation * dt);
