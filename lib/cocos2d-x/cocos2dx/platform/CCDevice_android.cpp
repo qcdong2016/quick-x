@@ -17,12 +17,12 @@ int CCDevice::getDPI()
     return dpi;
 }
 
-void CCDevice::LogS(const char* s)
+void CCDevice::logS(const char* s)
 {
     __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x", "%s", s);
 }
 
-void CCDevice::ShowMessageBox(const char * pszMsg, const char * pszTitle)
+void CCDevice::showMessageBox(const char * pszMsg, const char * pszTitle)
 {
     showDialogJNI(pszMsg, pszTitle);
 }

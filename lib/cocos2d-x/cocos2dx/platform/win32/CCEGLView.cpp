@@ -58,13 +58,13 @@ static CloseTouchInputHandleFn s_pfCloseTouchInputHandleFunction = NULL;
 
 static bool CheckTouchSupport()
 {
-	s_pfRegisterTouchWindowFunction = (RegisterTouchWindowFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "RegisterTouchWindow");
-	s_pfUnregisterTouchWindowFunction = (UnregisterTouchWindowFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "UnregisterTouchWindow");
-	s_pfGetMessageExtraInfoFunction = (GetMessageExtraInfoFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "GetMessageExtraInfo");
-	s_pfGetTouchInputInfoFunction = (GetTouchInputInfoFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "GetTouchInputInfo");
-	s_pfCloseTouchInputHandleFunction = (CloseTouchInputHandleFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "CloseTouchInputHandle");
+    s_pfRegisterTouchWindowFunction = (RegisterTouchWindowFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "RegisterTouchWindow");
+    s_pfUnregisterTouchWindowFunction = (UnregisterTouchWindowFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "UnregisterTouchWindow");
+    s_pfGetMessageExtraInfoFunction = (GetMessageExtraInfoFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "GetMessageExtraInfo");
+    s_pfGetTouchInputInfoFunction = (GetTouchInputInfoFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "GetTouchInputInfo");
+    s_pfCloseTouchInputHandleFunction = (CloseTouchInputHandleFn)GetProcAddress(GetModuleHandle(TEXT("user32.dll")), "CloseTouchInputHandle");
 
-	return (s_pfRegisterTouchWindowFunction && s_pfUnregisterTouchWindowFunction && s_pfGetMessageExtraInfoFunction && s_pfGetTouchInputInfoFunction && s_pfCloseTouchInputHandleFunction);
+    return (s_pfRegisterTouchWindowFunction && s_pfUnregisterTouchWindowFunction && s_pfGetMessageExtraInfoFunction && s_pfGetTouchInputInfoFunction && s_pfCloseTouchInputHandleFunction);
 }
 
 #endif /* #if(_MSC_VER >= 1600) */
@@ -101,64 +101,64 @@ static void SetupPixelFormat(HDC hDC)
 
 static bool glew_dynamic_binding()
 {
-	const char *gl_extensions = (const char*)glGetString(GL_EXTENSIONS);
+    const char *gl_extensions = (const char*)glGetString(GL_EXTENSIONS);
 
-	// If the current opengl driver doesn't have framebuffers methods, check if an extension exists
-	if (glGenFramebuffers == NULL)
-	{
-		CCLog("OpenGL: glGenFramebuffers is NULL, try to detect an extension");
-		if (strstr(gl_extensions, "ARB_framebuffer_object"))
-		{
-			CCLog("OpenGL: ARB_framebuffer_object is supported");
+    // If the current opengl driver doesn't have framebuffers methods, check if an extension exists
+    if (glGenFramebuffers == NULL)
+    {
+        CCLog("OpenGL: glGenFramebuffers is NULL, try to detect an extension");
+        if (strstr(gl_extensions, "ARB_framebuffer_object"))
+        {
+            CCLog("OpenGL: ARB_framebuffer_object is supported");
 
-			glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) wglGetProcAddress("glIsRenderbuffer");
-			glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) wglGetProcAddress("glBindRenderbuffer");
-			glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) wglGetProcAddress("glDeleteRenderbuffers");
-			glGenRenderbuffers = (PFNGLGENRENDERBUFFERSPROC) wglGetProcAddress("glGenRenderbuffers");
-			glRenderbufferStorage = (PFNGLRENDERBUFFERSTORAGEPROC) wglGetProcAddress("glRenderbufferStorage");
-			glGetRenderbufferParameteriv = (PFNGLGETRENDERBUFFERPARAMETERIVPROC) wglGetProcAddress("glGetRenderbufferParameteriv");
-			glIsFramebuffer = (PFNGLISFRAMEBUFFERPROC) wglGetProcAddress("glIsFramebuffer");
-			glBindFramebuffer = (PFNGLBINDFRAMEBUFFERPROC) wglGetProcAddress("glBindFramebuffer");
-			glDeleteFramebuffers = (PFNGLDELETEFRAMEBUFFERSPROC) wglGetProcAddress("glDeleteFramebuffers");
-			glGenFramebuffers = (PFNGLGENFRAMEBUFFERSPROC) wglGetProcAddress("glGenFramebuffers");
-			glCheckFramebufferStatus = (PFNGLCHECKFRAMEBUFFERSTATUSPROC) wglGetProcAddress("glCheckFramebufferStatus");
-			glFramebufferTexture1D = (PFNGLFRAMEBUFFERTEXTURE1DPROC) wglGetProcAddress("glFramebufferTexture1D");
-			glFramebufferTexture2D = (PFNGLFRAMEBUFFERTEXTURE2DPROC) wglGetProcAddress("glFramebufferTexture2D");
-			glFramebufferTexture3D = (PFNGLFRAMEBUFFERTEXTURE3DPROC) wglGetProcAddress("glFramebufferTexture3D");
-			glFramebufferRenderbuffer = (PFNGLFRAMEBUFFERRENDERBUFFERPROC) wglGetProcAddress("glFramebufferRenderbuffer");
-			glGetFramebufferAttachmentParameteriv = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) wglGetProcAddress("glGetFramebufferAttachmentParameteriv");
-			glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC) wglGetProcAddress("glGenerateMipmap");
-		}
-		else
-		if (strstr(gl_extensions, "EXT_framebuffer_object"))
-		{
-			CCLog("OpenGL: EXT_framebuffer_object is supported");
-			glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) wglGetProcAddress("glIsRenderbufferEXT");
-			glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) wglGetProcAddress("glBindRenderbufferEXT");
-			glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) wglGetProcAddress("glDeleteRenderbuffersEXT");
-			glGenRenderbuffers = (PFNGLGENRENDERBUFFERSPROC) wglGetProcAddress("glGenRenderbuffersEXT");
-			glRenderbufferStorage = (PFNGLRENDERBUFFERSTORAGEPROC) wglGetProcAddress("glRenderbufferStorageEXT");
-			glGetRenderbufferParameteriv = (PFNGLGETRENDERBUFFERPARAMETERIVPROC) wglGetProcAddress("glGetRenderbufferParameterivEXT");
-			glIsFramebuffer = (PFNGLISFRAMEBUFFERPROC) wglGetProcAddress("glIsFramebufferEXT");
-			glBindFramebuffer = (PFNGLBINDFRAMEBUFFERPROC) wglGetProcAddress("glBindFramebufferEXT");
-			glDeleteFramebuffers = (PFNGLDELETEFRAMEBUFFERSPROC) wglGetProcAddress("glDeleteFramebuffersEXT");
-			glGenFramebuffers = (PFNGLGENFRAMEBUFFERSPROC) wglGetProcAddress("glGenFramebuffersEXT");
-			glCheckFramebufferStatus = (PFNGLCHECKFRAMEBUFFERSTATUSPROC) wglGetProcAddress("glCheckFramebufferStatusEXT");
-			glFramebufferTexture1D = (PFNGLFRAMEBUFFERTEXTURE1DPROC) wglGetProcAddress("glFramebufferTexture1DEXT");
-			glFramebufferTexture2D = (PFNGLFRAMEBUFFERTEXTURE2DPROC) wglGetProcAddress("glFramebufferTexture2DEXT");
-			glFramebufferTexture3D = (PFNGLFRAMEBUFFERTEXTURE3DPROC) wglGetProcAddress("glFramebufferTexture3DEXT");
-			glFramebufferRenderbuffer = (PFNGLFRAMEBUFFERRENDERBUFFERPROC) wglGetProcAddress("glFramebufferRenderbufferEXT");
-			glGetFramebufferAttachmentParameteriv = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) wglGetProcAddress("glGetFramebufferAttachmentParameterivEXT");
-			glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC) wglGetProcAddress("glGenerateMipmapEXT");
-		}
-		else
-		{
-			CCLog("OpenGL: No framebuffers extension is supported");
-			CCLog("OpenGL: Any call to Fbo will crash!");
-			return false;
-		}
-	}
-	return true;
+            glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) wglGetProcAddress("glIsRenderbuffer");
+            glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) wglGetProcAddress("glBindRenderbuffer");
+            glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) wglGetProcAddress("glDeleteRenderbuffers");
+            glGenRenderbuffers = (PFNGLGENRENDERBUFFERSPROC) wglGetProcAddress("glGenRenderbuffers");
+            glRenderbufferStorage = (PFNGLRENDERBUFFERSTORAGEPROC) wglGetProcAddress("glRenderbufferStorage");
+            glGetRenderbufferParameteriv = (PFNGLGETRENDERBUFFERPARAMETERIVPROC) wglGetProcAddress("glGetRenderbufferParameteriv");
+            glIsFramebuffer = (PFNGLISFRAMEBUFFERPROC) wglGetProcAddress("glIsFramebuffer");
+            glBindFramebuffer = (PFNGLBINDFRAMEBUFFERPROC) wglGetProcAddress("glBindFramebuffer");
+            glDeleteFramebuffers = (PFNGLDELETEFRAMEBUFFERSPROC) wglGetProcAddress("glDeleteFramebuffers");
+            glGenFramebuffers = (PFNGLGENFRAMEBUFFERSPROC) wglGetProcAddress("glGenFramebuffers");
+            glCheckFramebufferStatus = (PFNGLCHECKFRAMEBUFFERSTATUSPROC) wglGetProcAddress("glCheckFramebufferStatus");
+            glFramebufferTexture1D = (PFNGLFRAMEBUFFERTEXTURE1DPROC) wglGetProcAddress("glFramebufferTexture1D");
+            glFramebufferTexture2D = (PFNGLFRAMEBUFFERTEXTURE2DPROC) wglGetProcAddress("glFramebufferTexture2D");
+            glFramebufferTexture3D = (PFNGLFRAMEBUFFERTEXTURE3DPROC) wglGetProcAddress("glFramebufferTexture3D");
+            glFramebufferRenderbuffer = (PFNGLFRAMEBUFFERRENDERBUFFERPROC) wglGetProcAddress("glFramebufferRenderbuffer");
+            glGetFramebufferAttachmentParameteriv = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) wglGetProcAddress("glGetFramebufferAttachmentParameteriv");
+            glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC) wglGetProcAddress("glGenerateMipmap");
+        }
+        else
+        if (strstr(gl_extensions, "EXT_framebuffer_object"))
+        {
+            CCLog("OpenGL: EXT_framebuffer_object is supported");
+            glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) wglGetProcAddress("glIsRenderbufferEXT");
+            glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) wglGetProcAddress("glBindRenderbufferEXT");
+            glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) wglGetProcAddress("glDeleteRenderbuffersEXT");
+            glGenRenderbuffers = (PFNGLGENRENDERBUFFERSPROC) wglGetProcAddress("glGenRenderbuffersEXT");
+            glRenderbufferStorage = (PFNGLRENDERBUFFERSTORAGEPROC) wglGetProcAddress("glRenderbufferStorageEXT");
+            glGetRenderbufferParameteriv = (PFNGLGETRENDERBUFFERPARAMETERIVPROC) wglGetProcAddress("glGetRenderbufferParameterivEXT");
+            glIsFramebuffer = (PFNGLISFRAMEBUFFERPROC) wglGetProcAddress("glIsFramebufferEXT");
+            glBindFramebuffer = (PFNGLBINDFRAMEBUFFERPROC) wglGetProcAddress("glBindFramebufferEXT");
+            glDeleteFramebuffers = (PFNGLDELETEFRAMEBUFFERSPROC) wglGetProcAddress("glDeleteFramebuffersEXT");
+            glGenFramebuffers = (PFNGLGENFRAMEBUFFERSPROC) wglGetProcAddress("glGenFramebuffersEXT");
+            glCheckFramebufferStatus = (PFNGLCHECKFRAMEBUFFERSTATUSPROC) wglGetProcAddress("glCheckFramebufferStatusEXT");
+            glFramebufferTexture1D = (PFNGLFRAMEBUFFERTEXTURE1DPROC) wglGetProcAddress("glFramebufferTexture1DEXT");
+            glFramebufferTexture2D = (PFNGLFRAMEBUFFERTEXTURE2DPROC) wglGetProcAddress("glFramebufferTexture2DEXT");
+            glFramebufferTexture3D = (PFNGLFRAMEBUFFERTEXTURE3DPROC) wglGetProcAddress("glFramebufferTexture3DEXT");
+            glFramebufferRenderbuffer = (PFNGLFRAMEBUFFERRENDERBUFFERPROC) wglGetProcAddress("glFramebufferRenderbufferEXT");
+            glGetFramebufferAttachmentParameteriv = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) wglGetProcAddress("glGetFramebufferAttachmentParameterivEXT");
+            glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC) wglGetProcAddress("glGenerateMipmapEXT");
+        }
+        else
+        {
+            CCLog("OpenGL: No framebuffers extension is supported");
+            CCLog("OpenGL: Any call to Fbo will crash!");
+            return false;
+        }
+    }
+    return true;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -214,16 +214,16 @@ bool CCEGLView::initGL()
     {
         char strComplain[256] = {0};
         sprintf(strComplain,
-		"OpenGL 1.5 or higher is required (your version is %s). Please upgrade the driver of your video card.",
-		glVersion);
-		CCDevice::ShowMessageBox(strComplain, "OpenGL version too old");
-		return false;
+        "OpenGL 1.5 or higher is required (your version is %s). Please upgrade the driver of your video card.",
+        glVersion);
+        CCDevice::showMessageBox(strComplain, "OpenGL version too old");
+        return false;
     }
 
     GLenum GlewInitResult = glewInit();
     if (GLEW_OK != GlewInitResult)
     {
-		CCDevice::ShowMessageBox((char *)glewGetErrorString(GlewInitResult), "OpenGL error");
+        CCDevice::showMessageBox((char *)glewGetErrorString(GlewInitResult), "OpenGL error");
         return false;
     }
 
@@ -246,10 +246,10 @@ bool CCEGLView::initGL()
     }
 
     if(glew_dynamic_binding() == false)
-	{
-		CCDevice::ShowMessageBox("No OpenGL framebuffer support. Please upgrade the driver of your video card.", "OpenGL error");
-		return false;
-	}
+    {
+        CCDevice::showMessageBox("No OpenGL framebuffer support. Please upgrade the driver of your video card.", "OpenGL error");
+        return false;
+    }
 
     // Enable point size by default on windows.
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
@@ -318,7 +318,7 @@ bool CCEGLView::Create()
         CC_BREAK_IF(! m_hWnd);
 
         bRet = initGL();
-		if(!bRet) destroyGL();
+        if(!bRet) destroyGL();
         CC_BREAK_IF(!bRet);
 
         bRet = true;
@@ -327,8 +327,8 @@ bool CCEGLView::Create()
 #if(_MSC_VER >= 1600)
     m_bSupportTouch = CheckTouchSupport();
     if(m_bSupportTouch)
-	{
-	    m_bSupportTouch = (s_pfRegisterTouchWindowFunction(m_hWnd, 0) != 0);
+    {
+        m_bSupportTouch = (s_pfRegisterTouchWindowFunction(m_hWnd, 0) != 0);
     }
 #endif /* #if(_MSC_VER >= 1600) */
 
@@ -342,76 +342,76 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_LBUTTONDOWN:
-		ImGuiCC::setMouseDown(true);
-		if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
-		{
+        ImGuiCC::setMouseDown(true);
+        if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
+        {
 #if(_MSC_VER >= 1600)
-			// Don't process message generated by Windows Touch
-			if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
+            // Don't process message generated by Windows Touch
+            if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
 #endif /* #if(_MSC_VER >= 1600) */
 
-			if (m_pDelegate && MK_LBUTTON == wParam)
-			{
-				POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
-				CCPoint pt(point.x, point.y);
-				pt.x /= m_fFrameZoomFactor;
-				pt.y /= m_fFrameZoomFactor;
-				CCPoint tmp = ccp(pt.x, m_obScreenSize.height - pt.y);
-				if (m_obViewPortRect.equals(CCRectZero) || m_obViewPortRect.containsPoint(tmp))
-				{
-					m_bCaptured = true;
-					SetCapture(m_hWnd);
-					int id = 0;
-					handleTouchesBegin(1, &id, &pt.x, &pt.y);
-				}
-			}
-		}
+            if (m_pDelegate && MK_LBUTTON == wParam)
+            {
+                POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
+                CCPoint pt(point.x, point.y);
+                pt.x /= m_fFrameZoomFactor;
+                pt.y /= m_fFrameZoomFactor;
+                CCPoint tmp = ccp(pt.x, m_obScreenSize.height - pt.y);
+                if (m_obViewPortRect.equals(CCRectZero) || m_obViewPortRect.containsPoint(tmp))
+                {
+                    m_bCaptured = true;
+                    SetCapture(m_hWnd);
+                    int id = 0;
+                    handleTouchesBegin(1, &id, &pt.x, &pt.y);
+                }
+            }
+        }
         break;
 
     case WM_MOUSEMOVE:
-		if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
-		{
+        if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
+        {
 #if(_MSC_VER >= 1600)
-			// Don't process message generated by Windows Touch
-			if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
+            // Don't process message generated by Windows Touch
+            if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
 #endif /* #if(_MSC_VER >= 1600) */
-			if (MK_LBUTTON == wParam && m_bCaptured)
-			{
-				POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
-				CCPoint pt(point.x, point.y);
-				int id = 0;
-				pt.x /= m_fFrameZoomFactor;
-				pt.y /= m_fFrameZoomFactor;
-				handleTouchesMove(1, &id, &pt.x, &pt.y);
-			}
-		}
+            if (MK_LBUTTON == wParam && m_bCaptured)
+            {
+                POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
+                CCPoint pt(point.x, point.y);
+                int id = 0;
+                pt.x /= m_fFrameZoomFactor;
+                pt.y /= m_fFrameZoomFactor;
+                handleTouchesMove(1, &id, &pt.x, &pt.y);
+            }
+        }
         break;
 
     case WM_LBUTTONUP:
-		ImGuiCC::setMouseDown(false);
-		if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
-		{
+        ImGuiCC::setMouseDown(false);
+        if (!ImGuiCC::setMousePos((short)LOWORD(lParam), (short)HIWORD(lParam)))
+        {
 #if(_MSC_VER >= 1600)
-			// Don't process message generated by Windows Touch
-			if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
+            // Don't process message generated by Windows Touch
+            if (m_bSupportTouch && (s_pfGetMessageExtraInfoFunction() & MOUSEEVENTF_FROMTOUCH) == MOUSEEVENTF_FROMTOUCH) break;
 #endif /* #if(_MSC_VER >= 1600) */
-			if (m_bCaptured)
-			{
-				POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
-				CCPoint pt(point.x, point.y);
-				int id = 0;
-				pt.x /= m_fFrameZoomFactor;
-				pt.y /= m_fFrameZoomFactor;
-				handleTouchesEnd(1, &id, &pt.x, &pt.y);
+            if (m_bCaptured)
+            {
+                POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
+                CCPoint pt(point.x, point.y);
+                int id = 0;
+                pt.x /= m_fFrameZoomFactor;
+                pt.y /= m_fFrameZoomFactor;
+                handleTouchesEnd(1, &id, &pt.x, &pt.y);
 
-				ReleaseCapture();
-				m_bCaptured = false;
-			}
-		}
+                ReleaseCapture();
+                m_bCaptured = false;
+            }
+        }
         break;
 #if(_MSC_VER >= 1600)
     case WM_TOUCH:
-		{
+        {
             BOOL bHandled = FALSE;
             UINT cInputs = LOWORD(wParam);
             PTOUCHINPUT pInputs = new TOUCHINPUT[cInputs];
@@ -449,7 +449,7 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
              {
                  s_pfCloseTouchInputHandleFunction((HTOUCHINPUT)lParam);
              }
-		}
+        }
       break;
 #endif /* #if(_MSC_VER >= 1600) */
     case WM_SIZE:
@@ -475,27 +475,27 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         {
             CCDirector::sharedDirector()->getSubSystem<CCKeypadDispatcher>()->dispatchKeypadMSG(kTypeBackClicked);
         }
-		else if (wParam == VK_F5)
-		{
-			PlayerUI::relunch();
-		}
-		else if (wParam == VK_F6)
-		{
-			ImGuiCC::toggleVisible();
-		}
+        else if (wParam == VK_F5)
+        {
+            PlayerUI::relunch();
+        }
+        else if (wParam == VK_F6)
+        {
+            ImGuiCC::toggleVisible();
+        }
 
         if ( m_lpfnAccelerometerKeyHook!=NULL )
         {
             (*m_lpfnAccelerometerKeyHook)( message,wParam,lParam );
         }
-		ImGuiCC::setKeyDown(wParam);
-		break;
+        ImGuiCC::setKeyDown(wParam);
+        break;
     case WM_KEYUP:
         if ( m_lpfnAccelerometerKeyHook!=NULL )
         {
             (*m_lpfnAccelerometerKeyHook)( message,wParam,lParam );
         }
-		ImGuiCC::setKeyUp(wParam);
+        ImGuiCC::setKeyUp(wParam);
         break;
     case WM_CHAR:
         {
@@ -534,8 +534,8 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             {
                 (*m_lpfnAccelerometerKeyHook)( message,wParam,lParam );
             }
-			ImGuiCC::setChar(wParam);
-	}
+            ImGuiCC::setChar(wParam);
+    }
         break;
     case WM_PAINT:
         PAINTSTRUCT ps;
@@ -586,9 +586,9 @@ void CCEGLView::end()
     {
 #if(_MSC_VER >= 1600)
         if(m_bSupportTouch)
-		{
-		    s_pfUnregisterTouchWindowFunction(m_hWnd);
-		}
+        {
+            s_pfUnregisterTouchWindowFunction(m_hWnd);
+        }
 #endif /* #if(_MSC_VER >= 1600) */
         DestroyWindow(m_hWnd);
         m_hWnd = NULL;
@@ -754,10 +754,10 @@ CCEGLView* CCEGLView::sharedOpenGLView()
     if (s_pMainWindow == NULL)
     {
         CCEGLView *view = new CCEGLView();
-		if(!view->Create())
-		{
-			delete view;
-		}
+        if(!view->Create())
+        {
+            delete view;
+        }
     }
 
     return s_pMainWindow;

@@ -22,5 +22,5 @@ class CCDevice
      *  @return The DPI of device.
      */
     static int getDPI();
-        static void ShowMessageBox(const char * pszMsg, const char * pszTitle);
+    static void showMessageBox(const char * pszMsg, const char * pszTitle);
 };
