@@ -15,6 +15,20 @@ enum
     kLanguageChineseTW
 };
 
+enum
+{
+    kTargetWindows,
+    kTargetLinux,
+    kTargetMacOS,
+    kTargetAndroid,
+    kTargetIphone,
+    kTargetIpad,
+    kTargetBlackBerry,
+    kTargetNaCl,
+    kTargetEmscripten,
+    kTargetTizen
+};
+
 class CCDevice
 {
     /**
@@ -23,4 +37,15 @@ class CCDevice
      */
     static int getDPI();
     static void showMessageBox(const char * pszMsg, const char * pszTitle);
+
+    /**
+    @brief Get current language config
+    @return Current language config
+    */
+    static int getCurrentLanguage();
+
+    /**
+     @brief Get target platform
+     */
+    static int getTargetPlatform();
 };

@@ -75,16 +75,18 @@ public:
     static void showMessageBox(const char * pszMsg, const char * pszTitle);
 
 
+	static bool isIOS64bit();
+
 	/**
 	@brief Get target platform
 	*/
-	TargetPlatform getTargetPlatform();
+	static TargetPlatform getTargetPlatform();
 
 	/**
 	@brief Get current language config
 	@return Current language config
 	*/
-	ccLanguageType getCurrentLanguage();
+	static ccLanguageType getCurrentLanguage();
 	/**
      *  Gets the DPI of device
      *  @return The DPI of device.

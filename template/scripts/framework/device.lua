@@ -62,8 +62,7 @@ local device = {}
 device.platform    = "unknown"
 device.model       = "unknown"
 
-local sharedApplication = CCApplication:sharedApplication()
-local target = sharedApplication:getTargetPlatform()
+local target = CCDevice:getTargetPlatform()
 if target == kTargetWindows then
     device.platform = "windows"
 elseif target == kTargetMacOS then
@@ -79,7 +78,7 @@ elseif target == kTargetIphone or target == kTargetIpad then
     end
 end
 
-local language_ = sharedApplication:getCurrentLanguage()
+local language_ = CCDevice:getCurrentLanguage()
 if language_ == kLanguageChinese then
     language_ = "cn"
 elseif language_ == kLanguageChineseTW then

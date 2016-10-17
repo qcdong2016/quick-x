@@ -28,11 +28,6 @@ public:
 
     /* override functions */
     virtual void setAnimationInterval(double interval);
-    
-    /**
-     @brief Get target platform
-     */
-    virtual TargetPlatform getTargetPlatform();
 
 protected:
     HINSTANCE           m_hInstance;

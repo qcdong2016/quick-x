@@ -23,6 +23,20 @@ void CCDevice::logV(const char * fmt, va_list args)
 	logS(logbuff);
 }
 
+bool cocos2d::CCDevice::isIOS64bit()
+{
+	// copy from old quick lua_cocos2dx_manual.cpp
+	TargetPlatform platform = cocos2d::CCDevice::getTargetPlatform();
+	if (kTargetIphone == platform || kTargetIpad == platform)
+	{
+#if defined(__LP64__)
+		return true;
+#endif
+	}
+
+	return false;
+}
+
 void CCLog(const char* fmt, ...)
 {
 	va_list args;

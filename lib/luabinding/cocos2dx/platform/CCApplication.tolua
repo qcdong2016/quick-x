@@ -31,17 +31,6 @@ class CCApplication
     @interval       The time, expressed in seconds, between current frame and next.
     */
     void setAnimationInterval(double interval);
-
-    /**
-    @brief Get current language config
-    @return Current language config
-    */
-    int getCurrentLanguage();
-
-    /**
-     @brief Get target platform
-     */
-    int getTargetPlatform();
 };
 
 // end of platform group
