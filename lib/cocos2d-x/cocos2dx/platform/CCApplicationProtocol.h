@@ -30,29 +30,6 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-enum TargetPlatform
-{
-    kTargetWindows,
-    kTargetLinux,
-    kTargetMacOS,
-    kTargetAndroid,
-    kTargetIphone,
-    kTargetIpad,
-    kTargetBlackBerry,
-    kTargetNaCl,
-    kTargetEmscripten,
-    kTargetTizen,
-    kTargetWinRT,
-    kTargetWP8
-};
-
-/**
- * @addtogroup platform
- * @{
- * @js NA
- * @lua NA
- */
-
 class CC_DLL CCApplicationProtocol
 {
 public:
@@ -83,17 +60,6 @@ public:
     @interval       The time, expressed in seconds, between current frame and next. 
     */
     virtual void setAnimationInterval(double interval) = 0;
-
-    /**
-    @brief Get current language config
-    @return Current language config
-    */
-    virtual ccLanguageType getCurrentLanguage() = 0;
-    
-    /**
-     @brief Get target platform
-     */
-    virtual TargetPlatform getTargetPlatform() = 0;
 };
 
 // end of platform group

@@ -103,64 +103,6 @@ CCApplication* CCApplication::sharedApplication()
     return sm_pSharedApplication;
 }
 
-ccLanguageType CCApplication::getCurrentLanguage()
-{
-    ccLanguageType ret = kLanguageEnglish;
-
-    LCID localeID = GetUserDefaultLCID();
-    unsigned short primaryLanguageID = localeID & 0xFF;
-    
-    switch (primaryLanguageID)
-    {
-        case LANG_CHINESE:
-            ret = kLanguageChinese;
-            break;
-        case LANG_ENGLISH:
-            ret = kLanguageEnglish;
-            break;
-        case LANG_FRENCH:
-            ret = kLanguageFrench;
-            break;
-        case LANG_ITALIAN:
-            ret = kLanguageItalian;
-            break;
-        case LANG_GERMAN:
-            ret = kLanguageGerman;
-            break;
-        case LANG_SPANISH:
-            ret = kLanguageSpanish;
-            break;
-        case LANG_DUTCH:
-            ret = kLanguageDutch;
-            break;
-        case LANG_RUSSIAN:
-            ret = kLanguageRussian;
-            break;
-        case LANG_KOREAN:
-            ret = kLanguageKorean;
-            break;
-        case LANG_JAPANESE:
-            ret = kLanguageJapanese;
-            break;
-        case LANG_HUNGARIAN:
-            ret = kLanguageHungarian;
-            break;
-        case LANG_PORTUGUESE:
-            ret = kLanguagePortuguese;
-            break;
-        case LANG_ARABIC:
-            ret = kLanguageArabic;
-            break;
-    }
-
-    return ret;
-}
-
-TargetPlatform CCApplication::getTargetPlatform()
-{
-    return kTargetWindows;
-}
-
 NS_CC_END
 
 //////////////////////////////////////////////////////////////////////////

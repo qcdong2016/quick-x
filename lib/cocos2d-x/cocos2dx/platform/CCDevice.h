@@ -34,8 +34,22 @@ typedef enum LanguageType
     kLanguageChineseTW,
 } ccLanguageType;
 
-// end of platform group
-/// @}
+
+enum TargetPlatform
+{
+	kTargetWindows,
+	kTargetLinux,
+	kTargetMacOS,
+	kTargetAndroid,
+	kTargetIphone,
+	kTargetIpad,
+	kTargetBlackBerry,
+	kTargetNaCl,
+	kTargetEmscripten,
+	kTargetTizen,
+	kTargetWinRT,
+	kTargetWP8
+};
 
 
 /**
@@ -60,7 +74,18 @@ public:
      */
     static void showMessageBox(const char * pszMsg, const char * pszTitle);
 
-    /**
+
+	/**
+	@brief Get target platform
+	*/
+	TargetPlatform getTargetPlatform();
+
+	/**
+	@brief Get current language config
+	@return Current language config
+	*/
+	ccLanguageType getCurrentLanguage();
+	/**
      *  Gets the DPI of device
      *  @return The DPI of device.
      */
