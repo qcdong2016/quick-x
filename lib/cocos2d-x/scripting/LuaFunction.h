@@ -1,7 +1,7 @@
 
 
 #pragma once
-#include "../cocos/RefCounted.h"
+#include "cocos/RefCounted.h"
 
 
 struct lua_State;
