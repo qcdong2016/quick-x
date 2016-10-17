@@ -50,7 +50,7 @@ public:
 	template<typename T>
 	static T* get()
 	{
-		auto& it = _interfaces.find(T::name());
+		auto it = _interfaces.find(T::name());
 		if (it == _interfaces.end())
 			return nullptr;
 

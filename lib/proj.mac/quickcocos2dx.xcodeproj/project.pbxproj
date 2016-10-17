@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2EBA846B191B6A8400256D60 /* CCScriptEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA8469191B6A8400256D60 /* CCScriptEventDispatcher.cpp */; };
+		9F16FFA61DB45DC000CE1753 /* imgui_binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F16FFA51DB45DC000CE1753 /* imgui_binding.cpp */; };
 		9F1FE6F31DAD3A8E008FE0C7 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DA1DAD3A8E008FE0C7 /* CDAudioManager.m */; };
 		9F1FE6F41DAD3A8E008FE0C7 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DD1DAD3A8E008FE0C7 /* CDOpenALSupport.m */; };
 		9F1FE6F51DAD3A8E008FE0C7 /* CDXMacOSXSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DF1DAD3A8E008FE0C7 /* CDXMacOSXSupport.mm */; };
@@ -305,6 +306,7 @@
 /* Begin PBXFileReference section */
 		2EBA8469191B6A8400256D60 /* CCScriptEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScriptEventDispatcher.cpp; sourceTree = "<group>"; };
 		2EBA846A191B6A8400256D60 /* CCScriptEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScriptEventDispatcher.h; sourceTree = "<group>"; };
+		9F16FFA51DB45DC000CE1753 /* imgui_binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_binding.cpp; sourceTree = "<group>"; };
 		9F1FE6D91DAD3A8E008FE0C7 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		9F1FE6DA1DAD3A8E008FE0C7 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		9F1FE6DB1DAD3A8E008FE0C7 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1542,6 +1544,7 @@
 			isa = PBXGroup;
 			children = (
 				B15D375C1DB1053800EE3D22 /* imgui */,
+				9F16FFA51DB45DC000CE1753 /* imgui_binding.cpp */,
 				B15D37681DB1053800EE3D22 /* imgui_cocos2dx.cpp */,
 				B15D37691DB1053800EE3D22 /* imgui_cocos2dx.h */,
 				B15D376A1DB1053800EE3D22 /* PlayerUI.cpp */,
@@ -2358,6 +2361,7 @@
 				9F9A382D1DAB889100236246 /* cocos2dx_extra_luabinding.cpp in Sources */,
 				9F7366921DAD484700D0B435 /* BoundingBoxAttachment.c in Sources */,
 				F4E8807C1770071600577406 /* CCGLProgram.cpp in Sources */,
+				9F16FFA61DB45DC000CE1753 /* imgui_binding.cpp in Sources */,
 				F4E8807D1770071600577406 /* ccGLStateCache.cpp in Sources */,
 				F4E8807E1770071600577406 /* CCShaderCache.cpp in Sources */,
 				F4E8807F1770071600577406 /* ccShaders.cpp in Sources */,

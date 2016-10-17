@@ -1,6 +1,6 @@
 #include "scripting/CCLuaEngine.h"
 #include "imgui/imgui.h"
-#include "LuaFunction.h"
+#include "scripting/LuaFunction.h"
 #include "cocos/Ptr.h"
 #include <vector>
 #include "imgui_cocos2dx.h"
@@ -1640,7 +1640,7 @@ static int addDrawFunction(lua_State* L)
 	return 0;
 }
 
-static luaL_Reg lua_imgui_auto_funcs[] = {
+static const luaL_Reg lua_imgui_auto_funcs[] = {
 
 	{ "addDraw", addDrawFunction },
 
@@ -1826,9 +1826,12 @@ static luaL_Reg lua_imgui_auto_funcs[] = {
 	 { "GetClipboardText", imgui_lua_GetClipboardText },
 	 { "SetClipboardText", imgui_lua_SetClipboardText },
 	 { "GetVersion", imgui_lua_GetVersion },
+    {NULL, NULL}
 };
 
+#if LUA_VERSION_NUM < 502
 #  define luaL_newlib(L,l) (lua_newtable(L), luaL_register(L,NULL,l))
+#endif
 
 TOLUA_API
 int luaopen_imgui(lua_State *L) {
