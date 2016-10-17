@@ -1,20 +1,20 @@
 @echo off
-set QUICK_COCOS2DX_ROOT=%~dp0
+set QUICKX_ROOT=%~dp0
 
 set SETX=setx
 ver | find "XP" > nul
 if %ERRORLEVEL% == 0 (
-    set SETX=%QUICK_COCOS2DX_ROOT%\bin\win32\setx.exe
+    set SETX=%QUICKX_ROOT%\bin\win32\setx.exe
 )
 
 
 echo.
 echo config:
 echo.
-echo QUICK_COCOS2DX_ROOT = "%QUICK_COCOS2DX_ROOT%"
+echo QUICKX_ROOT = "%QUICKX_ROOT%"
 echo.
 
-%SETX% QUICK_COCOS2DX_ROOT %QUICK_COCOS2DX_ROOT%
+%SETX% QUICKX_ROOT %QUICKX_ROOT%
 
 echo.
 
