@@ -2737,31 +2737,31 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 					"\"$(SDKROOT)/usr/include/libxml2\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/spine\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/third_party/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/chipmunk/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/chipmunk/luabinding\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/extra\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/extra/luabinding\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/spine\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				LIBRARY_SEARCH_PATHS = "\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/ios/libraries\"";
+				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/ios/libraries\"";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2803,31 +2803,31 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 					"\"$(SDKROOT)/usr/include/libxml2\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/chipmunk/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/chipmunk/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/external/extra/luabinding\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/spine\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/third_party/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/CocosDenshion/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/CocosDenshion/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions/GUI/CCControlExtension\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions/GUI/CCEditBox\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/chipmunk/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/chipmunk/luabinding\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/extra\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/external/extra/luabinding\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/spine\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				LIBRARY_SEARCH_PATHS = "\"$(QUICK_COCOS2DX_ROOT)/lib/third_party/ios/libraries\"";
+				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/ios/libraries\"";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

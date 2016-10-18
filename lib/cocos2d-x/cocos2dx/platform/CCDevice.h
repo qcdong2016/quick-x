@@ -87,6 +87,7 @@ public:
 	@return Current language config
 	*/
 	static ccLanguageType getCurrentLanguage();
+    
 	/**
      *  Gets the DPI of device
      *  @return The DPI of device.

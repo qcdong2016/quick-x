@@ -60,11 +60,6 @@ void CCApplication::setAnimationInterval(double interval)
     [[CCDirectorCaller sharedDirectorCaller] setAnimationInterval: interval ];
 }
 
-TargetPlatform CCApplication::getTargetPlatform()
-{
-    return kTargetMacOS;
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // static member function
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,69 +68,6 @@ CCApplication* CCApplication::sharedApplication()
 {
     CCAssert(sm_pSharedApplication, "sm_pSharedApplication not set");
     return sm_pSharedApplication;
-}
-
-ccLanguageType CCApplication::getCurrentLanguage()
-{
-    // get the current language and country config
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
-    NSString *currentLanguage = [languages objectAtIndex:0];
-
-    // get the current language code.(such as English is "en", Chinese is "zh" and so on)
-    NSDictionary* temp = [NSLocale componentsFromLocaleIdentifier:currentLanguage];
-    NSString * languageCode = [temp objectForKey:NSLocaleLanguageCode];
-
-    ccLanguageType ret = kLanguageEnglish;
-    if ([languageCode isEqualToString:@"zh"])
-    {
-        NSString * scriptCode = [temp objectForKey:NSLocaleScriptCode];
-        if ([scriptCode isEqualToString:@"Hant"])
-            ret = kLanguageChineseTW;
-        else
-            ret = kLanguageChinese;
-    }
-    else if ([languageCode isEqualToString:@"en"])
-    {
-        ret = kLanguageEnglish;
-    }
-    else if ([languageCode isEqualToString:@"fr"]){
-        ret = kLanguageFrench;
-    }
-    else if ([languageCode isEqualToString:@"it"]){
-        ret = kLanguageItalian;
-    }
-    else if ([languageCode isEqualToString:@"de"]){
-        ret = kLanguageGerman;
-    }
-    else if ([languageCode isEqualToString:@"es"]){
-        ret = kLanguageSpanish;
-    }
-    else if ([languageCode isEqualToString:@"nl"]){
-        ret = kLanguageDutch;
-    }
-    else if ([languageCode isEqualToString:@"ru"]){
-        ret = kLanguageRussian;
-    }
-    else if ([languageCode isEqualToString:@"ko"]){
-        ret = kLanguageKorean;
-    }
-    else if ([languageCode isEqualToString:@"ja"]){
-        ret = kLanguageJapanese;
-    }
-    else if ([languageCode isEqualToString:@"hu"]){
-        ret = kLanguageHungarian;
-    }
-    else if ([languageCode isEqualToString:@"pt"])
-    {
-        ret = kLanguagePortuguese;
-    }
-    else if ([languageCode isEqualToString:@"ar"])
-    {
-        ret = kLanguageArabic;
-    }
-    
-    return ret;
 }
 
 void CCApplication::setResourceRootPath(const std::string& rootResDir)

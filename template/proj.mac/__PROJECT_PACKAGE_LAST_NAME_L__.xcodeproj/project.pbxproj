@@ -70,7 +70,7 @@
 		F4B08146175C89050029F472 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = SOURCE_ROOT; };
 		F4B08147175C89050029F472 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		F4B08148175C89050029F472 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
-		F4B08151175C89E30029F472 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = lib/proj.mac/quickcocos2dx.xcodeproj; sourceTree = QUICK_COCOS2DX_ROOT; };
+		F4B08151175C89E30029F472 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = lib/proj.mac/quickcocos2dx.xcodeproj; sourceTree = QUICKX_ROOT; };
 		F4B0815A175C8A1E0029F472 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		F4B0815B175C8A1E0029F472 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F4B4EF6516CA2A8B00736FFE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -363,16 +363,16 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = binary;
@@ -403,16 +403,16 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
-					"\"$(QUICK_COCOS2DX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = binary;
