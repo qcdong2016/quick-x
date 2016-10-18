@@ -1631,6 +1631,90 @@ static int imgui_lua_Button(lua_State* L) {
 	return 1;
 }
 
+#define InputInt(N) \
+static int imgui_lua_InputInt##N(lua_State* L) \
+{\
+	static int s[N];\
+	int arg = 1;\
+	const char* name = lua_tostring(L, arg++);\
+	for (int i = 0; i < N; i++) {\
+		s[i] = lua_tointeger(L, arg++);\
+	}\
+	bool ret = ImGui::InputInt##N(name, &s[0]);\
+	lua_pushboolean(L, ret); \
+	for (int i = 0; i < N; i++) {\
+		lua_pushinteger(L, s[i]);\
+	}\
+	return N + 1;\
+}
+
+#define InputFloat(N) \
+static int imgui_lua_InputFloat##N(lua_State* L) \
+{\
+	static float s[N];\
+	int arg = 1;\
+	const char* name = lua_tostring(L, arg++);\
+	for (int i = 0; i < N; i++) {\
+		s[i] = lua_tonumber(L, arg++);\
+	}\
+	bool ret = ImGui::InputFloat##N(name, &s[0]);\
+	lua_pushboolean(L, ret); \
+	for (int i = 0; i < N; i++) {\
+		lua_pushnumber(L, s[i]);\
+	}\
+	return N + 1;\
+}
+//     IMGUI_API bool          InputFloat2(const char* label, float v[2], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
+//     IMGUI_API bool          InputFloat3(const char* label, float v[3], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
+//     IMGUI_API bool          InputFloat4(const char* label, float v[4], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
+//     IMGUI_API bool          InputInt2(const char* label, int v[2], ImGuiInputTextFlags extra_flags = 0);
+//     IMGUI_API bool          InputInt3(const char* label, int v[3], ImGuiInputTextFlags extra_flags = 0);
+//     IMGUI_API bool          InputInt4(const char* label, int v[4], ImGuiInputTextFlags extra_flags = 0);
+InputInt(2)
+InputInt(3)
+InputInt(4)
+InputFloat(2)
+InputFloat(3)
+InputFloat(4)
+
+#define ColorEdit(N) \
+static int imgui_lua_ColorEdit##N(lua_State* L) \
+{\
+	static float s[N];\
+	int arg = 1;\
+	const char* name = lua_tostring(L, arg++);\
+	for (int i = 0; i < N; i++) {\
+		s[i] = lua_tonumber(L, arg++);\
+	}\
+	bool ret = ImGui::ColorEdit##N(name, &s[0]);\
+	lua_pushboolean(L, ret); \
+	for (int i = 0; i < N; i++) {\
+		lua_pushnumber(L, s[i]);\
+	}\
+	return N + 1;\
+}
+//     IMGUI_API bool          ColorEdit3(const char* label, float col[3]);                            
+//     IMGUI_API bool          ColorEdit4(const char* label, float col[4], bool show_alpha = true);   
+ColorEdit(3)
+ColorEdit(4)
+//     IMGUI_API bool          InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags = 0, ImGuiTextEditCallback callback = NULL, void* user_data = NULL);
+
+static int imgui_lua_InputText(lua_State* L)
+{
+	static char buf[2048];
+
+	int arg = 1;
+	const char* label = lua_tostring(L, arg++);
+	const char* text = lua_tostring(L, arg++);
+	strcpy(buf, text);
+
+	ImGui::InputText(label, buf, sizeof(buf), 0);
+
+	lua_pushstring(L, buf);
+
+	return 1;
+}
+
 static int addDrawFunction(lua_State* L)
 {
 	SharedPtr<LuaFunction> func(new LuaFunction(L, 1));
@@ -1643,7 +1727,17 @@ static int addDrawFunction(lua_State* L)
 static const luaL_Reg lua_imgui_auto_funcs[] = {
 
 	{ "addDraw", addDrawFunction },
+	{ "InputText", imgui_lua_InputText },
 
+	{ "InputInt2", imgui_lua_InputInt2 },
+	{ "InputInt3", imgui_lua_InputInt3 },
+	{ "InputInt4", imgui_lua_InputInt4 },
+	{ "InputFloat2", imgui_lua_InputFloat2 },
+	{ "InputFloat3", imgui_lua_InputFloat3 },
+	{ "InputFloat4", imgui_lua_InputFloat4 },
+	{ "ColorEdit3", imgui_lua_ColorEdit3 },
+	{ "ColorEdit4", imgui_lua_ColorEdit4 },
+	
 	{ "Button", imgui_lua_Button },
 
 	{ "NewFrame", imgui_lua_NewFrame },
@@ -1903,14 +1997,7 @@ int luaopen_imgui(lua_State *L) {
 //     IMGUI_API bool          DragInt2(const char* label, int v[2], float v_speed = 1.0f, int v_min = 0, int v_max = 0, const char* display_format = "%.0f");
 //     IMGUI_API bool          DragInt3(const char* label, int v[3], float v_speed = 1.0f, int v_min = 0, int v_max = 0, const char* display_format = "%.0f");
 //     IMGUI_API bool          DragInt4(const char* label, int v[4], float v_speed = 1.0f, int v_min = 0, int v_max = 0, const char* display_format = "%.0f");
-//     IMGUI_API bool          InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags = 0, ImGuiTextEditCallback callback = NULL, void* user_data = NULL);
 //     IMGUI_API bool          InputTextMultiline(const char* label, char* buf, size_t buf_size, const ImVec2& size = ImVec2(0,0), ImGuiInputTextFlags flags = 0, ImGuiTextEditCallback callback = NULL, void* user_data = NULL);
-//     IMGUI_API bool          InputFloat2(const char* label, float v[2], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
-//     IMGUI_API bool          InputFloat3(const char* label, float v[3], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
-//     IMGUI_API bool          InputFloat4(const char* label, float v[4], int decimal_precision = -1, ImGuiInputTextFlags extra_flags = 0);
-//     IMGUI_API bool          InputInt2(const char* label, int v[2], ImGuiInputTextFlags extra_flags = 0);
-//     IMGUI_API bool          InputInt3(const char* label, int v[3], ImGuiInputTextFlags extra_flags = 0);
-//     IMGUI_API bool          InputInt4(const char* label, int v[4], ImGuiInputTextFlags extra_flags = 0);
 //     IMGUI_API bool          SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
 //     IMGUI_API bool          SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
 //     IMGUI_API bool          SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* display_format = "%.3f", float power = 1.0f);
