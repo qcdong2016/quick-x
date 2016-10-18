@@ -85,6 +85,7 @@
 		9F7366BB1DAD496A00D0B435 /* CCScale9Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366B91DAD496A00D0B435 /* CCScale9Sprite.cpp */; };
 		9F74441D1DB39A4900C476D9 /* CCDevice_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F74441C1DB39A4900C476D9 /* CCDevice_mac.mm */; };
 		9F7D6BF61DAE92900070D235 /* FileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D6BF41DAE92900070D235 /* FileSystem.cpp */; };
+		9F8EE1531DB5FE53007A0DFD /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8EE1521DB5FE53007A0DFD /* libwebp.a */; };
 		9F9A382C1DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37F61DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp */; };
 		9F9A382D1DAB889100236246 /* cocos2dx_extra_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A37F91DAB889100236246 /* cocos2dx_extra_luabinding.cpp */; };
 		9F9A38391DAB889100236246 /* ReachabilityIOSMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38141DAB889100236246 /* ReachabilityIOSMac.m */; };
@@ -465,6 +466,7 @@
 		9F74441C1DB39A4900C476D9 /* CCDevice_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCDevice_mac.mm; path = ../CCDevice_mac.mm; sourceTree = "<group>"; };
 		9F7D6BF41DAE92900070D235 /* FileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileSystem.cpp; sourceTree = "<group>"; };
 		9F7D6BF51DAE92900070D235 /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
+		9F8EE1521DB5FE53007A0DFD /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../third_party/mac/libraries/libwebp.a; sourceTree = "<group>"; };
 		9F9A37F41DAB889100236246 /* CCAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAlertViewDelegate.h; sourceTree = "<group>"; };
 		9F9A37F51DAB889100236246 /* CCNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNative.h; sourceTree = "<group>"; };
 		9F9A37F61DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_extra_ios_iap_luabinding.cpp; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F8EE1531DB5FE53007A0DFD /* libwebp.a in Frameworks */,
 				F4DE082416800061005DB2DB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1619,6 +1622,7 @@
 		F4DE082216800061005DB2DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F8EE1521DB5FE53007A0DFD /* libwebp.a */,
 				F4DE082316800061005DB2DB /* Cocoa.framework */,
 				F45FF35316C7DE1F00275222 /* libcurl.dylib */,
 			);
@@ -2608,7 +2612,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/mac/libraries\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_LDFLAGS = "-lwebp";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -2672,7 +2676,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/mac/libraries\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_LDFLAGS = "-lwebp";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
