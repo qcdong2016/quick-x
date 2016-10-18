@@ -34,7 +34,7 @@
 #include "CCDirector.h"
 #include "audio/SimpleAudioEngine.h"
 #include "native/CCNative.h"
-
+#include "cocos/ProcessUtils.h"
 #include "IO/FileSystem.h"
 
 #include "AppDelegate.h"
@@ -58,8 +58,8 @@ using namespace cocos2d;
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     isAlwaysOnTop = NO;
-    _scale = 100;
 
+    [self parseCommandLineArgs];
     [self createWindowAndGLView];
     [self startup];
 
@@ -86,11 +86,24 @@ using namespace cocos2d;
 #pragma mark -
 #pragma mark functions
 
+- (void) parseCommandLineArgs
+{
+    NSArray *nsargs = [[NSProcessInfo processInfo] arguments];
+    std::string cmdLine([[nsargs firstObject] cStringUsingEncoding:NSUTF8StringEncoding]);
+    for (int i = 1; i < [nsargs count]; ++i)
+    {
+        cmdLine += " \"";
+        cmdLine += [[nsargs objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding];
+        cmdLine += "\"";
+    }
+    parseArguments(cmdLine);
+}
+
 - (void) createWindowAndGLView
 {
-    float __SCREEN_WIDTH__ = 640;
-    float __SCREEN_HEIGHT__ = 640;
-    const CCSize frameSize(__SCREEN_WIDTH__, __SCREEN_HEIGHT__);
+    int w = getIntArgument("w");
+    int h = getIntArgument("h");
+    const CCSize frameSize(w, h);
     float left = 10;
     float bottom = NSHeight([[NSScreen mainScreen] visibleFrame]) - frameSize.height;
     bottom -= [[[NSApplication sharedApplication] menu] menuBarHeight] + 10;
@@ -105,11 +118,6 @@ using namespace cocos2d;
         {
             posx = [x intValue];
             posy = [y intValue];
-        }
-        NSNumber *scale = [state objectForKey:@"scale"];
-        if (scale)
-        {
-            _scale = [scale intValue];
         }
     }
 
@@ -133,10 +141,7 @@ using namespace cocos2d;
     [window setTitle:@"__PROJECT_PACKAGE_LAST_NAME_L__"];
     [window center];
 
-    if (_scale != 100)
-    {
-        [self setZoom:_scale];
-    }
+    [self setZoom:getFloatArgument("zoom")];
     if (posx != 0 && posy != 0)
     {
         [window setFrameOrigin:NSMakePoint(posx, posy)];
@@ -149,11 +154,17 @@ using namespace cocos2d;
 
 - (void) startup
 {
-    const string projectDir = [[NSBundle mainBundle] resourcePath].UTF8String;
-    if (projectDir.length())
+    std::string workdir = getArgument("workdir");
+    if (workdir.empty())
     {
-        FileSystem::setResourceRoot(projectDir);
+        workdir = [[NSBundle mainBundle] resourcePath].UTF8String;
     }
+    else
+    {
+        workdir = [[[NSString stringWithCString:workdir.c_str() encoding:NSUTF8StringEncoding] stringByExpandingTildeInPath] stringByStandardizingPath].UTF8String;
+    }
+
+    FileSystem::setResourceRoot(workdir);
 
     AppDelegate* app = new AppDelegate();
     app->run();
@@ -195,7 +206,6 @@ using namespace cocos2d;
 
 - (void) setZoom:(float)scale
 {
-    _scale = scale * 100;
     [glView setFrameZoomFactor:scale];
 }
 
@@ -221,7 +231,6 @@ using namespace cocos2d;
     NSMutableDictionary *state = [NSMutableDictionary dictionary];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.x] forKey:@"x"];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.y] forKey:@"y"];
-    [state setObject:[NSNumber numberWithInt:_scale] forKey:@"scale"];
     [[NSUserDefaults standardUserDefaults] setObject:state forKey:@"last-state"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -259,7 +268,6 @@ using namespace cocos2d;
     if ([sender state] == NSOnState) return;
     float scale = (float)[sender tag] / 100.0f;
     [self setZoom:scale];
-    [self updateUI];
 }
 
 -(IBAction) onWindowAlwaysOnTop:(id)sender

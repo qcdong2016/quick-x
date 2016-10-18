@@ -1013,7 +1013,6 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
 bool CCImage::_initWithWebpData(void *pData, int nDataLen)
 {
     bool bRet = false;
-#if 0
     do
     {
         WebPDecoderConfig config;
@@ -1044,7 +1043,7 @@ bool CCImage::_initWithWebpData(void *pData, int nDataLen)
         
         bRet = true;
     } while (0);
-#endif
+
     return bRet;
 }
 #endif // CC_WEBP_ENABLED

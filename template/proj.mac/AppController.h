@@ -32,8 +32,6 @@
     NSMenu *menu;
 
     BOOL isAlwaysOnTop;
-    int _scale;
-
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;
