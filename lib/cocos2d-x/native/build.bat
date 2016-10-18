@@ -1,7 +1,7 @@
 @echo off
 set DIR=%~dp0
 set OUTPUT_DIR=%DIR%
-set MAKE_LUABINDING="%QUICK_COCOS2DX_ROOT%\bin\compile_luabinding.bat"
+set MAKE_LUABINDING="%QUICKX_ROOT%\bin\compile_luabinding.bat"
 pushd
 cd "%DIR%"
 call %MAKE_LUABINDING% -E CCOBJECTS=CCHTTPRequest -d %OUTPUT_DIR% cocos2dx_extra_luabinding.tolua

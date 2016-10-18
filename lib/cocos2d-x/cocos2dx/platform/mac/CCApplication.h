@@ -58,17 +58,6 @@ public:
     static CCApplication* sharedApplication();
 
     /**
-    @brief Get current language config
-    @return Current language config
-    */
-    virtual ccLanguageType getCurrentLanguage();
-		
-    /**
-     @brief Get target platform
-     */
-    virtual TargetPlatform getTargetPlatform();
-
-    /**
      *  Sets the Resource root path.
      *  @deprecated Please use CCFileUtils::sharedFileUtils()->setSearchPaths() instead.
      */
