@@ -41,7 +41,6 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class CCLock;
 class CCImage;
 
 /**

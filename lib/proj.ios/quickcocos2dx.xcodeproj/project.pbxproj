@@ -186,7 +186,6 @@
 		B1F871341D7D796F00AF7173 /* tolua_map.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870E51D7D796F00AF7173 /* tolua_map.c */; };
 		B1F871351D7D796F00AF7173 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870E61D7D796F00AF7173 /* tolua_push.c */; };
 		B1F871361D7D796F00AF7173 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870E71D7D796F00AF7173 /* tolua_to.c */; };
-		DA56D2FE1A3819B3007350D6 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42825B317575DBE001479DC /* libcurl.a */; };
 		F42824FA17575D88001479DC /* CCCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EA17575D87001479DC /* CCCamera.cpp */; };
 		F42824FB17575D88001479DC /* CCConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EC17575D87001479DC /* CCConfiguration.cpp */; };
 		F42824FC17575D88001479DC /* CCDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42823EE17575D87001479DC /* CCDirector.cpp */; };
@@ -198,7 +197,6 @@
 		F428259517575DA8001479DC /* CCThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256C17575DA8001479DC /* CCThread.cpp */; };
 		F428259617575DA8001479DC /* CCZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428256E17575DA8001479DC /* CCZipFile.cpp */; };
 		F42825A517575DA8001479DC /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F428258F17575DA8001479DC /* platform.cpp */; };
-		F42825BA17575DBE001479DC /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F42825B417575DBE001479DC /* libwebp.a */; };
 		F45A2BA1166B07B600760194 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45A2BA0166B07B600760194 /* Foundation.framework */; };
 		F4A3A8F5182E7B980000EDD1 /* ioapi_mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4A3A8F3182E7B980000EDD1 /* ioapi_mem.cpp */; };
 		F4AB02781961CC53006430E9 /* CCTouchTargetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AB02761961CC53006430E9 /* CCTouchTargetNode.cpp */; };
@@ -298,7 +296,6 @@
 		F4E88314177015C400577406 /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E8829F177015C400577406 /* CCTouch.cpp */; };
 		F4E88315177015C400577406 /* CCTouchDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E882A2177015C400577406 /* CCTouchDispatcher.cpp */; };
 		F4E88316177015C400577406 /* CCTouchHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E882A4177015C400577406 /* CCTouchHandler.cpp */; };
-		F4E88336177015FF00577406 /* AccelerometerDelegateWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88319177015FF00577406 /* AccelerometerDelegateWrapper.mm */; };
 		F4E88337177015FF00577406 /* CCAccelerometer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831B177015FF00577406 /* CCAccelerometer.mm */; };
 		F4E88338177015FF00577406 /* CCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831D177015FF00577406 /* CCApplication.mm */; };
 		F4E8833A177015FF00577406 /* CCDevice.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8831F177015FF00577406 /* CCDevice.mm */; };
@@ -306,7 +303,6 @@
 		F4E8833C177015FF00577406 /* CCEGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88323177015FF00577406 /* CCEGLView.mm */; };
 		F4E8833D177015FF00577406 /* CCES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E88325177015FF00577406 /* CCES2Renderer.m */; };
 		F4E8833F177015FF00577406 /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832A177015FF00577406 /* CCImage.mm */; };
-		F4E88340177015FF00577406 /* CCLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832B177015FF00577406 /* CCLock.cpp */; };
 		F4E88341177015FF00577406 /* CCThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E8832F177015FF00577406 /* CCThread.mm */; };
 		F4E88342177015FF00577406 /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F4E88331177015FF00577406 /* EAGLView.mm */; };
 		F4E88343177015FF00577406 /* AccelerometerSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E88335177015FF00577406 /* AccelerometerSimulation.m */; };
@@ -710,20 +706,6 @@
 		F428256F17575DA8001479DC /* CCZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCZipFile.h; sourceTree = "<group>"; };
 		F428258F17575DA8001479DC /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
 		F428259017575DA8001479DC /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
-		F42825A917575DBE001479DC /* curl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curl.h; sourceTree = "<group>"; };
-		F42825AA17575DBE001479DC /* curlbuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlbuild.h; sourceTree = "<group>"; };
-		F42825AB17575DBE001479DC /* curlrules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlrules.h; sourceTree = "<group>"; };
-		F42825AC17575DBE001479DC /* curlver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curlver.h; sourceTree = "<group>"; };
-		F42825AD17575DBE001479DC /* easy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easy.h; sourceTree = "<group>"; };
-		F42825AE17575DBE001479DC /* mprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mprintf.h; sourceTree = "<group>"; };
-		F42825AF17575DBE001479DC /* multi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multi.h; sourceTree = "<group>"; };
-		F42825B017575DBE001479DC /* stdcheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdcheaders.h; sourceTree = "<group>"; };
-		F42825B117575DBE001479DC /* typecheck-gcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "typecheck-gcc.h"; sourceTree = "<group>"; };
-		F42825B317575DBE001479DC /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
-		F42825B417575DBE001479DC /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwebp.a; sourceTree = "<group>"; };
-		F42825B617575DBE001479DC /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
-		F42825B717575DBE001479DC /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
-		F42825B817575DBE001479DC /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		F45A2B9D166B07B600760194 /* libquickcocos2dx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickcocos2dx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45A2BA0166B07B600760194 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F45A2BB2166B07FC00760194 /* quickcocos2dx.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quickcocos2dx.pch; sourceTree = SOURCE_ROOT; };
@@ -952,8 +934,6 @@
 		F4E882A3177015C400577406 /* CCTouchDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTouchDispatcher.h; sourceTree = "<group>"; };
 		F4E882A4177015C400577406 /* CCTouchHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTouchHandler.cpp; sourceTree = "<group>"; };
 		F4E882A5177015C400577406 /* CCTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTouchHandler.h; sourceTree = "<group>"; };
-		F4E88318177015FF00577406 /* AccelerometerDelegateWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerDelegateWrapper.h; sourceTree = "<group>"; };
-		F4E88319177015FF00577406 /* AccelerometerDelegateWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AccelerometerDelegateWrapper.mm; sourceTree = "<group>"; };
 		F4E8831A177015FF00577406 /* CCAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometer.h; sourceTree = "<group>"; };
 		F4E8831B177015FF00577406 /* CCAccelerometer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCAccelerometer.mm; sourceTree = "<group>"; };
 		F4E8831C177015FF00577406 /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
@@ -968,8 +948,6 @@
 		F4E88326177015FF00577406 /* CCESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCESRenderer.h; sourceTree = "<group>"; };
 		F4E88329177015FF00577406 /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		F4E8832A177015FF00577406 /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
-		F4E8832B177015FF00577406 /* CCLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLock.cpp; sourceTree = "<group>"; };
-		F4E8832C177015FF00577406 /* CCLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLock.h; sourceTree = "<group>"; };
 		F4E8832D177015FF00577406 /* CCPlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformDefine.h; sourceTree = "<group>"; };
 		F4E8832E177015FF00577406 /* CCStdC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStdC.h; sourceTree = "<group>"; };
 		F4E8832F177015FF00577406 /* CCThread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCThread.mm; sourceTree = "<group>"; };
@@ -986,8 +964,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45A2BA1166B07B600760194 /* Foundation.framework in Frameworks */,
-				DA56D2FE1A3819B3007350D6 /* libcurl.a in Frameworks */,
-				F42825BA17575DBE001479DC /* libwebp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,62 +1648,8 @@
 				F4E88317177015FF00577406 /* ios */,
 				F428258F17575DA8001479DC /* platform.cpp */,
 				F428259017575DA8001479DC /* platform.h */,
-				F42825A617575DAE001479DC /* third_party */,
 			);
 			path = platform;
-			sourceTree = "<group>";
-		};
-		F42825A617575DAE001479DC /* third_party */ = {
-			isa = PBXGroup;
-			children = (
-				F42825A717575DBE001479DC /* ios */,
-			);
-			path = third_party;
-			sourceTree = "<group>";
-		};
-		F42825A717575DBE001479DC /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				F42825A817575DBE001479DC /* curl */,
-				F42825B217575DBE001479DC /* libraries */,
-				F42825B517575DBE001479DC /* webp */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
-		F42825A817575DBE001479DC /* curl */ = {
-			isa = PBXGroup;
-			children = (
-				F42825A917575DBE001479DC /* curl.h */,
-				F42825AA17575DBE001479DC /* curlbuild.h */,
-				F42825AB17575DBE001479DC /* curlrules.h */,
-				F42825AC17575DBE001479DC /* curlver.h */,
-				F42825AD17575DBE001479DC /* easy.h */,
-				F42825AE17575DBE001479DC /* mprintf.h */,
-				F42825AF17575DBE001479DC /* multi.h */,
-				F42825B017575DBE001479DC /* stdcheaders.h */,
-				F42825B117575DBE001479DC /* typecheck-gcc.h */,
-			);
-			path = curl;
-			sourceTree = "<group>";
-		};
-		F42825B217575DBE001479DC /* libraries */ = {
-			isa = PBXGroup;
-			children = (
-				F42825B317575DBE001479DC /* libcurl.a */,
-				F42825B417575DBE001479DC /* libwebp.a */,
-			);
-			path = libraries;
-			sourceTree = "<group>";
-		};
-		F42825B517575DBE001479DC /* webp */ = {
-			isa = PBXGroup;
-			children = (
-				F42825B617575DBE001479DC /* decode.h */,
-				F42825B717575DBE001479DC /* encode.h */,
-				F42825B817575DBE001479DC /* types.h */,
-			);
-			path = webp;
 			sourceTree = "<group>";
 		};
 		F45A2B92166B07B600760194 = {
@@ -2260,8 +2182,6 @@
 		F4E88317177015FF00577406 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				F4E88318177015FF00577406 /* AccelerometerDelegateWrapper.h */,
-				F4E88319177015FF00577406 /* AccelerometerDelegateWrapper.mm */,
 				F4E8831A177015FF00577406 /* CCAccelerometer.h */,
 				F4E8831B177015FF00577406 /* CCAccelerometer.mm */,
 				F4E8831C177015FF00577406 /* CCApplication.h */,
@@ -2276,8 +2196,6 @@
 				F4E88326177015FF00577406 /* CCESRenderer.h */,
 				F4E88329177015FF00577406 /* CCGL.h */,
 				F4E8832A177015FF00577406 /* CCImage.mm */,
-				F4E8832B177015FF00577406 /* CCLock.cpp */,
-				F4E8832C177015FF00577406 /* CCLock.h */,
 				F4E8832D177015FF00577406 /* CCPlatformDefine.h */,
 				F4E8832E177015FF00577406 /* CCStdC.h */,
 				F4E8832F177015FF00577406 /* CCThread.mm */,
@@ -2597,7 +2515,6 @@
 				F4E88315177015C400577406 /* CCTouchDispatcher.cpp in Sources */,
 				B1F8712B1D7D796F00AF7173 /* tcp.c in Sources */,
 				F4E88316177015C400577406 /* CCTouchHandler.cpp in Sources */,
-				F4E88336177015FF00577406 /* AccelerometerDelegateWrapper.mm in Sources */,
 				9F1FE6901DAD389E008FE0C7 /* LuaCocoStudio.cpp in Sources */,
 				B1F871161D7D796F00AF7173 /* print.c in Sources */,
 				F4E88337177015FF00577406 /* CCAccelerometer.mm in Sources */,
@@ -2615,7 +2532,6 @@
 				F4E8833D177015FF00577406 /* CCES2Renderer.m in Sources */,
 				F4E8833F177015FF00577406 /* CCImage.mm in Sources */,
 				B17812C31D6949C90093D282 /* AttachmentLoader.c in Sources */,
-				F4E88340177015FF00577406 /* CCLock.cpp in Sources */,
 				B1B8960B1D8C664C00F80112 /* UIListView.cpp in Sources */,
 				F4E88341177015FF00577406 /* CCThread.mm in Sources */,
 				F4E88342177015FF00577406 /* EAGLView.mm in Sources */,
