@@ -26,6 +26,8 @@
 #include "Ptr.h"
 #include "CCPlatformDefine.h"
 #include <string>
+#include <map>
+#include "ID.h"
 
 
 namespace cocos2d
@@ -79,6 +81,9 @@ struct VariantValue
     };
 };
 
+class Variant;
+
+typedef std::map<ID, Variant> VariantMap;
 
 /// Variable that supports a fixed set of types.
 class CC_DLL Variant

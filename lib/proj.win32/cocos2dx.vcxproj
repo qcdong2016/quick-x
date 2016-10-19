@@ -132,6 +132,7 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchHandler.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.cpp" />
+    <ClCompile Include="..\cocos2d-x\cocos\ID.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos\MathDefs.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos\ProcessUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\cocos\RefCounted.cpp" />
@@ -470,6 +471,8 @@
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchHandler.h" />
     <ClInclude Include="..\cocos2d-x\cocos2dx\touch_dispatcher\CCTouchTargetNode.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\ID.h" />
+    <ClInclude Include="..\cocos2d-x\cocos\LinkedList.h" />
     <ClInclude Include="..\cocos2d-x\cocos\MathDefs.h" />
     <ClInclude Include="..\cocos2d-x\cocos\ProcessUtils.h" />
     <ClInclude Include="..\cocos2d-x\cocos\Ptr.h" />

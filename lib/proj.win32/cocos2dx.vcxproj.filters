@@ -1041,6 +1041,9 @@
     <ClCompile Include="..\cocos2d-x\imgui\imgui_binding.cpp">
       <Filter>cocos2d-x\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos\ID.cpp">
+      <Filter>cocos2d-x\cocos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
@@ -2053,6 +2056,12 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos2dx\IO\FileSystem.h">
       <Filter>cocos2d-x\cocos2dx\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos\ID.h">
+      <Filter>cocos2d-x\cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\cocos\LinkedList.h">
+      <Filter>cocos2d-x\cocos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

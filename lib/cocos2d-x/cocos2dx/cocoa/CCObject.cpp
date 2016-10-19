@@ -29,6 +29,46 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
+
+TypeInfo::TypeInfo(const char* typeName, const TypeInfo* superTypeInfo) :
+	_type(typeName),
+	_typeName(typeName),
+	_superTypeInfo(superTypeInfo)
+{
+}
+
+TypeInfo::~TypeInfo()
+{
+}
+
+bool TypeInfo::isTypeOf(ID type) const
+{
+	const TypeInfo* current = this;
+	while (current)
+	{
+		if (current->getType() == type)
+			return true;
+
+		current = current->getBaseTypeInfo();
+	}
+
+	return false;
+}
+
+bool TypeInfo::isTypeOf(const TypeInfo* typeInfo) const
+{
+	const TypeInfo* current = this;
+	while (current)
+	{
+		if (current == typeInfo)
+			return true;
+
+		current = current->getBaseTypeInfo();
+	}
+
+	return false;
+}
+
 #if COCOS2D_DEBUG > 0
 int CCObject::s_createdInFrameCount = 0;
 int CCObject::s_removedInFrameCount = 0;
@@ -78,18 +118,47 @@ CCObject::~CCObject(void)
     }
 }
 
-void CCObject::paste(CCObject* o)
+
+void CCObject::unsubscribeFromAllEvents()
 {
+
 }
 
-CCObject* CCObject::copy()
+
+void CCObject::sendEvent(ID eventType)
 {
-    CCObject* o = new CCObject();
-    o->autorelease();
-    
-    return o;
+
 }
 
+void CCObject::sendEvent(ID eventType, VariantMap& eventData)
+{
+
+}
+
+void CCObject::unsubscribeFromEvents(CCObject* sender)
+{
+
+}
+
+void CCObject::unsubscribeFromEvent(CCObject* sender, ID eventType)
+{
+
+}
+
+void CCObject::unsubscribeFromEvent(ID eventType)
+{
+
+}
+
+void CCObject::subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler)
+{
+
+}
+
+void CCObject::subscribeToEvent(ID eventType, EventHandler* handler)
+{
+
+}
 
 void CCObject::release(void)
 {
@@ -125,9 +194,43 @@ unsigned int CCObject::retainCount(void) const
     return m_uReference;
 }
 
+void cocos2d::CCObject::paste(CCObject* o)
+{
+
+}
+
 bool CCObject::isEqual(const CCObject *pObject)
 {
     return this == pObject;
 }
+
+CCObject* CCObject::copy()
+{
+	CCObject* o = new CCObject;
+	o->autorelease();
+	return o;
+}
+
+ID EventNameRegistrar::registerEventName(const char* eventName)
+{
+	ID id(eventName);
+	getEventNameMap()[id] = eventName;
+	return id;
+}
+
+static std::string EMPTY("");
+
+const std::string& EventNameRegistrar::getEventName(ID eventID)
+{
+	std::map<ID, std::string>::const_iterator it = getEventNameMap().find(eventID);
+	return  it != getEventNameMap().end() ? it->second : EMPTY;
+}
+
+std::map<ID, std::string>& EventNameRegistrar::getEventNameMap()
+{
+	static std::map<ID, std::string> eventNames_;
+	return eventNames_;
+}
+
 
 NS_CC_END
