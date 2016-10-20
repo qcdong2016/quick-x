@@ -110,7 +110,7 @@ public:
      */
     virtual ~CCObject(void);
 
-    void release(void);
+	void release(void);
     void retain(void);
     CCObject* autorelease(void);
     bool isSingleReference(void) const;
@@ -126,21 +126,18 @@ public:
 
 	/// Subscribe to an event that can be sent by any sender.
 	void subscribeToEvent(ID eventType, EventHandler* handler);
-	/// Subscribe to a specific sender's event.
-	void subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler);
-
 	/// Unsubscribe from an event.
 	void unsubscribeFromEvent(ID eventType);
-	/// Unsubscribe from a specific sender's event.
-	void unsubscribeFromEvent(CCObject* sender, ID eventType);
-	/// Unsubscribe from a specific sender's events.
-	void unsubscribeFromEvents(CCObject* sender);
 	/// Unsubscribe from all events.
 	void unsubscribeFromAllEvents();
 	/// Send event to all subscribers.
 	void sendEvent(ID eventType);
 	/// Send event with parameters to all subscribers.
 	void sendEvent(ID eventType, VariantMap& eventData);
+
+	void onEvent(ID eventType, VariantMap& eventData);
+
+	EventHandler* findEventHandler(ID eventType, EventHandler** previous);
 
 private:
 	LinkedList<EventHandler> _eventHandlers;
@@ -175,6 +172,12 @@ public:
 	/// Destruct.
 	virtual ~EventHandler() { }
 
+	void setSenderAndEventType(CCObject* sender, ID eventType)
+	{
+		_sender = sender;
+		_eventType = eventType;
+	}
+
 	/// Invoke event handler function.
 	virtual void invoke(VariantMap& eventData) = 0;
 	/// Return a unique copy of the event handler.
@@ -182,6 +185,8 @@ public:
 
 	/// Return event receiver.
 	CCObject* getReceiver() const { return _receiver; }
+	const ID& getEventType() const { return _eventType; }
+	CCObject* getSender() const { return _sender; }
 
 	/// Return userdata.
 	void* getUserData() const { return _userData; }
@@ -191,6 +196,7 @@ protected:
 	ID _eventType;
 	/// Event receiver.
 	CCObject* _receiver;
+	CCObject* _sender;
 	/// Userdata.
 	void* _userData;
 };

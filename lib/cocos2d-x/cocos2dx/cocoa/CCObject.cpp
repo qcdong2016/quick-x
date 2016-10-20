@@ -116,49 +116,133 @@ CCObject::~CCObject(void)
             pEngine->removeScriptObjectByCCObject(this);
         }
     }
+
+	unsubscribeFromAllEvents();
+}
+
+static std::map<ID, std::set<CCObject*> > eventReceivers;
+
+static std::set<CCObject*>* getRecivers(ID eventType) {
+	auto iter = eventReceivers.find(eventType);
+	if (iter == eventReceivers.end())
+		return nullptr;
+
+	return &iter->second;
+}
+
+static void addEventReciver(CCObject* reciver, ID eventType)
+{
+	std::set<CCObject*>* group = getRecivers(eventType);
+	if (!group) {
+		group = &(eventReceivers[eventType] = std::set<CCObject*>());
+	}
+	
+	group->insert(reciver);
+}
+
+static void removeEventReciver(CCObject* reciver, ID eventType)
+{
+	std::set<CCObject*>* group = getRecivers(eventType);
+	if (group)
+		group->erase(reciver);
 }
 
 
-void CCObject::unsubscribeFromAllEvents()
+EventHandler* CCObject::findEventHandler(ID eventType, EventHandler** previous)
 {
+	EventHandler* handler = _eventHandlers.first();
+	if (previous)
+		*previous = 0;
 
-}
+	while (handler)
+	{
+		if (handler->getEventType() == eventType)
+			return handler;
+		if (previous)
+			*previous = handler;
+		handler = _eventHandlers.next(handler);
+	}
 
-
-void CCObject::sendEvent(ID eventType)
-{
-
-}
-
-void CCObject::sendEvent(ID eventType, VariantMap& eventData)
-{
-
-}
-
-void CCObject::unsubscribeFromEvents(CCObject* sender)
-{
-
-}
-
-void CCObject::unsubscribeFromEvent(CCObject* sender, ID eventType)
-{
-
-}
-
-void CCObject::unsubscribeFromEvent(ID eventType)
-{
-
-}
-
-void CCObject::subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler)
-{
-
+	return 0;
 }
 
 void CCObject::subscribeToEvent(ID eventType, EventHandler* handler)
 {
+	if (!handler)
+		return;
 
+	handler->setSenderAndEventType(this, eventType);
+	_eventHandlers.insertFront(handler);
+	addEventReciver(this, eventType);
 }
+
+void CCObject::unsubscribeFromAllEvents()
+{
+	for (;;)
+	{
+		EventHandler* handler = _eventHandlers.first();
+		if (!handler) break;
+		removeEventReciver(this, handler->getEventType());
+		_eventHandlers.erase(handler);
+	}
+}
+
+void CCObject::unsubscribeFromEvent(ID eventType)
+{
+	for (;;)
+	{
+		EventHandler* previous;
+		EventHandler* handler = findEventHandler(eventType, &previous);
+		
+		if (!handler) break;
+		
+		removeEventReciver(this, eventType);
+		_eventHandlers.erase(handler, previous);
+	}
+}
+
+void CCObject::sendEvent(ID eventType)
+{
+	VariantMap map;
+	sendEvent(eventType, map);
+}
+
+void CCObject::sendEvent(ID eventType, VariantMap& eventData)
+{
+	std::set<CCObject*>* group = getRecivers(eventType);
+
+	if (!group) return;
+
+	WeakPtr<CCObject> self(this);
+
+	for (auto& iter = group->begin(); iter != group->end();)
+	{
+		auto& current = iter++;
+		CCObject* reciver = *current;
+		CCObject* next = 0;
+
+		if (iter != group->end())
+			next = *iter;
+
+		unsigned oldSize = group->size();
+		reciver->onEvent(eventType, eventData);
+
+		// If self has been destroyed as a result of event handling, exit
+		if (self.Expired())
+			return;
+
+		// If group has changed size during iteration (removed/added subscribers) try to recover
+		if (group->size() != oldSize)
+			iter = group->find(next);
+	}
+}
+
+void CCObject::onEvent(ID eventType, VariantMap& eventData)
+{
+	EventHandler* handler = findEventHandler(eventType, 0);
+	handler->invoke(eventData);
+}
+
 
 void CCObject::release(void)
 {

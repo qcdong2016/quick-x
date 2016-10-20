@@ -56,29 +56,29 @@ public:
     {
         for (auto it = list.begin(); it != list.end(); it++)
         {
-            Insert(*it);
+            insert(*it);
         }
     }
     /// Destruct.
     ~LinkedList()
     {
-        Clear();
+        clear();
     }
 
     /// Remove all elements.
-    void Clear()
+    void clear()
     {
         T* element = head_;
         while (element)
         {
-            T* next = Next(element);
+            T* the_next = next(element);
             delete element;
-            element = next;
+            element = the_next;
         }
     }
 
     /// Insert an element at the beginning.
-    void InsertFront(T* element)
+    void insertFront(T* element)
     {
         if (element)
         {
@@ -88,11 +88,11 @@ public:
     }
 
     /// Insert an element at the end.
-    void Insert(T* element)
+    void insert(T* element)
     {
         if (head_)
         {
-            T* tail = Last();
+            T* tail = last();
             element->next_ = tail->next_;
             tail->next_ = element;
         }
@@ -104,13 +104,13 @@ public:
     }
 
     /// Erase an element. Return true if successful.
-    bool Erase(T* element)
+    bool erase(T* element)
     {
         if (element && head_)
         {
             if (element == head_)
             {
-                head_ = Next(element);
+                head_ = next(element);
                 delete element;
                 return true;
             }
@@ -118,7 +118,7 @@ public:
             {
                 T* tail = head_;
                 while (tail && tail->next_ != element)
-                    tail = Next(tail);
+                    tail = next(tail);
                 if (tail)
                 {
                     tail->next_ = element->next_;
@@ -132,7 +132,7 @@ public:
     }
 
     /// Erase an element when the previous element is known (optimization.) Return true if successful.
-    bool Erase(T* element, T* previous)
+    bool erase(T* element, T* previous)
     {
         if (previous && previous->next_ == element)
         {
@@ -144,7 +144,7 @@ public:
         {
             if (head_ == element)
             {
-                head_ = Next(element);
+                head_ = next(element);
                 delete element;
                 return true;
             }
@@ -154,25 +154,25 @@ public:
     }
 
     /// Return first element, or null if empty.
-    T* First() const { return head_; }
+    T* first() const { return head_; }
 
     /// Return last element, or null if empty.
-    T* Last() const
+    T* last() const
     {
         T* element = head_;
         if (element)
         {
             while (element->next_)
-                element = Next(element);
+                element = next(element);
         }
         return element;
     }
 
     /// Return next element, or null if no more elements.
-    T* Next(T* element) const { return element ? static_cast<T*>(element->next_) : 0; }
+    T* next(T* element) const { return element ? static_cast<T*>(element->next_) : 0; }
 
     /// Return whether is empty.
-    bool Empty() const { return head_ == 0; }
+    bool empty() const { return head_ == 0; }
 
 private:
     /// First element.
