@@ -29,12 +29,36 @@ void CCDevice::showMessageBox(const char *pszMsg, const char *pszTitle)
                         contextInfo:nil];
 }
 
+// @return /Users/{WHOAMI}/Library/Application Support/{bundleID}
 std::string CCDevice::getWritablePath()
 {
-    // save to document folder
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    std::string strRet = [documentsDirectory UTF8String];
+    // https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/ManagingFIlesandDirectories/ManagingFIlesandDirectories.html
+
+    NSString* bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    NSFileManager*fm = [NSFileManager defaultManager];
+    NSURL*    dirPath = nil;
+
+    // Find the application support directory in the home directory.
+    NSArray* appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                        inDomains:NSUserDomainMask];
+    if ([appSupportDir count] > 0)
+    {
+        // Append the bundle ID to the URL for the
+        // Application Support directory
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
+
+        // If the directory does not exist, this method creates it.
+        // This method is only available in OS X v10.7 and iOS 5.0 or later.
+        NSError*    theError = nil;
+        if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                           attributes:nil error:&theError])
+        {
+            // TODO - Handle the error.
+            return "";
+        }
+    }
+    
+    std::string strRet = [dirPath fileSystemRepresentation];
     strRet.append("/");
     return strRet;
 }
