@@ -92,7 +92,7 @@ void CCTransitionPageTurn::onEnter()
             CCSequence::create
             (
                 action,
-                CCCallFunc::create(this, callfunc_selector(CCTransitionScene::finish)),
+                CCCallFunc::create(Handler((CCTransitionScene*)this, &CCTransitionScene::finish)),
                 CCStopGrid::create(),
                 NULL
             )
@@ -108,7 +108,7 @@ void CCTransitionPageTurn::onEnter()
             (
                 CCShow::create(),
                 action,
-                CCCallFunc::create(this, callfunc_selector(CCTransitionScene::finish)),
+                CCCallFunc::create(Handler((CCTransitionScene*)this, &CCTransitionScene::finish)),
                 CCStopGrid::create(),
                 NULL
             )

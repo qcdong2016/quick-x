@@ -95,7 +95,7 @@ void CCTransitionProgress::onEnter()
     // create the blend action
     CCActionInterval* layerAction = (CCActionInterval*)CCSequence::create(
         CCProgressFromTo::create(m_fDuration, m_fFrom, m_fTo),
-        CCCallFunc::create(this, callfunc_selector(CCTransitionProgress::finish)), 
+        CCCallFunc::create(Handler((CCTransitionScene*)this, &CCTransitionScene::finish)),
         NULL);
     // run the blend action
     pNode->runAction(layerAction);

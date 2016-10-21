@@ -193,19 +193,6 @@ int CCLuaEngine::executeNotificationEvent(CCNotificationCenter* pNotificationCen
     return ret;
 }
 
-int CCLuaEngine::executeCallFuncActionEvent(CCCallFunc* pAction, CCObject* pTarget/* = NULL*/)
-{
-    int nHandler = pAction->getScriptHandler();
-    if (!nHandler) return 0;
-
-    if (pTarget)
-    {
-        m_stack->pushCCObject(pTarget, "CCNode");
-    }
-    int ret = m_stack->executeFunctionByHandler(nHandler, pTarget ? 1 : 0);
-    m_stack->clean();
-    return ret;
-}
 
 int CCLuaEngine::executeSchedule(int nHandler, float dt, CCNode* pNode/* = NULL*/)
 {

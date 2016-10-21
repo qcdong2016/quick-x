@@ -31,6 +31,8 @@
 
 extern "C" {
 #include "lua.h"
+#include "tolua++.h"
+#include "tolua_fix.h"
 }
 
 #include "ccTypes.h"
@@ -145,6 +147,10 @@ private:
     void copy(const CCLuaValue& rhs);
 };
 
+TOLUA_API int tolua_is_EventHandler(lua_State* L, int lo, const char* type, int def, tolua_Error* err);
+TOLUA_API EventHandler* tolua_to_EventHandler(lua_State* L, int idx, int def);
+TOLUA_API int tolua_is_ID(lua_State* L, int lo, const char* type, int def, tolua_Error* err);
+TOLUA_API ID tolua_to_ID(lua_State* L, int idx, int def);
 NS_CC_END
 
 #endif // __CC_LUA_VALUE_H_

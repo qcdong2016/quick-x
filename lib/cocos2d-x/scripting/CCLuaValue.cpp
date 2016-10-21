@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "CCLuaValue.h"
+#include "LuaEvent.h"
 
 
 NS_CC_BEGIN
@@ -154,4 +155,26 @@ void CCLuaValue::copy(const CCLuaValue& rhs)
     }
 }
 
+TOLUA_API int tolua_is_EventHandler(lua_State* L, int lo, const char* type, int def, tolua_Error* err)
+{
+	return toluafix_isfunction(L, lo, "LUA_FUNCTION", def, err);
+}
+
+TOLUA_API EventHandler* tolua_to_EventHandler(lua_State* L, int idx, int def)
+{
+	return new EventHandlerLua(idx);
+}
+
+TOLUA_API int tolua_is_ID(lua_State* L, int lo, const char* type, int def, tolua_Error* err)
+{
+	return tolua_isnumber(L, lo, def, err);
+}
+
+TOLUA_API ID tolua_to_ID(lua_State* L, int idx, int def)
+{
+	unsigned id = tolua_tonumber(L, idx, def);
+	return ID(id);
+}
+
 NS_CC_END
+

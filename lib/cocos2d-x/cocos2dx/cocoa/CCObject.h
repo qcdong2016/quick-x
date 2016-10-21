@@ -162,8 +162,7 @@ class CC_DLL EventHandler : public LinkedListNode
 {
 public:
 	/// Construct with specified receiver and userdata.
-	EventHandler(void* userData = 0) :
-		_userData(userData)
+	EventHandler(void* userData = 0)
 	{
 	}
 
@@ -178,62 +177,99 @@ public:
 
 	/// Invoke event handler function.
 	virtual void invoke(VariantMap& eventData) = 0;
+	virtual void invoke()
+	{
+		VariantMap m;
+		invoke(m);
+	}
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const = 0;
 
 	const ID& getEventType() const { return _eventType; }
 	CCObject* getSender() const { return _sender; }
 
-	/// Return userdata.
-	void* getUserData() const { return _userData; }
-
 protected:
 	/// Event type.
 	ID _eventType;
 	CCObject* _sender;
-	/// Userdata.
-	void* _userData;
 };
 
 /// Template implementation of the event handler invoke helper (stores a function pointer of specific class.)
-template <typename ReceiverType, typename EventType>
+template <typename ReceiverType>
 class EventHandlerImpl : public EventHandler
 {
 public:
-	typedef void (ReceiverType::*HandlerFunctionPtr)(CCObject* sender, const EventType&);
+	typedef void (ReceiverType::*HandlerFunctionPtr)(ID, VariantMap&);
 
 	/// Construct with receiver and function pointers and userdata.
-	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function, void* userData = 0) :
-		EventHandler(receiver, userData),
+	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) :
+		EventHandler(receiver),
 		_function(function)
 	{
 		assert(_function);
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(VariantMap& evt)
+	virtual void invoke(VariantMap& eventData)
 	{
-		ReceiverType* receiver = static_cast<ReceiverType*>(_receiver);
-		(receiver->*_function)(_eventType, evt);
+		(_receiver->*_function)(_eventType, eventData);
 	}
 
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const
 	{
-		return new EventHandlerImpl(static_cast<ReceiverType*>(_receiver), _function, _userData);
+		return new EventHandlerImpl(_receiver, _function);
 	}
 
 private:
 	/// Event receiver.
-	CCObject* _receiver;
+	ReceiverType* _receiver;
 	/// Class-specific pointer to handler function.
 	HandlerFunctionPtr _function;
 };
 
-template <typename EventType, typename ReceiverType>
-static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(CCObject* sender, const EventType&), void* userData = 0)
+template <typename ReceiverType>
+class EventHandlerImplNoArg : public EventHandler
 {
-	return new cocos2d::EventHandlerImpl<ReceiverType, EventType>(receiver, function);
+public:
+	typedef void (ReceiverType::*HandlerFunctionPtr)();
+
+	/// Construct with receiver and function pointers and userdata.
+	EventHandlerImplNoArg(ReceiverType* receiver, HandlerFunctionPtr function) :
+		EventHandler(receiver),
+		_function(function)
+	{
+		assert(_function);
+	}
+
+	/// Invoke event handler function.
+	virtual void invoke(VariantMap& eventData)
+	{
+		(_receiver->*_function)();
+	}
+
+	/// Return a unique copy of the event handler.
+	virtual EventHandler* clone() const
+	{
+		return new EventHandlerImplNoArg(_receiver, _function);
+	}
+
+private:
+	/// Event receiver.
+	ReceiverType* _receiver;
+	/// Class-specific pointer to handler function.
+	HandlerFunctionPtr _function;
+};
+
+template <typename ReceiverType>
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(ID, VariantMap&))
+{
+	return new EventHandlerImpl<ReceiverType>(receiver, function);
+}
+template <typename ReceiverType>
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)())
+{
+	return new EventHandlerImplNoArg<ReceiverType>(receiver, function);
 }
 
 /// Register event names.
