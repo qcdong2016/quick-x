@@ -262,12 +262,12 @@ void CCPlace::update(float time) {
 //
 // CallFunc
 //
-CCCallFunc * CCCallFunc::create(CCObject* pSelectorTarget, SEL_CallFunc selector) 
+CCCallFunc * CCCallFunc::create(EventHandler* handler) 
 {
     CCCallFunc *pRet = new CCCallFunc();
 
-    if (pRet && pRet->initWithTarget(pSelectorTarget)) {
-        pRet->m_pCallFunc = selector;
+    if (pRet) {
+        pRet->_handler = handler;
         pRet->autorelease();
         return pRet;
     }
@@ -276,53 +276,16 @@ CCCallFunc * CCCallFunc::create(CCObject* pSelectorTarget, SEL_CallFunc selector
     return NULL;
 }
 
-CCCallFunc * CCCallFunc::create(int nHandler)
-{
-	CCCallFunc *pRet = new CCCallFunc();
-
-	if (pRet) {
-		pRet->m_nScriptHandler = nHandler;
-		pRet->autorelease();
-	}
-	else{
-		CC_SAFE_DELETE(pRet);
-	}
-	return pRet;
-}
-
-bool CCCallFunc::initWithTarget(CCObject* pSelectorTarget) {
-    if (pSelectorTarget) 
-    {
-        pSelectorTarget->retain();
-    }
-
-    if (m_pSelectorTarget) 
-    {
-        m_pSelectorTarget->release();
-    }
-
-    m_pSelectorTarget = pSelectorTarget;
-    return true;
-}
 
 CCCallFunc::~CCCallFunc(void)
 {
-    if (m_nScriptHandler)
-    {
-        cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nScriptHandler);
-    }
-    CC_SAFE_RELEASE(m_pSelectorTarget);
+	CC_SAFE_DELETE(_handler);
 }
 
 void CCCallFunc::paste(CCObject* o) {
     Super::paste(o);
 	CCCallFunc* cf = O;
-
-    cf->initWithTarget(m_pSelectorTarget);
-	cf->m_pCallFunc = m_pCallFunc;
-    if (m_nScriptHandler > 0 ) {
-		cf->m_nScriptHandler = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine()->reallocateScriptHandler(m_nScriptHandler);
-    }
+	cf->_handler = _handler->clone();
 }
 
 void CCCallFunc::update(float time) {
@@ -331,154 +294,8 @@ void CCCallFunc::update(float time) {
 }
 
 void CCCallFunc::execute() {
-    if (m_pCallFunc) {
-        (m_pSelectorTarget->*m_pCallFunc)();
-    }
-	if (m_nScriptHandler) {
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->executeCallFuncActionEvent(this);
-	}
+	_handler->invoke();
 }
 
-//
-// CallFuncN
-//
-void CCCallFuncN::execute() {
-    if (m_pCallFuncN) {
-        (m_pSelectorTarget->*m_pCallFuncN)(m_pTarget);
-    }
-	if (m_nScriptHandler) {
-		CCScriptEngineManager::sharedManager()->getScriptEngine()->executeCallFuncActionEvent(this, m_pTarget);
-	}
-}
-
-CCCallFuncN * CCCallFuncN::create(CCObject* pSelectorTarget, SEL_CallFuncN selector)
-{
-    CCCallFuncN *pRet = new CCCallFuncN();
-
-    if (pRet && pRet->initWithTarget(pSelectorTarget, selector))
-    {
-        pRet->autorelease();
-        return pRet;
-    }
-
-    CC_SAFE_DELETE(pRet);
-    return NULL;
-}
-
-CCCallFuncN * CCCallFuncN::create(int nHandler)
-{
-	CCCallFuncN *pRet = new CCCallFuncN();
-
-	if (pRet) {
-		pRet->m_nScriptHandler = nHandler;
-		pRet->autorelease();
-	}
-	else{
-		CC_SAFE_DELETE(pRet);
-	}
-	return pRet;
-}
-
-bool CCCallFuncN::initWithTarget(CCObject* pSelectorTarget,
-        SEL_CallFuncN selector) {
-    if (CCCallFunc::initWithTarget(pSelectorTarget)) {
-        m_pCallFuncN = selector;
-        return true;
-    }
-
-    return false;
-}
-
-void CCCallFuncN::paste(CCObject* o) {
-    Super::paste(o);
-    O->initWithTarget(m_pSelectorTarget, m_pCallFuncN);
-}
-
-//
-// CallFuncND
-//
-
-CCCallFuncND * CCCallFuncND::create(CCObject* pSelectorTarget, SEL_CallFuncND selector, void* d)
-{
-    CCCallFuncND* pRet = new CCCallFuncND();
-
-    if (pRet && pRet->initWithTarget(pSelectorTarget, selector, d)) {
-        pRet->autorelease();
-        return pRet;
-    }
-
-    CC_SAFE_DELETE(pRet);
-    return NULL;
-}
-
-bool CCCallFuncND::initWithTarget(CCObject* pSelectorTarget,
-        SEL_CallFuncND selector, void* d) {
-    if (CCCallFunc::initWithTarget(pSelectorTarget)) {
-        m_pData = d;
-        m_pCallFuncND = selector;
-        return true;
-    }
-
-    return false;
-}
-
-void CCCallFuncND::paste(CCObject* o) {
-    Super::paste(o);
-    O->initWithTarget(m_pSelectorTarget, m_pCallFuncND, m_pData);
-}
-
-void CCCallFuncND::execute() {
-    if (m_pCallFuncND) {
-        (m_pSelectorTarget->*m_pCallFuncND)(m_pTarget, m_pData);
-    }
-}
-
-//
-// CCCallFuncO
-//
-CCCallFuncO::CCCallFuncO() :
-        m_pObject(NULL) {
-}
-
-CCCallFuncO::~CCCallFuncO() {
-    CC_SAFE_RELEASE(m_pObject);
-}
-
-void CCCallFuncO::execute() {
-    if (m_pCallFuncO) {
-        (m_pSelectorTarget->*m_pCallFuncO)(m_pObject);
-    }
-}
-
-CCCallFuncO * CCCallFuncO::create(CCObject* pSelectorTarget, SEL_CallFuncO selector, CCObject* pObject)
-{
-    CCCallFuncO *pRet = new CCCallFuncO();
-
-    if (pRet && pRet->initWithTarget(pSelectorTarget, selector, pObject)) {
-        pRet->autorelease();
-        return pRet;
-    }
-
-    CC_SAFE_DELETE(pRet);
-    return NULL;
-}
-
-bool CCCallFuncO::initWithTarget(CCObject* pSelectorTarget,
-        SEL_CallFuncO selector, CCObject* pObject) {
-    if (CCCallFunc::initWithTarget(pSelectorTarget)) {
-        m_pObject = pObject;
-        CC_SAFE_RETAIN(m_pObject);
-
-        m_pCallFuncO = selector;
-        return true;
-    }
-
-    return false;
-}
-
-void CCCallFuncO::paste(CCObject* o) {
-    Super::paste(o);
-    O->initWithTarget(m_pSelectorTarget, m_pCallFuncO, m_pObject);
-}
 
 NS_CC_END

@@ -105,4 +105,160 @@ TargetPlatform CCDevice::getTargetPlatform()
     return kTargetAndroid;
 }
 
+
+//  activity indicator
+
+void CCDevice::showActivityIndicator(void)
+{
+    CCLOG("CCDevice::showActivityIndicator() - not support this platform.");
+}
+
+void CCDevice::hideActivityIndicator(void)
+{
+    CCLOG("CCDevice::hideActivityIndicator() - not support this platform.");
+}
+
+
+//  alert view
+
+void CCDevice::createAlert(const char* title,
+                           const char* message,
+                           const char* cancelButtonTitle)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "createAlert", 
+        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
+    {
+        jstring jtitle = methodInfo.env->NewStringUTF(title);
+        jstring jmessage = methodInfo.env->NewStringUTF(message);
+        jstring jcancelButtonTitle = methodInfo.env->NewStringUTF(cancelButtonTitle);
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, jtitle, jmessage, jcancelButtonTitle);
+        methodInfo.env->DeleteLocalRef(jtitle);
+        methodInfo.env->DeleteLocalRef(jmessage);
+        methodInfo.env->DeleteLocalRef(jcancelButtonTitle);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
+int CCDevice::addAlertButton(const char* buttonTitle)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "addAlertButton", 
+        "(Ljava/lang/String;)I"))
+    {
+        jstring jbuttonTitle = methodInfo.env->NewStringUTF(buttonTitle);
+        jint ret = methodInfo.env->CallStaticIntMethod(methodInfo.classID, methodInfo.methodID, jbuttonTitle);
+        methodInfo.env->DeleteLocalRef(jbuttonTitle);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        
+        return ret;
+    }
+    return 0;
+}
+
+#if CC_LUA_ENGINE_ENABLED > 0
+int CCDevice::addAlertButtonLua(const char* buttonTitle)
+{
+    return addAlertButton(buttonTitle);
+}
+#endif
+
+void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "showAlert", 
+        "()V"))
+    {
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
+#if CC_LUA_ENGINE_ENABLED > 0
+void CCDevice::showAlertLua(LUA_FUNCTION listener)
+{
+    CCLOG("CCDevice::showAlertLua(LUA_FUNCTION listener)) - not support this platform.");
+}
+#endif
+
+void CCDevice::cancelAlert(void)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "cancelAlert", 
+        "()V"))
+    {
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
+
+//  misc
+
+void CCDevice::openURL(const char* url)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "openURL", 
+        "(Ljava/lang/String;)V"))
+    {
+        jstring jurl = methodInfo.env->NewStringUTF(url);
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, jurl);
+        methodInfo.env->DeleteLocalRef(jurl);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
+const string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
+{
+    CCLOG("CCDevice::getInputText() - not support this platform.");
+    return string("");
+}
+
+
+//  OpenUDID
+
+const string CCDevice::getOpenUDID(void)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "getOpenUDID", 
+        "()Ljava/lang/String;"))
+    {
+        jstring judid = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+        char* udid = (char*)methodInfo.env->GetStringUTFChars(judid, 0);
+        string ret = udid;
+        methodInfo.env->ReleaseStringUTFChars(judid, udid);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        return ret;
+    }
+    return string("");
+}
+
+const string CCDevice::getDeviceName(void)
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "getDeviceName", 
+        "()Ljava/lang/String;"))
+    {
+        jstring jdevice = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
+        char* device = (char*)methodInfo.env->GetStringUTFChars(jdevice, 0);
+        string ret = device;
+        methodInfo.env->ReleaseStringUTFChars(jdevice, device);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        return ret;
+    }
+    return string("");
+}
+
+void CCDevice::vibrate()
+{
+    JniMethodInfo methodInfo;
+    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "vibrate", 
+        "(I)V"))
+    {
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, 200);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+    }
+}
+
+
 NS_CC_END

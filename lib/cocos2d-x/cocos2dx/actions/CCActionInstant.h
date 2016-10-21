@@ -288,10 +288,7 @@ public:
     /**
      *  @js ctor
      */
-    CCCallFunc()
-        : m_pSelectorTarget(NULL)
-		, m_nScriptHandler(0)
-        , m_pCallFunc(NULL)
+    CCCallFunc() : _handler(0)
     {
     }
     /**
@@ -302,22 +299,11 @@ public:
 
     /** creates the action with the callback 
 
-    * typedef void (CCObject::*SEL_CallFunc)();
-    * @lua NA
-    */
-    static CCCallFunc * create(CCObject* pSelectorTarget, SEL_CallFunc selector);
+	* typedef void (CCObject::*SEL_CallFunc)();
+	* @lua NA
+	*/
+	static CCCallFunc * create(EventHandler* handler);
 
-	/** creates the action with the handler script function 
-     * @js NA
-     */
-	static CCCallFunc * create(int nHandler);
-
-	/** initializes the action with the callback 
-    
-    * typedef void (CCObject::*SEL_CallFunc)();
-    * @lua NA
-    */
-    virtual bool initWithTarget(CCObject* pSelectorTarget);
     /** executes the callback 
      * @lua NA
      */
@@ -331,177 +317,9 @@ public:
      * @lua NA
      */
 	virtual void paste(CCObject* o);
-    /**
-     * @lua NA
-     */
-    inline CCObject* getTargetCallback()
-    {
-        return m_pSelectorTarget;
-    }
-    /**
-     * @lua NA
-     */
-    inline void setTargetCallback(CCObject* pSel)
-    {
-        if (pSel != m_pSelectorTarget)
-        {
-            CC_SAFE_RETAIN(pSel);
-            CC_SAFE_RELEASE(m_pSelectorTarget);
-            m_pSelectorTarget = pSel; 
-        }
-    }
-    /**
-     * @lua NA
-     */
-    inline int getScriptHandler() { return m_nScriptHandler; };
 protected:
-    /** Target that will be called */
-    CCObject*   m_pSelectorTarget;
-
-	int m_nScriptHandler;
-
-    union
-    {
-        SEL_CallFunc    m_pCallFunc;
-        SEL_CallFuncN    m_pCallFuncN;
-        SEL_CallFuncND    m_pCallFuncND;
-        SEL_CallFuncO   m_pCallFuncO;
-    };
+	EventHandler* _handler;
 };
-
-/** 
-@brief Calls a 'callback' with the node as the first argument
-N means Node
-* @js NA
-*/
-class CC_DLL CCCallFuncN : public CCCallFunc
-{
-	CCOBJECT(CCCallFuncN, CCCallFunc)
-public:
-    /**
-     * @js ctor
-     * @lua NA
-     */
-    CCCallFuncN(){}
-    /**
-     * @js  NA
-     * @lua NA
-     */
-    virtual ~CCCallFuncN(){}
-
-    /** creates the action with the callback 
-
-     * typedef void (CCObject::*SEL_CallFuncN)(CCNode*);
-     * @lua NA
-     */
-    static CCCallFuncN * create(CCObject* pSelectorTarget, SEL_CallFuncN selector);
-
-	/** creates the action with the handler script function*/
-	static CCCallFuncN * create(int nHandler);
-
-    /** initializes the action with the callback 
-
-     * typedef void (CCObject::*SEL_CallFuncN)(CCNode*);
-     * @lua NA
-     */
-    virtual bool initWithTarget(CCObject* pSelectorTarget, SEL_CallFuncN selector);
-    /** super methods
-     * @js  NA
-     * @lua NA
-     */
-    virtual void paste(CCObject* o);
-    /**
-     * @lua NA
-     */
-    virtual void execute();
-};
-
-
-/** 
-* @brief Calls a 'callback' with the node as the first argument and the 2nd argument is data
-* ND means: Node and Data. Data is void *, so it could be anything.
-* @js NA
-* @lua NA
-*/
-class CC_DLL CCCallFuncND : public CCCallFuncN
-{
-    CCOBJECT(CCCallFuncND, CCCallFuncN)
-public:
-
-    /** creates the action with the callback and the data to pass as an argument */
-    static CCCallFuncND * create(CCObject* pSelectorTarget, SEL_CallFuncND selector, void* d);
-
-    /** initializes the action with the callback and the data to pass as an argument */
-    virtual bool initWithTarget(CCObject* pSelectorTarget, SEL_CallFuncND selector, void* d);
-    // super methods
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual void paste(CCObject* o);
-    virtual void execute();
-
-protected:
-    void            *m_pData;
-};
-
-
-/**
-@brief Calls a 'callback' with an object as the first argument.
-O means Object.
-@since v0.99.5
-@js NA
-@lua NA
-*/
-
-class CC_DLL CCCallFuncO : public CCCallFunc
-{
-	CCOBJECT(CCCallFuncO, CCCallFunc)
-public:
-    CCCallFuncO();
-    virtual ~CCCallFuncO();
-
-    /** creates the action with the callback 
-
-    typedef void (CCObject::*SEL_CallFuncO)(CCObject*);
-    */
-    static CCCallFuncO * create(CCObject* pSelectorTarget, SEL_CallFuncO selector, CCObject* pObject);
-
-    /** initializes the action with the callback 
-
-    typedef void (CCObject::*SEL_CallFuncO)(CCObject*);
-    */
-    virtual bool initWithTarget(CCObject* pSelectorTarget, SEL_CallFuncO selector, CCObject* pObject);
-    // super methods
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual void paste(CCObject* o);
-    virtual void execute();
-
-    inline CCObject* getObject()
-    {
-        return m_pObject;
-    }
-
-    inline void setObject(CCObject* pObj)
-    {
-        if (pObj != m_pObject)
-        {
-            CC_SAFE_RELEASE(m_pObject);
-            m_pObject = pObj;
-            CC_SAFE_RETAIN(m_pObject);
-        }
-    }
-
-protected:
-    /** object to be passed as argument */
-    CCObject* m_pObject;
-};
-
-// end of actions group
-/// @}
 
 NS_CC_END
 

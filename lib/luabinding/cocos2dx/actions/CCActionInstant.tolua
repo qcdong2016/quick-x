@@ -104,17 +104,7 @@ class CCPlace : public CCActionInstant //<NSCopying>
 class CCCallFunc : public CCActionInstant //<NSCopying>
 {
     /** creates the action with the handler script function */
-    static CCCallFunc * create(LUA_FUNCTION nHandler);
-};
-
-/**
-@brief Calls a 'callback' with the node as the first argument
-N means Node
-*/
-class CCCallFuncN : public CCCallFunc
-{
-    /** creates the action with the handler script function */
-    static CCCallFuncN * create(LUA_FUNCTION nHandler);
+    static CCCallFunc * create(EventHandler* nHandler);
 };
 
 // end of actions group

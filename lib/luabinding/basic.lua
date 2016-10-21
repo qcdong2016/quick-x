@@ -272,6 +272,10 @@ _to_functions["LUA_FUNCTION"] = "toluafix_ref_function"
 _is_functions["LUA_FUNCTION"] = "toluafix_isfunction"
 _to_functions["LUA_TABLE"] = "toluafix_totable"
 _is_functions["LUA_TABLE"] = "toluafix_istable"
+_is_functions["EventHandler"] = "tolua_is_EventHandler"
+_to_functions["EventHandler"] = "tolua_to_EventHandler"
+_is_functions["ID"] = "tolua_is_ID"
+_to_functions["ID"] = "tolua_to_ID"
 
 local toWrite = {}
 local currentString = ''
@@ -351,6 +355,7 @@ extern "C" {
 #include <string>
 #include "cocos2d.h"
 #include "CCLuaEngine.h"
+#include "CCLuaValue.h"
 #include "audio/SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -409,6 +414,7 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
    }]], [[]])
 
     replace('\t', '    ')
+    replace('*((ID*)  tolua_to_ID', '(tolua_to_ID')
 
     result = string.gsub(result,
         [[tolua_usertype%(tolua_S,"([%a%d]+)"%);]],
