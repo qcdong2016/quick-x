@@ -1044,6 +1044,9 @@
     <ClCompile Include="..\cocos2d-x\cocos\ID.cpp">
       <Filter>cocos2d-x\cocos</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\LuaEvent.cpp">
+      <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\cocos2dx\actions\CCAction.h">
@@ -2062,6 +2065,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\cocos\LinkedList.h">
       <Filter>cocos2d-x\cocos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\LuaEvent.h">
+      <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

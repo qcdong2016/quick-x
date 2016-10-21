@@ -161,6 +161,7 @@
     <ClCompile Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocos2d.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocoStudio.cpp" />
+    <ClCompile Include="..\cocos2d-x\scripting\LuaEvent.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaFunction.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaTable.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\lua\lapi.c" />
@@ -506,6 +507,7 @@
     <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocoStudio.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\LuaEvent.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaFunction.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaTable.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua\lapi.h" />

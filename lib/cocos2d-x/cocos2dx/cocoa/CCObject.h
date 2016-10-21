@@ -162,11 +162,9 @@ class CC_DLL EventHandler : public LinkedListNode
 {
 public:
 	/// Construct with specified receiver and userdata.
-	EventHandler(CCObject* receiver, void* userData = 0) :
-		_receiver(receiver),
+	EventHandler(void* userData = 0) :
 		_userData(userData)
 	{
-		assert(_receiver);
 	}
 
 	/// Destruct.
@@ -183,8 +181,6 @@ public:
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const = 0;
 
-	/// Return event receiver.
-	CCObject* getReceiver() const { return _receiver; }
 	const ID& getEventType() const { return _eventType; }
 	CCObject* getSender() const { return _sender; }
 
@@ -194,8 +190,6 @@ public:
 protected:
 	/// Event type.
 	ID _eventType;
-	/// Event receiver.
-	CCObject* _receiver;
 	CCObject* _sender;
 	/// Userdata.
 	void* _userData;
@@ -230,6 +224,8 @@ public:
 	}
 
 private:
+	/// Event receiver.
+	CCObject* _receiver;
 	/// Class-specific pointer to handler function.
 	HandlerFunctionPtr _function;
 };

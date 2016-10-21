@@ -1,5 +1,6 @@
 #include "LuaTable.h"
 #include "tolua++.h"
+#include "CCLuaEngine.h"
 
 namespace cocos2d
 {
@@ -8,6 +9,12 @@ LuaTable::LuaTable(lua_State* L)
 {
 	_luaState = L;
 	lua_newtable(L);
+}
+
+LuaTable::LuaTable() :
+	LuaTable(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState())
+{
+
 }
 
 void LuaTable::setInt(int index, int value)

@@ -3,6 +3,7 @@
 #include "ccMacros.h"
 #include <assert.h>
 #include "tolua++.h"
+#include "CCLuaEngine.h"
 
 namespace cocos2d
 {
@@ -23,6 +24,12 @@ LuaFunction::LuaFunction(lua_State* L, lua_CFunction func) :
     assert(L);
     lua_pushcfunction(L, func);
     _functionRef = luaL_ref(L, LUA_REGISTRYINDEX);
+}
+
+LuaFunction::LuaFunction(int index) :
+	LuaFunction(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState(), index)
+{
+
 }
 
 LuaFunction::~LuaFunction()
