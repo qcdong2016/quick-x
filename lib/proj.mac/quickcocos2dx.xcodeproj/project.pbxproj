@@ -14,6 +14,7 @@
 		9F19B8081DB90F0100892C76 /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B8071DB90F0100892C76 /* OpenUDIDMac.m */; };
 		9F19B80B1DB90F0D00892C76 /* CCNativeMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B80A1DB90F0D00892C76 /* CCNativeMac.mm */; };
 		9F19B8371DB9A6B500892C76 /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B8351DB9A6B500892C76 /* ID.cpp */; };
+		9F19B8501DBA5F0500892C76 /* LuaEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B84E1DBA5F0500892C76 /* LuaEvent.cpp */; };
 		9F1FE6F31DAD3A8E008FE0C7 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DA1DAD3A8E008FE0C7 /* CDAudioManager.m */; };
 		9F1FE6F41DAD3A8E008FE0C7 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DD1DAD3A8E008FE0C7 /* CDOpenALSupport.m */; };
 		9F1FE6F51DAD3A8E008FE0C7 /* CDXMacOSXSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DF1DAD3A8E008FE0C7 /* CDXMacOSXSupport.mm */; };
@@ -316,6 +317,8 @@
 		9F19B80A1DB90F0D00892C76 /* CCNativeMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNativeMac.mm; sourceTree = "<group>"; };
 		9F19B8351DB9A6B500892C76 /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		9F19B8361DB9A6B500892C76 /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
+		9F19B84E1DBA5F0500892C76 /* LuaEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEvent.cpp; sourceTree = "<group>"; };
+		9F19B84F1DBA5F0500892C76 /* LuaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaEvent.h; sourceTree = "<group>"; };
 		9F1FE6D91DAD3A8E008FE0C7 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		9F1FE6DA1DAD3A8E008FE0C7 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		9F1FE6DB1DAD3A8E008FE0C7 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1306,14 +1309,18 @@
 				9F1FE7231DAD3ACB008FE0C7 /* CCLuaValue.h */,
 				9F1FE7241DAD3ACB008FE0C7 /* Cocos2dxLuaLoader.cpp */,
 				9F1FE7251DAD3ACB008FE0C7 /* Cocos2dxLuaLoader.h */,
+				9F9A38C71DAB896700236246 /* lua */,
 				9F1FE7261DAD3ACB008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */,
 				9F1FE7271DAD3ACB008FE0C7 /* lua_cocos2dx_cocostudio_manual.h */,
 				9F1FE7281DAD3ACB008FE0C7 /* lua_cocos2dx_manual.cpp */,
 				9F1FE7291DAD3ACB008FE0C7 /* lua_cocos2dx_manual.h */,
+				9F9A38FF1DAB896700236246 /* lua_extensions */,
 				9F1FE72A1DAD3ACB008FE0C7 /* LuaCocos2d.cpp */,
 				9F1FE72B1DAD3ACB008FE0C7 /* LuaCocos2d.h */,
 				9F1FE72C1DAD3ACB008FE0C7 /* LuaCocoStudio.cpp */,
 				9F1FE72D1DAD3ACB008FE0C7 /* LuaCocoStudio.h */,
+				9F19B84E1DBA5F0500892C76 /* LuaEvent.cpp */,
+				9F19B84F1DBA5F0500892C76 /* LuaEvent.h */,
 				9F1FE72E1DAD3ACB008FE0C7 /* LuaFunction.cpp */,
 				9F1FE72F1DAD3ACB008FE0C7 /* LuaFunction.h */,
 				9F1FE7301DAD3ACB008FE0C7 /* LuaTable.cpp */,
@@ -1321,12 +1328,10 @@
 				9F1FE7321DAD3ACB008FE0C7 /* platform */,
 				9F1FE73B1DAD3ACB008FE0C7 /* snapshot.c */,
 				9F1FE73C1DAD3ACB008FE0C7 /* snapshot.h */,
+				9F9A393E1DAB896700236246 /* tolua */,
 				9F1FE73D1DAD3ACB008FE0C7 /* tolua_fix.c */,
 				9F1FE73E1DAD3ACB008FE0C7 /* tolua_fix.h */,
 				9F1FE73F1DAD3ACB008FE0C7 /* xxdefaultkey.h */,
-				9F9A38C71DAB896700236246 /* lua */,
-				9F9A38FF1DAB896700236246 /* lua_extensions */,
-				9F9A393E1DAB896700236246 /* tolua */,
 			);
 			path = scripting;
 			sourceTree = "<group>";
@@ -2189,6 +2194,7 @@
 				9F9A39861DAB896700236246 /* serial.c in Sources */,
 				9F7D6BF61DAE92900070D235 /* FileSystem.cpp in Sources */,
 				9F9A38951DAB88E000236246 /* UILabelAtlas.cpp in Sources */,
+				9F19B8501DBA5F0500892C76 /* LuaEvent.cpp in Sources */,
 				9F9A398B1DAB896700236246 /* unix.c in Sources */,
 				9F9A39841DAB896700236246 /* options.c in Sources */,
 				9F31F7DB1DAB8AFB00D1666B /* MathDefs.cpp in Sources */,
