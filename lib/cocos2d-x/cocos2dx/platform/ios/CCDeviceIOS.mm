@@ -1,6 +1,10 @@
 #include "CCDevice.h"
 #import <UIKit/UIKit.h>
 #import <UIKit/UIAlert.h>
+#import <AudioToolbox/AudioServices.h>
+#import "CCNativeIOS.h"
+#import "openudid/OpenUDIDIOS.h"
+
 
 NS_CC_BEGIN
 
@@ -128,5 +132,93 @@ TargetPlatform CCDevice::getTargetPlatform()
         return kTargetIphone;
     }
 }
+
+#pragma mark -
+#pragma mark activity indicator
+
+void CCDevice::showActivityIndicator(void)
+{
+    [[CCNativeIOS sharedInstance] showActivityIndicator:UIActivityIndicatorViewStyleWhiteLarge];
+}
+
+void CCDevice::hideActivityIndicator(void)
+{
+    [[CCNativeIOS sharedInstance] hideActivityIndicator];
+}
+
+#pragma mark -
+#pragma mark alert view
+
+void CCDevice::createAlert(const char* title,
+                           const char* message,
+                           const char* cancelButtonTitle)
+{
+    NSString *title_ = [NSString stringWithUTF8String:title ? title : ""];
+    NSString *message_ = [NSString stringWithUTF8String:message ? message : ""];
+    NSString *cancelButtonTitle_ = cancelButtonTitle ? [NSString stringWithUTF8String:cancelButtonTitle] : nil;
+    [[CCNativeIOS sharedInstance] createAlertView:title_
+                                       andMessage:message_
+                             andCancelButtonTitle:cancelButtonTitle_];
+}
+
+int CCDevice::addAlertButton(const char* buttonTitle)
+{
+    NSString *buttonTitle_ = [NSString stringWithUTF8String:buttonTitle ? buttonTitle : "Button"];
+    return [[CCNativeIOS sharedInstance] addAlertButton:buttonTitle_];
+}
+
+void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+{
+    [[CCNativeIOS sharedInstance] showAlertViewWithDelegate:delegate];
+}
+
+void CCDevice::cancelAlert(void)
+{
+    [[CCNativeIOS sharedInstance] cancelAlertView];
+}
+
+void CCDevice::openURL(const char* url)
+{
+    if (!url) return;
+    NSURL *nsurl = [NSURL URLWithString:[NSString stringWithCString:url encoding:NSUTF8StringEncoding]];
+    [[UIApplication sharedApplication] openURL:nsurl];
+}
+
+const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
+{
+    CCLOG("CCDevice::getInputText() - not support this platform.");
+    return std::string("");
+}
+
+#pragma mark -
+#pragma mark OpenUDID
+
+const std::string CCDevice::getOpenUDID(void)
+{
+    return std::string([[OpenUDIDIOS value] cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+const std::string CCDevice::getDeviceName(void)
+{
+    UIDevice *device = [UIDevice currentDevice];
+    return [[device name] cStringUsingEncoding:NSUTF8StringEncoding];
+}
+
+void CCDevice::vibrate()
+{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
+#if CC_LUA_ENGINE_ENABLED > 0
+int CCDevice::addAlertButtonLua(const char* buttonTitle)
+{
+    return addAlertButton(buttonTitle) + 1;
+}
+
+void CCDevice::showAlertLua(cocos2d::LUA_FUNCTION listener)
+{
+    [[CCNativeIOS sharedInstance] showAlertViewWithLuaListener:listener];
+}
+#endif
 
 NS_CC_END

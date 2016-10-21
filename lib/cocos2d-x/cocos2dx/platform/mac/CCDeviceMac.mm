@@ -1,7 +1,10 @@
 #include "platform/CCDevice.h"
 
 #include <Cocoa/Cocoa.h>
+#include <sys/sysctl.h>
 #import "EAGLView.h"
+#import "CCNativeMac.h"
+#import "openudid/OpenUDIDMac.h"
 
 NS_CC_BEGIN
 
@@ -57,7 +60,7 @@ std::string CCDevice::getWritablePath()
             return "";
         }
     }
-    
+
     std::string strRet = [dirPath fileSystemRepresentation];
     strRet.append("/");
     return strRet;
@@ -135,6 +138,117 @@ ccLanguageType CCDevice::getCurrentLanguage()
     }
 
     return ret;
+}
+
+#pragma mark -
+#pragma mark activity indicator
+
+void CCDevice::showActivityIndicator(void)
+{
+    [[CCNativeMac sharedInstance] showActivityIndicator];
+}
+
+void CCDevice::hideActivityIndicator(void)
+{
+    [[CCNativeMac sharedInstance] hideActivityIndicator];
+}
+
+#pragma mark -
+#pragma mark alert view
+
+void CCDevice::createAlert(const char* title,
+                           const char* message,
+                           const char* cancelButtonTitle)
+{
+    NSString *title_ = [NSString stringWithUTF8String:title ? title : ""];
+    NSString *message_ = [NSString stringWithUTF8String:message ? message : ""];
+    NSString *cancelButtonTitle_ = cancelButtonTitle ? [NSString stringWithUTF8String:cancelButtonTitle] : nil;
+    [[CCNativeMac sharedInstance] createAlertView:title_
+                                         andMessage:message_
+                               andCancelButtonTitle:cancelButtonTitle_];
+}
+
+int CCDevice::addAlertButton(const char* buttonTitle)
+{
+    NSString *buttonTitle_ = [NSString stringWithUTF8String:buttonTitle ? buttonTitle : "Button"];
+    return (int)[[CCNativeMac sharedInstance] addAlertButton:buttonTitle_];
+}
+
+#if CC_LUA_ENGINE_ENABLED > 0
+int CCDevice::addAlertButtonLua(const char* buttonTitle)
+{
+    return addAlertButton(buttonTitle) + 1;
+}
+#endif
+
+void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+{
+    [[CCNativeMac sharedInstance] showAlertViewWithDelegate:delegate];
+}
+
+#if CC_LUA_ENGINE_ENABLED > 0
+void CCDevice::showAlertLua(LUA_FUNCTION listener)
+{
+    [[CCNativeMac sharedInstance] showAlertViewWithLuaListener:listener];
+}
+#endif
+
+void CCDevice::cancelAlert(void)
+{
+    [[CCNativeMac sharedInstance] cancelAlertView];
+}
+
+
+#pragma mark -
+#pragma mark misc
+
+void CCDevice::openURL(const char* url)
+{
+    if (!url) return;
+    NSURL *nsurl = [NSURL URLWithString:[NSString stringWithCString:url encoding:NSUTF8StringEncoding]];
+    [[NSWorkspace sharedWorkspace] openURL:nsurl];
+}
+
+const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
+{
+    NSString *title_ = [NSString stringWithUTF8String:title ? title : ""];
+    NSString *message_ = [NSString stringWithUTF8String:message ? message : ""];
+    NSString *defaultValue_ = [NSString stringWithUTF8String:defaultValue ? defaultValue : ""];
+    NSString *input = [[CCNativeMac sharedInstance] getInputText:title_
+                                                           message:message_
+                                                      defaultValue:defaultValue_];
+    return std::string([input cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+
+#pragma mark -
+#pragma mark OpenUDID
+
+const std::string CCDevice::getOpenUDID(void)
+{
+    return std::string([[OpenUDIDMac value] cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+const std::string CCDevice::getDeviceName(void)
+{
+    size_t len = 0;
+    sysctlbyname("hw.model", NULL, &len, NULL, 0);
+    if (len)
+    {
+        char* model = static_cast<char*>(malloc(len * sizeof(char)));
+        sysctlbyname("hw.model", model, &len, NULL, 0);
+        std::string modelStr(model);
+        free(model);
+        return modelStr;
+    }
+
+    CCLOG("CCDevice::getDeviceName() not support on this platform.");
+    return std::string("");
+}
+
+void CCDevice::vibrate()
+{
+    CCLOG("CCDevice::vibrate() not support on this platform.");
 }
 
 NS_CC_END

@@ -258,6 +258,9 @@ class CCParticleSystem : public CCNode
     bool getOpacityModifyRGB();
     void setOpacityModifyRGB(bool v);
 
+    float getTimeScale();
+    void setTimeScale(float v);
+
     /** particles movement type: Free or Grouped
     @since v0.8
     */
