@@ -21,6 +21,7 @@
 		9F19B8311DB91BB000892C76 /* CCStorePaymentTransactionWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B82C1DB91BB000892C76 /* CCStorePaymentTransactionWrapper.mm */; };
 		9F19B8321DB91BB000892C76 /* CCStoreReceiptVerifyRequestIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B82E1DB91BB000892C76 /* CCStoreReceiptVerifyRequestIOS.mm */; };
 		9F19B83C1DB9B7E300892C76 /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B8391DB9B7E300892C76 /* ID.cpp */; };
+		9F19B8541DBA62C800892C76 /* LuaEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B8521DBA62C800892C76 /* LuaEvent.cpp */; };
 		9F1FE6561DAD365D008FE0C7 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6371DAD365D008FE0C7 /* CDAudioManager.m */; };
 		9F1FE6571DAD365D008FE0C7 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE63A1DAD365D008FE0C7 /* CDOpenALSupport.m */; };
 		9F1FE6581DAD365D008FE0C7 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE63C1DAD365D008FE0C7 /* CocosDenshion.m */; };
@@ -334,6 +335,8 @@
 		9F19B8391DB9B7E300892C76 /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		9F19B83A1DB9B7E300892C76 /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
 		9F19B83B1DB9B7E300892C76 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		9F19B8521DBA62C800892C76 /* LuaEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEvent.cpp; sourceTree = "<group>"; };
+		9F19B8531DBA62C800892C76 /* LuaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaEvent.h; sourceTree = "<group>"; };
 		9F1FE6361DAD365D008FE0C7 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		9F1FE6371DAD365D008FE0C7 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		9F1FE6381DAD365D008FE0C7 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1382,6 +1385,8 @@
 				9F1FE6731DAD389E008FE0C7 /* LuaCocos2d.h */,
 				9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */,
 				9F1FE6751DAD389E008FE0C7 /* LuaCocoStudio.h */,
+				9F19B8521DBA62C800892C76 /* LuaEvent.cpp */,
+				9F19B8531DBA62C800892C76 /* LuaEvent.h */,
 				9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */,
 				9F1FE6771DAD389E008FE0C7 /* LuaFunction.h */,
 				9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */,
@@ -2324,6 +2329,7 @@
 				F4E882AF177015C400577406 /* CCActionPageTurn3D.cpp in Sources */,
 				F4E882B0177015C400577406 /* CCActionProgressTimer.cpp in Sources */,
 				F4E882B1177015C400577406 /* CCActionTiledGrid.cpp in Sources */,
+				9F19B8541DBA62C800892C76 /* LuaEvent.cpp in Sources */,
 				F4E882B2177015C400577406 /* CCActionTween.cpp in Sources */,
 				9FCE9C081DB3475800AACF31 /* CCDevice.cpp in Sources */,
 				B1B896041D8C664C00F80112 /* CCEditBoxImplIOS.mm in Sources */,
