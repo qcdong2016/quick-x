@@ -130,7 +130,7 @@ function device.showActivityIndicator()
     if device.platform == "android" then
         luaj.callStaticMethod("org/cocos2dx/utils/PSNative", "showActivityIndicator", {}, "()V"); 
     elseif device.platform == "ios" then
-        CCNative:showActivityIndicator()
+        CCDevice:showActivityIndicator()
     end
 end
 
@@ -146,7 +146,7 @@ function device.hideActivityIndicator()
     if device.platform == "android" then
         luaj.callStaticMethod("org/cocos2dx/utils/PSNative", "hideActivityIndicator", {}, "()V"); 
     elseif device.platform == "ios" then
-        CCNative:hideActivityIndicator()
+        CCDevice:hideActivityIndicator()
     end
 end
 
@@ -206,16 +206,16 @@ function device.showAlert(title, message, buttonLabels, listener)
 	        table.remove(buttonLabels, 1)
 	    end
 
-	    CCNative:createAlert(title, message, defaultLabel)
+	    CCDevice:createAlert(title, message, defaultLabel)
 	    for i, label in ipairs(buttonLabels) do
-	        CCNative:addAlertButton(label)
+	        CCDevice:addAlertButton(label)
 	    end
 
 	    if type(listener) ~= "function" then
 	        listener = function() end
 	    end
 
-	    CCNative:showAlert(listener)
+	    CCDevice:showAlert(listener)
 	end
 end
 
@@ -230,7 +230,7 @@ function device.cancelAlert()
     if DEBUG > 1 then
         printInfo("device.cancelAlert()")
     end
-    CCNative:cancelAlert()
+    CCDevice:cancelAlert()
 end
 
 --[[--
@@ -248,7 +248,7 @@ OpenUDID 是为设备仿造的 UDID（唯一设备识别码），可以用来识
 
 ]]
 function device.getOpenUDID()
-    local ret = CCNative:getOpenUDID()
+    local ret = CCDevice:getOpenUDID()
     if DEBUG > 1 then
         printInfo("device.getOpenUDID() - Open UDID: %s", tostring(ret))
     end
@@ -283,7 +283,7 @@ function device.openURL(url)
     if DEBUG > 1 then
         printInfo("device.openURL() - url: %s", tostring(url))
     end
-    CCNative:openURL(url)
+    CCDevice:openURL(url)
 end
 
 --[[--
@@ -308,7 +308,7 @@ function device.showInputBox(title, message, defaultValue)
         printInfo("    message: %s", tostring(message))
         printInfo("    defaultValue: %s", tostring(defaultValue))
     end
-    return CCNative:getInputText(title, message, defaultValue)
+    return CCDevice:getInputText(title, message, defaultValue)
 end
 
 
@@ -333,10 +333,10 @@ function device.vibrate(millisecond)
         if millisecond then
             luaj.callStaticMethod("org/cocos2dx/utils/PSNative", "vibrate", {millisecond}, "(I)V");
         else      
-            CCNative:vibrate()
+            CCDevice:vibrate()
         end     
     elseif device.platform == "ios" then
-        CCNative:vibrate()
+        CCDevice:vibrate()
     else
         printInfo("%s platform unsupporte vibrate", device.platform)
     end

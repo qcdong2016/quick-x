@@ -7986,6 +7986,325 @@ static int tolua_Cocos2d_CCDevice_getTargetPlatform00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: showActivityIndicator of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_showActivityIndicator00
+static int tolua_Cocos2d_CCDevice_showActivityIndicator00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  CCDevice::showActivityIndicator();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'showActivityIndicator'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: hideActivityIndicator of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_hideActivityIndicator00
+static int tolua_Cocos2d_CCDevice_hideActivityIndicator00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  CCDevice::hideActivityIndicator();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'hideActivityIndicator'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createAlert of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_createAlert00
+static int tolua_Cocos2d_CCDevice_createAlert00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+ !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+ !tolua_isstring(tolua_S,4,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  const char* title = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const char* message = ((const char*)  tolua_tostring(tolua_S,3,0));
+  const char* cancelButtonTitle = ((const char*)  tolua_tostring(tolua_S,4,0));
+ {
+  CCDevice::createAlert(title,message,cancelButtonTitle);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'createAlert'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: cancelAlert of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_cancelAlert00
+static int tolua_Cocos2d_CCDevice_cancelAlert00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  CCDevice::cancelAlert();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'cancelAlert'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getOpenUDID of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_getOpenUDID00
+static int tolua_Cocos2d_CCDevice_getOpenUDID00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  const std::string tolua_ret = (const std::string)  CCDevice::getOpenUDID();
+ tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getOpenUDID'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: openURL of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_openURL00
+static int tolua_Cocos2d_CCDevice_openURL00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  const char* url = ((const char*)  tolua_tostring(tolua_S,2,0));
+ {
+  CCDevice::openURL(url);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'openURL'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getInputText of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_getInputText00
+static int tolua_Cocos2d_CCDevice_getInputText00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+ !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+ !tolua_isstring(tolua_S,4,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  const char* title = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const char* message = ((const char*)  tolua_tostring(tolua_S,3,0));
+  const char* defaultValue = ((const char*)  tolua_tostring(tolua_S,4,0));
+ {
+  const std::string tolua_ret = (const std::string)  CCDevice::getInputText(title,message,defaultValue);
+ tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInputText'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDeviceName of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_getDeviceName00
+static int tolua_Cocos2d_CCDevice_getDeviceName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  const std::string tolua_ret = (const std::string)  CCDevice::getDeviceName();
+ tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDeviceName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: vibrate of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_vibrate00
+static int tolua_Cocos2d_CCDevice_vibrate00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+ {
+  CCDevice::vibrate();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'vibrate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addAlertButtonLua of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_addAlertButton00
+static int tolua_Cocos2d_CCDevice_addAlertButton00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  const char* buttonTitle = ((const char*)  tolua_tostring(tolua_S,2,0));
+ {
+  int tolua_ret = (int)  CCDevice::addAlertButtonLua(buttonTitle);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addAlertButton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: showAlertLua of class  CCDevice */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_showAlert00
+static int tolua_Cocos2d_CCDevice_showAlert00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
+ (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  LUA_FUNCTION listener = (  toluafix_ref_function(tolua_S,2,0));
+ {
+  CCDevice::showAlertLua(listener);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'showAlert'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  cc_timeval */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_cc_timeval_new00
 static int tolua_Cocos2d_cc_timeval_new00(lua_State* tolua_S)
@@ -29541,6 +29860,71 @@ static int tolua_Cocos2d_CCParticleSystem_setOpacityModifyRGB00(lua_State* tolua
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getTimeScale of class  CCParticleSystem */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCParticleSystem_getTimeScale00
+static int tolua_Cocos2d_CCParticleSystem_getTimeScale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CCParticleSystem",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CCParticleSystem* self = (CCParticleSystem*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTimeScale'", NULL);
+#endif
+ {
+  float tolua_ret = (float)  self->getTimeScale();
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTimeScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTimeScale of class  CCParticleSystem */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCParticleSystem_setTimeScale00
+static int tolua_Cocos2d_CCParticleSystem_setTimeScale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CCParticleSystem",0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CCParticleSystem* self = (CCParticleSystem*)  tolua_tousertype(tolua_S,1,0);
+  float v = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTimeScale'", NULL);
+#endif
+ {
+  self->setTimeScale(v);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTimeScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: getPositionType of class  CCParticleSystem */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCParticleSystem_getPositionType00
 static int tolua_Cocos2d_CCParticleSystem_getPositionType00(lua_State* tolua_S)
@@ -46312,6 +46696,17 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"showMessageBox",tolua_Cocos2d_CCDevice_showMessageBox00);
   tolua_function(tolua_S,"getCurrentLanguage",tolua_Cocos2d_CCDevice_getCurrentLanguage00);
   tolua_function(tolua_S,"getTargetPlatform",tolua_Cocos2d_CCDevice_getTargetPlatform00);
+  tolua_function(tolua_S,"showActivityIndicator",tolua_Cocos2d_CCDevice_showActivityIndicator00);
+  tolua_function(tolua_S,"hideActivityIndicator",tolua_Cocos2d_CCDevice_hideActivityIndicator00);
+  tolua_function(tolua_S,"createAlert",tolua_Cocos2d_CCDevice_createAlert00);
+  tolua_function(tolua_S,"cancelAlert",tolua_Cocos2d_CCDevice_cancelAlert00);
+  tolua_function(tolua_S,"getOpenUDID",tolua_Cocos2d_CCDevice_getOpenUDID00);
+  tolua_function(tolua_S,"openURL",tolua_Cocos2d_CCDevice_openURL00);
+  tolua_function(tolua_S,"getInputText",tolua_Cocos2d_CCDevice_getInputText00);
+  tolua_function(tolua_S,"getDeviceName",tolua_Cocos2d_CCDevice_getDeviceName00);
+  tolua_function(tolua_S,"vibrate",tolua_Cocos2d_CCDevice_vibrate00);
+  tolua_function(tolua_S,"addAlertButton",tolua_Cocos2d_CCDevice_addAlertButton00);
+  tolua_function(tolua_S,"showAlert",tolua_Cocos2d_CCDevice_showAlert00);
  tolua_endmodule(tolua_S);
  #ifdef __cplusplus
  tolua_cclass(tolua_S,"cc_timeval","cc_timeval","",tolua_collect_cc_timeval);
@@ -47458,6 +47853,8 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"setBlendFunc",tolua_Cocos2d_CCParticleSystem_setBlendFunc00);
   tolua_function(tolua_S,"getOpacityModifyRGB",tolua_Cocos2d_CCParticleSystem_getOpacityModifyRGB00);
   tolua_function(tolua_S,"setOpacityModifyRGB",tolua_Cocos2d_CCParticleSystem_setOpacityModifyRGB00);
+  tolua_function(tolua_S,"getTimeScale",tolua_Cocos2d_CCParticleSystem_getTimeScale00);
+  tolua_function(tolua_S,"setTimeScale",tolua_Cocos2d_CCParticleSystem_setTimeScale00);
   tolua_function(tolua_S,"getPositionType",tolua_Cocos2d_CCParticleSystem_getPositionType00);
   tolua_function(tolua_S,"setPositionType",tolua_Cocos2d_CCParticleSystem_setPositionType00);
   tolua_function(tolua_S,"isAutoRemoveOnFinish",tolua_Cocos2d_CCParticleSystem_isAutoRemoveOnFinish00);

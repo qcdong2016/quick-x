@@ -202,12 +202,6 @@
     <Filter Include="cocos2d-x\ui\webview">
       <UniqueIdentifier>{28721228-0f73-46b8-9bf7-e4fa3d30596d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\native">
-      <UniqueIdentifier>{ae4cfc73-88b1-430f-bbee-5bc50cf739d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\native\win32">
-      <UniqueIdentifier>{e056c864-e3f2-499d-a05b-912680a5df6e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\audio">
       <UniqueIdentifier>{e106b45e-af51-47c3-a675-4bc281bbcf34}</UniqueIdentifier>
     </Filter>
@@ -942,15 +936,6 @@
     <ClCompile Include="..\cocos2d-x\ui\webview\UIWebView.cpp">
       <Filter>cocos2d-x\ui\webview</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\native\cocos2dx_extra_luabinding.cpp">
-      <Filter>cocos2d-x\native</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\native\win32\CCNative.cpp">
-      <Filter>cocos2d-x\native\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\native\win32\CCNativeWin32.cpp">
-      <Filter>cocos2d-x\native\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\audio\win32\MciPlayer.cpp">
       <Filter>cocos2d-x\audio</Filter>
     </ClCompile>
@@ -1032,9 +1017,6 @@
     <ClCompile Include="..\cocos2d-x\cocos2dx\IO\FileSystem.cpp">
       <Filter>cocos2d-x\cocos2dx\IO</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice_win32.cpp">
-      <Filter>cocos2d-x\cocos2dx\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\cocos2dx\platform\CCDevice.cpp">
       <Filter>cocos2d-x\cocos2dx\platform</Filter>
     </ClCompile>
@@ -1046,6 +1028,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\LuaEvent.cpp">
       <Filter>cocos2d-x\scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\cocos2dx\platform\win32\CCDeviceWin32.cpp">
+      <Filter>cocos2d-x\cocos2dx\platform\win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1946,21 +1931,6 @@
     <ClInclude Include="..\cocos2d-x\ui\webview\UIWebView-inl.h">
       <Filter>cocos2d-x\ui\webview</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\native\CCAlertViewDelegate.h">
-      <Filter>cocos2d-x\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\native\CCNative.h">
-      <Filter>cocos2d-x\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\native\cocos2dx_extra_luabinding.h">
-      <Filter>cocos2d-x\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\native\win32\CCNativeWin32.h">
-      <Filter>cocos2d-x\native\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\native\win32\CCNativeWin32def.h">
-      <Filter>cocos2d-x\native\win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\audio\SimpleAudioEngine.h">
       <Filter>cocos2d-x\audio</Filter>
     </ClInclude>
@@ -2079,9 +2049,6 @@
     </None>
     <None Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.tolua">
       <Filter>cocos2d-x\network</Filter>
-    </None>
-    <None Include="..\cocos2d-x\native\cocos2dx_extra_luabinding.tolua">
-      <Filter>cocos2d-x\native</Filter>
     </None>
   </ItemGroup>
 </Project>

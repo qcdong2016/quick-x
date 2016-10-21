@@ -3,7 +3,8 @@
 #include "CCEGLView.h"
 #include "ccUTF8.h"
 #include <io.h>
-
+#include <WinSock2.h>
+#include <Iphlpapi.h>
 NS_CC_BEGIN
 
 int CCDevice::getDPI()
@@ -98,5 +99,186 @@ ccLanguageType CCDevice::getCurrentLanguage()
 
 	return ret;
 }
+
+
+void CCDevice::showActivityIndicator(void)
+{
+}
+
+void CCDevice::hideActivityIndicator(void)
+{
+}
+
+struct AlertStruct
+{
+	std::string m_alertViewTitle;
+	std::string m_alertViewMessage;
+
+	std::string m_macAddress;
+};
+
+static AlertStruct alertStruct;
+
+void CCDevice::createAlert(const char* title,
+	const char* message,
+	const char* cancelButtonTitle)
+{
+	alertStruct.m_alertViewTitle = std::string(title ? title : "");
+	alertStruct.m_alertViewMessage = std::string(message ? message : "");
+}
+
+int CCDevice::addAlertButton(const char* buttonTitle)
+{
+	return 0;
+}
+
+int CCDevice::addAlertButtonLua(const char* buttonTitle)
+{
+	return 0;
+}
+
+void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+{
+	/*
+	wstring title(m_alertViewTitle.begin(), m_alertViewTitle.end());
+	wstring message(m_alertViewMessage.begin(), m_alertViewMessage.end());
+	int button = MessageBox(NULL, message.c_str(), title.c_str(), MB_OKCANCEL);
+	*/
+	WCHAR *wszTitleBuf;
+	WCHAR *wszMessageBuf;
+
+	int titleBufLen = MultiByteToWideChar(CP_UTF8, 0, alertStruct.m_alertViewTitle.c_str(), -1, NULL, 0);
+	int messageBufLen = MultiByteToWideChar(CP_UTF8, 0, alertStruct.m_alertViewMessage.c_str(), -1, NULL, 0);
+
+	wszTitleBuf = new WCHAR[titleBufLen + 1];
+	wszMessageBuf = new WCHAR[messageBufLen + 1];
+
+	memset(wszTitleBuf, 0, sizeof(WCHAR)*(titleBufLen + 1));
+
+	memset(wszMessageBuf, 0, sizeof(WCHAR)*(messageBufLen + 1));
+	MultiByteToWideChar(CP_UTF8, 0, alertStruct.m_alertViewTitle.c_str(), -1, wszTitleBuf, titleBufLen);
+	MultiByteToWideChar(CP_UTF8, 0, alertStruct.m_alertViewMessage.c_str(), -1, wszMessageBuf, messageBufLen);
+
+	int button = MessageBox(NULL, wszMessageBuf, wszTitleBuf, MB_OKCANCEL);
+
+	delete[] wszTitleBuf;
+	delete[] wszMessageBuf;
+
+	if (button == IDOK || button == IDYES)
+	{
+		delegate->alertViewClickedButtonAtIndex(0);
+	}
+	else
+	{
+		delegate->alertViewClickedButtonAtIndex(1);
+	}
+}
+
+void CCDevice::showAlertLua(cocos2d::LUA_FUNCTION listener)
+{
+	// todo
+}
+
+void CCDevice::cancelAlert(void)
+{
+}
+
+static bool getMacAddress(std::string& macstring)
+{
+	bool ret = false;
+	ULONG ulOutBufLen = sizeof(IP_ADAPTER_INFO);
+	PIP_ADAPTER_INFO pAdapterInfo = (IP_ADAPTER_INFO *)malloc(ulOutBufLen);
+	if (pAdapterInfo == NULL)
+	{
+		return false;
+	}
+
+	if (GetAdaptersInfo(pAdapterInfo, &ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
+	{
+		free(pAdapterInfo);
+		pAdapterInfo = (IP_ADAPTER_INFO *)malloc(ulOutBufLen);
+		if (pAdapterInfo == NULL)
+		{
+			return false;
+		}
+	}
+
+	if (GetAdaptersInfo(pAdapterInfo, &ulOutBufLen) == NO_ERROR)
+	{
+		for (PIP_ADAPTER_INFO pAdapter = pAdapterInfo; pAdapter != NULL; pAdapter = pAdapter->Next)
+		{
+			if (pAdapter->Type != MIB_IF_TYPE_ETHERNET)
+			{
+				continue;
+			}
+
+			if (pAdapter->AddressLength != 6)
+			{
+				continue;
+			}
+
+			char macBuf[32];
+			sprintf(macBuf, "%02X-%02X-%02X-%02X-%02X-%02X",
+				int(pAdapter->Address[0]),
+				int(pAdapter->Address[1]),
+				int(pAdapter->Address[2]),
+				int(pAdapter->Address[3]),
+				int(pAdapter->Address[4]),
+				int(pAdapter->Address[5]));
+			macstring = macBuf;
+			ret = true;
+			break;
+		}
+	}
+
+	free(pAdapterInfo);
+	return ret;
+}
+
+const std::string CCDevice::getOpenUDID(void)
+{
+	if (alertStruct.m_macAddress.length() <= 0)
+	{
+		if (!getMacAddress(alertStruct.m_macAddress))
+		{
+			alertStruct.m_macAddress = "udid-fixed-1234567890";
+		}
+	}
+
+	return alertStruct.m_macAddress;
+}
+
+void CCDevice::openURL(const char* url)
+{
+	if (!url) return;
+}
+
+typedef struct {
+	std::string title;
+	std::string message;
+	std::string value;
+} CCNativeWin32InputBoxStruct;
+
+const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
+{
+	HWND handle = CCEGLView::sharedOpenGLView()->getHWnd();
+
+	CCNativeWin32InputBoxStruct inputbox;
+	inputbox.title = std::string(title ? title : "INPUT TEXT");
+	inputbox.message = std::string(message ? message : "INPUT TEXT, PRESS ENTER");
+	inputbox.value = std::string(defaultValue ? defaultValue : "");
+	SendMessage(handle, WM_CUT, 998, (LPARAM)&inputbox);
+	return inputbox.value;
+}
+
+const std::string CCDevice::getDeviceName(void)
+{
+	return "Win32";
+}
+
+void CCDevice::vibrate()
+{
+}
+
 
 NS_CC_END

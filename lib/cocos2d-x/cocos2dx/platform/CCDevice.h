@@ -149,10 +149,8 @@ public:
 //    static void showAlertObjc(void *delegate);
 //#endif
 
-#if CC_LUA_ENGINE_ENABLED > 0
     static int addAlertButtonLua(const char* buttonTitle);
     static void showAlertLua(LUA_FUNCTION listener);
-#endif
 
 private:
     CCDevice();
