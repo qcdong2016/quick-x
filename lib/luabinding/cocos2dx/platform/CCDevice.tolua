@@ -31,21 +31,20 @@ enum
 
 class CCDevice
 {
-    /**
-     *  Gets the DPI of device
-     *  @return The DPI of device.
-     */
     static int getDPI();
     static void showMessageBox(const char * pszMsg, const char * pszTitle);
-
-    /**
-    @brief Get current language config
-    @return Current language config
-    */
     static int getCurrentLanguage();
-
-    /**
-     @brief Get target platform
-     */
     static int getTargetPlatform();
+    static void showActivityIndicator(void);
+    static void hideActivityIndicator(void);
+    static void createAlert(const char* title, const char* message, const char* cancelButtonTitle);
+    static void cancelAlert(void);
+    static const std::string getOpenUDID(void);
+    static void openURL(const char* url);
+    static const std::string getInputText(const char* title, const char* message, const char* defaultValue);
+    static const std::string getDeviceName(void);
+    static void vibrate();
+    static int addAlertButtonLua @ addAlertButton (const char* buttonTitle);
+    static void showAlertLua @ showAlert(LUA_FUNCTION listener);
+
 };

@@ -1,5 +1,5 @@
 
-#import "native/ios/CCNativeIOS.h"
+#import "CCNativeIOS.h"
 
 #ifndef utf8cstr
 #define utf8cstr(nsstr) (nsstr ? [nsstr cStringUsingEncoding:NSUTF8StringEncoding] : "")
