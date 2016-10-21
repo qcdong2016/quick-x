@@ -33,7 +33,6 @@
 #include "AppDelegate.h"
 #include "CCDirector.h"
 #include "audio/SimpleAudioEngine.h"
-#include "native/CCNative.h"
 #include "cocos/ProcessUtils.h"
 #include "IO/FileSystem.h"
 
@@ -79,6 +78,7 @@ using namespace cocos2d;
 
 - (void) windowWillClose:(NSNotification *)notification
 {
+    [self saveLastState];
     CCDirector::sharedDirector()->end();
     [[NSApplication sharedApplication] terminate:self];
 }

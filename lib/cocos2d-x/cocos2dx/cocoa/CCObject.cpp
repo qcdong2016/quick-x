@@ -215,9 +215,9 @@ void CCObject::sendEvent(ID eventType, VariantMap& eventData)
 
 	WeakPtr<CCObject> self(this);
 
-	for (auto& iter = group->begin(); iter != group->end();)
+	for (auto iter = group->begin(); iter != group->end();)
 	{
-		auto& current = iter++;
+		auto current = iter++;
 		CCObject* reciver = *current;
 		CCObject* next = 0;
 
