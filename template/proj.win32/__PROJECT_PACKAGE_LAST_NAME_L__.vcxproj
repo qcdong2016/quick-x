@@ -89,7 +89,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CC_LUA_ENGINE_ENABLED=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\include;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\support;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\platform;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(ProjectDir)..\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\include;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\support;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\platform;$(QUICKX_ROOT)\lib\cocos2d-x\cocos2dx\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(ProjectDir)..\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4068;4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -98,7 +98,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>cocos2dx.lib;opengl32.lib;ws2_32.lib;wsock32.lib;winmm.lib;glew32.lib;libcurl_imp.lib;libiconv.lib;libjpeg.lib;libpng.lib;libzlib.lib;libwebp.lib;wldap32.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cocos2dx.lib;opengl32.lib;ws2_32.lib;wsock32.lib;winmm.lib;glew32.lib;libcurl_imp.lib;libiconv.lib;libjpeg.lib;libpng.lib;libzlib.lib;libwebp.lib;wldap32.lib;crypt32.lib;iphlpapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>.\$(Configuration);$(QUICKX_ROOT)\lib\third_party\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
     </Link>
