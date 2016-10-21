@@ -9,6 +9,7 @@ namespace cocos2d
 class LuaTable
 {
 public:
+	LuaTable();
 	LuaTable(lua_State* L);
 
 	void setInt(int index, int value);
