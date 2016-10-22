@@ -52,19 +52,29 @@ function HelloUI:ctor()
 
     local btn2 = Button('send Event 2', function(self)
         self:sendEvent(2)
-    end):pos(200, 200)
+    end):pos(100, 200)
 
-local btn3 = Button('remove 1', function(self)
+
+    local btn3 = Button('remove 1', function(self)
         print('unsubscribeFromAllEvents')
-        btn:removeSelf()
+        -- btn:removeSelf()
+        self:unsubscribeFromEvent(1)
     end):pos(300, 100)
 
     btn:subscribeToEvent(1, function(type, data)
-        print('onEvent 1')
+        print('onEvent 1,1')
     end)
 
     btn2:subscribeToEvent(2, function(type, data)
         print('onEvent 2')
+    end)
+
+    btn3:subscribeToEvent(1, function(type, data)
+        print('onEvent 3,1')
+    end)
+
+    btn3:subscribeToEvent(btn, 1, function(type, data)
+        print('onEvent 3,11')
     end)
 end
 

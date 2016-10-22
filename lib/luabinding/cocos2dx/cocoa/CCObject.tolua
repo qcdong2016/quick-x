@@ -38,6 +38,7 @@ class CCObject
     void update(float dt);
 
     void subscribeToEvent(ID eventType, EventHandler* handler);
+    void subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler);
     void unsubscribeFromEvent(ID eventType);
     void unsubscribeFromAllEvents();
     void sendEvent(ID eventType);

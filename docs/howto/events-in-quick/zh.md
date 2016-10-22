@@ -1,5 +1,30 @@
 # Quick 事件参考
 
+Quick引入了灵活的事件系统。任意继承CCObject的类将会具有收发事件的能力。
+    
+订阅eventType事件。无需指定发送者，只要是该类型事件，都会被接收。
+```C++
+void subscribeToEvent(ID eventType, EventHandler* handler);
+```
+
+订阅sender发送的事件。只有sender发送的事件，才会被接收。
+```C++
+void subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler);
+```
+
+同一个CCObject同时只能订阅一个类型的事件一次，重复订阅将会被后一次覆盖。
+```C++
+obj:subscribeToEvent(EVENT_1, ...);
+obj:subscribeToEvent(EVENT_1, ...);//只有这一次生效
+```
+同一个CCObject针对同一个事件存在以上两种订阅方式，那么第二种订阅处理之后将不会再处理第一种订阅方式
+```C++
+obj:subscribeToEvent(EVENT_1, ...);
+obj:subscribeToEvent(sender, EVENT_1, ...);//不会覆盖前一种，但是只会调用这种订阅。
+```
+
+---
+
 Quick 修改后的 Cocos2d-x 提供一些底层事件支持。这些事件按照功能和用途分为：
 
 -   节点事件 (cc.NODE_EVENT)
