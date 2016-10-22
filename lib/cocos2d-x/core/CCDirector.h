@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "label_nodes/CCLabelAtlas.h"
 
 #include "SubSystem.h"
-#include "cocos/Ptr.h"
+#include "base/Ptr.h"
 
 
 NS_CC_BEGIN

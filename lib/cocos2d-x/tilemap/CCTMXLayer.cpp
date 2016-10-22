@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "support/data_support/ccCArray.h"
 #include "CCDirector.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

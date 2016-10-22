@@ -3,8 +3,8 @@
 
 
 #include "CCPlatformMacros.h"
-#include "cocos/Ptr.h"
-#include "cocos/RefCounted.h"
+#include "base/Ptr.h"
+#include "base/RefCounted.h"
 #include <string>
 #include <map>
 #include "cocoa/CCObject.h"

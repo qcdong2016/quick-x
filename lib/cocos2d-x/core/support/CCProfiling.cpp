@@ -24,7 +24,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCProfiling.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 #include "CCStdC.h"
 
 using namespace std;

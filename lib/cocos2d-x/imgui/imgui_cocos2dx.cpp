@@ -5,7 +5,7 @@
 #include "CCDirector.h"
 #include "CCEGLView.h"
 #include "PlayerUI.h"
-#include "cocos/ProcessUtils.h"
+#include "base/ProcessUtils.h"
 
 NS_CC_BEGIN;
 static double       g_Time = 0.0f;

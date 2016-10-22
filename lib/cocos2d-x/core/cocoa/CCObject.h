@@ -26,9 +26,9 @@ THE SOFTWARE.
 #define __CCOBJECT_H__
 
 #include "CCPlatformMacros.h"
-#include "cocos/RefCounted.h"
-#include "cocos/Variant.h"
-#include "cocos/LinkedList.h"
+#include "base/RefCounted.h"
+#include "base/Variant.h"
+#include "base/LinkedList.h"
 #include <string>
 
 NS_CC_BEGIN

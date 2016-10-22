@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "CCActionInstant.h"
 #include <stdarg.h>
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

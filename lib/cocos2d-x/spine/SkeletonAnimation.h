@@ -36,7 +36,7 @@
 #include "cocos2d.h"
 #include "PolygonBatch.h"
 #include "LuaFunction.h"
-#include "../cocos/Ptr.h"
+#include "base/Ptr.h"
 
 namespace cocos2d {
 

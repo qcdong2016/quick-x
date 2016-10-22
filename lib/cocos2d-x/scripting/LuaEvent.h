@@ -1,5 +1,5 @@
 #include "cocoa/CCObject.h"
-#include "cocos/Ptr.h"
+#include "base/Ptr.h"
 #include "LuaFunction.h"
 
 NS_CC_BEGIN

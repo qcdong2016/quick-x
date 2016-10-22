@@ -5,7 +5,7 @@
 #include "cocoa/CCSet.h"
 #include "cocoa/CCDictionary.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 NS_CC_BEGIN
 
 static CCTouch* s_pTouches[CC_MAX_TOUCHES] = { NULL };

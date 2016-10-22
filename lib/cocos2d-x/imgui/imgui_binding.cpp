@@ -1,7 +1,7 @@
 #include "scripting/CCLuaEngine.h"
 #include "imgui/imgui.h"
 #include "scripting/LuaFunction.h"
-#include "cocos/Ptr.h"
+#include "base/Ptr.h"
 #include <vector>
 #include "imgui_cocos2dx.h"
 #include "PlayerUI.h"

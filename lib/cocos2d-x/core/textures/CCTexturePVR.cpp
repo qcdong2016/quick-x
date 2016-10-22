@@ -28,16 +28,16 @@ THE SOFTWARE.
 #include "CCTexturePVR.h"
 #include "ccMacros.h"
 #include "CCConfiguration.h"
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 #include "CCStdC.h"
 #include "support/zip_support/ZipUtils.h"
 #include "shaders/ccGLStateCache.h"
 #include <ctype.h>
 #include <cctype>
-#include "cocos/Ptr.h"
+#include "base/Ptr.h"
 #include "IO/FileSystem.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 
