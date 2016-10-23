@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include <string>
 #include "CCPlatformDefine.h"
 #include "platform/CCPlatformConfig.h"
-#include "cocos/RefCounted.h"
+#include "base/RefCounted.h"
 
 namespace cocos2d
 {

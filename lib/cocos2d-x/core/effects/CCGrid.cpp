@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include "effects/CCGrid.h"
 #include "CCDirector.h"
 #include "effects/CCGrabber.h"
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"

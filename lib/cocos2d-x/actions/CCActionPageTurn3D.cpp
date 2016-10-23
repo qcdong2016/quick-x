@@ -25,7 +25,7 @@ THE SOFTWARE.
 #include "CCActionPageTurn3D.h"
 #include "support/CCPointExtension.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

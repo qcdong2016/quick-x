@@ -59,7 +59,7 @@ THE SOFTWARE.
 #include "crypto/CCCrypto.h"
 #include "IO/FileSystem.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 using namespace std;
 

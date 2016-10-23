@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "cocoa/CCString.h"
 #include <stdlib.h>
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 //According to some tests GL_TRIANGLE_STRIP is slower, MUCH slower. Probably I'm doing something very wrong
 

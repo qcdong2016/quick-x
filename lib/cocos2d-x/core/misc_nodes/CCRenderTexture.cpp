@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "CCConfiguration.h"
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 #include "textures/CCTextureCache.h"
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"

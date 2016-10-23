@@ -25,7 +25,7 @@ THE SOFTWARE.
 #include <algorithm>
 #include "CCGeometry.h"
 #include "ccMacros.h"
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 // implementation of CCPoint
 NS_CC_BEGIN

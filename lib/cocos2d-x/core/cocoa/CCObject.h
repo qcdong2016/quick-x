@@ -26,9 +26,9 @@ THE SOFTWARE.
 #define __CCOBJECT_H__
 
 #include "CCPlatformMacros.h"
-#include "cocos/RefCounted.h"
-#include "cocos/Variant.h"
-#include "cocos/LinkedList.h"
+#include "base/RefCounted.h"
+#include "base/Variant.h"
+#include "base/LinkedList.h"
 #include <string>
 
 NS_CC_BEGIN
@@ -126,19 +126,21 @@ public:
 
 	/// Subscribe to an event that can be sent by any sender.
 	void subscribeToEvent(ID eventType, EventHandler* handler);
+	void subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler);
 	/// Unsubscribe from an event.
 	void unsubscribeFromEvent(ID eventType);
+	void unsubscribeFromEvent(CCObject* sender, ID eventType);
+	void unsubscribeFromEvents(CCObject* sender);
 	/// Unsubscribe from all events.
 	void unsubscribeFromAllEvents();
 	/// Send event to all subscribers.
 	void sendEvent(ID eventType);
-	/// Send event with parameters to all subscribers.
 	void sendEvent(ID eventType, VariantMap& eventData);
 
-	void onEvent(ID eventType, VariantMap& eventData);
+	void onEvent(CCObject* sender, ID eventType, VariantMap& eventData);
 
-	EventHandler* findEventHandler(ID eventType, EventHandler** previous);
-
+	EventHandler* findEventHandler(CCObject* sender, ID eventType, EventHandler** previous);
+	EventHandler* findEventHandler(CCObject* sender, EventHandler** previous);
 private:
 	LinkedList<EventHandler> _eventHandlers;
 

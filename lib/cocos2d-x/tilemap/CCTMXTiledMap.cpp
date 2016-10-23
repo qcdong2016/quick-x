@@ -29,7 +29,7 @@ THE SOFTWARE.
 #include "sprite_nodes/CCSprite.h"
 #include "support/CCPointExtension.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

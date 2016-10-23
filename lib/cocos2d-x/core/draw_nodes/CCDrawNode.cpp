@@ -26,7 +26,7 @@
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

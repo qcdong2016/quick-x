@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 #include "CCPlatformMacros.h"
-#include "cocos/RefCounted.h"
-#include "cocos/Ptr.h"
+#include "base/RefCounted.h"
+#include "base/Ptr.h"
 
 NS_CC_BEGIN
 

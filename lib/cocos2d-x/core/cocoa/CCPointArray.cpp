@@ -2,7 +2,7 @@
 #include "cocoa/CCPointArray.h"
 #include "ccMacros.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 NS_CC_BEGIN
 

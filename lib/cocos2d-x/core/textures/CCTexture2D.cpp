@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "platform/platform.h"
 #include "platform/CCImage.h"
 #include "CCGL.h"
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 #include "platform/CCPlatformMacros.h"
 #include "textures/CCTexturePVR.h"
 #include "textures/CCTextureETC.h"

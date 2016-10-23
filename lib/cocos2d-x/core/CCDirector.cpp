@@ -63,7 +63,7 @@ THE SOFTWARE.
 #include "CCEGLView.h"
 #include "CCConfiguration.h"
 
-#include "cocos/MathDefs.h"
+#include "base/MathDefs.h"
 
 /**
  Position of the FPS

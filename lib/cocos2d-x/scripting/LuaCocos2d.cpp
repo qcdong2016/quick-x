@@ -2298,6 +2298,38 @@ static int tolua_Cocos2d_CCObject_subscribeToEvent00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: subscribeToEvent of class  CCObject */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCObject_subscribeToEvent01
+static int tolua_Cocos2d_CCObject_subscribeToEvent01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CCObject",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,2,"CCObject",0,&tolua_err) ||
+ (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_is_ID(tolua_S,3,"ID",0,&tolua_err)) ||
+ !tolua_is_EventHandler(tolua_S,4,"EventHandler",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CCObject* self = (CCObject*)  tolua_tousertype(tolua_S,1,0);
+  CCObject* sender = ((CCObject*)  tolua_tousertype(tolua_S,2,0));
+  ID eventType = (tolua_to_ID(tolua_S,3,0));
+  EventHandler* handler = ((EventHandler*)  tolua_to_EventHandler(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'subscribeToEvent'", NULL);
+#endif
+ {
+  self->subscribeToEvent(sender,eventType,handler);
+ }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_Cocos2d_CCObject_subscribeToEvent00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: unsubscribeFromEvent of class  CCObject */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCObject_unsubscribeFromEvent00
 static int tolua_Cocos2d_CCObject_unsubscribeFromEvent00(lua_State* tolua_S)
@@ -46435,6 +46467,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"retainCount",tolua_Cocos2d_CCObject_retainCount00);
   tolua_function(tolua_S,"update",tolua_Cocos2d_CCObject_update00);
   tolua_function(tolua_S,"subscribeToEvent",tolua_Cocos2d_CCObject_subscribeToEvent00);
+  tolua_function(tolua_S,"subscribeToEvent",tolua_Cocos2d_CCObject_subscribeToEvent01);
   tolua_function(tolua_S,"unsubscribeFromEvent",tolua_Cocos2d_CCObject_unsubscribeFromEvent00);
   tolua_function(tolua_S,"unsubscribeFromAllEvents",tolua_Cocos2d_CCObject_unsubscribeFromAllEvents00);
   tolua_function(tolua_S,"sendEvent",tolua_Cocos2d_CCObject_sendEvent00);
