@@ -141,6 +141,8 @@ public:
 
 	EventHandler* findEventHandler(CCObject* sender, ID eventType, EventHandler** previous);
 	EventHandler* findEventHandler(CCObject* sender, EventHandler** previous);
+
+	void removeEventSender(CCObject* sender);
 private:
 	LinkedList<EventHandler> _eventHandlers;
 
