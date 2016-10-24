@@ -28,12 +28,13 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include <string.h>
 #include "cocoa/CCDictionary.h"
-#include "cocos2d.h"
+#include "CCDirector.h"
 
 using namespace std;
 
 NS_CC_BEGIN
 
+CC_DLL const char* cocos2dVersion();
 
 CCConfiguration* CCConfiguration::s_gSharedConfiguration = NULL;
 

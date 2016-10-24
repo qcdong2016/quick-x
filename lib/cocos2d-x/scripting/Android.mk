@@ -2,7 +2,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos_lua_static
+LOCAL_MODULE := cc_lua_static
 LOCAL_MODULE_FILENAME := liblua
 
 LOCAL_SRC_FILES := tolua/tolua_event.c \
@@ -76,6 +76,7 @@ LOCAL_SRC_FILES := tolua/tolua_event.c \
     platform/android/org_cocos2dx_lib_Cocos2dxLuaJavaBridge.cpp \
     LuaCocos2d.cpp \
     lua_cocos2dx_cocostudio_manual.cpp \
+    LuaEvent.cpp \
     LuaCocoStudio.cpp
 
 ifeq ($(CC_SQLITE_ENABLED),1)
@@ -90,29 +91,14 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 		                   $(LOCAL_PATH)/tolua \
 		                   $(LOCAL_PATH)/lua_extensions
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
-                    $(LOCAL_PATH)/.. \
-                    $(LOCAL_PATH)/lua \
-                    $(LOCAL_PATH)/tolua \
-                    $(LOCAL_PATH)/lua_extensions \
-                    $(LOCAL_PATH)/../cocos2dx \
-                    $(LOCAL_PATH)/../cocos2dx/include \
-                    $(LOCAL_PATH)/../cocos2dx/platform \
-                    $(LOCAL_PATH)/../cocos2dx/platform/android \
-                    $(LOCAL_PATH)/../cocos2dx/kazmath/include \
-                    $(LOCAL_PATH)/../CocosDenshion/include \
-                    $(LOCAL_PATH)/../ui \
-                    $(LOCAL_PATH)/../external
-
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_ui_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_external_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cc_ui_static
 
 ifeq ($(CC_CURL_ENABLED),1)
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_curl_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cc_curl_static
 endif
 
 LOCAL_CFLAGS += -DCC_LUA_ENGINE_ENABLED=1 $(ANDROID_COCOS2D_BUILD_FLAGS)
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,ui)
+$(call import-module, ui)

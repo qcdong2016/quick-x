@@ -3,11 +3,6 @@
 
 #include "CCPlatformMacros.h"
 #include "CCAlertViewDelegate.h"
-
-#if CC_LUA_ENGINE_ENABLED > 0
-#include "scripting/CCLuaEngine.h"
-#endif
-
 #include <string>
 
 NS_CC_BEGIN
@@ -144,13 +139,6 @@ public:
 
     static const std::string getDeviceName(void);
     static void vibrate();
-
-//#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-//    static void showAlertObjc(void *delegate);
-//#endif
-
-    static int addAlertButtonLua(const char* buttonTitle);
-    static void showAlertLua(LUA_FUNCTION listener);
 
 private:
     CCDevice();

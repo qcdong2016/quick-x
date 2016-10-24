@@ -1,5 +1,6 @@
 #include "platform/CCDevice.h"
 #include "android/jni/DPIJni.h"
+#include "android/jni/JniHelper.h"
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include <jni.h>
 #include <android/log.h>
@@ -156,13 +157,6 @@ int CCDevice::addAlertButton(const char* buttonTitle)
     return 0;
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
-int CCDevice::addAlertButtonLua(const char* buttonTitle)
-{
-    return addAlertButton(buttonTitle);
-}
-#endif
-
 void CCDevice::showAlert(CCAlertViewDelegate* delegate)
 {
     JniMethodInfo methodInfo;
@@ -173,13 +167,6 @@ void CCDevice::showAlert(CCAlertViewDelegate* delegate)
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
     }
 }
-
-#if CC_LUA_ENGINE_ENABLED > 0
-void CCDevice::showAlertLua(LUA_FUNCTION listener)
-{
-    CCLOG("CCDevice::showAlertLua(LUA_FUNCTION listener)) - not support this platform.");
-}
-#endif
 
 void CCDevice::cancelAlert(void)
 {
@@ -208,16 +195,16 @@ void CCDevice::openURL(const char* url)
     }
 }
 
-const string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
+const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
 {
     CCLOG("CCDevice::getInputText() - not support this platform.");
-    return string("");
+    return std::string("");
 }
 
 
 //  OpenUDID
 
-const string CCDevice::getOpenUDID(void)
+const std::string CCDevice::getOpenUDID(void)
 {
     JniMethodInfo methodInfo;
     if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "getOpenUDID", 
@@ -225,15 +212,15 @@ const string CCDevice::getOpenUDID(void)
     {
         jstring judid = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
         char* udid = (char*)methodInfo.env->GetStringUTFChars(judid, 0);
-        string ret = udid;
+		std::string ret = udid;
         methodInfo.env->ReleaseStringUTFChars(judid, udid);
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
         return ret;
     }
-    return string("");
+    return std::string("");
 }
 
-const string CCDevice::getDeviceName(void)
+const std::string CCDevice::getDeviceName(void)
 {
     JniMethodInfo methodInfo;
     if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "getDeviceName", 
@@ -241,12 +228,12 @@ const string CCDevice::getDeviceName(void)
     {
         jstring jdevice = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
         char* device = (char*)methodInfo.env->GetStringUTFChars(jdevice, 0);
-        string ret = device;
+		std::string ret = device;
         methodInfo.env->ReleaseStringUTFChars(jdevice, device);
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
         return ret;
     }
-    return string("");
+    return std::string("");
 }
 
 void CCDevice::vibrate()

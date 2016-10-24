@@ -8278,7 +8278,7 @@ static int tolua_Cocos2d_CCDevice_vibrate00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: addAlertButtonLua of class  CCDevice */
+/* method: addAlertButton of class  CCDevice */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_addAlertButton00
 static int tolua_Cocos2d_CCDevice_addAlertButton00(lua_State* tolua_S)
 {
@@ -8295,7 +8295,7 @@ static int tolua_Cocos2d_CCDevice_addAlertButton00(lua_State* tolua_S)
  {
   const char* buttonTitle = ((const char*)  tolua_tostring(tolua_S,2,0));
  {
-  int tolua_ret = (int)  CCDevice::addAlertButtonLua(buttonTitle);
+  int tolua_ret = (int)  CCDevice::addAlertButton(buttonTitle);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
  }
  }
@@ -8303,35 +8303,6 @@ static int tolua_Cocos2d_CCDevice_addAlertButton00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'addAlertButton'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: showAlertLua of class  CCDevice */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_showAlert00
-static int tolua_Cocos2d_CCDevice_showAlert00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
- !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
- (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
- !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
- goto tolua_lerror;
- else
-#endif
- {
-  LUA_FUNCTION listener = (  toluafix_ref_function(tolua_S,2,0));
- {
-  CCDevice::showAlertLua(listener);
- }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'showAlert'.",&tolua_err);
  return 0;
 #endif
 }
@@ -46739,7 +46710,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"getDeviceName",tolua_Cocos2d_CCDevice_getDeviceName00);
   tolua_function(tolua_S,"vibrate",tolua_Cocos2d_CCDevice_vibrate00);
   tolua_function(tolua_S,"addAlertButton",tolua_Cocos2d_CCDevice_addAlertButton00);
-  tolua_function(tolua_S,"showAlert",tolua_Cocos2d_CCDevice_showAlert00);
  tolua_endmodule(tolua_S);
  #ifdef __cplusplus
  tolua_cclass(tolua_S,"cc_timeval","cc_timeval","",tolua_collect_cc_timeval);

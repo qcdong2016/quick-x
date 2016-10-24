@@ -2,29 +2,16 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos2dx_static
+LOCAL_MODULE := cc_core_static
 
-LOCAL_MODULE_FILENAME := libcocos2d
+LOCAL_MODULE_FILENAME := libcore
 
 LOCAL_SRC_FILES := \
-    CCConfiguration.cpp \
-    CCScheduler.cpp \
-    CCCamera.cpp \
-    ccFPSImages.c \
-    actions/CCAction.cpp \
-    actions/CCActionFiniteTime.cpp \
-    actions/CCActionCamera.cpp \
-    actions/CCActionCatmullRom.cpp \
-    actions/CCActionEase.cpp \
-    actions/CCActionGrid.cpp \
-    actions/CCActionGrid3D.cpp \
-    actions/CCActionInstant.cpp \
-    actions/CCActionInterval.cpp \
-    actions/CCActionManager.cpp \
-    actions/CCActionPageTurn3D.cpp \
-    actions/CCActionProgressTimer.cpp \
-    actions/CCActionTiledGrid.cpp \
-    actions/CCActionTween.cpp \
+    base/ID.cpp \
+    base/MathDefs.cpp \
+    base/ProcessUtils.cpp \
+    base/RefCounted.cpp \
+    base/Variant.cpp \
     base_nodes/CCAtlasNode.cpp \
     base_nodes/CCNode.cpp \
     cocoa/CCAffineTransform.cpp \
@@ -43,6 +30,10 @@ LOCAL_SRC_FILES := \
     crypto/xxtea.c \
     cocos2d.cpp \
     CCDirector.cpp \
+    CCConfiguration.cpp \
+    CCScheduler.cpp \
+    CCCamera.cpp \
+    ccFPSImages.c \
     draw_nodes/CCDrawingPrimitives.cpp \
     draw_nodes/CCDrawNode.cpp \
     draw_nodes/CCShapeNode.cpp \
@@ -81,8 +72,8 @@ LOCAL_SRC_FILES := \
     platform/CCZipFile.cpp \
     platform/platform.cpp \
     platform/CCEGLViewProtocol.cpp \
-    platform/CCDevice_android.cpp \
     platform/CCDevice.cpp \
+    platform/android/CCDeviceAndroid.cpp \
     platform/android/CCEGLView.cpp \
     platform/android/CCAccelerometer.cpp \
     platform/android/CCApplication.cpp \
@@ -135,23 +126,17 @@ LOCAL_SRC_FILES := \
     textures/CCTextureETC.cpp \
     textures/CCTexturePVR.cpp
 
-
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
-                    $(LOCAL_PATH)/include \
-                    $(LOCAL_PATH)/kazmath/include \
-                    $(LOCAL_PATH)/platform/android \
-                    $(LOCAL_PATH)/support
-
-LOCAL_C_INCLUDES := $(LOCAL_PATH) \
-					$(LOCAL_PATH)/../ \
-					$(LOCAL_PATH)/cocoa/ \
-					$(LOCAL_PATH)/../scripting/ \
-					$(LOCAL_PATH)/../scripting/lua \
-					$(LOCAL_PATH)/../scripting/tolua \
-                    $(LOCAL_PATH)/kazmath/include \
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)\
                     $(LOCAL_PATH)/platform/ \
                     $(LOCAL_PATH)/platform/android \
-					$(QUICKX_ROOT)/lib/cocos2d-x/external/extra
+                    $(LOCAL_PATH)/kazmath/include \
+					$(LOCAL_PATH)/../ \
+					$(LOCAL_PATH)/../actions \
+					$(LOCAL_PATH)/../scripting/ \
+					$(LOCAL_PATH)/../scripting/lua \
+					$(LOCAL_PATH)/../scripting/tolua
+
+LOCAL_C_INCLUDES := $(LOCAL_EXPORT_C_INCLUDES)
 
 LOCAL_EXPORT_LDLIBS := -lGLESv2 \
                        -llog

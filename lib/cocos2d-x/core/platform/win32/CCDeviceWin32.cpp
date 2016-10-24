@@ -132,11 +132,6 @@ int CCDevice::addAlertButton(const char* buttonTitle)
 	return 0;
 }
 
-int CCDevice::addAlertButtonLua(const char* buttonTitle)
-{
-	return 0;
-}
-
 void CCDevice::showAlert(CCAlertViewDelegate* delegate)
 {
 	/*
@@ -172,11 +167,6 @@ void CCDevice::showAlert(CCAlertViewDelegate* delegate)
 	{
 		delegate->alertViewClickedButtonAtIndex(1);
 	}
-}
-
-void CCDevice::showAlertLua(cocos2d::LUA_FUNCTION listener)
-{
-	// todo
 }
 
 void CCDevice::cancelAlert(void)
