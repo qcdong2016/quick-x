@@ -126,7 +126,6 @@ THE SOFTWARE.
     #include "platform/ios/CCApplication.h"
     #include "platform/ios/CCEGLView.h"
     #include "platform/ios/CCGL.h"
-    #include "platform/ios/CCStdC.h"
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

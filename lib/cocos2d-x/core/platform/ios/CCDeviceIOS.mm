@@ -209,16 +209,4 @@ void CCDevice::vibrate()
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
-int CCDevice::addAlertButtonLua(const char* buttonTitle)
-{
-    return addAlertButton(buttonTitle) + 1;
-}
-
-void CCDevice::showAlertLua(cocos2d::LUA_FUNCTION listener)
-{
-    [[CCNativeIOS sharedInstance] showAlertViewWithLuaListener:listener];
-}
-#endif
-
 NS_CC_END

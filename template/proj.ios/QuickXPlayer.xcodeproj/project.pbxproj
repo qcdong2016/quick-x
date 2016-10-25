@@ -68,7 +68,7 @@
 		F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = lib/proj.ios/quickcocos2dx.xcodeproj; sourceTree = QUICKX_ROOT; };
 		F452BFC41687EEF900DC5BCC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F452BFCF1687F0F200DC5BCC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F456ECC115EE018E00FCF3E2 /* __PROJECT_PACKAGE_LAST_NAME_L__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __PROJECT_PACKAGE_LAST_NAME_L__.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F456ECC115EE018E00FCF3E2 /* QuickXPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickXPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F456ECC515EE018E00FCF3E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F456ECC715EE018E00FCF3E2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F456ECC915EE018E00FCF3E2 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -175,7 +175,7 @@
 		F456ECC215EE018E00FCF3E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F456ECC115EE018E00FCF3E2 /* __PROJECT_PACKAGE_LAST_NAME_L__.app */,
+				F456ECC115EE018E00FCF3E2 /* QuickXPlayer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,9 +215,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F456ECC015EE018E00FCF3E2 /* __PROJECT_PACKAGE_LAST_NAME_L__ */ = {
+		F456ECC015EE018E00FCF3E2 /* QuickXPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F456EFBD15EE019300FCF3E2 /* Build configuration list for PBXNativeTarget "__PROJECT_PACKAGE_LAST_NAME_L__" */;
+			buildConfigurationList = F456EFBD15EE019300FCF3E2 /* Build configuration list for PBXNativeTarget "QuickXPlayer" */;
 			buildPhases = (
 				F456ECBD15EE018E00FCF3E2 /* Sources */,
 				F456ECBE15EE018E00FCF3E2 /* Frameworks */,
@@ -227,9 +227,9 @@
 			);
 			dependencies = (
 			);
-			name = __PROJECT_PACKAGE_LAST_NAME_L__;
+			name = QuickXPlayer;
 			productName = __PROJECT_PACKAGE_LAST_NAME_L__;
-			productReference = F456ECC115EE018E00FCF3E2 /* __PROJECT_PACKAGE_LAST_NAME_L__.app */;
+			productReference = F456ECC115EE018E00FCF3E2 /* QuickXPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +240,7 @@
 			attributes = {
 				LastUpgradeCheck = 0440;
 			};
-			buildConfigurationList = F456ECBB15EE018E00FCF3E2 /* Build configuration list for PBXProject "__PROJECT_PACKAGE_LAST_NAME_L__" */;
+			buildConfigurationList = F456ECBB15EE018E00FCF3E2 /* Build configuration list for PBXProject "QuickXPlayer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -259,7 +259,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				F456ECC015EE018E00FCF3E2 /* __PROJECT_PACKAGE_LAST_NAME_L__ */,
+				F456ECC015EE018E00FCF3E2 /* QuickXPlayer */,
 			);
 		};
 /* End PBXProject section */
@@ -325,15 +325,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/cjson\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/zlib\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions/\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
@@ -357,15 +356,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/cjson\"",
-					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/zlib\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions/\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
@@ -409,7 +407,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuickXPlayer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -450,7 +448,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QuickXPlayer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -463,7 +461,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F456ECBB15EE018E00FCF3E2 /* Build configuration list for PBXProject "__PROJECT_PACKAGE_LAST_NAME_L__" */ = {
+		F456ECBB15EE018E00FCF3E2 /* Build configuration list for PBXProject "QuickXPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F456EFBB15EE019300FCF3E2 /* Debug */,
@@ -472,7 +470,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F456EFBD15EE019300FCF3E2 /* Build configuration list for PBXNativeTarget "__PROJECT_PACKAGE_LAST_NAME_L__" */ = {
+		F456EFBD15EE019300FCF3E2 /* Build configuration list for PBXNativeTarget "QuickXPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F456EFBE15EE019300FCF3E2 /* Debug */,

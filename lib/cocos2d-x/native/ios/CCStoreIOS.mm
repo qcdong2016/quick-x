@@ -1,7 +1,7 @@
 
 #import "native/ios/CCStoreIOS.h"
 #import "native/ios/CCStoreReceiptVerifyRequestIOS.h"
-#import "ios/json/SBJSON.h"
+#import "json/SBJSON.h"
 
 #include "crypto/CCCrypto.h"
 #include <string>
