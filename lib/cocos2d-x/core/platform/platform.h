@@ -30,6 +30,10 @@ THE SOFTWARE.
 #include <typeinfo>
 #include <ctype.h>
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#include <sys/time.h>
+#endif
+
 NS_CC_BEGIN
 
 /**
