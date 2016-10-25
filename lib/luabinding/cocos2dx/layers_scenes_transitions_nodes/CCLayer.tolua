@@ -42,9 +42,6 @@ class CCLayer : public CCNode
 {
     static CCLayer *create(void);
 
-    void setKeypadEnabled(bool value);
-    bool isKeypadEnabled();
-
     void setAccelerometerEnabled(bool value);
     bool isAccelerometerEnabled();
     void setAccelerometerInterval(double interval);

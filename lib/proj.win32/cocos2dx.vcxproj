@@ -74,8 +74,6 @@
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\vec2.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\vec3.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\vec4.c" />
-    <ClCompile Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDelegate.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.cpp" />
     <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelBMFont.cpp" />
     <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelTTF.cpp" />
@@ -90,6 +88,7 @@
     <ClCompile Include="..\cocos2d-x\core\misc_nodes\CCRenderTexture.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp" />
@@ -356,8 +355,6 @@
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec2.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec3.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec4.h" />
-    <ClInclude Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDelegate.h" />
-    <ClInclude Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.h" />
     <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelBMFont.h" />
     <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelTTF.h" />
@@ -377,6 +374,7 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCImage.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCImageCommon_cpp.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCInput.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformConfig.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformMacros.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h" />

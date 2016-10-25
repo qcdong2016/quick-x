@@ -288,7 +288,7 @@ struct CC_DLL EventNameRegistrar
 };
 
 /// Describe an event's hash ID and begin a namespace in which to define its parameters.
-#define CC_EVENT(eventName) static const cocos2d::ID eventID(cocos2d::EventNameRegistrar::registerEventName(#eventName)); namespace eventName
+#define CC_EVENT(eventID, eventName) static const cocos2d::ID eventID(cocos2d::EventNameRegistrar::registerEventName(#eventName)); namespace eventName
 /// Describe an event's parameter hash ID. Should be used inside an event namespace.
 #define CC_PARAM(paramID, paramName) static const cocos2d::ID paramID(#paramName)
 

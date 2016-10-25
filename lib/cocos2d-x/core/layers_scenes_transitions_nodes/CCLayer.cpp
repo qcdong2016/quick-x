@@ -27,7 +27,6 @@
 #include <stdarg.h>
 #include "CCLayer.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
-#include "keypad_dispatcher/CCKeypadDispatcher.h"
 #include "CCAccelerometer.h"
 #include "CCDirector.h"
 #include "support/CCPointExtension.h"
@@ -44,7 +43,6 @@ NS_CC_BEGIN
 // CCLayer
 CCLayer::CCLayer()
 : m_bAccelerometerEnabled(false)
-, m_bKeypadEnabled(false)
 {
     m_bIgnoreAnchorPointForPosition = true;
     m_eTouchMode = kCCTouchesOneByOne;
@@ -135,49 +133,6 @@ void CCLayer::didAccelerate(CCAcceleration* pAccelerationValue)
     }
 }
 
-/// isKeypadEnabled getter
-bool CCLayer::isKeypadEnabled()
-{
-    return m_bKeypadEnabled;
-}
-/// isKeypadEnabled setter
-void CCLayer::setKeypadEnabled(bool enabled)
-{
-    if (enabled != m_bKeypadEnabled)
-    {
-        m_bKeypadEnabled = enabled;
-
-        if (m_bRunning)
-        {
-            CCDirector* pDirector = CCDirector::sharedDirector();
-            if (enabled)
-            {
-                pDirector->getSubSystem<CCKeypadDispatcher>()->addDelegate(this);
-            }
-            else
-            {
-                pDirector->getSubSystem<CCKeypadDispatcher>()->removeDelegate(this);
-            }
-        }
-    }
-}
-
-void CCLayer::keyBackClicked(void)
-{
-    if (m_scriptEventListeners)
-    {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeypadEvent(this, kTypeBackClicked);
-    }
-}
-
-void CCLayer::keyMenuClicked(void)
-{
-    if (m_scriptEventListeners)
-    {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeypadEvent(this, kTypeMenuClicked);
-    }
-}
-
 /// Callbacks
 void CCLayer::onEnter()
 {
@@ -191,12 +146,6 @@ void CCLayer::onEnter()
     {
         pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
     }
-
-    // add this layer to concern the keypad msg
-    if (m_bKeypadEnabled)
-    {
-        pDirector->getSubSystem<CCKeypadDispatcher>()->addDelegate(this);
-    }
 }
 
 void CCLayer::onExit()
@@ -207,12 +156,6 @@ void CCLayer::onExit()
     if (m_bAccelerometerEnabled)
     {
 		pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
-    }
-
-    // remove this layer from the delegates who concern the keypad msg
-    if (m_bKeypadEnabled)
-    {
-		pDirector->getSubSystem<CCKeypadDispatcher>()->removeDelegate(this);
     }
 
     CCNode::onExit();

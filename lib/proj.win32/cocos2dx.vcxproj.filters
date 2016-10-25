@@ -103,9 +103,6 @@
     <Filter Include="cocos2d-x\core\kazmath">
       <UniqueIdentifier>{67a51e0b-01b9-4693-93e3-33707006f10e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\keypad_dispatcher">
-      <UniqueIdentifier>{08e1e395-e9c7-4ff2-afa1-0de49b7ffc69}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\label_nodes">
       <UniqueIdentifier>{e9405f1d-527a-4f26-9e6c-000ac2f5d8ed}</UniqueIdentifier>
     </Filter>
@@ -726,12 +723,6 @@
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\vec4.c">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDelegate.cpp">
-      <Filter>cocos2d-x\core\keypad_dispatcher</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDispatcher.cpp">
-      <Filter>cocos2d-x\core\keypad_dispatcher</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.cpp">
       <Filter>cocos2d-x\core\label_nodes</Filter>
     </ClCompile>
@@ -983,6 +974,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.cpp">
       <Filter>cocos2d-x\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1556,12 +1550,6 @@
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec4.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDelegate.h">
-      <Filter>cocos2d-x\core\keypad_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\keypad_dispatcher\CCKeypadDispatcher.h">
-      <Filter>cocos2d-x\core\keypad_dispatcher</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.h">
       <Filter>cocos2d-x\core\label_nodes</Filter>
     </ClInclude>
@@ -1912,6 +1900,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h">
       <Filter>cocos2d-x\scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCInput.h">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -85,10 +85,6 @@ THE SOFTWARE.
 #include "kazmath/include/kazmath/kazmath.h"
 #include "kazmath/include/kazmath/GL/matrix.h"
 
-// keypad_dispatcher
-#include "keypad_dispatcher/CCKeypadDelegate.h"
-#include "keypad_dispatcher/CCKeypadDispatcher.h"
-
 // label_nodes
 #include "label_nodes/CCLabelAtlas.h"
 #include "label_nodes/CCLabelTTF.h"

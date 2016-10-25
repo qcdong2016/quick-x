@@ -119,7 +119,6 @@ public:
     virtual int executeSchedule(int nHandler, float dt, CCNode* pNode = NULL);
     virtual int executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase);
     virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase);
-    virtual int executeLayerKeypadEvent(CCLayer* pLayer, int eventType);
     /** execute a accelerometer event */
     virtual int executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue);
     virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL);

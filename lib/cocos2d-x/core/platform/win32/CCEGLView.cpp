@@ -29,12 +29,12 @@ THE SOFTWARE.
 #include "touch_dispatcher/CCTouch.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "text_input_node/CCIMEDispatcher.h"
-#include "keypad_dispatcher/CCKeypadDispatcher.h"
 #include "support/CCPointExtension.h"
 #include "CCApplication.h"
 #include "CCNotificationCenter.h"
 #include "../imgui/imgui_cocos2dx.h"
 #include "../imgui/PlayerUI.h"
+#include "CCInput.h"
 
 NS_CC_BEGIN
 
@@ -464,32 +464,39 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_KEYDOWN:
+	{
+		CCDirector* pDirector = CCDirector::sharedDirector();
 
-        if (wParam == VK_F1 || wParam == VK_F2)
-        {
-            CCDirector* pDirector = CCDirector::sharedDirector();
-            if (GetKeyState(VK_LSHIFT) < 0 ||  GetKeyState(VK_RSHIFT) < 0 || GetKeyState(VK_SHIFT) < 0)
-                pDirector->getSubSystem<CCKeypadDispatcher>()->dispatchKeypadMSG(wParam == VK_F1 ? kTypeBackClicked : kTypeMenuClicked);
-        }
-        else if (wParam == VK_ESCAPE)
-        {
-            CCDirector::sharedDirector()->getSubSystem<CCKeypadDispatcher>()->dispatchKeypadMSG(kTypeBackClicked);
-        }
-        else if (wParam == VK_F5)
-        {
-            PlayerUI::relunch();
-        }
-        else if (wParam == VK_F6)
-        {
-            ImGuiCC::toggleVisible();
-        }
+		if (wParam == VK_F1 || wParam == VK_F2)
+		{
+			if (GetKeyState(VK_LSHIFT) < 0 || GetKeyState(VK_RSHIFT) < 0 || GetKeyState(VK_SHIFT) < 0)
+			{
+				if (wParam == VK_F1)
+					pDirector->getSubSystem<cocos2d::Input>()->onKeypadBack();
+				else
+					pDirector->getSubSystem<cocos2d::Input>()->onKeypadMenu();
+			}
+		}
+		else if (wParam == VK_ESCAPE)
+		{
+			pDirector->getSubSystem<cocos2d::Input>()->onKeypadBack();
+		}
+		else if (wParam == VK_F5)
+		{
+			PlayerUI::relunch();
+		}
+		else if (wParam == VK_F6)
+		{
+			ImGuiCC::toggleVisible();
+		}
 
-        if ( m_lpfnAccelerometerKeyHook!=NULL )
-        {
-            (*m_lpfnAccelerometerKeyHook)( message,wParam,lParam );
-        }
-        ImGuiCC::setKeyDown(wParam);
-        break;
+		if (m_lpfnAccelerometerKeyHook != NULL)
+		{
+			(*m_lpfnAccelerometerKeyHook)(message, wParam, lParam);
+		}
+		ImGuiCC::setKeyDown(wParam);
+		break;
+	}
     case WM_KEYUP:
         if ( m_lpfnAccelerometerKeyHook!=NULL )
         {

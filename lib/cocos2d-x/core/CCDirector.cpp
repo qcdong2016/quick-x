@@ -49,7 +49,6 @@ THE SOFTWARE.
 #include "label_nodes/CCLabelAtlas.h"
 #include "actions/CCActionManager.h"
 #include "CCConfiguration.h"
-#include "keypad_dispatcher/CCKeypadDispatcher.h"
 #include "CCAccelerometer.h"
 #include "sprite_nodes/CCAnimationCache.h"
 #include "touch_dispatcher/CCTouch.h"
@@ -157,7 +156,6 @@ bool CCDirector::init(void)
     m_pScheduler->scheduleUpdateForTarget(am, kCCPrioritySystem, false);
 
 	addSubSystem<CCTouchDispatcher>();
-	addSubSystem<CCKeypadDispatcher>();
 	addSubSystem<CCAccelerometer>();
 
     // create autorelease pool
