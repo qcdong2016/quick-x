@@ -127,10 +127,10 @@ static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0
 {
 	if (sender)
 	{
-		auto& i = specificEventReceivers.find(sender);
+		const auto& i = specificEventReceivers.find(sender);
 		if (i != specificEventReceivers.end())
 		{
-			auto& j = i->second.find(eventType);
+			const auto& j = i->second.find(eventType);
 			return j != i->second.end() ? &j->second : 0;
 		}
 		
@@ -138,7 +138,7 @@ static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0
 	}
 	else
 	{
-		auto& i = eventReceivers.find(eventType);
+		const auto& i = eventReceivers.find(eventType);
 		return i != eventReceivers.end() ? &i->second : 0;
 	}
 }

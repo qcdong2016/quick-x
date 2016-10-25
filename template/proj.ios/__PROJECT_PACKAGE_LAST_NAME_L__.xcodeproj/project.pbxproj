@@ -325,15 +325,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/third_party/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/cjson\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/zlib\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
@@ -357,15 +358,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/third_party/ios\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/cjson\"",
 					"\"$(QUICKX_ROOT)/lib/scripting/lua_extensions/zlib\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;

@@ -29,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9FB860F41DBFB75600CA70ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4B08151175C89E30029F472 /* quickcocos2dx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4DE081F16800061005DB2DB;
+			remoteInfo = quickcocos2dx;
+		};
 		F4B08155175C89E30029F472 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F4B08151175C89E30029F472 /* quickcocos2dx.xcodeproj */;
@@ -205,6 +212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9FB860F51DBFB75600CA70ED /* PBXTargetDependency */,
 			);
 			name = __PROJECT_PACKAGE_LAST_NAME_L__;
 			productName = __PROJECT_PACKAGE_LAST_NAME_L__;
@@ -278,6 +286,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9FB860F51DBFB75600CA70ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = quickcocos2dx;
+			targetProxy = 9FB860F41DBFB75600CA70ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F44C958E15F49004004D4151 /* Debug */ = {
@@ -363,11 +379,11 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/third_party/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
@@ -403,11 +419,11 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/platform/third_party/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/cocos2dx/kazmath/include\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/third_party/mac\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/extensions\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",

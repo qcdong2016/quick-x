@@ -33,6 +33,7 @@
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
 #include <algorithm>
+#include <cfloat> // FLT_MAX, FLT_MIN
 #include "PolygonBatch.h"
 #include "CCLuaEngine.h"
 #include "LuaTable.h"
