@@ -174,24 +174,10 @@ int CCDevice::addAlertButton(const char* buttonTitle)
     return (int)[[CCNativeMac sharedInstance] addAlertButton:buttonTitle_];
 }
 
-#if CC_LUA_ENGINE_ENABLED > 0
-int CCDevice::addAlertButtonLua(const char* buttonTitle)
-{
-    return addAlertButton(buttonTitle) + 1;
-}
-#endif
-
 void CCDevice::showAlert(CCAlertViewDelegate* delegate)
 {
     [[CCNativeMac sharedInstance] showAlertViewWithDelegate:delegate];
 }
-
-#if CC_LUA_ENGINE_ENABLED > 0
-void CCDevice::showAlertLua(LUA_FUNCTION listener)
-{
-    [[CCNativeMac sharedInstance] showAlertViewWithLuaListener:listener];
-}
-#endif
 
 void CCDevice::cancelAlert(void)
 {
