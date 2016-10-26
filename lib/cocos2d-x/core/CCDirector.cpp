@@ -42,6 +42,7 @@ THE SOFTWARE.
 #include "layers_scenes_transitions_nodes/CCTransition.h"
 #include "textures/CCTextureCache.h"
 #include "sprite_nodes/CCSpriteFrameCache.h"
+#include "cocoa/CCAutoreleasePool.h"
 #include "platform/platform.h"
 #include "CCApplication.h"
 #include "label_nodes/CCLabelBMFont.h"
@@ -157,6 +158,9 @@ bool CCDirector::init(void)
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
 
+    // create autorelease pool
+    CCPoolManager::sharedPoolManager()->push();
+
     return true;
 }
     
@@ -174,7 +178,8 @@ CCDirector::~CCDirector(void)
     CC_SAFE_RELEASE(m_pScheduler);
 
     // pop the autorelease pool
-	CCObject::purgeAutoReleasePool();
+    CCPoolManager::sharedPoolManager()->pop();
+    CCPoolManager::purgePoolManager();
 
     // delete m_pLastUpdate
     CC_SAFE_DELETE(m_pLastUpdate);
@@ -892,7 +897,6 @@ void CCDirector::createStatsLabel()
     getFPSImageData(&data, &data_len);
 
     CCImage* image = new CCImage();
-	image->autorelease();
     bool isOK = image->initWithImageData(data, data_len);
     if (!isOK) {
         CCLOGERROR("%s", "Fails: init fps_images");
@@ -900,6 +904,7 @@ void CCDirector::createStatsLabel()
     }
 
     texture = textureCache->addUIImage(image, "cc_fps_images");
+    CC_SAFE_RELEASE(image);
 
     /*
      We want to use an image which is stored in the file named ccFPSImage.c 
@@ -1021,7 +1026,7 @@ void CCDisplayLinkDirector::mainLoop(void)
          drawScene();
      
          // release the objects
-		 CCObject::purgeAutoReleasePool();
+         CCPoolManager::sharedPoolManager()->pop();        
      }
 }
 

@@ -71,17 +71,6 @@ CCGLProgram::~CCGLProgram()
 
 bool CCGLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    GLboolean hasCompiler = false;
-    glGetBooleanv(GL_SHADER_COMPILER, &hasCompiler);
-    m_hasShaderCompiler = (hasCompiler == GL_TRUE);
-
-    if(!m_hasShaderCompiler)
-    {
-        return initWithPrecompiledProgramByteArray(vShaderByteArray,fShaderByteArray);
-    }
-#endif
-
     m_uProgram = glCreateProgram();
     CHECK_GL_ERROR_DEBUG();
 
@@ -119,33 +108,8 @@ bool CCGLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, 
     
     CHECK_GL_ERROR_DEBUG();
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-    m_shaderId = CCPrecompiledShaders::sharedPrecompiledShaders()->addShaders(vShaderByteArray, fShaderByteArray);
-#endif
-
     return true;
 }
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-bool CCGLProgram::initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
-{
-    bool haveProgram = false;
-
-    m_uProgram = glCreateProgram();
-    CHECK_GL_ERROR_DEBUG();
-
-    m_uVertShader = m_uFragShader = 0;
-
-    haveProgram = CCPrecompiledShaders::sharedPrecompiledShaders()->loadProgram(m_uProgram, vShaderByteArray, fShaderByteArray);
-
-    CHECK_GL_ERROR_DEBUG();
-    m_pHashForUniforms = NULL;
-
-    CHECK_GL_ERROR_DEBUG();  
-
-    return haveProgram;
-}
-#endif
 
 bool CCGLProgram::initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename)
 {
@@ -267,14 +231,6 @@ void CCGLProgram::updateUniforms()
 bool CCGLProgram::link()
 {
     CCAssert(m_uProgram != 0, "Cannot link invalid program");
- 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    if(!m_hasShaderCompiler)
-    {
-        // precompiled shader program is already linked
-        return true;
-    }
-#endif
 
     GLint status = GL_TRUE;
     
@@ -292,7 +248,7 @@ bool CCGLProgram::link()
     
     m_uVertShader = m_uFragShader = 0;
 	
-#if DEBUG || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#if _DEBUG
     glGetProgramiv(m_uProgram, GL_LINK_STATUS, &status);
 	
     if (status == GL_FALSE)
@@ -302,14 +258,6 @@ bool CCGLProgram::link()
         m_uProgram = 0;
     }
 #endif
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-    if (status == GL_TRUE)
-    {
-        CCPrecompiledShaders::sharedPrecompiledShaders()->addProgram(m_uProgram, m_shaderId);
-    }
-#endif
-
 
     return (status == GL_TRUE);
 }
@@ -351,18 +299,6 @@ const char* CCGLProgram::programLog()
     return this->logForOpenGLObject(m_uProgram, (GLInfoFunction)&glGetProgramiv, (GLLogFunction)&glGetProgramInfoLog);
 }
 
-// Uniform cache
-
-bool CCGLProgram::updateUniformLocation(GLint location, GLvoid* data, unsigned int bytes)
-{
-    if (location < 0)
-    {
-        return false;
-    }
-    
-    return true;
-}
-
 GLint CCGLProgram::getUniformLocationForName(const char* name)
 {
     CCAssert(name != NULL, "Invalid uniform name" );
@@ -373,159 +309,78 @@ GLint CCGLProgram::getUniformLocationForName(const char* name)
 
 void CCGLProgram::setUniformLocationWith1i(GLint location, GLint i1)
 {
-    bool updated =  updateUniformLocation(location, &i1, sizeof(i1)*1);
-    
-    if( updated )
-    {
-        glUniform1i( (GLint)location, i1);
-    }
+    glUniform1i( (GLint)location, i1);
 }
 
 void CCGLProgram::setUniformLocationWith2i(GLint location, GLint i1, GLint i2)
 {
-    GLint ints[2] = {i1,i2};
-    bool updated =  updateUniformLocation(location, ints, sizeof(ints));
-    
-    if( updated )
-    {
-        glUniform2i( (GLint)location, i1, i2);
-    }
+    glUniform2i( (GLint)location, i1, i2);
 }
 
 void CCGLProgram::setUniformLocationWith3i(GLint location, GLint i1, GLint i2, GLint i3)
 {
-    GLint ints[3] = {i1,i2,i3};
-    bool updated =  updateUniformLocation(location, ints, sizeof(ints));
-    
-    if( updated )
-    {
-        glUniform3i( (GLint)location, i1, i2, i3);
-    }
+    glUniform3i( (GLint)location, i1, i2, i3);
 }
 
 void CCGLProgram::setUniformLocationWith4i(GLint location, GLint i1, GLint i2, GLint i3, GLint i4)
 {
-    GLint ints[4] = {i1,i2,i3,i4};
-    bool updated =  updateUniformLocation(location, ints, sizeof(ints));
-    
-    if( updated )
-    {
-        glUniform4i( (GLint)location, i1, i2, i3, i4);
-    }
+    glUniform4i( (GLint)location, i1, i2, i3, i4);
 }
 
 void CCGLProgram::setUniformLocationWith2iv(GLint location, GLint* ints, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, ints, sizeof(int)*2*numberOfArrays);
-    
-    if( updated )
-    {
-        glUniform2iv( (GLint)location, (GLsizei)numberOfArrays, ints );
-    }
+    glUniform2iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
 void CCGLProgram::setUniformLocationWith3iv(GLint location, GLint* ints, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, ints, sizeof(int)*3*numberOfArrays);
-    
-    if( updated )
-    {
-        glUniform3iv( (GLint)location, (GLsizei)numberOfArrays, ints );
-    }
+    glUniform3iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
 void CCGLProgram::setUniformLocationWith4iv(GLint location, GLint* ints, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, ints, sizeof(int)*4*numberOfArrays);
-    
-    if( updated )
-    {
-        glUniform4iv( (GLint)location, (GLsizei)numberOfArrays, ints );
-    }
+    glUniform4iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
 void CCGLProgram::setUniformLocationWith1f(GLint location, GLfloat f1)
 {
-    bool updated =  updateUniformLocation(location, &f1, sizeof(f1)*1);
-
-    if( updated )
-    {
-        glUniform1f( (GLint)location, f1);
-    }
+    glUniform1f( (GLint)location, f1);
 }
 
 void CCGLProgram::setUniformLocationWith2f(GLint location, GLfloat f1, GLfloat f2)
 {
-    GLfloat floats[2] = {f1,f2};
-    bool updated =  updateUniformLocation(location, floats, sizeof(floats));
-
-    if( updated )
-    {
-        glUniform2f( (GLint)location, f1, f2);
-    }
+    glUniform2f( (GLint)location, f1, f2);
 }
 
 void CCGLProgram::setUniformLocationWith3f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3)
 {
-    GLfloat floats[3] = {f1,f2,f3};
-    bool updated =  updateUniformLocation(location, floats, sizeof(floats));
-
-    if( updated )
-    {
-        glUniform3f( (GLint)location, f1, f2, f3);
-    }
+    glUniform3f( (GLint)location, f1, f2, f3);
 }
 
 void CCGLProgram::setUniformLocationWith4f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4)
 {
-    GLfloat floats[4] = {f1,f2,f3,f4};
-    bool updated =  updateUniformLocation(location, floats, sizeof(floats));
-
-    if( updated )
-    {
-        glUniform4f( (GLint)location, f1, f2, f3,f4);
-    }
+    glUniform4f( (GLint)location, f1, f2, f3,f4);
 }
 
 void CCGLProgram::setUniformLocationWith2fv(GLint location, GLfloat* floats, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, floats, sizeof(float)*2*numberOfArrays);
-
-    if( updated )
-    {
-        glUniform2fv( (GLint)location, (GLsizei)numberOfArrays, floats );
-    }
+    glUniform2fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
 void CCGLProgram::setUniformLocationWith3fv(GLint location, GLfloat* floats, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, floats, sizeof(float)*3*numberOfArrays);
-
-    if( updated )
-    {
-        glUniform3fv( (GLint)location, (GLsizei)numberOfArrays, floats );
-    }
+    glUniform3fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
 void CCGLProgram::setUniformLocationWith4fv(GLint location, GLfloat* floats, unsigned int numberOfArrays)
 {
-    bool updated =  updateUniformLocation(location, floats, sizeof(float)*4*numberOfArrays);
-
-    if( updated )
-    {
-        glUniform4fv( (GLint)location, (GLsizei)numberOfArrays, floats );
-    }
+    glUniform4fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
 
 void CCGLProgram::setUniformLocationWithMatrix4fv(GLint location, GLfloat* matrixArray, unsigned int numberOfMatrices)
 {
-    bool updated =  updateUniformLocation(location, matrixArray, sizeof(float)*16*numberOfMatrices);
-
-    if( updated )
-    {
-        glUniformMatrix4fv( (GLint)location, (GLsizei)numberOfMatrices, GL_FALSE, matrixArray);
-    }
+    glUniformMatrix4fv( (GLint)location, (GLsizei)numberOfMatrices, GL_FALSE, matrixArray);
 }
 
 void CCGLProgram::setUniformsForBuiltins()
@@ -566,8 +421,6 @@ void CCGLProgram::reset()
 {
     m_uVertShader = m_uFragShader = 0;
     memset(m_uUniforms, 0, sizeof(m_uUniforms));
-    
-
     // it is already deallocated by android
     //ccGLDeleteProgram(m_uProgram);
     m_uProgram = 0;
