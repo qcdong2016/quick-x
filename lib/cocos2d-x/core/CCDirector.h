@@ -83,7 +83,6 @@ class CCNode;
 class CCScheduler;
 class CCActionManager;
 class CCTouchDispatcher;
-class CCKeypadDispatcher;
 class CCAccelerometer;
 
 /**
@@ -342,24 +341,24 @@ public:
 	T* addSubSystem() 
 	{
 		T* ss = new T;
-		addSubSystem(T::getTypeName(), ss);
+		addSubSystem(T::getType(), ss);
 		return ss;
 	}
 
 	template<typename T>
 	T* getSubSystem() 
 	{
-		return static_cast<T*>(getSubSystem(T::getTypeName()));
+		return static_cast<T*>(getSubSystem(T::getType()));
 	}
 
-	void addSubSystem(const std::string& name, SubSystem* ss)
+	void addSubSystem(ID type, SubSystem* ss)
 	{
-		_subSustems[name] = ss;
+		_subSustems[type] = ss;
 	}
 
-	SubSystem* getSubSystem(const std::string& name)
+	SubSystem* getSubSystem(ID type)
 	{
-		auto it = _subSustems.find(name);
+		auto it = _subSustems.find(type);
 		return (it != _subSustems.end()) ? it->second.Get() : nullptr;
 	}
 
@@ -385,7 +384,7 @@ protected:
     void calculateDeltaTime();
 protected:
 
-	std::map<std::string, SharedPtr<SubSystem> > _subSustems;
+	std::map<ID, SharedPtr<SubSystem> > _subSustems;
 
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;

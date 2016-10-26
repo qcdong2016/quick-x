@@ -44,7 +44,6 @@ class CCDevice
     static const std::string getInputText(const char* title, const char* message, const char* defaultValue);
     static const std::string getDeviceName(void);
     static void vibrate();
-    static int addAlertButtonLua @ addAlertButton (const char* buttonTitle);
-    static void showAlertLua @ showAlert(LUA_FUNCTION listener);
-
+    static int addAlertButton (const char* buttonTitle);
+    // static void showAlertLua @ showAlert(LUA_FUNCTION listener);
 };

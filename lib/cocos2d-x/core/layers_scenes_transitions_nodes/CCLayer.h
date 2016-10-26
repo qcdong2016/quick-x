@@ -29,7 +29,6 @@ THE SOFTWARE.
 
 #include "base_nodes/CCNode.h"
 #include "platform/CCAccelerometerDelegate.h"
-#include "keypad_dispatcher/CCKeypadDelegate.h"
 #include "cocoa/CCArray.h"
 #ifdef EMSCRIPTEN
 #include "base_nodes/CCGLBufferedNode.h"
@@ -51,7 +50,7 @@ All features from CCNode are valid, plus the following new features:
 - It can receive iPhone Touches
 - It can receive Accelerometer input
 */
-class CC_DLL CCLayer : public CCNode, public CCAccelerometerDelegate, public CCKeypadDelegate
+class CC_DLL CCLayer : public CCNode, public CCAccelerometerDelegate
 {
 public:
     /**
@@ -96,18 +95,8 @@ public:
     virtual void setAccelerometerEnabled(bool value);
     virtual void setAccelerometerInterval(double interval);
 
-    /** whether or not it will receive keypad events
-    You can enable / disable accelerometer events with this property.
-    it's new in cocos2d-x
-    */
-    virtual bool isKeypadEnabled();
-    virtual void setKeypadEnabled(bool value);
-
-    virtual void keyBackClicked(void);
-    virtual void keyMenuClicked(void);
 protected:
     bool m_bAccelerometerEnabled;
-    bool m_bKeypadEnabled;
 };
 
 //

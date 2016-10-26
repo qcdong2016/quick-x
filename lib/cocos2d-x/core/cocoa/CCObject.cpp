@@ -69,68 +69,53 @@ bool TypeInfo::isTypeOf(const TypeInfo* typeInfo) const
 	return false;
 }
 
-#if COCOS2D_DEBUG > 0
-int CCObject::s_createdInFrameCount = 0;
-int CCObject::s_removedInFrameCount = 0;
-int CCObject::s_livingCount = 0;
-#endif
-
-CCObject::CCObject(void)
-: m_nLuaID(0)
-, m_uReference(1) // when the object is created, the reference count of it is 1
-, m_uAutoReleaseCount(0)
-{
-    static unsigned int uObjectCount = 0;
-
-    m_uID = ++uObjectCount;
-#if COCOS2D_DEBUG > 0
-    ++s_createdInFrameCount;
-    ++s_livingCount;
-#endif
-}
-
-CCObject::~CCObject(void)
-{
-#if COCOS2D_DEBUG > 0
-    ++s_removedInFrameCount;
-    --s_livingCount;
-#endif
-
-    // if the object is managed, we should remove it
-    // from pool manager
-    if (m_uAutoReleaseCount > 0)
-    {
-        CCPoolManager::sharedPoolManager()->removeObject(this);
-    }
-
-    // if the object is referenced by Lua engine, remove it
-    if (m_nLuaID)
-    {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptObjectByCCObject(this);
-    }
-    else
-    {
-        CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
-        if (pEngine != NULL && pEngine->getScriptType() == kScriptTypeJavascript)
-        {
-            pEngine->removeScriptObjectByCCObject(this);
-        }
-    }
-
-	unsubscribeFromAllEvents();
-}
 
 static std::map<ID, std::set<CCObject*> > eventReceivers;
 static std::map<CCObject*, std::map<ID, std::set<CCObject*> > > specificEventReceivers;
+
+static void removeEventSender(CCObject* sender)
+{
+	auto i = specificEventReceivers.find(sender);
+	if (i != specificEventReceivers.end())
+	{
+		for (auto j = i->second.begin(); j != i->second.end(); ++j)
+		{
+			for (auto k = j->second.begin(); k != j->second.end(); ++k)
+				(*k)->removeEventSender(sender);
+		}
+		specificEventReceivers.erase(i);
+	}
+}
+
+void cocos2d::CCObject::removeEventSender(CCObject* sender)
+{
+	EventHandler* handler = _eventHandlers.first();
+	EventHandler* previous = 0;
+
+	while (handler)
+	{
+		if (handler->getSender() == sender)
+		{
+			EventHandler* next = _eventHandlers.next(handler);
+			_eventHandlers.erase(handler, previous);
+			handler = next;
+		}
+		else
+		{
+			previous = handler;
+			handler = _eventHandlers.next(handler);
+		}
+	}
+}
 
 static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0)
 {
 	if (sender)
 	{
-		auto& i = specificEventReceivers.find(sender);
+		auto i = specificEventReceivers.find(sender);
 		if (i != specificEventReceivers.end())
 		{
-			auto& j = i->second.find(eventType);
+			auto j = i->second.find(eventType);
 			return j != i->second.end() ? &j->second : 0;
 		}
 		
@@ -138,7 +123,7 @@ static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0
 	}
 	else
 	{
-		auto& i = eventReceivers.find(eventType);
+		auto i = eventReceivers.find(eventType);
 		return i != eventReceivers.end() ? &i->second : 0;
 	}
 }
@@ -158,6 +143,59 @@ static void removeEventReciver(CCObject* reciver, ID eventType, CCObject* sender
 	std::set<CCObject*>* group = getEventReceivers(eventType, sender);
 	if (group)
 		group->erase(reciver);
+}
+
+
+#if COCOS2D_DEBUG > 0
+int CCObject::s_createdInFrameCount = 0;
+int CCObject::s_removedInFrameCount = 0;
+int CCObject::s_livingCount = 0;
+#endif
+
+CCObject::CCObject(void)
+	: m_nLuaID(0)
+	, m_uReference(1) // when the object is created, the reference count of it is 1
+	, m_uAutoReleaseCount(0)
+{
+	static unsigned int uObjectCount = 0;
+
+	m_uID = ++uObjectCount;
+#if COCOS2D_DEBUG > 0
+	++s_createdInFrameCount;
+	++s_livingCount;
+#endif
+}
+
+CCObject::~CCObject(void)
+{
+#if COCOS2D_DEBUG > 0
+	++s_removedInFrameCount;
+	--s_livingCount;
+#endif
+
+	// if the object is managed, we should remove it
+	// from pool manager
+	if (m_uAutoReleaseCount > 0)
+	{
+		CCPoolManager::sharedPoolManager()->removeObject(this);
+	}
+
+	// if the object is referenced by Lua engine, remove it
+	if (m_nLuaID)
+	{
+		CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptObjectByCCObject(this);
+	}
+	else
+	{
+		CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
+		if (pEngine != NULL && pEngine->getScriptType() == kScriptTypeJavascript)
+		{
+			pEngine->removeScriptObjectByCCObject(this);
+		}
+	}
+
+	unsubscribeFromAllEvents();
+	removeEventSender(this);
 }
 
 EventHandler* CCObject::findEventHandler(CCObject* sender, EventHandler** previous)

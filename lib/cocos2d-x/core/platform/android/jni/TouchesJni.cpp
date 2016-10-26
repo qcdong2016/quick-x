@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "cocoa/CCSet.h"
 #include "CCDirector.h"
-#include "keypad_dispatcher/CCKeypadDispatcher.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "../CCEGLView.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
@@ -73,18 +72,12 @@ extern "C" {
 
     JNIEXPORT jboolean JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeKeyDown(JNIEnv * env, jobject thiz, jint keyCode) {
         CCDirector* pDirector = CCDirector::sharedDirector();
-        switch (keyCode) {
-            case KEYCODE_BACK:
-                  if (pDirector->getSubSystem<cocos2d::CCKeypadDispatcher>()->dispatchKeypadMSG(kTypeBackClicked))
-                    return JNI_TRUE;
-                break;
-            case KEYCODE_MENU:
-                if (pDirector->getSubSystem<cocos2d::CCKeypadDispatcher>()->dispatchKeypadMSG(kTypeMenuClicked))
-                    return JNI_TRUE;
-                break;
-            default:
-                return JNI_FALSE;
-        }
-        return JNI_FALSE;
+		
+        if (keyCode == KEYCODE_BACK)
+            pDirector->getSubSystem<cocos2d::Input>()->onKeypadBack();
+        else if (keyCode == KEYCODE_MENU)
+            pDirector->getSubSystem<cocos2d::Input>()->onKeypadMenu();
+
+        return JNI_TRUE;
     }
 }

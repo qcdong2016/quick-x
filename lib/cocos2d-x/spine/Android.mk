@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos_spine_static
+LOCAL_MODULE := cc_spine_static
 LOCAL_MODULE_FILENAME := libspine
 
 LOCAL_SRC_FILES := spine/Animation.c \
@@ -40,16 +40,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 					$(LOCAL_PATH)/spine
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 					$(LOCAL_PATH)/spine \
-					$(LOCAL_PATH)/../ \
-					$(LOCAL_PATH)/../cocos2dx \
-                    $(LOCAL_PATH)/../cocos2dx/include \
-                    $(LOCAL_PATH)/../cocos2dx/platform \
-                    $(LOCAL_PATH)/../cocos2dx/platform/android \
-                    $(LOCAL_PATH)/../cocos2dx/kazmath/include \
-					$(LOCAL_PATH)/../scripting/ \
-					$(LOCAL_PATH)/../scripting/tolua \
-					$(LOCAL_PATH)/../scripting/lua
 
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
+LOCAL_WHOLE_STATIC_LIBRARIES := cc_core_static
 
 include $(BUILD_STATIC_LIBRARY)

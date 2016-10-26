@@ -384,41 +384,6 @@ int CCLuaEngine::executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pT
     return 1;
 }
 
-int CCLuaEngine::executeLayerKeypadEvent(CCLayer* pLayer, int eventType)
-{
-    m_stack->clean();
-    CCLuaValueDict event;
-    event["name"] = CCLuaValue::stringValue("clicked");
-    switch (eventType)
-    {
-        case kTypeBackClicked:
-            event["key"] = CCLuaValue::stringValue("back");
-            break;
-
-        case kTypeMenuClicked:
-            event["key"] = CCLuaValue::stringValue("menu");
-            break;
-
-        default:
-            return 0;
-    }
-
-    m_stack->pushCCLuaValueDict(event);
-
-    CCArray *listeners = pLayer->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != KEYPAD_EVENT || p->removed) continue;
-        m_stack->copyValue(1);
-        m_stack->executeFunctionByHandler(p->listener, 1);
-        m_stack->settop(1);
-    }
-    m_stack->clean();
-    return 0;
-}
-
 int CCLuaEngine::executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
 {
     m_stack->clean();

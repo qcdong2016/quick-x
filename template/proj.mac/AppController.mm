@@ -33,7 +33,7 @@
 #include "AppDelegate.h"
 #include "CCDirector.h"
 #include "audio/SimpleAudioEngine.h"
-#include "cocos/ProcessUtils.h"
+#include "base/ProcessUtils.h"
 #include "IO/FileSystem.h"
 
 #include "AppDelegate.h"
@@ -138,7 +138,7 @@ using namespace cocos2d;
 
     // set window parameters
     [window setContentView:glView];
-    [window setTitle:@"__PROJECT_PACKAGE_LAST_NAME_L__"];
+    [window setTitle:@"QuickXPlayer"];
     [window center];
 
     [self setZoom:getFloatArgument("zoom")];
