@@ -34,10 +34,6 @@ THE SOFTWARE.
 // extern
 #include "kazmath/GL/matrix.h"
 #include "kazmath/kazmath.h"
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-#include "CCPrecompiledShaders.h"
-#endif
 #include "IO/FileSystem.h"
 
 NS_CC_BEGIN
@@ -53,7 +49,6 @@ CCGLProgram::CCGLProgram()
 : m_uProgram(0)
 , m_uVertShader(0)
 , m_uFragShader(0)
-, m_pHashForUniforms(NULL)
 , m_bUsesTime(false)
 , m_hasShaderCompiler(true)
 {
@@ -71,16 +66,6 @@ CCGLProgram::~CCGLProgram()
     if (m_uProgram) 
     {
         ccGLDeleteProgram(m_uProgram);
-    }
-
-    tHashUniformEntry *current_element, *tmp;
-
-    // Purge uniform hash
-    HASH_ITER(hh, m_pHashForUniforms, current_element, tmp)
-    {
-        HASH_DEL(m_pHashForUniforms, current_element);
-        free(current_element->value);
-        free(current_element);
     }
 }
 
@@ -131,7 +116,6 @@ bool CCGLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, 
     {
         glAttachShader(m_uProgram, m_uFragShader);
     }
-    m_pHashForUniforms = NULL;
     
     CHECK_GL_ERROR_DEBUG();
 
@@ -376,36 +360,7 @@ bool CCGLProgram::updateUniformLocation(GLint location, GLvoid* data, unsigned i
         return false;
     }
     
-    bool updated = true;
-    tHashUniformEntry *element = NULL;
-    HASH_FIND_INT(m_pHashForUniforms, &location, element);
-
-    if (! element)
-    {
-        element = (tHashUniformEntry*)malloc( sizeof(*element) );
-
-        // key
-        element->location = location;
-
-        // value
-        element->value = malloc( bytes );
-        memcpy(element->value, data, bytes );
-
-        HASH_ADD_INT(m_pHashForUniforms, location, element);
-    }
-    else
-    {
-        if (memcmp(element->value, data, bytes) == 0)
-        {
-            updated = false;
-        }
-        else
-        {
-            memcpy(element->value, data, bytes);
-        }
-    }
-
-    return updated;
+    return true;
 }
 
 GLint CCGLProgram::getUniformLocationForName(const char* name)
@@ -616,18 +571,6 @@ void CCGLProgram::reset()
     // it is already deallocated by android
     //ccGLDeleteProgram(m_uProgram);
     m_uProgram = 0;
-
-    
-    tHashUniformEntry *current_element, *tmp;
-    
-    // Purge uniform hash
-    HASH_ITER(hh, m_pHashForUniforms, current_element, tmp) 
-    {
-        HASH_DEL(m_pHashForUniforms, current_element);
-        free(current_element->value);
-        free(current_element);
-    }
-    m_pHashForUniforms = NULL;
 }
 
 NS_CC_END

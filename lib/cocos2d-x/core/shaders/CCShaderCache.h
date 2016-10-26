@@ -73,17 +73,16 @@ public:
     /** returns a GL program for a given key 
      *  @js getProgram
      */
-    CCGLProgram * programForKey(const char* key);
+    CCGLProgram * programForKey(int key);
 
     /** adds a CCGLProgram to the cache for a given name */
-    void addProgram(CCGLProgram* program, const char* key);
+    void addProgram(CCGLProgram* program, int key);
 
 private:
     bool init();
     void loadDefaultShader(CCGLProgram *program, int type);
 
-    CCDictionary* m_pPrograms;
-
+	std::map<int, SharedPtr<CCGLProgram> > _defaultShaders;
 };
 
 // end of shaders group

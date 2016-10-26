@@ -13,7 +13,11 @@ int CCDevice::getDPI()
     static int dpi = -1;
     if (dpi == -1)
     {
-        dpi = (int)getDPIJNI();
+        JniMethodInfo t;
+        if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxHelper", "getDPI", "()I")) {
+            dpi = t.env->CallStaticIntMethod(t.classID, t.methodID);
+            t.env->DeleteLocalRef(t.classID);
+        }
     }
     return dpi;
 }

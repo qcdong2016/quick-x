@@ -630,9 +630,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCArray.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCDictionary.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
@@ -802,9 +799,6 @@
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp">
-      <Filter>cocos2d-x\core\shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\shaders\ccShaders.cpp">
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.cpp">
@@ -1451,9 +1445,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCArray.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.h">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCDictionary.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
@@ -1656,12 +1647,6 @@
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCShaderCache.h">
-      <Filter>cocos2d-x\core\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\shaders\ccShaderEx_SwitchMask_frag.h">
-      <Filter>cocos2d-x\core\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\shaders\ccShaders.h">
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColorLengthTexture_frag.h">

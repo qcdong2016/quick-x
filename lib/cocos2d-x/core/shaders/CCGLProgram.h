@@ -60,17 +60,19 @@ enum {
     
 	kCCUniform_MAX,
 };
+enum
+{
+    kCCShader_PositionTextureColor,
+    kCCShader_PositionTextureGray,
+    kCCShader_PositionTextureColorAlphaTest,
+    kCCShader_PositionColor,
+    kCCShader_PositionTexture,
+    kCCShader_PositionTexture_uColor,
+    kCCShader_PositionTextureA8Color,
+    kCCShader_Position_uColor,
+    kCCShader_PositionLengthTexureColor,
+};
 
-#define kCCShader_PositionTextureColor              "ShaderPositionTextureColor"
-#define kCCShader_PositionTextureGray               "ShaderPositionTextureGray"
-#define kCCShader_PositionTextureColorAlphaTest     "ShaderPositionTextureColorAlphaTest"
-#define kCCShader_PositionColor                     "ShaderPositionColor"
-#define kCCShader_PositionTexture                   "ShaderPositionTexture"
-#define kCCShader_PositionTexture_uColor            "ShaderPositionTexture_uColor"
-#define kCCShader_PositionTextureA8Color            "ShaderPositionTextureA8Color"
-#define kCCShader_Position_uColor                   "ShaderPosition_uColor"
-#define kCCShader_PositionLengthTexureColor         "ShaderPositionLengthTextureColor"
-#define kCCShader_ControlSwitch                     "Shader_ControlSwitch"
 
 // uniform names
 #define kCCUniformPMatrix_s				"CC_PMatrix"
@@ -282,7 +284,6 @@ private:
     GLuint            m_uVertShader;
     GLuint            m_uFragShader;
     GLint             m_uUniforms[kCCUniform_MAX];
-    struct _hashUniformEntry* m_pHashForUniforms;
     bool              m_bUsesTime;
     bool              m_hasShaderCompiler;
 

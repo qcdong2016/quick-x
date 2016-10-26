@@ -63,7 +63,6 @@ THE SOFTWARE.
 #include "cocoa/CCArray.h"
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCSet.h"
-#include "cocoa/CCAutoreleasePool.h"
 #include "cocoa/CCString.h"
 #include "cocoa/CCPointArray.h"
 
@@ -228,7 +227,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
-#include "shaders/ccShaders.h"
 
 // sprite_nodes
 #include "sprite_nodes/CCAnimation.h"

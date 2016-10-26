@@ -42,7 +42,6 @@
     <ClCompile Include="..\cocos2d-x\core\CCScheduler.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAffineTransform.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCArray.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCDictionary.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCGeometry.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCObject.cpp" />
@@ -102,7 +101,6 @@
     <ClCompile Include="..\cocos2d-x\core\shaders\CCGLProgram.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\ccGLStateCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\shaders\ccShaders.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimationCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCScale9Sprite.cpp" />
@@ -321,7 +319,6 @@
     <ClInclude Include="..\cocos2d-x\core\ccTypes.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCAffineTransform.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCArray.h" />
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCDictionary.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCInteger.h" />
@@ -392,8 +389,6 @@
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccGLStateCache.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\CCShaderCache.h" />
-    <ClInclude Include="..\cocos2d-x\core\shaders\ccShaderEx_SwitchMask_frag.h" />
-    <ClInclude Include="..\cocos2d-x\core\shaders\ccShaders.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColorLengthTexture_frag.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColorLengthTexture_vert.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColor_frag.h" />
