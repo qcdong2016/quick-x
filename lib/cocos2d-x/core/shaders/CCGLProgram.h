@@ -70,7 +70,7 @@ enum
     kCCShader_PositionTexture_uColor,
     kCCShader_PositionTextureA8Color,
     kCCShader_Position_uColor,
-    kCCShader_PositionLengthTexureColor,
+    kCCShader_PositionLengthTextureColor,
 };
 
 
@@ -273,6 +273,8 @@ public:
      */
     inline const GLuint getProgram() { return m_uProgram; }
 
+	bool getAttribLocation(GLuint type, GLuint& loc);
+
 private:
     const char* description();
     bool compileShader(GLuint * shader, GLenum type, const GLchar* source);
@@ -285,7 +287,7 @@ private:
     GLint             m_uUniforms[kCCUniform_MAX];
     bool              m_bUsesTime;
     bool              m_hasShaderCompiler;
-
+	std::map<int, GLuint> _vertexAttributes;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     std::string       m_shaderId;
 #endif

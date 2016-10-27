@@ -227,6 +227,12 @@ void CCGLProgram::updateUniforms()
     // Since sample most probably won't change, set it to 0 now.
     this->setUniformLocationWith1i(m_uUniforms[kCCUniformSampler], 0);
 }
+#define GL_ASSERT( gl_code ) do \
+    { \
+        gl_code; \
+        GLuint __gl_error_code = glGetError(); \
+        CC_ASSERT(__gl_error_code == GL_NO_ERROR); \
+    } while(0)
 
 bool CCGLProgram::link()
 {
@@ -248,6 +254,20 @@ bool CCGLProgram::link()
     
     m_uVertShader = m_uFragShader = 0;
 	
+	GLint attribLocation;
+
+	attribLocation = glGetAttribLocation(m_uProgram, kCCAttributeNameTexCoord);
+	if (attribLocation != -1)
+		_vertexAttributes[kCCVertexAttrib_TexCoords] = attribLocation;
+
+	attribLocation = glGetAttribLocation(m_uProgram, kCCAttributeNameColor);
+	if (attribLocation != -1)
+		_vertexAttributes[kCCVertexAttrib_Color] = attribLocation;
+
+	attribLocation = glGetAttribLocation(m_uProgram, kCCAttributeNamePosition);
+	if (attribLocation != -1)
+		_vertexAttributes[kCCVertexAttrib_Position] = attribLocation;
+
 #if _DEBUG
     glGetProgramiv(m_uProgram, GL_LINK_STATUS, &status);
 	
@@ -262,9 +282,19 @@ bool CCGLProgram::link()
     return (status == GL_TRUE);
 }
 
+bool CCGLProgram::getAttribLocation(GLuint type, GLuint& loc)
+{
+	auto& it = _vertexAttributes.find(type);
+	if (it != _vertexAttributes.end()) {
+		loc = it->second;
+		return true;
+	}
+	return false;
+}
+
 void CCGLProgram::use()
 {
-    ccGLUseProgram(m_uProgram);
+    ccGLUseProgram(this);
 }
 
 const char* CCGLProgram::logForOpenGLObject(GLuint object, GLInfoFunction infoFunc, GLLogFunction logFunc)

@@ -135,9 +135,9 @@ void ccDrawPoint( const CCPoint& point )
 
 #ifdef EMSCRIPTEN
     setGLBufferData(&p, 8);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, &p);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, &p);
 #endif // EMSCRIPTEN
 
     glDrawArrays(GL_POINTS, 0, 1);
@@ -163,9 +163,9 @@ void ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints )
     {
 #ifdef EMSCRIPTEN
         setGLBufferData((void*) points, numberOfPoints * sizeof(CCPoint));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, points);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, points);
 #endif // EMSCRIPTEN
     }
     else
@@ -179,9 +179,9 @@ void ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints )
         // Suspect Emscripten won't be emitting 64-bit code for a while yet,
         // but want to make sure this continues to work even if they do.
         setGLBufferData(newPoints, numberOfPoints * sizeof(ccVertex2F));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoints);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoints);
 #endif // EMSCRIPTEN
     }
 
@@ -209,9 +209,9 @@ void ccDrawLine( const CCPoint& origin, const CCPoint& destination )
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
 #ifdef EMSCRIPTEN
     setGLBufferData(vertices, 16);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 #endif // EMSCRIPTEN
     glDrawArrays(GL_LINES, 0, 2);
 
@@ -253,9 +253,9 @@ void ccDrawPoly( const CCPoint *poli, unsigned int numberOfPoints, bool closePol
     {
 #ifdef EMSCRIPTEN
         setGLBufferData((void*) poli, numberOfPoints * sizeof(CCPoint));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
 #endif // EMSCRIPTEN
 
         if( closePolygon )
@@ -274,9 +274,9 @@ void ccDrawPoly( const CCPoint *poli, unsigned int numberOfPoints, bool closePol
         }
 #ifdef EMSCRIPTEN
         setGLBufferData(newPoli, numberOfPoints * sizeof(ccVertex2F));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoli);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoli);
 #endif // EMSCRIPTEN
 
         if( closePolygon )
@@ -308,9 +308,9 @@ void ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4
     {
 #ifdef EMSCRIPTEN
         setGLBufferData((void*) poli, numberOfPoints * sizeof(CCPoint));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
 #endif // EMSCRIPTEN
     }
     else
@@ -322,9 +322,9 @@ void ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4
         }
 #ifdef EMSCRIPTEN
         setGLBufferData(newPoli, numberOfPoints * sizeof(ccVertex2F));
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-        glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoli);
+        ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, newPoli);
 #endif // EMSCRIPTEN
     }    
 
@@ -367,9 +367,9 @@ void ccDrawCircle(const CCPoint& center, float radius, float angle, unsigned int
 
 #ifdef EMSCRIPTEN
     setGLBufferData(vertices, sizeof(GLfloat)*2*(segments+2));
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 #endif // EMSCRIPTEN
 	glDrawArrays(fill ? GL_TRIANGLE_FAN : GL_LINE_STRIP, 0, (GLsizei)segments + additionalSegment);
 
@@ -407,9 +407,9 @@ void ccDrawQuadBezier(const CCPoint& origin, const CCPoint& control, const CCPoi
 
 #ifdef EMSCRIPTEN
     setGLBufferData(vertices, (segments + 1) * sizeof(ccVertex2F));
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 #endif // EMSCRIPTEN
     glDrawArrays(GL_LINE_STRIP, 0, (GLsizei) segments + 1);
     CC_SAFE_DELETE_ARRAY(vertices);
@@ -464,9 +464,9 @@ void ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int se
 
 #ifdef EMSCRIPTEN
     setGLBufferData(vertices, (segments + 1) * sizeof(ccVertex2F));
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 #endif // EMSCRIPTEN
     glDrawArrays(GL_LINE_STRIP, 0, (GLsizei) segments + 1);
 
@@ -498,9 +498,9 @@ void ccDrawCubicBezier(const CCPoint& origin, const CCPoint& control1, const CCP
 
 #ifdef EMSCRIPTEN
     setGLBufferData(vertices, (segments + 1) * sizeof(ccVertex2F));
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
 #else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 #endif // EMSCRIPTEN
     glDrawArrays(GL_LINE_STRIP, 0, (GLsizei) segments + 1);
     CC_SAFE_DELETE_ARRAY(vertices);

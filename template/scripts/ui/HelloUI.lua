@@ -24,6 +24,10 @@ function HelloUI:ctor()
         imgui.Button('hello lua')
     end)
 
+    local spine = SkeletonAnimation:createWithFile("spineboy.json", "spineboy.atlas", 1)
+        :addTo(self)
+        :pos(-200+math.random(-100,100), -display.cy)
+    spine:setAnimation(0, 'run', true)
 
     local touchLayer = TouchGroup:create()
     self:addChild(touchLayer)
