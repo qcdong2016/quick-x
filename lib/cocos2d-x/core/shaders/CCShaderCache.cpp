@@ -112,52 +112,42 @@ bool CCShaderCache::init()
     return true;
 }
 
-	
-
-static SharedPtr<CCGLProgram> loadShader_(const char* v, const char* f)
-{
-	SharedPtr<CCGLProgram> shader(new CCGLProgram());
-	shader->initWithVertexShaderByteArray(v, f);
-	shader->link();
-	shader->updateUniforms();
-	CHECK_GL_ERROR_DEBUG();
-
-	return shader;
-}
-
-#define loadShader(type) \
-	_defaultShaders[kCCShader_##type] = loadShader_(cc##type##_vert, cc##type##_frag)
+#define add(type) \
+	addShader(cc##type##_vert, cc##type##_frag)
 
 void CCShaderCache::loadDefaultShaders()
 {
-	loadShader(PositionTextureColor);
-	loadShader(PositionTextureGray);
-	loadShader(PositionTextureColorAlphaTest);
-	loadShader(PositionColor);
-	loadShader(PositionTexture);
-	loadShader(PositionTexture_uColor);
-	loadShader(PositionTextureA8Color);
-	loadShader(Position_uColor);
-	loadShader(PositionLengthTextureColor);
+	add(PositionTextureColor);
+	add(PositionTextureGray);
+	add(PositionTextureColorAlphaTest);
+	add(PositionColor);
+	add(PositionTexture);
+	add(PositionTexture_uColor);
+	add(PositionTextureA8Color);
+	add(Position_uColor);
+	add(PositionLengthTextureColor);
 }
 
 void CCShaderCache::reloadDefaultShaders()
 {
-	_defaultShaders.clear();
-	loadDefaultShaders();
+	for (auto s : _defaultShaders) 
+	{
+		s->reset();
+		s->loadWithSource();
+	}
+}
+
+CCGLProgram* CCShaderCache::addShader(const char* v, const char* f)
+{
+	SharedPtr<CCGLProgram> shader(new CCGLProgram());
+	shader->initWithVertexShaderByteArray(v, f);
+	_defaultShaders.push_back(shader);
+	return shader.Get();
 }
 
 CCGLProgram* CCShaderCache::programForKey(int key)
-{
-	auto it = _defaultShaders.find(key);
-	if (it != _defaultShaders.end())
-		return it->second.Get();
-	return nullptr;
-}
-
-void CCShaderCache::addProgram(CCGLProgram* program, int key)
-{
-	_defaultShaders[key] = program;
+{// old api
+	return _defaultShaders[key];
 }
 
 NS_CC_END

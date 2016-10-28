@@ -27,11 +27,12 @@ THE SOFTWARE.
 #ifndef __CCSHADERCACHE_H__
 #define __CCSHADERCACHE_H__
 
-#include "cocoa/CCDictionary.h"
+#include <vector>
+#include "CCPlatformMacros.h"
+#include "cocoa/CCObject.h"
+#include "CCGLProgram.h"
 
 NS_CC_BEGIN
-
-class CCGLProgram;
 
 /**
  * @addtogroup shaders
@@ -68,21 +69,17 @@ public:
     /** reload the default shaders */
     void reloadDefaultShaders();
 
-
+	CCGLProgram* addShader(const char* v, const char* f);
 
     /** returns a GL program for a given key 
      *  @js getProgram
      */
     CCGLProgram * programForKey(int key);
-
-    /** adds a CCGLProgram to the cache for a given name */
-    void addProgram(CCGLProgram* program, int key);
-
 private:
     bool init();
     void loadDefaultShader(CCGLProgram *program, int type);
 
-	std::map<int, SharedPtr<CCGLProgram> > _defaultShaders;
+	std::vector<SharedPtr<CCGLProgram> > _defaultShaders;
 };
 
 // end of shaders group

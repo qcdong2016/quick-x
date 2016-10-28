@@ -114,21 +114,20 @@ public:
      * @lua NA
      */
     virtual ~CCGLProgram();
-    /** Initializes the CCGLProgram with a vertex and fragment with bytes array 
-     * @js  initWithString
-     * @lua NA
-     */
-    bool initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    /** Initializes the CCGLProgram with precompiled shader program */
-    bool initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
-#endif
     /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames 
      * @js  init
      * @lua NA
      */
     bool initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename);
+	/** Initializes the CCGLProgram with a vertex and fragment with bytes array
+	* @js  initWithString
+	* @lua NA
+	*/
+	bool initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
+
+	bool loadWithSource();
+
     /**  It will add a new attribute to the shader 
      * @lua NA
      */
@@ -284,6 +283,10 @@ private:
     GLuint            m_uProgram;
     GLuint            m_uVertShader;
     GLuint            m_uFragShader;
+
+	std::string _vertSrc;
+	std::string _fragSrc;
+
     GLint             m_uUniforms[kCCUniform_MAX];
     bool              m_bUsesTime;
     bool              m_hasShaderCompiler;

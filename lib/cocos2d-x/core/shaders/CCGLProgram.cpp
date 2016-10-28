@@ -71,44 +71,50 @@ CCGLProgram::~CCGLProgram()
 
 bool CCGLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
 {
-    m_uProgram = glCreateProgram();
-    CHECK_GL_ERROR_DEBUG();
+	CCAssert(fShaderByteArray, "fShaderByteArray == NULL");
+	CCAssert(vShaderByteArray, "fShaderByteArray == NULL");
 
-    m_uVertShader = m_uFragShader = 0;
+	_fragSrc = fShaderByteArray;
+	_vertSrc = vShaderByteArray;
+	return loadWithSource();
+}
 
-    if (vShaderByteArray)
-    {
-        if (!compileShader(&m_uVertShader, GL_VERTEX_SHADER, vShaderByteArray))
-        {
-            CCLOG("cocos2d: ERROR: Failed to compile vertex shader");
- 			return false;
-       }
-    }
+bool cocos2d::CCGLProgram::loadWithSource()
+{
+	m_uProgram = glCreateProgram();
+	CHECK_GL_ERROR_DEBUG();
 
-    // Create and compile fragment shader
-    if (fShaderByteArray)
-    {
-        if (!compileShader(&m_uFragShader, GL_FRAGMENT_SHADER, fShaderByteArray))
-        {
-            CCLOG("cocos2d: ERROR: Failed to compile fragment shader");
-			return false;
-        }
-    }
+	m_uVertShader = m_uFragShader = 0;
+	if (!compileShader(&m_uVertShader, GL_VERTEX_SHADER, _vertSrc.c_str()))
+	{
+		CCLOG("cocos2d: ERROR: Failed to compile vertex shader");
+		return false;
+	}
 
-    if (m_uVertShader)
-    {
-        glAttachShader(m_uProgram, m_uVertShader);
-    }
-    CHECK_GL_ERROR_DEBUG();
+	// Create and compile fragment shader
+	if (!compileShader(&m_uFragShader, GL_FRAGMENT_SHADER, _fragSrc.c_str()))
+	{
+		CCLOG("cocos2d: ERROR: Failed to compile fragment shader");
+		return false;
+	}
 
-    if (m_uFragShader)
-    {
-        glAttachShader(m_uProgram, m_uFragShader);
-    }
-    
-    CHECK_GL_ERROR_DEBUG();
+	if (m_uVertShader)
+	{
+		glAttachShader(m_uProgram, m_uVertShader);
+	}
+	CHECK_GL_ERROR_DEBUG();
 
-    return true;
+	if (m_uFragShader)
+	{
+		glAttachShader(m_uProgram, m_uFragShader);
+	}
+
+	link();
+	updateUniforms();
+
+	CHECK_GL_ERROR_DEBUG();
+
+	return true;
 }
 
 bool CCGLProgram::initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename)
