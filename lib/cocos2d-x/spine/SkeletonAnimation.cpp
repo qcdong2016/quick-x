@@ -109,7 +109,7 @@ void SkeletonAnimation::initialize () {
 	blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
 	setOpacityModifyRGB(true);
 
-	setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColor));
+	setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
 	scheduleUpdate();
 
 	ownsAnimationStateData = true;

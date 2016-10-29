@@ -37,7 +37,7 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 class CCImage;
-
+class Material;
 /**
  * @addtogroup textures
  * @{
@@ -295,8 +295,7 @@ private:
 
     bool m_bHasMipmaps;
 
-    /** shader program used by drawAtPoint and drawInRect */
-    CC_PROPERTY(CCGLProgram*, m_pShaderProgram, ShaderProgram);
+	Material* _material;
 };
 
 // end of textures group

@@ -101,7 +101,7 @@ bool CCParticleBatchNode::initWithTexture(CCTexture2D *tex, unsigned int capacit
     m_tBlendFunc.src = CC_BLEND_SRC;
     m_tBlendFunc.dst = CC_BLEND_DST;
 
-    setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColor));
+    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
     
     return true;
 }

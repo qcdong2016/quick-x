@@ -101,6 +101,7 @@
     <ClCompile Include="..\cocos2d-x\core\script_support\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCGLProgram.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\ccGLStateCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\shaders\CCMaterial.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimationCache.cpp" />
@@ -390,6 +391,7 @@
     <ClInclude Include="..\cocos2d-x\core\script_support\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccGLStateCache.h" />
+    <ClInclude Include="..\cocos2d-x\core\shaders\CCMaterial.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\CCShaderCache.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColorLengthTexture_frag.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionColorLengthTexture_vert.h" />

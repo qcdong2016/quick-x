@@ -72,6 +72,7 @@ static const GLchar * ccPositionLengthTextureColor_frag =
 #include "ccShader_PositionColorLengthTexture_frag.h"
 static const GLchar * ccPositionLengthTextureColor_vert =
 #include "ccShader_PositionColorLengthTexture_vert.h"
+#include "CCMaterial.h"
 
 
 NS_CC_BEGIN
@@ -113,7 +114,7 @@ bool CCShaderCache::init()
 }
 
 #define add(type) \
-	addShader(cc##type##_vert, cc##type##_frag)
+	addMaterialFromShaderSource(cc##type##_vert, cc##type##_frag)
 
 void CCShaderCache::loadDefaultShaders()
 {
@@ -130,24 +131,28 @@ void CCShaderCache::loadDefaultShaders()
 
 void CCShaderCache::reloadDefaultShaders()
 {
-	for (auto s : _defaultShaders) 
+	for (auto s : _shaders)
 	{
 		s->reset();
 		s->loadWithSource();
 	}
 }
 
-CCGLProgram* CCShaderCache::addShader(const char* v, const char* f)
+Material* CCShaderCache::addMaterialFromShaderSource(const char* v, const char* f)
 {
 	SharedPtr<CCGLProgram> shader(new CCGLProgram());
 	shader->initWithVertexShaderByteArray(v, f);
-	_defaultShaders.push_back(shader);
-	return shader.Get();
+	_shaders.push_back(shader);
+
+	SharedPtr<Material> mater(new Material(shader));
+	_materials.push_back(mater);
+
+	return mater.Get();
 }
 
-CCGLProgram* CCShaderCache::programForKey(int key)
-{// old api
-	return _defaultShaders[key];
+Material* CCShaderCache::getMaterial(int key)
+{
+	return _materials[key];
 }
 
 NS_CC_END

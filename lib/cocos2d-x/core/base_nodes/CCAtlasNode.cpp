@@ -51,7 +51,6 @@ CCAtlasNode::CCAtlasNode()
 , m_pTextureAtlas(NULL)
 , m_bIsOpacityModifyRGB(false)
 , m_uQuadsToDraw(0)
-, m_nUniformColor(0)
 , m_bIgnoreContentScaleFactor(false)
 {
 }
@@ -113,8 +112,8 @@ bool CCAtlasNode::initWithTexture(CCTexture2D* texture, unsigned int tileWidth, 
     m_uQuadsToDraw = itemsToRender;
 
     // shader stuff
-    setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTexture_uColor));
-    m_nUniformColor = glGetUniformLocation( getShaderProgram()->getProgram(), "u_color");
+    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture_uColor));
+	_material->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
 
     return true;
 }
@@ -147,9 +146,6 @@ void CCAtlasNode::draw(void)
 
     ccGLBlendFunc( m_tBlendFunc.src, m_tBlendFunc.dst );
 
-    GLfloat colors[4] = {m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f};
-    getShaderProgram()->setUniformLocationWith4fv(m_nUniformColor, colors, 1);
-
     m_pTextureAtlas->drawNumberOfQuads(m_uQuadsToDraw, 0);
 }
 
@@ -175,6 +171,7 @@ void CCAtlasNode::setColor(const ccColor3B& color3)
         tmp.g = tmp.g * m_displayedOpacity /255;
         tmp.b = tmp.b * m_displayedOpacity /255;
     }
+	_material->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
     CCNode::setColor(tmp);
 }
 

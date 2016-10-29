@@ -103,7 +103,7 @@ bool CCGridBase::initWithSize(const CCSize& gridSize, CCTexture2D *pTexture, boo
         bRet = false;
     }
     
-    m_pShaderProgram = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTexture);
+	_material = CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture);
     calculateVertexPoints();
 
     return bRet;
@@ -317,8 +317,8 @@ void CCGrid3D::blit(void)
     int n = m_sGridSize.width * m_sGridSize.height;
 
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords );
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();;
+
+	_material->use();
 
     //
     // Attributes
@@ -532,9 +532,7 @@ void CCTiledGrid3D::blit(void)
     int n = m_sGridSize.width * m_sGridSize.height;
 
     
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();
-
+    _material->use();
     //
     // Attributes
     //

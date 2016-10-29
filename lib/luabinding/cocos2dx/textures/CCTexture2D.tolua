@@ -198,9 +198,6 @@ class CCTexture2D : public CCObject
     /** content size */
     CCSize getContentSize();
 
-    /** shader program used by drawAtPoint and drawInRect */
-    CCGLProgram *getShaderProgram();
-
 	void drawAtPoint(CCPoint point);
 	void drawInRect(CCRect rect);
 

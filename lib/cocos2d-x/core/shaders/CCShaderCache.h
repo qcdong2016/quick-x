@@ -69,17 +69,14 @@ public:
     /** reload the default shaders */
     void reloadDefaultShaders();
 
-	CCGLProgram* addShader(const char* v, const char* f);
-
-    /** returns a GL program for a given key 
-     *  @js getProgram
-     */
-    CCGLProgram * programForKey(int key);
+	Material* addMaterialFromShaderSource(const char* v, const char* f);
+	/// for default materials.
+	Material* getMaterial(int key);
 private:
     bool init();
-    void loadDefaultShader(CCGLProgram *program, int type);
 
-	std::vector<SharedPtr<CCGLProgram> > _defaultShaders;
+	std::vector<SharedPtr<CCGLProgram> > _shaders;
+	std::vector<SharedPtr<Material> > _materials;
 };
 
 // end of shaders group

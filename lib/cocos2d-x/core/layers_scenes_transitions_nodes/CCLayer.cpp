@@ -262,7 +262,7 @@ bool CCLayerColor::initWithColor(const ccColor4B& color, GLfloat w, GLfloat h)
         updateColor();
         setContentSize(CCSizeMake(w, h));
 
-        setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionColor));
+        setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionColor));
     }
     return true;
 }

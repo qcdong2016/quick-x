@@ -535,6 +535,16 @@ void CCNode::setUserObject(CCObject *pUserObject)
     m_pUserObject = pUserObject;
 }
 
+Material* CCNode::getMaterial()
+{
+	return _material;
+}
+
+void CCNode::setMaterial(Material* m)
+{
+	_material = m;
+}
+
 void CCNode::setShaderProgram(CCGLProgram *pShaderProgram)
 {
     CC_SAFE_RETAIN(pShaderProgram);

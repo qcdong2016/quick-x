@@ -14,25 +14,54 @@ enum
     kCCShader_PositionLengthTextureColor,
 };
 
-class CCGLProgram : public CCObject
+class MaterialParam
 {
 public:
-    unsigned getUniformLocationForName @ get(const char* name);
-    void setUniformLocationWith1i @ set1i(unsigned location, unsigned i1);
-    void setUniformLocationWith2i @ set2i(unsigned location, unsigned i1, unsigned i2);
-    void setUniformLocationWith3i @ set3i(unsigned location, unsigned i1, unsigned i2, unsigned i3);
-    void setUniformLocationWith4i @ set4i(unsigned location, unsigned i1, unsigned i2, unsigned i3, unsigned i4);
 
-    void setUniformLocationWith1f @ set1f(unsigned location, float f1);
-    void setUniformLocationWith2f @ set2f(unsigned location, float f1, float f2);
-    void setUniformLocationWith3f @ set3f(unsigned location, float f1, float f2, float f3);
-    void setUniformLocationWith4f @ set4f(unsigned location, float f1, float f2, float f3, float f4);
+    enum
+    {
+        INT1,
+        INT2,
+        INT3,
+        INT4,
+        
+        FLOAT1,
+        FLOAT2,
+        FLOAT3,
+        FLOAT4,
+        
+        MAT,
+    } type;
+
+    void set1i(int v1);
+    void set2i(int v1, int v2);
+    void set3i(int v1, int v2, int v3);
+    void set4i(int v1, int v2, int v3, int v4);
+    void set1f(float v1);
+    void set2f(float v1, float v2);
+    void set3f(float v1, float v2, float v3);
+    void set4f(float v1, float v2, float v3, float v4);
 };
 
+class Material : public CCObject
+{
+public:
+    MaterialParam* getParam(const char* name);
+
+    void set1i(const char* name, int v1);
+    void set2i(const char* name, int v1, int v2);
+    void set3i(const char* name, int v1, int v2, int v3);
+    void set4i(const char* name, int v1, int v2, int v3, int v4);
+
+    void set1f(const char* name, float v1);
+    void set2f(const char* name, float v1, float v2);
+    void set3f(const char* name, float v1, float v2, float v3);
+    void set4f(const char* name, float v1, float v2, float v3, float v4);
+};
 class CCShaderCache
 {
 public:
     static CCShaderCache* sharedShaderCache();
-    CCGLProgram* programForKey(int key);
-    CCGLProgram* addShader(const char* v, const char* f);
+    Material* addMaterialFromShaderSource(const char* v, const char* f);
+    Material* getMaterial(int key);
 };

@@ -223,7 +223,7 @@ void CCTMXLayer::parseInternalProperties()
             {
                 alphaFuncValue = alphaFuncVal->floatValue();
             }
-            setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest));
+            setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColorAlphaTest));
 
             GLint alphaValueLocation = glGetUniformLocation(getShaderProgram()->getProgram(), kCCUniformAlphaTestValue);
 

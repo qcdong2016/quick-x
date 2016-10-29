@@ -52,12 +52,7 @@ enum {
 	kCCUniformPMatrix,
 	kCCUniformMVMatrix,
 	kCCUniformMVPMatrix,
-	kCCUniformTime,
-	kCCUniformSinTime,
-	kCCUniformCosTime,
-	kCCUniformRandom01,
 	kCCUniformSampler,
-    
 	kCCUniform_MAX,
 };
 enum
@@ -78,10 +73,6 @@ enum
 #define kCCUniformPMatrix_s				"CC_PMatrix"
 #define kCCUniformMVMatrix_s			"CC_MVMatrix"
 #define kCCUniformMVPMatrix_s			"CC_MVPMatrix"
-#define kCCUniformTime_s				"CC_Time"
-#define kCCUniformSinTime_s				"CC_SinTime"
-#define kCCUniformCosTime_s				"CC_CosTime"
-#define kCCUniformRandom01_s			"CC_Random01"
 #define kCCUniformSampler_s				"CC_Texture0"
 #define kCCUniformAlphaTestValue		"CC_alpha_value"
 
@@ -94,6 +85,16 @@ struct _hashUniformEntry;
 
 typedef void (*GLInfoFunction)(GLuint program, GLenum pname, GLint* params);
 typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length, GLchar* infolog);
+
+class CCGLProgram;
+class Uniform : public RefCounted
+{
+public:
+	std::string name;
+	GLint location;
+	GLenum type;
+	CCGLProgram* program;
+};
 
 /** CCGLProgram
  Class that implements a glProgram
@@ -280,6 +281,7 @@ private:
     const char* logForOpenGLObject(GLuint object, GLInfoFunction infoFunc, GLLogFunction logFunc);
 
 private:
+	friend class Material;
     GLuint            m_uProgram;
     GLuint            m_uVertShader;
     GLuint            m_uFragShader;
@@ -287,13 +289,8 @@ private:
 	std::string _vertSrc;
 	std::string _fragSrc;
 
-    GLint             m_uUniforms[kCCUniform_MAX];
-    bool              m_bUsesTime;
-    bool              m_hasShaderCompiler;
 	std::map<int, GLuint> _vertexAttributes;
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    std::string       m_shaderId;
-#endif
+	std::map<std::string, SharedPtr<Uniform> > _uniforms;
 };
 
 // end of shaders group

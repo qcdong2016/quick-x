@@ -154,7 +154,7 @@ protected:
     CCPoint m_obStep;
     CCGrabber *m_pGrabber;
     bool m_bIsTextureFlipped;
-    CCGLProgram* m_pShaderProgram;
+	Material* _material;
     ccDirectorProjection m_directorProjection;
 };
 

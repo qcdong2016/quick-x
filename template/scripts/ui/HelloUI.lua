@@ -16,15 +16,15 @@ function HelloUI:ctor()
 
     ui.newTTFLabel({size= 25, text = 'Hello World'}):addTo(self, 1);
     
-    imgui.addDraw(function()
-        imgui.Button('hello lua')
-    end)
+    -- imgui.addDraw(function()
+    --     imgui.Button('hello lua')
+    -- end)
 
-    imgui.addDraw(function()
-        imgui.Button('hello lua')
-    end)
+    -- imgui.addDraw(function()
+    --     imgui.Button('hello lua')
+    -- end)
 
-     CCLayerColor:create(ccc4(0,55,0,255)):addTo(self)
+     -- CCLayerColor:create(ccc4(0,55,0,255)):addTo(self)
      display.newRect(100,100):addTo(self)
 
     local spine = SkeletonAnimation:createWithFile("spineboy.json", "spineboy.atlas", 1)
@@ -35,23 +35,23 @@ function HelloUI:ctor()
     local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
     self:addChild(touchLayer)
 
-    function Button(text, func)
-        local btn = Label:create()
-        btn:ignoreContentAdaptWithSize(false)
-        btn:setSize(CCSize(500, 50))
-        btn:setFontSize(40)
-        btn:setText(text)
-        btn:setTouchEnabled(true)
-        btn:setTextHorizontalAlignment(kCCTextAlignmentCenter)
-        btn:setTextVerticalAlignment(kCCVerticalTextAlignmentCenter)
-        btn:addTouchEventListener(function(_, type)
-            if type == TOUCH_EVENT_ENDED then
-                if func then func(btn); end
-            end
-        end)
-        touchLayer:addWidget(btn)
-        return btn
-    end
+    -- function Button(text, func)
+    --     local btn = Label:create()
+    --     btn:ignoreContentAdaptWithSize(false)
+    --     btn:setSize(CCSize(500, 50))
+    --     btn:setFontSize(40)
+    --     btn:setText(text)
+    --     btn:setTouchEnabled(true)
+    --     btn:setTextHorizontalAlignment(kCCTextAlignmentCenter)
+    --     btn:setTextVerticalAlignment(kCCVerticalTextAlignmentCenter)
+    --     btn:addTouchEventListener(function(_, type)
+    --         if type == TOUCH_EVENT_ENDED then
+    --             if func then func(btn); end
+    --         end
+    --     end)
+    --     touchLayer:addWidget(btn)
+    --     return btn
+    -- end
 
     -- local btn = Button('send Event 1', function(self)
     --     self:sendEvent(1)
@@ -87,23 +87,35 @@ function HelloUI:ctor()
     local root = Widget:create()
     touchLayer:addWidget(root)
     local listView = ListView:create():addTo(root)
-    listView:setSize(CCSize(200, 500))
+    listView:setSize(CCSize(200, display.height))
+    listView:setPosition(ccp(display.width - 200, 0))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
     listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
     listView:setClippingEnabled(true)
 
     local filters = require "shaders"
 
+    local current = nil
     for k, v in pairs(filters) do
         local label = Label:create()
         label:setFontSize(30)
         label:setText(k)
         label:onClicked(function()
             print('use', k)
-            spine:setShaderProgram(v)
+            hello:setMaterial(v)
+            spine:setMaterial(v)
+            current = v;
         end)
         listView:pushBackCustomItem(label)
     end
+
+    imgui.addDraw(function()
+        if current then
+            for i, v in ipairs(current.editors) do
+                v()
+            end
+        end
+    end)
 end
 
 return HelloUI

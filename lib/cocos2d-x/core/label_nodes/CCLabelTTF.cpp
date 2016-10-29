@@ -132,7 +132,7 @@ bool CCLabelTTF::initWithString(const char *string, const char *fontName, float 
     if (CCSprite::init())
     {
         // shader program
-        this->setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(SHADER_PROGRAM));
+        setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(SHADER_PROGRAM));
         
         m_tDimensions = CCSizeMake(dimensions.width, dimensions.height);
         m_hAlignment  = hAlignment;
@@ -153,7 +153,7 @@ bool CCLabelTTF::initWithStringAndTextDefinition(const char *string, ccFontDefin
     if (CCSprite::init())
     {
         // shader program
-        this->setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(SHADER_PROGRAM));
+		setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(SHADER_PROGRAM));
         
         // prepare everythin needed to render the label
         _updateWithTextDefinition(textDefinition, false);

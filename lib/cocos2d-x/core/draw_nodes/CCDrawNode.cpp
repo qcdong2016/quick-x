@@ -157,7 +157,7 @@ bool CCDrawNode::init()
     m_sBlendFunc.src = CC_BLEND_SRC;
     m_sBlendFunc.dst = CC_BLEND_DST;
 
-    setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionLengthTextureColor));
+    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionLengthTextureColor));
     
     ensureCapacity(512);
     

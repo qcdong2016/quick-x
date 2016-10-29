@@ -36,6 +36,15 @@ THE SOFTWARE.
 #include "kazmath/kazmath.h"
 #include "IO/FileSystem.h"
 
+
+#define GL_ASSERT( gl_code ) do \
+    { \
+        gl_code; \
+        GLuint __gl_error_code = glGetError(); \
+        CC_ASSERT(__gl_error_code == GL_NO_ERROR); \
+    } while(0)
+
+
 NS_CC_BEGIN
 
 typedef struct _hashUniformEntry
@@ -49,10 +58,7 @@ CCGLProgram::CCGLProgram()
 : m_uProgram(0)
 , m_uVertShader(0)
 , m_uFragShader(0)
-, m_bUsesTime(false)
-, m_hasShaderCompiler(true)
 {
-    memset(m_uUniforms, 0, sizeof(m_uUniforms));
 }
 
 CCGLProgram::~CCGLProgram()
@@ -153,10 +159,6 @@ bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* sour
         "uniform mat4 CC_PMatrix;\n"
         "uniform mat4 CC_MVMatrix;\n"
         "uniform mat4 CC_MVPMatrix;\n"
-        "uniform vec4 CC_Time;\n"
-        "uniform vec4 CC_SinTime;\n"
-        "uniform vec4 CC_CosTime;\n"
-        "uniform vec4 CC_Random01;\n"
         "//CC INCLUDES END\n\n",
         source,
     };
@@ -210,35 +212,11 @@ void CCGLProgram::addAttribute(const char* attributeName, GLuint index)
 
 void CCGLProgram::updateUniforms()
 {
-    m_uUniforms[kCCUniformPMatrix] = glGetUniformLocation(m_uProgram, kCCUniformPMatrix_s);
-	m_uUniforms[kCCUniformMVMatrix] = glGetUniformLocation(m_uProgram, kCCUniformMVMatrix_s);
-	m_uUniforms[kCCUniformMVPMatrix] = glGetUniformLocation(m_uProgram, kCCUniformMVPMatrix_s);
-	
-	m_uUniforms[kCCUniformTime] = glGetUniformLocation(m_uProgram, kCCUniformTime_s);
-	m_uUniforms[kCCUniformSinTime] = glGetUniformLocation(m_uProgram, kCCUniformSinTime_s);
-	m_uUniforms[kCCUniformCosTime] = glGetUniformLocation(m_uProgram, kCCUniformCosTime_s);
-	
-	m_bUsesTime = (
-                 m_uUniforms[kCCUniformTime] != -1 ||
-                 m_uUniforms[kCCUniformSinTime] != -1 ||
-                 m_uUniforms[kCCUniformCosTime] != -1
-                 );
-    
-	m_uUniforms[kCCUniformRandom01] = glGetUniformLocation(m_uProgram, kCCUniformRandom01_s);
-
-    m_uUniforms[kCCUniformSampler] = glGetUniformLocation(m_uProgram, kCCUniformSampler_s);
-
     this->use();
-    
     // Since sample most probably won't change, set it to 0 now.
-    this->setUniformLocationWith1i(m_uUniforms[kCCUniformSampler], 0);
+    this->setUniformLocationWith1i(glGetUniformLocation(m_uProgram, kCCUniformSampler_s), 0);
 }
-#define GL_ASSERT( gl_code ) do \
-    { \
-        gl_code; \
-        GLuint __gl_error_code = glGetError(); \
-        CC_ASSERT(__gl_error_code == GL_NO_ERROR); \
-    } while(0)
+
 
 bool CCGLProgram::link()
 {
@@ -273,6 +251,59 @@ bool CCGLProgram::link()
 	attribLocation = glGetAttribLocation(m_uProgram, kCCAttributeNamePosition);
 	if (attribLocation != -1)
 		_vertexAttributes[kCCVertexAttrib_Position] = attribLocation;
+
+
+	// Query and store uniforms from the program.
+	GLint activeUniforms;
+	GLint length;
+	
+	GL_ASSERT(glGetProgramiv(m_uProgram, GL_ACTIVE_UNIFORMS, &activeUniforms));
+	if (activeUniforms > 0)
+	{
+		GL_ASSERT(glGetProgramiv(m_uProgram, GL_ACTIVE_UNIFORM_MAX_LENGTH, &length));
+		if (length > 0)
+		{
+			GLchar* uniformName = new GLchar[length + 1];
+			GLint uniformSize;
+			GLenum uniformType;
+			GLint uniformLocation;
+			unsigned int samplerIndex = 0;
+			for (int i = 0; i < activeUniforms; ++i)
+			{
+				// Query uniform info.
+				GL_ASSERT(glGetActiveUniform(m_uProgram, i, length, NULL, &uniformSize, &uniformType, uniformName));
+				uniformName[length] = '\0';  // null terminate
+				if (length > 3)
+				{
+					// If this is an array uniform, strip array indexers off it since GL does not
+					// seem to be consistent across different drivers/implementations in how it returns
+					// array uniforms. On some systems it will return "u_matrixArray", while on others
+					// it will return "u_matrixArray[0]".
+					char* c = strrchr(uniformName, '[');
+					if (c)
+					{
+						*c = '\0';
+					}
+				}
+
+				// Query the pre-assigned uniform location.
+				GL_ASSERT(uniformLocation = glGetUniformLocation(m_uProgram, uniformName));
+
+				SharedPtr<Uniform> uniform(new Uniform());
+				uniform->program = this;
+				uniform->name = uniformName;
+				uniform->location = uniformLocation;
+				uniform->type = uniformType;
+				if (uniformType == GL_SAMPLER_2D || uniformType == GL_SAMPLER_CUBE)
+				{
+					samplerIndex += uniformSize;
+				}
+
+				_uniforms[uniformName] = uniform;
+			}
+			CC_SAFE_DELETE_ARRAY(uniformName);
+		}
+	}
 
 #if _DEBUG
     glGetProgramiv(m_uProgram, GL_LINK_STATUS, &status);
@@ -421,44 +452,14 @@ void CCGLProgram::setUniformLocationWithMatrix4fv(GLint location, GLfloat* matri
 
 void CCGLProgram::setUniformsForBuiltins()
 {
-    kmMat4 matrixP;
-	kmMat4 matrixMV;
-	kmMat4 matrixMVP;
-	
-	kmGLGetMatrix(KM_GL_PROJECTION, &matrixP);
-	kmGLGetMatrix(KM_GL_MODELVIEW, &matrixMV);
-	
-	kmMat4Multiply(&matrixMVP, &matrixP, &matrixMV);
     
-    setUniformLocationWithMatrix4fv(m_uUniforms[kCCUniformPMatrix], matrixP.mat, 1);
-    setUniformLocationWithMatrix4fv(m_uUniforms[kCCUniformMVMatrix], matrixMV.mat, 1);
-    setUniformLocationWithMatrix4fv(m_uUniforms[kCCUniformMVPMatrix], matrixMVP.mat, 1);
-	
-	if(m_bUsesTime)
-    {
-		CCDirector *director = CCDirector::sharedDirector();
-		// This doesn't give the most accurate global time value.
-		// Cocos2D doesn't store a high precision time value, so this will have to do.
-		// Getting Mach time per frame per shader using time could be extremely expensive.
-        float time = director->getTotalFrames() * director->getAnimationInterval();
-		
-        setUniformLocationWith4f(m_uUniforms[kCCUniformTime], time/10.0, time, time*2, time*4);
-        setUniformLocationWith4f(m_uUniforms[kCCUniformSinTime], time/8.0, time/4.0, time/2.0, sinf(time));
-        setUniformLocationWith4f(m_uUniforms[kCCUniformCosTime], time/8.0, time/4.0, time/2.0, cosf(time));
-	}
-	
-	if (m_uUniforms[kCCUniformRandom01] != -1)
-    {
-        setUniformLocationWith4f(m_uUniforms[kCCUniformRandom01], CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1());
-	}
 }
 
 void CCGLProgram::reset()
 {
     m_uVertShader = m_uFragShader = 0;
-    memset(m_uUniforms, 0, sizeof(m_uUniforms));
-    // it is already deallocated by android
-    //ccGLDeleteProgram(m_uProgram);
+	_uniforms.clear();
+	_vertexAttributes.clear();
     m_uProgram = 0;
 }
 
