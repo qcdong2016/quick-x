@@ -40,7 +40,9 @@ local grass_frag          = load("shaders/grass.frag")
 local ccPositionTextureColor_vert = load("shaders/ccPositionTextureColor.vert")
 local ccPositionTexture_vert = load("shaders/ccPositionTexture.vert")
 
-require "imgui_ctrl"
+if imgui then
+    require "imgui_ctrl"
+end
 local ctrls = {
     float_ctrl,
     float2_ctrl,
@@ -60,13 +62,14 @@ local function make(v, f, args)
         end
 
         set(filter, name, unpack(value_table))
-
-        table.insert(editors, ctrl(name, function()
-            return unpack(value_table)
-        end, function(...)
-            value_table = {...}
-            set(filter, name, ...)
-        end))
+        if imgui then
+            table.insert(editors, ctrl(name, function()
+                return unpack(value_table)
+            end, function(...)
+                value_table = {...}
+                set(filter, name, ...)
+            end))
+        end
     end
 
     filter.editors = editors

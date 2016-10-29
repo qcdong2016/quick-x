@@ -116,7 +116,7 @@ bool cocos2d::CCGLProgram::loadWithSource()
 	}
 
 	link();
-	updateUniforms();
+	//updateUniforms();
 
 	CHECK_GL_ERROR_DEBUG();
 
@@ -321,7 +321,7 @@ bool CCGLProgram::link()
 
 bool CCGLProgram::getAttribLocation(GLuint type, GLuint& loc)
 {
-	auto& it = _vertexAttributes.find(type);
+	const auto& it = _vertexAttributes.find(type);
 	if (it != _vertexAttributes.end()) {
 		loc = it->second;
 		return true;

@@ -1,6 +1,6 @@
 #include "CCMaterial.h"
-#include "kazmath\mat4.h"
-#include "kazmath\GL\matrix.h"
+#include "kazmath/mat4.h"
+#include "kazmath/GL/matrix.h"
 
 NS_CC_BEGIN
 

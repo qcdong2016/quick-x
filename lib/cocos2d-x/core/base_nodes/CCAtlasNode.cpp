@@ -93,6 +93,11 @@ bool CCAtlasNode::initWithTexture(CCTexture2D* texture, unsigned int tileWidth, 
     m_tBlendFunc.dst = CC_BLEND_DST;
 
     m_pTextureAtlas = new CCTextureAtlas();
+    
+    
+    // shader stuff
+    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture_uColor));
+    ccGLUseProgram(_material->getGLProgram());
     m_pTextureAtlas->initWithTexture(texture, itemsToRender);
 
     if (! m_pTextureAtlas)
@@ -111,8 +116,6 @@ bool CCAtlasNode::initWithTexture(CCTexture2D* texture, unsigned int tileWidth, 
 
     m_uQuadsToDraw = itemsToRender;
 
-    // shader stuff
-    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture_uColor));
 	_material->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
 
     return true;

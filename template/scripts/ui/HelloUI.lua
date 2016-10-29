@@ -91,7 +91,7 @@ function HelloUI:ctor()
     listView:setPosition(ccp(display.width - 200, 100))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
     listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
-    listView:setClippingEnabled(true)
+    listView:setClippingEnabled(false)
 
     local filters = require "shaders"
     local currentLabel = nil
@@ -115,13 +115,15 @@ function HelloUI:ctor()
         listView:pushBackCustomItem(label)
     end
 
-    imgui.addDraw(function()
-        if currentMaterial then
-            for i, v in ipairs(currentMaterial.editors) do
-                v()
+    if imgui then
+        imgui.addDraw(function()
+            if currentMaterial then
+                for i, v in ipairs(currentMaterial.editors) do
+                    v()
+                end
             end
-        end
-    end)
+        end)
+    end
 end
 
 return HelloUI

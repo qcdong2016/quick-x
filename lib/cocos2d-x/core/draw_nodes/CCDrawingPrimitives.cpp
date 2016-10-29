@@ -56,7 +56,7 @@ NS_CC_BEGIN
 static bool s_bInitialized = false;
 static Material* _material = NULL;
 static int s_nColorLocation = -1;
-static ccColor4F s_tColor = {1.0f,1.0f,1.0f,1.0f};
+static ccColor4B s_tColor = {255, 255, 255, 255};
 static int s_nPointSizeLocation = -1;
 static GLfloat s_fPointSize = 1.0f;
 
@@ -92,6 +92,9 @@ static void lazy_init( void )
     if( ! s_bInitialized ) {
 		_material = CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_Position_uColor);
         s_bInitialized = true;
+        
+        ccDrawColor4B(255, 255, 255, 255);
+        ccPointSize(1);
     }
 }
 
@@ -409,12 +412,7 @@ void ccDrawCubicBezier(const CCPoint& origin, const CCPoint& control1, const CCP
 
 void ccDrawColor4F( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
 {
-	lazy_init();
-    s_tColor.r = r;
-    s_tColor.g = g;
-    s_tColor.b = b;
-    s_tColor.a = a;
-	_material->set4f("u_color", r, g, b, a);
+    ccDrawColor4B(r*255, g*255, b*255, a*255);
 }
 
 void ccPointSize( GLfloat pointSize )
@@ -427,10 +425,10 @@ void ccPointSize( GLfloat pointSize )
 void ccDrawColor4B( GLubyte r, GLubyte g, GLubyte b, GLubyte a )
 {
 	lazy_init();
-	s_tColor.r = r / 255.0f;
-    s_tColor.g = g/255.0f;
-    s_tColor.b = b/255.0f;
-    s_tColor.a = a/255.0f;
+	s_tColor.r = r;
+    s_tColor.g = g;
+    s_tColor.b = b;
+    s_tColor.a = a;
 	_material->set4f("u_color", r, g, b, a);
 }
 
