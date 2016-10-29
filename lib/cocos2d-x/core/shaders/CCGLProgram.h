@@ -52,34 +52,27 @@ enum {
 	kCCUniformPMatrix,
 	kCCUniformMVMatrix,
 	kCCUniformMVPMatrix,
-	kCCUniformTime,
-	kCCUniformSinTime,
-	kCCUniformCosTime,
-	kCCUniformRandom01,
 	kCCUniformSampler,
-    
 	kCCUniform_MAX,
 };
+enum
+{
+    kCCShader_PositionTextureColor,
+    kCCShader_PositionTextureGray,
+    kCCShader_PositionTextureColorAlphaTest,
+    kCCShader_PositionColor,
+    kCCShader_PositionTexture,
+    kCCShader_PositionTexture_uColor,
+    kCCShader_PositionTextureA8Color,
+    kCCShader_Position_uColor,
+    kCCShader_PositionLengthTextureColor,
+};
 
-#define kCCShader_PositionTextureColor              "ShaderPositionTextureColor"
-#define kCCShader_PositionTextureGray               "ShaderPositionTextureGray"
-#define kCCShader_PositionTextureColorAlphaTest     "ShaderPositionTextureColorAlphaTest"
-#define kCCShader_PositionColor                     "ShaderPositionColor"
-#define kCCShader_PositionTexture                   "ShaderPositionTexture"
-#define kCCShader_PositionTexture_uColor            "ShaderPositionTexture_uColor"
-#define kCCShader_PositionTextureA8Color            "ShaderPositionTextureA8Color"
-#define kCCShader_Position_uColor                   "ShaderPosition_uColor"
-#define kCCShader_PositionLengthTexureColor         "ShaderPositionLengthTextureColor"
-#define kCCShader_ControlSwitch                     "Shader_ControlSwitch"
 
 // uniform names
 #define kCCUniformPMatrix_s				"CC_PMatrix"
 #define kCCUniformMVMatrix_s			"CC_MVMatrix"
 #define kCCUniformMVPMatrix_s			"CC_MVPMatrix"
-#define kCCUniformTime_s				"CC_Time"
-#define kCCUniformSinTime_s				"CC_SinTime"
-#define kCCUniformCosTime_s				"CC_CosTime"
-#define kCCUniformRandom01_s			"CC_Random01"
 #define kCCUniformSampler_s				"CC_Texture0"
 #define kCCUniformAlphaTestValue		"CC_alpha_value"
 
@@ -92,6 +85,16 @@ struct _hashUniformEntry;
 
 typedef void (*GLInfoFunction)(GLuint program, GLenum pname, GLint* params);
 typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length, GLchar* infolog);
+
+class CCGLProgram;
+class Uniform : public RefCounted
+{
+public:
+	std::string name;
+	GLint location;
+	GLenum type;
+	CCGLProgram* program;
+};
 
 /** CCGLProgram
  Class that implements a glProgram
@@ -112,21 +115,20 @@ public:
      * @lua NA
      */
     virtual ~CCGLProgram();
-    /** Initializes the CCGLProgram with a vertex and fragment with bytes array 
-     * @js  initWithString
-     * @lua NA
-     */
-    bool initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    /** Initializes the CCGLProgram with precompiled shader program */
-    bool initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
-#endif
     /** Initializes the CCGLProgram with a vertex and fragment with contents of filenames 
      * @js  init
      * @lua NA
      */
     bool initWithVertexShaderFilename(const char* vShaderFilename, const char* fShaderFilename);
+	/** Initializes the CCGLProgram with a vertex and fragment with bytes array
+	* @js  initWithString
+	* @lua NA
+	*/
+	bool initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
+
+	bool loadWithSource();
+
     /**  It will add a new attribute to the shader 
      * @lua NA
      */
@@ -271,24 +273,24 @@ public:
      */
     inline const GLuint getProgram() { return m_uProgram; }
 
+	bool getAttribLocation(GLuint type, GLuint& loc);
+
 private:
-    bool updateUniformLocation(GLint location, GLvoid* data, unsigned int bytes);
     const char* description();
     bool compileShader(GLuint * shader, GLenum type, const GLchar* source);
     const char* logForOpenGLObject(GLuint object, GLInfoFunction infoFunc, GLLogFunction logFunc);
 
 private:
+	friend class Material;
     GLuint            m_uProgram;
     GLuint            m_uVertShader;
     GLuint            m_uFragShader;
-    GLint             m_uUniforms[kCCUniform_MAX];
-    struct _hashUniformEntry* m_pHashForUniforms;
-    bool              m_bUsesTime;
-    bool              m_hasShaderCompiler;
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    std::string       m_shaderId;
-#endif
+	std::string _vertSrc;
+	std::string _fragSrc;
+
+	std::map<int, GLuint> _vertexAttributes;
+	std::map<std::string, SharedPtr<Uniform> > _uniforms;
 };
 
 // end of shaders group

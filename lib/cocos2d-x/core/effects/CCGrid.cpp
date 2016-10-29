@@ -103,7 +103,7 @@ bool CCGridBase::initWithSize(const CCSize& gridSize, CCTexture2D *pTexture, boo
         bRet = false;
     }
     
-    m_pShaderProgram = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTexture);
+	_material = CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture);
     calculateVertexPoints();
 
     return bRet;
@@ -317,8 +317,8 @@ void CCGrid3D::blit(void)
     int n = m_sGridSize.width * m_sGridSize.height;
 
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords );
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();;
+
+	_material->use();
 
     //
     // Attributes
@@ -329,20 +329,20 @@ void CCGrid3D::blit(void)
 
     // position
     setGLBufferData(m_pVertices, numOfPoints * sizeof(ccVertex3F), 0);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     // texCoords
     setGLBufferData(m_pTexCoordinates, numOfPoints * sizeof(ccVertex2F), 1);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
     setGLIndexData(m_pIndices, n * 12, 0);
     glDrawElements(GL_TRIANGLES, (GLsizei) n*6, GL_UNSIGNED_SHORT, 0);
 #else
     // position
-    glVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, m_pVertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, m_pVertices);
 
     // texCoords
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, m_pTexCoordinates);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, m_pTexCoordinates);
 
     glDrawElements(GL_TRIANGLES, (GLsizei) n*6, GL_UNSIGNED_SHORT, m_pIndices);
 #endif // EMSCRIPTEN
@@ -532,9 +532,7 @@ void CCTiledGrid3D::blit(void)
     int n = m_sGridSize.width * m_sGridSize.height;
 
     
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();
-
+    _material->use();
     //
     // Attributes
     //
@@ -544,20 +542,20 @@ void CCTiledGrid3D::blit(void)
 
     // position
     setGLBufferData(m_pVertices, (numQuads*4*sizeof(ccVertex3F)), 0);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     // texCoords
     setGLBufferData(m_pTexCoordinates, (numQuads*4*sizeof(ccVertex2F)), 1);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
     setGLIndexData(m_pIndices, n * 12, 0);
     glDrawElements(GL_TRIANGLES, (GLsizei) n*6, GL_UNSIGNED_SHORT, 0);
 #else
     // position
-    glVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, m_pVertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, 0, m_pVertices);
 
     // texCoords
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, m_pTexCoordinates);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, m_pTexCoordinates);
 
     glDrawElements(GL_TRIANGLES, (GLsizei)n*6, GL_UNSIGNED_SHORT, m_pIndices);
 #endif // EMSCRIPTEN

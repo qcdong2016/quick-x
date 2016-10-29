@@ -71,8 +71,6 @@ protected:
 
     // quads to draw
     CC_PROPERTY(unsigned int, m_uQuadsToDraw, QuadsToDraw);
-    // color uniform
-    GLint    m_nUniformColor;
     // This varible is only used for CCLabelAtlas FPS display. So plz don't modify its value.
     bool m_bIgnoreContentScaleFactor;
     

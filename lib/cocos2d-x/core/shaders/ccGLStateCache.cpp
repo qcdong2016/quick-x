@@ -45,6 +45,8 @@ static bool        s_bVertexAttribTexCoords = false;
 
 #define kCCMaxActiveTexture 16
 
+static CCGLProgram* s_lastGLProgram = nullptr;
+
 static GLuint    s_uCurrentShaderProgram = -1;
 static GLuint    s_uCurrentBoundTexture[kCCMaxActiveTexture] =  {(GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, (GLuint)-1,(GLuint)-1,(GLuint)-1,(GLuint)-1, };
 static GLenum    s_eBlendingSource = -1;
@@ -96,8 +98,10 @@ void ccGLDeleteProgram( GLuint program )
     glDeleteProgram( program );
 }
 
-void ccGLUseProgram( GLuint program )
+void ccGLUseProgram(CCGLProgram* ccprogram )
 {
+	s_lastGLProgram = ccprogram;
+	GLuint program = ccprogram->getProgram();
 #if CC_ENABLE_GL_STATE_CACHE
     if( program != s_uCurrentShaderProgram ) {
         s_uCurrentShaderProgram = program;
@@ -231,42 +235,55 @@ void ccGLEnable(ccGLServerState flags)
 void ccGLEnableVertexAttribs( unsigned int flags )
 {
     ccGLBindVAO(0);
-    
-    /* Position */
-    bool enablePosition = flags & kCCVertexAttribFlag_Position;
-
-    if( enablePosition != s_bVertexAttribPosition ) {
-        if( enablePosition )
-            glEnableVertexAttribArray( kCCVertexAttrib_Position );
-        else
-            glDisableVertexAttribArray( kCCVertexAttrib_Position );
-
-        s_bVertexAttribPosition = enablePosition;
-    }
-
-    /* Color */
-    bool enableColor = (flags & kCCVertexAttribFlag_Color) != 0 ? true : false;
-
-    if( enableColor != s_bVertexAttribColor ) {
-        if( enableColor )
-            glEnableVertexAttribArray( kCCVertexAttrib_Color );
-        else
-            glDisableVertexAttribArray( kCCVertexAttrib_Color );
-
-        s_bVertexAttribColor = enableColor;
-    }
-
-    /* Tex Coords */
-    bool enableTexCoords = (flags & kCCVertexAttribFlag_TexCoords) != 0 ? true : false;
-
-    if( enableTexCoords != s_bVertexAttribTexCoords ) {
-        if( enableTexCoords )
-            glEnableVertexAttribArray( kCCVertexAttrib_TexCoords );
-        else
-            glDisableVertexAttribArray( kCCVertexAttrib_TexCoords );
-
-        s_bVertexAttribTexCoords = enableTexCoords;
-    }
+	glDisableVertexAttribArray(kCCVertexAttrib_Position);
+	glDisableVertexAttribArray(kCCVertexAttrib_Color);
+	glDisableVertexAttribArray(kCCVertexAttrib_TexCoords);
+//     /* Position */
+//     bool enablePosition = flags & kCCVertexAttribFlag_Position;
+// 
+//     if( enablePosition != s_bVertexAttribPosition ) {
+//         if( enablePosition )
+//             glEnableVertexAttribArray( kCCVertexAttrib_Position );
+//         else
+//             glDisableVertexAttribArray( kCCVertexAttrib_Position );
+// 
+//         s_bVertexAttribPosition = enablePosition;
+//     }
+// 
+//     /* Color */
+//     bool enableColor = (flags & kCCVertexAttribFlag_Color) != 0 ? true : false;
+// 
+//     if( enableColor != s_bVertexAttribColor ) {
+//         if( enableColor )
+//             glEnableVertexAttribArray( kCCVertexAttrib_Color );
+//         else
+//             glDisableVertexAttribArray( kCCVertexAttrib_Color );
+// 
+//         s_bVertexAttribColor = enableColor;
+//     }
+// 
+//     /* Tex Coords */
+//     bool enableTexCoords = (flags & kCCVertexAttribFlag_TexCoords) != 0 ? true : false;
+// 
+//     if( enableTexCoords != s_bVertexAttribTexCoords ) {
+//         if( enableTexCoords )
+//             glEnableVertexAttribArray( kCCVertexAttrib_TexCoords );
+//         else
+//             glDisableVertexAttribArray( kCCVertexAttrib_TexCoords );
+// 
+//         s_bVertexAttribTexCoords = enableTexCoords;
+//     }
+}
+void ccSetVertexAttribPointer(GLuint index, GLuint size, GLuint type, GLuint normalized, GLuint stride, const void* p)
+{
+	// TODO: re impl
+	GLuint loc;
+	bool has = s_lastGLProgram->getAttribLocation(index, loc);
+	if (has) 
+	{
+		glVertexAttribPointer(loc, size, type, normalized, stride, p);
+		glEnableVertexAttribArray(loc);
+	}
 }
 
 //#pragma mark - GL Uniforms functions

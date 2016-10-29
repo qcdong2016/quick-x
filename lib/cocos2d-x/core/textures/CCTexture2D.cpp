@@ -49,6 +49,7 @@ THE SOFTWARE.
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     #include "CCTextureCache.h"
 #endif
+#include "shaders/CCMaterial.h"
 
 NS_CC_BEGIN
 
@@ -70,7 +71,7 @@ CCTexture2D::CCTexture2D()
 , m_fMaxT(0.0)
 , m_bHasPremultipliedAlpha(false)
 , m_bHasMipmaps(false)
-, m_pShaderProgram(NULL)
+, _material(NULL)
 {
 }
 
@@ -81,7 +82,6 @@ CCTexture2D::~CCTexture2D()
 #endif
 
     CCLOGINFO("cocos2d: deallocing CCTexture2D %u.", m_uName);
-    CC_SAFE_RELEASE(m_pShaderProgram);
 
     if(m_uName)
     {
@@ -142,18 +142,6 @@ GLfloat CCTexture2D::getMaxT()
 void CCTexture2D::setMaxT(GLfloat maxT)
 {
     m_fMaxT = maxT;
-}
-
-CCGLProgram* CCTexture2D::getShaderProgram(void)
-{
-    return m_pShaderProgram;
-}
-
-void CCTexture2D::setShaderProgram(CCGLProgram* pShaderProgram)
-{
-    CC_SAFE_RETAIN(pShaderProgram);
-    CC_SAFE_RELEASE(m_pShaderProgram);
-    m_pShaderProgram = pShaderProgram;
 }
 
 void CCTexture2D::releaseData(void *data)
@@ -257,7 +245,7 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     m_bHasPremultipliedAlpha = false;
     m_bHasMipmaps = false;
 
-    setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTexture));
+	_material = (CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture));
 
     return true;
 }
@@ -639,22 +627,12 @@ void CCTexture2D::drawAtPoint(const CCPoint& point)
         width + point.x,    height  + point.y };
 
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords );
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();
+	_material->use();
 
     ccGLBindTexture2D( m_uName );
 
-
-#ifdef EMSCRIPTEN
-    setGLBufferData(vertices, 8 * sizeof(GLfloat), 0);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-    setGLBufferData(coordinates, 8 * sizeof(GLfloat), 1);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
-#else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, coordinates);
-#endif // EMSCRIPTEN
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, coordinates);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -673,21 +651,12 @@ void CCTexture2D::drawInRect(const CCRect& rect)
         rect.origin.x + rect.size.width,        rect.origin.y + rect.size.height,        /*0.0f*/ };
 
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords );
-    m_pShaderProgram->use();
-    m_pShaderProgram->setUniformsForBuiltins();
+	_material->use();
 
     ccGLBindTexture2D( m_uName );
 
-#ifdef EMSCRIPTEN
-    setGLBufferData(vertices, 8 * sizeof(GLfloat), 0);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-    setGLBufferData(coordinates, 8 * sizeof(GLfloat), 1);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, 0);
-#else
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-    glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, coordinates);
-#endif // EMSCRIPTEN
+    ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    ccSetVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, 0, coordinates);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
@@ -772,7 +741,7 @@ void CCTexture2D::generateMipmap()
 
 bool CCTexture2D::hasMipmaps()
 {
-    return m_bHasMipmaps;
+    return m_bHasMipmaps; 
 }
 
 void CCTexture2D::setTexParameters(ccTexParams *texParams)

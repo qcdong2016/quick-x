@@ -85,7 +85,6 @@ LOCAL_SRC_FILES := \
     platform/android/jni/JniHelper.cpp \
     platform/android/jni/IMEJni.cpp \
     platform/android/jni/TouchesJni.cpp \
-    platform/android/jni/DPIJni.cpp \
     script_support/CCScriptSupport.cpp \
     shaders/ccShaders.cpp \
     shaders/CCGLProgram.cpp \
