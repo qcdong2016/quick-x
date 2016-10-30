@@ -61,12 +61,12 @@ local function make(v, f, args)
 
         set(filter, name, unpack(value_table))
 
-        table.insert(editors, ctrl(name, function()
-            return unpack(value_table)
-        end, function(...)
-            value_table = {...}
-            set(filter, name, ...)
-        end))
+        -- table.insert(editors, ctrl(name, function()
+        --     return unpack(value_table)
+        -- end, function(...)
+        --     value_table = {...}
+        --     set(filter, name, ...)
+        -- end))
     end
 
     filter.editors = editors
@@ -139,6 +139,11 @@ local ZoomBlurFilter = make(ccPositionTexture_vert, zoom_blur_frag, {
 local MotionBlurFilter = make(motion_blur_vert, motion_blur_frag, {
     ['u_directionalTexelStep'] = { 0.0, 0.0 },
 })
+
+local Wave = make(ccPositionTextureColor_vert, load('shaders/wave.frag'), {
+    ['u_time'] = { 0.0, },
+    ['u_resolution'] = { 500.0, 500.0},
+})
 -- local SharpenFilter = build(sharpen_vert, sharpen_frag);
 -- SharpenFilter:set1f('u_sharpness', 0)
 -- SharpenFilter:set1f('u_widthFactor', 0)
@@ -193,6 +198,7 @@ local MotionBlurFilter = make(motion_blur_vert, motion_blur_frag, {
 
 
 return  {
+    Wave         = Wave,
     Sharpen      = SharpenFilter,
     Sepia        = SepiaFilter,
     Saturation   = SaturationFilter,
