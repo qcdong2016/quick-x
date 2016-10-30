@@ -64,10 +64,15 @@ void MaterialParam::set4f(float v1, float v2, float v3, float v4)
 	type = FLOAT4;
 }
 
-void cocos2d::MaterialParam::setmat(float* mat)
+void MaterialParam::setmat(float* mat)
 {
 	value.ptr_ = mat;
 	type = MAT;
+}
+
+void MaterialParam::setSampler(unsigned i)
+{
+    type = SAMPLER;
 }
 
 MaterialParam* Material::getParam(const char* name)
@@ -97,6 +102,11 @@ Material::Material(CCGLProgram* program)
 	_matrixP = getParam(kCCUniformPMatrix_s);
 	_matrixMV = getParam(kCCUniformMVMatrix_s);
 	_matrixMVP = getParam(kCCUniformMVPMatrix_s);
+    
+    MaterialParam* p = getParam(kCCUniformSampler_s);
+    // Since sample most probably won't change, set it to 0 now.
+    if (p)
+        p->setSampler(0);
 }
 
 void Material::set1i(const char* name, int v1)                                { getParam(name)->set1i(v1); }
@@ -164,6 +174,9 @@ void Material::bindValue()
 		case MaterialParam::MAT:
 			_program->setUniformLocationWithMatrix4fv(param->_uniform->location, (GLfloat*)param->value.ptr_, 1);
 			break;
+        case MaterialParam::SAMPLER:
+            _program->setUniformLocationWith1i(param->_uniform->location, 0);
+            break;
 		default:
 			break;
 		}

@@ -128,10 +128,12 @@ local VBlurFilter = make(vblur_vert, blur_frag, {
     
 local GaussianHBlurFilter = make(ccPositionTextureColor_vert, gaussian_hblur_frag, {
     ['u_resolution'] = { 800 },
+    ['u_radius'] = { 0.1 },
 })
 
 local GaussianVBlurFilter = make(ccPositionTextureColor_vert, gaussian_vblur_frag, {
     ['u_resolution'] = { 800 },
+    ['u_radius'] = { 0.1 },
 })
 
 local ZoomBlurFilter = make(ccPositionTexture_vert, zoom_blur_frag, {

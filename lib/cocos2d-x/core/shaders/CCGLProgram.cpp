@@ -212,9 +212,6 @@ void CCGLProgram::addAttribute(const char* attributeName, GLuint index)
 
 void CCGLProgram::updateUniforms()
 {
-    this->use();
-    // Since sample most probably won't change, set it to 0 now.
-    this->setUniformLocationWith1i(glGetUniformLocation(m_uProgram, kCCUniformSampler_s), 0);
 }
 
 

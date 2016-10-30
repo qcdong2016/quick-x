@@ -15,6 +15,7 @@ public:
         INT1,INT2,INT3,INT4,
         FLOAT1,FLOAT2,FLOAT3,FLOAT4,
 		MAT,
+        SAMPLER
     } type;
 
 	MaterialParam(Uniform* u) : _uniform(u) {};
@@ -29,6 +30,7 @@ public:
 	void set4f(float v1, float v2, float v3, float v4);
 
 	void setmat(float* mat);
+    void setSampler(unsigned i);
 private:
 	friend class Material;
 	Uniform* _uniform;
