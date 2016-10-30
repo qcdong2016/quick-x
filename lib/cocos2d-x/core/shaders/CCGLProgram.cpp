@@ -116,7 +116,7 @@ bool cocos2d::CCGLProgram::loadWithSource()
 	}
 
 	link();
-	updateUniforms();
+	//updateUniforms();
 
 	CHECK_GL_ERROR_DEBUG();
 
@@ -212,9 +212,6 @@ void CCGLProgram::addAttribute(const char* attributeName, GLuint index)
 
 void CCGLProgram::updateUniforms()
 {
-    this->use();
-    // Since sample most probably won't change, set it to 0 now.
-    this->setUniformLocationWith1i(glGetUniformLocation(m_uProgram, kCCUniformSampler_s), 0);
 }
 
 
@@ -321,7 +318,7 @@ bool CCGLProgram::link()
 
 bool CCGLProgram::getAttribLocation(GLuint type, GLuint& loc)
 {
-	auto& it = _vertexAttributes.find(type);
+	const auto& it = _vertexAttributes.find(type);
 	if (it != _vertexAttributes.end()) {
 		loc = it->second;
 		return true;

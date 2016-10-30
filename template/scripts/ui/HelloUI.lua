@@ -87,15 +87,15 @@ function HelloUI:ctor()
     local root = Widget:create()
     touchLayer:addWidget(root)
     local listView = ListView:create():addTo(root)
-    listView:setSize(CCSize(200, display.height))
-    listView:setPosition(ccp(display.width - 200, 0))
+    listView:setSize(CCSize(200, display.height - 150))
+    listView:setPosition(ccp(display.width - 200, 100))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
     listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
-    listView:setClippingEnabled(true)
+    listView:setClippingEnabled(false)
 
     local filters = require "shaders"
-
-    local current = nil
+    local currentLabel = nil
+    local currentMaterial = nil
     for k, v in pairs(filters) do
         local label = Label:create()
         label:setFontSize(30)
@@ -104,18 +104,26 @@ function HelloUI:ctor()
             print('use', k)
             hello:setMaterial(v)
             spine:setMaterial(v)
-            current = v;
+            currentMaterial = v;
+            if currentLabel then
+                currentLabel:setColor(ccc3(255,255,255))
+            end
+            currentLabel = label
+            currentLabel:setColor(ccc3(255,0,0))
+
         end)
         listView:pushBackCustomItem(label)
     end
 
-    imgui.addDraw(function()
-        if current then
-            for i, v in ipairs(current.editors) do
-                v()
+    if imgui then
+        imgui.addDraw(function()
+            if currentMaterial then
+                for i, v in ipairs(currentMaterial.editors) do
+                    v()
+                end
             end
-        end
-    end)
+        end)
+    end
 end
 
 return HelloUI
