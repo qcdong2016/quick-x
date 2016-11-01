@@ -29,7 +29,7 @@ THE SOFTWARE.
 #include "CCDirector.h"
 #include "ccMacros.h"
 #include "CCImage.h"
-#include "CCTexture2D.h"
+#include "textures/CCTexture2D.h"
 #include <string>
 #include <sys/stat.h>
 #include <stdio.h>

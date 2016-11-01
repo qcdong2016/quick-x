@@ -34,13 +34,13 @@ THE SOFTWARE.
 #import "CCDirector.h"
 #import "ccConfig.h"
 #import "CCSet.h"
-#import "CCTouch.h"
-#import "CCIMEDispatcher.h"
+#import "touch_dispatcher/CCTouch.h"
+#import "text_input_node/CCIMEDispatcher.h"
 #import "CCWindow.h"
 #import "CCEventDispatcherMac.h"
 #import "CCEGLView.h"
 
-#import "imgui_cocos2dx.h"
+#import "imgui/imgui_cocos2dx.h"
 
 //USING_NS_CC;
 static EAGLView *view;

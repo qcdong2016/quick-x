@@ -15,6 +15,7 @@ extern "C" {
 
 
 #include "CCNetwork.h"
+#include "CCHTTPRequest.h"
 using namespace std;
 using namespace cocos2d;
 
