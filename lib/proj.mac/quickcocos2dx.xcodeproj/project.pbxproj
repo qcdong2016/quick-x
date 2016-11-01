@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9F16FFA61DB45DC000CE1753 /* imgui_binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F16FFA51DB45DC000CE1753 /* imgui_binding.cpp */; };
-		9F19B8021DB90E9900892C76 /* ReachabilityIOSMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B8011DB90E9900892C76 /* ReachabilityIOSMac.m */; };
 		9F19B8501DBA5F0500892C76 /* LuaEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F19B84E1DBA5F0500892C76 /* LuaEvent.cpp */; };
 		9F1FE6F31DAD3A8E008FE0C7 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DA1DAD3A8E008FE0C7 /* CDAudioManager.m */; };
 		9F1FE6F41DAD3A8E008FE0C7 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6DD1DAD3A8E008FE0C7 /* CDOpenALSupport.m */; };
@@ -161,6 +160,7 @@
 		9F9A39911DAB896700236246 /* tolua_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39431DAB896700236246 /* tolua_map.c */; };
 		9F9A39921DAB896700236246 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39441DAB896700236246 /* tolua_push.c */; };
 		9F9A39931DAB896700236246 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39451DAB896700236246 /* tolua_to.c */; };
+		B10BCC991DC7180500622AEB /* CCWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = B10BCC981DC7180500622AEB /* CCWindow.mm */; };
 		B15D376C1DB1053800EE3D22 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D375E1DB1053800EE3D22 /* imgui.cpp */; };
 		B15D376D1DB1053800EE3D22 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D37601DB1053800EE3D22 /* imgui_demo.cpp */; };
 		B15D376E1DB1053800EE3D22 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D37611DB1053800EE3D22 /* imgui_draw.cpp */; };
@@ -168,6 +168,7 @@
 		B15D37701DB1053800EE3D22 /* imgui_cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D37681DB1053800EE3D22 /* imgui_cocos2dx.cpp */; };
 		B15D37711DB1053800EE3D22 /* PlayerUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D376A1DB1053800EE3D22 /* PlayerUI.cpp */; };
 		B15DE31D1DC4E4F80078F021 /* CCMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15DE31C1DC4E4F80078F021 /* CCMaterial.cpp */; };
+		B18237281DC8613200E8434B /* ReachabilityIOSMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B18237271DC8613200E8434B /* ReachabilityIOSMac.m */; };
 		B1D36DE41DBFB62900E591CE /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D36C431DBFB62900E591CE /* ID.cpp */; };
 		B1D36DE51DBFB62900E591CE /* MathDefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D36C461DBFB62900E591CE /* MathDefs.cpp */; };
 		B1D36DE61DBFB62900E591CE /* ProcessUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D36C481DBFB62900E591CE /* ProcessUtils.cpp */; };
@@ -242,7 +243,6 @@
 		B1D36E5E1DBFB62900E591CE /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D561DBFB62900E591CE /* CCImage.mm */; };
 		B1D36E5F1DBFB62900E591CE /* CCNativeMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D581DBFB62900E591CE /* CCNativeMac.mm */; };
 		B1D36E601DBFB62900E591CE /* CCThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D5A1DBFB62900E591CE /* CCThread.mm */; };
-		B1D36E611DBFB62900E591CE /* CCWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D5C1DBFB62900E591CE /* CCWindow.m */; };
 		B1D36E621DBFB62900E591CE /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D5E1DBFB62900E591CE /* EAGLView.mm */; };
 		B1D36E631DBFB62900E591CE /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D611DBFB62900E591CE /* OpenUDIDMac.m */; };
 		B1D36E641DBFB62900E591CE /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D36D621DBFB62900E591CE /* platform.cpp */; };
@@ -306,8 +306,6 @@
 
 /* Begin PBXFileReference section */
 		9F16FFA51DB45DC000CE1753 /* imgui_binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_binding.cpp; sourceTree = "<group>"; };
-		9F19B8001DB90E9900892C76 /* ReachabilityIOSMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityIOSMac.h; sourceTree = "<group>"; };
-		9F19B8011DB90E9900892C76 /* ReachabilityIOSMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityIOSMac.m; sourceTree = "<group>"; };
 		9F19B84E1DBA5F0500892C76 /* LuaEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaEvent.cpp; sourceTree = "<group>"; };
 		9F19B84F1DBA5F0500892C76 /* LuaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaEvent.h; sourceTree = "<group>"; };
 		9F1FE6D91DAD3A8E008FE0C7 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -618,6 +616,7 @@
 		9F9A39431DAB896700236246 /* tolua_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_map.c; sourceTree = "<group>"; };
 		9F9A39441DAB896700236246 /* tolua_push.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_push.c; sourceTree = "<group>"; };
 		9F9A39451DAB896700236246 /* tolua_to.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_to.c; sourceTree = "<group>"; };
+		B10BCC981DC7180500622AEB /* CCWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCWindow.mm; sourceTree = "<group>"; };
 		B15D375D1DB1053800EE3D22 /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
 		B15D375E1DB1053800EE3D22 /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
 		B15D375F1DB1053800EE3D22 /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
@@ -635,6 +634,8 @@
 		B15D376B1DB1053800EE3D22 /* PlayerUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerUI.h; sourceTree = "<group>"; };
 		B15DE31C1DC4E4F80078F021 /* CCMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCMaterial.cpp; sourceTree = "<group>"; };
 		B15DE31E1DC4E5020078F021 /* CCMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMaterial.h; sourceTree = "<group>"; };
+		B18237271DC8613200E8434B /* ReachabilityIOSMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityIOSMac.m; sourceTree = "<group>"; };
+		B18237291DC8613900E8434B /* ReachabilityIOSMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityIOSMac.h; sourceTree = "<group>"; };
 		B1D36C411DBFB62900E591CE /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1D36C431DBFB62900E591CE /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		B1D36C441DBFB62900E591CE /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
@@ -801,7 +802,6 @@
 		B1D36D591DBFB62900E591CE /* CCPlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformDefine.h; sourceTree = "<group>"; };
 		B1D36D5A1DBFB62900E591CE /* CCThread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCThread.mm; sourceTree = "<group>"; };
 		B1D36D5B1DBFB62900E591CE /* CCWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCWindow.h; sourceTree = "<group>"; };
-		B1D36D5C1DBFB62900E591CE /* CCWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCWindow.m; sourceTree = "<group>"; };
 		B1D36D5D1DBFB62900E591CE /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
 		B1D36D5E1DBFB62900E591CE /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EAGLView.mm; sourceTree = "<group>"; };
 		B1D36D601DBFB62900E591CE /* OpenUDIDMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDMac.h; sourceTree = "<group>"; };
@@ -957,15 +957,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F19B7FF1DB90E9900892C76 /* ios_mac */ = {
-			isa = PBXGroup;
-			children = (
-				9F19B8001DB90E9900892C76 /* ReachabilityIOSMac.h */,
-				9F19B8011DB90E9900892C76 /* ReachabilityIOSMac.m */,
-			);
-			path = ios_mac;
-			sourceTree = "<group>";
-		};
 		9F1FE6B91DAD3A8E008FE0C7 /* audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,6 +1117,8 @@
 			isa = PBXGroup;
 			children = (
 				9F7366A61DAD491400D0B435 /* Android.mk */,
+				B18237291DC8613900E8434B /* ReachabilityIOSMac.h */,
+				B18237271DC8613200E8434B /* ReachabilityIOSMac.m */,
 				9F7366A71DAD491400D0B435 /* CCHTTPRequest.cpp */,
 				9F7366A81DAD491400D0B435 /* CCHTTPRequest.h */,
 				9F7366AA1DAD491400D0B435 /* CCHTTPRequestDelegate.h */,
@@ -1144,7 +1137,6 @@
 				9F9A37F61DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.cpp */,
 				9F9A37F71DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.h */,
 				9F9A37F81DAB889100236246 /* cocos2dx_extra_ios_iap_luabinding.tolua */,
-				9F19B7FF1DB90E9900892C76 /* ios_mac */,
 				9F9A381C1DAB889100236246 /* store */,
 			);
 			path = native;
@@ -1840,7 +1832,7 @@
 				B1D36D591DBFB62900E591CE /* CCPlatformDefine.h */,
 				B1D36D5A1DBFB62900E591CE /* CCThread.mm */,
 				B1D36D5B1DBFB62900E591CE /* CCWindow.h */,
-				B1D36D5C1DBFB62900E591CE /* CCWindow.m */,
+				B10BCC981DC7180500622AEB /* CCWindow.mm */,
 				B1D36D5D1DBFB62900E591CE /* EAGLView.h */,
 				B1D36D5E1DBFB62900E591CE /* EAGLView.mm */,
 				B1D36D5F1DBFB62900E591CE /* openudid */,
@@ -2269,7 +2261,6 @@
 				B1D36DFB1DBFB62900E591CE /* cocos2d.cpp in Sources */,
 				9F73669F1DAD484700D0B435 /* Skin.c in Sources */,
 				9F9A398F1DAB896700236246 /* tolua_event.c in Sources */,
-				9F19B8021DB90E9900892C76 /* ReachabilityIOSMac.m in Sources */,
 				B15D376C1DB1053800EE3D22 /* imgui.cpp in Sources */,
 				9F9A39621DAB896700236246 /* llex.c in Sources */,
 				9F1FE7481DAD3ACB008FE0C7 /* LuaCocoStudio.cpp in Sources */,
@@ -2305,7 +2296,6 @@
 				9F7366961DAD484700D0B435 /* IkConstraint.c in Sources */,
 				B1D36EBC1DBFB76200E591CE /* CCActionPageTurn3D.cpp in Sources */,
 				B1D36E6F1DBFB62900E591CE /* CCAnimation.cpp in Sources */,
-				B1D36E611DBFB62900E591CE /* CCWindow.m in Sources */,
 				9F7366A01DAD484700D0B435 /* SkinnedMeshAttachment.c in Sources */,
 				9F1FE74A1DAD3ACB008FE0C7 /* LuaTable.cpp in Sources */,
 				B1D36E441DBFB62900E591CE /* CCInput.cpp in Sources */,
@@ -2359,6 +2349,7 @@
 				9F1FE74F1DAD3ACC008FE0C7 /* tolua_fix.c in Sources */,
 				9F7366901DAD484700D0B435 /* Bone.c in Sources */,
 				B1D36E1D1DBFB62900E591CE /* CCProgressTimer.cpp in Sources */,
+				B10BCC991DC7180500622AEB /* CCWindow.mm in Sources */,
 				B1D36E871DBFB62900E591CE /* ZipUtils.cpp in Sources */,
 				9F7366B21DAD491400D0B435 /* CCHTTPRequest.cpp in Sources */,
 				B1D36E421DBFB62900E591CE /* CCDevice.cpp in Sources */,
@@ -2474,6 +2465,7 @@
 				9F9A39591DAB896700236246 /* lcode.c in Sources */,
 				B1D36DF41DBFB62900E591CE /* CCDictionary.cpp in Sources */,
 				9F9A383E1DAB889100236246 /* CCStoreProduct.cpp in Sources */,
+				B18237281DC8613200E8434B /* ReachabilityIOSMac.m in Sources */,
 				9F1FE7161DAD3AA0008FE0C7 /* CCParallaxNode.cpp in Sources */,
 				9F73668F1DAD484700D0B435 /* AttachmentLoader.c in Sources */,
 				9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */,

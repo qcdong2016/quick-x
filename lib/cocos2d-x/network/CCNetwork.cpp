@@ -3,7 +3,6 @@
 
 NS_CC_BEGIN
 
-#if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
 CCHTTPRequest* CCNetwork::createHTTPRequest(CCHTTPRequestDelegate* delegate,
                                             const char* url,
@@ -23,6 +22,5 @@ CCHTTPRequest* CCNetwork::createHTTPRequestLua(LUA_FUNCTION listener,
     return request;
 }
 
-#endif // CC_CURL_ENABLED
 
 NS_CC_END

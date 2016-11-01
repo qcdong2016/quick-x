@@ -2,10 +2,8 @@
 #ifndef __CC_EXTENSION_CCNETWORK_H_
 #define __CC_EXTENSION_CCNETWORK_H_
 
-#if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "CCHTTPRequest.h"
 #include "CCHTTPRequestDelegate.h"
-#endif
 
 NS_CC_BEGIN
 
@@ -28,7 +26,6 @@ public:
     /** @brief Checks Internet connection reachability status */
     static int getInternetConnectionStatus(void);
 
-#if (CC_CURL_ENABLED > 0 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     static CCHTTPRequest* createHTTPRequest(CCHTTPRequestDelegate* delegate,
                                             const char* url,
                                             int method = kCCHTTPRequestMethodGET);
@@ -37,7 +34,6 @@ public:
                                                const char* url,
                                                int method = kCCHTTPRequestMethodGET);
 
-#endif // CC_CURL_ENABLED
 
 private:
     CCNetwork(void) {}
