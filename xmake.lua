@@ -1,8 +1,16 @@
+local platform = 'android'
+if is_plat('macosx') then
+	platform = 'mac'
+elseif is_plat('iphoneos') then
+	platform = 'ios'
+elseif is_plat('windows') then
+	platform = 'win32'
+end
 
 local function find(arrar, value)
 	for i, v in ipairs(array) do
 		if v == value then
-			return true
+			return i
 		end
 	end	
 end
@@ -51,8 +59,22 @@ function module(mod)
 	end
 end
 
+local function plat_specify(mod, name)
+	if mod[name] then
+		if mod[name][platform] then
+			for i, v in ipairs(mod[name][platform]) do
+				table.insert(mod[name], v)
+			end
+		end
+	end
+end
+
+
 local function translate()
 	for i, mod in ipairs(module_list) do
+		plat_specify(mod, 'includes')
+		plat_specify(mod, 'files')
+		plat_specify(mod, 'defines')
 		convert(mod, "includes")
 		convert(mod, "files")
 	end
@@ -82,30 +104,48 @@ end
 
 set_project('quick-x')
 set_version("1.0")
+set_languages("gnuxx11", "gnuxx11")
 
-set_languages("cxx11", "cxx11")
+
+
 
 module {
     name = 'core',
     files = {
         "**.c*|platform/**",
-        "platform/mac/**.m*",
+        mac = { "platform/mac/**.m*", },
+        android = { "platform/android/**.c*", },
     },
 
     includes = {
+
         'cocoa',
         'platform', 
-        'platform/mac',
+        'platform/'..platform,
         'kazmath/include',
         '..',
         '../scripting',
         '../scripting/lua',
         '../scripting/tolua',
         '../scripting/cocoslua',
+
+        android = {
+	        '../../third_party/android/prebuilt/libpng/include',
+	        '../../third_party/android/prebuilt/libjpeg/include',
+	        '../../third_party/android/prebuilt/libcurl/include',
+	        '../../third_party/android/prebuilt/libwebp/include',
+	        '../../third_party/android/prebuilt/zlib/include',
+	    },
     },
 
     defines = { 
-        'CC_TARGET_OS_MAC', 
+    	mac = {
+        	'CC_TARGET_OS_MAC', 
+	    },
+	    android = {
+	        'ANDROID',
+		},
+
         'USE_FILE32API' 
     },
 
@@ -126,24 +166,33 @@ module {
 module {
 	name = 'audio',
 	files = {
-		'mac/*.m*',
+		
+		mac = { 'mac/**.m*', },
+		android = { 'android/**.c*|*/opensl/**.*', },
 	},
 }
 
-module {
-	name = "imgui",
-	files = {
-		"**.*c*"
-	},
-}
+if platform ~= 'android' then
+	module {
+		name = "imgui",
+		files = {
+			"**.*c*"
+		},
+	}
+end
 
 module {
 	name = "network",
 
 	files = {
-		'*.c*|*Android.cpp|*Win32.cpp',
-		'*.mm',
-		'**.m',
+		mac = {
+			'*.c*|*Android.cpp|*Win32.cpp',
+			'*.mm',
+			'**.m',
+		},
+		android = {
+			'**.c*|*Win32.cpp',
+		},
 	},
 }
 
@@ -183,6 +232,8 @@ module {
 		'*.c*',	
 	},
 }
+
+
 
 build()
 
