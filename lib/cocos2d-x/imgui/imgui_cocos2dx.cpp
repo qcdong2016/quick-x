@@ -350,7 +350,11 @@ void ImGuiCC::draw()
 	ImGui::Render();
 }
 
-
+void ImGuiCC::setFont(const char* font, float size)
+{
+	ImGuiIO& io = ImGui::GetIO();
+	io.Fonts->AddFontFromFileTTF(font, size, 0, io.Fonts->GetGlyphRangesChinese());
+}
 
 NS_CC_END;
 

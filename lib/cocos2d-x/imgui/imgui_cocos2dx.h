@@ -30,6 +30,7 @@ public:
 	static void init();
 	static void draw();
 	
+	static void setFont(const char* font, float size);
 	static void setMouseDown(bool down);
 	static bool setMousePos(int x, int y);
 
