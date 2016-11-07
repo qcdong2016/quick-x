@@ -63,6 +63,7 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 
 #include "base/MathDefs.h"
+#include "CCInput.h"
 
 /**
  Position of the FPS
@@ -249,6 +250,10 @@ void CCDirector::drawScene(void)
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
+		static VariantMap map;
+		using namespace UpdateEvent;
+		map[P_TIMESTEP] = m_fDeltaTime;
+		sendEvent(E_UPDATE, map);
         m_pScheduler->update(m_fDeltaTime);
     }
 
