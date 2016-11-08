@@ -95,7 +95,7 @@ function transition.create(action, args)
     end
 
     if #actions > 1 then
-        return transition.sequence(actions)
+        return CCSequence:create(unpack(actions))
     else
         return actions[1]
     end
@@ -440,7 +440,7 @@ function transition.playAnimationOnce(target, animation, removeWhenFinished, onC
 
     local action
     if #actions > 1 then
-        action = transition.sequence(actions)
+        action = CCSequence:create(unpack(actions))
     else
         action = actions[1]
     end
@@ -472,11 +472,11 @@ function transition.playAnimationForever(target, animation, delay)
     local action
     if type(delay) == "number" and delay > 0 then
         target:setVisible(false)
-        local sequence = transition.sequence({
+        local sequence = CCSequence:create(
             CCDelayTime:create(delay),
             CCShow:create(),
-            animate,
-        })
+            animate
+        )
         action = CCRepeatForever:create(sequence)
     else
         action = CCRepeatForever:create(animate)

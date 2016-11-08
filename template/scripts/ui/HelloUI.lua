@@ -15,15 +15,6 @@ function HelloUI:ctor()
     hello:runAction(CCScaleTo:create(3, 0.5))
 
     ui.newTTFLabel({size= 25, text = 'Hello World'}):addTo(self, 1);
-    
-    -- imgui.addDraw(function()
-    --     imgui.Button('hello lua')
-    -- end)
-
-    -- imgui.addDraw(function()
-    --     imgui.Button('hello lua')
-    -- end)
-
      -- CCLayerColor:create(ccc4(0,55,0,255)):addTo(self)
      display.newRect(100,100):addTo(self)
 
@@ -34,6 +25,59 @@ function HelloUI:ctor()
 
     local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
     self:addChild(touchLayer)
+
+
+    local root = Widget:create()
+    touchLayer:addWidget(root)
+    local listView = ListView:create():addTo(root)
+    listView:setSize(CCSize(200, display.height - 150))
+    listView:setPosition(ccp(display.width - 200, 100))
+    listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
+    listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
+    listView:setClippingEnabled(true)
+
+    local filters = require "shaders"
+    local currentLabel = nil
+    local currentMaterial = nil
+    for k, v in pairs(filters) do
+        local label = Label:create()
+        label:setFontSize(30)
+        label:setText(k)
+        label:onClicked(function()
+            print('use', k)
+            hello:setMaterial(v)
+            -- spine:setMaterial(v)
+            currentMaterial = v;
+            if currentLabel then
+                currentLabel:setColor(ccc3(255,255,255))
+            end
+            currentLabel = label
+            currentLabel:setColor(ccc3(255,0,0))
+
+        end)
+        listView:pushBackCustomItem(label)
+    end
+
+    if imgui then
+        imgui.addDraw(function()
+            if currentMaterial then
+                for i, v in ipairs(currentMaterial.editors) do
+                    v()
+                end
+            end
+        end)
+    end
+
+    local time = 0
+    self:scheduleUpdate_()
+    self:addNodeEventListener(cc.NODE_ENTER_FRAME_EVENT, function(dt)
+        time = time + dt
+        filters.Wave:set1f('u_time', time)
+    end)
+
+end
+
+function HelloUI:eventTest()
 
     -- function Button(text, func)
     --     local btn = Label:create()
@@ -83,47 +127,6 @@ function HelloUI:ctor()
     -- btn3:subscribeToEvent(btn, 1, function(type, data)
     --     print('onEvent 3,11')
     -- end)
-
-    local root = Widget:create()
-    touchLayer:addWidget(root)
-    local listView = ListView:create():addTo(root)
-    listView:setSize(CCSize(200, display.height - 150))
-    listView:setPosition(ccp(display.width - 200, 100))
-    listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
-    listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
-    listView:setClippingEnabled(false)
-
-    local filters = require "shaders"
-    local currentLabel = nil
-    local currentMaterial = nil
-    for k, v in pairs(filters) do
-        local label = Label:create()
-        label:setFontSize(30)
-        label:setText(k)
-        label:onClicked(function()
-            print('use', k)
-            hello:setMaterial(v)
-            spine:setMaterial(v)
-            currentMaterial = v;
-            if currentLabel then
-                currentLabel:setColor(ccc3(255,255,255))
-            end
-            currentLabel = label
-            currentLabel:setColor(ccc3(255,0,0))
-
-        end)
-        listView:pushBackCustomItem(label)
-    end
-
-    if imgui then
-        imgui.addDraw(function()
-            if currentMaterial then
-                for i, v in ipairs(currentMaterial.editors) do
-                    v()
-                end
-            end
-        end)
-    end
 end
 
 return HelloUI

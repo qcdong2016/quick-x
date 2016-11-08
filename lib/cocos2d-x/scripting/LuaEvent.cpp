@@ -7,7 +7,7 @@ void EventHandlerLua::invoke(VariantMap& evt)
 {
 	_function->BeginCall();
 
-	_function->PushInt(this->getEventType());
+	//_function->PushInt(this->getEventType());
 	// fix me
 	LuaTable t;
 	for (auto& it : evt) {

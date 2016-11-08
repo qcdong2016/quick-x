@@ -46,3 +46,4 @@ lib/proj.qt/Makefile.libquickqt.Release
 /template/proj.android/obj
 /template/proj.android/gen
 template/proj.mac/bin
+build

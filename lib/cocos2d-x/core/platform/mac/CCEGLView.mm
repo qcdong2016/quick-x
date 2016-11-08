@@ -25,8 +25,8 @@
 #include "EAGLView.h"
 #include "CCDirectorCaller.h"
 #include "CCSet.h"
-#include "CCTouch.h"
-#include "CCTouchDispatcher.h"
+#include "touch_dispatcher/CCTouch.h"
+#include "touch_dispatcher/CCTouchDispatcher.h"
 
 NS_CC_BEGIN
 

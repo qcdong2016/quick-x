@@ -23,6 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCThread.h"
+#include "Foundation/NSAutoreleasePool.H"
 
 NS_CC_BEGIN
 

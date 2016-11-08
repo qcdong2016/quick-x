@@ -1,5 +1,4 @@
 #include "platform/CCDevice.h"
-#include "android/jni/DPIJni.h"
 #include "android/jni/JniHelper.h"
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include <jni.h>

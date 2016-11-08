@@ -1715,6 +1715,22 @@ static int imgui_lua_InputText(lua_State* L)
 	return 1;
 }
 
+//     IMGUI_API bool          Selectable(const char* label, bool selected = false, ImGuiSelectableFlags flags = 0, const ImVec2& size = ImVec2(0,0));  
+//     IMGUI_API bool          Selectable(const char* label, bool* p_selected, ImGuiSelectableFlags flags = 0, const ImVec2& size = ImVec2(0,0));
+static int imgui_lua_Selectable(lua_State* L)
+{
+	int arg = 1;
+	const char* label = lua_tostring(L, arg++);
+	bool selected = lua_toboolean(L, arg++);
+
+	bool ret = ImGui::Selectable(label, selected);
+
+	lua_pushboolean(L, ret);
+
+	return 1;
+}
+
+
 static int addDrawFunction(lua_State* L)
 {
 	SharedPtr<LuaFunction> func(new LuaFunction(L, 1));
@@ -1739,6 +1755,7 @@ static const luaL_Reg lua_imgui_auto_funcs[] = {
 	{ "ColorEdit4", imgui_lua_ColorEdit4 },
 	
 	{ "Button", imgui_lua_Button },
+	{ "Selectable", imgui_lua_Selectable },
 
 	{ "NewFrame", imgui_lua_NewFrame },
 	 { "Render", imgui_lua_Render },
