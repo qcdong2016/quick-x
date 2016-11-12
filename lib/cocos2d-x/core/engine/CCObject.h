@@ -175,7 +175,7 @@ class CC_DLL EventHandler : public LinkedListNode
 {
 public:
 	/// Construct with specified receiver and userdata.
-	EventHandler(void* userData = 0)
+	EventHandler()
 	{
 	}
 
@@ -212,12 +212,12 @@ template <typename ReceiverType>
 class EventHandlerImpl : public EventHandler
 {
 public:
-	typedef void (ReceiverType::*HandlerFunctionPtr)(EventID, EventDataMap&);
+	typedef void (ReceiverType::*HandlerFunctionPtr)(EventDataMap&);
 
 	/// Construct with receiver and function pointers and userdata.
-	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) :
-		EventHandler(receiver),
-		_function(function)
+	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) 
+		: _receiver(receiver)
+		, _function(function)
 	{
 		assert(_function);
 	}
@@ -225,7 +225,7 @@ public:
 	/// Invoke event handler function.
 	virtual void invoke(EventDataMap& eventData)
 	{
-		(_receiver->*_function)(_eventType, eventData);
+		(_receiver->*_function)(eventData);
 	}
 
 	/// Return a unique copy of the event handler.
@@ -248,9 +248,9 @@ public:
 	typedef void (ReceiverType::*HandlerFunctionPtr)();
 
 	/// Construct with receiver and function pointers and userdata.
-	EventHandlerImplNoArg(ReceiverType* receiver, HandlerFunctionPtr function) :
-		EventHandler(receiver),
-		_function(function)
+	EventHandlerImplNoArg(ReceiverType* receiver, HandlerFunctionPtr function)
+		: _receiver(receiver)
+		, _function(function)
 	{
 		assert(_function);
 	}
@@ -275,7 +275,7 @@ private:
 };
 
 template <typename ReceiverType>
-static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(EventID, EventDataMap&))
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(EventDataMap&))
 {
 	return new EventHandlerImpl<ReceiverType>(receiver, function);
 }

@@ -32,6 +32,7 @@ THE SOFTWARE.
 #include "support/data_support/ccCArray.h"
 #include "support/data_support/uthash.h"
 #include "cocoa/CCSet.h"
+#include "engine/CCEngineEvents.h"
 
 NS_CC_BEGIN
 //
@@ -53,7 +54,7 @@ CCActionManager::CCActionManager(void)
   m_pCurrentTarget(NULL),
   m_bCurrentTargetSalvaged(false)
 {
-
+	subscribeToEvent(UpdateEvent::Param::Name, Handler(this, &CCActionManager::update));
 }
 
 CCActionManager::~CCActionManager(void)
@@ -336,8 +337,10 @@ unsigned int CCActionManager::numberOfRunningActionsInTarget(CCObject *pTarget)
 }
 
 // main loop
-void CCActionManager::update(float dt)
+void CCActionManager::update(EventDataMap& data)
 {
+	float dt = data[UpdateEvent::Param::timeStep].GetFloat();
+
     for (tHashElement *elt = m_pTargets; elt != NULL; )
     {
         m_pCurrentTarget = elt;

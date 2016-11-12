@@ -128,8 +128,8 @@ protected:
     void removeActionAtIndex(unsigned int uIndex, struct _hashElement *pElement);
     void deleteHashElement(struct _hashElement *pElement);
     void actionAllocWithHashElement(struct _hashElement *pElement);
-    void update(float dt);
 
+	void update(EventDataMap& data);
 protected:
     struct _hashElement    *m_pTargets;
     struct _hashElement    *m_pCurrentTarget;

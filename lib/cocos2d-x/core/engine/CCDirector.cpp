@@ -154,8 +154,7 @@ bool CCDirector::init(void)
     m_pScheduler = new CCScheduler();
     // action manager
 
-	CCActionManager* am = addSubSystem<CCActionManager>();
-    m_pScheduler->scheduleUpdateForTarget(am, kCCPrioritySystem, false);
+	addSubSystem<CCActionManager>();
 
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
