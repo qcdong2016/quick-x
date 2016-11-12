@@ -553,61 +553,61 @@ static int tolua_spine_SkeletonAnimation_clearTrack00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 
-
-/* set function: eventListener of class  SkeletonAnimation */
-static int tolua_set_SkeletonAnimation_setListener00(lua_State* tolua_S)
-{
-	tolua_Error tolua_err;
-	if (!tolua_isusertype(tolua_S, 1, "SkeletonAnimation", 0, &tolua_err))
-	{
-		tolua_error(tolua_S, "#ferror in function 'setListener'.", &tolua_err);
-		return 0;
-	}
-  SkeletonAnimation* self = (SkeletonAnimation*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-
-  if (
-	  tolua_isstring(tolua_S, 2, 0, &tolua_err) &&
-	  toluafix_isfunction(tolua_S, 3, "LUA_FUNCTION", 0, &tolua_err) &&
-	  tolua_isnoobj(tolua_S, 4, &tolua_err)
-	  )
-  {
-	  const char* what = tolua_tostring(tolua_S, 2, 0);
-	  SharedPtr<LuaFunction> listener(new LuaFunction(tolua_S, 3));
-
-	  if (!strcmp(what, "end")) self->endListener = listener;
-	  else if (!strcmp(what, "event"))self->eventListener = listener;
-	  else if (!strcmp(what, "complete"))self->completeListener = listener;
-	  else if (!strcmp(what, "start"))self->startListener = listener;
-  }
-  else if (
-	  tolua_isusertype(tolua_S, 2, "spTrackEntry", 0, &tolua_err) &&
-	  tolua_isstring(tolua_S, 3, 0, &tolua_err) &&
-	  toluafix_isfunction(tolua_S, 4, "LUA_FUNCTION", 0, &tolua_err) &&
-	  tolua_isnoobj(tolua_S, 5, &tolua_err)
-	  )
-  {
-	  spTrackEntry* entry = (spTrackEntry*)tolua_tousertype(tolua_S, 2, 0);
-	  const char* what = tolua_tostring(tolua_S, 3, 0);
-
-	  SharedPtr<LuaFunction> listener(new LuaFunction(tolua_S, 4));
-
-	  if (!strcmp(what, "end")) self->setEndListener(entry, listener);
-	  else if (!strcmp(what, "event"))self->setEventListener(entry, listener);
-	  else if (!strcmp(what, "complete"))self->setCompleteListener(entry, listener);
-	  else if (!strcmp(what, "start"))self->setStartListener(entry, listener);
-  }
-  else
-  {
-      tolua_error(tolua_S, "#ferror in function 'setListener'.", &tolua_err);
-      return 0;
-  }
-#endif
-
-  
-
- return 0;
-}
+// 
+// /* set function: eventListener of class  SkeletonAnimation */
+// static int tolua_set_SkeletonAnimation_setListener00(lua_State* tolua_S)
+// {
+// 	tolua_Error tolua_err;
+// 	if (!tolua_isusertype(tolua_S, 1, "SkeletonAnimation", 0, &tolua_err))
+// 	{
+// 		tolua_error(tolua_S, "#ferror in function 'setListener'.", &tolua_err);
+// 		return 0;
+// 	}
+//   SkeletonAnimation* self = (SkeletonAnimation*)  tolua_tousertype(tolua_S,1,0);
+// #ifndef TOLUA_RELEASE
+// 
+//   if (
+// 	  tolua_isstring(tolua_S, 2, 0, &tolua_err) &&
+// 	  toluafix_isfunction(tolua_S, 3, "LUA_FUNCTION", 0, &tolua_err) &&
+// 	  tolua_isnoobj(tolua_S, 4, &tolua_err)
+// 	  )
+//   {
+// 	  const char* what = tolua_tostring(tolua_S, 2, 0);
+// 	  SharedPtr<LuaFunction> listener(new LuaFunction(tolua_S, 3));
+// 
+// 	  if (!strcmp(what, "end")) self->endListener = listener;
+// 	  else if (!strcmp(what, "event"))self->eventListener = listener;
+// 	  else if (!strcmp(what, "complete"))self->completeListener = listener;
+// 	  else if (!strcmp(what, "start"))self->startListener = listener;
+//   }
+//   else if (
+// 	  tolua_isusertype(tolua_S, 2, "spTrackEntry", 0, &tolua_err) &&
+// 	  tolua_isstring(tolua_S, 3, 0, &tolua_err) &&
+// 	  toluafix_isfunction(tolua_S, 4, "LUA_FUNCTION", 0, &tolua_err) &&
+// 	  tolua_isnoobj(tolua_S, 5, &tolua_err)
+// 	  )
+//   {
+// 	  spTrackEntry* entry = (spTrackEntry*)tolua_tousertype(tolua_S, 2, 0);
+// 	  const char* what = tolua_tostring(tolua_S, 3, 0);
+// 
+// 	  SharedPtr<LuaFunction> listener(new LuaFunction(tolua_S, 4));
+// 
+// 	  if (!strcmp(what, "end")) self->setEndListener(entry, listener);
+// 	  else if (!strcmp(what, "event"))self->setEventListener(entry, listener);
+// 	  else if (!strcmp(what, "complete"))self->setCompleteListener(entry, listener);
+// 	  else if (!strcmp(what, "start"))self->setStartListener(entry, listener);
+//   }
+//   else
+//   {
+//       tolua_error(tolua_S, "#ferror in function 'setListener'.", &tolua_err);
+//       return 0;
+//   }
+// #endif
+// 
+//   
+// 
+//  return 0;
+// }
 
 /* Open function */
 TOLUA_API int tolua_spine_open (lua_State* tolua_S)
@@ -633,7 +633,7 @@ TOLUA_API int tolua_spine_open (lua_State* tolua_S)
    tolua_function(tolua_S,"addAnimation",tolua_spine_SkeletonAnimation_addAnimation00);
    tolua_function(tolua_S,"clearTracks",tolua_spine_SkeletonAnimation_clearTracks00);
    tolua_function(tolua_S,"clearTrack",tolua_spine_SkeletonAnimation_clearTrack00);
-   tolua_function(tolua_S, "setListener", tolua_set_SkeletonAnimation_setListener00);
+  // tolua_function(tolua_S, "setListener", tolua_set_SkeletonAnimation_setListener00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

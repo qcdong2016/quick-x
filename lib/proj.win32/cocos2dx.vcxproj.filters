@@ -1913,6 +1913,9 @@
     <ClInclude Include="..\cocos2d-x\core\engine\SubSystem.h">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\cocos2d-x\spine\SpineEvents.h">
+      <Filter>cocos2d-x\spine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE">

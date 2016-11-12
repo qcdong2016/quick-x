@@ -34,13 +34,9 @@
 #include <spine/extension.h>
 #include <algorithm>
 #include "PolygonBatch.h"
-#include "CCLuaEngine.h"
-#include "LuaTable.h"
-#include "LuaFunction.h"
+#include "SpineEvents.h"
+#include "base/MathDefs.h"
 
-using std::min;
-using std::max;
-using std::vector;
 
 namespace cocos2d {
 
@@ -54,10 +50,7 @@ void trackEntryCallback (spAnimationState* state, int trackIndex, spEventType ty
 
 class _TrackEntryListeners {
 public:
-	SharedPtr<LuaFunction> startListener;
-	SharedPtr<LuaFunction> endListener;
-	SharedPtr<LuaFunction> eventListener;
-	SharedPtr<LuaFunction> completeListener;
+
 };
 
 static _TrackEntryListeners* getListeners (spTrackEntry* entry) {
@@ -222,65 +215,66 @@ void SkeletonAnimation::clearTrack (int trackIndex) {
 	spAnimationState_clearTrack(state, trackIndex);
 }
 
-static void call(LuaFunction* func, int trackIndex, int loopCount, spEvent* event = nullptr, spTrackEntry* entry = nullptr)
+template<typename T>
+static void send(CCObject* sender, int trackIndex, int loopCount)
 {
-	if (!func || !func->IsValid()) return;
+	EventDataMap map;
 
-	func->BeginCall();
+	map[T::trackIndex] = trackIndex;
+	map[T::loopCount] = loopCount;
 
-	LuaTable t(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState());
-	t.setInt("trackIndex", trackIndex);
-	t.setInt("loopCount", loopCount);
-	const char* animationName = (entry && entry->animation) ? entry->animation->name : "";
-	if (animationName)
-		t.setString("animationName", animationName);
+	sender->sendEvent<T>(map);
+}
+static void call(CCObject* sender, int trackIndex, int loopCount, spEvent* event = nullptr)
+{
+	EventDataMap map;
 
-	if (event != nullptr)
-	{
-		t.setString("name", event->data->name);
-		t.setString("stringValue", event->data->stringValue);
-		t.setFloat("floatValue", event->data->floatValue);
-		t.setInt("intValue", event->data->intValue);
-	}
+	map[SpineEvent::Param::trackIndex] = trackIndex;
+	map[SpineEvent::Param::loopCount] = loopCount;
 
-	func->PushLuaTable(&t);
-	func->EndCall();
+	map[SpineEvent::Param::eventName] = event->data->name;
+	map[SpineEvent::Param::floatValue] = event->data->floatValue;
+	map[SpineEvent::Param::intValue] = event->data->intValue;
+	if (event->data->stringValue)
+		map[SpineEvent::Param::stringValue] = event->data->stringValue;
+	sender->sendEvent<SpineEvent::Param>(map);
 }
 
 void SkeletonAnimation::onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount) {
+
 	switch (type) {
-	case SP_ANIMATION_START: call(startListener, trackIndex, loopCount); break;
-	case SP_ANIMATION_END:   call(endListener, trackIndex, loopCount); break;
-	case SP_ANIMATION_COMPLETE:call(completeListener,trackIndex, loopCount); break;
-	case SP_ANIMATION_EVENT:  call(eventListener, trackIndex, loopCount, event); break;
+	case SP_ANIMATION_START: send<SpineStart::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_END:   send<SpineEnd::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_COMPLETE:send<SpineComplete::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_EVENT:  call(this, trackIndex, loopCount, event); break;
 	}
 }
 
 void SkeletonAnimation::onTrackEntryEvent (int trackIndex, spEventType type, spEvent* event, int loopCount) {
-	spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
-	if (!entry->rendererObject) return;
-	_TrackEntryListeners* listeners = (_TrackEntryListeners*)entry->rendererObject;
-
-	switch (type) {
-	case SP_ANIMATION_START: call(listeners->startListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_END:   call(listeners->endListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_COMPLETE:call(listeners->completeListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_EVENT:  call(listeners->eventListener, trackIndex, loopCount, event, entry); break;
-	}
+// 	spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
+// 	if (!entry->rendererObject) return;
+// 	_TrackEntryListeners* listeners = (_TrackEntryListeners*)entry->rendererObject;
+// 
+// 	switch (type) {
+// 	case SP_ANIMATION_START: call(listeners->startListener, trackIndex, loopCount, event, entry); break;
+// 	case SP_ANIMATION_END:   call(listeners->endListener, trackIndex, loopCount, event, entry); break;
+// 	case SP_ANIMATION_COMPLETE:call(listeners->completeListener, trackIndex, loopCount, event, entry); break;
+// 	case SP_ANIMATION_EVENT:  call(listeners->eventListener, trackIndex, loopCount, event, entry); break;
+// 	}
 }
 
-void SkeletonAnimation::setStartListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->startListener = listener;
-}
-void SkeletonAnimation::setEndListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->endListener = listener;
-}
-void SkeletonAnimation::setEventListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->eventListener = listener;
-}
-void SkeletonAnimation::setCompleteListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->completeListener = listener;
-}
+// void SkeletonAnimation::setStartListener(spTrackEntry* entry, LuaFunction* listener) {
+// 	getListeners(entry)->startListener = listener;
+// }
+// void SkeletonAnimation::setEndListener(spTrackEntry* entry, LuaFunction* listener) {
+// 	getListeners(entry)->endListener = listener;
+// }
+// void SkeletonAnimation::setEventListener(spTrackEntry* entry, LuaFunction* listener) {
+// 	getListeners(entry)->eventListener = listener;
+// }
+// void SkeletonAnimation::setCompleteListener(spTrackEntry* entry, LuaFunction* listener) {
+// 	getListeners(entry)->completeListener = listener;
+// }
 
 //////
 
@@ -461,10 +455,10 @@ CCRect SkeletonAnimation::boundingBox() {
 			continue;
 		for (int ii = 0; ii < verticesCount; ii += 2) {
 			float x = worldVertices[ii] * scaleX, y = worldVertices[ii + 1] * scaleY;
-			minX = min(minX, x);
-			minY = min(minY, y);
-			maxX = max(maxX, x);
-			maxY = max(maxY, y);
+			minX = Min(minX, x);
+			minY = Min(minY, y);
+			maxX = Max(maxX, x);
+			maxY = Max(maxY, y);
 		}
 	}
 	CCPoint position = getPosition();
@@ -524,3 +518,7 @@ bool SkeletonAnimation::isOpacityModifyRGB() {
 	return premultipliedAlpha;
 }
 }
+
+
+#include "engine/CCEventImpl.h"
+#include "SpineEvents.h"

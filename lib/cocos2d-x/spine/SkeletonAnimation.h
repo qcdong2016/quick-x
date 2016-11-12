@@ -33,10 +33,9 @@
 #define SPINE_SKELETONANIMATION_H_
 
 #include <spine/spine.h>
-#include "cocos2d.h"
 #include "PolygonBatch.h"
-#include "LuaFunction.h"
 #include "base/Ptr.h"
+#include "base_nodes/CCNode.h"
 
 namespace cocos2d {
 
@@ -112,14 +111,14 @@ public:
 	void clearTracks ();
 	void clearTrack (int trackIndex = 0);
 
-	void setStartListener(spTrackEntry* entry, LuaFunction* listener);
-	void setEndListener(spTrackEntry* entry, LuaFunction* listener);
-	void setEventListener(spTrackEntry* entry, LuaFunction* listener);
-	void setCompleteListener(spTrackEntry* entry, LuaFunction* listener);
-	SharedPtr<LuaFunction> startListener;
-	SharedPtr<LuaFunction> endListener;
-	SharedPtr<LuaFunction> eventListener;
-	SharedPtr<LuaFunction> completeListener;
+// 	void setStartListener(spTrackEntry* entry, LuaFunction* listener);
+// 	void setEndListener(spTrackEntry* entry, LuaFunction* listener);
+// 	void setEventListener(spTrackEntry* entry, LuaFunction* listener);
+// 	void setCompleteListener(spTrackEntry* entry, LuaFunction* listener);
+// 	SharedPtr<LuaFunction> startListener;
+// 	SharedPtr<LuaFunction> endListener;
+// 	SharedPtr<LuaFunction> eventListener;
+// 	SharedPtr<LuaFunction> completeListener;
 
 	virtual void onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
 	virtual void onTrackEntryEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
