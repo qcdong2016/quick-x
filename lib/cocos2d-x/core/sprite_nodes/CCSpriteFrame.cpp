@@ -25,7 +25,7 @@
  ****************************************************************************/
 #include "textures/CCTextureCache.h"
 #include "CCSpriteFrame.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 

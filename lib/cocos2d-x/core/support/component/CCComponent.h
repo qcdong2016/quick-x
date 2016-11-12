@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CC_FRAMEWORK_COMPONENT_H__
 #define __CC_FRAMEWORK_COMPONENT_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include <string>
 
 NS_CC_BEGIN

@@ -24,7 +24,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCTransitionPageTurn.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "actions/CCActionInterval.h"
 #include "actions/CCActionInstant.h"
 #include "actions/CCActionGrid.h"

@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "support/CCPointExtension.h"
 #include "support/data_support/ccCArray.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 
 #include "base/MathDefs.h"
 

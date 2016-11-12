@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 #include "CCStdC.h"
 #include "CCGL.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 
 NS_CC_BEGIN

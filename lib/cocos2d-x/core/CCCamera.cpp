@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "CCGL.h"
 
 #include "draw_nodes/CCDrawingPrimitives.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "kazmath/GL/matrix.h"
 
 using namespace std;

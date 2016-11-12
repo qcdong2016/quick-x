@@ -30,13 +30,13 @@ THE SOFTWARE.
 #include "ccTypes.h"
 #include "CCGL.h"
 #include "platform/CCPlatformMacros.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCArray.h"
 #include "kazmath/mat4.h"
 #include "label_nodes/CCLabelAtlas.h"
 
-#include "SubSystem.h"
+#include "engine/SubSystem.h"
 #include "base/Ptr.h"
 
 

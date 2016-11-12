@@ -26,7 +26,7 @@
 #define __CC_ZIP_FILE_H_
 
 #include <string>
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "support/zip_support/unzip.h"
 
 NS_CC_BEGIN

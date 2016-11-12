@@ -26,7 +26,7 @@
 
 #include "CCScheduler.h"
 #include "ccMacros.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/data_support/utlist.h"
 #include "support/data_support/ccCArray.h"
 #include "cocoa/CCArray.h"

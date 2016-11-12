@@ -59,7 +59,7 @@ THE SOFTWARE.
 // cocoa
 #include "cocoa/CCAffineTransform.h"
 #include "cocoa/CCDictionary.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCSet.h"
@@ -273,7 +273,7 @@ THE SOFTWARE.
 // root
 #include "CCCamera.h"
 #include "CCConfiguration.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "CCScheduler.h"
 
 // component

@@ -50,7 +50,7 @@ THE SOFTWARE.
 #include "platform/CCImage.h"
 #include "platform/platform.h"
 #include "support/zip_support/ZipUtils.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/CCProfiling.h"
 // opengl
 #include "CCGL.h"

@@ -26,10 +26,10 @@ THE SOFTWARE.
 #ifndef __TOUCH_DISPATCHER_CCTOUCH_DISPATCHER_H__
 #define __TOUCH_DISPATCHER_CCTOUCH_DISPATCHER_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "CCTouchDelegateProtocol.h"
-#include "SubSystem.h"
+#include "engine/SubSystem.h"
 
 NS_CC_BEGIN
 

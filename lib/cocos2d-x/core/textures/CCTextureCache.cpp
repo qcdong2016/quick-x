@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "CCTextureCache.h"
 #include "CCTexture2D.h"
 #include "ccMacros.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "platform/platform.h"
 #include "platform/CCThread.h"
 #include "platform/CCImage.h"

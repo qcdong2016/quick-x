@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "support/image_support/TGAlib.h"
 #include "ccConfig.h"
 #include "cocoa/CCDictionary.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "textures/CCTexture2D.h"
 #include "IO/FileSystem.h"

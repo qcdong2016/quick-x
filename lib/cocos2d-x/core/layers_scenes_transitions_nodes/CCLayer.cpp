@@ -28,7 +28,7 @@
 #include "CCLayer.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "CCAccelerometer.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "script_support/CCScriptSupport.h"
 #include "shaders/CCShaderCache.h"

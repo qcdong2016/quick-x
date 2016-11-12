@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include <string.h>
 #include "cocoa/CCDictionary.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 
 using namespace std;
 

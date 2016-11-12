@@ -1,0 +1,10 @@
+
+
+CC_EVENT_DEFINE(KeypadEvent)
+CC_PARAM(key)
+CC_EVENT_END()
+
+CC_EVENT_DEFINE(UpdateEvent)
+CC_PARAM(timeStep)
+CC_EVENT_END()
+

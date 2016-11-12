@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CC_IMAGE_H__
 #define __CC_IMAGE_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "ccTypes.h"
 
 NS_CC_BEGIN

@@ -30,8 +30,8 @@ THE SOFTWARE.
 
 #include "CCAction.h"
 #include "cocoa/CCArray.h"
-#include "cocoa/CCObject.h"
-#include "CCDirector.h"
+#include "engine/CCObject.h"
+#include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 

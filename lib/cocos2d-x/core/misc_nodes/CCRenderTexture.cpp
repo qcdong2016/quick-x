@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 #include "CCConfiguration.h"
 #include "misc_nodes/CCRenderTexture.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "platform/platform.h"
 #include "platform/CCImage.h"
 #include "shaders/CCGLProgram.h"
