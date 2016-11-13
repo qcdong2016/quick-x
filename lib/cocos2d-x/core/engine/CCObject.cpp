@@ -534,7 +534,7 @@ EventID CCObject::regEvent(EventID id)
 
 static std::hash_map<ID, SharedPtr<ObjectFactoryBase> > factorys;
 
-void ObjectFactoryManager::addFactory(ID type, SharedPtr<ObjectFactoryBase> factory)
+void ObjectFactoryManager::addFactory(ID type, ObjectFactoryBase* factory)
 {
 	factorys[type] = factory;
 }

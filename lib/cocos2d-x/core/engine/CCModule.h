@@ -28,5 +28,4 @@ public:
 
 #define CC_MODULE_DEFINE(type) \
 	static bool _##type = cocos2d::ModuleManager::addModule<type>(#type);
-
 NS_CC_END

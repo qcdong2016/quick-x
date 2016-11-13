@@ -16,7 +16,7 @@ public:
 
 	const std::string& getPath() { return _path; }
 
-	virtual void beginLoad(SharedPtr<MemBuffer> buf);
+	virtual void beginLoad(SharedPtr<MemBuffer> buf, void* userdata) {};
 
 protected:
 	friend class ResourceCache;
@@ -31,7 +31,13 @@ class CC_DLL ResourceCache : public SubSystem
 public:
 	ResourceCache();
 
-	SharedPtr<Resource> getResource(ID resType, const std::string& path);
+	Resource* getResource(ID resType, const std::string& path, void* userdata = 0);
+	template <class T> 
+	T* getResource(const std::string& path, void* userdata = 0)
+	{
+		return (T*)getResource(T::getTypeStatic(), path, userdata);
+	}
+
 	void removeUnused();
 
 private:

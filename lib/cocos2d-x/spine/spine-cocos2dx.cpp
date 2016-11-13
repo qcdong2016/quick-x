@@ -33,6 +33,7 @@
 #include <spine/extension.h>
 #include "IO/FileSystem.h"
 #include "engine/CCModule.h"
+#include "SpineResource.h"
 
 USING_NS_CC;
 
@@ -60,18 +61,16 @@ char* _spUtil_readFile (const char* path, int* length) {
 
 NS_CC_BEGIN
 
-class SpineModule : public Module
+void SpineModule::attach()
 {
-public:
-	virtual void attach()
-	{
-	}
+	ObjectFactoryManager::addFactory<SpineSkeletonDataResource>();
+	ObjectFactoryManager::addFactory<SpineAtlasResource>();
+}
 
-	virtual void detach()
-	{
-	}
-};
+void SpineModule::detach()
+{
+}
 
-CC_MODULE_DEFINE(SpineModule)
+
 
 NS_CC_END

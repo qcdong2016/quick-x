@@ -29,11 +29,22 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#ifndef SPINE_COCOS2DX_H_
-#define SPINE_COCOS2DX_H_
+#pragma once
 
 #include <spine/spine.h>
 #include "cocos2d.h"
 #include "SkeletonAnimation.h"
+#include "engine/CCModule.h"
 
-#endif /* SPINE_COCOS2DX_H_ */
+NS_CC_BEGIN
+
+class SpineModule : public Module
+{
+public:
+	virtual void attach();
+	virtual void detach();
+};
+
+CC_MODULE_DEFINE(SpineModule)
+
+NS_CC_END

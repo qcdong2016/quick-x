@@ -360,14 +360,14 @@ static int tolua_spine_SkeletonAnimation_createWithFile00(lua_State* tolua_S)
   const char* atlasFile = ((const char*)  tolua_tostring(tolua_S,3,0));
   float scale = ((float)  tolua_tonumber(tolua_S,4,0));
   {
-   SkeletonAnimation* tolua_ret = (SkeletonAnimation*)  SkeletonAnimation::createWithFile(skeletonDataFile,atlasFile,scale);
+   SkeletonAnimation* tolua_ret = (SkeletonAnimation*)  SkeletonAnimation::create(skeletonDataFile,atlasFile,scale);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"SkeletonAnimation");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'createWithFile'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
  return 0;
 #endif
 }
@@ -627,7 +627,7 @@ TOLUA_API int tolua_spine_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setSlotsToSetupPose",tolua_spine_SkeletonAnimation_setSlotsToSetupPose00);
    tolua_function(tolua_S,"setSkin",tolua_spine_SkeletonAnimation_setSkin00);
    tolua_function(tolua_S,"setBlendFunc",tolua_spine_SkeletonAnimation_setBlendFunc00);
-   tolua_function(tolua_S,"createWithFile",tolua_spine_SkeletonAnimation_createWithFile00);
+   tolua_function(tolua_S,"create",tolua_spine_SkeletonAnimation_createWithFile00);
    tolua_function(tolua_S,"setMix",tolua_spine_SkeletonAnimation_setMix00);
    tolua_function(tolua_S,"setAnimation",tolua_spine_SkeletonAnimation_setAnimation00);
    tolua_function(tolua_S,"addAnimation",tolua_spine_SkeletonAnimation_addAnimation00);

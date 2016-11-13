@@ -66,6 +66,7 @@ THE SOFTWARE.
 #include "CCInput.h"
 #include "engine/CCEngineEvents.h"
 #include "CCModule.h"
+#include "CCResourceCache.h"
 
 /**
  Position of the FPS
@@ -154,13 +155,12 @@ bool CCDirector::init(void)
     // scheduler
     m_pScheduler = new CCScheduler();
     // action manager
+	ModuleManager::attachAll();
 
 	addSubSystem<CCActionManager>();
-
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
-
-	ModuleManager::attachAll();
+	addSubSystem<ResourceCache>();
 
     // create autorelease pool
     CCPoolManager::sharedPoolManager()->push();

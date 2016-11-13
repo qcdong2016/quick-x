@@ -4,16 +4,11 @@
 NS_CC_BEGIN
 static const SharedPtr<Resource> noResource;
 
-void Resource::beginLoad(SharedPtr<MemBuffer> buf)
-{
-
-}
-
 ResourceCache::ResourceCache()
 {
 }
 
-SharedPtr<Resource> ResourceCache::getResource(ID resType, const std::string& path)
+Resource* ResourceCache::getResource(ID resType, const std::string& path, void* userdata /* = 0 */)
 {
 	const SharedPtr<Resource> cached = findResource(resType, path);
 
@@ -22,31 +17,26 @@ SharedPtr<Resource> ResourceCache::getResource(ID resType, const std::string& pa
 
 	SharedPtr<MemBuffer> buf = FileSystem::readAll(path);
 
-	if (buf->isNull())
-		return noResource;
-
 	SharedPtr<Resource> res(ObjectFactoryManager::newObject<Resource>(resType));
 
-	res->beginLoad(buf);
+	res->_path = path;
+
+	if (!buf->isNull()) {
+		res->beginLoad(buf, userdata);
+		_resources.insert(_resources.begin(), res);
+	}
 
 	return res;
 }
 
 const SharedPtr<Resource>& ResourceCache::findResource(ID type, const std::string& path)
 {
-	class finder
+	auto iter = std::find_if(_resources.begin(), _resources.end(), 
+		[&](SharedPtr<Resource>& ele)
 	{
-	public:
-		const char* path;
-		finder(const char* s) : path(s) {}
-
-		bool operator () (SharedPtr<Resource>& ele) {
-			if (ele->getPath().compare(path) == 0)
-				return true;
-		}
-	};
-
-	auto iter = std::find_if(_resources.begin(), _resources.end(), finder(path.c_str()));
+		if (ele->getType() == type && ele->getPath() == path)
+			return true;
+	});
 
 	if (iter != _resources.end())
 		return *iter;
