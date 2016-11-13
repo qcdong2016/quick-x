@@ -70,7 +70,7 @@ public:
     ~CCProgressTimer(void);
 
     /**    Change the percentage to change progress. */
-    inline CCProgressTimerType getType(void) { return m_eType; }
+    inline CCProgressTimerType getTimerType(void) { return m_eType; }
 
     /** Percentages are from 0 to 100 */
     inline float getPercentage(void) {return m_fPercentage; }
@@ -83,7 +83,7 @@ public:
 
     void setPercentage(float fPercentage);
     void setSprite(CCSprite *pSprite);
-    void setType(CCProgressTimerType type);
+    void setTimerType(CCProgressTimerType type);
     /**
      *  @js setReverseDirection
      */

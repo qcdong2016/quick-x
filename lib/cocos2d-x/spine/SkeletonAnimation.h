@@ -111,15 +111,6 @@ public:
 	void clearTracks ();
 	void clearTrack (int trackIndex = 0);
 
-// 	void setStartListener(spTrackEntry* entry, LuaFunction* listener);
-// 	void setEndListener(spTrackEntry* entry, LuaFunction* listener);
-// 	void setEventListener(spTrackEntry* entry, LuaFunction* listener);
-// 	void setCompleteListener(spTrackEntry* entry, LuaFunction* listener);
-// 	SharedPtr<LuaFunction> startListener;
-// 	SharedPtr<LuaFunction> endListener;
-// 	SharedPtr<LuaFunction> eventListener;
-// 	SharedPtr<LuaFunction> completeListener;
-
 	virtual void onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
 	virtual void onTrackEntryEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
 
@@ -127,12 +118,12 @@ protected:
 	SkeletonAnimation ();
 
 private:
-	bool ownsSkeletonData;
-	spAtlas* atlas;
-	PolygonBatch* batch;
-	float* worldVertices;
+	bool _ownsSkeletonData;
+	spAtlas* _atlas;
+	PolygonBatch* _batch;
+	float* _worldVertices;
 
-	bool ownsAnimationStateData;
+	bool _ownsAnimationStateData;
 
 	void initialize ();
 };

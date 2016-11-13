@@ -341,14 +341,14 @@ public:
 	T* addSubSystem() 
 	{
 		T* ss = new T;
-		addSubSystem(T::getType(), ss);
+		addSubSystem(T::getTypeStatic(), ss);
 		return ss;
 	}
 
 	template<typename T>
 	T* getSubSystem() 
 	{
-		return static_cast<T*>(getSubSystem(T::getType()));
+		return static_cast<T*>(getSubSystem(T::getTypeStatic()));
 	}
 
 	void addSubSystem(ID type, SubSystem* ss)

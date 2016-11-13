@@ -141,7 +141,7 @@ CCProgressTimer* CCTransitionProgressRadialCCW::progressTimerNodeWithRenderTextu
 
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType(kCCProgressTimerTypeRadial);
+    pNode->setTimerType(kCCProgressTimerTypeRadial);
 
     //    Return the radial type that we want to use
     pNode->setReverseDirection(false);
@@ -185,7 +185,7 @@ CCProgressTimer* CCTransitionProgressRadialCW::progressTimerNodeWithRenderTextur
     
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType( kCCProgressTimerTypeRadial );
+    pNode->setTimerType( kCCProgressTimerTypeRadial );
     
     //    Return the radial type that we want to use
     pNode->setReverseDirection(true);
@@ -217,7 +217,7 @@ CCProgressTimer* CCTransitionProgressHorizontal::progressTimerNodeWithRenderText
     
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType( kCCProgressTimerTypeBar);
+    pNode->setTimerType( kCCProgressTimerTypeBar);
     
     pNode->setMidpoint(ccp(1, 0));
     pNode->setBarChangeRate(ccp(1,0));
@@ -250,7 +250,7 @@ CCProgressTimer* CCTransitionProgressVertical::progressTimerNodeWithRenderTextur
     
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType(kCCProgressTimerTypeBar);
+    pNode->setTimerType(kCCProgressTimerTypeBar);
     
     pNode->setMidpoint(ccp(0, 0));
     pNode->setBarChangeRate(ccp(0,1));
@@ -296,7 +296,7 @@ CCProgressTimer* CCTransitionProgressInOut::progressTimerNodeWithRenderTexture(C
     
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType( kCCProgressTimerTypeBar);
+    pNode->setTimerType( kCCProgressTimerTypeBar);
     
     pNode->setMidpoint(ccp(0.5f, 0.5f));
     pNode->setBarChangeRate(ccp(1, 1));
@@ -330,7 +330,7 @@ CCProgressTimer* CCTransitionProgressOutIn::progressTimerNodeWithRenderTexture(C
     
     // but it is flipped upside down so we flip the sprite
     pNode->getSprite()->setFlipY(true);
-    pNode->setType( kCCProgressTimerTypeBar );
+    pNode->setTimerType( kCCProgressTimerTypeBar );
     
     pNode->setMidpoint(ccp(0.5f, 0.5f));
     pNode->setBarChangeRate(ccp(1, 1));

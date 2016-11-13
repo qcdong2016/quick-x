@@ -75,10 +75,12 @@ private:
 	public:                                                    \
 		typedef typeName SelfType;                                \
 		typedef superTypeName Super;                                 \
-		static const cocos2d::TypeInfo* getTypeInfoStatic() { static cocos2d::TypeInfo typeInfoStatic(#typeName, superTypeName::getTypeInfo()); return &typeInfoStatic; } \
-		static const std::string& getTypeName() { return getTypeInfoStatic()->getTypeName(); } \
-		static const cocos2d::TypeInfo* getTypeInfo() { return getTypeInfoStatic(); } \
-		static cocos2d::ID getType() { return getTypeInfoStatic()->getType(); } \
+		static const cocos2d::TypeInfo* getTypeInfoStatic() { static cocos2d::TypeInfo typeInfoStatic(#typeName, superTypeName::getTypeInfoStatic()); return &typeInfoStatic; } \
+		static const std::string& getTypeNameStatic() { return getTypeInfoStatic()->getTypeName(); } \
+		static cocos2d::ID getTypeStatic() { return getTypeInfoStatic()->getType(); } \
+		virtual const cocos2d::TypeInfo* getTypeInfo() { return getTypeInfoStatic(); } \
+		virtual cocos2d::ID getType() { return getTypeInfoStatic()->getType(); } \
+		virtual const std::string& getTypeName() { return getTypeInfoStatic()->getTypeName(); } \
 		virtual CCObject* copy()                                   \
 		{                                                          \
 			CCObject* o = new SelfType();                          \
@@ -124,7 +126,10 @@ public:
 	/// paste this proprty to o;
 	virtual void paste(CCObject* o);
 	virtual CCObject* copy();
-	static const TypeInfo* getTypeInfo() { return 0; }
+	static const TypeInfo* getTypeInfoStatic() { static TypeInfo typeInfoStatic("CCObject", nullptr); return &typeInfoStatic; }
+	virtual const TypeInfo* getTypeInfo() { return getTypeInfoStatic(); }
+	virtual ID getType() { return getTypeInfo()->getType(); }
+	virtual const std::string& getTypeName() { return getTypeInfo()->getTypeName(); }
 
 	virtual bool isEqual(const CCObject* pObject);
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};

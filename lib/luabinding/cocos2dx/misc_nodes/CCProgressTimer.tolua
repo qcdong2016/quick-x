@@ -48,8 +48,8 @@ typedef enum {
 class CCProgressTimer : public CCNode
 {
     /** Change the percentage to change progress. */
-    CCProgressTimerType getType(void);
-    void setType(CCProgressTimerType type);
+    CCProgressTimerType getTimerType(void);
+    void setTimerType(CCProgressTimerType type);
 
     /** Percentages are from 0 to 100 */
     float getPercentage(void);

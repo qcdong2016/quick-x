@@ -122,7 +122,7 @@ void CCProgressTimer::setSprite(CCSprite *pSprite)
     }        
 }
 
-void CCProgressTimer::setType(CCProgressTimerType type)
+void CCProgressTimer::setTimerType(CCProgressTimerType type)
 {
     if (type != m_eType)
     {

@@ -36878,9 +36878,9 @@ static int tolua_Cocos2d_CCClippingRegionNode_setClippingEnabled00(lua_State* to
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getType of class  CCProgressTimer */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCProgressTimer_getType00
-static int tolua_Cocos2d_CCProgressTimer_getType00(lua_State* tolua_S)
+/* method: getTimerType of class  CCProgressTimer */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCProgressTimer_getTimerType00
+static int tolua_Cocos2d_CCProgressTimer_getTimerType00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -36894,25 +36894,25 @@ static int tolua_Cocos2d_CCProgressTimer_getType00(lua_State* tolua_S)
  {
   CCProgressTimer* self = (CCProgressTimer*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getType'", NULL);
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTimerType'", NULL);
 #endif
  {
-  CCProgressTimerType tolua_ret = (CCProgressTimerType)  self->getType();
+  CCProgressTimerType tolua_ret = (CCProgressTimerType)  self->getTimerType();
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
  }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getType'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getTimerType'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setType of class  CCProgressTimer */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCProgressTimer_setType00
-static int tolua_Cocos2d_CCProgressTimer_setType00(lua_State* tolua_S)
+/* method: setTimerType of class  CCProgressTimer */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCProgressTimer_setTimerType00
+static int tolua_Cocos2d_CCProgressTimer_setTimerType00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -36928,16 +36928,16 @@ static int tolua_Cocos2d_CCProgressTimer_setType00(lua_State* tolua_S)
   CCProgressTimer* self = (CCProgressTimer*)  tolua_tousertype(tolua_S,1,0);
   CCProgressTimerType type = ((CCProgressTimerType) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setType'", NULL);
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTimerType'", NULL);
 #endif
  {
-  self->setType(type);
+  self->setTimerType(type);
  }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setType'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'setTimerType'.",&tolua_err);
  return 0;
 #endif
 }
@@ -48665,8 +48665,8 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
  tolua_constant(tolua_S,"kCCProgressTimerTypeBar",kCCProgressTimerTypeBar);
  tolua_cclass(tolua_S,"CCProgressTimer","CCProgressTimer","CCNode",NULL);
  tolua_beginmodule(tolua_S,"CCProgressTimer");
-  tolua_function(tolua_S,"getType",tolua_Cocos2d_CCProgressTimer_getType00);
-  tolua_function(tolua_S,"setType",tolua_Cocos2d_CCProgressTimer_setType00);
+  tolua_function(tolua_S,"getTimerType",tolua_Cocos2d_CCProgressTimer_getTimerType00);
+  tolua_function(tolua_S,"setTimerType",tolua_Cocos2d_CCProgressTimer_setTimerType00);
   tolua_function(tolua_S,"getPercentage",tolua_Cocos2d_CCProgressTimer_getPercentage00);
   tolua_function(tolua_S,"setPercentage",tolua_Cocos2d_CCProgressTimer_setPercentage00);
   tolua_function(tolua_S,"setReverseProgress",tolua_Cocos2d_CCProgressTimer_setReverseProgress00);
