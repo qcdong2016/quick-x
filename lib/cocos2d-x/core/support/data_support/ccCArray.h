@@ -43,7 +43,7 @@ THE SOFTWARE.
 #define CC_ARRAY_H
 
 #include "ccMacros.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 
 #include <stdlib.h>
 #include <string.h>

@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include <stdarg.h>
 #include <string>
 #include <functional>
-#include "CCObject.h"
+#include "engine/CCObject.h"
 
 NS_CC_BEGIN
 

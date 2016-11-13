@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/TransformUtils.h"
 #include "draw_nodes/CCDrawingPrimitives.h"
 // extern
@@ -122,7 +122,7 @@ void CCProgressTimer::setSprite(CCSprite *pSprite)
     }        
 }
 
-void CCProgressTimer::setType(CCProgressTimerType type)
+void CCProgressTimer::setTimerType(CCProgressTimerType type)
 {
     if (type != m_eType)
     {

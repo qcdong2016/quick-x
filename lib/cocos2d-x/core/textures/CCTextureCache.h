@@ -28,7 +28,7 @@ THE SOFTWARE.
 #ifndef __CCTEXTURE_CACHE_H__
 #define __CCTEXTURE_CACHE_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCDictionary.h"
 #include "textures/CCTexture2D.h"
 #include <string>

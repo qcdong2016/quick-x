@@ -9,7 +9,7 @@ extern "C" {
 }
 #endif
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 
 LUA_API int register_all_cocos2dx_studio_manual(lua_State* tolua_S);
 

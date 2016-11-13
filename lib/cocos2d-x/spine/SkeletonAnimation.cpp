@@ -34,13 +34,9 @@
 #include <spine/extension.h>
 #include <algorithm>
 #include "PolygonBatch.h"
-#include "CCLuaEngine.h"
-#include "LuaTable.h"
-#include "LuaFunction.h"
+#include "SpineEvents.h"
+#include "base/MathDefs.h"
 
-using std::min;
-using std::max;
-using std::vector;
 
 namespace cocos2d {
 
@@ -54,10 +50,7 @@ void trackEntryCallback (spAnimationState* state, int trackIndex, spEventType ty
 
 class _TrackEntryListeners {
 public:
-	SharedPtr<LuaFunction> startListener;
-	SharedPtr<LuaFunction> endListener;
-	SharedPtr<LuaFunction> eventListener;
-	SharedPtr<LuaFunction> completeListener;
+
 };
 
 static _TrackEntryListeners* getListeners (spTrackEntry* entry) {
@@ -95,15 +88,15 @@ SkeletonAnimation* SkeletonAnimation::createWithFile (const char* skeletonDataFi
 }
 
 void SkeletonAnimation::initialize () {
-	atlas = 0;
+	_atlas = 0;
 	debugSlots = false;
 	debugBones = false;
 	timeScale = 1;
 
-	worldVertices = MALLOC(float, 1000); // Max number of vertices per mesh.
+	_worldVertices = MALLOC(float, 1000); // Max number of vertices per mesh.
 
-	batch = PolygonBatch::createWithCapacity(2000); // Max number of vertices and triangles per batch.
-	batch->retain();
+	_batch = PolygonBatch::createWithCapacity(2000); // Max number of vertices and triangles per batch.
+	_batch->retain();
 
 	blendFunc.src = GL_ONE;
 	blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
@@ -112,7 +105,7 @@ void SkeletonAnimation::initialize () {
 	setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
 	scheduleUpdate();
 
-	ownsAnimationStateData = true;
+	_ownsAnimationStateData = true;
 	state = spAnimationState_create(spAnimationStateData_create(skeleton->data));
 	state->rendererObject = this;
 	state->listener = animationCallback;
@@ -127,44 +120,48 @@ SkeletonAnimation::SkeletonAnimation (spSkeletonData *skeletonData)
 	initialize();
 }
 
-SkeletonAnimation::SkeletonAnimation (const char* skeletonDataFile, spAtlas* atlas, float scale)
+static spSkeletonData* createSK(const char* skeletonDataFile, spAtlas* atlas, float scale)
 {
 	spSkeletonJson* json = spSkeletonJson_create(atlas);
 	json->scale = scale;
-	spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonDataFile);
+
+	SharedPtr<MemBuffer> buf = FileSystem::readAll(skeletonDataFile);
+	spSkeletonData* skeletonData = spSkeletonJson_readSkeletonData(json, (const char*)buf->getData());
+
 	CCAssert(skeletonData, json->error ? json->error : "Error reading skeleton data.");
 	spSkeletonJson_dispose(json);
 
-	setSkeletonData(skeletonData, true);
+	return skeletonData;
+}
 
+SkeletonAnimation::SkeletonAnimation (const char* skeletonDataFile, spAtlas* atlas, float scale)
+{
+	spSkeletonData* skeletonData = createSK(skeletonDataFile, atlas, scale);
+
+	setSkeletonData(skeletonData, true);
 	initialize();
 }
 
 SkeletonAnimation::SkeletonAnimation (const char* skeletonDataFile, const char* atlasFile, float scale)
 {
-	atlas = spAtlas_createFromFile(atlasFile, 0);
-	CCAssert(atlas, "Error reading atlas file.");
+	_atlas = spAtlas_createFromFile(atlasFile, 0);
+	CCAssert(_atlas, "Error reading atlas file.");
 
-	spSkeletonJson* json = spSkeletonJson_create(atlas);
-	json->scale = scale;
-	spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonDataFile);
-	CCAssert(skeletonData, json->error ? json->error : "Error reading skeleton data file.");
-	spSkeletonJson_dispose(json);
+	spSkeletonData* skeletonData = createSK(skeletonDataFile, _atlas, scale);
 
 	setSkeletonData(skeletonData, true);
-
 	initialize();
 }
 
 SkeletonAnimation::~SkeletonAnimation () {
-	if (ownsAnimationStateData) spAnimationStateData_dispose(state->data);
+	if (_ownsAnimationStateData) spAnimationStateData_dispose(state->data);
 	spAnimationState_dispose(state);
 
-	if (ownsSkeletonData) spSkeletonData_dispose(skeleton->data);
-	if (atlas) spAtlas_dispose(atlas);
+	if (_ownsSkeletonData) spSkeletonData_dispose(skeleton->data);
+	if (_atlas) spAtlas_dispose(_atlas);
 	spSkeleton_dispose(skeleton);
-	FREE(worldVertices);
-	batch->release();
+	FREE(_worldVertices);
+	_batch->release();
 }
 
 void SkeletonAnimation::update (float deltaTime) {
@@ -179,10 +176,10 @@ void SkeletonAnimation::update (float deltaTime) {
 void SkeletonAnimation::setAnimationStateData (spAnimationStateData* stateData) {
 	CCAssert(stateData, "stateData cannot be null.");
 
-	if (ownsAnimationStateData) spAnimationStateData_dispose(state->data);
+	if (_ownsAnimationStateData) spAnimationStateData_dispose(state->data);
 	spAnimationState_dispose(state);
 
-	ownsAnimationStateData = false;
+	_ownsAnimationStateData = false;
 	state = spAnimationState_create(stateData);
 	state->rendererObject = this;
 	state->listener = animationCallback;
@@ -222,74 +219,51 @@ void SkeletonAnimation::clearTrack (int trackIndex) {
 	spAnimationState_clearTrack(state, trackIndex);
 }
 
-static void call(LuaFunction* func, int trackIndex, int loopCount, spEvent* event = nullptr, spTrackEntry* entry = nullptr)
+template<typename T>
+static void send(CCObject* sender, int trackIndex, int loopCount)
 {
-	if (!func || !func->IsValid()) return;
+	EventDataMap map;
 
-	func->BeginCall();
+	map[T::trackIndex] = trackIndex;
+	map[T::loopCount] = loopCount;
 
-	LuaTable t(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState());
-	t.setInt("trackIndex", trackIndex);
-	t.setInt("loopCount", loopCount);
-	const char* animationName = (entry && entry->animation) ? entry->animation->name : "";
-	if (animationName)
-		t.setString("animationName", animationName);
+	sender->sendEvent<T>(map);
+}
+static void call(CCObject* sender, int trackIndex, int loopCount, spEvent* event = nullptr)
+{
+	EventDataMap map;
 
-	if (event != nullptr)
-	{
-		t.setString("name", event->data->name);
-		t.setString("stringValue", event->data->stringValue);
-		t.setFloat("floatValue", event->data->floatValue);
-		t.setInt("intValue", event->data->intValue);
-	}
+	map[SpineEvent::Param::trackIndex] = trackIndex;
+	map[SpineEvent::Param::loopCount] = loopCount;
 
-	func->PushLuaTable(&t);
-	func->EndCall();
+	map[SpineEvent::Param::eventName] = event->data->name;
+	map[SpineEvent::Param::floatValue] = event->data->floatValue;
+	map[SpineEvent::Param::intValue] = event->data->intValue;
+	if (event->data->stringValue)
+		map[SpineEvent::Param::stringValue] = event->data->stringValue;
+	sender->sendEvent<SpineEvent::Param>(map);
 }
 
 void SkeletonAnimation::onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount) {
+
 	switch (type) {
-	case SP_ANIMATION_START: call(startListener, trackIndex, loopCount); break;
-	case SP_ANIMATION_END:   call(endListener, trackIndex, loopCount); break;
-	case SP_ANIMATION_COMPLETE:call(completeListener,trackIndex, loopCount); break;
-	case SP_ANIMATION_EVENT:  call(eventListener, trackIndex, loopCount, event); break;
+	case SP_ANIMATION_START: send<SpineStart::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_END:   send<SpineEnd::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_COMPLETE:send<SpineComplete::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_EVENT:  call(this, trackIndex, loopCount, event); break;
 	}
 }
 
 void SkeletonAnimation::onTrackEntryEvent (int trackIndex, spEventType type, spEvent* event, int loopCount) {
-	spTrackEntry* entry = spAnimationState_getCurrent(state, trackIndex);
-	if (!entry->rendererObject) return;
-	_TrackEntryListeners* listeners = (_TrackEntryListeners*)entry->rendererObject;
 
-	switch (type) {
-	case SP_ANIMATION_START: call(listeners->startListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_END:   call(listeners->endListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_COMPLETE:call(listeners->completeListener, trackIndex, loopCount, event, entry); break;
-	case SP_ANIMATION_EVENT:  call(listeners->eventListener, trackIndex, loopCount, event, entry); break;
-	}
 }
-
-void SkeletonAnimation::setStartListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->startListener = listener;
-}
-void SkeletonAnimation::setEndListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->endListener = listener;
-}
-void SkeletonAnimation::setEventListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->eventListener = listener;
-}
-void SkeletonAnimation::setCompleteListener(spTrackEntry* entry, LuaFunction* listener) {
-	getListeners(entry)->completeListener = listener;
-}
-
-//////
 
 static const int quadTriangles[6] = { 0, 1, 2, 2, 3, 0 };
 
 void SkeletonAnimation::setSkeletonData(spSkeletonData *skeletonData, bool ownsSkeletonData) {
 	skeleton = spSkeleton_create(skeletonData);
 	rootBone = skeleton->bones[0];
-	this->ownsSkeletonData = ownsSkeletonData;
+	this->_ownsSkeletonData = ownsSkeletonData;
 }
 
 void SkeletonAnimation::draw() {
@@ -316,7 +290,7 @@ void SkeletonAnimation::draw() {
 		switch (slot->attachment->type) {
 		case SP_ATTACHMENT_REGION: {
 			spRegionAttachment* attachment = (spRegionAttachment*)slot->attachment;
-			spRegionAttachment_computeWorldVertices(attachment, slot->bone, worldVertices);
+			spRegionAttachment_computeWorldVertices(attachment, slot->bone, _worldVertices);
 			texture = getTexture(attachment);
 			uvs = attachment->uvs;
 			verticesCount = 8;
@@ -330,7 +304,7 @@ void SkeletonAnimation::draw() {
 		}
 		case SP_ATTACHMENT_MESH: {
 			spMeshAttachment* attachment = (spMeshAttachment*)slot->attachment;
-			spMeshAttachment_computeWorldVertices(attachment, slot, worldVertices);
+			spMeshAttachment_computeWorldVertices(attachment, slot, _worldVertices);
 			texture = getTexture(attachment);
 			uvs = attachment->uvs;
 			verticesCount = attachment->verticesCount;
@@ -344,7 +318,7 @@ void SkeletonAnimation::draw() {
 		}
 		case SP_ATTACHMENT_SKINNED_MESH: {
 			spSkinnedMeshAttachment* attachment = (spSkinnedMeshAttachment*)slot->attachment;
-			spSkinnedMeshAttachment_computeWorldVertices(attachment, slot, worldVertices);
+			spSkinnedMeshAttachment_computeWorldVertices(attachment, slot, _worldVertices);
 			texture = getTexture(attachment);
 			uvs = attachment->uvs;
 			verticesCount = attachment->uvsCount;
@@ -359,7 +333,7 @@ void SkeletonAnimation::draw() {
 		}
 		if (texture) {
 			if (slot->data->blendMode != blendMode) {
-				batch->flush();
+				_batch->flush();
 				blendMode = slot->data->blendMode;
 				switch (slot->data->blendMode) {
 				case SP_BLEND_MODE_ADDITIVE:
@@ -380,10 +354,10 @@ void SkeletonAnimation::draw() {
 			color.r = skeleton->r * slot->r * r * multiplier;
 			color.g = skeleton->g * slot->g * g * multiplier;
 			color.b = skeleton->b * slot->b * b * multiplier;
-			batch->add(texture, worldVertices, uvs, verticesCount, triangles, trianglesCount, &color);
+			_batch->add(texture, _worldVertices, uvs, verticesCount, triangles, trianglesCount, &color);
 		}
 	}
-	batch->flush();
+	_batch->flush();
 
 	if (debugSlots) {
 		// Slots.
@@ -394,11 +368,11 @@ void SkeletonAnimation::draw() {
 			spSlot* slot = skeleton->drawOrder[i];
 			if (!slot->attachment || slot->attachment->type != SP_ATTACHMENT_REGION) continue;
 			spRegionAttachment* attachment = (spRegionAttachment*)slot->attachment;
-			spRegionAttachment_computeWorldVertices(attachment, slot->bone, worldVertices);
-			points[0] = ccp(worldVertices[0], worldVertices[1]);
-			points[1] = ccp(worldVertices[2], worldVertices[3]);
-			points[2] = ccp(worldVertices[4], worldVertices[5]);
-			points[3] = ccp(worldVertices[6], worldVertices[7]);
+			spRegionAttachment_computeWorldVertices(attachment, slot->bone, _worldVertices);
+			points[0] = ccp(_worldVertices[0], _worldVertices[1]);
+			points[1] = ccp(_worldVertices[2], _worldVertices[3]);
+			points[2] = ccp(_worldVertices[4], _worldVertices[5]);
+			points[3] = ccp(_worldVertices[6], _worldVertices[7]);
 			ccDrawPoly(points, 4, true);
 		}
 	}
@@ -444,27 +418,27 @@ CCRect SkeletonAnimation::boundingBox() {
 		int verticesCount;
 		if (slot->attachment->type == SP_ATTACHMENT_REGION) {
 			spRegionAttachment* attachment = (spRegionAttachment*)slot->attachment;
-			spRegionAttachment_computeWorldVertices(attachment, slot->bone, worldVertices);
+			spRegionAttachment_computeWorldVertices(attachment, slot->bone, _worldVertices);
 			verticesCount = 8;
 		}
 		else if (slot->attachment->type == SP_ATTACHMENT_MESH) {
 			spMeshAttachment* mesh = (spMeshAttachment*)slot->attachment;
-			spMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+			spMeshAttachment_computeWorldVertices(mesh, slot, _worldVertices);
 			verticesCount = mesh->verticesCount;
 		}
 		else if (slot->attachment->type == SP_ATTACHMENT_SKINNED_MESH) {
 			spSkinnedMeshAttachment* mesh = (spSkinnedMeshAttachment*)slot->attachment;
-			spSkinnedMeshAttachment_computeWorldVertices(mesh, slot, worldVertices);
+			spSkinnedMeshAttachment_computeWorldVertices(mesh, slot, _worldVertices);
 			verticesCount = mesh->uvsCount;
 		}
 		else
 			continue;
 		for (int ii = 0; ii < verticesCount; ii += 2) {
-			float x = worldVertices[ii] * scaleX, y = worldVertices[ii + 1] * scaleY;
-			minX = min(minX, x);
-			minY = min(minY, y);
-			maxX = max(maxX, x);
-			maxY = max(maxY, y);
+			float x = _worldVertices[ii] * scaleX, y = _worldVertices[ii + 1] * scaleY;
+			minX = Min(minX, x);
+			minY = Min(minY, y);
+			maxX = Max(maxX, x);
+			maxY = Max(maxY, y);
 		}
 	}
 	CCPoint position = getPosition();
@@ -524,3 +498,7 @@ bool SkeletonAnimation::isOpacityModifyRGB() {
 	return premultipliedAlpha;
 }
 }
+
+
+#include "engine/CCEventImpl.h"
+#include "SpineEvents.h"

@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CCNOTIFICATIONCENTER_H__
 #define __CCNOTIFICATIONCENTER_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 
 

@@ -1,7 +1,7 @@
 #ifndef __CCINTEGER_H__
 #define __CCINTEGER_H__
 
-#include "CCObject.h"
+#include "engine/CCObject.h"
 
 NS_CC_BEGIN
 

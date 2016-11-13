@@ -27,7 +27,7 @@
 #define __CC_ANIMATION_H__
 
 #include "platform/CCPlatformConfig.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCDictionary.h"
 #include "cocoa/CCGeometry.h"

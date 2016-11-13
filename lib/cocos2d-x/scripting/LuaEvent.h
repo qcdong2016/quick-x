@@ -1,4 +1,4 @@
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "base/Ptr.h"
 #include "LuaFunction.h"
 
@@ -18,7 +18,7 @@ public:
 	{
 	}
 
-	virtual void invoke(VariantMap& evt);
+	virtual void invoke(EventDataMap& evt);
 	virtual EventHandler* clone() const;
 private:
 	SharedPtr<LuaFunction> _function;

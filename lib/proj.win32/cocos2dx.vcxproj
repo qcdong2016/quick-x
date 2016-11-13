@@ -37,7 +37,6 @@
     <ClCompile Include="..\cocos2d-x\core\base_nodes\CCNode.cpp" />
     <ClCompile Include="..\cocos2d-x\core\CCCamera.cpp" />
     <ClCompile Include="..\cocos2d-x\core\CCConfiguration.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\CCDirector.cpp" />
     <ClCompile Include="..\cocos2d-x\core\ccFPSImages.c" />
     <ClCompile Include="..\cocos2d-x\core\CCScheduler.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAffineTransform.cpp" />
@@ -45,7 +44,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCDictionary.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCGeometry.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCPointArray.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCSet.cpp" />
@@ -60,6 +58,9 @@
     <ClCompile Include="..\cocos2d-x\core\draw_nodes\CCShapeNode.cpp" />
     <ClCompile Include="..\cocos2d-x\core\effects\CCGrabber.cpp" />
     <ClCompile Include="..\cocos2d-x\core\effects\CCGrid.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\core\IO\FileSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\GL\mat4stack.c" />
@@ -314,7 +315,6 @@
     <ClInclude Include="..\cocos2d-x\core\CCCamera.h" />
     <ClInclude Include="..\cocos2d-x\core\ccConfig.h" />
     <ClInclude Include="..\cocos2d-x\core\CCConfiguration.h" />
-    <ClInclude Include="..\cocos2d-x\core\CCDirector.h" />
     <ClInclude Include="..\cocos2d-x\core\ccFPSImages.h" />
     <ClInclude Include="..\cocos2d-x\core\ccMacros.h" />
     <ClInclude Include="..\cocos2d-x\core\CCScheduler.h" />
@@ -325,7 +325,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCDictionary.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCInteger.h" />
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCObject.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCPointArray.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCSet.h" />
@@ -340,6 +339,11 @@
     <ClInclude Include="..\cocos2d-x\core\draw_nodes\CCShapeNode.h" />
     <ClInclude Include="..\cocos2d-x\core\effects\CCGrabber.h" />
     <ClInclude Include="..\cocos2d-x\core\effects\CCGrid.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCDirector.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCEventImpl.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\SubSystem.h" />
     <ClInclude Include="..\cocos2d-x\core\IO\FileSystem.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\aabb.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\GL\mat4stack.h" />
@@ -416,7 +420,6 @@
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrame.h" />
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrameCache.h" />
-    <ClInclude Include="..\cocos2d-x\core\SubSystem.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCNotificationCenter.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCPointExtension.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h" />
@@ -532,6 +535,7 @@
     <ClInclude Include="..\cocos2d-x\spine\PolygonBatch.h" />
     <ClInclude Include="..\cocos2d-x\spine\SkeletonAnimation.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine-cocos2dx.h" />
+    <ClInclude Include="..\cocos2d-x\spine\SpineEvents.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine\Animation.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationState.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h" />

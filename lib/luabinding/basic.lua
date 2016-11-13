@@ -414,7 +414,6 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
    }]], [[]])
 
     replace('\t', '    ')
-    replace('*((ID*)  tolua_to_ID', '(tolua_to_ID')
 
     result = string.gsub(result,
         [[tolua_usertype%(tolua_S,"([%a%d]+)"%);]],

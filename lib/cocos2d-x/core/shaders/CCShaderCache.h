@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include <vector>
 #include "CCPlatformMacros.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "CCGLProgram.h"
 
 NS_CC_BEGIN

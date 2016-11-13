@@ -29,7 +29,7 @@
 #include "touch_dispatcher/CCTouchTargetNode.h"
 #include "support/CCPointExtension.h"
 #include "script_support/CCScriptSupport.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 

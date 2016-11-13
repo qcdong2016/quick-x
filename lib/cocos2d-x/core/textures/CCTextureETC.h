@@ -25,7 +25,7 @@
 #ifndef __CCETCTEXTURE_H__
 #define __CCETCTEXTURE_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "platform/CCPlatformMacros.h"
 #include "CCGL.h"
 

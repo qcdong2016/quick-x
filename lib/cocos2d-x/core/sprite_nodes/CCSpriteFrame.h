@@ -28,7 +28,7 @@
 #define __SPRITE_CCSPRITE_FRAME_H__
 
 #include "base_nodes/CCNode.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCGeometry.h"
 
 NS_CC_BEGIN

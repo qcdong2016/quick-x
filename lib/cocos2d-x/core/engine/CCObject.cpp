@@ -22,10 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "CCObject.h"
-#include "CCAutoreleasePool.h"
+#include "engine/CCObject.h"
 #include "ccMacros.h"
 #include "script_support/CCScriptSupport.h"
+#include "cocoa/CCAutoreleasePool.h"
+#include <vector>
 
 NS_CC_BEGIN
 
@@ -70,8 +71,8 @@ bool TypeInfo::isTypeOf(const TypeInfo* typeInfo) const
 }
 
 
-static std::map<ID, std::set<CCObject*> > eventReceivers;
-static std::map<CCObject*, std::map<ID, std::set<CCObject*> > > specificEventReceivers;
+static std::map<EventID, std::set<CCObject*> > eventReceivers;
+static std::map<CCObject*, std::map<EventID, std::set<CCObject*> > > specificEventReceivers;
 
 static void removeEventSender(CCObject* sender)
 {
@@ -108,7 +109,7 @@ void cocos2d::CCObject::removeEventSender(CCObject* sender)
 	}
 }
 
-static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0)
+static std::set<CCObject*>* getEventReceivers(EventID eventType, CCObject* sender = 0)
 {
 	if (sender)
 	{
@@ -128,7 +129,7 @@ static std::set<CCObject*>* getEventReceivers(ID eventType, CCObject* sender = 0
 	}
 }
 
-static void addEventReciver(CCObject* reciver, ID eventType)
+static void addEventReciver(CCObject* reciver, EventID eventType)
 {
 	std::set<CCObject*>* group = getEventReceivers(eventType);
 	if (!group) {
@@ -138,7 +139,7 @@ static void addEventReciver(CCObject* reciver, ID eventType)
 	group->insert(reciver);
 }
 
-static void removeEventReciver(CCObject* reciver, ID eventType, CCObject* sender = 0)
+static void removeEventReciver(CCObject* reciver, EventID eventType, CCObject* sender = 0)
 {
 	std::set<CCObject*>* group = getEventReceivers(eventType, sender);
 	if (group)
@@ -217,7 +218,7 @@ EventHandler* CCObject::findEventHandler(CCObject* sender, EventHandler** previo
 	return 0;
 }
 
-EventHandler* CCObject::findEventHandler(CCObject* sender, ID eventType, EventHandler** previous)
+EventHandler* CCObject::findEventHandler(CCObject* sender, EventID eventType, EventHandler** previous)
 {
 	EventHandler* handler = _eventHandlers.first();
 	if (previous)
@@ -236,7 +237,7 @@ EventHandler* CCObject::findEventHandler(CCObject* sender, ID eventType, EventHa
 	return 0;
 }
 
-void CCObject::subscribeToEvent(ID eventType, EventHandler* handler)
+void CCObject::subscribeToEvent(EventID eventType, EventHandler* handler)
 {
 	if (!handler)
 		return;
@@ -254,7 +255,7 @@ void CCObject::subscribeToEvent(ID eventType, EventHandler* handler)
 	addEventReciver(this, eventType);
 }
 
-void CCObject::subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler)
+void CCObject::subscribeToEvent(CCObject* sender, EventID eventType, EventHandler* handler)
 {
 	// If a null sender was specified, the event can not be subscribed to. Delete the handler in that case
 	if (!sender || !handler)
@@ -283,7 +284,7 @@ void CCObject::unsubscribeFromAllEvents()
 	}
 }
 
-void CCObject::unsubscribeFromEvent(ID eventType)
+void CCObject::unsubscribeFromEvent(EventID eventType)
 {
 	for (;;)
 	{
@@ -297,7 +298,7 @@ void CCObject::unsubscribeFromEvent(ID eventType)
 	}
 }
 
-void CCObject::unsubscribeFromEvent(CCObject* sender, ID eventType)
+void CCObject::unsubscribeFromEvent(CCObject* sender, EventID eventType)
 {
 	if (!sender) return;
 
@@ -332,13 +333,13 @@ void CCObject::unsubscribeFromEvents(CCObject* sender)
 	}
 }
 
-void CCObject::sendEvent(ID eventType)
+void CCObject::sendEvent(EventID eventType)
 {
-	VariantMap map;
+	EventDataMap map;
 	sendEvent(eventType, map);
 }
 
-void CCObject::sendEvent(ID eventType, VariantMap& eventData)
+void CCObject::sendEvent(EventID eventType, EventDataMap& eventData)
 {
 	WeakPtr<CCObject> self(this);
 	std::set<CCObject*> processed;
@@ -422,7 +423,7 @@ void CCObject::sendEvent(ID eventType, VariantMap& eventData)
 	}
 }
 
-void CCObject::onEvent(CCObject* sender, ID eventType, VariantMap& eventData)
+void CCObject::onEvent(CCObject* sender, EventID eventType, EventDataMap& eventData)
 {
 	EventHandler* specific = 0;
 	EventHandler* nonSpecific = 0;
@@ -509,25 +510,24 @@ CCObject* CCObject::copy()
 	return o;
 }
 
-ID EventNameRegistrar::registerEventName(const char* eventName)
+
+static std::vector<EventID> s_allEvents;
+
+EventID CCObject::findEventID(const char* name)
 {
-	ID id(eventName);
-	getEventNameMap()[id] = eventName;
+	for (EventID id : s_allEvents)
+	{
+		if (strcmp(id, name) == 0)
+			return id;
+	}
+
+	return nullptr;
+}
+
+EventID CCObject::regEvent(EventID id)
+{
+	s_allEvents.push_back(id);
 	return id;
-}
-
-static std::string EMPTY("");
-
-const std::string& EventNameRegistrar::getEventName(ID eventID)
-{
-	std::map<ID, std::string>::const_iterator it = getEventNameMap().find(eventID);
-	return  it != getEventNameMap().end() ? it->second : EMPTY;
-}
-
-std::map<ID, std::string>& EventNameRegistrar::getEventNameMap()
-{
-	static std::map<ID, std::string> eventNames_;
-	return eventNames_;
 }
 
 

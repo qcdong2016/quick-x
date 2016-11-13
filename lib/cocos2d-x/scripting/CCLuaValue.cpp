@@ -165,16 +165,6 @@ TOLUA_API EventHandler* tolua_to_EventHandler(lua_State* L, int idx, int def)
 	return new EventHandlerLua(idx);
 }
 
-TOLUA_API int tolua_is_ID(lua_State* L, int lo, const char* type, int def, tolua_Error* err)
-{
-	return tolua_isstring(L, lo, def, err);
-}
-
-TOLUA_API ID tolua_to_ID(lua_State* L, int idx, const char* def)
-{
-	const char* id = tolua_tostring(L, idx, def);
-	return ID(id);
-}
 
 NS_CC_END
 

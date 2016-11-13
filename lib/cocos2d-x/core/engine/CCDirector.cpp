@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include <string>
 
 // cocos2d includes
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "ccFPSImages.h"
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "CCConfiguration.h"
@@ -64,6 +64,7 @@ THE SOFTWARE.
 
 #include "base/MathDefs.h"
 #include "CCInput.h"
+#include "engine/CCEngineEvents.h"
 
 /**
  Position of the FPS
@@ -153,8 +154,7 @@ bool CCDirector::init(void)
     m_pScheduler = new CCScheduler();
     // action manager
 
-	CCActionManager* am = addSubSystem<CCActionManager>();
-    m_pScheduler->scheduleUpdateForTarget(am, kCCPrioritySystem, false);
+	addSubSystem<CCActionManager>();
 
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
@@ -250,10 +250,9 @@ void CCDirector::drawScene(void)
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
-		static VariantMap map;
-		using namespace UpdateEvent;
-		map[P_TIMESTEP] = m_fDeltaTime;
-		sendEvent(E_UPDATE, map);
+		static EventDataMap map;
+		map[UpdateEvent::Param::timeStep] = m_fDeltaTime;
+		sendEvent(UpdateEvent::Param::Name, map);
         m_pScheduler->update(m_fDeltaTime);
     }
 

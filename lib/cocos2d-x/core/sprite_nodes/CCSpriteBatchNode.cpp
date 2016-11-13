@@ -34,7 +34,7 @@
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "support/TransformUtils.h"
 #include "support/CCProfiling.h"
 // external

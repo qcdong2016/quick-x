@@ -36,7 +36,7 @@
 
 #include "sprite_nodes/CCSpriteFrame.h"
 #include "textures/CCTexture2D.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include <set>
 #include <string>
 

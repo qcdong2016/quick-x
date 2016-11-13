@@ -29,12 +29,17 @@ THE SOFTWARE.
 #include "base/RefCounted.h"
 #include "base/Variant.h"
 #include "base/LinkedList.h"
+#include "base/ID.h"
 #include <string>
+#include <map>
 
 NS_CC_BEGIN
 
 class CCObject;
 class EventHandler;
+
+typedef const char* EventID;
+typedef std::map<EventID, Variant> EventDataMap;
 
 class CC_DLL TypeInfo
 {
@@ -70,10 +75,12 @@ private:
 	public:                                                    \
 		typedef typeName SelfType;                                \
 		typedef superTypeName Super;                                 \
-		static const cocos2d::TypeInfo* getTypeInfoStatic() { static cocos2d::TypeInfo typeInfoStatic(#typeName, superTypeName::getTypeInfo()); return &typeInfoStatic; } \
-		static const std::string& getTypeName() { return getTypeInfoStatic()->getTypeName(); } \
-		static const cocos2d::TypeInfo* getTypeInfo() { return getTypeInfoStatic(); } \
-		static cocos2d::ID getType() { return getTypeInfoStatic()->getType(); } \
+		static const cocos2d::TypeInfo* getTypeInfoStatic() { static cocos2d::TypeInfo typeInfoStatic(#typeName, superTypeName::getTypeInfoStatic()); return &typeInfoStatic; } \
+		static const std::string& getTypeNameStatic() { return getTypeInfoStatic()->getTypeName(); } \
+		static cocos2d::ID getTypeStatic() { return getTypeInfoStatic()->getType(); } \
+		virtual const cocos2d::TypeInfo* getTypeInfo() { return getTypeInfoStatic(); } \
+		virtual cocos2d::ID getType() { return getTypeInfoStatic()->getType(); } \
+		virtual const std::string& getTypeName() { return getTypeInfoStatic()->getTypeName(); } \
 		virtual CCObject* copy()                                   \
 		{                                                          \
 			CCObject* o = new SelfType();                          \
@@ -119,30 +126,38 @@ public:
 	/// paste this proprty to o;
 	virtual void paste(CCObject* o);
 	virtual CCObject* copy();
-	static const TypeInfo* getTypeInfo() { return 0; }
+	static const TypeInfo* getTypeInfoStatic() { static TypeInfo typeInfoStatic("CCObject", nullptr); return &typeInfoStatic; }
+	virtual const TypeInfo* getTypeInfo() { return getTypeInfoStatic(); }
+	virtual ID getType() { return getTypeInfo()->getType(); }
+	virtual const std::string& getTypeName() { return getTypeInfo()->getTypeName(); }
 
 	virtual bool isEqual(const CCObject* pObject);
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
 
 	/// Subscribe to an event that can be sent by any sender.
-	void subscribeToEvent(ID eventType, EventHandler* handler);
-	void subscribeToEvent(CCObject* sender, ID eventType, EventHandler* handler);
+	void subscribeToEvent(EventID eventType, EventHandler* handler);
+	void subscribeToEvent(CCObject* sender, EventID eventType, EventHandler* handler);
 	/// Unsubscribe from an event.
-	void unsubscribeFromEvent(ID eventType);
-	void unsubscribeFromEvent(CCObject* sender, ID eventType);
+	void unsubscribeFromEvent(EventID eventType);
+	void unsubscribeFromEvent(CCObject* sender, EventID eventType);
 	void unsubscribeFromEvents(CCObject* sender);
 	/// Unsubscribe from all events.
 	void unsubscribeFromAllEvents();
 	/// Send event to all subscribers.
-	void sendEvent(ID eventType);
-	void sendEvent(ID eventType, VariantMap& eventData);
+	void sendEvent(EventID eventType);
+	void sendEvent(EventID eventType, EventDataMap& eventData);
+	template<typename T> void sendEvent() { sendEvent(T::Name); }
+	template<typename T> void sendEvent(EventDataMap& eventData) { sendEvent(T::Name, eventData); }
 
-	void onEvent(CCObject* sender, ID eventType, VariantMap& eventData);
+	void onEvent(CCObject* sender, EventID eventType, EventDataMap& eventData);
 
-	EventHandler* findEventHandler(CCObject* sender, ID eventType, EventHandler** previous);
+	EventHandler* findEventHandler(CCObject* sender, EventID eventType, EventHandler** previous);
 	EventHandler* findEventHandler(CCObject* sender, EventHandler** previous);
 
 	void removeEventSender(CCObject* sender);
+
+	static EventID findEventID(const char* name);
+	static EventID regEvent(EventID id);
 private:
 	LinkedList<EventHandler> _eventHandlers;
 
@@ -160,41 +175,40 @@ public:
 #endif
 };
 
-
 /// Internal helper class for invoking event handler functions.
 class CC_DLL EventHandler : public LinkedListNode
 {
 public:
 	/// Construct with specified receiver and userdata.
-	EventHandler(void* userData = 0)
+	EventHandler()
 	{
 	}
 
 	/// Destruct.
 	virtual ~EventHandler() { }
 
-	void setSenderAndEventType(CCObject* sender, ID eventType)
+	void setSenderAndEventType(CCObject* sender, EventID eventType)
 	{
 		_sender = sender;
 		_eventType = eventType;
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(VariantMap& eventData) = 0;
+	virtual void invoke(EventDataMap& eventData) = 0;
 	virtual void invoke()
 	{
-		VariantMap m;
+		EventDataMap m;
 		invoke(m);
 	}
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const = 0;
 
-	const ID& getEventType() const { return _eventType; }
+	const EventID& getEventType() const { return _eventType; }
 	CCObject* getSender() const { return _sender; }
 
 protected:
 	/// Event type.
-	ID _eventType;
+	EventID _eventType;
 	CCObject* _sender;
 };
 
@@ -203,20 +217,20 @@ template <typename ReceiverType>
 class EventHandlerImpl : public EventHandler
 {
 public:
-	typedef void (ReceiverType::*HandlerFunctionPtr)(ID, VariantMap&);
+	typedef void (ReceiverType::*HandlerFunctionPtr)(EventDataMap&);
 
 	/// Construct with receiver and function pointers and userdata.
-	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) :
-		EventHandler(receiver),
-		_function(function)
+	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) 
+		: _receiver(receiver)
+		, _function(function)
 	{
 		assert(_function);
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(VariantMap& eventData)
+	virtual void invoke(EventDataMap& eventData)
 	{
-		(_receiver->*_function)(_eventType, eventData);
+		(_receiver->*_function)(eventData);
 	}
 
 	/// Return a unique copy of the event handler.
@@ -239,15 +253,15 @@ public:
 	typedef void (ReceiverType::*HandlerFunctionPtr)();
 
 	/// Construct with receiver and function pointers and userdata.
-	EventHandlerImplNoArg(ReceiverType* receiver, HandlerFunctionPtr function) :
-		EventHandler(receiver),
-		_function(function)
+	EventHandlerImplNoArg(ReceiverType* receiver, HandlerFunctionPtr function)
+		: _receiver(receiver)
+		, _function(function)
 	{
 		assert(_function);
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(VariantMap& eventData)
+	virtual void invoke(EventDataMap& eventData)
 	{
 		(_receiver->*_function)();
 	}
@@ -266,7 +280,7 @@ private:
 };
 
 template <typename ReceiverType>
-static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(ID, VariantMap&))
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(EventDataMap&))
 {
 	return new EventHandlerImpl<ReceiverType>(receiver, function);
 }
@@ -276,22 +290,15 @@ static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::
 	return new EventHandlerImplNoArg<ReceiverType>(receiver, function);
 }
 
-/// Register event names.
-struct CC_DLL EventNameRegistrar
-{
-	/// Register an event name for hash reverse mapping.
-	static ID registerEventName(const char* eventName);
-	/// Return Event name or empty string if not found.
-	static const std::string& getEventName(ID eventID);
-	/// Return Event name map.
-	static std::map<ID, std::string>& getEventNameMap();
-};
+#define CC_EVENT_DEFINE(eventName) \
+	namespace eventName { \
+		class Param { public: \
+			static cocos2d::EventID Name;
 
-/// Describe an event's hash ID and begin a namespace in which to define its parameters.
-#define CC_EVENT(eventID, eventName) static const cocos2d::ID eventID(cocos2d::EventNameRegistrar::registerEventName(#eventName)); namespace eventName
-/// Describe an event's parameter hash ID. Should be used inside an event namespace.
-#define CC_PARAM(paramID, paramName) static const cocos2d::ID paramID(#paramName)
+#define CC_PARAM(paramName) \
+		static cocos2d::EventID paramName;
 
+#define CC_EVENT_END() }; }
 
 //
 class CCObject;

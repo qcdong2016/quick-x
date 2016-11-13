@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include "CCTransition.h"
 #include "CCCamera.h"
 #include "support/CCPointExtension.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "actions/CCActionInterval.h"
 #include "actions/CCActionInstant.h"

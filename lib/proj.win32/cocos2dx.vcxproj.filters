@@ -160,6 +160,9 @@
     <Filter Include="cocos2d-x\core\text_input_node">
       <UniqueIdentifier>{102394f1-d8c4-46cb-8845-71d278b4d7f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cocos2d-x\core\engine">
+      <UniqueIdentifier>{89c88e80-88cf-48b1-bc5f-9067c245a9d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c">
@@ -636,9 +639,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCGeometry.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCObject.cpp">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCPointArray.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
@@ -855,9 +855,6 @@
     <ClCompile Include="..\cocos2d-x\core\CCConfiguration.cpp">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\CCDirector.cpp">
-      <Filter>cocos2d-x\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\ccFPSImages.c">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
@@ -977,6 +974,15 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\shaders\CCMaterial.cpp">
       <Filter>cocos2d-x\core\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1460,9 +1466,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCInteger.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCObject.h">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCPointArray.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
@@ -1763,9 +1766,6 @@
     <ClInclude Include="..\cocos2d-x\core\CCConfiguration.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\CCDirector.h">
-      <Filter>cocos2d-x\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\ccFPSImages.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
@@ -1779,9 +1779,6 @@
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocos2d.h">
-      <Filter>cocos2d-x\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\SubSystem.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\CCNotificationCenter.h">
@@ -1900,6 +1897,24 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCMaterial.h">
       <Filter>cocos2d-x\core\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCEventImpl.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCDirector.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\SubSystem.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\spine\SpineEvents.h">
+      <Filter>cocos2d-x\spine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

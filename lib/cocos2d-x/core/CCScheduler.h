@@ -27,7 +27,7 @@ THE SOFTWARE.
 #ifndef __CCSCHEDULER_H__
 #define __CCSCHEDULER_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "support/data_support/uthash.h"
 
 NS_CC_BEGIN

@@ -27,7 +27,7 @@ THE SOFTWARE.
 #define __CCTEXTURE2D_H__
 
 #include <string>
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCGeometry.h"
 #include "ccTypes.h"
 #ifdef EMSCRIPTEN

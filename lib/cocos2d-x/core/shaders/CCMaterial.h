@@ -1,6 +1,6 @@
 
 #pragma once
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "CCGLProgram.h"
 
 NS_CC_BEGIN

@@ -24,7 +24,7 @@ THE SOFTWARE.
 #ifndef __AUTORELEASEPOOL_H__
 #define __AUTORELEASEPOOL_H__
 
-#include "CCObject.h"
+#include "engine/CCObject.h"
 #include "CCArray.h"
 
 NS_CC_BEGIN

@@ -26,7 +26,7 @@
 #ifndef __TOUCH_DISPATHCHER_CCTOUCH_DELEGATE_PROTOCOL_H__
 #define __TOUCH_DISPATHCHER_CCTOUCH_DELEGATE_PROTOCOL_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "ccConfig.h"
 
 NS_CC_BEGIN

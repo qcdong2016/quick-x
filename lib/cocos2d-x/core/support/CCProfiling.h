@@ -26,7 +26,7 @@ THE SOFTWARE.
 #define __SUPPORT_CCPROFILING_H__
 
 #include "ccConfig.h"
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "platform/platform.h"
 #include "cocoa/CCDictionary.h"
 #include <string>

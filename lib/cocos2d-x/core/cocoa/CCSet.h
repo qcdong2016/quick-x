@@ -26,7 +26,7 @@ THE SOFTWARE.
 #define __CC_SET_H__
 
 #include <set>
-#include "CCObject.h"
+#include "engine/CCObject.h"
 
 NS_CC_BEGIN
 

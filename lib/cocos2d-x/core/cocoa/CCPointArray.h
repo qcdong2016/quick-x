@@ -26,7 +26,7 @@
 #define __CCPOINTARRAY_H__
 
 #include "platform/CCPlatformMacros.h"
-#include "CCObject.h"
+#include "engine/CCObject.h"
 #include "CCGeometry.h"
 #include <vector>
 

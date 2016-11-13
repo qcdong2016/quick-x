@@ -41,7 +41,7 @@ THE SOFTWARE.
 #include "platform/CCPlatformMacros.h"
 #include "textures/CCTexturePVR.h"
 #include "textures/CCTextureETC.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"

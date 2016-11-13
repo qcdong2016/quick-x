@@ -1,17 +1,9 @@
 
 #pragma once
 
-#include "SubSystem.h"
+#include "engine/SubSystem.h"
 
-CC_EVENT(E_KEYPAD, KeypadEvent)
-{
-	CC_PARAM(P_KEY, key);
-};
 
-CC_EVENT(E_UPDATE, UpdateEvent)
-{
-	CC_PARAM(P_TIMESTEP, timeStep);
-};
 
 NS_CC_BEGIN;
 

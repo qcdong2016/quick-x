@@ -1,22 +1,21 @@
 #include "CCInput.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
+#include "engine/CCEngineEvents.h"
 
 NS_CC_BEGIN;
 
 void Input::onKeypadBack()
 {
-	VariantMap eventData;
-	using namespace KeypadEvent;
-	eventData[P_KEY] = "back";
-	this->sendEvent(E_KEYPAD, eventData);
+	EventDataMap eventData;
+	eventData[KeypadEvent::Param::key] = "back";
+	sendEvent<KeypadEvent::Param>(eventData);
 }
 
 void Input::onKeypadMenu()
 {
-	VariantMap eventData;
-	using namespace KeypadEvent;
-	eventData[P_KEY] = "menu";
-	this->sendEvent(E_KEYPAD, eventData);
+	EventDataMap eventData;
+	eventData[KeypadEvent::Param::key] = "menu";
+	sendEvent<KeypadEvent::Param>(eventData);
 }
 
 NS_CC_END;

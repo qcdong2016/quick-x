@@ -2,7 +2,7 @@
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "imgui/imgui.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "CCEGLView.h"
 #include "PlayerUI.h"
 #include "base/ProcessUtils.h"

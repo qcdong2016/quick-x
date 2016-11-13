@@ -25,7 +25,7 @@
 #ifndef __CCSCRIPT_EVENT_DISPATCHER_H__
 #define __CCSCRIPT_EVENT_DISPATCHER_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 
 NS_CC_BEGIN
