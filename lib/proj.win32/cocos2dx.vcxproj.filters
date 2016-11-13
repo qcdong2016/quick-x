@@ -984,6 +984,15 @@
     <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCResourceCache.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCModule.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\spine\SpineResource.cpp">
+      <Filter>cocos2d-x\spine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
@@ -1914,6 +1923,15 @@
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\spine\SpineEvents.h">
+      <Filter>cocos2d-x\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCResourceCache.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCModule.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\spine\SpineResource.h">
       <Filter>cocos2d-x\spine</Filter>
     </ClInclude>
   </ItemGroup>

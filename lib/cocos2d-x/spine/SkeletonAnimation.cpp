@@ -67,24 +67,43 @@ void disposeTrackEntry (spTrackEntry* entry) {
 	_spTrackEntry_dispose(entry);
 }
 
+
 //
 
-SkeletonAnimation* SkeletonAnimation::createWithData (spSkeletonData* skeletonData) {
-	SkeletonAnimation* node = new SkeletonAnimation(skeletonData);
-	node->autorelease();
-	return node;
+SkeletonAnimation* SkeletonAnimation::create(const char* skeletonDataFile, const char* atlasFile, float scale) 
+{
+	ResourceCache* rc = CCDirector::sharedDirector()->getSubSystem<ResourceCache>();
+
+	SpineAtlasResource* atlas = rc->getResource<SpineAtlasResource>(atlasFile);
+	SpineSkeletonDataResource* skeletonData = rc->getResource<SpineSkeletonDataResource>(skeletonDataFile, atlas);
+
+	return create(atlas, skeletonData);
 }
 
-SkeletonAnimation* SkeletonAnimation::createWithFile (const char* skeletonDataFile, spAtlas* atlas, float scale) {
-	SkeletonAnimation* node = new SkeletonAnimation(skeletonDataFile, atlas, scale);
-	node->autorelease();
-	return node;
-}
+SkeletonAnimation* SkeletonAnimation::create(SpineAtlasResource* atlas, SpineSkeletonDataResource* skeletonData)
+{
+	SkeletonAnimation* ani = new SkeletonAnimation();
+	ani->_atlas = atlas;
+	ani->_skeletonData = skeletonData;
 
-SkeletonAnimation* SkeletonAnimation::createWithFile (const char* skeletonDataFile, const char* atlasFile, float scale) {
-	SkeletonAnimation* node = new SkeletonAnimation(skeletonDataFile, atlasFile, scale);
-	node->autorelease();
-	return node;
+	ani->setSkeletonData(skeletonData->_skeletonData);
+
+	ani->initialize();
+
+	return ani;
+}
+SkeletonAnimation::SkeletonAnimation() 
+	: state(nullptr)
+	, skeleton(nullptr)
+{
+}
+SkeletonAnimation::~SkeletonAnimation() {
+	if (_ownsAnimationStateData) 
+		spAnimationStateData_dispose(state->data);
+	spAnimationState_dispose(state);
+	spSkeleton_dispose(skeleton);
+	FREE(_worldVertices);
+	_batch->release();
 }
 
 void SkeletonAnimation::initialize () {
@@ -114,55 +133,6 @@ void SkeletonAnimation::initialize () {
 	stateInternal->disposeTrackEntry = disposeTrackEntry;
 }
 
-SkeletonAnimation::SkeletonAnimation (spSkeletonData *skeletonData)
-{
-	setSkeletonData(skeletonData, true);
-	initialize();
-}
-
-static spSkeletonData* createSK(const char* skeletonDataFile, spAtlas* atlas, float scale)
-{
-	spSkeletonJson* json = spSkeletonJson_create(atlas);
-	json->scale = scale;
-
-	SharedPtr<MemBuffer> buf = FileSystem::readAll(skeletonDataFile);
-	spSkeletonData* skeletonData = spSkeletonJson_readSkeletonData(json, (const char*)buf->getData());
-
-	CCAssert(skeletonData, json->error ? json->error : "Error reading skeleton data.");
-	spSkeletonJson_dispose(json);
-
-	return skeletonData;
-}
-
-SkeletonAnimation::SkeletonAnimation (const char* skeletonDataFile, spAtlas* atlas, float scale)
-{
-	spSkeletonData* skeletonData = createSK(skeletonDataFile, atlas, scale);
-
-	setSkeletonData(skeletonData, true);
-	initialize();
-}
-
-SkeletonAnimation::SkeletonAnimation (const char* skeletonDataFile, const char* atlasFile, float scale)
-{
-	_atlas = spAtlas_createFromFile(atlasFile, 0);
-	CCAssert(_atlas, "Error reading atlas file.");
-
-	spSkeletonData* skeletonData = createSK(skeletonDataFile, _atlas, scale);
-
-	setSkeletonData(skeletonData, true);
-	initialize();
-}
-
-SkeletonAnimation::~SkeletonAnimation () {
-	if (_ownsAnimationStateData) spAnimationStateData_dispose(state->data);
-	spAnimationState_dispose(state);
-
-	if (_ownsSkeletonData) spSkeletonData_dispose(skeleton->data);
-	if (_atlas) spAtlas_dispose(_atlas);
-	spSkeleton_dispose(skeleton);
-	FREE(_worldVertices);
-	_batch->release();
-}
 
 void SkeletonAnimation::update (float deltaTime) {
 	spSkeleton_update(skeleton, deltaTime * timeScale);
@@ -260,10 +230,9 @@ void SkeletonAnimation::onTrackEntryEvent (int trackIndex, spEventType type, spE
 
 static const int quadTriangles[6] = { 0, 1, 2, 2, 3, 0 };
 
-void SkeletonAnimation::setSkeletonData(spSkeletonData *skeletonData, bool ownsSkeletonData) {
+void SkeletonAnimation::setSkeletonData(spSkeletonData *skeletonData) {
 	skeleton = spSkeleton_create(skeletonData);
 	rootBone = skeleton->bones[0];
-	this->_ownsSkeletonData = ownsSkeletonData;
 }
 
 void SkeletonAnimation::draw() {

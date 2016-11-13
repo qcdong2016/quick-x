@@ -32,6 +32,8 @@
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
 #include "IO/FileSystem.h"
+#include "engine/CCModule.h"
+#include "SpineResource.h"
 
 USING_NS_CC;
 
@@ -56,3 +58,19 @@ char* _spUtil_readFile (const char* path, int* length) {
 
 	return data;
 }
+
+NS_CC_BEGIN
+
+void SpineModule::attach()
+{
+	ObjectFactoryManager::addFactory<SpineSkeletonDataResource>();
+	ObjectFactoryManager::addFactory<SpineAtlasResource>();
+}
+
+void SpineModule::detach()
+{
+}
+
+
+
+NS_CC_END

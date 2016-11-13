@@ -36,6 +36,7 @@
 #include "PolygonBatch.h"
 #include "base/Ptr.h"
 #include "base_nodes/CCNode.h"
+#include "SpineResource.h"
 
 namespace cocos2d {
 
@@ -46,13 +47,17 @@ class SkeletonAnimation : public CCNode
 {
 public:
 	spAnimationState* state;
-public:
 	spSkeleton* skeleton;
 	spBone* rootBone;
 	float timeScale;
 	bool debugSlots;
 	bool debugBones;
 	bool premultipliedAlpha;
+
+	SkeletonAnimation();
+	static SkeletonAnimation* create(const char* skeletonDataFile, const char* atlasFile, float scale = 0);
+	static SkeletonAnimation* create(SpineAtlasResource* atlas, SpineSkeletonDataResource* skeletonData);
+	virtual ~SkeletonAnimation();
 
 	virtual void update(float deltaTime);
 	virtual void draw();
@@ -86,21 +91,11 @@ public:
 	virtual void setOpacityModifyRGB(bool value);
 	virtual bool isOpacityModifyRGB();
 
-	void setSkeletonData(spSkeletonData* skeletonData, bool ownsSkeletonData);
+	void setSkeletonData(spSkeletonData* skeletonData);
 
 	virtual cocos2d::CCTexture2D* getTexture(spRegionAttachment* attachment) const;
 	virtual cocos2d::CCTexture2D* getTexture(spMeshAttachment* attachment) const;
 	virtual cocos2d::CCTexture2D* getTexture(spSkinnedMeshAttachment* attachment) const;
-
-	static SkeletonAnimation* createWithData (spSkeletonData* skeletonData);
-	static SkeletonAnimation* createWithFile (const char* skeletonDataFile, spAtlas* atlas, float scale = 0);
-	static SkeletonAnimation* createWithFile (const char* skeletonDataFile, const char* atlasFile, float scale = 0);
-
-	SkeletonAnimation (spSkeletonData* skeletonData);
-	SkeletonAnimation (const char* skeletonDataFile, spAtlas* atlas, float scale = 0);
-	SkeletonAnimation (const char* skeletonDataFile, const char* atlasFile, float scale = 0);
-
-	virtual ~SkeletonAnimation ();
 
 	void setAnimationStateData (spAnimationStateData* stateData);
 	void setMix (const char* fromAnimation, const char* toAnimation, float duration);
@@ -114,12 +109,10 @@ public:
 	virtual void onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
 	virtual void onTrackEntryEvent (int trackIndex, spEventType type, spEvent* event, int loopCount);
 
-protected:
-	SkeletonAnimation ();
-
 private:
-	bool _ownsSkeletonData;
-	spAtlas* _atlas;
+	SharedPtr<SpineAtlasResource> _atlas;
+	SharedPtr<SpineSkeletonDataResource> _skeletonData;
+
 	PolygonBatch* _batch;
 	float* _worldVertices;
 
