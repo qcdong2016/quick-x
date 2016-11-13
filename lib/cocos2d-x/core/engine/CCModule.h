@@ -1,5 +1,6 @@
 
 #pragma once
+
 #include "CCPlatformMacros.h"
 #include "base/RefCounted.h"
 #include <string>
@@ -18,14 +19,10 @@ class ModuleManager
 {
 public:
 	template<typename T>
-	static bool addModule(const std::string& name) {
-		return addModule(name, new T);
+	static bool addModule() {
+		return addModule(new T);
 	}
-	static bool addModule(const std::string& name, Module* m);
-
-	static void attachAll();
+	static bool addModule(Module* m);
 };
 
-#define CC_MODULE_DEFINE(type) \
-	static bool _##type = cocos2d::ModuleManager::addModule<type>(#type);
 NS_CC_END

@@ -65,7 +65,6 @@ THE SOFTWARE.
 #include "base/MathDefs.h"
 #include "CCInput.h"
 #include "engine/CCEngineEvents.h"
-#include "CCModule.h"
 #include "CCResourceCache.h"
 
 /**
@@ -154,8 +153,6 @@ bool CCDirector::init(void)
 
     // scheduler
     m_pScheduler = new CCScheduler();
-    // action manager
-	ModuleManager::attachAll();
 
 	addSubSystem<CCActionManager>();
 	addSubSystem<CCTouchDispatcher>();

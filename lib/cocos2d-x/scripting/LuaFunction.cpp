@@ -60,13 +60,7 @@ bool LuaFunction::EndCall(int numReturns)
     int numArguments = _numArguments;
     _numArguments = -1;
 
-    if (lua_pcall(_luaState, numArguments, numReturns, 0) != 0)
-    {
-        const char* message = lua_tostring(_luaState, -1);
-        CCLOG("Execute Lua function failed: %s", message);
-        lua_pop(_luaState, 1);
-        return false;
-    }
+	CCLuaEngine::defaultEngine()->getLuaStack()->executeFunction(numArguments);
 
     return true;
 }

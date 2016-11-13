@@ -6,6 +6,9 @@
 #include "scripting/CCLuaEngine.h"
 #include <string>
 
+#include "engine/CCModule.h"
+#include "spine/spine-cocos2dx.h"
+
 using namespace std;
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -24,6 +27,8 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    ModuleManager::addModule<SpineModule>();
+
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());

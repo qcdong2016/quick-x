@@ -50,8 +50,6 @@ static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"SkeletonAnimation");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(SkeletonAnimation)), "SkeletonAnimation");
- tolua_usertype(tolua_S, "spTrackEntry");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(spTrackEntry)), "spTrackEntry");
 }
 
 /* get function: timeScale of class  SkeletonAnimation */

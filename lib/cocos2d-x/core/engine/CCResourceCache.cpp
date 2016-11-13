@@ -16,17 +16,18 @@ Resource* ResourceCache::getResource(ID resType, const std::string& path, void* 
 		return cached;
 
 	SharedPtr<MemBuffer> buf = FileSystem::readAll(path);
-
-	SharedPtr<Resource> res(ObjectFactoryManager::newObject<Resource>(resType));
-
-	res->_path = path;
-
 	if (!buf->isNull()) {
+
+		SharedPtr<Resource> res(ObjectFactoryManager::newObject<Resource>(resType));
+
+		res->_path = path;
+
 		res->beginLoad(buf, userdata);
 		_resources.insert(_resources.begin(), res);
+		return res;
 	}
 
-	return res;
+	return nullptr;
 }
 
 const SharedPtr<Resource>& ResourceCache::findResource(ID type, const std::string& path)
@@ -34,8 +35,7 @@ const SharedPtr<Resource>& ResourceCache::findResource(ID type, const std::strin
 	auto iter = std::find_if(_resources.begin(), _resources.end(), 
 		[&](SharedPtr<Resource>& ele)
 	{
-		if (ele->getType() == type && ele->getPath() == path)
-			return true;
+		return (ele->getType() == type && ele->getPath() == path);
 	});
 
 	if (iter != _resources.end())
