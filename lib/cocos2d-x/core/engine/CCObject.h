@@ -70,6 +70,36 @@ private:
 	const TypeInfo* _superTypeInfo;
 };
 
+class ObjectFactoryBase : public RefCounted
+{
+public:
+	virtual CCObject* newObject() = 0;
+};
+
+template<typename T>
+class ObjectFactory : public ObjectFactoryBase
+{
+public:
+	virtual CCObject* newObject()
+	{
+		return new T();
+	}
+};
+
+class ObjectFactoryManager
+{
+public:
+	template<typename T>
+	static void addFactory() {
+		addFactory(T::getTypeStatic(), SharedPtr<ObjectFactoryBase>(new T));
+	}
+	static void addFactory(ID type, SharedPtr<ObjectFactoryBase> factory);
+	static CCObject* createObject(ID type);
+		template<typename T>
+	static T* newObject(ID type) {
+		return static_cast<T*>(createObject(type));
+	}
+};
 
 #define CCOBJECT(typeName, superTypeName)                       \
 	public:                                                    \

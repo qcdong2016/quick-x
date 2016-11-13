@@ -32,6 +32,7 @@
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
 #include "IO/FileSystem.h"
+#include "engine/CCModule.h"
 
 USING_NS_CC;
 
@@ -56,3 +57,21 @@ char* _spUtil_readFile (const char* path, int* length) {
 
 	return data;
 }
+
+NS_CC_BEGIN
+
+class SpineModule : public Module
+{
+public:
+	virtual void attach()
+	{
+	}
+
+	virtual void detach()
+	{
+	}
+};
+
+CC_MODULE_DEFINE(SpineModule)
+
+NS_CC_END

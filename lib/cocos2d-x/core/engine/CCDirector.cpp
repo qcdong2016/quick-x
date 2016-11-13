@@ -65,6 +65,7 @@ THE SOFTWARE.
 #include "base/MathDefs.h"
 #include "CCInput.h"
 #include "engine/CCEngineEvents.h"
+#include "CCModule.h"
 
 /**
  Position of the FPS
@@ -158,6 +159,8 @@ bool CCDirector::init(void)
 
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
+
+	ModuleManager::attachAll();
 
     // create autorelease pool
     CCPoolManager::sharedPoolManager()->push();
