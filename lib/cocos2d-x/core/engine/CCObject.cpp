@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include "script_support/CCScriptSupport.h"
 #include "cocoa/CCAutoreleasePool.h"
 #include <vector>
-#include <hash_map>
+#include <map>
 
 NS_CC_BEGIN
 
@@ -532,7 +532,7 @@ EventID CCObject::regEvent(EventID id)
 }
 
 
-static std::hash_map<ID, SharedPtr<ObjectFactoryBase> > factorys;
+static std::map<ID, SharedPtr<ObjectFactoryBase> > factorys;
 
 void ObjectFactoryManager::addFactory(ID type, ObjectFactoryBase* factory)
 {
