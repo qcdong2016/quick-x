@@ -45,8 +45,8 @@ void main(void)
     vec2 p = v_texCoord.xy, c1 = p, c2 = p;  
     float cc1 = col(c1);  
     
-    u_resolution.x = u_resolution.y;
-    c2.x += u_resolution.x/delta;  
+    //u_resolution.x = u_resolution.y;
+    c2.x += u_resolution.y/delta;
     float dx = emboss*(cc1-col(c2))/delta;  
  
     c2.x = p.x;  

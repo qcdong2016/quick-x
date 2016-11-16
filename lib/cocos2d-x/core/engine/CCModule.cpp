@@ -1,29 +1,20 @@
 #include "CCModule.h"
 #include "base/Ptr.h"
-#include <string>
-#include <map>
 #include "CCPlatformMacros.h"
 #include "CCDevice.h"
+#include <vector>
+#include <string>
 
 NS_CC_BEGIN
 
-static std::map<std::string, SharedPtr<Module> > namedModules;
+static std::vector<SharedPtr<Module> > s_modules;
 
-bool ModuleManager::addModule(const std::string& name, Module* m)
+bool ModuleManager::addModule(Module* m)
 {
-	namedModules[name] = SharedPtr<Module>(m);
+	s_modules.push_back(SharedPtr<Module>(m));
+	m->attach();
 	return true;
 }
 
-void ModuleManager::attachAll()
-{
-	std::map<std::string, SharedPtr<Module> >::iterator iter = namedModules.begin();
-
-	for (; iter != namedModules.end(); iter++)
-	{
-		CCLOG("attach module %s", iter->first.c_str());
-		iter->second->attach();
-	}
-}
-
 NS_CC_END
+

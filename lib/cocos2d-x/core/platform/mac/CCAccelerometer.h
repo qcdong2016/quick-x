@@ -26,7 +26,7 @@ THE SOFTWARE.
 #define __PLATFORM_MAC_CCACCELEROMETER_H__
 
 #include "platform/CCAccelerometerDelegate.h"
-#include "SubSystem.h"
+#include "engine/SubSystem.h"
 
 NS_CC_BEGIN
 

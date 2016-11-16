@@ -87,7 +87,7 @@ SkeletonAnimation* SkeletonAnimation::create(SpineAtlasResource* atlas, SpineSke
 	ani->_skeletonData = skeletonData;
 
 	ani->setSkeletonData(skeletonData->_skeletonData);
-
+	ani->autorelease();
 	ani->initialize();
 
 	return ani;
@@ -97,7 +97,7 @@ SkeletonAnimation::SkeletonAnimation()
 	, skeleton(nullptr)
 {
 }
-SkeletonAnimation::~SkeletonAnimation() {
+SkeletonAnimation::~SkeletonAnimation(void) {
 	if (_ownsAnimationStateData) 
 		spAnimationStateData_dispose(state->data);
 	spAnimationState_dispose(state);

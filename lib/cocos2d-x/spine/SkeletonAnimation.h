@@ -43,7 +43,7 @@ namespace cocos2d {
 
 /** Draws an animated skeleton, providing an AnimationState for applying one or more animations and queuing animations to be
   * played later. */
-class SkeletonAnimation : public CCNode
+class CC_DLL SkeletonAnimation : public CCNode
 {
 public:
 	spAnimationState* state;
@@ -57,7 +57,7 @@ public:
 	SkeletonAnimation();
 	static SkeletonAnimation* create(const char* skeletonDataFile, const char* atlasFile, float scale = 0);
 	static SkeletonAnimation* create(SpineAtlasResource* atlas, SpineSkeletonDataResource* skeletonData);
-	virtual ~SkeletonAnimation();
+	virtual ~SkeletonAnimation(void);
 
 	virtual void update(float deltaTime);
 	virtual void draw();

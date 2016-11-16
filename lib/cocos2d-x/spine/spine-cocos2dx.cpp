@@ -34,6 +34,7 @@
 #include "IO/FileSystem.h"
 #include "engine/CCModule.h"
 #include "SpineResource.h"
+#include "textures/CCTextureCache.h"
 
 USING_NS_CC;
 

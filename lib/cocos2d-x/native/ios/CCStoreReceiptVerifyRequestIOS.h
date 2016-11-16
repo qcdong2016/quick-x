@@ -2,7 +2,7 @@
 #import <StoreKit/StoreKit.h>
 #import "native/ios/CCStoreIOS.h"
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
 #include "network/CCHTTPRequestDelegate.h"
 #include "network/CCHTTPRequest.h"
 
