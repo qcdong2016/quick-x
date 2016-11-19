@@ -19,3 +19,7 @@ CC_EVENT_END()
 
 CC_EVENT_DEFINE(ContextReset)
 CC_EVENT_END()
+
+CC_EVENT_DEFINE(AlertEvent)
+	CC_PARAM(buttonIndex)
+CC_EVENT_END()

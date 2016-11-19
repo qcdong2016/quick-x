@@ -115,7 +115,7 @@ public:
     static int addAlertButton(const char* buttonTitle);
 
     /** @brief Show alert view */
-    static void showAlert(CCAlertViewDelegate* delegate = NULL);
+    static void showAlert();
     /** @brief Hide and remove alert view */
     static void cancelAlert(void);
 
