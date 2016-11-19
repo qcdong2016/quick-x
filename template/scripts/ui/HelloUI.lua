@@ -18,7 +18,7 @@ function HelloUI:ctor()
      -- CCLayerColor:create(ccc4(0,55,0,255)):addTo(self)
      display.newRect(100,100):addTo(self)
 
-    local spine = SkeletonAnimation:createWithFile("spineboy.json", "spineboy.atlas", 1)
+    local spine = SkeletonAnimation:create("spineboy.json", "spineboy.atlas", 1)
         :addTo(self)
         :pos(-200+math.random(-100,100), -display.cy)
     spine:setAnimation(0, 'run', true)

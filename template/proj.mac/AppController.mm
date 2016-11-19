@@ -31,7 +31,7 @@
 #include <vector>
 
 #include "AppDelegate.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
 #include "audio/SimpleAudioEngine.h"
 #include "base/ProcessUtils.h"
 #include "IO/FileSystem.h"
