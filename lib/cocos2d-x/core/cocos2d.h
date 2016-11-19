@@ -253,7 +253,6 @@ THE SOFTWARE.
 // textures
 #include "textures/CCTexture2D.h"
 #include "textures/CCTextureAtlas.h"
-#include "textures/CCTextureCache.h"
 #include "textures/CCTexturePVR.h"
 
 // tilemap_parallax_nodes

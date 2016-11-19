@@ -3,20 +3,109 @@ $#include "crypto/CCCrypto.h"
 class CCCrypto
 {
 public:
-    static LUA_STRING encryptXXTEALua @ encryptXXTEA (const char* plaintext,
+    static std::string encryptXXTEA (const char* plaintext,
                                       int plaintextLength,
                                       const char* key,
                                       int keyLength);
 
-    static LUA_STRING decryptXXTEALua @ decryptXXTEA (const char* ciphertext,
+    static std::string decryptXXTEA (const char* ciphertext,
                                       int ciphertextLength,
                                       const char* key,
                                       int keyLength);
 
-    static LUA_STRING encodeBase64Lua @ encodeBase64 (const char* input, int inputLength);
-    static LUA_STRING decodeBase64Lua @ decodeBase64 (const char* input);
+    static std::string decodeBase64(const char* input);
+    static std::string encodeBase64(const char* input, int inputLen);
 
-    static LUA_STRING MD5Lua @ MD5 (char* input, bool isRawOutput);
-
-    static LUA_STRING MD5FileLua @ MD5File(const char* path);
+    static std::string MD5String(const char* input, int inputLength);
+    static std::string MD5File(const char* path);
 };
+
+${
+    /* method: decryptXXTEA of class  CCCrypto */
+    #define TOLUA_DISABLE_tolua_Cocos2d_CCCrypto_decryptXXTEA00
+    static int tolua_Cocos2d_CCCrypto_decryptXXTEA00(lua_State* tolua_S)
+    {
+    #ifndef TOLUA_RELEASE
+     tolua_Error tolua_err;
+     if (
+     !tolua_isusertable(tolua_S,1,"CCCrypto",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     )
+     goto tolua_lerror;
+     else
+    #endif
+     {
+      const char* ciphertext = ((const char*)  tolua_tostring(tolua_S,2,0));
+      int ciphertextLength = ((int)  tolua_tonumber(tolua_S,3,0));
+      const char* key = ((const char*)  tolua_tostring(tolua_S,4,0));
+      int keyLength = ((int)  tolua_tonumber(tolua_S,5,0));
+
+        int resultLength;
+        unsigned char* result = CCCrypto::decryptXXTEA((unsigned char*)ciphertext, ciphertextLength, (unsigned char*)key, keyLength, &resultLength);
+        
+        if (resultLength <= 0)
+        {
+            lua_pushnil(tolua_S);
+        }
+        else
+        {
+            lua_pushlstring(tolua_S, (const char*)result, resultLength);
+            free(result);
+        }
+     }
+     return 1;
+    #ifndef TOLUA_RELEASE
+     tolua_lerror:
+     tolua_error(tolua_S,"#ferror in function 'decryptXXTEA'.",&tolua_err);
+     return 0;
+    #endif
+    }
+
+    /* method: encryptXXTEA of class  CCCrypto */
+    #define TOLUA_DISABLE_tolua_Cocos2d_CCCrypto_encryptXXTEA00
+    static int tolua_Cocos2d_CCCrypto_encryptXXTEA00(lua_State* tolua_S)
+    {
+    #ifndef TOLUA_RELEASE
+     tolua_Error tolua_err;
+     if (
+     !tolua_isusertable(tolua_S,1,"CCCrypto",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     )
+     goto tolua_lerror;
+     else
+    #endif
+     {
+      const char* plaintext = ((const char*)  tolua_tostring(tolua_S,2,0));
+      int plaintextLength = ((int)  tolua_tonumber(tolua_S,3,0));
+      const char* key = ((const char*)  tolua_tostring(tolua_S,4,0));
+      int keyLength = ((int)  tolua_tonumber(tolua_S,5,0));
+         
+         int resultLength;
+        unsigned char* result = CCCrypto::encryptXXTEA((unsigned char*)plaintext, plaintextLength, (unsigned char*)key, keyLength, &resultLength);
+        
+        if (resultLength <= 0)
+        {
+            lua_pushnil(tolua_S);
+        }
+        else
+        {
+            lua_pushlstring(tolua_S, (const char*)result, resultLength);
+            free(result);
+        }
+     }
+     return 1;
+    #ifndef TOLUA_RELEASE
+     tolua_lerror:
+     tolua_error(tolua_S,"#ferror in function 'encryptXXTEA'.",&tolua_err);
+     return 0;
+    #endif
+    }
+$}

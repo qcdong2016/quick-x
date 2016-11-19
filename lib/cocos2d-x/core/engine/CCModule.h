@@ -8,14 +8,14 @@
 NS_CC_BEGIN
 
 
-class Module : public RefCounted
+class CC_DLL Module : public RefCounted
 {
 public:
 	virtual void attach() = 0;
 	virtual void detach() = 0;
 };
 
-class ModuleManager
+class CC_DLL ModuleManager
 {
 public:
 	template<typename T>
@@ -23,6 +23,14 @@ public:
 		return addModule(new T);
 	}
 	static bool addModule(Module* m);
+};
+
+
+class CC_DLL CoreModule : public Module
+{
+public:
+	virtual void attach();
+	virtual void detach();
 };
 
 NS_CC_END

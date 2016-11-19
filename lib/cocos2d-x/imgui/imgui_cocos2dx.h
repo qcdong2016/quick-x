@@ -11,7 +11,7 @@
 
 NS_CC_BEGIN;
 
-class UIInterface : public CCObject
+class UIInterface : public RefCounted
 {
 public:
 	virtual void draw() = 0;

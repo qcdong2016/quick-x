@@ -828,9 +828,6 @@
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureAtlas.cpp">
       <Filter>cocos2d-x\core\textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\textures\CCTextureCache.cpp">
-      <Filter>cocos2d-x\core\textures</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureETC.cpp">
       <Filter>cocos2d-x\core\textures</Filter>
     </ClCompile>
@@ -1740,9 +1737,6 @@
       <Filter>cocos2d-x\core\textures</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureAtlas.h">
-      <Filter>cocos2d-x\core\textures</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\textures\CCTextureCache.h">
       <Filter>cocos2d-x\core\textures</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureETC.h">

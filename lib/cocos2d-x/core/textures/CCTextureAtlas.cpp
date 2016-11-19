@@ -26,7 +26,6 @@ THE SOFTWARE.
 
 // cocos2d
 #include "CCTextureAtlas.h"
-#include "CCTextureCache.h"
 #include "ccMacros.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
@@ -38,6 +37,7 @@ THE SOFTWARE.
 #include <stdlib.h>
 
 #include "base/MathDefs.h"
+#include "engine/CCDirector.h"
 
 //According to some tests GL_TRIANGLE_STRIP is slower, MUCH slower. Probably I'm doing something very wrong
 
@@ -135,7 +135,8 @@ CCTextureAtlas * CCTextureAtlas::createWithTexture(CCTexture2D *texture, unsigne
 bool CCTextureAtlas::initWithFile(const char * file, unsigned int capacity)
 {
     // retained in property
-    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(file);
+	CCTexture2D *texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(file);
 
     if (texture)
     {

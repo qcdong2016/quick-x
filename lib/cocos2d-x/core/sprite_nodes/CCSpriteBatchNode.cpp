@@ -29,7 +29,7 @@
 #include "CCSprite.h"
 #include "effects/CCGrid.h"
 #include "draw_nodes/CCDrawingPrimitives.h"
-#include "textures/CCTextureCache.h"
+
 #include "support/CCPointExtension.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
@@ -110,7 +110,8 @@ bool CCSpriteBatchNode::init()
  */
 bool CCSpriteBatchNode::initWithFile(const char* fileImage, unsigned int capacity)
 {
-    CCTexture2D *pTexture2D = CCTextureCache::sharedTextureCache()->addImage(fileImage);
+	CCTexture2D *pTexture2D = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(fileImage);
     return initWithTexture(pTexture2D, capacity);
 }
 

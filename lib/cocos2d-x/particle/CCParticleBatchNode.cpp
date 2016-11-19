@@ -28,7 +28,7 @@
  */
 
 #include "CCParticleBatchNode.h"
-#include "textures/CCTextureCache.h"
+
 #include "textures/CCTextureAtlas.h"
 #include "ccConfig.h"
 #include "ccMacros.h"
@@ -111,7 +111,8 @@ bool CCParticleBatchNode::initWithTexture(CCTexture2D *tex, unsigned int capacit
  */
 bool CCParticleBatchNode::initWithFile(const char* fileImage, unsigned int capacity)
 {
-    CCTexture2D *tex = CCTextureCache::sharedTextureCache()->addImage(fileImage);
+	CCTexture2D *tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(fileImage);
     return initWithTexture(tex, capacity);
 }
 

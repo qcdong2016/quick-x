@@ -16,7 +16,7 @@ public:
 
 	const std::string& getPath() { return _path; }
 
-	virtual void beginLoad(SharedPtr<MemBuffer> buf, void* userdata) {};
+	virtual void beginLoad(MemBuffer* buf, void* userdata) {};
 
 protected:
 	friend class ResourceCache;

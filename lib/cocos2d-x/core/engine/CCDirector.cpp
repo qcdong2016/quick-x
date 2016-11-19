@@ -40,7 +40,7 @@ THE SOFTWARE.
 #include "support/CCPointExtension.h"
 #include "support/CCNotificationCenter.h"
 #include "layers_scenes_transitions_nodes/CCTransition.h"
-#include "textures/CCTextureCache.h"
+
 #include "sprite_nodes/CCSpriteFrameCache.h"
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/platform.h"
@@ -463,10 +463,7 @@ void CCDirector::purgeCachedData(void)
     if (s_SharedDirector->getOpenGLView())
     {
         CCSpriteFrameCache::sharedSpriteFrameCache()->purgeSharedSpriteFrameCache();
-        CCTextureCache::sharedTextureCache()->removeUnusedTextures();
-#if defined(COCOS2D_DEBUG) && (COCOS2D_DEBUG > 0)
-        CCTextureCache::sharedTextureCache()->dumpCachedTextureInfo();
-#endif
+		getSubSystem<ResourceCache>()->removeUnused();
     }
 }
 
@@ -736,7 +733,6 @@ void CCDirector::purgeDirector()
     ccDrawFree();
     CCAnimationCache::purgeSharedAnimationCache();
     CCSpriteFrameCache::purgeSharedSpriteFrameCache();
-    CCTextureCache::purgeSharedTextureCache();
     CCShaderCache::purgeSharedShaderCache();
     CCConfiguration::purgeConfiguration();
 
@@ -883,15 +879,12 @@ void CCDirector::getFPSImageData(unsigned char** datapointer, unsigned int* leng
 
 void CCDirector::createStatsLabel()
 {
-    CCTexture2D *texture = NULL;
-    CCTextureCache *textureCache = CCTextureCache::sharedTextureCache();
 
     if( m_pFPSLabel && m_pSPFLabel )
     {
         CC_SAFE_RELEASE_NULL(m_pFPSLabel);
         CC_SAFE_RELEASE_NULL(m_pSPFLabel);
         CC_SAFE_RELEASE_NULL(m_pDrawsLabel);
-        textureCache->removeTextureForKey("cc_fps_images");
     }
 
     CCTexture2DPixelFormat currentFormat = CCTexture2D::defaultAlphaPixelFormat();
@@ -907,7 +900,9 @@ void CCDirector::createStatsLabel()
         return;
     }
 
-    texture = textureCache->addUIImage(image, "cc_fps_images");
+	CCTexture2D *texture = new CCTexture2D;
+	texture->initWithImage(image);
+
     CC_SAFE_RELEASE(image);
 
     /*

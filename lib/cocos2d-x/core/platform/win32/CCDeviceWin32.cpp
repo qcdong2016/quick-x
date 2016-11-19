@@ -5,6 +5,8 @@
 #include <io.h>
 #include <WinSock2.h>
 #include <Iphlpapi.h>
+#include "engine/CCEngineEvents.h"
+#include "engine/CCDirector.h"
 NS_CC_BEGIN
 
 int CCDevice::getDPI()
@@ -132,7 +134,7 @@ int CCDevice::addAlertButton(const char* buttonTitle)
 	return 0;
 }
 
-void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+void CCDevice::showAlert()
 {
 	/*
 	wstring title(m_alertViewTitle.begin(), m_alertViewTitle.end());
@@ -159,14 +161,14 @@ void CCDevice::showAlert(CCAlertViewDelegate* delegate)
 	delete[] wszTitleBuf;
 	delete[] wszMessageBuf;
 
+	EventDataMap map;
+
 	if (button == IDOK || button == IDYES)
-	{
-		delegate->alertViewClickedButtonAtIndex(0);
-	}
+		map[AlertEvent::Param::buttonIndex] = 0;
 	else
-	{
-		delegate->alertViewClickedButtonAtIndex(1);
-	}
+		map[AlertEvent::Param::buttonIndex] = 1;
+
+	CCDirector::sharedDirector()->sendEvent<AlertEvent::Param>(map);
 }
 
 void CCDevice::cancelAlert(void)

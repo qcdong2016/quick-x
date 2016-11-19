@@ -119,22 +119,9 @@ end
 require(cc.PACKAGE_NAME .. ".cc.init")
 require(cc.PACKAGE_NAME .. ".shortcodes")
 
-local sharedTextureCache = CCTextureCache:sharedTextureCache()
 local sharedDirector = CCDirector:sharedDirector()
 
 if DEBUG_FPS then
     sharedDirector:setDisplayStats(true)
 end
 
-if DEBUG_MEM then
-    local sharedTextureCache = CCTextureCache:sharedTextureCache()
-    --[[--
-    @ignore
-    ]]
-    local function showMemoryUsage()
-        printInfo(string.format("LUA VM MEMORY USED: %0.2f KB", collectgarbage("count")))
-        sharedTextureCache:dumpCachedTextureInfo()
-        printInfo("---------------------------------------------------")
-    end
-    sharedDirector:getScheduler():scheduleScriptFunc(showMemoryUsage, DEBUG_MEM_INTERVAL or 10.0, false)
-end

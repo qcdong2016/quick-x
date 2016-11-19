@@ -25,10 +25,11 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCParticleExamples.h"
 #include "engine/CCDirector.h"
-#include "textures/CCTextureCache.h"
+
 #include "support/CCPointExtension.h"
 #include "firePngData.h"
 #include "platform/CCImage.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 //
@@ -43,7 +44,7 @@ static CCTexture2D* getDefaultTexture()
     {
         bool bRet = false;
         const char* key = "__firePngData";
-        pTexture = CCTextureCache::sharedTextureCache()->textureForKey(key);
+       // pTexture = CCTextureCache::sharedTextureCache()->textureForKey(key);
         CC_BREAK_IF(pTexture != NULL);
 
         pImage = new CCImage();
@@ -51,7 +52,9 @@ static CCTexture2D* getDefaultTexture()
         bRet = pImage->initWithImageData((void*)__firePngData, sizeof(__firePngData), kFmtPng);
         CC_BREAK_IF(!bRet);
 
-        pTexture = CCTextureCache::sharedTextureCache()->addUIImage(pImage, key);
+		pTexture = new CCTexture2D();
+		pTexture->initWithImage(pImage);
+			//CCTextureCache::sharedTextureCache()->addUIImage(pImage, key);
     } while (0);
 
     CC_SAFE_RELEASE(pImage);

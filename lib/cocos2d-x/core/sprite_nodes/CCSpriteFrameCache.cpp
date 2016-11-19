@@ -27,7 +27,7 @@
  ****************************************************************************/
 
 #include "ccMacros.h"
-#include "textures/CCTextureCache.h"
+
 #include "CCSpriteFrameCache.h"
 #include "CCSpriteFrame.h"
 #include "CCSprite.h"
@@ -37,6 +37,7 @@
 #include "cocoa/CCDictionary.h"
 #include <vector>
 #include "IO/FileSystem.h"
+#include "engine/CCDirector.h"
 
 using namespace std;
 
@@ -370,7 +371,8 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist, CCTexture
 void CCSpriteFrameCache::addSpriteFramesWithFile(const char* plist, const char* textureFileName)
 {
     CCAssert(textureFileName, "texture name should not be null");
-    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(textureFileName);
+	CCTexture2D *texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(textureFileName);
 
     if (texture)
     {
@@ -420,7 +422,8 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
             CCLOG("cocos2d: CCSpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
         }
 
-        CCTexture2D *pTexture = CCTextureCache::sharedTextureCache()->addImage(texturePath.c_str());
+		CCTexture2D *pTexture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+			->getResource<CCTexture2D>(texturePath);
 
         if (pTexture)
         {

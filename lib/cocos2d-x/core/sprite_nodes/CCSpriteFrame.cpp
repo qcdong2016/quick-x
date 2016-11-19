@@ -23,7 +23,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-#include "textures/CCTextureCache.h"
+
 #include "CCSpriteFrame.h"
 #include "engine/CCDirector.h"
 
@@ -33,7 +33,8 @@ NS_CC_BEGIN
 
 CCSpriteFrame* CCSpriteFrame::create(const char* filename)
 {
-    CCTexture2D* tex = CCTextureCache::sharedTextureCache()->addImage(filename);
+	CCTexture2D* tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(filename);
     CCRect rect;
     rect.size = tex->getContentSize();
     
@@ -188,7 +189,8 @@ CCTexture2D* CCSpriteFrame::getTexture(void)
     }
 
     if( m_strTextureFilename.length() > 0 ) {
-        return CCTextureCache::sharedTextureCache()->addImage(m_strTextureFilename.c_str());
+		return  CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+			->getResource<CCTexture2D>(m_strTextureFilename);
     }
     // no texture or texture filename
     return NULL;

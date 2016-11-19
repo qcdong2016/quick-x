@@ -25,7 +25,7 @@ THE SOFTWARE.
 #include "CCProgressTimer.h"
 
 #include "ccMacros.h"
-#include "textures/CCTextureCache.h"
+
 #include "support/CCPointExtension.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
@@ -37,6 +37,7 @@ THE SOFTWARE.
 #include "kazmath/GL/matrix.h"
 
 #include <float.h>
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 

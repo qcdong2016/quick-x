@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 #include "CCAtlasNode.h"
 #include "textures/CCTextureAtlas.h"
-#include "textures/CCTextureCache.h"
+
 #include "engine/CCDirector.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
@@ -36,6 +36,8 @@ THE SOFTWARE.
 
 // external
 #include "kazmath/GL/matrix.h"
+#include "engine/CCResourceCache.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 
@@ -76,7 +78,9 @@ CCAtlasNode * CCAtlasNode::create(const char *tile, unsigned int tileWidth, unsi
 bool CCAtlasNode::initWithTileFile(const char *tile, unsigned int tileWidth, unsigned int tileHeight, unsigned int itemsToRender)
 {
     CCAssert(tile != NULL, "title should not be null");
-    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(tile);
+	CCTexture2D *texture = CCDirector::sharedDirector()
+								->getSubSystem<ResourceCache>()
+								->getResource<CCTexture2D>(tile);
 	return initWithTexture(texture, tileWidth, tileHeight, itemsToRender);
 }
 

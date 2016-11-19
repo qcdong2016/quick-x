@@ -44,7 +44,7 @@ THE SOFTWARE.
 #include "CCParticleSystem.h"
 #include "CCParticleBatchNode.h"
 #include "ccTypes.h"
-#include "textures/CCTextureCache.h"
+
 #include "textures/CCTextureAtlas.h"
 #include "support/CCPointExtension.h"
 #include "platform/CCImage.h"
@@ -60,6 +60,7 @@ THE SOFTWARE.
 #include "IO/FileSystem.h"
 
 #include "base/MathDefs.h"
+#include "textures/CCTexture2D.h"
 
 using namespace std;
 
@@ -342,7 +343,8 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *
                 
                 if (textureName.length() > 0)
                 {
-                    tex = CCTextureCache::sharedTextureCache()->addImage(textureName.c_str());
+					tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+						->getResource<CCTexture2D>(textureName);
                 }
                 
                 if (tex)
@@ -372,7 +374,10 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *
                         CCAssert(isOK, "CCParticleSystem: error init image with Data");
                         CC_BREAK_IF(!isOK);
                         
-                        setTexture(CCTextureCache::sharedTextureCache()->addUIImage(image, textureName.c_str()));
+						CCTexture2D* tex = new CCTexture2D;
+						tex->initWithImage(image);
+
+                        setTexture(tex);
 
                         image->release();
                     }

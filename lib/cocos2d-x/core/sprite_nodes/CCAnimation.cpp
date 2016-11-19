@@ -24,10 +24,11 @@
  THE SOFTWARE.
  ****************************************************************************/
 #include "CCAnimation.h"
-#include "textures/CCTextureCache.h"
+
 #include "textures/CCTexture2D.h"
 #include "ccMacros.h"
 #include "sprite_nodes/CCSpriteFrame.h"
+#include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 
@@ -171,7 +172,9 @@ void CCAnimation::addSpriteFrame(CCSpriteFrame *pFrame)
 
 void CCAnimation::addSpriteFrameWithFileName(const char *pszFileName)
 {
-    CCTexture2D *pTexture = CCTextureCache::sharedTextureCache()->addImage(pszFileName);
+	CCTexture2D *pTexture = CCDirector::sharedDirector()
+		->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(pszFileName);
     CCRect rect = CCRectZero;
     rect.size = pTexture->getContentSize();
     CCSpriteFrame *pFrame = CCSpriteFrame::createWithTexture(pTexture, rect);

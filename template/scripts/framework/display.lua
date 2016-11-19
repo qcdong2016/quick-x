@@ -64,8 +64,12 @@ display 模块封装了绝大部分与显示有关的功能，并负责根据 co
 ]]
 local display = {}
 
-local sharedDirector         = CCDirector:sharedDirector()
-local sharedTextureCache     = CCTextureCache:sharedTextureCache()
+
+
+local sharedDirector = director
+local resourceCache  = sharedDirector.resourceCache
+
+-- local sharedTextureCache     = CCTextureCache:sharedTextureCache()
 local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
 local sharedAnimationCache   = CCAnimationCache:sharedAnimationCache()
 
@@ -1222,7 +1226,7 @@ end
 
 function display.removeUnusedSpriteFrames()
     sharedSpriteFrameCache:removeUnusedSpriteFrames()
-    sharedTextureCache:removeUnusedTextures()
+    resourceCache:removeUnused();
 end
 
 display.PROGRESS_TIMER_BAR = kCCProgressTimerTypeBar

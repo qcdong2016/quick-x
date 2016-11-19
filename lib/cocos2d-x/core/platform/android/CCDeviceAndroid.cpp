@@ -160,7 +160,7 @@ int CCDevice::addAlertButton(const char* buttonTitle)
     return 0;
 }
 
-void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+void CCDevice::showAlert()
 {
     JniMethodInfo methodInfo;
     if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "showAlert", 

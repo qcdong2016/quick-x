@@ -131,7 +131,6 @@
     <ClCompile Include="..\cocos2d-x\core\support\zip_support\ZipUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexture2D.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureAtlas.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\textures\CCTextureCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureETC.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexturePVR.cpp" />
     <ClCompile Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.cpp" />
@@ -445,7 +444,6 @@
     <ClInclude Include="..\cocos2d-x\core\support\zip_support\ZipUtils.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTexture2D.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureAtlas.h" />
-    <ClInclude Include="..\cocos2d-x\core\textures\CCTextureCache.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureETC.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTexturePVR.h" />
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDelegate.h" />

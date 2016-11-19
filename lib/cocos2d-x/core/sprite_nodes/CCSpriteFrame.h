@@ -27,9 +27,10 @@
 #ifndef __SPRITE_CCSPRITE_FRAME_H__
 #define __SPRITE_CCSPRITE_FRAME_H__
 
-#include "base_nodes/CCNode.h"
+#include "engine/CCResourceCache.h"
 #include "engine/CCObject.h"
 #include "cocoa/CCGeometry.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 
@@ -49,9 +50,9 @@ NS_CC_BEGIN
  CCSpriteFrame *frame = CCSpriteFrame::frameWithTexture(texture, rect, offset);
  sprite->setDisplayFrame(frame);
  */
-class CC_DLL CCSpriteFrame : public CCObject
+class CC_DLL CCSpriteFrame : public Resource
 {
-	CCOBJECT(CCSpriteFrame, CCObject)
+	CCOBJECT(CCSpriteFrame, Resource)
 public:
     // attributes
 
