@@ -18,4 +18,17 @@ void Input::onKeypadMenu()
 	sendEvent<KeypadEvent::Param>(eventData);
 }
 
+void Input::onEnterBackground()
+{
+	EventDataMap eventData;
+	sendEvent<EnterBackground::Param>(eventData);
+}
+
+void Input::onEnterForeground()
+{
+	EventDataMap eventData;
+	sendEvent<EnterForeground::Param>(eventData);
+}
+
 NS_CC_END;
+

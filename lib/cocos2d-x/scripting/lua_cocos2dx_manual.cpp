@@ -118,6 +118,39 @@ static int tolua_Cocos2d_CCObject_unsubscribeFromEvent00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: unsubscribeFromEvent of class  CCObject */
+static int tolua_Cocos2d_CCObject_unsubscribeFromEvent01(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+	tolua_Error tolua_err;
+	if (
+		!tolua_isusertype(tolua_S, 1, "CCObject", 0, &tolua_err) ||
+		!tolua_isusertype(tolua_S, 2, "CCObject", 0, &tolua_err) ||
+		!tolua_isstring(tolua_S, 3, 0, &tolua_err) ||
+		!tolua_isnoobj(tolua_S, 4, &tolua_err)
+		)
+		goto tolua_lerror;
+	else
+#endif
+	{
+		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
+		CCObject* sender = (CCObject*)tolua_tousertype(tolua_S,2, 0);
+		const char* eventType = CCObject::findEventID((const char*)tolua_tostring(tolua_S, 3, 0));
+#ifndef TOLUA_RELEASE
+		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'unsubscribeFromEvent'", NULL);
+#endif
+		{
+			self->unsubscribeFromEvent(sender, eventType);
+		}
+	}
+	return 0;
+#ifndef TOLUA_RELEASE
+	tolua_lerror :
+				 tolua_error(tolua_S, "#ferror in function 'unsubscribeFromEvent'.", &tolua_err);
+				 return 0;
+#endif
+}
+
 /* method: unsubscribeFromAllEvents of class  CCObject */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCObject_unsubscribeFromAllEvents00
 static int tolua_Cocos2d_CCObject_unsubscribeFromAllEvents00(lua_State* tolua_S)
@@ -192,6 +225,7 @@ static void extendCCOBject(lua_State* tolua_S)
 		tolua_function(tolua_S, "subscribeToEvent", tolua_Cocos2d_CCObject_subscribeToEvent00);
 		tolua_function(tolua_S, "subscribeToEvent", tolua_Cocos2d_CCObject_subscribeToEvent01);
 		tolua_function(tolua_S, "unsubscribeFromEvent", tolua_Cocos2d_CCObject_unsubscribeFromEvent00);
+		tolua_function(tolua_S, "unsubscribeFromEvent", tolua_Cocos2d_CCObject_unsubscribeFromEvent01);
 		tolua_function(tolua_S, "unsubscribeFromAllEvents", tolua_Cocos2d_CCObject_unsubscribeFromAllEvents00);
 		tolua_function(tolua_S, "sendEvent", tolua_Cocos2d_CCObject_sendEvent00);
 	}

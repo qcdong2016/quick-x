@@ -16,6 +16,8 @@ public:
 	void onKeypadBack();
 	void onKeypadMenu();
 
+	void onEnterForeground();
+	void onEnterBackground();
 };
 
 NS_CC_END;

@@ -8,3 +8,14 @@ CC_EVENT_DEFINE(UpdateEvent)
 CC_PARAM(timeStep)
 CC_EVENT_END()
 
+CC_EVENT_DEFINE(EnterBackground)
+CC_EVENT_END()
+
+CC_EVENT_DEFINE(EnterForeground)
+CC_EVENT_END()
+
+CC_EVENT_DEFINE(ContextLost)
+CC_EVENT_END()
+
+CC_EVENT_DEFINE(ContextReset)
+CC_EVENT_END()

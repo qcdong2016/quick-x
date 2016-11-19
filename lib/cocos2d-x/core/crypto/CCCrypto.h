@@ -25,67 +25,31 @@ public:
                                        unsigned char* key,
                                        int keyLength,
                                        int* resultLength);
-
+    
     /** @brief Get length of encoding data with Base64 algorithm */
     static int encodeBase64Len(int inputLength);
     
     /** @brief Encoding data with Base64 algorithm, return encoded string length */
     static char* encodeBase64(const char* input, unsigned long& sizeInOut);
+    static std::string encodeBase64(const char* input, int inputLen);
     
     /** @brief Get length of Decoding Base 64 */
     static int decodeBase64Len(const char* input);
 
     /** @brief Decoding Base64 string to data, return decoded data length */
     static char* decodeBase64(const char* input, unsigned long& sizeInOut);
+    static std::string decodeBase64(const char* input);
     
-    /** @brief Calculate MD5, get MD5 code (not string) */
-    static void MD5(void* input, int inputLength,
-                    unsigned char* output);
+    /** @brief Calculate MD5, get MD5 hex*/
+    static std::string MD5(void* input, int inputLength);
     
-    static void MD5File(const char* path, unsigned char* output);
+    static std::string MD5String(const char* input, int inputLength);
     
-    
+    static std::string MD5File(const char* path);
 
-    static const std::string MD5String(void* input, int inputLength);
-    
-#pragma mark -
-#pragma mark for Lua
-    
-    
-    /** @brief Encrypt data with XXTEA algorithm, return ciphertext string and length, return nil if failed */
-    static int encryptXXTEALua(const char* plaintext,
-                                      int plaintextLength,
-                                      const char* key,
-                                      int keyLength);
-    
-    /** @brief Decrypt data with XXTEA algorithm, return plaintext string and length, return nil if failed */
-    static int decryptXXTEALua(const char* ciphertext,
-                                      int ciphertextLength,
-                                      const char* key,
-                                      int keyLength);
-    
-    /** @brief Encoding data with Base64 algorithm, return encoded string */
-    static int encodeBase64Lua(const char* input, int inputLength)
-    {
-        return encodingBase64Lua(false, input, inputLength);
-    }
-    
-    /** @brief Decoding Base64 string to data, return decoded data length */
-    static int decodeBase64Lua(const char* input)
-    {
-        return encodingBase64Lua(true, input, (int)strlen(input));
-    }
-    
-    /** @brief Calculate MD5, return MD5 string */
-    static int MD5Lua(char* input, bool isRawOutput);
-
-    static int MD5FileLua(const char* path);
 
 private:
     CCCrypto(void) {}
-    
-    static int encodingBase64Lua(bool isDecoding, const char* input, int inputLength);
-    static char* bin2hex(unsigned char* bin, int binLength);
 };
 
 NS_CC_END
