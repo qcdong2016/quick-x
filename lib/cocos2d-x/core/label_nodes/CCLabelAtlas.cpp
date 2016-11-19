@@ -25,7 +25,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCLabelAtlas.h"
 #include "textures/CCTextureAtlas.h"
-#include "textures/CCTextureCache.h"
+
 #include "support/CCPointExtension.h"
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "ccConfig.h"
@@ -37,6 +37,8 @@ THE SOFTWARE.
 // external
 #include "kazmath/GL/matrix.h"
 #include "IO/FileSystem.h"
+#include "textures/CCTexture2D.h"
+#include "cocoa/CCDictionary.h"
 
 NS_CC_BEGIN
 
@@ -64,7 +66,9 @@ bool CCLabelAtlas::init()
 void CCLabelAtlas::setTextureByName(const std::string& filename)
 {
     m_textureName = filename;
-    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(filename.c_str());
+	CCTexture2D *texture = CCDirector::sharedDirector()
+		->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(filename);
 
     setTexture(texture);
 }
@@ -111,7 +115,9 @@ CCLabelAtlas* CCLabelAtlas::create(const char *string, const char *charMapFile, 
 
 bool CCLabelAtlas::initWithString(const char *string, const char *charMapFile, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap)
 {
-    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(charMapFile);
+	CCTexture2D *texture = CCDirector::sharedDirector()
+		->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(charMapFile);
 	return initWithString(string, texture, itemWidth, itemHeight, startCharMap);
 }
 

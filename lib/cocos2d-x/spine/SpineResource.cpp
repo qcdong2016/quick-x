@@ -16,7 +16,7 @@ SpineAtlasResource::~SpineAtlasResource()
 		spAtlas_dispose(_atlas);
 }
 
-void SpineAtlasResource::beginLoad(SharedPtr<MemBuffer> buf, void* userdata)
+void SpineAtlasResource::beginLoad(MemBuffer* buf, void* userdata)
 {
 	_atlas = spAtlas_create((const char*)buf->getData(), 
 		buf->getSize(), FileSystem::getDirectory(_path).c_str(), nullptr);
@@ -34,7 +34,7 @@ SpineSkeletonDataResource::~SpineSkeletonDataResource()
 		spSkeletonData_dispose(_skeletonData);
 }
 
-void SpineSkeletonDataResource::beginLoad(SharedPtr<MemBuffer> buf, void* userdata)
+void SpineSkeletonDataResource::beginLoad(MemBuffer* buf, void* userdata)
 {
 	SpineAtlasResource* atlas = (SpineAtlasResource*)userdata;
 

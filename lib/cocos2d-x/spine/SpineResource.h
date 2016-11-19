@@ -13,7 +13,7 @@ public:
 	SpineAtlasResource();
 	~SpineAtlasResource();
 	
-	virtual void beginLoad(SharedPtr<MemBuffer> buf, void* userdata);
+	virtual void beginLoad(MemBuffer* buf, void* userdata);
 
 	spAtlas* _atlas;
 };
@@ -24,7 +24,7 @@ class CC_DLL SpineSkeletonDataResource : public Resource
 public:
 	SpineSkeletonDataResource();
 	~SpineSkeletonDataResource();
-	virtual void beginLoad(SharedPtr<MemBuffer> buf, void* userdata);
+	virtual void beginLoad(MemBuffer* buf, void* userdata);
 	spSkeletonData* _skeletonData;
 };
 

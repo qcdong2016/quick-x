@@ -26,13 +26,11 @@ THE SOFTWARE.
 #ifndef __CCTEXTURE2D_H__
 #define __CCTEXTURE2D_H__
 
-#include <string>
+#include "engine/CCResourceCache.h"
 #include "engine/CCObject.h"
 #include "cocoa/CCGeometry.h"
 #include "ccTypes.h"
-#ifdef EMSCRIPTEN
-#include "base_nodes/CCGLBufferedNode.h"
-#endif // EMSCRIPTEN
+#include <string>
 
 NS_CC_BEGIN
 
@@ -106,11 +104,10 @@ typedef struct _ccTexParams {
 * Depending on how you create the CCTexture2D object, the actual image area of the texture might be smaller than the texture dimensions i.e. "contentSize" != (pixelsWide, pixelsHigh) and (maxS, maxT) != (1.0, 1.0).
 * Be aware that the content of the generated textures will be upside-down!
 */
-class CC_DLL CCTexture2D : public CCObject
-#ifdef EMSCRIPTEN
-, public CCGLBufferedNode
-#endif // EMSCRIPTEN
+class CC_DLL CCTexture2D : public Resource
 {
+	CCOBJECT(CCTexture2D, Resource)
+
 public:
     /**
      * @js ctor
@@ -121,6 +118,8 @@ public:
      * @lua NA
      */
     virtual ~CCTexture2D();
+	virtual void beginLoad(MemBuffer* buf, void* userdata);
+
     /**
      *  @js NA
      *  @lua NA
@@ -136,6 +135,7 @@ public:
      */
     void* keepData(void *data, unsigned int length);
 
+	bool initWithFile(const char* filename);
     /** Initializes with a texture2d with data 
      * @js NA
      * @lua NA
@@ -297,6 +297,67 @@ private:
 
 	Material* _material;
 };
+
+
+#if CC_ENABLE_CACHE_TEXTURE_DATA
+
+class VolatileTexture
+{
+	typedef enum {
+		kInvalid = 0,
+		kImageFile,
+		kImageData,
+		kString,
+		kImage,
+	}ccCachedImageType;
+
+public:
+	VolatileTexture(CCTexture2D *t);
+	~VolatileTexture();
+
+	static void addImageTexture(CCTexture2D *tt, const char* imageFileName, EImageFormat format);
+	static void addStringTexture(CCTexture2D *tt, const char* text, const CCSize& dimensions, CCTextAlignment alignment,
+		CCVerticalTextAlignment vAlignment, const char *fontName, float fontSize);
+	static void addDataTexture(CCTexture2D *tt, void* data, CCTexture2DPixelFormat pixelFormat, const CCSize& contentSize);
+	static void addCCImage(CCTexture2D *tt, CCImage *image);
+
+	static void setTexParameters(CCTexture2D *t, ccTexParams *texParams);
+	static void removeTexture(CCTexture2D *t);
+	static void reloadAllTextures();
+
+public:
+	static std::list<VolatileTexture*> textures;
+	static bool isReloading;
+
+private:
+	// find VolatileTexture by CCTexture2D*
+	// if not found, create a new one
+	static VolatileTexture* findVolotileTexture(CCTexture2D *tt);
+
+protected:
+	CCTexture2D *texture;
+
+	CCImage *uiImage;
+
+	ccCachedImageType m_eCashedImageType;
+
+	void *m_pTextureData;
+	CCSize m_TextureSize;
+	CCTexture2DPixelFormat m_PixelFormat;
+
+	std::string m_strFileName;
+	EImageFormat m_FmtImage;
+
+	ccTexParams     m_texParams;
+	CCSize          m_size;
+	CCTextAlignment m_alignment;
+	CCVerticalTextAlignment m_vAlignment;
+	std::string     m_strFontName;
+	std::string     m_strText;
+	float           m_fFontSize;
+};
+
+#endif
 
 // end of textures group
 /// @}

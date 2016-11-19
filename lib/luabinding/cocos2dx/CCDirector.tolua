@@ -205,11 +205,15 @@ class CCDirector : public CCObject
 };
 
 $[
-    local director = CCDirector:sharedDirector()
-    director.actionManager = tolua.cast(director:getSubSystem('CCActionManager'), "CCActionManager")
-    director.touchDispatcher = tolua.cast(director:getSubSystem('CCTouchDispatcher'), "CCTouchDispatcher")
-    director.accelerometer = tolua.cast(director:getSubSystem('CCAccelerometer'), "CCAccelerometer")
-    director.keypadDispatcher = tolua.cast(director:getSubSystem('CCKeypadDispatcher'), "CCKeypadDispatcher")
+    local d = CCDirector:sharedDirector()
+    d.actionManager = tolua.cast(d:getSubSystem('CCActionManager'), "CCActionManager")
+    d.touchDispatcher = tolua.cast(d:getSubSystem('CCTouchDispatcher'), "CCTouchDispatcher")
+    d.accelerometer = tolua.cast(d:getSubSystem('CCAccelerometer'), "CCAccelerometer")
+    d.keypadDispatcher = tolua.cast(d:getSubSystem('CCKeypadDispatcher'), "CCKeypadDispatcher")
+    d.resourceCache = tolua.cast(d:getSubSystem('ResourceCache'), "ResourceCache")
+
+    -- make a global var;
+    director = d;
 $]
 
 

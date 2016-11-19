@@ -89,6 +89,55 @@ CCTexture2D::~CCTexture2D()
     }
 }
 
+void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
+{
+	std::string lowName = FileSystem::getName(getPath());
+	for (unsigned int i = 0; i < lowName.length(); ++i)
+		lowName[i] = tolower(lowName[i]);
+
+	std::string ext = FileSystem::getExtension(lowName);
+	EImageFormat eImageFormat = kFmtUnKnown;
+
+	if (ext == "png")
+		eImageFormat = kFmtPng;
+	else if (ext == "jpg" || ext == "jpeg")
+		eImageFormat = kFmtJpg;
+	else if (ext == "tif" || ext == "tiff")
+		eImageFormat = kFmtTiff;
+	else if (ext == "webp")
+		eImageFormat = kFmtWebp;
+	else {
+// 		if (std::string::npos != lowName.find(".pvr"))
+// 		{
+// 			lowName = this->initWithPVRFile(getPath().c_str());
+// 		}
+// 		else if (std::string::npos != lowerCase.find(".pkm"))
+// 		{
+// 			// ETC1 file format, only supportted on Android
+// 			texture = this->initWithETCFile(getPath().c_str());
+// 		}
+		return;
+	}
+
+	CCImage* pImage = new CCImage();
+
+	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize(), eImageFormat);
+
+	if (bRet && initWithImage(pImage))
+	{
+#if CC_ENABLE_CACHE_TEXTURE_DATA
+		// cache the texture file name
+		VolatileTexture::addImageTexture(texture, getPath().c_str(), eImageFormat);
+#endif
+	}
+	else
+	{
+		CCLOG("cocos2d: Couldn't create texture for file:%s ", getPath().c_str());
+	}
+
+	CC_SAFE_RELEASE(pImage);
+}
+
 CCTexture2DPixelFormat CCTexture2D::getPixelFormat()
 {
     return m_ePixelFormat;
@@ -154,6 +203,12 @@ void* CCTexture2D::keepData(void *data, unsigned int length)
     CC_UNUSED_PARAM(length);
     //The texture data mustn't be saved because it isn't a mutable texture.
     return data;
+}
+
+bool CCTexture2D::initWithFile(const char* filename)
+{
+	// todo
+	return true;
 }
 
 bool CCTexture2D::hasPremultipliedAlpha()
@@ -909,5 +964,228 @@ unsigned int CCTexture2D::bitsPerPixelForFormat()
 	return this->bitsPerPixelForFormat(m_ePixelFormat);
 }
 
+
+#if CC_ENABLE_CACHE_TEXTURE_DATA
+
+std::list<VolatileTexture*> VolatileTexture::textures;
+bool VolatileTexture::isReloading = false;
+
+VolatileTexture::VolatileTexture(CCTexture2D *t)
+	: texture(t)
+	, m_eCashedImageType(kInvalid)
+	, m_pTextureData(NULL)
+	, m_PixelFormat(kTexture2DPixelFormat_RGBA8888)
+	, m_strFileName("")
+	, m_FmtImage(kFmtPng)
+	, m_alignment(kCCTextAlignmentCenter)
+	, m_vAlignment(kCCVerticalTextAlignmentCenter)
+	, m_strFontName("")
+	, m_strText("")
+	, uiImage(NULL)
+	, m_fFontSize(0.0f)
+{
+	m_size = CCSizeMake(0, 0);
+	m_texParams.minFilter = GL_LINEAR;
+	m_texParams.magFilter = GL_LINEAR;
+	m_texParams.wrapS = GL_CLAMP_TO_EDGE;
+	m_texParams.wrapT = GL_CLAMP_TO_EDGE;
+	textures.push_back(this);
+}
+
+VolatileTexture::~VolatileTexture()
+{
+	textures.remove(this);
+	CC_SAFE_RELEASE(uiImage);
+}
+
+void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName, EImageFormat format)
+{
+	if (isReloading)
+	{
+		return;
+	}
+
+	VolatileTexture *vt = findVolotileTexture(tt);
+
+	vt->m_eCashedImageType = kImageFile;
+	vt->m_strFileName = imageFileName;
+	vt->m_FmtImage = format;
+	vt->m_PixelFormat = tt->getPixelFormat();
+}
+
+void VolatileTexture::addCCImage(CCTexture2D *tt, CCImage *image)
+{
+	VolatileTexture *vt = findVolotileTexture(tt);
+	image->retain();
+	vt->uiImage = image;
+	vt->m_eCashedImageType = kImage;
+}
+
+VolatileTexture* VolatileTexture::findVolotileTexture(CCTexture2D *tt)
+{
+	VolatileTexture *vt = 0;
+	std::list<VolatileTexture *>::iterator i = textures.begin();
+	while (i != textures.end())
+	{
+		VolatileTexture *v = *i++;
+		if (v->texture == tt)
+		{
+			vt = v;
+			break;
+		}
+	}
+
+	if (!vt)
+	{
+		vt = new VolatileTexture(tt);
+	}
+
+	return vt;
+}
+
+void VolatileTexture::addDataTexture(CCTexture2D *tt, void* data, CCTexture2DPixelFormat pixelFormat, const CCSize& contentSize)
+{
+	if (isReloading)
+	{
+		return;
+	}
+
+	VolatileTexture *vt = findVolotileTexture(tt);
+
+	vt->m_eCashedImageType = kImageData;
+	vt->m_pTextureData = data;
+	vt->m_PixelFormat = pixelFormat;
+	vt->m_TextureSize = contentSize;
+}
+
+void VolatileTexture::addStringTexture(CCTexture2D *tt, const char* text, const CCSize& dimensions, CCTextAlignment alignment,
+	CCVerticalTextAlignment vAlignment, const char *fontName, float fontSize)
+{
+	if (isReloading)
+	{
+		return;
+	}
+
+	VolatileTexture *vt = findVolotileTexture(tt);
+
+	vt->m_eCashedImageType = kString;
+	vt->m_size = dimensions;
+	vt->m_strFontName = fontName;
+	vt->m_alignment = alignment;
+	vt->m_vAlignment = vAlignment;
+	vt->m_fFontSize = fontSize;
+	vt->m_strText = text;
+}
+
+void VolatileTexture::setTexParameters(CCTexture2D *t, ccTexParams *texParams)
+{
+	VolatileTexture *vt = findVolotileTexture(t);
+
+	if (texParams->minFilter != GL_NONE)
+		vt->m_texParams.minFilter = texParams->minFilter;
+	if (texParams->magFilter != GL_NONE)
+		vt->m_texParams.magFilter = texParams->magFilter;
+	if (texParams->wrapS != GL_NONE)
+		vt->m_texParams.wrapS = texParams->wrapS;
+	if (texParams->wrapT != GL_NONE)
+		vt->m_texParams.wrapT = texParams->wrapT;
+}
+
+void VolatileTexture::removeTexture(CCTexture2D *t)
+{
+
+	std::list<VolatileTexture *>::iterator i = textures.begin();
+	while (i != textures.end())
+	{
+		VolatileTexture *vt = *i++;
+		if (vt->texture == t)
+		{
+			delete vt;
+			break;
+		}
+	}
+}
+
+void VolatileTexture::reloadAllTextures()
+{
+	isReloading = true;
+
+	CCLOG("reload all texture");
+	std::list<VolatileTexture *>::iterator iter = textures.begin();
+
+	while (iter != textures.end())
+	{
+		VolatileTexture *vt = *iter++;
+
+		switch (vt->m_eCashedImageType)
+		{
+		case kImageFile:
+		{
+			std::string lowerCase(vt->m_strFileName.c_str());
+			for (unsigned int i = 0; i < lowerCase.length(); ++i)
+			{
+				lowerCase[i] = tolower(lowerCase[i]);
+			}
+
+			if (std::string::npos != lowerCase.find(".pvr"))
+			{
+				CCTexture2DPixelFormat oldPixelFormat = CCTexture2D::defaultAlphaPixelFormat();
+				CCTexture2D::setDefaultAlphaPixelFormat(vt->m_PixelFormat);
+
+				vt->texture->initWithPVRFile(vt->m_strFileName.c_str());
+				CCTexture2D::setDefaultAlphaPixelFormat(oldPixelFormat);
+			}
+			else
+			{
+				CCImage* pImage = new CCImage();
+				SharedPtr<MemBuffer> bf = FileSystem::readAll(vt->m_strFileName);
+
+				if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize(), vt->m_FmtImage))
+				{
+					CCTexture2DPixelFormat oldPixelFormat = CCTexture2D::defaultAlphaPixelFormat();
+					CCTexture2D::setDefaultAlphaPixelFormat(vt->m_PixelFormat);
+					vt->texture->initWithImage(pImage);
+					CCTexture2D::setDefaultAlphaPixelFormat(oldPixelFormat);
+				}
+
+				CC_SAFE_RELEASE(pImage);
+			}
+		}
+		break;
+		case kImageData:
+		{
+			vt->texture->initWithData(vt->m_pTextureData,
+				vt->m_PixelFormat,
+				vt->m_TextureSize.width,
+				vt->m_TextureSize.height,
+				vt->m_TextureSize);
+		}
+		break;
+		case kString:
+		{
+			vt->texture->initWithString(vt->m_strText.c_str(),
+				vt->m_strFontName.c_str(),
+				vt->m_fFontSize,
+				vt->m_size,
+				vt->m_alignment,
+				vt->m_vAlignment
+			);
+		}
+		break;
+		case kImage:
+		{
+			vt->texture->initWithImage(vt->uiImage);
+		}
+		break;
+		default:
+			break;
+		}
+		vt->texture->setTexParameters(&vt->m_texParams);
+	}
+
+	isReloading = false;
+}
+
+#endif // CC_ENABLE_CACHE_TEXTURE_DATA
 
 NS_CC_END

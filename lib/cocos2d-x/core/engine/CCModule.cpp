@@ -4,6 +4,8 @@
 #include "CCDevice.h"
 #include <vector>
 #include <string>
+#include "textures/CCTexture2D.h"
+#include "sprite_nodes/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 
@@ -15,6 +17,19 @@ bool ModuleManager::addModule(Module* m)
 	m->attach();
 	return true;
 }
+
+
+void CoreModule::attach()
+{
+	ObjectFactoryManager::addFactory<CCTexture2D>();
+	ObjectFactoryManager::addFactory<CCSpriteFrame>();
+}
+
+void CoreModule::detach()
+{
+
+}
+
 
 NS_CC_END
 

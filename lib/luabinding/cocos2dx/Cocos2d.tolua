@@ -1,6 +1,8 @@
 
 $#include "LuaCocos2d.h"
 
+$pfile "cocos2dx/engine/CCResourceCache.tolua"
+
 $pfile "cocos2dx/shaders/CCShaderCache.tolua"
 
 $pfile "cocos2dx/include/ccTypes.tolua"
@@ -46,7 +48,6 @@ $pfile "cocos2dx/actions/CCActionProgressTimer.tolua"
 $pfile "cocos2dx/actions/CCActionTiledGrid.tolua"
 
 $pfile "cocos2dx/textures/CCTexture2D.tolua"
-$pfile "cocos2dx/textures/CCTextureCache.tolua"
 
 $pfile "cocos2dx/CCCamera.tolua"
 $pfile "cocos2dx/base_nodes/CCNode.tolua"

@@ -31,7 +31,7 @@
 #include "CCSprite.h"
 #include "CCSpriteFrame.h"
 #include "CCSpriteFrameCache.h"
-#include "textures/CCTextureCache.h"
+
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
@@ -221,7 +221,9 @@ bool CCSprite::initWithFile(const char *pszFilename)
 {
     CCAssert(pszFilename != NULL, "Invalid filename for sprite");
 
-    CCTexture2D *pTexture = CCTextureCache::sharedTextureCache()->addImage(pszFilename);
+	CCTexture2D *pTexture = CCDirector::sharedDirector()
+		->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(pszFilename);
     if (pTexture)
     {
         CCRect rect = CCRectZero;
@@ -239,7 +241,9 @@ bool CCSprite::initWithFile(const char *pszFilename, const CCRect& rect)
 {
     CCAssert(pszFilename != NULL, "");
 
-    CCTexture2D *pTexture = CCTextureCache::sharedTextureCache()->addImage(pszFilename);
+	CCTexture2D *pTexture = CCDirector::sharedDirector()
+		->getSubSystem<ResourceCache>()
+		->getResource<CCTexture2D>(pszFilename);
     if (pTexture)
     {
         return initWithTexture(pTexture, rect);
@@ -1099,7 +1103,7 @@ void CCSprite::setTexture(CCTexture2D *texture)
     if (NULL == texture)
     {
         // Gets the texture by key firstly.
-        texture = CCTextureCache::sharedTextureCache()->textureForKey(CC_2x2_WHITE_IMAGE_KEY);
+        //texture = CCTextureCache::sharedTextureCache()->textureForKey(CC_2x2_WHITE_IMAGE_KEY);
 
         // If texture wasn't in cache, create it from RAW data.
         if (NULL == texture)
@@ -1108,7 +1112,8 @@ void CCSprite::setTexture(CCTexture2D *texture)
             bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), kFmtRawData, 2, 2, 8);
             CCAssert(isOK, "The 2x2 empty texture was created unsuccessfully.");
 
-            texture = CCTextureCache::sharedTextureCache()->addUIImage(image, CC_2x2_WHITE_IMAGE_KEY);
+			texture = new CCTexture2D;
+			texture->initWithImage(image);
             CC_SAFE_RELEASE(image);
         }
     }

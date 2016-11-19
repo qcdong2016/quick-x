@@ -39,9 +39,10 @@
 #include "sprite_nodes/CCSprite.h"
 #include "support/CCPointExtension.h"
 #include "engine/CCDirector.h"
-#include "textures/CCTextureCache.h"
+
 #include "support/ccUTF8.h"
 #include "IO/FileSystem.h"
+#include "textures/CCTexture2D.h"
 
 using namespace std;
 
@@ -488,7 +489,8 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
 
         m_sFntFile = fntFile;
 
-        texture = CCTextureCache::sharedTextureCache()->addImage(m_pConfiguration->getAtlasName());
+		texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+			->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
     }
     else
     {
@@ -1097,7 +1099,10 @@ void CCLabelBMFont::setFntFile(const char* fntFile)
         CC_SAFE_RELEASE(m_pConfiguration);
         m_pConfiguration = newConf;
         
-        this->setTexture(CCTextureCache::sharedTextureCache()->addImage(m_pConfiguration->getAtlasName()));
+		CCTexture2D* tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+			->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
+
+		this->setTexture(tex);
         this->createFontChars();
     }
 }

@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "shaders/ccGLStateCache.h"
 #include "CCConfiguration.h"
 #include "base/MathDefs.h"
-#include "textures/CCTextureCache.h"
+
 #include "CCGL.h"
 #include "support/CCNotificationCenter.h"
 #include "effects/CCGrid.h"

@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include "CCTMXXMLParser.h"
 #include "CCTMXTiledMap.h"
 #include "sprite_nodes/CCSprite.h"
-#include "textures/CCTextureCache.h"
+
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "support/CCPointExtension.h"
@@ -35,6 +35,7 @@ THE SOFTWARE.
 #include "engine/CCDirector.h"
 
 #include "base/MathDefs.h"
+#include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
 
@@ -61,7 +62,8 @@ bool CCTMXLayer::initWithTilesetInfo(CCTMXTilesetInfo *tilesetInfo, CCTMXLayerIn
     CCTexture2D *texture = NULL;
     if( tilesetInfo )
     {
-        texture = CCTextureCache::sharedTextureCache()->addImage(tilesetInfo->m_sSourceImage.c_str());
+		texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
+			->getResource<CCTexture2D>(tilesetInfo->m_sSourceImage);
     }
 
     if (CCSpriteBatchNode::initWithTexture(texture, (unsigned int)capacity))
