@@ -75,7 +75,7 @@ bool TypeInfo::isTypeOf(const TypeInfo* typeInfo) const
 static std::map<EventID, std::set<CCObject*> > eventReceivers;
 static std::map<CCObject*, std::map<EventID, std::set<CCObject*> > > specificEventReceivers;
 
-static void removeEventSender(CCObject* sender)
+static void _removeEventSender(CCObject* sender)
 {
 	auto i = specificEventReceivers.find(sender);
 	if (i != specificEventReceivers.end())
@@ -89,28 +89,7 @@ static void removeEventSender(CCObject* sender)
 	}
 }
 
-void cocos2d::CCObject::removeEventSender(CCObject* sender)
-{
-	EventHandler* handler = _eventHandlers.first();
-	EventHandler* previous = 0;
-
-	while (handler)
-	{
-		if (handler->getSender() == sender)
-		{
-			EventHandler* next = _eventHandlers.next(handler);
-			_eventHandlers.erase(handler, previous);
-			handler = next;
-		}
-		else
-		{
-			previous = handler;
-			handler = _eventHandlers.next(handler);
-		}
-	}
-}
-
-static std::set<CCObject*>* getEventReceivers(EventID eventType, CCObject* sender = 0)
+static std::set<CCObject*>* _getEventReceivers(EventID eventType, CCObject* sender = 0)
 {
 	if (sender)
 	{
@@ -130,9 +109,9 @@ static std::set<CCObject*>* getEventReceivers(EventID eventType, CCObject* sende
 	}
 }
 
-static void addEventReciver(CCObject* reciver, EventID eventType)
+static void _addEventReciver(CCObject* reciver, EventID eventType)
 {
-	std::set<CCObject*>* group = getEventReceivers(eventType);
+	std::set<CCObject*>* group = _getEventReceivers(eventType);
 	if (!group) {
 		group = &(eventReceivers[eventType] = std::set<CCObject*>());
 	}
@@ -140,11 +119,17 @@ static void addEventReciver(CCObject* reciver, EventID eventType)
 	group->insert(reciver);
 }
 
-static void removeEventReciver(CCObject* reciver, EventID eventType, CCObject* sender = 0)
+static void _addEventReciver(CCObject* reciver, CCObject* sender, EventID eventType)
 {
-	std::set<CCObject*>* group = getEventReceivers(eventType, sender);
-	if (group)
+	specificEventReceivers[sender][eventType].insert(reciver);
+}
+
+static void _removeEventReciver(CCObject* reciver, EventID eventType, CCObject* sender = 0)
+{
+	std::set<CCObject*>* group = _getEventReceivers(eventType, sender);
+	if (group) {
 		group->erase(reciver);
+	}
 }
 
 
@@ -197,7 +182,28 @@ CCObject::~CCObject(void)
 	}
 
 	unsubscribeFromAllEvents();
-	removeEventSender(this);
+	_removeEventSender(this);
+}
+
+void CCObject::removeEventSender(CCObject* sender)
+{
+	EventHandler* handler = _eventHandlers.first();
+	EventHandler* previous = 0;
+
+	while (handler)
+	{
+		if (handler->getSender() == sender)
+		{
+			EventHandler* next = _eventHandlers.next(handler);
+			_eventHandlers.erase(handler, previous);
+			handler = next;
+		}
+		else
+		{
+			previous = handler;
+			handler = _eventHandlers.next(handler);
+		}
+	}
 }
 
 EventHandler* CCObject::findEventHandler(CCObject* sender, EventHandler** previous)
@@ -253,7 +259,7 @@ void CCObject::subscribeToEvent(EventID eventType, EventHandler* handler)
 
 	_eventHandlers.insertFront(handler);
 
-	addEventReciver(this, eventType);
+	_addEventReciver(this, eventType);
 }
 
 void CCObject::subscribeToEvent(CCObject* sender, EventID eventType, EventHandler* handler)
@@ -271,7 +277,7 @@ void CCObject::subscribeToEvent(CCObject* sender, EventID eventType, EventHandle
 	EventHandler* oldHandler = findEventHandler(sender, eventType, &previous);
 
 	_eventHandlers.insertFront(handler);
-	addEventReciver(this, eventType);
+	_addEventReciver(this, sender, eventType);
 }
 
 void CCObject::unsubscribeFromAllEvents()
@@ -280,7 +286,7 @@ void CCObject::unsubscribeFromAllEvents()
 	{
 		EventHandler* handler = _eventHandlers.first();
 		if (!handler) break;
-		removeEventReciver(this, handler->getEventType(), handler->getSender());
+		_removeEventReciver(this, handler->getEventType(), handler->getSender());
 		_eventHandlers.erase(handler);
 	}
 }
@@ -294,7 +300,7 @@ void CCObject::unsubscribeFromEvent(EventID eventType)
 
 		if (!handler) break;
 
-		removeEventReciver(this, eventType, handler->getSender());
+		_removeEventReciver(this, eventType, handler->getSender());
 		_eventHandlers.erase(handler, previous);
 	}
 }
@@ -310,7 +316,7 @@ void CCObject::unsubscribeFromEvent(CCObject* sender, EventID eventType)
 
 		if (!handler) break;
 
-		removeEventReciver(this, eventType, handler->getSender());
+		_removeEventReciver(this, eventType, handler->getSender());
 		_eventHandlers.erase(handler, previous);
 	}
 }
@@ -326,7 +332,7 @@ void CCObject::unsubscribeFromEvents(CCObject* sender)
 		EventHandler* handler = findEventHandler(sender, &previous);
 		if (handler)
 		{
-			removeEventReciver(this, handler->getEventType(), handler->getSender());
+			_removeEventReciver(this, handler->getEventType(), handler->getSender());
 			_eventHandlers.erase(handler, previous);
 		}
 		else
@@ -345,7 +351,7 @@ void CCObject::sendEvent(EventID eventType, EventDataMap& eventData)
 	WeakPtr<CCObject> self(this);
 	std::set<CCObject*> processed;
 
-	std::set<CCObject*>* group = getEventReceivers(eventType, this);
+	std::set<CCObject*>* group = _getEventReceivers(eventType, this);
 
 	if (group)
 	{
@@ -373,7 +379,7 @@ void CCObject::sendEvent(EventID eventType, EventDataMap& eventData)
 		}
 	}
 
-	group = getEventReceivers(eventType);
+	group = _getEventReceivers(eventType);
 	if (group)
 	{
 		if (processed.empty())
