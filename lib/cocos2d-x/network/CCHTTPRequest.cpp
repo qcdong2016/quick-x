@@ -243,8 +243,7 @@ bool CCHTTPRequest::start(void)
     pthread_create(&m_thread, NULL, requestCURL, this);
     pthread_detach(m_thread);
 #endif
-    
-    CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(this, 0, false);
+    SubSystem::get<CCScheduler>()->scheduleUpdateForTarget(this, 0, false);
     // CCLOG("CCHTTPRequest[0x%04x] - request start", s_id);
     return true;
 #else
@@ -354,8 +353,8 @@ void CCHTTPRequest::checkCURLState(float dt)
     CC_UNUSED_PARAM(dt);
     if (m_curlState != kCCHTTPRequestCURLStateBusy)
     {
-        CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
-        release();
+		SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
+		release();
     }
 }
 
@@ -381,10 +380,11 @@ void CCHTTPRequest::update(float dt)
         }
         return;
     }
-    CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(this);
+	SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
+
     if (m_curlState != kCCHTTPRequestCURLStateIdle)
     {
-        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(CCHTTPRequest::checkCURLState), this, 0, false);
+		SubSystem::get<CCScheduler>()->scheduleSelector(schedule_selector(CCHTTPRequest::checkCURLState), this, 0, false);
     }
 
     if (m_state == kCCHTTPRequestStateCompleted)

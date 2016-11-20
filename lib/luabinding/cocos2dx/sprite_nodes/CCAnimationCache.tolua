@@ -58,18 +58,6 @@ class CCAnimationCache : public CCObject
     You should retain the returned copy if you are going to use it.
     */
     CCAnimation* animationByName(const char* name);
-
-    /** Adds an animation from an NSDictionary
-     Make sure that the frames were previously loaded in the CCSpriteFrameCache.
-     @since v1.1
-     */
-    void addAnimationsWithDictionary(CCDictionary* dictionary);
-
-    /** Adds an animation from a plist file.
-     Make sure that the frames were previously loaded in the CCSpriteFrameCache.
-     @since v1.1
-     */
-    void addAnimationsWithFile(const char* plist);
 };
 
 // end of sprite_nodes group

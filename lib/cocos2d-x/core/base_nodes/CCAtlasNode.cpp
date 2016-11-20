@@ -50,7 +50,6 @@ CCAtlasNode::CCAtlasNode()
 , m_uItemsPerColumn(0)
 , m_uItemWidth(0)
 , m_uItemHeight(0)
-, m_pTextureAtlas(NULL)
 , m_bIsOpacityModifyRGB(false)
 , m_uQuadsToDraw(0)
 , m_bIgnoreContentScaleFactor(false)
@@ -59,7 +58,6 @@ CCAtlasNode::CCAtlasNode()
 
 CCAtlasNode::~CCAtlasNode()
 {
-    CC_SAFE_RELEASE(m_pTextureAtlas);
 }
 
 CCAtlasNode * CCAtlasNode::create(const char *tile, unsigned int tileWidth, unsigned int tileHeight, 
@@ -242,18 +240,6 @@ void CCAtlasNode::setTexture(CCTexture2D *texture)
 CCTexture2D * CCAtlasNode::getTexture()
 {
     return m_pTextureAtlas->getTexture();
-}
-
-void CCAtlasNode::setTextureAtlas(CCTextureAtlas* var)
-{
-    CC_SAFE_RETAIN(var);
-    CC_SAFE_RELEASE(m_pTextureAtlas);
-    m_pTextureAtlas = var;
-}
-
-CCTextureAtlas * CCAtlasNode::getTextureAtlas()
-{
-    return m_pTextureAtlas;
 }
 
 unsigned int CCAtlasNode::getQuadsToDraw()

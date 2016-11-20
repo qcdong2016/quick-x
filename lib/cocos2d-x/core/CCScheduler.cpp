@@ -31,6 +31,7 @@
 #include "support/data_support/ccCArray.h"
 #include "cocoa/CCArray.h"
 #include "script_support/CCScriptSupport.h"
+#include "engine/CCEngineEvents.h"
 
 using namespace std;
 
@@ -211,7 +212,7 @@ void CCTimer::update(float dt)
 
             if (!m_bRunForever && m_uTimesExecuted > m_uRepeat)
             {    //unschedule timer
-                CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(m_pfnSelector, m_pTarget);
+				SubSystem::get<CCScheduler>()->unscheduleSelector(m_pfnSelector, m_pTarget);
             }
         }
     }
@@ -246,6 +247,7 @@ CCScheduler::CCScheduler(void)
 , m_bUpdateHashLocked(false)
 , m_pScriptHandlerEntries(NULL)
 {
+	subscribeToEvent(UpdateEvent::Param::Name, Handler(this, &CCScheduler::update));
 
 }
 
@@ -780,8 +782,10 @@ void CCScheduler::resumeTargets(CCSet* pTargetsToResume)
 }
 
 // main loop
-void CCScheduler::update(float dt)
+void CCScheduler::update(EventDataMap& data)
 {
+	float dt = data[UpdateEvent::Param::timeStep].GetFloat();
+
     m_bUpdateHashLocked = true;
 
     if (m_fTimeScale != 1.0f)

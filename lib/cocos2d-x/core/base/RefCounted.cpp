@@ -35,7 +35,8 @@ void RefCounted::AddRef()
 
 void RefCounted::ReleaseRef()
 {
-	assert(refCount_->refs_ > 0);
+	if (refCount_->refs_ <= 0)
+		assert(refCount_->refs_ > 0);
     (refCount_->refs_)--;
     if (!refCount_->refs_)
         delete this;

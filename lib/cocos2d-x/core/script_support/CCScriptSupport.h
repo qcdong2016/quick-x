@@ -40,7 +40,6 @@ NS_CC_BEGIN
 class CCTimer;
 class CCLayer;
 class CCMenuItem;
-class CCNotificationCenter;
 class CCCallFunc;
 class CCAcceleration;
 
@@ -163,9 +162,6 @@ public:
      CCMenuItem Event
      */
     virtual int executeMenuItemEvent(CCMenuItem* pMenuItem) = 0;
-
-    /** Execute a notification event function */
-    virtual int executeNotificationEvent(CCNotificationCenter* pNotificationCenter, const char* pszName, CCObject *obj = NULL) = 0;
 
     /** execute a schedule function */
     virtual int executeSchedule(int nHandler, float dt, CCNode* pNode = NULL) = 0;

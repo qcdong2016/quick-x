@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "support/CCNotificationCenter.h"
 #include "CCGL.h"
 // support
 #include "CCTexture2D.h"
@@ -66,7 +65,7 @@ CCTextureAtlas::~CCTextureAtlas()
 #endif
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
+    // CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
 #endif
 }
 
@@ -166,10 +165,10 @@ bool CCTextureAtlas::initWithTexture(CCTexture2D *texture, unsigned int capacity
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     // listen the event when app go to background
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-                                                           callfuncO_selector(CCTextureAtlas::listenBackToForeground),
-                                                           EVENT_COME_TO_FOREGROUND,
-                                                           NULL);
+//     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+//                                                            callfuncO_selector(CCTextureAtlas::listenBackToForeground),
+//                                                            EVENT_COME_TO_FOREGROUND,
+//                                                            NULL);
 #endif
     
     this->setupIndices();

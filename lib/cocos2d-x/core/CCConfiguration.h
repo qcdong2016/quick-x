@@ -139,7 +139,6 @@ public:
 
 private:
     CCConfiguration(void);
-    static CCConfiguration *s_gSharedConfiguration;
 	static std::string		s_sConfigfile;
     
 protected:

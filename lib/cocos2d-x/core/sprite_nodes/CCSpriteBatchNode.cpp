@@ -115,15 +115,11 @@ bool CCSpriteBatchNode::initWithFile(const char* fileImage, unsigned int capacit
 }
 
 CCSpriteBatchNode::CCSpriteBatchNode()
-: m_pobTextureAtlas(NULL)
-, m_pobDescendants(NULL)
 {
 }
 
 CCSpriteBatchNode::~CCSpriteBatchNode()
 {
-    CC_SAFE_RELEASE(m_pobTextureAtlas);
-    CC_SAFE_RELEASE(m_pobDescendants);
 }
 
 // override visit

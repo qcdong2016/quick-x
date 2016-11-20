@@ -36,7 +36,6 @@ CCAutoreleasePool::CCAutoreleasePool(void)
 
 CCAutoreleasePool::~CCAutoreleasePool(void)
 {
-    CC_SAFE_DELETE(m_pManagedObjectArray);
 }
 
 void CCAutoreleasePool::addObject(CCObject* pObject)
@@ -117,8 +116,6 @@ CCPoolManager::~CCPoolManager()
      // we only release the last autorelease pool here 
     m_pCurReleasePool = 0;
      m_pReleasePoolStack->removeObjectAtIndex(0);
- 
-     CC_SAFE_DELETE(m_pReleasePoolStack);
 }
 
 void CCPoolManager::finalize()
@@ -139,10 +136,9 @@ void CCPoolManager::finalize()
 
 void CCPoolManager::push()
 {
-    CCAutoreleasePool* pPool = new CCAutoreleasePool();       //ref = 0
-    m_pCurReleasePool = pPool;
-
-    m_pReleasePoolStack->addObject(pPool);                   //ref = 1
+    SharedPtr<CCAutoreleasePool> pPool(new CCAutoreleasePool());       //ref = 0
+	m_pReleasePoolStack->addObject(pPool);                   //ref = 1
+	m_pCurReleasePool = pPool;
 }
 
 void CCPoolManager::pop()

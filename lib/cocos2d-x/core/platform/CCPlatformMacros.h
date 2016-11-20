@@ -140,6 +140,11 @@ protected: varType varName;\
 public: virtual varType get##funName(void);\
 public: virtual void set##funName(varType var);
 
+#define CC_PROPERTY_PTR(varType, varName, funName)\
+protected: SharedPtr<varType> varName;\
+public: virtual varType* get##funName(void) {return varName;}\
+public: virtual void set##funName(varType* var) {varName = var;}
+
 #define CC_PROPERTY_PASS_BY_REF(varType, varName, funName)\
 protected: varType varName;\
 public: virtual const varType& get##funName(void);\

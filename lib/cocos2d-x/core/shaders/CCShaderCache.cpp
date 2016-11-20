@@ -77,23 +77,20 @@ static const GLchar * ccPositionLengthTextureColor_vert =
 
 NS_CC_BEGIN
 
-static CCShaderCache *_sharedShaderCache = 0;
+static SharedPtr<CCShaderCache> _sharedShaderCache;
 
 CCShaderCache* CCShaderCache::sharedShaderCache()
 {
     if (!_sharedShaderCache) {
         _sharedShaderCache = new CCShaderCache();
-        if (!_sharedShaderCache->init())
-        {
-            CC_SAFE_DELETE(_sharedShaderCache);
-        }
+		_sharedShaderCache->init();
     }
     return _sharedShaderCache;
 }
 
 void CCShaderCache::purgeSharedShaderCache()
 {
-    CC_SAFE_RELEASE_NULL(_sharedShaderCache);
+	_sharedShaderCache.Reset();
 }
 
 CCShaderCache::CCShaderCache()

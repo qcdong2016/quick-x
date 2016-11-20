@@ -72,16 +72,12 @@ CCNode::CCNode(void)
 , m_pCamera(NULL)
 // children (lazy allocs)
 // lazy alloc
-, m_pGrid(NULL)
 , m_nZOrder(0)
-, m_pChildren(NULL)
 , m_pParent(NULL)
 // "whole screen" objects. like Scenes and Layers, should set m_bIgnoreAnchorPointForPosition to true
 , m_nTag(kCCNodeTagInvalid)
 // userData is always inited as nil
 , m_pUserData(NULL)
-, m_pUserObject(NULL)
-, m_pShaderProgram(NULL)
 , m_eGLServerState(ccGLServerState(0))
 , m_uOrderOfArrival(0)
 , m_bRunning(false)
@@ -109,10 +105,10 @@ CCNode::CCNode(void)
 {
     // set default scheduler and actionManager
     CCDirector *director = CCDirector::sharedDirector();
-    m_pActionManager = director->getSubSystem<CCActionManager>();
-    m_pActionManager->retain();
-    m_pScheduler = director->getScheduler();
-    m_pScheduler->retain();
+
+	m_pActionManager = director->getSubSystem<CCActionManager>();
+	m_pScheduler = director->getSubSystem<CCScheduler>();
+
     m_pComponentContainer = new CCComponentContainer(this);
 }
 
@@ -120,14 +116,8 @@ CCNode::~CCNode(void)
 {
     CCLOGINFO( "cocos2d: deallocing" );
 
-    CC_SAFE_RELEASE(m_pActionManager);
-    CC_SAFE_RELEASE(m_pScheduler);
     // attributes
     CC_SAFE_RELEASE(m_pCamera);
-
-    CC_SAFE_RELEASE(m_pGrid);
-    CC_SAFE_RELEASE(m_pShaderProgram);
-    CC_SAFE_RELEASE(m_pUserObject);
 
     // m_pComsContainer
     m_pComponentContainer->removeAll();
@@ -145,9 +135,6 @@ CCNode::~CCNode(void)
             }
         }
     }
-
-    // children
-    CC_SAFE_RELEASE(m_pChildren);
 }
 
 bool CCNode::init()
@@ -374,8 +361,6 @@ CCGridBase* CCNode::getGrid()
 /// grid setter
 void CCNode::setGrid(CCGridBase* pGrid)
 {
-    CC_SAFE_RETAIN(pGrid);
-    CC_SAFE_RELEASE(m_pGrid);
     m_pGrid = pGrid;
 }
 
@@ -530,8 +515,6 @@ void CCNode::setGLServerState(ccGLServerState glServerState)
 
 void CCNode::setUserObject(CCObject *pUserObject)
 {
-    CC_SAFE_RETAIN(pUserObject);
-    CC_SAFE_RELEASE(m_pUserObject);
     m_pUserObject = pUserObject;
 }
 
@@ -547,8 +530,6 @@ void CCNode::setMaterial(Material* m)
 
 void CCNode::setShaderProgram(CCGLProgram *pShaderProgram)
 {
-    CC_SAFE_RETAIN(pShaderProgram);
-    CC_SAFE_RELEASE(m_pShaderProgram);
     m_pShaderProgram = pShaderProgram;
 }
 
@@ -657,7 +638,6 @@ const char* CCNode::description()
 void CCNode::childrenAlloc(void)
 {
     m_pChildren = CCArray::createWithCapacity(4);
-    m_pChildren->retain();
 }
 
 CCNode* CCNode::getChildByTag(int aTag)
@@ -1079,8 +1059,6 @@ void CCNode::setActionManager(CCActionManager* actionManager)
 {
     if( actionManager != m_pActionManager ) {
         this->stopAllActions();
-        CC_SAFE_RETAIN(actionManager);
-        CC_SAFE_RELEASE(m_pActionManager);
         m_pActionManager = actionManager;
     }
 }
@@ -1130,8 +1108,6 @@ void CCNode::setScheduler(CCScheduler* scheduler)
 {
     if( scheduler != m_pScheduler ) {
         this->unscheduleAllSelectors();
-        CC_SAFE_RETAIN(scheduler);
-        CC_SAFE_RELEASE(m_pScheduler);
         m_pScheduler = scheduler;
     }
 }

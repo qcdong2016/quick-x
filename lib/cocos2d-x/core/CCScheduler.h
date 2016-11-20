@@ -29,6 +29,7 @@ THE SOFTWARE.
 
 #include "engine/CCObject.h"
 #include "support/data_support/uthash.h"
+#include "engine/SubSystem.h"
 
 NS_CC_BEGIN
 
@@ -135,8 +136,9 @@ There are 2 different types of callbacks (selectors):
 The 'custom selectors' should be avoided when possible. It is faster, and consumes less memory to use the 'update selector'.
 
 */
-class CC_DLL CCScheduler : public CCObject
+class CC_DLL CCScheduler : public SubSystem
 {
+	CCOBJECT(CCScheduler, SubSystem);
 public:
     CCScheduler();
     /**
@@ -160,7 +162,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    void update(float dt);
+    void update(EventDataMap& data);
 
     /** The scheduled method will be called every 'interval' seconds.
      If paused is YES, then it won't be called until it is resumed.

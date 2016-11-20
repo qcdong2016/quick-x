@@ -45,10 +45,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
-
-#if CC_ENABLE_CACHE_TEXTURE_DATA
-    #include "CCTextureCache.h"
-#endif
 #include "shaders/CCMaterial.h"
 
 NS_CC_BEGIN
@@ -119,7 +115,7 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 		return;
 	}
 
-	CCImage* pImage = new CCImage();
+	SharedPtr<CCImage> pImage(new CCImage());
 
 	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize(), eImageFormat);
 
@@ -127,15 +123,13 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 	{
 #if CC_ENABLE_CACHE_TEXTURE_DATA
 		// cache the texture file name
-		VolatileTexture::addImageTexture(texture, getPath().c_str(), eImageFormat);
+		VolatileTexture::addImageTexture(this, getPath().c_str(), eImageFormat);
 #endif
 	}
 	else
 	{
 		CCLOG("cocos2d: Couldn't create texture for file:%s ", getPath().c_str());
 	}
-
-	CC_SAFE_RELEASE(pImage);
 }
 
 CCTexture2DPixelFormat CCTexture2D::getPixelFormat()
@@ -536,12 +530,11 @@ bool CCTexture2D::initWithString(const char *text, const char *fontName, float f
         
         do
         {
-            CCImage* pImage = new CCImage();
+            SharedPtr<CCImage> pImage(new CCImage());
             CC_BREAK_IF(NULL == pImage);
             bRet = pImage->initWithString(text, (int)dimensions.width, (int)dimensions.height, eAlign, fontName, (int)fontSize);
             CC_BREAK_IF(!bRet);
             bRet = initWithImage(pImage);
-            CC_SAFE_RELEASE(pImage);
         } while (0);
     
     

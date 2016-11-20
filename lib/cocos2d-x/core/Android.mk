@@ -18,18 +18,24 @@ LOCAL_SRC_FILES := \
     cocoa/CCGeometry.cpp \
     cocoa/CCAutoreleasePool.cpp \
     cocoa/CCDictionary.cpp \
-    cocoa/CCObject.cpp \
     cocoa/CCString.cpp \
     cocoa/CCArray.cpp \
     cocoa/CCScriptEventDispatcher.cpp \
     cocoa/CCPointArray.cpp \
     cocoa/CCSet.cpp \
+    engine/CCDirector.cpp \
+    engine/CCEngineEvents.cpp \
+    engine/CCModule.cpp \
+    engine/CCObject.cpp \
+    engine/CCResourceCache.cpp \
+    engine/SubSystem.cpp \
+    IO/FileSystem.cpp \
+    resources/CCPlistResource.cpp \
     crypto/CCCrypto.cpp \
     crypto/libbase64.c \
     crypto/md5.cpp \
     crypto/xxtea.c \
     cocos2d.cpp \
-    CCDirector.cpp \
     CCConfiguration.cpp \
     CCScheduler.cpp \
     CCCamera.cpp \
@@ -52,8 +58,6 @@ LOCAL_SRC_FILES := \
     kazmath/src/vec4.c \
     kazmath/src/GL/mat4stack.c \
     kazmath/src/GL/matrix.c \
-    keypad_dispatcher/CCKeypadDelegate.cpp \
-    keypad_dispatcher/CCKeypadDispatcher.cpp \
     label_nodes/CCLabelAtlas.cpp \
     label_nodes/CCLabelBMFont.cpp \
     label_nodes/CCLabelTTF.cpp \
@@ -66,13 +70,13 @@ LOCAL_SRC_FILES := \
     misc_nodes/CCClippingRegionNode.cpp \
     misc_nodes/CCProgressTimer.cpp \
     misc_nodes/CCRenderTexture.cpp \
-    IO/FileSystem.cpp \
     platform/CCSAXParser.cpp \
     platform/CCThread.cpp \
     platform/CCZipFile.cpp \
     platform/platform.cpp \
     platform/CCEGLViewProtocol.cpp \
     platform/CCDevice.cpp \
+    platform/CCInput.cpp \
     platform/android/CCDeviceAndroid.cpp \
     platform/android/CCEGLView.cpp \
     platform/android/CCAccelerometer.cpp \
@@ -86,7 +90,7 @@ LOCAL_SRC_FILES := \
     platform/android/jni/IMEJni.cpp \
     platform/android/jni/TouchesJni.cpp \
     script_support/CCScriptSupport.cpp \
-    shaders/ccShaders.cpp \
+    shaders/CCMaterial.cpp \
     shaders/CCGLProgram.cpp \
     shaders/ccGLStateCache.cpp \
     shaders/CCShaderCache.cpp \
@@ -95,10 +99,8 @@ LOCAL_SRC_FILES := \
     sprite_nodes/CCSprite.cpp \
     sprite_nodes/CCSpriteBatchNode.cpp \
     sprite_nodes/CCSpriteFrame.cpp \
-    sprite_nodes/CCSpriteFrameCache.cpp \
     sprite_nodes/CCScale9Sprite.cpp \
     support/ccUTF8.cpp \
-    support/CCNotificationCenter.cpp \
     support/CCProfiling.cpp \
     support/CCPointExtension.cpp \
     support/TransformUtils.cpp \
@@ -116,7 +118,6 @@ LOCAL_SRC_FILES := \
     text_input_node/CCTextFieldTTF.cpp \
     textures/CCTexture2D.cpp \
     textures/CCTextureAtlas.cpp \
-    textures/CCTextureCache.cpp \
     touch_dispatcher/CCTouchDispatcher.cpp \
     touch_dispatcher/CCTouchHandler.cpp \
     touch_dispatcher/CCTouch.cpp \

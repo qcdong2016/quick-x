@@ -525,7 +525,7 @@ protected:
     // Data used when the sprite is self-rendered
     //
     ccBlendFunc        m_sBlendFunc;            /// It's required for CCTextureProtocol inheritance
-    CCTexture2D*       m_pobTexture;            /// CCTexture2D object that is used to render the sprite
+    SharedPtr<CCTexture2D>       m_pobTexture;            /// CCTexture2D object that is used to render the sprite
 
     //
     // Shared data

@@ -114,8 +114,6 @@
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSprite.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSpriteBatchNode.cpp" />
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrame.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrameCache.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\CCNotificationCenter.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\CCPointExtension.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp" />
@@ -426,8 +424,6 @@
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSprite.h" />
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrame.h" />
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrameCache.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\CCNotificationCenter.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCPointExtension.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h" />
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h" />
