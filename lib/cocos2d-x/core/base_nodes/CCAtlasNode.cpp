@@ -78,9 +78,7 @@ CCAtlasNode * CCAtlasNode::create(const char *tile, unsigned int tileWidth, unsi
 bool CCAtlasNode::initWithTileFile(const char *tile, unsigned int tileWidth, unsigned int tileHeight, unsigned int itemsToRender)
 {
     CCAssert(tile != NULL, "title should not be null");
-	CCTexture2D *texture = CCDirector::sharedDirector()
-								->getSubSystem<ResourceCache>()
-								->getResource<CCTexture2D>(tile);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(tile);
 	return initWithTexture(texture, tileWidth, tileHeight, itemsToRender);
 }
 

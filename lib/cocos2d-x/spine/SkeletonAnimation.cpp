@@ -72,7 +72,7 @@ void disposeTrackEntry (spTrackEntry* entry) {
 
 SkeletonAnimation* SkeletonAnimation::create(const char* skeletonDataFile, const char* atlasFile, float scale) 
 {
-	ResourceCache* rc = CCDirector::sharedDirector()->getSubSystem<ResourceCache>();
+	ResourceCache* rc = SubSystem::get<ResourceCache>();
 
 	SpineAtlasResource* atlas = rc->getResource<SpineAtlasResource>(atlasFile);
 	SpineSkeletonDataResource* skeletonData = rc->getResource<SpineSkeletonDataResource>(skeletonDataFile, atlas);

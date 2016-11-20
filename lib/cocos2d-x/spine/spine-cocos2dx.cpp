@@ -41,8 +41,7 @@
 USING_NS_CC;
 
 void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
-	CCTexture2D* texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(path);
+	CCTexture2D* texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(path);
 	texture->retain();
 	self->rendererObject = texture;
 	self->width = texture->getPixelsWide();

@@ -33,12 +33,9 @@ NS_CC_BEGIN
 
 CCSpriteFrame* CCSpriteFrame::create(const char* filename)
 {
-	CCTexture2D* tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(filename);
-    CCRect rect;
-    rect.size = tex->getContentSize();
-    
-    return createWithTexture(tex, rect);
+	CCSpriteFrame* pSpriteFrame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(filename);
+	pSpriteFrame->autorelease();
+	return pSpriteFrame;
 }
 
 CCSpriteFrame* CCSpriteFrame::create(const char* filename, const CCRect& rect)
@@ -91,12 +88,7 @@ bool CCSpriteFrame::initWithTextureFilename(const char* filename, const CCRect& 
 
 bool CCSpriteFrame::initWithTexture(CCTexture2D* pobTexture, const CCRect& rect, bool rotated, const CCPoint& offset, const CCSize& originalSize)
 {
-    m_pobTexture = pobTexture;
-
-    if (pobTexture)
-    {
-        pobTexture->retain();
-    }
+	_texture = pobTexture;
 
     m_obRectInPixels = rect;
     m_obRect = CC_RECT_PIXELS_TO_POINTS(rect);
@@ -111,7 +103,7 @@ bool CCSpriteFrame::initWithTexture(CCTexture2D* pobTexture, const CCRect& rect,
 
 bool CCSpriteFrame::initWithTextureFilename(const char* filename, const CCRect& rect, bool rotated, const CCPoint& offset, const CCSize& originalSize)
 {
-    m_pobTexture = NULL;
+	_texture.Reset();
     m_strTextureFilename = filename;
     m_obRectInPixels = rect;
     m_obRect = CC_RECT_PIXELS_TO_POINTS( rect );
@@ -126,8 +118,6 @@ bool CCSpriteFrame::initWithTextureFilename(const char* filename, const CCRect& 
 
 CCSpriteFrame::~CCSpriteFrame(void)
 {
-    CCLOGINFO("cocos2d: deallocing %p", this);
-    CC_SAFE_RELEASE(m_pobTexture);
 }
 
 void CCSpriteFrame::paste(CCObject* o)
@@ -136,7 +126,7 @@ void CCSpriteFrame::paste(CCObject* o)
 	CCSpriteFrame *pCopy = O;
 
     pCopy->initWithTextureFilename(m_strTextureFilename.c_str(), m_obRectInPixels, m_bRotated, m_obOffsetInPixels, m_obOriginalSizeInPixels);
-    pCopy->setTexture(m_pobTexture);
+    pCopy->setTexture(_texture);
 }
 
 void CCSpriteFrame::setRect(const CCRect& rect)
@@ -175,22 +165,17 @@ void CCSpriteFrame::setOffsetInPixels(const CCPoint& offsetInPixels)
 
 void CCSpriteFrame::setTexture(CCTexture2D * texture)
 {
-    if( m_pobTexture != texture ) {
-        CC_SAFE_RELEASE(m_pobTexture);
-        CC_SAFE_RETAIN(texture);
-        m_pobTexture = texture;
-    }
+	_texture = texture;
 }
 
 CCTexture2D* CCSpriteFrame::getTexture(void)
 {
-    if( m_pobTexture ) {
-        return m_pobTexture;
+    if(_texture) {
+        return _texture;
     }
 
     if( m_strTextureFilename.length() > 0 ) {
-		return  CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(m_strTextureFilename);
+		return SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(m_strTextureFilename);
     }
     // no texture or texture filename
     return NULL;

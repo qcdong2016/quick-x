@@ -337,7 +337,6 @@ void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary* dictionary,
 
                 m_pSpriteFramesAliases->setObject(frameKey, oneAlias.c_str());
             }
-            frameKey->release();
             // create frame
             spriteFrame = new CCSpriteFrame();
             spriteFrame->initWithTexture(pobTexture,
@@ -349,7 +348,6 @@ void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary* dictionary,
 
         // add sprite frame
         m_pSpriteFrames->setObject(spriteFrame, spriteFrameName);
-        spriteFrame->release();
     }
 }
 
@@ -364,15 +362,12 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist, CCTexture
 
     addSpriteFramesWithDictionary(dict, pobTexture);
     m_pLoadedFileNames->insert(pszPlist);
-
-    dict->release();
 }
 
 void CCSpriteFrameCache::addSpriteFramesWithFile(const char* plist, const char* textureFileName)
 {
     CCAssert(textureFileName, "texture name should not be null");
-	CCTexture2D *texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(textureFileName);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(textureFileName);
 
     if (texture)
     {
@@ -422,8 +417,7 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
             CCLOG("cocos2d: CCSpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
         }
 
-		CCTexture2D *pTexture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(texturePath);
+		CCTexture2D *pTexture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(texturePath);
 
         if (pTexture)
         {
@@ -434,8 +428,6 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
         {
             CCLOG("cocos2d: CCSpriteFrameCache: Couldn't load texture");
         }
-
-        dict->release();
     }
 
 }

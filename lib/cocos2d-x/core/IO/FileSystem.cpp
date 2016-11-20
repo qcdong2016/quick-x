@@ -368,6 +368,15 @@ std::string FileSystem::getExtension(const std::string& path)
 		return std::string();
 }
 
+std::string FileSystem::replaceExtension(const std::string& path, const std::string& newExt)
+{
+	std::string::size_type pos = path.rfind('.');
+	if (pos != std::string::npos)
+		return path.substr(0, pos) + "." + newExt;
+	else
+		return path + "." + newExt;
+}
+
 SharedPtr<Decoder> FileSystem::_dataDecoder;
 
 NS_CC_END

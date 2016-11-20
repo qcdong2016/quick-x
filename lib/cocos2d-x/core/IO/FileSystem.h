@@ -77,7 +77,10 @@ public:
 	static std::string getDirectoryName(const std::string& path);
 	static std::string getDirectory(const std::string& path);
 	static std::string join(const std::string& a, const std::string& b);
+	/// getExtension without '.'
 	static std::string getExtension(const std::string& path);
+	/// replaceExtension('a.jpg', 'png') -> a.png
+	static std::string replaceExtension(const std::string& path, const std::string& newExt);
 
 	static void init();
 private:

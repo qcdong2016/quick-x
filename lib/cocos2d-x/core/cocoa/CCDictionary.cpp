@@ -83,6 +83,21 @@ public:
 	{
 	}
 
+	CCDictionary* dictionaryWithContentsOfData(const char* data, unsigned long size)
+	{
+		m_eResultType = SAX_RESULT_DICT;
+		CCSAXParser parser;
+
+		if (false == parser.init("UTF-8"))
+		{
+			return NULL;
+		}
+		parser.setDelegator(this);
+
+		parser.parse(data, size);
+		return m_pRootDict;
+	}
+
 	CCDictionary* dictionaryWithContentsOfFile(const char *pFileName)
 	{
 		m_eResultType = SAX_RESULT_DICT;
@@ -148,8 +163,6 @@ public:
 				pPreDict->setObject(m_pCurDict, m_sCurKey.c_str());
 			}
 
-			m_pCurDict->release();
-
 			// record the dict state
 			m_tStateStack.push(m_tState);
 			m_tDictStack.push(m_pCurDict);
@@ -195,7 +208,6 @@ public:
 				CCArray* pPreArray = m_tArrayStack.top();
 				pPreArray->addObject(m_pArray);
 			}
-			m_pArray->release();
 			// record the array state
 			m_tStateStack.push(m_tState);
 			m_tArrayStack.push(m_pArray);
@@ -240,7 +252,6 @@ public:
 			{
 				m_pCurDict->setObject(str, m_sCurKey.c_str());
 			}
-			str->release();
 		}
 		else if (sName == "false")
 		{
@@ -253,7 +264,6 @@ public:
 			{
 				m_pCurDict->setObject(str, m_sCurKey.c_str());
 			}
-			str->release();
 		}
 		else if (sName == "string" || sName == "integer" || sName == "real")
 		{
@@ -268,7 +278,6 @@ public:
 				m_pCurDict->setObject(pStrValue, m_sCurKey.c_str());
 			}
 
-			pStrValue->release();
 			m_sCurValue.clear();
 		}
 
@@ -306,7 +315,6 @@ public:
 		default:
 			break;
 		}
-		pText->release();
 	}
 };
 
@@ -379,7 +387,6 @@ CCArray* CCDictionary::allKeys()
         {
             CCString* pOneKey = new CCString(pElement->m_szKey);
             pArray->addObject(pOneKey);
-            CC_SAFE_RELEASE(pOneKey);
         }
     }
     else if (m_eDictType == kCCDictInt)
@@ -388,7 +395,6 @@ CCArray* CCDictionary::allKeys()
         {
             CCInteger* pOneKey = new CCInteger((int)pElement->m_iKey);
             pArray->addObject(pOneKey);
-            CC_SAFE_RELEASE(pOneKey);
         }
     }
     
@@ -411,7 +417,6 @@ CCArray* CCDictionary::allKeysForObject(CCObject* object)
             {
                 CCString* pOneKey = new CCString(pElement->m_szKey);
                 pArray->addObject(pOneKey);
-                CC_SAFE_RELEASE(pOneKey);
             }
         }
     }
@@ -423,7 +428,6 @@ CCArray* CCDictionary::allKeysForObject(CCObject* object)
             {
                 CCInteger* pOneKey = new CCInteger((int)pElement->m_iKey);
                 pArray->addObject(pOneKey);
-                CC_SAFE_RELEASE(pOneKey);
             }
         }
     }
@@ -684,6 +688,13 @@ CCDictionary* CCDictionary::createWithDictionary(CCDictionary* srcDict)
 CCDictionary* CCDictionary::createWithContentsOfFileThreadSafe(const char *pFileName)
 {
     return createWithContentsOfFile(pFileName);
+}
+
+CCDictionary* CCDictionary::createWithContentsOfDataThreadSafe(const char* data, unsigned long size)
+{
+	CCDictMaker tMaker;
+	CCDictionary* pRet = tMaker.dictionaryWithContentsOfData(data, size);
+	return pRet;
 }
 
 CCDictionary* CCDictionary::createWithContentsOfFile(const char *pFileName)

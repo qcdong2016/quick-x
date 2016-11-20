@@ -343,8 +343,7 @@ bool CCParticleSystem::initWithDictionary(CCDictionary *dictionary, const char *
                 
                 if (textureName.length() > 0)
                 {
-					tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-						->getResource<CCTexture2D>(textureName);
+					tex =SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(textureName);
                 }
                 
                 if (tex)

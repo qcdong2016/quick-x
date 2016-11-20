@@ -115,7 +115,6 @@ bool CCAnimation::initWithSpriteFrames(CCArray *pFrames, float delay/* = 0.0f*/)
             CCAnimationFrame *animFrame = new CCAnimationFrame();
             animFrame->initWithSpriteFrame(frame, 1, NULL);
             m_pFrames->addObject(animFrame);
-            animFrame->release();
 
             m_fTotalDelayUnits++;
         }
@@ -164,7 +163,6 @@ void CCAnimation::addSpriteFrame(CCSpriteFrame *pFrame)
     CCAnimationFrame *animFrame = new CCAnimationFrame();
     animFrame->initWithSpriteFrame(pFrame, 1.0f, NULL);
     m_pFrames->addObject(animFrame);
-    animFrame->release();
 
     // update duration
     m_fTotalDelayUnits++;

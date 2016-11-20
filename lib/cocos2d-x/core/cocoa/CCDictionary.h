@@ -384,7 +384,7 @@ public:
      *  @lua NA
      */
     static CCDictionary* createWithContentsOfFileThreadSafe(const char *pFileName);
-
+	static CCDictionary* createWithContentsOfDataThreadSafe(const char* data, unsigned long size);
 private:
     /** 
      *  For internal usage, invoked by setObject.

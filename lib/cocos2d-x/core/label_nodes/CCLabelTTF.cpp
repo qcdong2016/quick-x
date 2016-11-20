@@ -316,8 +316,6 @@ bool CCLabelTTF::updateTexture()
     
     // set the texture
     this->setTexture(tex);
-    // release it
-    tex->release();
     
     // set the size in the sprite
     CCRect rect =CCRectZero;

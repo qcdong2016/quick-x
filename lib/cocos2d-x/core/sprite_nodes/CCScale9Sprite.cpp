@@ -117,20 +117,9 @@ bool CCScale9Sprite::updateWithBatchNode(CCSpriteBatchNode* batchnode, CCRect re
     ccColor3B color = getColor();
 
     // Release old sprites
-    this->removeAllChildrenWithCleanup(true);
+	this->removeAllChildrenWithCleanup(true);
 
-    CC_SAFE_RELEASE(this->_centre);
-    CC_SAFE_RELEASE(this->_top);
-    CC_SAFE_RELEASE(this->_topLeft);
-    CC_SAFE_RELEASE(this->_topRight);
-    CC_SAFE_RELEASE(this->_left);
-    CC_SAFE_RELEASE(this->_right);
-    CC_SAFE_RELEASE(this->_bottomLeft);
-    CC_SAFE_RELEASE(this->_bottom);
-    CC_SAFE_RELEASE(this->_bottomRight);
-
-    
-    if(this->_scale9Image != batchnode)
+    if(_scale9Image != batchnode)
     {
         CC_SAFE_RELEASE(this->_scale9Image);
         _scale9Image = batchnode;

@@ -162,7 +162,7 @@ void CCTransitionScene::onEnter()
     CCScene::onEnter();
     
     // disable events while transitions
-    CCDirector::sharedDirector()->getSubSystem<CCTouchDispatcher>()->setDispatchEvents(false);
+    SubSystem::get<CCTouchDispatcher>()->setDispatchEvents(false);
     
     // outScene should not receive the onEnter callback
     // only the onExitTransitionDidStart
@@ -177,7 +177,7 @@ void CCTransitionScene::onExit()
     CCScene::onExit();
     
     // enable events while transitions
-	CCDirector::sharedDirector()->getSubSystem<CCTouchDispatcher>()->setDispatchEvents(true);
+	SubSystem::get<CCTouchDispatcher>()->setDispatchEvents(true);
     
     m_pOutScene->onExit();
 

@@ -141,7 +141,6 @@ int CCObject::s_livingCount = 0;
 
 CCObject::CCObject(void)
 	: m_nLuaID(0)
-	, m_uReference(1) // when the object is created, the reference count of it is 1
 	, m_uAutoReleaseCount(0)
 {
 	static unsigned int uObjectCount = 0;
@@ -468,20 +467,12 @@ void CCObject::onEvent(CCObject* sender, EventID eventType, EventDataMap& eventD
 
 void CCObject::release(void)
 {
-    CCAssert(m_uReference > 0, "reference count should greater than 0");
-    --m_uReference;
-
-    if (m_uReference == 0)
-    {
-        delete this;
-    }
+	ReleaseRef();
 }
 
 void CCObject::retain(void)
 {
-    CCAssert(m_uReference > 0, "reference count should greater than 0");
-
-    ++m_uReference;
+	AddRef();
 }
 
 CCObject* CCObject::autorelease(void)
@@ -492,12 +483,12 @@ CCObject* CCObject::autorelease(void)
 
 bool CCObject::isSingleReference(void) const
 {
-    return m_uReference == 1;
+    return Refs() == 1;
 }
 
 unsigned int CCObject::retainCount(void) const
 {
-    return m_uReference;
+    return Refs();
 }
 
 void cocos2d::CCObject::paste(CCObject* o)

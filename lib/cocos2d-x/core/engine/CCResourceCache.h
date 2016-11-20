@@ -15,6 +15,7 @@ public:
 	virtual ~Resource() {}
 
 	const std::string& getPath() { return _path; }
+	void setPath(const std::string& p) { _path = p; }
 
 	virtual void beginLoad(MemBuffer* buf, void* userdata) {};
 
@@ -31,6 +32,18 @@ class CC_DLL ResourceCache : public SubSystem
 public:
 	ResourceCache();
 
+	void addResource(ID resType, Resource* res);
+	template<typename T>void addResource(Resource* res)
+	{
+		addResource(T::getTypeStatic(), res);
+	}
+
+	Resource* findResource(ID type, const std::string& path);
+	template<typename T> T* findResource(const std::string& path)
+	{
+		return (T*)findResource(T::getTypeStatic(), path);
+	}
+
 	Resource* getResource(ID resType, const std::string& path, void* userdata = 0);
 	template <class T> 
 	T* getResource(const std::string& path, void* userdata = 0)
@@ -41,7 +54,6 @@ public:
 	void removeUnused();
 
 private:
-	const SharedPtr<Resource>& findResource(ID type, const std::string& path);
 
 	std::vector<SharedPtr<Resource> > _resources;
 };

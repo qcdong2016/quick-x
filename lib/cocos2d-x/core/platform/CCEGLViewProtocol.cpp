@@ -8,7 +8,7 @@
 #include "base/MathDefs.h"
 NS_CC_BEGIN
 
-static CCTouch* s_pTouches[CC_MAX_TOUCHES] = { NULL };
+static SharedPtr<CCTouch> s_pTouches[CC_MAX_TOUCHES] = {};
 static unsigned int s_indexBitsUsed = 0;
 //static CCDictionary s_TouchesIntergerDict;
 
@@ -306,8 +306,6 @@ void CCEGLViewProtocol::getSetOfTouchesEndOrCancel(CCSet& set, int num, int ids[
 
             set.addObject(pTouch);
 
-            // release the object
-            pTouch->release();
             s_pTouches[value] = NULL;
             removeUsedIndexBit(value);
 
