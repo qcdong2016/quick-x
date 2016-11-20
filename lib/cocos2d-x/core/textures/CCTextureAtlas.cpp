@@ -48,7 +48,6 @@ NS_CC_BEGIN
 CCTextureAtlas::CCTextureAtlas()
     :m_pIndices(NULL)
     ,m_bDirty(false)
-    ,m_pTexture(NULL)
     ,m_pQuads(NULL)
 {}
 
@@ -65,7 +64,6 @@ CCTextureAtlas::~CCTextureAtlas()
     glDeleteVertexArrays(1, &m_uVAOname);
     ccGLBindVAO(0);
 #endif
-    CC_SAFE_RELEASE(m_pTexture);
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
@@ -80,18 +78,6 @@ unsigned int CCTextureAtlas::getTotalQuads()
 unsigned int CCTextureAtlas::getCapacity()
 {
     return m_uCapacity;
-}
-
-CCTexture2D* CCTextureAtlas::getTexture()
-{
-    return m_pTexture;
-}
-
-void CCTextureAtlas::setTexture(CCTexture2D * var)
-{
-    CC_SAFE_RETAIN(var);
-    CC_SAFE_RELEASE(m_pTexture);
-    m_pTexture = var;
 }
 
 ccV3F_C4B_T2F_Quad* CCTextureAtlas::getQuads()
@@ -156,7 +142,6 @@ bool CCTextureAtlas::initWithTexture(CCTexture2D *texture, unsigned int capacity
 
     // retained in property
     this->m_pTexture = texture;
-    CC_SAFE_RETAIN(m_pTexture);
 
     // Re-initialization is not allowed
     CCAssert(m_pQuads == NULL && m_pIndices == NULL, "");
@@ -172,7 +157,7 @@ bool CCTextureAtlas::initWithTexture(CCTexture2D *texture, unsigned int capacity
 
         // release texture, should set it to null, because the destruction will
         // release it too. see cocos2d-x issue #484
-        CC_SAFE_RELEASE_NULL(m_pTexture);
+		m_pTexture.Reset();
         return false;
     }
 

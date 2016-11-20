@@ -33,12 +33,9 @@ NS_CC_BEGIN
 
 CCSpriteFrame* CCSpriteFrame::create(const char* filename)
 {
-	CCTexture2D *tex = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(filename);
-
-    CCRect rect;
-    rect.size = tex->getContentSize();
-    
-    return createWithTexture(tex, rect);
+	CCSpriteFrame* pSpriteFrame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(filename);
+	pSpriteFrame->autorelease();
+	return pSpriteFrame;
 }
 
 CCSpriteFrame* CCSpriteFrame::create(const char* filename, const CCRect& rect)

@@ -223,7 +223,7 @@ void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 		CCDictionary* frameDict = (CCDictionary*)pElement->getObject();
 		std::string spriteFrameName = pElement->getStrKey();
 		std::string fullname = FileSystem::join(dir, spriteFrameName);
-		CCSpriteFrame* spriteFrame = cache->getResource<CCSpriteFrame>(spriteFrameName);
+		CCSpriteFrame* spriteFrame = cache->findResource<CCSpriteFrame>(spriteFrameName);
 		if (spriteFrame)
 			continue;
 

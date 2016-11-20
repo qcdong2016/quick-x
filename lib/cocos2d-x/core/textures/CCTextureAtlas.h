@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "engine/CCObject.h"
 #include "ccConfig.h"
 #include <string>
+#include "CCTexture2D.h"
 
 NS_CC_BEGIN
 
@@ -65,14 +66,17 @@ protected:
 
 
     /** quantity of quads that are going to be drawn */
-    CC_PROPERTY_READONLY(unsigned int, m_uTotalQuads, TotalQuads)
-    /** quantity of quads that can be stored with the current texture atlas size */
-    CC_PROPERTY_READONLY(unsigned int, m_uCapacity, Capacity)
-    /** Texture of the texture atlas */
-    CC_PROPERTY(CCTexture2D *, m_pTexture, Texture)
-    /** Quads that are going to be rendered */
-    CC_PROPERTY(ccV3F_C4B_T2F_Quad *, m_pQuads, Quads)
+	CC_PROPERTY_READONLY(unsigned int, m_uTotalQuads, TotalQuads)
+		/** quantity of quads that can be stored with the current texture atlas size */
+		CC_PROPERTY_READONLY(unsigned int, m_uCapacity, Capacity)
+		/** Quads that are going to be rendered */
+		CC_PROPERTY(ccV3F_C4B_T2F_Quad *, m_pQuads, Quads)
 
+	SharedPtr<CCTexture2D> m_pTexture;
+
+public:
+	CCTexture2D* getTexture() { return m_pTexture; }
+	void setTexture(CCTexture2D* tex) { m_pTexture = tex; }
 public:
     /**
      * @js ctor

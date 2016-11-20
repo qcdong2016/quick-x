@@ -135,8 +135,6 @@ public:
     int                 m_nLuaID;
 
 protected:
-    // count of references
-    unsigned int        m_uReference;
     // count of autorelease
     unsigned int        m_uAutoReleaseCount;
 

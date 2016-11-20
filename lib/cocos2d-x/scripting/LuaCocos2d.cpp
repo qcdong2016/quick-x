@@ -24074,6 +24074,33 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  CCSpriteFrame */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCSpriteFrame_create02
+static int tolua_Cocos2d_CCSpriteFrame_create02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertable(tolua_S,1,"CCSpriteFrame",0,&tolua_err) ||
+ !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+ {
+  CCSpriteFrame* tolua_ret = (CCSpriteFrame*)  CCSpriteFrame::create(filename);
+  int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
+    int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
+    toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret,"CCSpriteFrame");
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_Cocos2d_CCSpriteFrame_create01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: createWithTexture of class  CCSpriteFrame */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCSpriteFrame_createWithTexture00
 static int tolua_Cocos2d_CCSpriteFrame_createWithTexture00(lua_State* tolua_S)
@@ -47705,6 +47732,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"setOffset",tolua_Cocos2d_CCSpriteFrame_setOffset00);
   tolua_function(tolua_S,"create",tolua_Cocos2d_CCSpriteFrame_create00);
   tolua_function(tolua_S,"create",tolua_Cocos2d_CCSpriteFrame_create01);
+  tolua_function(tolua_S,"create",tolua_Cocos2d_CCSpriteFrame_create02);
   tolua_function(tolua_S,"createWithTexture",tolua_Cocos2d_CCSpriteFrame_createWithTexture00);
   tolua_function(tolua_S,"createWithTexture",tolua_Cocos2d_CCSpriteFrame_createWithTexture01);
  tolua_endmodule(tolua_S);

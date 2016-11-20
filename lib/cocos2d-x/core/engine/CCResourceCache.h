@@ -38,6 +38,12 @@ public:
 		addResource(T::getTypeStatic(), res);
 	}
 
+	Resource* findResource(ID type, const std::string& path);
+	template<typename T> T* findResource(const std::string& path)
+	{
+		return (T*)findResource(T::getTypeStatic(), path);
+	}
+
 	Resource* getResource(ID resType, const std::string& path, void* userdata = 0);
 	template <class T> 
 	T* getResource(const std::string& path, void* userdata = 0)
@@ -48,7 +54,6 @@ public:
 	void removeUnused();
 
 private:
-	const SharedPtr<Resource>& findResource(ID type, const std::string& path);
 
 	std::vector<SharedPtr<Resource> > _resources;
 };
