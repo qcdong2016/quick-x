@@ -25,9 +25,9 @@ THE SOFTWARE.
 #ifndef __PLATFORM_ANDROID_CCACCELEROMETER_H__
 #define __PLATFORM_ANDROID_CCACCELEROMETER_H__
 
-#include "cocoa/CCObject.h"
+#include "engine/CCObject.h"
+#include "engine/SubSystem.h"
 #include "platform/CCAccelerometerDelegate.h"
-#include "SubSystem.h"
 
 namespace   cocos2d {
 

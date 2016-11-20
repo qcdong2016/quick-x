@@ -33,6 +33,7 @@ LOCAL_SRC_FILES := spine/Animation.c \
 					PolygonBatch.cpp   \
 					SkeletonAnimation.cpp   \
 					spine_luabinding.cpp   \
+					SpineResource.cpp   \
 					spine-cocos2dx.cpp
 
 

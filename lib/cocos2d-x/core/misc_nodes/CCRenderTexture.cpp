@@ -61,15 +61,15 @@ CCRenderTexture::CCRenderTexture()
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     // Listen this event to save render texture before come to background.
     // Then it can be restored after coming to foreground on Android.
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-                                                                  callfuncO_selector(CCRenderTexture::listenToBackground),
-                                                                  EVENT_COME_TO_BACKGROUND,
-                                                                  NULL);
-    
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-                                                                  callfuncO_selector(CCRenderTexture::listenToForeground),
-                                                                  EVENT_COME_TO_FOREGROUND, // this is misspelt
-                                                                  NULL);
+//     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+//                                                                   callfuncO_selector(CCRenderTexture::listenToBackground),
+//                                                                   EVENT_COME_TO_BACKGROUND,
+//                                                                   NULL);
+//     
+//     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+//                                                                   callfuncO_selector(CCRenderTexture::listenToForeground),
+//                                                                   EVENT_COME_TO_FOREGROUND, // this is misspelt
+//                                                                   NULL);
 #endif
 }
 
@@ -86,8 +86,8 @@ CCRenderTexture::~CCRenderTexture()
     CC_SAFE_DELETE(m_pUITextureImage);
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_BACKGROUND);
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
+//     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_BACKGROUND);
+//     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
 #endif
 }
 

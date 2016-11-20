@@ -123,7 +123,7 @@ CCDrawNode::~CCDrawNode()
 #endif
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
+    // CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, EVENT_COME_TO_FOREGROUND);
 #endif    
 }
 
@@ -190,10 +190,10 @@ bool CCDrawNode::init()
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     // Need to listen the event only when not use batchnode, because it will use VBO
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-            callfuncO_selector(CCDrawNode::listenBackToForeground),
-            EVENT_COME_TO_FOREGROUND,
-            NULL);
+//     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+//             callfuncO_selector(CCDrawNode::listenBackToForeground),
+//             EVENT_COME_TO_FOREGROUND,
+//             NULL);
 #endif
 
     return true;

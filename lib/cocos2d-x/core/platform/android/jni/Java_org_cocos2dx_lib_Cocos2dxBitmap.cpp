@@ -1,7 +1,6 @@
 #include "JniHelper.h"
 #include <string.h>
-#include "CCDirector.h"
-#include "support/CCNotificationCenter.h"
+#include "engine/CCDirector.h"
 #include <jni.h>
 
 using namespace cocos2d;

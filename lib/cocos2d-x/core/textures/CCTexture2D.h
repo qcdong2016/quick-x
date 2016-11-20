@@ -31,6 +31,8 @@ THE SOFTWARE.
 #include "cocoa/CCGeometry.h"
 #include "ccTypes.h"
 #include <string>
+#include "CCImage.h"
+#include <list>
 
 NS_CC_BEGIN
 

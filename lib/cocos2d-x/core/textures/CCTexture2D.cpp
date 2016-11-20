@@ -45,10 +45,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
-
-#if CC_ENABLE_CACHE_TEXTURE_DATA
-    #include "CCTextureCache.h"
-#endif
 #include "shaders/CCMaterial.h"
 
 NS_CC_BEGIN
@@ -127,7 +123,7 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 	{
 #if CC_ENABLE_CACHE_TEXTURE_DATA
 		// cache the texture file name
-		VolatileTexture::addImageTexture(texture, getPath().c_str(), eImageFormat);
+		VolatileTexture::addImageTexture(this, getPath().c_str(), eImageFormat);
 #endif
 	}
 	else
