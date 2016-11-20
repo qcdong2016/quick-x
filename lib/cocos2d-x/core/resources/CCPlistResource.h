@@ -3,6 +3,7 @@
 
 #include "CCPlatformMacros.h"
 #include "engine/CCResourceCache.h"
+#include "sprite_nodes/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 
@@ -17,7 +18,12 @@ public:
 
 	virtual void beginLoad(MemBuffer* buf, void* userdata);
 	
-	void addSpriteFramesWithDictionary(CCDictionary* dict, CCTexture2D* tex);
+	CCTexture2D* getTexture() { return _texture; }
+
+private:
+
+	std::map<std::string, SharedPtr<CCSpriteFrame> > _frames;
+	SharedPtr<CCTexture2D> _texture;
 };
 
 NS_CC_END

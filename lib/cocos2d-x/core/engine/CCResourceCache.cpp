@@ -1,5 +1,7 @@
 #include "CCResourceCache.h"
 #include <algorithm>
+#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCPlistResource.h"
 
 NS_CC_BEGIN
 static const SharedPtr<Resource> noResource;
@@ -19,6 +21,19 @@ Resource* ResourceCache::getResource(ID resType, const std::string& path, void* 
 
 	if (cached)
 		return cached;
+
+	// For auto loading plist. 
+	// TODO: bg loading.
+	if (!FileSystem::isFileExist(path) && resType == CCSpriteFrame::getTypeStatic()) {
+		std::string plist = FileSystem::replaceExtension(path, "plist");
+
+		if (FileSystem::isFileExist(plist)) {
+			ResourceCache::getResource(PlistResource::getTypeStatic(), plist);
+		}
+
+		return getResource(resType, path);
+	}
+
 
 	SharedPtr<MemBuffer> buf = FileSystem::readAll(path);
 	if (!buf->isNull()) {

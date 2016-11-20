@@ -156,8 +156,43 @@ static CCSize CCSizeFromString(const char* pszContent)
 
 	return ret;
 }
-void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTexture2D *pobTexture)
+
+void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 {
+	SharedPtr<CCDictionary> dict( CCDictionary::createWithContentsOfDataThreadSafe((const char*)buf->getData(), buf->getSize()));
+
+	std::string dir = FileSystem::getDirectory(getPath());
+	std::string basename = FileSystem::getBaseName(getPath());
+	std::string texturePath("");
+
+	CCDictionary* metadataDict = (CCDictionary*)dict->objectForKey("metadata");
+	if (metadataDict)
+	{
+		// try to read  texture file name from meta data
+		texturePath = metadataDict->valueForKey("textureFileName")->getCString();
+	}
+
+	if (!texturePath.empty())
+	{
+		// build texture path relative to plist file
+		texturePath = FileSystem::join(dir, texturePath);
+	}
+	else
+	{
+		// build texture path by replacing file extension
+		texturePath = FileSystem::join(dir, basename + ".png");
+		CCLOG("cocos2d: CCSpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
+	}
+
+	CCTexture2D *pTexture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(texturePath);
+	
+	if (!pTexture)
+	{
+		CCLOG("cocos2d: CCSpriteFrameCache: Couldn't load texture");
+		return;
+	}
+	_texture = pTexture;
+
 	/*
 	Supported Zwoptex Formats:
 
@@ -167,8 +202,7 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 	ZWTCoordinatesFormatOptionXML1_2 = 3, // Desktop Version 1.0.2+
 	*/
 
-	CCDictionary *metadataDict = (CCDictionary*)dictionary->objectForKey("metadata");
-	CCDictionary *framesDict = (CCDictionary*)dictionary->objectForKey("frames");
+	CCDictionary *framesDict = (CCDictionary*)dict->objectForKey("frames");
 	int format = 0;
 
 	// get the format
@@ -181,18 +215,21 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 	// check the format
 	CCAssert(format >= 0 && format <= 3, "format is not supported for CCSpriteFrameCache addSpriteFramesWithDictionary:textureFilename:");
 
+	dir = FileSystem::join(dir, basename);
+
 	CCDictElement* pElement = NULL;
 	CCDICT_FOREACH(framesDict, pElement)
 	{
 		CCDictionary* frameDict = (CCDictionary*)pElement->getObject();
 		std::string spriteFrameName = pElement->getStrKey();
-
+		std::string fullname = FileSystem::join(dir, spriteFrameName);
 		CCSpriteFrame* spriteFrame = cache->getResource<CCSpriteFrame>(spriteFrameName);
 		if (spriteFrame)
 			continue;
 
 		spriteFrame = new CCSpriteFrame();
-		spriteFrame->setPath(spriteFrameName);
+		// fullname of spriteFrame
+		spriteFrame->setPath(fullname);
 
 		if (format == 0)
 		{
@@ -213,7 +250,7 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 			ow = abs(ow);
 			oh = abs(oh);
 			// create frame
-			spriteFrame->initWithTexture(pobTexture,
+			spriteFrame->initWithTexture(_texture,
 				CCRectMake(x, y, w, h),
 				false,
 				CCPointMake(ox, oy),
@@ -235,7 +272,7 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 			CCSize sourceSize = CCSizeFromString(frameDict->valueForKey("sourceSize")->getCString());
 
 			// create frame
-			spriteFrame->initWithTexture(pobTexture,
+			spriteFrame->initWithTexture(_texture,
 				frame,
 				rotated,
 				offset,
@@ -258,12 +295,12 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 			CCARRAY_FOREACH(aliases, pObj)
 			{
 				std::string oneAlias = ((CCString*)pObj)->getCString();
-				
-				if (cache->getResource<CCSpriteFrame>(spriteFrameName))
+
+				if (cache->getResource<CCSpriteFrame>(fullname))
 					CCLOGWARN("cocos2d: WARNING: an alias with name %s already exists", oneAlias.c_str());
 			}
 			// create frame
-			spriteFrame->initWithTexture(pobTexture,
+			spriteFrame->initWithTexture(_texture,
 				CCRectMake(textureRect.origin.x, textureRect.origin.y, spriteSize.width, spriteSize.height),
 				textureRotated,
 				spriteOffset,
@@ -272,51 +309,8 @@ void PlistResource::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTe
 
 		// add sprite frame
 		cache->addResource<CCSpriteFrame>(spriteFrame);
+		_frames[spriteFrameName] = (SharedPtr<CCSpriteFrame>(spriteFrame));
 	}
-}
-
-
-void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
-{
-	CCDictionary *dict = CCDictionary::createWithContentsOfDataThreadSafe((const char*)buf->getData(), buf->getSize());
-
-	std::string texturePath("");
-
-	CCDictionary* metadataDict = (CCDictionary*)dict->objectForKey("metadata");
-	if (metadataDict)
-	{
-		// try to read  texture file name from meta data
-		texturePath = metadataDict->valueForKey("textureFileName")->getCString();
-	}
-
-	if (!texturePath.empty())
-	{
-		// build texture path relative to plist file
-		texturePath = FileSystem::join(FileSystem::getDirectory(getPath()), texturePath);
-	}
-	else
-	{
-		// build texture path by replacing file extension
-		std::string dir = FileSystem::getDirectory(getPath());
-		std::string basename = FileSystem::getBaseName(getPath());
-
-		texturePath = FileSystem::join(dir, basename + ".png");
-
-		CCLOG("cocos2d: CCSpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
-	}
-
-	CCTexture2D *pTexture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(texturePath);
-
-	if (pTexture)
-	{
-		addSpriteFramesWithDictionary(dict, pTexture);
-	}
-	else
-	{
-		CCLOG("cocos2d: CCSpriteFrameCache: Couldn't load texture");
-	}
-
-	dict->release();
 }
 
 

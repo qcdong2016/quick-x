@@ -705,7 +705,6 @@ CCDictionary* CCDictionary::createWithContentsOfDataThreadSafe(const char* data,
 {
 	CCDictMaker tMaker;
 	CCDictionary* pRet = tMaker.dictionaryWithContentsOfData(data, size);
-	pRet->autorelease();
 	return pRet;
 }
 
