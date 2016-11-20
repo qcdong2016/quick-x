@@ -115,12 +115,13 @@ protected:
     bool checkEventWidget(CCTouch* touch, CCEvent *pEvent);
     bool checkTouchEvent(Widget* root, CCTouch* touch, CCEvent* pEvent);
 protected:
-    Widget* m_pRootWidget;
     CCPoint touchBeganedPoint;
     CCPoint touchMovedPoint;
     CCPoint touchEndedPoint;
     CCPoint touchCanceledPoint;
-    CCArray* m_pSelectedWidgets;
+
+	SharedPtr<Widget> m_pRootWidget;
+	SharedPtr<CCArray> m_pSelectedWidgets;
 };
     
 }

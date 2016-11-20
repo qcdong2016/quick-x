@@ -66,16 +66,6 @@ CCScale9Sprite::CCScale9Sprite()
 
 CCScale9Sprite::~CCScale9Sprite()
 {
-    CC_SAFE_RELEASE(_topLeft);
-    CC_SAFE_RELEASE(_top);
-    CC_SAFE_RELEASE(_topRight);
-    CC_SAFE_RELEASE(_left);
-    CC_SAFE_RELEASE(_centre);
-    CC_SAFE_RELEASE(_right);
-    CC_SAFE_RELEASE(_bottomLeft);
-    CC_SAFE_RELEASE(_bottom);
-    CC_SAFE_RELEASE(_bottomRight);
-    CC_SAFE_RELEASE(_scale9Image);
 }
 
 bool CCScale9Sprite::init()
@@ -576,9 +566,7 @@ CCScale9Sprite* CCScale9Sprite::createWithSpriteFrame(CCSpriteFrame* spriteFrame
 
 bool CCScale9Sprite::initWithSpriteFrameName(const char* spriteFrameName, CCRect capInsets)
 {
-    CCAssert((CCSpriteFrameCache::sharedSpriteFrameCache()) != NULL, "sharedSpriteFrameCache must be non-NULL");
-
-    CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName);
+	CCSpriteFrame *frame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(spriteFrameName);
     CCAssert(frame != NULL, "CCSpriteFrame must be non-NULL");
 
     if (NULL == frame) return false;

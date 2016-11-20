@@ -175,11 +175,11 @@ private:
     void updateBlendFunc();
 
 protected:
-    CCTextureAtlas *m_pobTextureAtlas;
-    ccBlendFunc m_blendFunc;
+	SharedPtr<CCTextureAtlas> m_pobTextureAtlas;
+	// all descendants: children, gran children, etc...
+	SharedPtr<CCArray> m_pobDescendants;
 
-    // all descendants: children, gran children, etc...
-    CCArray* m_pobDescendants;
+    ccBlendFunc m_blendFunc;
 };
 
 // end of sprite_nodes group

@@ -38,7 +38,7 @@ NS_CC_BEGIN
 
 class CC_DLL CCAutoreleasePool : public CCObject
 {
-    CCArray*    m_pManagedObjectArray;    
+    SharedPtr<CCArray>    m_pManagedObjectArray;    
 public:
     CCAutoreleasePool(void);
     ~CCAutoreleasePool(void);
@@ -55,8 +55,8 @@ public:
  */
 class CC_DLL CCPoolManager
 {
-    CCArray*    m_pReleasePoolStack;    
-    CCAutoreleasePool*                    m_pCurReleasePool;
+	SharedPtr<CCArray>    m_pReleasePoolStack;
+	SharedPtr<CCAutoreleasePool>    m_pCurReleasePool;
 
     CCAutoreleasePool* getCurReleasePool();
 public:

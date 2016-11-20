@@ -34,7 +34,6 @@ THE SOFTWARE.
 #include "base/MathDefs.h"
 
 #include "CCGL.h"
-#include "support/CCNotificationCenter.h"
 #include "effects/CCGrid.h"
 // extern
 #include "kazmath/GL/matrix.h"

@@ -38,10 +38,8 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "support/CCPointExtension.h"
-#include "support/CCNotificationCenter.h"
 #include "layers_scenes_transitions_nodes/CCTransition.h"
 
-#include "sprite_nodes/CCSpriteFrameCache.h"
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/platform.h"
 #include "CCApplication.h"
@@ -84,7 +82,7 @@ NS_CC_BEGIN
 // XXX it should be a Director ivar. Move it there once support for multiple directors is added
 
 // singleton stuff
-static CCDisplayLinkDirector *s_SharedDirector = NULL;
+static SharedPtr<CCDisplayLinkDirector> s_SharedDirector;
 
 #define kDefaultFPS        60  // 60 frames per second
 extern const char* cocos2dVersion(void);
@@ -151,9 +149,7 @@ bool CCDirector::init(void)
 
     m_fContentScaleFactor = 1.0f;
 
-    // scheduler
-    m_pScheduler = new CCScheduler();
-
+	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
 	addSubSystem<CCTouchDispatcher>();
 	addSubSystem<CCAccelerometer>();
@@ -168,15 +164,9 @@ bool CCDirector::init(void)
 CCDirector::~CCDirector(void)
 {
     CCLOG("deallocing CCDirector %p", this);
-
-    CC_SAFE_RELEASE(m_pFPSLabel);
-    CC_SAFE_RELEASE(m_pSPFLabel);
-    CC_SAFE_RELEASE(m_pDrawsLabel);
     
     CC_SAFE_RELEASE(m_pRunningScene);
     CC_SAFE_RELEASE(m_pNotificationNode);
-    CC_SAFE_RELEASE(m_pobScenesStack);
-    CC_SAFE_RELEASE(m_pScheduler);
 
     // pop the autorelease pool
     CCPoolManager::sharedPoolManager()->pop();
@@ -186,8 +176,6 @@ CCDirector::~CCDirector(void)
     CC_SAFE_DELETE(m_pLastUpdate);
     // delete fps string
     delete []m_pszFPS;
-
-    s_SharedDirector = NULL;
 }
 
 void CCDirector::setDefaultValues(void)
@@ -253,7 +241,6 @@ void CCDirector::drawScene(void)
 		static EventDataMap map;
 		map[UpdateEvent::Param::timeStep] = m_fDeltaTime;
 		sendEvent(UpdateEvent::Param::Name, map);
-        m_pScheduler->update(m_fDeltaTime);
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -462,7 +449,6 @@ void CCDirector::purgeCachedData(void)
     CCLabelBMFont::purgeCachedData();
     if (s_SharedDirector->getOpenGLView())
     {
-        CCSpriteFrameCache::sharedSpriteFrameCache()->purgeSharedSpriteFrameCache();
 		getSubSystem<ResourceCache>()->removeUnused();
     }
 }
@@ -699,7 +685,7 @@ void CCDirector::end()
 void CCDirector::purgeDirector()
 {
     // cleanup scheduler
-    getScheduler()->unscheduleAll();
+	getSubSystem<CCScheduler>()->unscheduleAll();
     
     // don't release the event handlers
     // They are needed in case the director is run again
@@ -722,9 +708,9 @@ void CCDirector::purgeDirector()
 
     stopAnimation();
 
-    CC_SAFE_RELEASE_NULL(m_pFPSLabel);
-    CC_SAFE_RELEASE_NULL(m_pSPFLabel);
-    CC_SAFE_RELEASE_NULL(m_pDrawsLabel);
+	m_pFPSLabel.Reset();
+	m_pSPFLabel.Reset();
+	m_pDrawsLabel.Reset();
 
     // purge bitmap cache
     CCLabelBMFont::purgeCachedData();
@@ -732,13 +718,11 @@ void CCDirector::purgeDirector()
     // purge all managed caches
     ccDrawFree();
     CCAnimationCache::purgeSharedAnimationCache();
-    CCSpriteFrameCache::purgeSharedSpriteFrameCache();
     CCShaderCache::purgeSharedShaderCache();
     CCConfiguration::purgeConfiguration();
 
     // cocos2d-x specific data structures
     CCUserDefault::purgeSharedUserDefault();
-    CCNotificationCenter::purgeNotificationCenter();
 
     ccGLInvalidateStateCache();
     
@@ -748,8 +732,7 @@ void CCDirector::purgeDirector()
     m_pobOpenGLView->end();
     m_pobOpenGLView = NULL;
 
-    // delete CCDirector
-    release();
+	s_SharedDirector.Reset();
 }
 
 void CCDirector::setNextScene(void)
@@ -880,11 +863,11 @@ void CCDirector::getFPSImageData(unsigned char** datapointer, unsigned int* leng
 void CCDirector::createStatsLabel()
 {
 
-    if( m_pFPSLabel && m_pSPFLabel )
+    if( m_pFPSLabel && m_pSPFLabel && m_pDrawsLabel)
     {
-        CC_SAFE_RELEASE_NULL(m_pFPSLabel);
-        CC_SAFE_RELEASE_NULL(m_pSPFLabel);
-        CC_SAFE_RELEASE_NULL(m_pDrawsLabel);
+		m_pFPSLabel.Reset();
+		m_pSPFLabel.Reset();
+		m_pDrawsLabel.Reset();
     }
 
     CCTexture2DPixelFormat currentFormat = CCTexture2D::defaultAlphaPixelFormat();
@@ -893,7 +876,7 @@ void CCDirector::createStatsLabel()
     unsigned int data_len = 0;
     getFPSImageData(&data, &data_len);
 
-    CCImage* image = new CCImage();
+    SharedPtr<CCImage> image(new CCImage());
     bool isOK = image->initWithImageData(data, data_len);
     if (!isOK) {
         CCLOGERROR("%s", "Fails: init fps_images");
@@ -902,8 +885,6 @@ void CCDirector::createStatsLabel()
 
 	CCTexture2D *texture = new CCTexture2D;
 	texture->initWithImage(image);
-
-    CC_SAFE_RELEASE(image);
 
     /*
      We want to use an image which is stored in the file named ccFPSImage.c 
@@ -920,17 +901,17 @@ void CCDirector::createStatsLabel()
      */
     float factor = 1.0f; // CCEGLView::sharedOpenGLView()->getDesignResolutionSize().height / 320.0f;
 
-    m_pFPSLabel = new CCLabelAtlas();
+    m_pFPSLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
     m_pFPSLabel->setIgnoreContentScaleFactor(true);
     m_pFPSLabel->initWithString("00.0", texture, 12, 32 , '.');
     m_pFPSLabel->setScale(factor);
 
-    m_pSPFLabel = new CCLabelAtlas();
+	m_pSPFLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
     m_pSPFLabel->setIgnoreContentScaleFactor(true);
     m_pSPFLabel->initWithString("0.000", texture, 12, 32, '.');
     m_pSPFLabel->setScale(factor);
 
-    m_pDrawsLabel = new CCLabelAtlas();
+	m_pDrawsLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
     m_pDrawsLabel->setIgnoreContentScaleFactor(true);
     m_pDrawsLabel->initWithString("000", texture, 12, 32, '.');
     m_pDrawsLabel->setScale(factor);
@@ -976,21 +957,6 @@ CCDirectorDelegate* CCDirector::getDelegate() const
 void CCDirector::setDelegate(CCDirectorDelegate* pDelegate)
 {
     m_pProjectionDelegate = pDelegate;
-}
-
-void CCDirector::setScheduler(CCScheduler* pScheduler)
-{
-    if (m_pScheduler != pScheduler)
-    {
-        CC_SAFE_RETAIN(pScheduler);
-        CC_SAFE_RELEASE(m_pScheduler);
-        m_pScheduler = pScheduler;
-    }
-}
-
-CCScheduler* CCDirector::getScheduler()
-{
-    return m_pScheduler;
 }
 
 /***************************************************

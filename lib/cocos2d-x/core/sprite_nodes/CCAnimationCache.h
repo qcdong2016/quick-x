@@ -84,28 +84,12 @@ public:
      */
     CCAnimation* animationByName(const char* name);
 
-    /** Adds an animation from an NSDictionary
-     Make sure that the frames were previously loaded in the CCSpriteFrameCache.
-     @param plist The path of the relative file,it use to find the plist path for load SpriteFrames.
-     @since v1.1
-     */
-    void addAnimationsWithDictionary(CCDictionary* dictionary,const char* plist = NULL);
-
-    /** Adds an animation from a plist file.
-     Make sure that the frames were previously loaded in the CCSpriteFrameCache.
-     @since v1.1
-     @js addAnimations
-     */
-    void addAnimationsWithFile(const char* plist);
 
     bool init(void);
 
 private:
-    void parseVersion1(CCDictionary* animations);
-    void parseVersion2(CCDictionary* animations);
 private:
-    CCDictionary* m_pAnimations;
-    static CCAnimationCache* s_pSharedAnimationCache;
+    SharedPtr<CCDictionary> m_pAnimations;
 };
 
 // end of sprite_nodes group

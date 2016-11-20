@@ -31,7 +31,6 @@ THE SOFTWARE.
 #include "text_input_node/CCIMEDispatcher.h"
 #include "support/CCPointExtension.h"
 #include "CCApplication.h"
-#include "CCNotificationCenter.h"
 #include "../imgui/imgui_cocos2dx.h"
 #include "../imgui/PlayerUI.h"
 #include "CCInput.h"

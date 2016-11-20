@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "support/CCNotificationCenter.h"
 #include "CCGL.h"
 // support
 #include "CCTexture2D.h"

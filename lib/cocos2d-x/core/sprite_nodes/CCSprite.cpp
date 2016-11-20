@@ -30,7 +30,6 @@
 #include "ccConfig.h"
 #include "CCSprite.h"
 #include "CCSpriteFrame.h"
-#include "CCSpriteFrameCache.h"
 
 #include "draw_nodes/CCDrawingPrimitives.h"
 #include "shaders/CCShaderCache.h"
@@ -120,7 +119,7 @@ CCSprite* CCSprite::createWithSpriteFrame(CCSpriteFrame *pSpriteFrame)
 
 CCSprite* CCSprite::createWithSpriteFrameName(const char *pszSpriteFrameName)
 {
-    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(pszSpriteFrameName);
+	CCSpriteFrame *pFrame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(pszSpriteFrameName);
 
 #if COCOS2D_DEBUG > 0
     char msg[256] = {0};
@@ -264,8 +263,7 @@ bool CCSprite::initWithSpriteFrame(CCSpriteFrame *pSpriteFrame)
 bool CCSprite::initWithSpriteFrameName(const char *pszSpriteFrameName)
 {
     CCAssert(pszSpriteFrameName != NULL, "");
-
-    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(pszSpriteFrameName);
+	CCSpriteFrame *pFrame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(pszSpriteFrameName);
     return initWithSpriteFrame(pFrame);
 }
 
@@ -296,14 +294,12 @@ bool CCSprite::initWithSpriteFrameName(const char *pszSpriteFrameName)
  */
 
 CCSprite::CCSprite(void)
-: m_bShouldBeHidden(false),
-m_pobTexture(NULL)
+: m_bShouldBeHidden(false)
 {
 }
 
 CCSprite::~CCSprite(void)
 {
-    CC_SAFE_RELEASE(m_pobTexture);
 }
 
 void CCSprite::setTextureRect(const CCRect& rect)
@@ -1104,20 +1100,17 @@ void CCSprite::setTexture(CCTexture2D *texture)
         // If texture wasn't in cache, create it from RAW data.
         if (NULL == texture)
         {
-            CCImage* image = new CCImage();
+            SharedPtr<CCImage> image(new CCImage());
             bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), kFmtRawData, 2, 2, 8);
             CCAssert(isOK, "The 2x2 empty texture was created unsuccessfully.");
 
 			texture = new CCTexture2D;
 			texture->initWithImage(image);
-            CC_SAFE_RELEASE(image);
         }
     }
 
     if (!m_pobBatchNode && m_pobTexture != texture)
     {
-        CC_SAFE_RETAIN(texture);
-        CC_SAFE_RELEASE(m_pobTexture);
         m_pobTexture = texture;
         // fix the issure that an untextured sprite can not call setTexture.
         if (m_obRect.equals(CCRectZero))

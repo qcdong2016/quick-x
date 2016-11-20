@@ -1532,19 +1532,19 @@ protected:
 
     CCCamera *m_pCamera;                ///< a camera
 
-    CCGridBase *m_pGrid;                ///< a grid
+    SharedPtr<CCGridBase> m_pGrid;                ///< a grid
 
     int m_nZOrder;                      ///< z-order value that affects the draw order
 
-    CCArray *m_pChildren;               ///< array of children nodes
+	SharedPtr<CCArray> m_pChildren;               ///< array of children nodes
     CCNode *m_pParent;                  ///< weak reference to parent node
 
     int m_nTag;                         ///< a tag. Can be any number you assigned just to identify this node
 
     void *m_pUserData;                  ///< A user assingned void pointer, Can be point to any cpp object
-    CCObject *m_pUserObject;            ///< A user assigned CCObject
+	SharedPtr<CCObject> m_pUserObject;            ///< A user assigned CCObject
 
-    CCGLProgram *m_pShaderProgram;      ///< OpenGL shader
+	SharedPtr<CCGLProgram> m_pShaderProgram;      ///< OpenGL shader
 	Material* _material;
 
     ccGLServerState m_eGLServerState;   ///< OpenGL servier side state

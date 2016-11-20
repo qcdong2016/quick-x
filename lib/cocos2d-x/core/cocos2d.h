@@ -234,11 +234,9 @@ THE SOFTWARE.
 #include "sprite_nodes/CCSprite.h"
 #include "sprite_nodes/CCSpriteBatchNode.h"
 #include "sprite_nodes/CCSpriteFrame.h"
-#include "sprite_nodes/CCSpriteFrameCache.h"
 
 // support
 #include "support/ccUTF8.h"
-#include "support/CCNotificationCenter.h"
 #include "support/CCPointExtension.h"
 #include "support/CCProfiling.h"
 #include "support/user_default/CCUserDefault.h"

@@ -36,7 +36,7 @@ NS_CC_BEGIN
 
 CC_DLL const char* cocos2dVersion();
 
-CCConfiguration* CCConfiguration::s_gSharedConfiguration = NULL;
+static SharedPtr<CCConfiguration> s_gSharedConfiguration;
 
 CCConfiguration::CCConfiguration(void)
 : m_nMaxTextureSize(0) 
@@ -157,7 +157,7 @@ CCConfiguration* CCConfiguration::sharedConfiguration(void)
 
 void CCConfiguration::purgeConfiguration(void)
 {
-    CC_SAFE_RELEASE_NULL(s_gSharedConfiguration);
+	s_gSharedConfiguration.Reset();
 }
 
 bool CCConfiguration::checkForGLExtension(const string &searchName) const

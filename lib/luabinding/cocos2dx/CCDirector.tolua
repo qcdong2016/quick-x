@@ -190,11 +190,6 @@ class CCDirector : public CCObject
     CCNode* getNotificationNode();
     void setNotificationNode(CCNode *node);
 
-    /** CCScheduler associated with this director
-     @since v2.0
-     */
-    CCScheduler* getScheduler();
-
     /* delta time since last tick to main loop */
     float getDeltaTime();
 
@@ -211,6 +206,7 @@ $[
     d.accelerometer = tolua.cast(d:getSubSystem('CCAccelerometer'), "CCAccelerometer")
     d.keypadDispatcher = tolua.cast(d:getSubSystem('CCKeypadDispatcher'), "CCKeypadDispatcher")
     d.resourceCache = tolua.cast(d:getSubSystem('ResourceCache'), "ResourceCache")
+    d.scheduler = tolua.cast(d:getSubSystem('CCScheduler'), "CCScheduler")
 
     -- make a global var;
     director = d;

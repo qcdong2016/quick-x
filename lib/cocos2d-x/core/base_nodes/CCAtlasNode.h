@@ -28,6 +28,7 @@ THE SOFTWARE.
 #define __CCATLAS_NODE_H__
 
 #include "CCNode.h"
+#include "textures/CCTextureAtlas.h"
 
 NS_CC_BEGIN
 
@@ -35,8 +36,6 @@ NS_CC_BEGIN
  * @addtogroup base_nodes
  * @{
  */
-
-class CCTextureAtlas;
 
 /** @brief CCAtlasNode is a subclass of CCNode that implements the CCRGBAProtocol and CCTextureProtocol protocol
 
@@ -62,7 +61,7 @@ protected:
 
     ccColor3B    m_tColorUnmodified;
 
-    CC_PROPERTY(CCTextureAtlas*, m_pTextureAtlas, TextureAtlas);
+	CC_PROPERTY_PTR(CCTextureAtlas, m_pTextureAtlas, TextureAtlas);
 
     // protocol variables
     bool m_bIsOpacityModifyRGB;

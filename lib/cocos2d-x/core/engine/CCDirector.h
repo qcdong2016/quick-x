@@ -329,10 +329,6 @@ public:
     float getContentScaleFactor(void);
 
 public:
-    /** CCScheduler associated with this director
-     @since v2.0
-     */
-    CC_PROPERTY(CCScheduler*, m_pScheduler, Scheduler);
 
     /* delta time since last tick to main loop */
 	CC_PROPERTY_READONLY(float, m_fDeltaTime, DeltaTime);
@@ -399,9 +395,9 @@ protected:
     float m_fAccumDt;
     float m_fFrameRate;
     
-    CCLabelAtlas *m_pFPSLabel;
-    CCLabelAtlas *m_pSPFLabel;
-    CCLabelAtlas *m_pDrawsLabel;
+    SharedPtr<CCLabelAtlas> m_pFPSLabel;
+	SharedPtr<CCLabelAtlas> m_pSPFLabel;
+	SharedPtr<CCLabelAtlas> m_pDrawsLabel;
     
     /** Whether or not the Director is paused */
     bool m_bPaused;
@@ -422,7 +418,7 @@ protected:
     bool    m_bSendCleanupToScene;
 
     /* scheduled scenes */
-    CCArray* m_pobScenesStack;
+	SharedPtr<CCArray> m_pobScenesStack;
     
     /* last time the main loop was updated */
     struct cc_timeval *m_pLastUpdate;

@@ -24,7 +24,6 @@
 #include "support/CCPointExtension.h"
 #include "shaders/CCShaderCache.h"
 #include "CCGL.h"
-#include "support/CCNotificationCenter.h"
 
 #include "base/MathDefs.h"
 

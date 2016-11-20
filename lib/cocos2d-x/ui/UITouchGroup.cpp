@@ -29,16 +29,13 @@ NS_CC_BEGIN
 
 namespace ui {
 
-TouchGroup::TouchGroup():
-m_pRootWidget(NULL)
+TouchGroup::TouchGroup()
 {
 }
 
 TouchGroup::~TouchGroup()
 {
     m_pSelectedWidgets->removeAllObjects();
-    m_pSelectedWidgets->release();
-    m_pRootWidget->release();
 }
 
 bool TouchGroup::init()
@@ -46,9 +43,7 @@ bool TouchGroup::init()
     if (CCLayer::init())
     {
         m_pSelectedWidgets = CCArray::create();
-        m_pSelectedWidgets->retain();
         m_pRootWidget = Widget::create();
-        m_pRootWidget->retain();
         addChild(m_pRootWidget);
         return true;
     }
