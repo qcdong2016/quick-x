@@ -489,8 +489,7 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
 
         m_sFntFile = fntFile;
 
-		texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
+		texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
     }
     else
     {
@@ -1099,8 +1098,7 @@ void CCLabelBMFont::setFntFile(const char* fntFile)
         CC_SAFE_RELEASE(m_pConfiguration);
         m_pConfiguration = newConf;
         
-		CCTexture2D* tex = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
+		CCTexture2D *tex = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
 
 		this->setTexture(tex);
         this->createFontChars();

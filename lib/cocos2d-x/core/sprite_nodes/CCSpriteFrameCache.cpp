@@ -371,8 +371,7 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist, CCTexture
 void CCSpriteFrameCache::addSpriteFramesWithFile(const char* plist, const char* textureFileName)
 {
     CCAssert(textureFileName, "texture name should not be null");
-	CCTexture2D *texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(textureFileName);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(textureFileName);
 
     if (texture)
     {
@@ -422,8 +421,7 @@ void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist)
             CCLOG("cocos2d: CCSpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
         }
 
-		CCTexture2D *pTexture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(texturePath);
+		CCTexture2D *pTexture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(texturePath);
 
         if (pTexture)
         {

@@ -1,0 +1,8 @@
+
+
+
+class ResourceCache
+{
+    Resource* getResource(const char* resType, const std::string& path, void* userdata = 0);
+    void removeUnused();
+};

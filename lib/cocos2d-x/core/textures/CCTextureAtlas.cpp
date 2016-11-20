@@ -135,8 +135,7 @@ CCTextureAtlas * CCTextureAtlas::createWithTexture(CCTexture2D *texture, unsigne
 bool CCTextureAtlas::initWithFile(const char * file, unsigned int capacity)
 {
     // retained in property
-	CCTexture2D *texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(file);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(file);
 
     if (texture)
     {

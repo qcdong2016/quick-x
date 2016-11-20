@@ -66,9 +66,7 @@ bool CCLabelAtlas::init()
 void CCLabelAtlas::setTextureByName(const std::string& filename)
 {
     m_textureName = filename;
-	CCTexture2D *texture = CCDirector::sharedDirector()
-		->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(filename);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(filename);
 
     setTexture(texture);
 }
@@ -115,9 +113,8 @@ CCLabelAtlas* CCLabelAtlas::create(const char *string, const char *charMapFile, 
 
 bool CCLabelAtlas::initWithString(const char *string, const char *charMapFile, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap)
 {
-	CCTexture2D *texture = CCDirector::sharedDirector()
-		->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(charMapFile);
+	CCTexture2D *texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(charMapFile);
+
 	return initWithString(string, texture, itemWidth, itemHeight, startCharMap);
 }
 

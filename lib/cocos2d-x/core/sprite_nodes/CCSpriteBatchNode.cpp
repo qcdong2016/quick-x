@@ -110,8 +110,7 @@ bool CCSpriteBatchNode::init()
  */
 bool CCSpriteBatchNode::initWithFile(const char* fileImage, unsigned int capacity)
 {
-	CCTexture2D *pTexture2D = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-		->getResource<CCTexture2D>(fileImage);
+	CCTexture2D *pTexture2D =SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(fileImage);
     return initWithTexture(pTexture2D, capacity);
 }
 

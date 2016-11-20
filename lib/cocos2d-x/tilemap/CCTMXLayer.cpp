@@ -62,8 +62,7 @@ bool CCTMXLayer::initWithTilesetInfo(CCTMXTilesetInfo *tilesetInfo, CCTMXLayerIn
     CCTexture2D *texture = NULL;
     if( tilesetInfo )
     {
-		texture = CCDirector::sharedDirector()->getSubSystem<ResourceCache>()
-			->getResource<CCTexture2D>(tilesetInfo->m_sSourceImage);
+		texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(tilesetInfo->m_sSourceImage);
     }
 
     if (CCSpriteBatchNode::initWithTexture(texture, (unsigned int)capacity))
