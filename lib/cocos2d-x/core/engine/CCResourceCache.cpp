@@ -8,6 +8,11 @@ ResourceCache::ResourceCache()
 {
 }
 
+void ResourceCache::addResource(ID resType, Resource* res)
+{
+	_resources.insert(_resources.begin(), SharedPtr<Resource>(res));
+}
+
 Resource* ResourceCache::getResource(ID resType, const std::string& path, void* userdata /* = 0 */)
 {
 	const SharedPtr<Resource> cached = findResource(resType, path);

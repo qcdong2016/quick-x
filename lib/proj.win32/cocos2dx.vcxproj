@@ -63,6 +63,7 @@
     <ClCompile Include="..\cocos2d-x\core\engine\CCModule.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCResourceCache.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\SubSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\core\IO\FileSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\GL\mat4stack.c" />
@@ -101,6 +102,7 @@
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\resources\CCPlistResource.cpp" />
     <ClCompile Include="..\cocos2d-x\core\script_support\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCGLProgram.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\ccGLStateCache.cpp" />
@@ -396,6 +398,7 @@
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\compat\stdint.h" />
+    <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h" />
     <ClInclude Include="..\cocos2d-x\core\script_support\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccGLStateCache.h" />

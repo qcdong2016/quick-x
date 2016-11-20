@@ -83,6 +83,21 @@ public:
 	{
 	}
 
+	CCDictionary* dictionaryWithContentsOfData(const char* data, unsigned long size)
+	{
+		m_eResultType = SAX_RESULT_DICT;
+		CCSAXParser parser;
+
+		if (false == parser.init("UTF-8"))
+		{
+			return NULL;
+		}
+		parser.setDelegator(this);
+
+		parser.parse(data, size);
+		return m_pRootDict;
+	}
+
 	CCDictionary* dictionaryWithContentsOfFile(const char *pFileName)
 	{
 		m_eResultType = SAX_RESULT_DICT;
@@ -684,6 +699,14 @@ CCDictionary* CCDictionary::createWithDictionary(CCDictionary* srcDict)
 CCDictionary* CCDictionary::createWithContentsOfFileThreadSafe(const char *pFileName)
 {
     return createWithContentsOfFile(pFileName);
+}
+
+CCDictionary* CCDictionary::createWithContentsOfDataThreadSafe(const char* data, unsigned long size)
+{
+	CCDictMaker tMaker;
+	CCDictionary* pRet = tMaker.dictionaryWithContentsOfData(data, size);
+	pRet->autorelease();
+	return pRet;
 }
 
 CCDictionary* CCDictionary::createWithContentsOfFile(const char *pFileName)
