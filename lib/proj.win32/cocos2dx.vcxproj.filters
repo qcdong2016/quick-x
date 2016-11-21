@@ -858,9 +858,6 @@
     <ClCompile Include="..\cocos2d-x\core\CCScheduler.cpp">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\cocos2d.cpp">
-      <Filter>cocos2d-x\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\support\CCPointExtension.cpp">
       <Filter>cocos2d-x\core\support</Filter>
     </ClCompile>
@@ -1779,9 +1776,6 @@
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\ccTypes.h">
-      <Filter>cocos2d-x\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\cocos2d.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\CCPointExtension.h">

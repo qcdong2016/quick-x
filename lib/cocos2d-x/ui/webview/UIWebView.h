@@ -27,6 +27,8 @@
 
 #include "platform/CCPlatformConfig.h"
 #include "ui/Layouts/UILayout.h"
+#include <functional>
+#include <string>
 
 namespace cocos2d {
 	namespace ui {

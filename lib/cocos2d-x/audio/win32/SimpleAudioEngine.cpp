@@ -4,13 +4,13 @@
 #include <cstdlib>
 
 #include "MciPlayer.h"
-#include "cocos2d.h"
 #include "IO/FileSystem.h"
+
 USING_NS_CC;
 
 using namespace std;
 
-namespace CocosDenshion {
+namespace cocos2d {
 
 typedef map<unsigned int, MciPlayer *> EffectList;
 typedef pair<unsigned int, MciPlayer *> Effect;
