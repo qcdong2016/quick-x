@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "UICheckBox.h"
+#include "sprite_nodes/CCSprite.h"
 
 NS_CC_BEGIN
 

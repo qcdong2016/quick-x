@@ -1,4 +1,6 @@
 
+$#include "support/CCPointExtension.h"
+
 CCPoint ccpNeg(CCPoint v);
 CCPoint ccpAdd(CCPoint v1, CCPoint v2);
 CCPoint ccpSub(CCPoint v1, CCPoint v2);

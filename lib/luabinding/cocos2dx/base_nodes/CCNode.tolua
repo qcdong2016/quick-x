@@ -58,8 +58,8 @@ class CCNode : public CCScriptEventDispatcher
     void removeAllChildrenWithCleanup(bool cleanup = true);
     void reorderChild(CCNode * child, int zOrder);
     void sortAllChildren();
-    CCGridBase* getGrid();
-    void setGrid(CCGridBase *pGrid);
+    // CCGridBase* getGrid();
+    // void setGrid(CCGridBase *pGrid);
     int getTag();
     void setTag(int nTag);
     CCObject* getUserObject();

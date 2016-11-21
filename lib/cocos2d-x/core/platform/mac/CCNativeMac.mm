@@ -70,7 +70,7 @@ static CCNativeMac *s_sharedInstance;
     return [alertView_.buttons count] - 1;
 }
 
-- (void)showAlertViewWithDelegate:(CCAlertViewDelegate *)delegate
+- (void)showAlertViewWithDelegate
 {
     if (!alertView_)
     {
@@ -80,10 +80,11 @@ static CCNativeMac *s_sharedInstance;
 
     CCLOG("CCNative::showAlertViewWithDelegate()");
     int buttonIndex = (int)[alertView_ runModal];
-    if (delegate)
-    {
-        delegate->alertViewClickedButtonAtIndex(buttonIndex);
-    }
+    // TODO:
+//    if (delegate)
+//    {
+//        delegate->alertViewClickedButtonAtIndex(buttonIndex);
+//    }
     [self removeAlertView];
 }
 

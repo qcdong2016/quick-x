@@ -2,7 +2,7 @@
 #ifndef __CC_EXTENSION_CCSTORE_PAYMENT_TRANSACTION_WRAPPER_H_
 #define __CC_EXTENSION_CCSTORE_PAYMENT_TRANSACTION_WRAPPER_H_
 
-#include "cocos2d.h"
+#include "CCPlatformMacros.h"
 
 NS_CC_BEGIN
 

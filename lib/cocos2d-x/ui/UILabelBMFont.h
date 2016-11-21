@@ -29,6 +29,8 @@
 
 NS_CC_BEGIN
 
+class CCLabelBMFont;
+
 namespace ui {
     
 /**
@@ -81,7 +83,7 @@ protected:
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
 protected:
-    cocos2d::CCLabelBMFont* _labelBMFontRenderer;
+    CCLabelBMFont* _labelBMFontRenderer;
     bool _fntFileHasInit;
     std::string _fntFileName;
     std::string _stringValue;

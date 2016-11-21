@@ -34,7 +34,6 @@ using namespace std;
 
 NS_CC_BEGIN
 
-CC_DLL const char* cocos2dVersion();
 
 static SharedPtr<CCConfiguration> s_gSharedConfiguration;
 
@@ -58,7 +57,7 @@ bool CCConfiguration::init(void)
 	m_pValueDict = CCDictionary::create();
 	m_pValueDict->retain();
 
-	m_pValueDict->setObject( CCString::create( cocos2dVersion() ), "cocos2d.x.version");
+	m_pValueDict->setObject( CCString::create( "quick-x 0.0.1" ), "cocos2d.x.version");
 
 
 #if CC_ENABLE_PROFILERS

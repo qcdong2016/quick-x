@@ -8,7 +8,6 @@ extern "C" {
 }
 #endif
 
-#include "cocos2d.h"
 #include "CCLuaStack.h"
 #include "CCLuaValue.h"
 #include "CCLuaEngine.h"

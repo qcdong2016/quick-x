@@ -353,13 +353,11 @@ extern "C" {
 
 #include <map>
 #include <string>
-#include "cocos2d.h"
 #include "CCLuaEngine.h"
 #include "CCLuaValue.h"
-#include "audio/SimpleAudioEngine.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;]])
+]])
 
     replace([[/* Exported function */
 TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])

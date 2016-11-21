@@ -33,14 +33,12 @@ extern "C" {
 
 #include <map>
 #include <string>
-#include "cocos2d.h"
 #include "CCLuaEngine.h"
 #include "audio/SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
-using namespace CocosDenshion;
 
 
 

@@ -25,6 +25,14 @@
 #include "UILayout.h"
 #include "ui/UIHelper.h"
 #include "sprite_nodes/CCScale9Sprite.h"
+#include "sprite_nodes/CCSprite.h"
+#include "draw_nodes/CCDrawNode.h"
+#include "cocoa/CCDictionary.h"
+#include "kazmath/kazmath.h"
+#include "kazmath/GL/matrix.h"
+#include "layers_scenes_transitions_nodes/CCLayer.h"
+#include "CCEGLView.h"
+#include "draw_nodes/CCDrawingPrimitives.h"
 
 NS_CC_BEGIN
 

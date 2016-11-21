@@ -25,6 +25,8 @@
 
 #include "CCEditBox.h"
 #include "CCEditBoxImpl.h"
+#include "textures/CCTexture2D.h"
+#include "sprite_nodes/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 namespace ui {

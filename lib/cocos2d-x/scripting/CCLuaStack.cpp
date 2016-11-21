@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "CCLuaStack.h"
+#include "CCDevice.h"
 
 extern "C" {
 #include "lua.h"

@@ -17,7 +17,7 @@ CCPointArray* CCPointArray::create(unsigned int capacity)
     {
         if (ret->initWithCapacity(capacity))
         {
-            ret->autorelease();
+            ret->autorelease();  
         }
         else
         {

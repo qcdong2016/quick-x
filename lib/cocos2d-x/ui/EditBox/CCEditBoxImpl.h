@@ -26,7 +26,6 @@
 #ifndef __CCEditBoxIMPL_H__
 #define __CCEditBoxIMPL_H__
 
-#include "cocos2d.h"
 #include "CCPlatformMacros.h"
 #include "CCEditBox.h"
 

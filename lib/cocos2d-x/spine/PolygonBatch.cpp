@@ -30,7 +30,9 @@
  *****************************************************************************/
 
 #include "PolygonBatch.h"
+#include "shaders/ccGLStateCache.h"
 #include <spine/extension.h>
+#include "shaders/CCGLProgram.h"
 #include "CCDevice.h"
 
 USING_NS_CC;

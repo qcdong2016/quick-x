@@ -26,10 +26,11 @@
 #ifndef __CCEDITTEXT_H__
 #define __CCEDITTEXT_H__
 
-#include "cocos2d.h"
+
 #include "CCPlatformMacros.h"
 #include "ui/UIButton.h"
 #include "sprite_nodes/CCScale9Sprite.h"
+#include "text_input_node/CCIMEDelegate.h"
 
 NS_CC_BEGIN
 

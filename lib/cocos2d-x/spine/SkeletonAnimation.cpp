@@ -36,7 +36,10 @@
 #include "PolygonBatch.h"
 #include "SpineEvents.h"
 #include "base/MathDefs.h"
-
+#include "shaders/ccGLStateCache.h"
+#include "shaders/CCShaderCache.h"
+#include "draw_nodes/CCDrawingPrimitives.h"
+#include "support/CCPointExtension.h"
 
 namespace cocos2d {
 

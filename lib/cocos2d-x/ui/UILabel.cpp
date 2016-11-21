@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "UILabel.h"
+#include "label_nodes/CCLabelTTF.h"
 
 NS_CC_BEGIN
 

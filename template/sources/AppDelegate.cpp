@@ -1,16 +1,16 @@
 
-#include "cocos2d.h"
 #include "AppDelegate.h"
 #include "audio/SimpleAudioEngine.h"
 #include "scripting/CCLuaEngine.h"
 #include <string>
+#include "CCEGLView.h"
 
 #include "engine/CCModule.h"
+#include "engine/CCDirector.h"
 #include "spine/spine-cocos2dx.h"
 
 using namespace std;
 using namespace cocos2d;
-using namespace CocosDenshion;
 
 AppDelegate::AppDelegate()
 {

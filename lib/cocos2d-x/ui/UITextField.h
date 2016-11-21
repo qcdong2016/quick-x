@@ -26,6 +26,7 @@
 #define __UITEXTFIELD_H__
 
 #include "UIWidget.h"
+#include "text_input_node/CCTextFieldTTF.h"
 
 NS_CC_BEGIN
 

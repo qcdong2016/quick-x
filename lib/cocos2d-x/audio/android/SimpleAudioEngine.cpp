@@ -25,7 +25,6 @@ THE SOFTWARE.
 #include "audio/SimpleAudioEngine.h"
 #include "jni/SimpleAudioEngineJni.h"
 
-#include "cocos2d.h"
 #include <cstring>
 #include <android/log.h>
 #include <jni/JniHelper.h>

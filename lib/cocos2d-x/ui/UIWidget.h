@@ -25,9 +25,11 @@
 #ifndef __UIWIDGET_H__
 #define __UIWIDGET_H__
 
-#include "cocos2d.h"
 #include "Layouts/UILayoutDefine.h"
 #include "Layouts/UILayoutParameter.h"
+#include "engine/CCObject.h"
+#include "cocoa/CCArray.h"
+#include "base_nodes/CCNode.h"
 
 NS_CC_BEGIN
 

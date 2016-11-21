@@ -1,3 +1,4 @@
+$#include "actions/CCActionInterval.h"
 
 class CCActionInterval : public CCFiniteTimeAction
 {

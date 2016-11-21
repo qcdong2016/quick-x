@@ -26,6 +26,8 @@
 #define __LAYOUTPARMETER_H__
 
 #include "UILayoutDefine.h"
+#include <string>
+#include "engine/CCObject.h"
 
 NS_CC_BEGIN
 

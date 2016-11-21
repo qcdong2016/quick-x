@@ -34,8 +34,7 @@ LOCAL_SRC_FILES := \
     crypto/CCCrypto.cpp \
     crypto/libbase64.c \
     crypto/md5.cpp \
-    crypto/xxtea.c \
-    cocos2d.cpp \
+    crypto/xxtea.c \cocos
     CCConfiguration.cpp \
     CCScheduler.cpp \
     CCCamera.cpp \

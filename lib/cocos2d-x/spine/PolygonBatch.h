@@ -32,7 +32,9 @@
 #ifndef SPINE_POLYGONBATCH_H_
 #define SPINE_POLYGONBATCH_H_
 
-#include "cocos2d.h"
+#include "engine/CCObject.h"
+#include "textures/CCTexture2D.h"
+#include "ccTypes.h"
 
 namespace cocos2d {
 

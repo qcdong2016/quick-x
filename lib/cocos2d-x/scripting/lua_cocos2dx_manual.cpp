@@ -8,7 +8,8 @@ extern "C" {
 }
 #endif
 
-#include "cocos2d.h"
+#include "support/CCPointExtension.h"
+#include "actions/CCActionGrid3D.h"
 #include "CCLuaStack.h"
 #include "CCLuaValue.h"
 #include "CCLuaEngine.h"

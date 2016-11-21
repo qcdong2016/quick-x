@@ -1,6 +1,10 @@
 
-#include "cocos2d.h"
 #include "AppDelegate.h"
+#include "CCEGLView.h"
+#include "shaders/ccGLStateCache.h"
+#include "shaders/CCShaderCache.h"
+#include "draw_nodes/CCDrawingPrimitives.h"
+#include "engine/CCDirector.h"
 #include "platform/android/jni/JniHelper.h"
 #include <jni.h>
 #include <android/log.h>

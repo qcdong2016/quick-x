@@ -25,7 +25,6 @@
 #ifndef __UILAYOUTDEFINE_H__
 #define __UILAYOUTDEFINE_H__
 
-#include "cocos2d.h"
 #include "CCPlatformMacros.h"
 
 NS_CC_BEGIN

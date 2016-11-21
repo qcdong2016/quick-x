@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "UILabelBMFont.h"
+#include "label_nodes/CCLabelBMFont.h"
 
 NS_CC_BEGIN
 
