@@ -26,6 +26,8 @@
 #ifndef __CCEditBoxIMPLMAC_H__
 #define __CCEditBoxIMPLMAC_H__
 
+#include "engine/CCObject.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
 #import <Foundation/Foundation.h>

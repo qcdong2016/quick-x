@@ -10,9 +10,9 @@ function AppBase:ctor(appName, packageRoot)
     self.name = appName
     self.packageRoot = packageRoot or "app"
 
-    local notificationCenter = CCNotificationCenter:sharedNotificationCenter()
-    notificationCenter:registerScriptObserver(nil, handler(self, self.onEnterBackground), "APP_ENTER_BACKGROUND_EVENT")
-    notificationCenter:registerScriptObserver(nil, handler(self, self.onEnterForeground), "APP_ENTER_FOREGROUND_EVENT")
+    -- local notificationCenter = CCNotificationCenter:sharedNotificationCenter()
+    -- notificationCenter:registerScriptObserver(nil, handler(self, self.onEnterBackground), "APP_ENTER_BACKGROUND_EVENT")
+    -- notificationCenter:registerScriptObserver(nil, handler(self, self.onEnterForeground), "APP_ENTER_FOREGROUND_EVENT")
 
     self.snapshots_ = {}
 

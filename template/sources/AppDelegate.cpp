@@ -26,6 +26,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    ModuleManager::addModule<CoreModule>();
     ModuleManager::addModule<SpineModule>();
 
     // initialize director

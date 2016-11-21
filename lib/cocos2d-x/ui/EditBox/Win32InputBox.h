@@ -1,7 +1,7 @@
 #ifndef __03022006__WIN32INPUTBOX__
 #define __03022006__WIN32INPUTBOX__
 
-#include "cocos2d.h"
+#include "engine/CCObject.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 /*

@@ -167,9 +167,9 @@ int CCDevice::addAlertButton(const char* buttonTitle)
     return [[CCNativeIOS sharedInstance] addAlertButton:buttonTitle_];
 }
 
-void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+void CCDevice::showAlert()
 {
-    [[CCNativeIOS sharedInstance] showAlertViewWithDelegate:delegate];
+    [[CCNativeIOS sharedInstance] showAlertView];
 }
 
 void CCDevice::cancelAlert(void)

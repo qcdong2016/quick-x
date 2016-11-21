@@ -176,6 +176,8 @@ CCDirector::~CCDirector(void)
     CC_SAFE_DELETE(m_pLastUpdate);
     // delete fps string
     delete []m_pszFPS;
+    
+    _subSustems.clear();
 }
 
 void CCDirector::setDefaultValues(void)

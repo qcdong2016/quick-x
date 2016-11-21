@@ -3,8 +3,10 @@
 #import "native/ios/CCStoreReceiptVerifyRequestIOS.h"
 #import "json/SBJSON.h"
 
+
 #include "crypto/CCCrypto.h"
 #include <string>
+#include "cocoa/CCString.h"
 
 #ifndef utf8cstr
 #define utf8cstr(nsstr) (nsstr ? [nsstr cStringUsingEncoding:NSUTF8StringEncoding] : "")
