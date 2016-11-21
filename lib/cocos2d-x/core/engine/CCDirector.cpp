@@ -87,12 +87,16 @@ static WeakPtr<CCDirector> s_SharedDirector;
 #define kDefaultFPS        60  // 60 frames per second
 extern const char* cocos2dVersion(void);
 
+// define in ccobject.cpp
+void setCCOBJ_director_ref(CCDirector* ref);
 CCDirector* CCDirector::sharedDirector(void)
 {
     if (!s_SharedDirector)
     {
         s_SharedDirector = new CCDirector();
         s_SharedDirector->init();
+        
+        setCCOBJ_director_ref(s_SharedDirector);
     }
 
     return s_SharedDirector;
@@ -735,6 +739,7 @@ void CCDirector::purgeDirector()
     m_pobOpenGLView = NULL;
 
 	s_SharedDirector.Reset();
+    setCCOBJ_director_ref(nullptr);
 }
 
 void CCDirector::setNextScene(void)
