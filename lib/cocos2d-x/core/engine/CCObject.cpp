@@ -29,6 +29,8 @@ THE SOFTWARE.
 #include <vector>
 #include <map>
 
+#include "CCDirector.h"
+
 NS_CC_BEGIN
 
 
@@ -74,6 +76,14 @@ bool TypeInfo::isTypeOf(const TypeInfo* typeInfo) const
 
 static std::map<EventID, std::set<CCObject*> > eventReceivers;
 static std::map<CCObject*, std::map<EventID, std::set<CCObject*> > > specificEventReceivers;
+
+// the director should destruct before events system.
+// fix me;
+static SharedPtr<CCDirector> s_director_ref;
+void setCCOBJ_director_ref(CCDirector* ref)
+{
+    s_director_ref = ref;
+};
 
 static void _removeEventSender(CCObject* sender)
 {
