@@ -6,17 +6,6 @@ typedef enum
     BRIGHT_HIGHLIGHT
 }BrightStyle;
 
-typedef enum
-{
-    WidgetTypeWidget, //control
-    WidgetTypeContainer //container
-}WidgetType;
-
-typedef enum
-{
-    UI_TEX_TYPE_LOCAL,
-    UI_TEX_TYPE_PLIST
-}TextureResType;
 
 typedef enum
 {
@@ -197,7 +186,6 @@ class Widget : public CCNode
     const char* getName() const;
     
     
-    WidgetType getWidgetType() const;
     
     virtual void setSize(const CCSize &size);
     

@@ -85,7 +85,7 @@ public:
      *
      * @param texType @see TextureResType. UI_TEX_TYPE_LOCAL means local file, UI_TEX_TYPE_PLIST means sprite frame.
      */
-    void setBackGroundImage(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setBackGroundImage(const char* fileName);
     std::string getBackGroundImage() { return _backGroundImageFileName; }
 
     /**
@@ -291,7 +291,6 @@ protected:
     std::string _backGroundImageFileName;
     CCRect _backGroundImageCapInsets;
     LayoutBackGroundColorType _colorType;
-    TextureResType _bgImageTexType;
     CCLayerColor* _colorRender;
     CCLayerGradient* _gradientRender;
     ccColor3B _cColor;

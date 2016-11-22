@@ -273,7 +273,6 @@
     <ClCompile Include="..\cocos2d-x\ui\ScrollWidget\UIScrollView.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UIButton.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UICheckBox.cpp" />
-    <ClCompile Include="..\cocos2d-x\ui\UIHelper.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UIImageView.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UILabel.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UILabelAtlas.cpp" />
@@ -584,7 +583,6 @@
     <ClInclude Include="..\cocos2d-x\ui\ScrollWidget\UIScrollView.h" />
     <ClInclude Include="..\cocos2d-x\ui\UIButton.h" />
     <ClInclude Include="..\cocos2d-x\ui\UICheckBox.h" />
-    <ClInclude Include="..\cocos2d-x\ui\UIHelper.h" />
     <ClInclude Include="..\cocos2d-x\ui\UIImageView.h" />
     <ClInclude Include="..\cocos2d-x\ui\UILabel.h" />
     <ClInclude Include="..\cocos2d-x\ui\UILabelAtlas.h" />

@@ -465,9 +465,6 @@
     <ClCompile Include="..\cocos2d-x\ui\UICheckBox.cpp">
       <Filter>cocos2d-x\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\UIHelper.cpp">
-      <Filter>cocos2d-x\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\UIImageView.cpp">
       <Filter>cocos2d-x\ui</Filter>
     </ClCompile>
@@ -1269,9 +1266,6 @@
       <Filter>cocos2d-x\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\UICheckBox.h">
-      <Filter>cocos2d-x\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\UIHelper.h">
       <Filter>cocos2d-x\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\UIImageView.h">

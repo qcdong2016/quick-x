@@ -12,7 +12,6 @@ LOCAL_SRC_FILES := \
     Layouts/UILayoutDefine.cpp \
     Layouts/UILayoutParameter.cpp \
     UIWidget.cpp \
-    UIHelper.cpp \
     UITouchGroup.cpp \
     ScrollWidget/UIListView.cpp \
     ScrollWidget/UIPageView.cpp \

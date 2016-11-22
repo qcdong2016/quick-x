@@ -77,7 +77,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled);
     
     /**
      * Load backGround texture for checkbox.
@@ -86,7 +86,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureBackGround(const char* backGround,TextureResType type = UI_TEX_TYPE_LOCAL);
+    void loadTextureBackGround(const char* backGround);
     
     /**
      * Load backGroundSelected texture for checkbox.
@@ -95,7 +95,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureBackGroundSelected(const char* backGroundSelected,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureBackGroundSelected(const char* backGroundSelected);
     
     /**
      * Load cross texture for checkbox.
@@ -104,7 +104,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureFrontCross(const char* cross,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureFrontCross(const char* cross);
     
     /**
      * Load backGroundDisabled texture for checkbox.
@@ -113,7 +113,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureBackGroundDisabled(const char* backGroundDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureBackGroundDisabled(const char* backGroundDisabled);
     
     /**
      * Load frontCrossDisabled texture for checkbox.
@@ -122,7 +122,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureFrontCrossDisabled(const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureFrontCrossDisabled(const char* frontCrossDisabled);
    
     const std::string& getTextureBackGround() { return _backGroundFileName; }
     const std::string& getTextureBackGroundSelected() { return _backGroundSelectedFileName; }
@@ -195,12 +195,6 @@ protected:
 
     CCObject*       _checkBoxEventListener;
     SEL_SelectedStateEvent    _checkBoxEventSelector;
-    
-    TextureResType _backGroundTexType;
-    TextureResType _backGroundSelectedTexType;
-    TextureResType _frontCrossTexType;
-    TextureResType _backGroundDisabledTexType;
-    TextureResType _frontCrossDisabledTexType;
     
     std::string _backGroundFileName;
     std::string _backGroundSelectedFileName;

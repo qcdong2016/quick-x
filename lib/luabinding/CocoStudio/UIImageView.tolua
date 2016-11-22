@@ -4,7 +4,7 @@ class ImageView : public Widget
     ImageView();
     virtual ~ImageView();
     static ImageView* create();
-    void loadTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexture(const char* fileName);
     const std::string& getTexture();
 
     void setTextureRect(const CCRect& rect);

@@ -53,9 +53,6 @@ _scale9Enabled(false),
 _capInsetsNormal(CCRectZero),
 _capInsetsPressed(CCRectZero),
 _capInsetsDisabled(CCRectZero),
-_normalTexType(UI_TEX_TYPE_LOCAL),
-_pressedTexType(UI_TEX_TYPE_LOCAL),
-_disabledTexType(UI_TEX_TYPE_LOCAL),
 _normalTextureSize(_size),
 _pressedTextureSize(_size),
 _disabledTextureSize(_size),
@@ -138,9 +135,9 @@ void Button::setScale9Enabled(bool able)
         _buttonDisableRenderer = CCSprite::create();
     }
 
-    loadTextureNormal(_normalFileName.c_str(), _normalTexType);
-    loadTexturePressed(_clickedFileName.c_str(), _pressedTexType);
-    loadTextureDisabled(_disabledFileName.c_str(), _disabledTexType);
+    loadTextureNormal(_normalFileName.c_str());
+    loadTexturePressed(_clickedFileName.c_str());
+    loadTextureDisabled(_disabledFileName.c_str());
     CCNode::addChild(_buttonNormalRenderer, NORMAL_RENDERER_Z, -1);
     CCNode::addChild(_buttonClickedRenderer,PRESSED_RENDERER_Z, -1);
     CCNode::addChild(_buttonDisableRenderer,DISABLED_RENDERER_Z, -1);
@@ -174,51 +171,31 @@ void Button::ignoreContentAdaptWithSize(bool ignore)
     }
 }
 
-void Button::loadTextures(const char* normal,const char* selected,const char* disabled,TextureResType texType)
+void Button::loadTextures(const char* normal,const char* selected,const char* disabled)
 {
-    loadTextureNormal(normal,texType);
-    loadTexturePressed(selected,texType);
-    loadTextureDisabled(disabled,texType);
+    loadTextureNormal(normal);
+    loadTexturePressed(selected);
+    loadTextureDisabled(disabled);
 }
 
-void Button::loadTextureNormal(const char* normal,TextureResType texType)
+void Button::loadTextureNormal(const char* normal)
 {
     if (!normal || strcmp(normal, "") == 0)
     {
         return;
     }
     _normalFileName = normal;
-    _normalTexType = texType;
     if (_scale9Enabled)
     {
         CCScale9Sprite* normalRendererScale9 = static_cast<CCScale9Sprite*>(_buttonNormalRenderer);
-        switch (_normalTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                normalRendererScale9->initWithFile(normal);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                normalRendererScale9->initWithSpriteFrameName(normal);
-                break;
-            default:
-                break;
-        }
+		normalRendererScale9->initWithFile(normal);
+		
         normalRendererScale9->setCapInsets(_capInsetsNormal);
     }
     else
     {
         CCSprite* normalRenderer = static_cast<CCSprite*>(_buttonNormalRenderer);
-        switch (_normalTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                normalRenderer->initWithFile(normal);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                normalRenderer->initWithSpriteFrameName(normal);
-                break;
-            default:
-                break;
-        }
+		normalRenderer->initWithFile(normal);
     }
     _normalTextureSize = _buttonNormalRenderer->getContentSize();
     normalTextureScaleChangedWithSize();
@@ -229,44 +206,24 @@ void Button::loadTextureNormal(const char* normal,TextureResType texType)
     _normalTextureLoaded = true;
 }
 
-void Button::loadTexturePressed(const char* selected,TextureResType texType)
+void Button::loadTexturePressed(const char* selected)
 {
     if (!selected || strcmp(selected, "") == 0)
     {
         return;
     }
     _clickedFileName = selected;
-    _pressedTexType = texType;
     if (_scale9Enabled)
     {
         CCScale9Sprite* clickedRendererScale9 = static_cast<CCScale9Sprite*>(_buttonClickedRenderer);
-        switch (_pressedTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                clickedRendererScale9->initWithFile(selected);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                clickedRendererScale9->initWithSpriteFrameName(selected);
-                break;
-            default:
-                break;
-        }
+		clickedRendererScale9->initWithFile(selected);
         clickedRendererScale9->setCapInsets(_capInsetsPressed);
     }
     else
     {
-        CCSprite* clickedRenderer = static_cast<CCSprite*>(_buttonClickedRenderer);
-        switch (_pressedTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                clickedRenderer->initWithFile(selected);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                clickedRenderer->initWithSpriteFrameName(selected);
-                break;
-            default:
-                break;
-        }
+		CCSprite* clickedRenderer = static_cast<CCSprite*>(_buttonClickedRenderer);
+		clickedRenderer->initWithFile(selected);
+		
     }
     _pressedTextureSize = _buttonClickedRenderer->getContentSize();
     pressedTextureScaleChangedWithSize();
@@ -277,44 +234,24 @@ void Button::loadTexturePressed(const char* selected,TextureResType texType)
     _pressedTextureLoaded = true;
 }
 
-void Button::loadTextureDisabled(const char* disabled,TextureResType texType)
+void Button::loadTextureDisabled(const char* disabled)
 {
     if (!disabled || strcmp(disabled, "") == 0)
     {
         return;
     }
     _disabledFileName = disabled;
-    _disabledTexType = texType;
     if (_scale9Enabled)
     {
         CCScale9Sprite* disabledScale9 = static_cast<CCScale9Sprite*>(_buttonDisableRenderer);
-        switch (_disabledTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                disabledScale9->initWithFile(disabled);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                disabledScale9->initWithSpriteFrameName(disabled);
-                break;
-            default:
-                break;
-        }
+		disabledScale9->initWithFile(disabled);
         disabledScale9->setCapInsets(_capInsetsDisabled);
     }
     else
     {
         CCSprite* disabledRenderer = static_cast<CCSprite*>(_buttonDisableRenderer);
-        switch (_disabledTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                disabledRenderer->initWithFile(disabled);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                disabledRenderer->initWithSpriteFrameName(disabled);
-                break;
-            default:
-                break;
-        }
+		disabledRenderer->initWithFile(disabled);
+		
     }
     _disabledTextureSize = _buttonDisableRenderer->getContentSize();
     disabledTextureScaleChangedWithSize();
@@ -731,9 +668,9 @@ void Button::copySpecialProperties(Widget *widget)
     {   
         _prevIgnoreSize = button->_prevIgnoreSize;
         setScale9Enabled(button->_scale9Enabled);
-        loadTextureNormal(button->_normalFileName.c_str(), button->_normalTexType);
-        loadTexturePressed(button->_clickedFileName.c_str(), button->_pressedTexType);
-        loadTextureDisabled(button->_disabledFileName.c_str(), button->_disabledTexType);
+        loadTextureNormal(button->_normalFileName.c_str());
+        loadTexturePressed(button->_clickedFileName.c_str());
+        loadTextureDisabled(button->_disabledFileName.c_str());
         setCapInsetsNormalRenderer(button->_capInsetsNormal);
         setCapInsetsPressedRenderer(button->_capInsetsPressed);
         setCapInsetsDisabledRenderer(button->_capInsetsDisabled);

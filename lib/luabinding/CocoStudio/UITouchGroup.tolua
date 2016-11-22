@@ -14,8 +14,6 @@ class TouchGroup : public CCLayer
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     void addWidget(Widget* widget);
     void removeWidget(Widget* widget);
-    Widget* getWidgetByTag(int tag);
-    Widget* getWidgetByName(const char* name);
     virtual void clear();
     Widget* getRootWidget();
 };

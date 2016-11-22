@@ -67,7 +67,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextures(const char* normal,const char* selected,const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextures(const char* normal,const char* selected,const char* disabled);
     
     /**
      * Load normal state texture for button.
@@ -76,7 +76,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureNormal(const char* normal, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureNormal(const char* normal);
     
     /**
      * Load selected state texture for button.
@@ -85,7 +85,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTexturePressed(const char* selected, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexturePressed(const char* selected);
     
     /**
      * Load dark state texture for button.
@@ -94,7 +94,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTextureDisabled(const char* disabled, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextureDisabled(const char* disabled);
         const std::string& getTextureNormal() { return _normalFileName; }
     const std::string& getTexturePressed(){ return _clickedFileName; }
     const std::string& getTextureDisabled() { return _disabledFileName; }
@@ -204,9 +204,6 @@ protected:
     CCRect _capInsetsNormal;
     CCRect _capInsetsPressed;
     CCRect _capInsetsDisabled;
-    TextureResType _normalTexType;
-    TextureResType _pressedTexType;
-    TextureResType _disabledTexType;
     CCSize _normalTextureSize;
     CCSize _pressedTextureSize;
     CCSize _disabledTextureSize;

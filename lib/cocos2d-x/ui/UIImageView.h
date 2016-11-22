@@ -60,7 +60,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexture(const char* fileName);
     const std::string& getTexture() { return _textureFile; }
 
     /**
@@ -117,7 +117,6 @@ protected:
     CCRect _capInsets;
     CCNode* _imageRenderer;
     std::string _textureFile;
-    TextureResType _imageTexType;
     CCSize _imageTextureSize;
 };
 

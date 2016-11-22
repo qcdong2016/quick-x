@@ -10,12 +10,12 @@ class CheckBox : public Widget
     CheckBox();
     virtual ~CheckBox();
     static CheckBox* create();
-    void loadTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadTextureBackGround(const char* backGround,TextureResType type = UI_TEX_TYPE_LOCAL);
-    void loadTextureBackGroundSelected(const char* backGroundSelected,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadTextureFrontCross(const char* cross,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadTextureBackGroundDisabled(const char* backGroundDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadTextureFrontCrossDisabled(const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled);
+    void loadTextureBackGround(const char* backGround);
+    void loadTextureBackGroundSelected(const char* backGroundSelected);
+    void loadTextureFrontCross(const char* cross);
+    void loadTextureBackGroundDisabled(const char* backGroundDisabled);
+    void loadTextureFrontCrossDisabled(const char* frontCrossDisabled);
     const std::string& getTextureBackGround();
     const std::string& getTextureBackGroundSelected();
     const std::string& getTextureFrontCross();

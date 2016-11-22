@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "UITouchGroup.h"
-#include "UIHelper.h"
 
 NS_CC_BEGIN
 
@@ -120,24 +119,6 @@ void TouchGroup::addWidget(Widget* widget)
 void TouchGroup::removeWidget(Widget* widget)
 {
     m_pRootWidget->removeChild(widget);
-}
-
-Widget* TouchGroup::getWidgetByTag(int tag)
-{
-    if (!m_pRootWidget)
-    {
-        return NULL;
-    }
-    return UIHelper::seekWidgetByTag(m_pRootWidget, tag);
-}
-
-Widget* TouchGroup::getWidgetByName(const char* name)
-{
-    if (!m_pRootWidget)
-    {
-        return NULL;
-    }
-    return UIHelper::seekWidgetByName(m_pRootWidget, name);
 }
 
 Widget* TouchGroup::getRootWidget()

@@ -9,7 +9,7 @@ class Slider : public Widget
     Slider();
     virtual ~Slider();
     static Slider* create();
-    void loadBarTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadBarTexture(const char* fileName);
     void setScale9Enabled(bool able);
     bool isScale9Enabled();
     void setCapInsets(const CCRect &capInsets);
@@ -17,11 +17,11 @@ class Slider : public Widget
     const CCRect& getCapInsetBarRenderer();
     void setCapInsetProgressBarRebderer(const CCRect &capInsets);
     const CCRect& getCapInsetProgressBarRebderer();
-    void loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadSlidBallTextureNormal(const char* normal,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadSlidBallTexturePressed(const char* pressed,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadSlidBallTextureDisabled(const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    void loadProgressBarTexture(const char* fileName, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled);
+    void loadSlidBallTextureNormal(const char* normal);
+    void loadSlidBallTexturePressed(const char* pressed);
+    void loadSlidBallTextureDisabled(const char* disabled);
+    void loadProgressBarTexture(const char* fileName);
         const std::string& getTexture() ;
     const std::string& getProgressBarTexture() ;
     const std::string& getSlidBallNormalTexture() ;
