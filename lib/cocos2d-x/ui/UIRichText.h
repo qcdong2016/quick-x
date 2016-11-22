@@ -26,6 +26,7 @@
 #define __UIRICHTEXT_H__
 
 #include "UIWidget.h"
+#include <vector>
 
 NS_CC_BEGIN
 

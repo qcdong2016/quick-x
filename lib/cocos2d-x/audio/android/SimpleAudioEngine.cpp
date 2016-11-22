@@ -25,7 +25,6 @@ THE SOFTWARE.
 #include "audio/SimpleAudioEngine.h"
 #include "jni/SimpleAudioEngineJni.h"
 
-#include "cocos2d.h"
 #include <cstring>
 #include <android/log.h>
 #include <jni/JniHelper.h>
@@ -45,7 +44,7 @@ USING_NS_CC;
 #define  CLASS_NAME   "org/cocos2dx/lib/Cocos2dxHelper"
 #define  METHOD_NAME  "getDeviceModel"
 
-namespace CocosDenshion {
+namespace cocos2d {
 
 static std::string getFullPathWithoutAssetsPrefix(const char* pszFilename)
 {

@@ -26,19 +26,15 @@ THE SOFTWARE.
 #ifndef _SIMPLE_AUDIO_ENGINE_H_
 #define _SIMPLE_AUDIO_ENGINE_H_
 
+#include "CCPlatformMacros.h"
 #include <stddef.h>
 #include <typeinfo>
 #include <ctype.h>
 #include <string.h>
 #include "CCPlatformDefine.h"
 
-namespace CocosDenshion {
+NS_CC_BEGIN
 
-class TypeInfo
-{
-public:
-    virtual long getClassTypeInfo() = 0;
-};
 
 static inline unsigned int getHashCodeByString(const char *key)
 {
@@ -59,7 +55,7 @@ static inline unsigned int getHashCodeByString(const char *key)
 @brief          offer a VERY simple interface to play background music & sound effect
 */
 
-class CC_DLL SimpleAudioEngine : public TypeInfo
+class CC_DLL SimpleAudioEngine
 {
 public:
     SimpleAudioEngine();
@@ -68,13 +64,7 @@ public:
      *  @lua NA
      */
     ~SimpleAudioEngine();
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual long getClassTypeInfo() {
-        return getHashCodeByString(typeid(CocosDenshion::SimpleAudioEngine).name());
-    }
+
 
     /**
     @brief Get the shared Engine object,it will new one when first time be called
@@ -234,7 +224,7 @@ public:
     void unloadEffect(const char* pszFilePath);
 };
 
-} // end of namespace CocosDenshion
+NS_CC_END
 
 #endif // _SIMPLE_AUDIO_ENGINE_H_
 

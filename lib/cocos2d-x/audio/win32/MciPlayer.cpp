@@ -3,7 +3,7 @@
 #define WIN_CLASS_NAME        L"CocosDenshionCallbackWnd"
 #define BREAK_IF(cond)      if (cond) break;
 
-namespace CocosDenshion {
+namespace cocos2d {
 
 static HINSTANCE s_hInstance;
 static MCIERROR  s_mciError;

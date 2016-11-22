@@ -610,7 +610,7 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
             strokeSize   = textDefinition->m_stroke.m_strokeSize;
         }
         
-        CCImage* pImage = new CCImage();
+        SharedPtr<CCImage> pImage(new CCImage());
         do
         {
             CC_BREAK_IF(NULL == pImage);
@@ -640,8 +640,6 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
             bRet = initWithImage(pImage);
             
         } while (0);
-        
-        CC_SAFE_RELEASE(pImage);
         
         return bRet;
     

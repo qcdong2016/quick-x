@@ -5,6 +5,7 @@
 #import "EAGLView.h"
 #import "CCNativeMac.h"
 #import "openudid/OpenUDIDMac.h"
+#include "CCDevice.h"
 
 NS_CC_BEGIN
 
@@ -174,9 +175,9 @@ int CCDevice::addAlertButton(const char* buttonTitle)
     return (int)[[CCNativeMac sharedInstance] addAlertButton:buttonTitle_];
 }
 
-void CCDevice::showAlert(CCAlertViewDelegate* delegate)
+void CCDevice::showAlert()
 {
-    [[CCNativeMac sharedInstance] showAlertViewWithDelegate:delegate];
+    [[CCNativeMac sharedInstance] showAlertView];
 }
 
 void CCDevice::cancelAlert(void)

@@ -28,6 +28,9 @@
 #include "ui/UIWidget.h"
 
 NS_CC_BEGIN
+class CCLayerColor;
+class CCLayerGradient;
+class CCDrawNode;
 
 namespace ui {
 

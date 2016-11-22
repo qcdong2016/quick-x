@@ -2,7 +2,7 @@
 #define __CCDEVICE_H__
 
 #include "CCPlatformMacros.h"
-#include "CCAlertViewDelegate.h"
+
 #include <string>
 
 NS_CC_BEGIN

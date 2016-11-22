@@ -29,6 +29,8 @@
 
 NS_CC_BEGIN
 
+class CCLabelTTF;
+
 namespace ui{
 
 /**

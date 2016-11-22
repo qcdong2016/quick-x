@@ -2,7 +2,8 @@
 #ifndef __CC_EXTENSION_CCSTORE_PRODUCT_H_
 #define __CC_EXTENSION_CCSTORE_PRODUCT_H_
 
-#include "cocos2d.h"
+#include "CCPlatformMacros.h"
+#include "engine/CCObject.h"
 
 NS_CC_BEGIN
 

@@ -23,6 +23,10 @@
  THE SOFTWARE.
  ****************************************************************************/
 #include "CCEditBoxImplIOS.h"
+#include "CCEGLView.h"
+
+#include "support/CCPointExtension.h"
+#include "label_nodes/CCLabelTTF.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 

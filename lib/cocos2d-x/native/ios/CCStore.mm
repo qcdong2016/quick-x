@@ -2,6 +2,7 @@
 #include "native/store/CCStore.h"
 
 #import "native/ios/CCStoreIOS.h"
+#include "cocoa/CCString.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 extern "C" {

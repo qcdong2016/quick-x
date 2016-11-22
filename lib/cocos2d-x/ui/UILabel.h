@@ -28,6 +28,7 @@
 #include "UIWidget.h"
 
 NS_CC_BEGIN
+class CCLabelTTF;
 
 namespace ui {
 

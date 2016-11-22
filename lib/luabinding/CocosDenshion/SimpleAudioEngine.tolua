@@ -1,3 +1,4 @@
+$#include "audio/SimpleAudioEngine.h"
 
 class SimpleAudioEngine
 {

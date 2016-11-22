@@ -70,7 +70,7 @@ local sharedDirector = director
 local resourceCache  = sharedDirector.resourceCache
 
 -- local sharedTextureCache     = CCTextureCache:sharedTextureCache()
-local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
+-- local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
 local sharedAnimationCache   = CCAnimationCache:sharedAnimationCache()
 
 -- check device screen size

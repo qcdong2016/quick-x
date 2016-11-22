@@ -26,9 +26,9 @@
 #ifndef __UILAYER_H__
 #define __UILAYER_H__
 
-#include "cocos2d.h"
 #include "CCPlatformMacros.h"
 #include "UIWidget.h"
+#include "layers_scenes_transitions_nodes/CCLayer.h"
 
 NS_CC_BEGIN
 

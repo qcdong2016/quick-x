@@ -26,6 +26,7 @@
 #define __UILABELATLAS_H__
 
 #include "UIWidget.h"
+#include "label_nodes/CCLabelAtlas.h"
 
 NS_CC_BEGIN
 

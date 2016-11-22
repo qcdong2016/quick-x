@@ -2,10 +2,10 @@
 #ifndef __CC_HTTP_REQUEST_H_
 #define __CC_HTTP_REQUEST_H_
 
-#include "cocos2d.h"
 #include "CCHTTPRequestDelegate.h"
 
 #include "CCLuaEngine.h"
+#include "CCStdC.h"
 
 #ifdef _WINDOWS_
 #include <Windows.h>

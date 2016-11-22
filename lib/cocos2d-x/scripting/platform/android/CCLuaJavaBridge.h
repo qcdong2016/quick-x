@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "cocos2d.h"
 #include "platform/android/jni/JniHelper.h"
 
 using namespace std;

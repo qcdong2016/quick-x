@@ -25,6 +25,7 @@
 #include "UIWidget.h"
 #include "Layouts/UILayout.h"
 #include "UIHelper.h"
+#include "cocoa/CCDictionary.h"
 
 NS_CC_BEGIN
 

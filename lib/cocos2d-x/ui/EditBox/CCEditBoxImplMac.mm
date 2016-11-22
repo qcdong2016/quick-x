@@ -24,6 +24,8 @@
  ****************************************************************************/
 
 #include "CCEditBoxImplMac.h"
+#include "support/CCPointExtension.h"
+#include "CCEGLView.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 

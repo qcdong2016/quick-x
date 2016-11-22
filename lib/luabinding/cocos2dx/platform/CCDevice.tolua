@@ -1,3 +1,5 @@
+$#include "platform/CCDevice.h"
+
 enum
 {
     kLanguageEnglish = 0,

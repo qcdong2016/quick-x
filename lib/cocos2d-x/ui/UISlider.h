@@ -29,6 +29,8 @@
 
 NS_CC_BEGIN
 
+class CCSprite;
+
 namespace ui {
 
 typedef enum

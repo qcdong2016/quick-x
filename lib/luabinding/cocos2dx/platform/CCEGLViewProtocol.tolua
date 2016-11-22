@@ -1,3 +1,4 @@
+$#include "CCEGLView.h"
 
 typedef enum
 {

@@ -33,12 +33,10 @@ extern "C" {
 
 #include <map>
 #include <string>
-#include "cocos2d.h"
 #include "CCLuaEngine.h"
 #include "audio/SimpleAudioEngine.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;
 
 /* Exported function */
 TOLUA_API int  tolua_spine_open (lua_State* tolua_S);

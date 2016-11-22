@@ -82,17 +82,21 @@ NS_CC_BEGIN
 // XXX it should be a Director ivar. Move it there once support for multiple directors is added
 
 // singleton stuff
-static SharedPtr<CCDisplayLinkDirector> s_SharedDirector;
+static WeakPtr<CCDirector> s_SharedDirector;
 
 #define kDefaultFPS        60  // 60 frames per second
 extern const char* cocos2dVersion(void);
 
+// define in ccobject.cpp
+void setCCOBJ_director_ref(CCDirector* ref);
 CCDirector* CCDirector::sharedDirector(void)
 {
     if (!s_SharedDirector)
     {
-        s_SharedDirector = new CCDisplayLinkDirector();
+        s_SharedDirector = new CCDirector();
         s_SharedDirector->init();
+        
+        setCCOBJ_director_ref(s_SharedDirector);
     }
 
     return s_SharedDirector;
@@ -113,7 +117,7 @@ bool CCDirector::init(void)
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     imgui_init();
 #endif
-
+	m_bInvalid = (false);
     // scenes
     m_pRunningScene = NULL;
     m_pNextScene = NULL;
@@ -176,6 +180,8 @@ CCDirector::~CCDirector(void)
     CC_SAFE_DELETE(m_pLastUpdate);
     // delete fps string
     delete []m_pszFPS;
+    
+    _subSustems.clear();
 }
 
 void CCDirector::setDefaultValues(void)
@@ -733,6 +739,7 @@ void CCDirector::purgeDirector()
     m_pobOpenGLView = NULL;
 
 	s_SharedDirector.Reset();
+    setCCOBJ_director_ref(nullptr);
 }
 
 void CCDirector::setNextScene(void)
@@ -966,7 +973,7 @@ void CCDirector::setDelegate(CCDirectorDelegate* pDelegate)
 // should we implement 4 types of director ??
 // I think DisplayLinkDirector is enough
 // so we now only support DisplayLinkDirector
-void CCDisplayLinkDirector::startAnimation(void)
+void CCDirector::startAnimation(void)
 {
     if (CCTime::gettimeofdayCocos2d(m_pLastUpdate, NULL) != 0)
     {
@@ -979,7 +986,7 @@ void CCDisplayLinkDirector::startAnimation(void)
 #endif // EMSCRIPTEN
 }
 
-void CCDisplayLinkDirector::mainLoop(void)
+void CCDirector::mainLoop(void)
 {
     if (m_bPurgeDirecotorInNextLoop)
     {
@@ -995,12 +1002,12 @@ void CCDisplayLinkDirector::mainLoop(void)
      }
 }
 
-void CCDisplayLinkDirector::stopAnimation(void)
+void CCDirector::stopAnimation(void)
 {
     m_bInvalid = true;
 }
 
-void CCDisplayLinkDirector::setAnimationInterval(double dValue)
+void CCDirector::setAnimationInterval(double dValue)
 {
     m_dAnimationInterval = dValue;
     if (! m_bInvalid)

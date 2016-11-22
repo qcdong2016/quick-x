@@ -2,7 +2,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#include "CCAlertViewDelegate.h"
 
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
@@ -15,7 +14,6 @@ USING_NS_CC;
     UIActivityIndicatorView *activityIndicatorView_;
     
     UIAlertView *alertView_;
-    CCAlertViewDelegate *alertViewDelegates_;
 #if CC_LUA_ENGINE_ENABLED > 0
     LUA_FUNCTION alertViewLuaListener_;
 #endif
@@ -38,7 +36,7 @@ USING_NS_CC;
              andMessage:(NSString *)message
    andCancelButtonTitle:(NSString *)cancelButtonTitle;
 - (NSInteger)addAlertButton:(NSString *)buttonTitle;
-- (void)showAlertViewWithDelegate:(CCAlertViewDelegate *)delegate;
+- (void)showAlertView;
 - (void)removeAlertView;
 - (void)cancelAlertView;
 

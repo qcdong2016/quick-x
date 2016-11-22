@@ -1,6 +1,4 @@
 
-#include "CCAlertViewDelegate.h"
-
 #if CC_LUA_ENGINE_ENABLED > 0
 #include "CCLuaEngine.h"
 #endif
@@ -32,7 +30,7 @@ USING_NS_CC;
              andMessage:(NSString *)message
    andCancelButtonTitle:(NSString *)cancelButtonTitle;
 - (NSInteger)addAlertButton:(NSString *)buttonTitle;
-- (void)showAlertViewWithDelegate:(CCAlertViewDelegate *)delegate;
+- (void)showAlertView;
 - (void)removeAlertView;
 - (void)cancelAlertView;
 

@@ -24,19 +24,19 @@
 
 #import "SimpleAudioEngine_objc.h"
 
-@implementation SimpleAudioEngine
+@implementation SimpleAudioEngineOC
 
-static SimpleAudioEngine *sharedEngine = nil;
+static SimpleAudioEngineOC *sharedEngine = nil;
 static CDSoundEngine* soundEngine = nil;
 static CDAudioManager *am = nil;
 static CDBufferManager *bufferManager = nil;
 
 // Init
-+ (SimpleAudioEngine *) sharedEngine
++ (SimpleAudioEngineOC *) sharedEngine
 {
     @synchronized(self)     {
         if (!sharedEngine)
-            sharedEngine = [[SimpleAudioEngine alloc] init];
+            sharedEngine = [[SimpleAudioEngineOC alloc] init];
     }
     return sharedEngine;
 }

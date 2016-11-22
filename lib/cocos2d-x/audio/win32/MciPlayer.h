@@ -4,7 +4,7 @@
 #include "CCStdC.h"
 #include <mmsystem.h>
 
-namespace CocosDenshion {
+namespace cocos2d {
 
 class MciPlayer
 {

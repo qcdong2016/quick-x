@@ -24,10 +24,12 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVAudioSession.h>
 #import "AppController.h"
-#import "cocos2d.h"
 #import "EAGLView.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+
+#include "IO/FileSystem.h"
+#include "engine/CCDirector.h"
 
 @implementation AppController
 

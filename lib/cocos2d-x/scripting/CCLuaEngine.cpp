@@ -23,10 +23,14 @@
  ****************************************************************************/
 
 #include "CCLuaEngine.h"
-#include "cocos2d.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCScriptEventDispatcher.h"
 #include "CCScheduler.h"
+#include "base_nodes/CCNode.h"
+
+#include "touch_dispatcher/CCTouchDispatcher.h"
+#include "engine/CCDirector.h"
+#include "layers_scenes_transitions_nodes/CCLayer.h"
 
 NS_CC_BEGIN
 

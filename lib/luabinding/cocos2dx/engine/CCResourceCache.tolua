@@ -1,4 +1,6 @@
 
+$#include "engine/CCResourceCache.h"
+
 
 
 class ResourceCache

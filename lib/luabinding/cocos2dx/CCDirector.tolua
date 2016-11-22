@@ -1,3 +1,4 @@
+$#include "engine/CCDirector.h"
 
 class SubSystem : public CCObject
 {

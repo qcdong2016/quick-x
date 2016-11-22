@@ -28,6 +28,7 @@
 #include "ui/UIWidget.h"
 
 NS_CC_BEGIN
+class CCSprite;
 
 namespace ui {
 

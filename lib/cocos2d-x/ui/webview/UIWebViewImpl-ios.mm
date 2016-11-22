@@ -24,12 +24,13 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#include "cocos2d.h"
-
 #include "UIWebViewImpl-ios.h"
 #include "IO/FileSystem.h"
 #include "UIWebView.h"
 #include "platform/ios/EAGLView.h"
+#include "engine/CCDirector.h"
+#include "CCEGLView.h"
+#include "support/CCPointExtension.h"
 
 
 

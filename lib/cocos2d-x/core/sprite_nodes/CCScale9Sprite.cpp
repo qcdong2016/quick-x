@@ -27,6 +27,11 @@ THE SOFTWARE.
 
 #include "CCScale9Sprite.h"
 
+#include "support/CCPointExtension.h"
+#include "sprite_nodes/CCSpriteBatchNode.h"
+#include "sprite_nodes/CCSprite.h"
+#include "sprite_nodes/CCSpriteFrame.h"
+
 NS_CC_BEGIN
 
 enum positions

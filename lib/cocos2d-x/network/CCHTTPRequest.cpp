@@ -1,6 +1,8 @@
 #include "CCHTTPRequest.h"
 #include <stdio.h>
 #include <iostream>
+#include "CCScheduler.h"
+#include <sstream>
 
 extern "C" {
 #include "lua.h"

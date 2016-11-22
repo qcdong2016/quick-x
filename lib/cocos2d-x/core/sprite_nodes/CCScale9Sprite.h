@@ -28,11 +28,13 @@ THE SOFTWARE.
 #ifndef __CCScale9Sprite_H__
 #define __CCScale9Sprite_H__
 
-#include "cocos2d.h"
 #include "platform/CCPlatformMacros.h"
+#include "base_nodes/CCNode.h"
 
 NS_CC_BEGIN
-
+class CCSprite;
+class CCSpriteBatchNode;
+class CCSpriteFrame;
 /**
  * @addtogroup GUI
  * @{

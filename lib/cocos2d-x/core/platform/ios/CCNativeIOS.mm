@@ -103,7 +103,7 @@ static CCNativeIOS *s_sharedInstance;
     return [alertView_ addButtonWithTitle:buttonTitle];
 }
 
-- (void)showAlertViewWithDelegate:(CCAlertViewDelegate *)delegate
+- (void)showAlertView
 {
     if (!alertView_)
     {
@@ -112,7 +112,7 @@ static CCNativeIOS *s_sharedInstance;
     }
 
     CCLOG("[CCNativeIOS] showAlertViewWithDelegate()");
-    alertViewDelegates_ = delegate;
+//    alertViewDelegates_ = delegate;
 #if CC_LUA_ENGINE_ENABLED > 0
     [self removeAlertViewLuaListener];
 #endif
@@ -133,7 +133,7 @@ static CCNativeIOS *s_sharedInstance;
 #if CC_LUA_ENGINE_ENABLED > 0
     [self removeAlertViewLuaListener];
 #endif
-    alertViewDelegates_ = nil;
+//    alertViewDelegates_ = nil;
 }
 
 - (void)cancelAlertView
@@ -160,7 +160,7 @@ static CCNativeIOS *s_sharedInstance;
     
     CCLOG("[CCNativeIOS] showAlertViewWithLuaListener()");
     alertViewLuaListener_ = listener;
-    alertViewDelegates_ = nil;
+//    alertViewDelegates_ = nil;
     [alertView_ show];
 }
 
@@ -194,10 +194,10 @@ static CCNativeIOS *s_sharedInstance;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertViewDelegates_)
-    {
-        alertViewDelegates_->alertViewClickedButtonAtIndex(buttonIndex);
-    }
+//    if (alertViewDelegates_)
+//    {
+//        alertViewDelegates_->alertViewClickedButtonAtIndex(buttonIndex);
+//    }
 #if CC_LUA_ENGINE_ENABLED > 0
     if (alertViewLuaListener_)
     {
