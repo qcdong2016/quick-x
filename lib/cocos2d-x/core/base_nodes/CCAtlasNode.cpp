@@ -96,8 +96,8 @@ bool CCAtlasNode::initWithTexture(CCTexture2D* texture, unsigned int tileWidth, 
     
     
     // shader stuff
-    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture_uColor));
-    ccGLUseProgram(_material->getGLProgram());
+    setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTexture_uColor));
+    ccGLUseProgram(_renderState->getGLProgram());
     m_pTextureAtlas->initWithTexture(texture, itemsToRender);
 
     if (! m_pTextureAtlas)
@@ -116,7 +116,7 @@ bool CCAtlasNode::initWithTexture(CCTexture2D* texture, unsigned int tileWidth, 
 
     m_uQuadsToDraw = itemsToRender;
 
-	_material->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
+	_renderState->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
 
     return true;
 }
@@ -174,7 +174,7 @@ void CCAtlasNode::setColor(const ccColor3B& color3)
         tmp.g = tmp.g * m_displayedOpacity /255;
         tmp.b = tmp.b * m_displayedOpacity /255;
     }
-	_material->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
+	_renderState->set4f("u_color", m_displayedColor.r / 255.0f, m_displayedColor.g / 255.0f, m_displayedColor.b / 255.0f, m_displayedOpacity / 255.0f);
     CCNode::setColor(tmp);
 }
 

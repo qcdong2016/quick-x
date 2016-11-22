@@ -94,7 +94,7 @@ bool CCSpriteBatchNode::initWithTexture(CCTexture2D *tex, unsigned int capacity)
     m_pobDescendants = new CCArray();
     m_pobDescendants->initWithCapacity(capacity);
 
-    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
+    setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTextureColor));
     return true;
 }
 

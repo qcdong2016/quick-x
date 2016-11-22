@@ -39,7 +39,7 @@
 #include "touch_dispatcher/CCTouchDelegateProtocol.h"
 #include "script_support/CCScriptSupport.h"
 #include "ccTypes.h"
-#include "shaders/CCMaterial.h"
+#include "shaders/CCRenderState.h"
 
 NS_CC_BEGIN
 
@@ -870,8 +870,8 @@ public:
     virtual void setShaderProgram(CCGLProgram *pShaderProgram);
     /// @} end of Shader Program
 
-	virtual Material* getMaterial();
-	virtual void setMaterial(Material* m);
+	virtual RenderState* getRenderState();
+	virtual void setRenderState(RenderState* m);
 
     /**
      * Returns a camera object that lets you move the node using a gluLookAt
@@ -1545,7 +1545,7 @@ protected:
 	SharedPtr<CCObject> m_pUserObject;            ///< A user assigned CCObject
 
 	SharedPtr<CCGLProgram> m_pShaderProgram;      ///< OpenGL shader
-	Material* _material;
+	RenderState* _renderState;
 
     ccGLServerState m_eGLServerState;   ///< OpenGL servier side state
 

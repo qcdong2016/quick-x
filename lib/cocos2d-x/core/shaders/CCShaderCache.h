@@ -34,7 +34,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class Material;
+class RenderState;
 /**
  * @addtogroup shaders
  * @{
@@ -70,14 +70,14 @@ public:
     /** reload the default shaders */
     void reloadDefaultShaders();
 
-	Material* addMaterialFromShaderSource(const char* v, const char* f);
+	RenderState* addRenderStateFromShaderSource(const char* v, const char* f);
 	/// for default materials.
-	Material* getMaterial(int key);
+	RenderState* getRenderState(int key);
 private:
     bool init();
 
 	std::vector<SharedPtr<CCGLProgram> > _shaders;
-	std::vector<SharedPtr<Material> > _materials;
+	std::vector<SharedPtr<RenderState> > _materials;
 };
 
 // end of shaders group

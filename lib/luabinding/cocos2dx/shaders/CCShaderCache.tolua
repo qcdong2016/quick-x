@@ -14,7 +14,7 @@ enum
     kCCShader_PositionLengthTextureColor,
 };
 
-class MaterialParam
+class ShaderParam
 {
 public:
 
@@ -43,10 +43,10 @@ public:
     void set4f(float v1, float v2, float v3, float v4);
 };
 
-class Material : public CCObject
+class RenderState : public CCObject
 {
 public:
-    MaterialParam* getParam(const char* name);
+    ShaderParam* getParam(const char* name);
 
     void set1i(const char* name, int v1);
     void set2i(const char* name, int v1, int v2);
@@ -62,6 +62,6 @@ class CCShaderCache
 {
 public:
     static CCShaderCache* sharedShaderCache();
-    Material* addMaterialFromShaderSource(const char* v, const char* f);
-    Material* getMaterial(int key);
+    RenderState* addRenderStateFromShaderSource(const char* v, const char* f);
+    RenderState* getRenderState(int key);
 };

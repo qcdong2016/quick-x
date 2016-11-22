@@ -124,7 +124,7 @@ void SkeletonAnimation::initialize () {
 	blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
 	setOpacityModifyRGB(true);
 
-	setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
+	setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTextureColor));
 	scheduleUpdate();
 
 	_ownsAnimationStateData = true;

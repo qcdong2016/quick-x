@@ -62,7 +62,7 @@ bool CCParticleSystemQuad::initWithTotalParticles(unsigned int numberOfParticles
         setupVBO();
 #endif
 
-        setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
+        setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTextureColor));
         
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA

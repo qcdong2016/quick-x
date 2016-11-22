@@ -98,9 +98,9 @@ default gl blend src function. Compatible with premultiplied alpha images.
 #define CC_NODE_DRAW_SETUP() \
 do { \
     ccGLEnable(m_eGLServerState); \
-    CCAssert(getMaterial(), "No Material set for this node"); \
+    CCAssert(getRenderState(), "No Material set for this node"); \
     { \
-        getMaterial()->use(); \
+        getRenderState()->use(); \
     } \
 } while(0)
 

@@ -518,14 +518,14 @@ void CCNode::setUserObject(CCObject *pUserObject)
     m_pUserObject = pUserObject;
 }
 
-Material* CCNode::getMaterial()
+RenderState* CCNode::getRenderState()
 {
-	return _material;
+	return _renderState;
 }
 
-void CCNode::setMaterial(Material* m)
+void CCNode::setRenderState(RenderState* m)
 {
-	_material = m;
+	_renderState = m;
 }
 
 void CCNode::setShaderProgram(CCGLProgram *pShaderProgram)

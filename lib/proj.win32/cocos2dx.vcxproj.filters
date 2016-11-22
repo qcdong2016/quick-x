@@ -960,9 +960,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\shaders\CCMaterial.cpp">
-      <Filter>cocos2d-x\core\shaders</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
@@ -986,6 +983,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\resources\CCPlistResource.cpp">
       <Filter>cocos2d-x\core\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\shaders\CCRenderState.cpp">
+      <Filter>cocos2d-x\core\shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1883,9 +1883,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\shaders\CCMaterial.h">
-      <Filter>cocos2d-x\core\shaders</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\engine\CCEventImpl.h">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
@@ -1915,6 +1912,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h">
       <Filter>cocos2d-x\core\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\shaders\CCRenderState.h">
+      <Filter>cocos2d-x\core\shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

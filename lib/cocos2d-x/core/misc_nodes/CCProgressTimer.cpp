@@ -86,7 +86,7 @@ bool CCProgressTimer::initWithSprite(CCSprite* sp)
     setBarChangeRate(ccp(1,1));
     setSprite(sp);
     // shader program
-    setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
+    setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTextureColor));
     return true;
 }
 

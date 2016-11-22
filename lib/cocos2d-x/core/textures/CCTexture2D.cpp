@@ -45,7 +45,7 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
-#include "shaders/CCMaterial.h"
+#include "shaders/CCRenderState.h"
 
 NS_CC_BEGIN
 
@@ -294,7 +294,7 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     m_bHasPremultipliedAlpha = false;
     m_bHasMipmaps = false;
 
-	_material = (CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture));
+	_material = (CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTexture));
 
     return true;
 }

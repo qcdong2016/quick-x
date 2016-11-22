@@ -54,7 +54,7 @@ NS_CC_BEGIN
 #endif
 
 static bool s_bInitialized = false;
-static Material* _material = NULL;
+static RenderState* _material = NULL;
 static int s_nColorLocation = -1;
 static ccColor4B s_tColor = {255, 255, 255, 255};
 static int s_nPointSizeLocation = -1;
@@ -90,7 +90,7 @@ static void setGLBufferData(void *buf, GLuint bufSize)
 static void lazy_init( void )
 {
     if( ! s_bInitialized ) {
-		_material = CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_Position_uColor);
+		_material = CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_Position_uColor);
         s_bInitialized = true;
         
         ccDrawColor4B(255, 255, 255, 255);

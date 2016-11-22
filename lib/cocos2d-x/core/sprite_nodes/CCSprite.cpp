@@ -183,7 +183,7 @@ bool CCSprite::initWithTexture(CCTexture2D *pTexture, const CCRect& rect, bool r
         m_sQuad.tr.colors = tmpColor;
 
         // shader program
-        setMaterial(CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTextureColor));
+        setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTextureColor));
 
         // update texture (calls updateBlendFunc)
         setTexture(pTexture);

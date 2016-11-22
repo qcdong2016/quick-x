@@ -6,7 +6,7 @@
 NS_CC_BEGIN
 
 
-class MaterialParam : public RefCounted
+class ShaderParam : public RefCounted
 {
 public:
 
@@ -18,7 +18,7 @@ public:
         SAMPLER
     } type;
 
-	MaterialParam(Uniform* u) : _uniform(u) {};
+	ShaderParam(Uniform* u) : _uniform(u) {};
 
 	void set1i(int v1);
 	void set2i(int v1, int v2);
@@ -32,18 +32,18 @@ public:
 	void setmat(float* mat);
     void setSampler(unsigned i);
 private:
-	friend class Material;
+	friend class RenderState;
 	Uniform* _uniform;
     VariantValue value;
 };
 
-class Material : public CCObject
+class RenderState : public CCObject
 {
 public:
-	Material(CCGLProgram* program);
+	RenderState(CCGLProgram* program);
 
 	CCGLProgram* getGLProgram() { return _program; }
-	MaterialParam* getParam(const char* name);
+	ShaderParam* getParam(const char* name);
 
 	void set1i(const char* name, int v1);
 	void set2i(const char* name, int v1, int v2);
@@ -59,10 +59,10 @@ public:
 private:
 	void bindValue();
 
-	MaterialParam* _matrixP;
-	MaterialParam* _matrixMV;
-	MaterialParam* _matrixMVP;
-	std::map<std::string, SharedPtr<MaterialParam> > _params;
+	ShaderParam* _matrixP;
+	ShaderParam* _matrixMV;
+	ShaderParam* _matrixMVP;
+	std::map<std::string, SharedPtr<ShaderParam> > _params;
 	CCGLProgram* _program;
 };
 

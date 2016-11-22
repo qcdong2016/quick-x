@@ -103,7 +103,7 @@ bool CCGridBase::initWithSize(const CCSize& gridSize, CCTexture2D *pTexture, boo
         bRet = false;
     }
     
-	_material = CCShaderCache::sharedShaderCache()->getMaterial(kCCShader_PositionTexture);
+	_material = CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionTexture);
     calculateVertexPoints();
 
     return bRet;

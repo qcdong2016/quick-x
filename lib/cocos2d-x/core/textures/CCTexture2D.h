@@ -37,7 +37,7 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 class CCImage;
-class Material;
+class RenderState;
 /**
  * @addtogroup textures
  * @{
@@ -297,7 +297,7 @@ private:
 
     bool m_bHasMipmaps;
 
-	Material* _material;
+	RenderState* _material;
 };
 
 

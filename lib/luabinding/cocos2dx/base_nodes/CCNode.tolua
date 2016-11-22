@@ -64,8 +64,8 @@ class CCNode : public CCScriptEventDispatcher
     void setTag(int nTag);
     CCObject* getUserObject();
     void setUserObject(CCObject *pUserObject);
-    Material* getMaterial();
-    void setMaterial(Material *m);
+    RenderState* getRenderState();
+    void setRenderState(RenderState *m);
     CCCamera* getCamera();
     bool isRunning();
     void cleanup(void);

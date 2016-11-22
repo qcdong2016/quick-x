@@ -281,7 +281,7 @@ private:
     const char* logForOpenGLObject(GLuint object, GLInfoFunction infoFunc, GLLogFunction logFunc);
 
 private:
-	friend class Material;
+	friend class RenderState;
     GLuint            m_uProgram;
     GLuint            m_uVertShader;
     GLuint            m_uFragShader;
