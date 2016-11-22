@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "UILayout.h"
-#include "ui/UIHelper.h"
 #include "sprite_nodes/CCScale9Sprite.h"
 #include "sprite_nodes/CCSprite.h"
 #include "draw_nodes/CCDrawNode.h"
@@ -51,7 +50,6 @@ _backGroundImage(NULL),
 _backGroundImageFileName(""),
 _backGroundImageCapInsets(CCRectZero),
 _colorType(LAYOUT_COLOR_NONE),
-_bgImageTexType(UI_TEX_TYPE_LOCAL),
 _colorRender(NULL),
 _gradientRender(NULL),
 _cColor(ccWHITE),
@@ -72,7 +70,6 @@ _clippingRectDirty(true),
 _backGroundImageColor(ccWHITE),
 _backGroundImageOpacity(255)
 {
-    _widgetType = WidgetTypeContainer;
 }
 
 Layout::~Layout()
@@ -535,7 +532,7 @@ void Layout::setBackGroundImageScale9Enabled(bool able)
         _backGroundImage = CCSprite::create();
         CCNode::addChild(_backGroundImage, BACKGROUNDIMAGE_Z, -1);
     }
-    setBackGroundImage(_backGroundImageFileName.c_str(),_bgImageTexType);    
+    setBackGroundImage(_backGroundImageFileName.c_str());    
     setBackGroundImageCapInsets(_backGroundImageCapInsets);
 }
     
@@ -544,7 +541,7 @@ bool Layout::isBackGroundImageScale9Enabled()
     return _backGroundScale9Enabled;
 }
 
-void Layout::setBackGroundImage(const char* fileName,TextureResType texType)
+void Layout::setBackGroundImage(const char* fileName)
 {
     if (!fileName || strcmp(fileName, "") == 0)
     {
@@ -555,36 +552,16 @@ void Layout::setBackGroundImage(const char* fileName,TextureResType texType)
         addBackGroundImage();
     }
     _backGroundImageFileName = fileName;
-    _bgImageTexType = texType;
     if (_backGroundScale9Enabled)
     {
         CCScale9Sprite* bgiScale9 = static_cast<CCScale9Sprite*>(_backGroundImage);
-        switch (_bgImageTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                bgiScale9->initWithFile(fileName);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                bgiScale9->initWithSpriteFrameName(fileName);
-                break;
-            default:
-                break;
-        }
+		bgiScale9->initWithFile(fileName);
+		
         bgiScale9->setPreferredSize(_size);
     }
     else
     {
-        switch (_bgImageTexType)
-        {
-            case UI_TEX_TYPE_LOCAL:
-                static_cast<CCSprite*>(_backGroundImage)->initWithFile(fileName);
-                break;
-            case UI_TEX_TYPE_PLIST:
-                static_cast<CCSprite*>(_backGroundImage)->initWithSpriteFrameName(fileName);
-                break;
-            default:
-                break;
-        }
+		static_cast<CCSprite*>(_backGroundImage)->initWithFile(fileName);
     }
     _backGroundImageTextureSize = _backGroundImage->getContentSize();
     _backGroundImage->setPosition(CCPoint(_size.width/2.0f, _size.height/2.0f));
@@ -886,6 +863,26 @@ void Layout::requestDoLayout()
     _doLayoutDirty = true;
 }
 
+static Widget* seekWidgetByRelativeName(Widget *root, const char *name)
+{
+	if (!root)
+	{
+		return NULL;
+	}
+	ccArray* arrayRootChildren = root->getChildren()->data;
+	int length = arrayRootChildren->num;
+	for (int i = 0; i < length; i++)
+	{
+		Widget* child = static_cast<Widget*>(arrayRootChildren->arr[i]);
+		RelativeLayoutParameter* layoutParameter = dynamic_cast<RelativeLayoutParameter*>(child->getLayoutParameter(LAYOUT_PARAMETER_RELATIVE));
+		if (layoutParameter && strcmp(layoutParameter->getRelativeName(), name) == 0)
+		{
+			return child;
+		}
+	}
+	return NULL;
+}
+
 void Layout::doLayout()
 {
     if (!_doLayoutDirty)
@@ -1012,7 +1009,7 @@ void Layout::doLayout()
                         float finalPosY = 0.0f;
                         if (relativeName && strcmp(relativeName, ""))
                         {
-                            relativeWidget = UIHelper::seekWidgetByRelativeName(this, relativeName);
+                            relativeWidget = seekWidgetByRelativeName(this, relativeName);
                             if (relativeWidget)
                             {
                                 relativeWidgetLP = dynamic_cast<RelativeLayoutParameter*>(relativeWidget->getLayoutParameter(LAYOUT_PARAMETER_RELATIVE));
@@ -1346,7 +1343,7 @@ void Layout::copySpecialProperties(Widget *widget)
     if (layout)
     {
         setBackGroundImageScale9Enabled(layout->_backGroundScale9Enabled);
-        setBackGroundImage(layout->_backGroundImageFileName.c_str(),layout->_bgImageTexType);
+        setBackGroundImage(layout->_backGroundImageFileName.c_str());
         setBackGroundImageCapInsets(layout->_backGroundImageCapInsets);
         setBackGroundColorType(layout->_colorType);
         setBackGroundColor(layout->_cColor);

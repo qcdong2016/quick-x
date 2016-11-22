@@ -71,7 +71,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadBarTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadBarTexture(const char* fileName);
     
     /**
      * Sets if slider is using scale9 renderer.
@@ -118,7 +118,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled);
     
     /**
      * Load normal state texture for slider ball.
@@ -127,7 +127,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadSlidBallTextureNormal(const char* normal,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadSlidBallTextureNormal(const char* normal);
     
     /**
      * Load selected state texture for slider ball.
@@ -136,7 +136,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadSlidBallTexturePressed(const char* pressed,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadSlidBallTexturePressed(const char* pressed);
     
     /**
      * Load dark state texture for slider ball.
@@ -145,7 +145,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadSlidBallTextureDisabled(const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadSlidBallTextureDisabled(const char* disabled);
     
     /**
      * Load dark state texture for slider progress bar.
@@ -154,7 +154,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadProgressBarTexture(const char* fileName, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadProgressBarTexture(const char* fileName);
     const std::string& getTexture() { return _textureFile; }
     const std::string& getProgressBarTexture() { return _progressBarTextureFile; }
     const std::string& getSlidBallNormalTexture() { return _slidBallNormalTextureFile; }
@@ -241,11 +241,6 @@ protected:
 
     CCObject*       _sliderEventListener;
     SEL_SlidPercentChangedEvent    _sliderEventSelector;
-    TextureResType _barTexType;
-    TextureResType _progressBarTexType;
-    TextureResType _ballNTexType;
-    TextureResType _ballPTexType;
-    TextureResType _ballDTexType;
 };
 
 }

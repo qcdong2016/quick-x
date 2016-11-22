@@ -24,7 +24,6 @@
 
 #include "UIWidget.h"
 #include "Layouts/UILayout.h"
-#include "UIHelper.h"
 #include "cocoa/CCDictionary.h"
 
 NS_CC_BEGIN
@@ -44,7 +43,6 @@ _touchEndPos(CCPointZero),
 _touchEventListener(NULL),
 _touchEventSelector(NULL),
 _name("default"),
-_widgetType(WidgetTypeWidget),
 _actionTag(0),
 _size(CCSizeZero),
 _customSize(CCSizeZero),
@@ -968,11 +966,6 @@ void Widget::setName(const char* name)
 const char* Widget::getName() const
 {
     return _name.c_str();
-}
-
-WidgetType Widget::getWidgetType() const
-{
-    return _widgetType;
 }
 
 void Widget::setLayoutParameter(LayoutParameter *parameter)

@@ -13,7 +13,7 @@ class LoadingBar : public Widget
     static LoadingBar* create();
     void setDirection(LoadingBarType dir);
     int getDirection();
-    void loadTexture(const char* texture,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexture(const char* texture);
     const std::string& getTexture();
 
     void setPercent(int percent);

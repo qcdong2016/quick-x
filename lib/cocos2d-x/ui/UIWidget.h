@@ -44,18 +44,6 @@ typedef enum
 
 typedef enum
 {
-    WidgetTypeWidget, //control
-    WidgetTypeContainer //container
-}WidgetType;
-
-typedef enum
-{
-    UI_TEX_TYPE_LOCAL,
-    UI_TEX_TYPE_PLIST
-}TextureResType;
-
-typedef enum
-{
     TOUCH_EVENT_BEGAN,
     TOUCH_EVENT_MOVED,
     TOUCH_EVENT_ENDED,
@@ -494,15 +482,6 @@ public:
     const char* getName() const;
     
     /**
-     * Returns a type that is widget's type
-     *
-     * @see WidgetType
-     *
-     * @return A WidgetType
-     */
-    WidgetType getWidgetType() const;
-    
-    /**
      * Changes the size that is widget's size
      *
      * @param size that is widget's size
@@ -712,7 +691,6 @@ protected:
 
     
     std::string _name;
-    WidgetType _widgetType;
 	int _actionTag;
     CCSize _size;
     CCSize _customSize;

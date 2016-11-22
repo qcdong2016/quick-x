@@ -40,7 +40,6 @@ _barType(LoadingBarTypeLeft),
 _percent(100),
 _totalLength(0),
 _barRenderer(NULL),
-_renderBarTexType(UI_TEX_TYPE_LOCAL),
 _barRendererTextureSize(CCSizeZero),
 _scale9Enabled(false),
 _prevIgnoreSize(true),
@@ -107,43 +106,23 @@ int LoadingBar::getDirection()
     return _barType;
 }
 
-void LoadingBar::loadTexture(const char* texture,TextureResType texType)
+void LoadingBar::loadTexture(const char* texture)
 {
     if (!texture || strcmp(texture, "") == 0)
     {
         return;
     }
-    _renderBarTexType = texType;
     _textureFile = texture;
-    switch (_renderBarTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            if (_scale9Enabled)
-            {
-                CCScale9Sprite* barRendererScale9 = static_cast<CCScale9Sprite*>(_barRenderer);
-                barRendererScale9->initWithFile(texture);
-                barRendererScale9->setCapInsets(_capInsets);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_barRenderer)->initWithFile(texture);
-            }
-            break;
-        case UI_TEX_TYPE_PLIST:
-            if (_scale9Enabled)
-            {
-                CCScale9Sprite* barRendererScale9 = static_cast<CCScale9Sprite*>(_barRenderer);
-                barRendererScale9->initWithSpriteFrameName(texture);
-                barRendererScale9->setCapInsets(_capInsets);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_barRenderer)->initWithSpriteFrameName(texture);
-            }
-            break;
-        default:
-            break;
-    }
+	if (_scale9Enabled)
+	{
+		CCScale9Sprite* barRendererScale9 = static_cast<CCScale9Sprite*>(_barRenderer);
+		barRendererScale9->initWithFile(texture);
+		barRendererScale9->setCapInsets(_capInsets);
+	}
+	else
+	{
+		static_cast<CCSprite*>(_barRenderer)->initWithFile(texture);
+	}
     updateRGBAToRenderer(_barRenderer);
     _barRendererTextureSize = _barRenderer->getContentSize();
     
@@ -184,7 +163,7 @@ void LoadingBar::setScale9Enabled(bool enabled)
     {
         _barRenderer = CCSprite::create();
     }
-    loadTexture(_textureFile.c_str(),_renderBarTexType);
+    loadTexture(_textureFile.c_str());
     CCNode::addChild(_barRenderer, BAR_RENDERER_Z, -1);
     if (_scale9Enabled)
     {
@@ -359,7 +338,7 @@ void LoadingBar::copySpecialProperties(Widget *widget)
     {
         _prevIgnoreSize = loadingBar->_prevIgnoreSize;
         setScale9Enabled(loadingBar->_scale9Enabled);
-        loadTexture(loadingBar->_textureFile.c_str(), loadingBar->_renderBarTexType);
+        loadTexture(loadingBar->_textureFile.c_str());
         setCapInsets(loadingBar->_capInsets);
         setPercent(loadingBar->_percent);
         setDirection(loadingBar->_barType);

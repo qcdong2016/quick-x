@@ -43,7 +43,6 @@ _prevIgnoreSize(true),
 _capInsets(CCRectZero),
 _imageRenderer(NULL),
 _textureFile(""),
-_imageTexType(UI_TEX_TYPE_LOCAL),
 _imageTextureSize(_size)
 {
 
@@ -72,45 +71,24 @@ void ImageView::initRenderer()
     CCNode::addChild(_imageRenderer, IMAGE_RENDERER_Z, -1);
 }
 
-void ImageView::loadTexture(const char *fileName, TextureResType texType)
+void ImageView::loadTexture(const char *fileName)
 {
     if (!fileName || strcmp(fileName, "") == 0)
     {
         return;
     }
     _textureFile = fileName;
-    _imageTexType = texType;
-    switch (_imageTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            if (_scale9Enabled)
-            {
-                CCScale9Sprite* imageRendererScale9 = STATIC_CAST_SCALE9SPRITE;
-                imageRendererScale9->initWithFile(fileName);
-                imageRendererScale9->setCapInsets(_capInsets);
-            }
-            else
-            {
-                CCSprite* imageRenderer = STATIC_CAST_CCSPRITE;
-                imageRenderer->initWithFile(fileName);
-            }
-            break;
-        case UI_TEX_TYPE_PLIST:
-            if (_scale9Enabled)
-            {
-                CCScale9Sprite* imageRendererScale9 = STATIC_CAST_SCALE9SPRITE;
-                imageRendererScale9->initWithSpriteFrameName(fileName);
-                imageRendererScale9->setCapInsets(_capInsets);
-            }
-            else
-            {
-                CCSprite* imageRenderer = STATIC_CAST_CCSPRITE;
-                imageRenderer->initWithSpriteFrameName(fileName);
-            }
-            break;
-        default:
-            break;
-    }
+	if (_scale9Enabled)
+	{
+		CCScale9Sprite* imageRendererScale9 = STATIC_CAST_SCALE9SPRITE;
+		imageRendererScale9->initWithFile(fileName);
+		imageRendererScale9->setCapInsets(_capInsets);
+	}
+	else
+	{
+		CCSprite* imageRenderer = STATIC_CAST_CCSPRITE;
+		imageRenderer->initWithFile(fileName);
+	}
     _imageTextureSize = _imageRenderer->getContentSize();
     imageTextureScaleChangedWithSize();
     updateAnchorPoint();
@@ -175,7 +153,7 @@ void ImageView::setScale9Enabled(bool able)
     {
         _imageRenderer = CCSprite::create();
     }
-    loadTexture(_textureFile.c_str(),_imageTexType);
+    loadTexture(_textureFile.c_str());
     CCNode::addChild(_imageRenderer, IMAGE_RENDERER_Z, -1);
     if (_scale9Enabled)
     {
@@ -305,7 +283,7 @@ void ImageView::copySpecialProperties(Widget *widget)
     {
         _prevIgnoreSize = imageView->_prevIgnoreSize;
         setScale9Enabled(imageView->_scale9Enabled);
-        loadTexture(imageView->_textureFile.c_str(), imageView->_imageTexType);
+        loadTexture(imageView->_textureFile.c_str());
         setCapInsets(imageView->_capInsets);
     }
 }

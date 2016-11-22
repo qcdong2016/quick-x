@@ -56,12 +56,7 @@ _slidBallDisabledTextureFile(""),
 _capInsetsBarRenderer(CCRectZero),
 _capInsetsProgressBarRenderer(CCRectZero),
 _sliderEventListener(NULL),
-_sliderEventSelector(NULL),
-_barTexType(UI_TEX_TYPE_LOCAL),
-_progressBarTexType(UI_TEX_TYPE_LOCAL),
-_ballNTexType(UI_TEX_TYPE_LOCAL),
-_ballPTexType(UI_TEX_TYPE_LOCAL),
-_ballDTexType(UI_TEX_TYPE_LOCAL)
+_sliderEventSelector(NULL)
 {
 }
 
@@ -112,77 +107,33 @@ void Slider::initRenderer()
     CCNode::addChild(_slidBallRenderer, SLIDBALL_RENDERER_Z, -1);
 }
 
-void Slider::loadBarTexture(const char* fileName, TextureResType texType)
+void Slider::loadBarTexture(const char* fileName)
 {
     if (!fileName || strcmp(fileName, "") == 0)
     {
         return;
     }
     _textureFile = fileName;
-    _barTexType = texType;
-    switch (_barTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            if (_scale9Enabled)
-            {
-                static_cast<CCScale9Sprite*>(_barRenderer)->initWithFile(fileName);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_barRenderer)->initWithFile(fileName);
-            }
-            break;
-        case UI_TEX_TYPE_PLIST:
-            if (_scale9Enabled)
-            {
-                static_cast<CCScale9Sprite*>(_barRenderer)->initWithSpriteFrameName(fileName);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_barRenderer)->initWithSpriteFrameName(fileName);
-            }
-            break;
-        default:
-            break;
-    }
+	if (_scale9Enabled)
+		static_cast<CCScale9Sprite*>(_barRenderer)->initWithFile(fileName);
+	else
+		static_cast<CCSprite*>(_barRenderer)->initWithFile(fileName);
     updateRGBAToRenderer(_barRenderer);
     barRendererScaleChangedWithSize();
     progressBarRendererScaleChangedWithSize();
 }
 
-void Slider::loadProgressBarTexture(const char *fileName, TextureResType texType)
+void Slider::loadProgressBarTexture(const char *fileName)
 {
     if (!fileName || strcmp(fileName, "") == 0)
     {
         return;
     }
-    _progressBarTextureFile = fileName;
-    _progressBarTexType = texType;
-    switch (_progressBarTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            if (_scale9Enabled)
-            {
-                static_cast<CCScale9Sprite*>(_progressBarRenderer)->initWithFile(fileName);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_progressBarRenderer)->initWithFile(fileName);
-            }
-            break;
-        case UI_TEX_TYPE_PLIST:
-            if (_scale9Enabled)
-            {
-                static_cast<CCScale9Sprite*>(_progressBarRenderer)->initWithSpriteFrameName(fileName);
-            }
-            else
-            {
-                static_cast<CCSprite*>(_progressBarRenderer)->initWithSpriteFrameName(fileName);
-            }
-            break;
-        default:
-            break;
-    }
+	_progressBarTextureFile = fileName;
+	if (_scale9Enabled)
+		static_cast<CCScale9Sprite*>(_progressBarRenderer)->initWithFile(fileName);
+	else
+		static_cast<CCSprite*>(_progressBarRenderer)->initWithFile(fileName);
     updateRGBAToRenderer(_progressBarRenderer);
     _progressBarRenderer->setAnchorPoint(CCPoint(0.0f, 0.5f));
     _progressBarTextureSize = _progressBarRenderer->getContentSize();
@@ -211,8 +162,8 @@ void Slider::setScale9Enabled(bool able)
         _barRenderer = CCSprite::create();
         _progressBarRenderer = CCSprite::create();
     }
-    loadBarTexture(_textureFile.c_str(), _barTexType);
-    loadProgressBarTexture(_progressBarTextureFile.c_str(), _progressBarTexType);
+    loadBarTexture(_textureFile.c_str());
+    loadProgressBarTexture(_progressBarTextureFile.c_str());
     CCNode::addChild(_barRenderer, BASEBAR_RENDERER_Z, -1);
     CCNode::addChild(_progressBarRenderer, PROGRESSBAR_RENDERER_Z, -1);
     if (_scale9Enabled)
@@ -279,76 +230,46 @@ const CCRect& Slider::getCapInsetProgressBarRebderer()
     return _capInsetsProgressBarRenderer;
 }
 
-void Slider::loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled,TextureResType texType)
+void Slider::loadSlidBallTextures(const char* normal,const char* pressed,const char* disabled)
 {
-    loadSlidBallTextureNormal(normal, texType);
-    loadSlidBallTexturePressed(pressed,texType);
-    loadSlidBallTextureDisabled(disabled,texType);
+    loadSlidBallTextureNormal(normal);
+    loadSlidBallTexturePressed(pressed);
+    loadSlidBallTextureDisabled(disabled);
 }
 
-void Slider::loadSlidBallTextureNormal(const char* normal,TextureResType texType)
+void Slider::loadSlidBallTextureNormal(const char* normal)
 {
     if (!normal || strcmp(normal, "") == 0)
     {
         return;
     }
     _slidBallNormalTextureFile = normal;
-    _ballNTexType = texType;
-    switch (_ballNTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            _slidBallNormalRenderer->initWithFile(normal);
-            break;
-        case UI_TEX_TYPE_PLIST:
-            _slidBallNormalRenderer->initWithSpriteFrameName(normal);
-            break;
-        default:
-            break;
-    }
+	_slidBallNormalRenderer->initWithFile(normal);
+	
     updateRGBAToRenderer(_slidBallNormalRenderer);
 }
 
-void Slider::loadSlidBallTexturePressed(const char* pressed,TextureResType texType)
+void Slider::loadSlidBallTexturePressed(const char* pressed)
 {
     if (!pressed || strcmp(pressed, "") == 0)
     {
         return;
     }
     _slidBallPressedTextureFile = pressed;
-    _ballPTexType = texType;
-    switch (_ballPTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            _slidBallPressedRenderer->initWithFile(pressed);
-            break;
-        case UI_TEX_TYPE_PLIST:
-            _slidBallPressedRenderer->initWithSpriteFrameName(pressed);
-            break;
-        default:
-            break;
-    }
+	_slidBallPressedRenderer->initWithFile(pressed);
+	
     updateRGBAToRenderer(_slidBallPressedRenderer);
 }
 
-void Slider::loadSlidBallTextureDisabled(const char* disabled,TextureResType texType)
+void Slider::loadSlidBallTextureDisabled(const char* disabled)
 {
     if (!disabled || strcmp(disabled, "") == 0)
     {
         return;
     }
     _slidBallDisabledTextureFile = disabled;
-    _ballDTexType = texType;
-    switch (_ballDTexType)
-    {
-        case UI_TEX_TYPE_LOCAL:
-            _slidBallDisabledRenderer->initWithFile(disabled);
-            break;
-        case UI_TEX_TYPE_PLIST:
-            _slidBallDisabledRenderer->initWithSpriteFrameName(disabled);
-            break;
-        default:
-            break;
-    }
+	_slidBallDisabledRenderer->initWithFile(disabled);
+	
     updateRGBAToRenderer(_slidBallDisabledRenderer);
 }
 
@@ -587,11 +508,11 @@ void Slider::copySpecialProperties(Widget *widget)
     {
         _prevIgnoreSize = slider->_prevIgnoreSize;
         setScale9Enabled(slider->_scale9Enabled);
-        loadBarTexture(slider->_textureFile.c_str(), slider->_barTexType);
-        loadProgressBarTexture(slider->_progressBarTextureFile.c_str(), slider->_progressBarTexType);
-        loadSlidBallTextureNormal(slider->_slidBallNormalTextureFile.c_str(), slider->_ballNTexType);
-        loadSlidBallTexturePressed(slider->_slidBallPressedTextureFile.c_str(), slider->_ballPTexType);
-        loadSlidBallTextureDisabled(slider->_slidBallDisabledTextureFile.c_str(), slider->_ballDTexType);
+        loadBarTexture(slider->_textureFile.c_str());
+        loadProgressBarTexture(slider->_progressBarTextureFile.c_str());
+        loadSlidBallTextureNormal(slider->_slidBallNormalTextureFile.c_str());
+        loadSlidBallTexturePressed(slider->_slidBallPressedTextureFile.c_str());
+        loadSlidBallTextureDisabled(slider->_slidBallDisabledTextureFile.c_str());
         setPercent(slider->getPercent());
     }
 }

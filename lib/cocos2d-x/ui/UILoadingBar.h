@@ -86,7 +86,7 @@ public:
      *
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
-    void loadTexture(const char* texture,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void loadTexture(const char* texture);
     const std::string& getTexture() { return _textureFile; }
 
     /**
@@ -149,7 +149,6 @@ protected:
     int _percent;
     float _totalLength;
     CCNode* _barRenderer;
-    TextureResType _renderBarTexType;
     CCSize _barRendererTextureSize;
     bool _scale9Enabled;
     bool _prevIgnoreSize;

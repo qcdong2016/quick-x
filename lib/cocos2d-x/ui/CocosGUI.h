@@ -40,7 +40,6 @@
 #include "ScrollWidget/UIListView.h"
 #include "UILabelBMFont.h"
 #include "ScrollWidget/UIPageView.h"
-#include "UIHelper.h"
 #include "UITouchGroup.h"
 #include "UIRichText.h"
 #include "ui/webview/UIWebView.h"

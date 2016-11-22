@@ -87,20 +87,6 @@ public:
     void removeWidget(Widget* widget);
     
     /**
-     * Finds a widget whose tag is equal tag param from widget tree.
-     *
-     * @param tag.
-     */
-    Widget* getWidgetByTag(int tag);
-    
-    /**
-     * Seek a widget whose name is equal name param from widget tree.
-     *
-     * @param name.
-     */
-    Widget* getWidgetByName(const char* name);
-    
-    /**
      * Remove and clean up all of UILayer's widget.
      */
     virtual void clear();

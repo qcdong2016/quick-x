@@ -29,7 +29,7 @@ class Layout : public Widget
 
     static Layout* create();
         
-    void setBackGroundImage(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setBackGroundImage(const char* fileName);
     std::string getBackGroundImage();
     
     void setBackGroundImageCapInsets(const CCRect& capInsets);
