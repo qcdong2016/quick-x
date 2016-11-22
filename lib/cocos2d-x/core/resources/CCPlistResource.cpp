@@ -157,6 +157,15 @@ static CCSize CCSizeFromString(const char* pszContent)
 	return ret;
 }
 
+CCSpriteFrame* PlistResource::getFrame(const std::string& name)
+{
+    auto iter = _frames.find(name);
+    if (iter == _frames.end())
+        return nullptr;
+    
+    return iter->second;
+}
+
 void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 {
 	SharedPtr<CCDictionary> dict( CCDictionary::createWithContentsOfDataThreadSafe((const char*)buf->getData(), buf->getSize()));

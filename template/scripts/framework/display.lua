@@ -1096,7 +1096,7 @@ sprite:setDisplayFrame(frameNo)
 
 ]]
 function display.newSpriteFrame(frameName)
-    local frame = sharedSpriteFrameCache:spriteFrameByName(frameName)
+    local frame = CCSpriteFrame:create(frameName)
     if not frame then
         printError("display.newSpriteFrame() - invalid frameName %s", tostring(frameName))
     end

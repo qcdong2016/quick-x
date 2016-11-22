@@ -347,11 +347,14 @@ std::string FileSystem::getDirectory(const std::string& path)
 	if (i != -1)
 		return path.substr(0, i);
 
-	return ".";
+	return "";
 }
 
 std::string FileSystem::join(const std::string& a, const std::string& b)
 {
+    if (a.size() == 0 || a == ".")
+        return b;
+    
 	int i = a.find_last_of("/\\");
 	if (i != a.length() - 1)
 		return a + '/' + b;

@@ -30,8 +30,9 @@ Resource* ResourceCache::getResource(ID resType, const std::string& path, void* 
 		if (!FileSystem::isFileExist(FileSystem::fullPathOfFile(plist)))
 			return nullptr;
 
-		ResourceCache::getResource(PlistResource::getTypeStatic(), plist);
-		return getResource(resType, path);
+		PlistResource* p = ResourceCache::getResource<PlistResource>(plist);
+        
+        return p->getFrame(FileSystem::getName(path));
 	}
 
 
