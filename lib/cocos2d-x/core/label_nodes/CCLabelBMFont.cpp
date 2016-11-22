@@ -61,71 +61,8 @@ static unsigned short* copyUTF16StringN(unsigned short* str)
 }
 
 //
-//FNTConfig Cache - free functions
-//
-static CCDictionary* s_pConfigurations = NULL;
-
-CCBMFontConfiguration* FNTConfigLoadFile( const char *fntFile)
-{
-    CCBMFontConfiguration* pRet = NULL;
-
-    if( s_pConfigurations == NULL )
-    {
-        s_pConfigurations = new CCDictionary();
-    }
-
-    pRet = (CCBMFontConfiguration*)s_pConfigurations->objectForKey(fntFile);
-    if( pRet == NULL )
-    {
-        pRet = CCBMFontConfiguration::create(fntFile);
-        if (pRet)
-        {
-            s_pConfigurations->setObject(pRet, fntFile);
-        }
-    }
-
-    return pRet;
-}
-
-void FNTConfigRemoveCache( void )
-{
-    if (s_pConfigurations)
-    {
-        s_pConfigurations->removeAllObjects();
-        CC_SAFE_RELEASE_NULL(s_pConfigurations);
-    }
-}
-
-//
 //BitmapFontConfiguration
 //
-
-CCBMFontConfiguration * CCBMFontConfiguration::create(const char *FNTfile)
-{
-    CCBMFontConfiguration * pRet = new CCBMFontConfiguration();
-    if (pRet->initWithFNTfile(FNTfile))
-    {
-        pRet->autorelease();
-        return pRet;
-    }
-    CC_SAFE_DELETE(pRet);
-    return NULL;
-}
-
-bool CCBMFontConfiguration::initWithFNTfile(const char *FNTfile)
-{
-    m_pKerningDictionary = NULL;
-    m_pFontDefDictionary = NULL;
-
-    m_pCharacterSet = this->parseConfigFile(FNTfile);
-
-    if (! m_pCharacterSet)
-    {
-        return false;
-    }
-
-    return true;
-}
 
 std::set<unsigned int>* CCBMFontConfiguration::getCharacterSet() const
 {
@@ -148,6 +85,12 @@ CCBMFontConfiguration::~CCBMFontConfiguration()
     this->purgeKerningDictionary();
     m_sAtlasName.clear();
     CC_SAFE_DELETE(m_pCharacterSet);
+}
+
+
+void CCBMFontConfiguration::beginLoad(MemBuffer* buf, void* userdata)
+{
+    m_pCharacterSet = parseConfigData(buf);
 }
 
 const char* CCBMFontConfiguration::description(void)
@@ -182,24 +125,14 @@ void CCBMFontConfiguration::purgeFontDefDictionary()
     }
 }
 
-std::set<unsigned int>* CCBMFontConfiguration::parseConfigFile(const char *controlFile)
+std::set<unsigned int>* CCBMFontConfiguration::parseConfigData(MemBuffer* buffer)
 {
-    std::string fullpath = FileSystem::fullPathOfFile(controlFile);
-    CCString *contents = CCString::createWithContentsOfFile(fullpath.c_str());
-
-    CCAssert(contents, "CCBMFontConfiguration::parseConfigFile | Open file error.");
-
     set<unsigned int> *validCharsString = new set<unsigned int>();
-
-    if (!contents)
-    {
-        CCLOG("cocos2d: Error parsing FNTfile %s", controlFile);
-        return NULL;
-    }
 
     // parse spacing / padding
     std::string line;
-    std::string strLeft = contents->getCString();
+    std::string strLeft((const char*)buffer->getData(), buffer->getSize());
+    
     while (strLeft.length() > 0)
     {
         size_t pos = strLeft.find('\n');
@@ -231,7 +164,7 @@ std::set<unsigned int>* CCBMFontConfiguration::parseConfigFile(const char *contr
         }
         else if(line.substr(0,strlen("page id")) == "page id")
         {
-            this->parseImageFileName(line, controlFile);
+            this->parseImageFileName(line, getPath().c_str());
         }
         else if(line.substr(0,strlen("chars c")) == "chars c")
         {
@@ -415,11 +348,6 @@ void CCBMFontConfiguration::parseKerningEntry(std::string line)
 //CCLabelBMFont
 //
 
-//LabelBMFont - Purge Cache
-void CCLabelBMFont::purgeCachedData()
-{
-    FNTConfigRemoveCache();
-}
 
 CCLabelBMFont * CCLabelBMFont::create()
 {
@@ -468,28 +396,25 @@ bool CCLabelBMFont::init()
 
 bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, CCPoint imageOffset/* = CCPointZero*/)
 {
-    CCAssert(!m_pConfiguration, "re-init is no longer supported");
+    CCAssert(!_pConfiguration, "re-init is no longer supported");
     CCAssert( (theString && fntFile) || (theString==NULL && fntFile==NULL), "Invalid params for CCLabelBMFont");
 
     CCTexture2D *texture = NULL;
 
     if (fntFile)
     {
-        CCBMFontConfiguration *newConf = FNTConfigLoadFile(fntFile);
+        CCBMFontConfiguration *newConf = SubSystem::get<ResourceCache>()->getResource<CCBMFontConfiguration>(fntFile);
         if (!newConf)
         {
             CCLOG("cocos2d: WARNING. CCLabelBMFont: Impossible to create font. Please check file: '%s'", fntFile);
-            release();
             return false;
         }
 
-        newConf->retain();
-        CC_SAFE_RELEASE(m_pConfiguration);
-        m_pConfiguration = newConf;
+        _pConfiguration = newConf;
 
         m_sFntFile = fntFile;
 
-		texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
+		texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(_pConfiguration->getAtlasName());
     }
     else
     {
@@ -535,20 +460,16 @@ CCLabelBMFont::CCLabelBMFont()
 , m_sInitialString(NULL)
 , m_pAlignment(kCCTextAlignmentCenter)
 , m_fWidth(-1.0f)
-, m_pConfiguration(NULL)
 , m_bLineBreakWithoutSpaces(false)
 , m_tImageOffset(CCPointZero)
-, m_pReusedChar(NULL)
 {
 
 }
 
 CCLabelBMFont::~CCLabelBMFont()
 {
-    CC_SAFE_RELEASE(m_pReusedChar);
     CC_SAFE_DELETE_ARRAY(m_sString);
     CC_SAFE_DELETE_ARRAY(m_sInitialString);
-    CC_SAFE_RELEASE(m_pConfiguration);
 }
 
 // LabelBMFont - Atlas generation
@@ -557,9 +478,9 @@ int CCLabelBMFont::kerningAmountForFirst(unsigned short first, unsigned short se
     int ret = 0;
     unsigned int key = (first<<16) | (second & 0xffff);
 
-    if( m_pConfiguration->m_pKerningDictionary ) {
+    if( _pConfiguration->m_pKerningDictionary ) {
         tCCKerningHashElement *element = NULL;
-        HASH_FIND_INT(m_pConfiguration->m_pKerningDictionary, &key, element);
+        HASH_FIND_INT(_pConfiguration->m_pKerningDictionary, &key, element);
         if(element)
             ret = element->amount;
     }
@@ -586,7 +507,7 @@ void CCLabelBMFont::createFontChars()
         return;
     }
 
-    set<unsigned int> *charSet = m_pConfiguration->getCharacterSet();
+    set<unsigned int> *charSet = _pConfiguration->getCharacterSet();
 
     for (unsigned int i = 0; i < stringLen - 1; ++i)
     {
@@ -597,8 +518,8 @@ void CCLabelBMFont::createFontChars()
         }
     }
 
-    totalHeight = m_pConfiguration->m_nCommonHeight * quantityOfLines;
-    nextFontPositionY = 0-(m_pConfiguration->m_nCommonHeight - m_pConfiguration->m_nCommonHeight * quantityOfLines);
+    totalHeight = _pConfiguration->m_nCommonHeight * quantityOfLines;
+    nextFontPositionY = 0-(_pConfiguration->m_nCommonHeight - _pConfiguration->m_nCommonHeight * quantityOfLines);
 
     CCRect rect;
     ccBMFontDef fontDef;
@@ -610,7 +531,7 @@ void CCLabelBMFont::createFontChars()
         if (c == '\n')
         {
             nextFontPositionX = 0;
-            nextFontPositionY -= m_pConfiguration->m_nCommonHeight;
+            nextFontPositionY -= _pConfiguration->m_nCommonHeight;
             continue;
         }
 
@@ -626,7 +547,7 @@ void CCLabelBMFont::createFontChars()
 
         // unichar is a short, and an int is needed on HASH_FIND_INT
         unsigned int key = c;
-        HASH_FIND_INT(m_pConfiguration->m_pFontDefDictionary, &key, element);
+        HASH_FIND_INT(_pConfiguration->m_pFontDefDictionary, &key, element);
         if (! element)
         {
             CCLOGWARN("cocos2d::CCLabelBMFont: characer not found %d", c);
@@ -668,7 +589,6 @@ void CCLabelBMFont::createFontChars()
                 fontChar = new CCSprite();
                 fontChar->initWithTexture(m_pobTextureAtlas->getTexture(), rect);
                 addChild(fontChar, i, i);
-                fontChar->release();
 			}
 
             // Apply label properties
@@ -683,7 +603,7 @@ void CCLabelBMFont::createFontChars()
         fontChar->setTextureRect(rect, false, rect.size);
 
         // See issue 1343. cast( signed short + unsigned integer ) == unsigned integer (sign is lost!)
-        int yOffset = m_pConfiguration->m_nCommonHeight - fontDef.yOffset;
+        int yOffset = _pConfiguration->m_nCommonHeight - fontDef.yOffset;
         CCPoint fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
                               (float)nextFontPositionY + yOffset - rect.size.height*0.5f * CC_CONTENT_SCALE_FACTOR() );
         fontChar->setPosition(CC_POINT_PIXELS_TO_POINTS(fontPos));
@@ -1088,17 +1008,15 @@ void CCLabelBMFont::setFntFile(const char* fntFile)
 {
     if (fntFile != NULL && strcmp(fntFile, m_sFntFile.c_str()) != 0 )
     {
-        CCBMFontConfiguration *newConf = FNTConfigLoadFile(fntFile);
+        CCBMFontConfiguration *newConf = SubSystem::get<ResourceCache>()->getResource<CCBMFontConfiguration>(fntFile);
         
         CCAssert( newConf, "CCLabelBMFont: Impossible to create font. Please check file");
         
         m_sFntFile = fntFile;
         
-        CC_SAFE_RETAIN(newConf);
-        CC_SAFE_RELEASE(m_pConfiguration);
-        m_pConfiguration = newConf;
+        _pConfiguration = newConf;
         
-		CCTexture2D *tex = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(m_pConfiguration->getAtlasName());
+		CCTexture2D *tex = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(_pConfiguration->getAtlasName());
 
 		this->setTexture(tex);
         this->createFontChars();
@@ -1112,7 +1030,7 @@ const char* CCLabelBMFont::getFntFile()
 
 CCBMFontConfiguration* CCLabelBMFont::getConfiguration() const
 {
-	return m_pConfiguration;
+	return _pConfiguration;
 }
 
 //LabelBMFont - Debug draw

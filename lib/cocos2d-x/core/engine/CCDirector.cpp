@@ -452,7 +452,6 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 
 void CCDirector::purgeCachedData(void)
 {
-    CCLabelBMFont::purgeCachedData();
     if (s_SharedDirector->getOpenGLView())
     {
 		getSubSystem<ResourceCache>()->removeUnused();
@@ -717,9 +716,6 @@ void CCDirector::purgeDirector()
 	m_pFPSLabel.Reset();
 	m_pSPFLabel.Reset();
 	m_pDrawsLabel.Reset();
-
-    // purge bitmap cache
-    CCLabelBMFont::purgeCachedData();
 
     // purge all managed caches
     ccDrawFree();

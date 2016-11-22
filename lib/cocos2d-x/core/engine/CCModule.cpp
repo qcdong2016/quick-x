@@ -7,6 +7,7 @@
 #include "textures/CCTexture2D.h"
 #include "sprite_nodes/CCSpriteFrame.h"
 #include "resources/CCPlistResource.h"
+#include "label_nodes/CCLabelBMFont.h"
 
 NS_CC_BEGIN
 
@@ -24,7 +25,8 @@ void CoreModule::attach()
 {
 	ObjectFactoryManager::addFactory<CCTexture2D>();
 	ObjectFactoryManager::addFactory<CCSpriteFrame>();
-	ObjectFactoryManager::addFactory<PlistResource>();
+    ObjectFactoryManager::addFactory<PlistResource>();
+    ObjectFactoryManager::addFactory<CCBMFontConfiguration>();
 }
 
 void CoreModule::detach()

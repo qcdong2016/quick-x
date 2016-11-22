@@ -107,8 +107,10 @@ typedef struct _KerningHashElement
 @js NA
 @lua NA
 */
-class CC_DLL CCBMFontConfiguration : public CCObject
+class CC_DLL CCBMFontConfiguration : public Resource
 {
+    CCOBJECT(CCBMFontConfiguration, Resource)
+    
     // XXX: Creating a public interface so that the bitmapFontArray[] is accessible
 public://@public
     // BMFont definitions
@@ -132,24 +134,21 @@ public:
      *  @lua NA
      */
     virtual ~CCBMFontConfiguration();
+    virtual void beginLoad(MemBuffer* buf, void* userdata);
     /**
      *  @js NA
      *  @lua NA
      */
     const char * description();
 
-    /** allocates a CCBMFontConfiguration with a FNT file */
-    static CCBMFontConfiguration * create(const char *FNTfile);
-
-    /** initializes a BitmapFontConfiguration with a FNT file */
-    bool initWithFNTfile(const char *FNTfile);
     
     inline const char* getAtlasName(){ return m_sAtlasName.c_str(); }
     inline void setAtlasName(const char* atlasName) { m_sAtlasName = atlasName; }
     
     std::set<unsigned int>* getCharacterSet() const;
 private:
-    std::set<unsigned int>* parseConfigFile(const char *controlFile);
+    std::set<unsigned int>* parseConfigData(MemBuffer* buffer);
+    
     void parseCharacterDefinition(std::string line, ccBMFontDef *characterDefinition);
     void parseInfoArguments(std::string line);
     void parseCommonArguments(std::string line);
@@ -201,11 +200,6 @@ public:
      *  @lua NA
      */
     virtual ~CCLabelBMFont();
-    /** Purges the cached data.
-    Removes from memory the cached configurations and the atlas name dictionary.
-    @since v0.99.3
-    */
-    static void purgeCachedData();
 
     /** creates a bitmap font atlas with an initial string and the FNT file */
     static CCLabelBMFont * create(const char *str, const char *fntFile, float width, CCTextAlignment alignment, CCPoint imageOffset);
@@ -270,22 +264,15 @@ protected:
     // max width until a line break is added
     float m_fWidth;
     
-    CCBMFontConfiguration *m_pConfiguration;
+    SharedPtr<CCBMFontConfiguration> _pConfiguration;
     
     bool m_bLineBreakWithoutSpaces;
     // offset of the texture atlas
     CCPoint    m_tImageOffset;
     
     // reused char
-    CCSprite *m_pReusedChar;
+    SharedPtr<CCSprite> m_pReusedChar;
 };
-
-/** Free function that parses a FNT file a place it on the cache
-*/
-CC_DLL CCBMFontConfiguration * FNTConfigLoadFile( const char *file );
-/** Purges the FNT config cache
-*/
-CC_DLL void FNTConfigRemoveCache( void );
 
 // end of GUI group
 /// @}

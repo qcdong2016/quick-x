@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Mon Nov 21 13:43:24 2016.
+** Generated automatically by tolua++-1.0.92 on Tue Nov 22 13:56:38 2016.
 */
 
 /****************************************************************************
@@ -40061,33 +40061,6 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: purgeCachedData of class  CCLabelBMFont */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCLabelBMFont_purgeCachedData00
-static int tolua_Cocos2d_CCLabelBMFont_purgeCachedData00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCLabelBMFont",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   CCLabelBMFont::purgeCachedData();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'purgeCachedData'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: create of class  CCLabelBMFont */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCLabelBMFont_create00
 static int tolua_Cocos2d_CCLabelBMFont_create00(lua_State* tolua_S)
@@ -47751,7 +47724,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"init",tolua_Cocos2d_CCLabelBMFont_init00);
    tolua_function(tolua_S,"initWithString",tolua_Cocos2d_CCLabelBMFont_initWithString00);
    tolua_function(tolua_S,"initWithString",tolua_Cocos2d_CCLabelBMFont_initWithString01);
-   tolua_function(tolua_S,"purgeCachedData",tolua_Cocos2d_CCLabelBMFont_purgeCachedData00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCLabelBMFont_create00);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCLabelBMFont_create01);
    tolua_function(tolua_S,"create",tolua_Cocos2d_CCLabelBMFont_create02);
