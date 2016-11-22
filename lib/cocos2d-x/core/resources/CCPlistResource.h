@@ -20,6 +20,8 @@ public:
 	
 	CCTexture2D* getTexture() { return _texture; }
 
+    CCSpriteFrame* getFrame(const std::string& name);
+    
 private:
 
 	std::map<std::string, SharedPtr<CCSpriteFrame> > _frames;
