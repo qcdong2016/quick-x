@@ -33,8 +33,8 @@
 #include "jni/JniHelper.h"
 #include "IO/FileSystem.h"
 #include <jni.h>
-
-#include "cocos2d.h"
+#include "engine/CCDirector.h"
+#include "CCEGLView.h"
 
 #define CLASS_NAME "org/cocos2dx/lib/Cocos2dxWebViewHelper"
 

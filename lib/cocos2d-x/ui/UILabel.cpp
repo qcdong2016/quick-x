@@ -89,7 +89,7 @@ const char* Label::getStringValue()
 
 int Label::getStringLength()
 {
-    return std::strlen(_labelRenderer->getString());
+    return strlen(_labelRenderer->getString());
 }
 
 void Label::setFontSize(int size)

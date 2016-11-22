@@ -34,6 +34,9 @@
 #include "CCEditBoxImpl.h"
 
 NS_CC_BEGIN
+
+class CCLabelTTF;
+
 namespace ui {
 
 class CCEditBox;
