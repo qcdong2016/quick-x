@@ -11,10 +11,9 @@ LuaTable::LuaTable(lua_State* L)
 	lua_newtable(L);
 }
 
-LuaTable::LuaTable() :
-	LuaTable(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState())
+LuaTable::LuaTable()
 {
-
+    _luaState = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();
 }
 
 void LuaTable::setInt(int index, int value)
