@@ -13,6 +13,7 @@ extern "C" {
 #include "tolua_fix.h"
 }
 
+#include "engine/CCDirector.h"
 
 #include "CCNetwork.h"
 #include "CCHTTPRequest.h"

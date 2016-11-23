@@ -1,8 +1,8 @@
 
 #include "network/CCNetwork.h"
-#include "cocos2d.h"
 #include <jni.h>
 #include "platform/android/jni/JniHelper.h"
+#include "engine/CCDirector.h"
 
 #include <stdlib.h>
 #include <android/log.h>

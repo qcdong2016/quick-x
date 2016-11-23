@@ -16,7 +16,7 @@ local function find(arrar, value)
 end
 
 local function merge(arr1, arr2)
-	if not arr2 then return end
+	if not arr2 then return arr1 end
 	if not arr1 then return arr2 end
 
 	for i, v in ipairs(arr2) do
@@ -42,12 +42,15 @@ local function each_call(array, func)
 end	
 
 local module_list = {}
+local executable_list = {}
+
 function module(mod)
 	module_list[mod.name] = mod
 	table.insert(module_list, mod)
 
 	if mod.name ~= 'core' then
 		mod.deps = mod.deps or {}
+
 		if not find(mod.deps, 'core') then
 			table.insert(mod.deps, 'core')
 		end
@@ -58,6 +61,17 @@ function module(mod)
 		table.insert(mod.includes, '.')
 	end
 end
+
+function executable(mod)
+	executable_list[mod.name] = mod
+	table.insert(executable_list, mod)
+	mod.deps = mod.deps or {}
+
+	for i, m in ipairs(module_list) do
+		table.insert(mod.deps, m.name)
+	end
+end
+
 
 local function plat_specify(mod, name)
 	if mod[name] then
@@ -78,21 +92,31 @@ local function translate()
 		convert(mod, "includes")
 		convert(mod, "files")
 	end
-end
 
+	for i, mod in ipairs(executable_list) do
+		plat_specify(mod, 'includes')
+		plat_specify(mod, 'files')
+		plat_specify(mod, 'defines')
+	end
+end
 
 local function build()
 	translate()
 
-	for i, mod in ipairs(module_list) do
+	local mark = {}
+	local function build(mod)
+		if mark[mod.name] then
+			return;
+		end
+		mark[mod.name] = true;
+
 		target(mod.name)
-		set_kind('static')
+		set_kind(mod.kind or 'static')
 
 		for i, depname in ipairs(mod.deps) do
 			local dp = module_list[depname]
 			mod.includes = merge(mod.includes, dp.includes)
 			mod.defines = merge(mod.defines, dp.defines)
-
 			add_deps(depname)
 		end
 
@@ -100,13 +124,21 @@ local function build()
 		each_call(mod.files, add_files)
 		each_call(mod.defines, add_defines)
 	end
+
+	build(module_list['core'])
+
+	for i, mod in ipairs(executable_list) do
+		build(mod)
+	end
+
+	for i, mod in ipairs(module_list) do
+		build(mod)
+	end
 end
 
 set_project('quick-x')
 set_version("1.0")
 set_languages("gnuxx11", "gnuxx11")
-
-
 
 
 module {
@@ -231,6 +263,18 @@ module {
 	files = {
 		'*.c*',	
 	},
+}
+
+executable {
+	name = 'player',
+	kind = 'shared',
+	files = {
+		'template/proj.android/jni/**.c*',
+		'template/sources/**.c*',
+	},
+	includes = {
+		'template/sources',
+	}
 }
 
 

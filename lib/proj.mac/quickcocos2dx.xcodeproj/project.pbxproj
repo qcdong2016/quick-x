@@ -641,7 +641,7 @@
 		B16A88C51DE2C29A00757603 /* CCPlistResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlistResource.h; sourceTree = "<group>"; };
 		B18237271DC8613200E8434B /* ReachabilityIOSMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityIOSMac.m; sourceTree = "<group>"; };
 		B18237291DC8613900E8434B /* ReachabilityIOSMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityIOSMac.h; sourceTree = "<group>"; };
-		B1D36C411DBFB62900E591CE /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Android.mk; path = core/Android.mk; sourceTree = "<group>"; };
+		B1D36C411DBFB62900E591CE /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1D36C431DBFB62900E591CE /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		B1D36C441DBFB62900E591CE /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
 		B1D36C451DBFB62900E591CE /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
@@ -660,17 +660,17 @@
 		B1D36C531DBFB62900E591CE /* CCGLBufferedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGLBufferedNode.h; sourceTree = "<group>"; };
 		B1D36C541DBFB62900E591CE /* CCNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCNode.cpp; sourceTree = "<group>"; };
 		B1D36C551DBFB62900E591CE /* CCNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNode.h; sourceTree = "<group>"; };
-		B1D36C561DBFB62900E591CE /* CCCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCCamera.cpp; path = core/CCCamera.cpp; sourceTree = "<group>"; };
-		B1D36C571DBFB62900E591CE /* CCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCCamera.h; path = core/CCCamera.h; sourceTree = "<group>"; };
-		B1D36C581DBFB62900E591CE /* ccConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccConfig.h; path = core/ccConfig.h; sourceTree = "<group>"; };
-		B1D36C591DBFB62900E591CE /* CCConfiguration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCConfiguration.cpp; path = core/CCConfiguration.cpp; sourceTree = "<group>"; };
-		B1D36C5A1DBFB62900E591CE /* CCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCConfiguration.h; path = core/CCConfiguration.h; sourceTree = "<group>"; };
-		B1D36C5D1DBFB62900E591CE /* ccFPSImages.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ccFPSImages.c; path = core/ccFPSImages.c; sourceTree = "<group>"; };
-		B1D36C5E1DBFB62900E591CE /* ccFPSImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccFPSImages.h; path = core/ccFPSImages.h; sourceTree = "<group>"; };
-		B1D36C5F1DBFB62900E591CE /* ccMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccMacros.h; path = core/ccMacros.h; sourceTree = "<group>"; };
-		B1D36C601DBFB62900E591CE /* CCScheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCScheduler.cpp; path = core/CCScheduler.cpp; sourceTree = "<group>"; };
-		B1D36C611DBFB62900E591CE /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCScheduler.h; path = core/CCScheduler.h; sourceTree = "<group>"; };
-		B1D36C621DBFB62900E591CE /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ccTypes.h; path = core/ccTypes.h; sourceTree = "<group>"; };
+		B1D36C561DBFB62900E591CE /* CCCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCCamera.cpp; sourceTree = "<group>"; };
+		B1D36C571DBFB62900E591CE /* CCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCamera.h; sourceTree = "<group>"; };
+		B1D36C581DBFB62900E591CE /* ccConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccConfig.h; sourceTree = "<group>"; };
+		B1D36C591DBFB62900E591CE /* CCConfiguration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCConfiguration.cpp; sourceTree = "<group>"; };
+		B1D36C5A1DBFB62900E591CE /* CCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCConfiguration.h; sourceTree = "<group>"; };
+		B1D36C5D1DBFB62900E591CE /* ccFPSImages.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccFPSImages.c; sourceTree = "<group>"; };
+		B1D36C5E1DBFB62900E591CE /* ccFPSImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccFPSImages.h; sourceTree = "<group>"; };
+		B1D36C5F1DBFB62900E591CE /* ccMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccMacros.h; sourceTree = "<group>"; };
+		B1D36C601DBFB62900E591CE /* CCScheduler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCScheduler.cpp; sourceTree = "<group>"; };
+		B1D36C611DBFB62900E591CE /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScheduler.h; sourceTree = "<group>"; };
+		B1D36C621DBFB62900E591CE /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
 		B1D36C641DBFB62900E591CE /* CCAffineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAffineTransform.cpp; sourceTree = "<group>"; };
 		B1D36C651DBFB62900E591CE /* CCAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAffineTransform.h; sourceTree = "<group>"; };
 		B1D36C661DBFB62900E591CE /* CCArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCArray.cpp; sourceTree = "<group>"; };
@@ -1528,6 +1528,18 @@
 		B1D36C401DBFB62900E591CE /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B1D36C561DBFB62900E591CE /* CCCamera.cpp */,
+				B1D36C571DBFB62900E591CE /* CCCamera.h */,
+				B1D36C581DBFB62900E591CE /* ccConfig.h */,
+				B1D36C591DBFB62900E591CE /* CCConfiguration.cpp */,
+				B1D36C5A1DBFB62900E591CE /* CCConfiguration.h */,
+				B1D36C5D1DBFB62900E591CE /* ccFPSImages.c */,
+				B1D36C5E1DBFB62900E591CE /* ccFPSImages.h */,
+				B1D36C5F1DBFB62900E591CE /* ccMacros.h */,
+				B1D36C601DBFB62900E591CE /* CCScheduler.cpp */,
+				B1D36C611DBFB62900E591CE /* CCScheduler.h */,
+				B1D36C621DBFB62900E591CE /* ccTypes.h */,
+				B1D36C411DBFB62900E591CE /* Android.mk */,
 				B16A88C31DE2C29A00757603 /* resources */,
 				B1FE16941DDBFC4F00975FBD /* engine */,
 				B1D36C631DBFB62900E591CE /* cocoa */,
@@ -2136,18 +2148,6 @@
 			children = (
 				B1D36E941DBFB76200E591CE /* actions */,
 				B1D36C401DBFB62900E591CE /* core */,
-				B1D36C561DBFB62900E591CE /* CCCamera.cpp */,
-				B1D36C571DBFB62900E591CE /* CCCamera.h */,
-				B1D36C581DBFB62900E591CE /* ccConfig.h */,
-				B1D36C591DBFB62900E591CE /* CCConfiguration.cpp */,
-				B1D36C5A1DBFB62900E591CE /* CCConfiguration.h */,
-				B1D36C5D1DBFB62900E591CE /* ccFPSImages.c */,
-				B1D36C5E1DBFB62900E591CE /* ccFPSImages.h */,
-				B1D36C5F1DBFB62900E591CE /* ccMacros.h */,
-				B1D36C601DBFB62900E591CE /* CCScheduler.cpp */,
-				B1D36C611DBFB62900E591CE /* CCScheduler.h */,
-				B1D36C621DBFB62900E591CE /* ccTypes.h */,
-				B1D36C411DBFB62900E591CE /* Android.mk */,
 				B15D375B1DB1053800EE3D22 /* imgui */,
 				9F1FE6B91DAD3A8E008FE0C7 /* audio */,
 				9F9A37EE1DAB889100236246 /* native */,
