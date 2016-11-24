@@ -975,14 +975,17 @@
     <ClCompile Include="..\cocos2d-x\spine\SpineResource.cpp">
       <Filter>cocos2d-x\spine</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\engine\SubSystem.cpp">
-      <Filter>cocos2d-x\core\engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\resources\CCPlistResource.cpp">
       <Filter>cocos2d-x\core\resources</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\shaders\CCRenderState.cpp">
       <Filter>cocos2d-x\core\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCDebugHud.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCSubSystem.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1889,9 +1892,6 @@
     <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\engine\SubSystem.h">
-      <Filter>cocos2d-x\core\engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\spine\SpineEvents.h">
       <Filter>cocos2d-x\spine</Filter>
     </ClInclude>
@@ -1909,6 +1909,12 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCRenderState.h">
       <Filter>cocos2d-x\core\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCDebugHud.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCSubSystem.h">
+      <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,12 @@ public:
 	{
 		return (T*)get(T::getTypeStatic());
 	}
+
+	static SubSystem* add(ID sysType);
+	template<typename T> static T* add()
+	{
+		return (T*)add(T::getTypeStatic());
+	}
 };
 
 NS_CC_END

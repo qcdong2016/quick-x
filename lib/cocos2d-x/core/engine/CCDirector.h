@@ -36,7 +36,7 @@ THE SOFTWARE.
 #include "kazmath/mat4.h"
 #include "label_nodes/CCLabelAtlas.h"
 
-#include "engine/SubSystem.h"
+#include "engine/CCSubSystem.h"
 #include "base/Ptr.h"
 
 
@@ -128,14 +128,6 @@ public:
     inline double getAnimationInterval(void) { return m_dAnimationInterval; }
     /** Set the FPS value. */
     virtual void setAnimationInterval(double dValue);
-
-    /** Whether or not to display the FPS on the bottom-left corner */
-    inline bool isDisplayStats(void) { return m_bDisplayStats; }
-    /** Display the FPS on the bottom-left corner */
-    inline void setDisplayStats(bool bDisplayStats) { m_bDisplayStats = bDisplayStats; }
-    
-    /** seconds per frame */
-    inline float getSecondsPerFrame() { return m_fSecondsPerFrame; }
 
     /** Get the CCEGLView, where everything is rendered
      * @js NA
@@ -336,9 +328,7 @@ public:
 	template<typename T>
 	T* addSubSystem() 
 	{
-		T* ss = new T;
-		addSubSystem(T::getTypeStatic(), ss);
-		return ss;
+		return (T*)addSubSystem(T::getTypeStatic());
 	}
 
 	template<typename T>
@@ -347,9 +337,11 @@ public:
 		return static_cast<T*>(getSubSystem(T::getTypeStatic()));
 	}
 
-	void addSubSystem(ID type, SubSystem* ss)
+	SubSystem* addSubSystem(ID type)
 	{
-		_subSustems[type] = ss;
+		SubSystem* s = ObjectFactoryManager::newObject<SubSystem>(type);
+		_subSustems[type] = s;
+		return s;
 	}
 
 	SubSystem* getSubSystem(ID type)
@@ -371,9 +363,6 @@ protected:
     
     void setNextScene(void);
     
-    void showStats();
-    void createStatsLabel();
-    void calculateMPF();
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
     
     /** calculates delta time since last time it was called */    
@@ -391,21 +380,11 @@ protected:
     /* landscape mode ? */
     bool m_bLandscape;
     
-    bool m_bDisplayStats;
-    float m_fAccumDt;
-    float m_fFrameRate;
-    
-    SharedPtr<CCLabelAtlas> m_pFPSLabel;
-	SharedPtr<CCLabelAtlas> m_pSPFLabel;
-	SharedPtr<CCLabelAtlas> m_pDrawsLabel;
-    
     /** Whether or not the Director is paused */
     bool m_bPaused;
 
     /* How many frames were called since the director started */
     unsigned int m_uTotalFrames;
-    unsigned int m_uFrames;
-    float m_fSecondsPerFrame;
      
     /* The running scene */
     CCScene *m_pRunningScene;
@@ -434,9 +413,6 @@ protected:
     
     /* content scale factor */
     float    m_fContentScaleFactor;
-
-    /* store the fps string */
-    char *m_pszFPS;
 
     /* This object will be visited after the scene. Useful to hook a notification node */
     CCNode *m_pNotificationNode;

@@ -119,9 +119,7 @@ end
 require(cc.PACKAGE_NAME .. ".cc.init")
 require(cc.PACKAGE_NAME .. ".shortcodes")
 
-local sharedDirector = CCDirector:sharedDirector()
-
 if DEBUG_FPS then
-    sharedDirector:setDisplayStats(true)
+    SubSystem:add('DebugHud')
 end
 

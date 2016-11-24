@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include "engine/CCObject.h"
 #include "support/data_support/uthash.h"
-#include "engine/SubSystem.h"
+#include "engine/CCSubSystem.h"
 
 NS_CC_BEGIN
 

@@ -2,6 +2,8 @@ $#include "engine/CCDirector.h"
 
 class SubSystem : public CCObject
 {
+    static SubSystem* get(const char* sysType);
+    static SubSystem* add(const char* sysType);
 }
 
 typedef enum {
@@ -28,15 +30,6 @@ class CCDirector : public CCObject
 
     /** Set the FPS value. */
     void setAnimationInterval(double dValue);
-
-    /** Whether or not to display the FPS on the bottom-left corner */
-    bool isDisplayStats(void);
-
-    /** Display the FPS on the bottom-left corner */
-    void setDisplayStats(bool bDisplayStats);
-
-    /** seconds per frame */
-    float getSecondsPerFrame();
 
     /** Get the CCEGLView, where everything is rendered */
     CCEGLView* getOpenGLView(void);

@@ -63,6 +63,7 @@ THE SOFTWARE.
 #include "CCInput.h"
 #include "engine/CCEngineEvents.h"
 #include "CCResourceCache.h"
+#include "CCModule.h"
 
 /**
  Position of the FPS
@@ -130,15 +131,9 @@ bool CCDirector::init(void)
     m_pProjectionDelegate = NULL;
 
     // FPS
-    m_fAccumDt = 0.0f;
-    m_fFrameRate = 0.0f;
-    m_pFPSLabel = NULL;
-    m_pSPFLabel = NULL;
-    m_pDrawsLabel = NULL;
-    m_uTotalFrames = m_uFrames = 0;
-    m_pszFPS = new char[32];
+
+    m_uTotalFrames = 0;
     m_pLastUpdate = new struct cc_timeval();
-    m_fSecondsPerFrame = 0.0f;
 
     // paused ?
     m_bPaused = false;
@@ -151,6 +146,8 @@ bool CCDirector::init(void)
     m_pobOpenGLView = NULL;
 
     m_fContentScaleFactor = 1.0f;
+
+	ModuleManager::addModule<CoreModule>();
 
 	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
@@ -177,8 +174,6 @@ CCDirector::~CCDirector(void)
 
     // delete m_pLastUpdate
     CC_SAFE_DELETE(m_pLastUpdate);
-    // delete fps string
-    delete []m_pszFPS;
     
     _subSustems.clear();
 }
@@ -190,9 +185,6 @@ void CCDirector::setDefaultValues(void)
 	// default FPS
 	double fps = conf->getNumber("cocos2d.x.fps", kDefaultFPS);
 	m_dOldAnimationInterval = m_dAnimationInterval = 1.0 / fps;
-
-	// Display FPS
-	m_bDisplayStats = conf->getBool("cocos2d.x.display_fps", false);
 
 	// GL projection
 	const char *projection = conf->getCString("cocos2d.x.gl.projection", "3d");
@@ -275,11 +267,13 @@ void CCDirector::drawScene(void)
     imgui_draw();
 #endif
 
-    if (m_bDisplayStats)
     {
-        showStats();
+		static EventDataMap map;
+		sendEvent(AfterDraw::Param::Name, map);
     }
     
+	g_uNumberOfDraws = 0;
+
     kmGLPopMatrix();
 
     m_uTotalFrames++;
@@ -288,11 +282,6 @@ void CCDirector::drawScene(void)
     if (m_pobOpenGLView)
     {
         m_pobOpenGLView->swapBuffers();
-    }
-    
-    if (m_bDisplayStats)
-    {
-        calculateMPF();
     }
 }
 
@@ -351,8 +340,6 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
 
         // set size
         m_obWinSizeInPoints = m_pobOpenGLView->getDesignResolutionSize();
-        
-        createStatsLabel();
         
         if (m_pobOpenGLView)
         {
@@ -712,10 +699,6 @@ void CCDirector::purgeDirector()
 
     stopAnimation();
 
-	m_pFPSLabel.Reset();
-	m_pSPFLabel.Reset();
-	m_pDrawsLabel.Reset();
-
     // purge all managed caches
     ccDrawFree();
     CCShaderCache::purgeSharedShaderCache();
@@ -802,55 +785,7 @@ void CCDirector::resume(void)
     }
 
     m_bPaused = false;
-    m_fDeltaTime = 0;
-}
-
-// display the FPS using a LabelAtlas
-// updates the FPS every frame
-void CCDirector::showStats(void)
-{
-    m_uFrames++;
-    m_fAccumDt += m_fDeltaTime;
-    
-    if (m_bDisplayStats)
-    {
-        if (m_pFPSLabel && m_pSPFLabel && m_pDrawsLabel)
-        {
-            if (m_fAccumDt > CC_DIRECTOR_STATS_INTERVAL)
-            {
-                sprintf(m_pszFPS, "%.3f", m_fSecondsPerFrame);
-                m_pSPFLabel->setString(m_pszFPS);
-                
-                m_fFrameRate = m_uFrames / m_fAccumDt;
-                m_uFrames = 0;
-                m_fAccumDt = 0;
-
-#if COCOS2D_DEBUG > 0
-                sprintf(m_pszFPS, "%.1f %05d", m_fFrameRate, CCObject::s_livingCount);
-#else
-                sprintf(m_pszFPS, "%.1f", m_fFrameRate);
-#endif
-                m_pFPSLabel->setString(m_pszFPS);
-                
-                sprintf(m_pszFPS, "%4lu", (unsigned long)g_uNumberOfDraws);
-                m_pDrawsLabel->setString(m_pszFPS);
-            }
-            
-            m_pDrawsLabel->visit();
-            m_pFPSLabel->visit();
-            m_pSPFLabel->visit();
-        }
-    }    
-    
-    g_uNumberOfDraws = 0;
-}
-
-void CCDirector::calculateMPF()
-{
-    struct cc_timeval now;
-    CCTime::gettimeofdayCocos2d(&now, NULL);
-    
-    m_fSecondsPerFrame = (now.tv_sec - m_pLastUpdate->tv_sec) + (now.tv_usec - m_pLastUpdate->tv_usec) / 1000000.0f;
+	m_fDeltaTime = 0;
 }
 
 // returns the FPS image data pointer and len
@@ -859,69 +794,6 @@ void CCDirector::getFPSImageData(unsigned char** datapointer, unsigned int* leng
     // XXX fixed me if it should be used 
     *datapointer = cc_fps_images_png;
 	*length = cc_fps_images_len();
-}
-
-void CCDirector::createStatsLabel()
-{
-
-    if( m_pFPSLabel && m_pSPFLabel && m_pDrawsLabel)
-    {
-		m_pFPSLabel.Reset();
-		m_pSPFLabel.Reset();
-		m_pDrawsLabel.Reset();
-    }
-
-    CCTexture2DPixelFormat currentFormat = CCTexture2D::defaultAlphaPixelFormat();
-    CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA4444);
-    unsigned char *data = NULL;
-    unsigned int data_len = 0;
-    getFPSImageData(&data, &data_len);
-
-    SharedPtr<CCImage> image(new CCImage());
-    bool isOK = image->initWithImageData(data, data_len);
-    if (!isOK) {
-        CCLOGERROR("%s", "Fails: init fps_images");
-        return;
-    }
-
-	CCTexture2D *texture = new CCTexture2D;
-	texture->initWithImage(image);
-
-    /*
-     We want to use an image which is stored in the file named ccFPSImage.c 
-     for any design resolutions and all resource resolutions. 
-     
-     To achieve this,
-     
-     Firstly, we need to ignore 'contentScaleFactor' in 'CCAtlasNode' and 'CCLabelAtlas'.
-     So I added a new method called 'setIgnoreContentScaleFactor' for 'CCAtlasNode',
-     this is not exposed to game developers, it's only used for displaying FPS now.
-     
-     Secondly, the size of this image is 480*320, to display the FPS label with correct size, 
-     a factor of design resolution ratio of 480x320 is also needed.
-     */
-    float factor = 1.0f; // CCEGLView::sharedOpenGLView()->getDesignResolutionSize().height / 320.0f;
-
-    m_pFPSLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
-    m_pFPSLabel->setIgnoreContentScaleFactor(true);
-    m_pFPSLabel->initWithString("00.0", texture, 12, 32 , '.');
-    m_pFPSLabel->setScale(factor);
-
-	m_pSPFLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
-    m_pSPFLabel->setIgnoreContentScaleFactor(true);
-    m_pSPFLabel->initWithString("0.000", texture, 12, 32, '.');
-    m_pSPFLabel->setScale(factor);
-
-	m_pDrawsLabel = SharedPtr<CCLabelAtlas>(new CCLabelAtlas());
-    m_pDrawsLabel->setIgnoreContentScaleFactor(true);
-    m_pDrawsLabel->initWithString("000", texture, 12, 32, '.');
-    m_pDrawsLabel->setScale(factor);
-
-    CCTexture2D::setDefaultAlphaPixelFormat(currentFormat);
-
-    m_pDrawsLabel->setPosition(ccpAdd(ccp(0, 34*factor), CC_DIRECTOR_STATS_POSITION));
-    m_pSPFLabel->setPosition(ccpAdd(ccp(0, 17*factor), CC_DIRECTOR_STATS_POSITION));
-    m_pFPSLabel->setPosition(CC_DIRECTOR_STATS_POSITION);
 }
 
 float CCDirector::getContentScaleFactor(void)
@@ -934,7 +806,6 @@ void CCDirector::setContentScaleFactor(float scaleFactor)
     if (scaleFactor != m_fContentScaleFactor)
     {
         m_fContentScaleFactor = scaleFactor;
-        createStatsLabel();
     }
 }
 
@@ -975,9 +846,7 @@ void CCDirector::startAnimation(void)
     }
 
     m_bInvalid = false;
-#ifndef EMSCRIPTEN
     CCApplication::sharedApplication()->setAnimationInterval(m_dAnimationInterval);
-#endif // EMSCRIPTEN
 }
 
 void CCDirector::mainLoop(void)
