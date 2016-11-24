@@ -1,10 +1,19 @@
 
 $#include "engine/CCResourceCache.h"
 
+class Resource : public CCObject
+{
+public:
+    const std::string& getPath();
+    void setPath(const std::string& p);
+}
 
 
 class ResourceCache
 {
+public:
     Resource* getResource(const char* resType, const std::string& path, void* userdata = 0);
+    void addResource(const char* resType, Resource* res);
+
     void removeUnused();
 };

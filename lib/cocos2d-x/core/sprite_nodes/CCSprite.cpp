@@ -26,7 +26,6 @@
 
 #include "CCSpriteBatchNode.h"
 #include "CCAnimation.h"
-#include "CCAnimationCache.h"
 #include "ccConfig.h"
 #include "CCSprite.h"
 #include "CCSpriteFrame.h"
@@ -978,12 +977,8 @@ void CCSprite::setDisplayFrame(CCSpriteFrame *pNewFrame)
     setTextureRect(pNewFrame->getRect(), m_bRectRotated, pNewFrame->getOriginalSize());
 }
 
-void CCSprite::setDisplayFrameWithAnimationName(const char *animationName, int frameIndex)
+void CCSprite::setDisplayFrameWithAnimationName(CCAnimation* a, int frameIndex)
 {
-    CCAssert(animationName, "CCSprite#setDisplayFrameWithAnimationName. animationName must not be NULL");
-
-    CCAnimation *a = CCAnimationCache::sharedAnimationCache()->animationByName(animationName);
-
     CCAssert(a, "CCSprite#setDisplayFrameWithAnimationName: Frame not found");
 
     CCAnimationFrame* frame = (CCAnimationFrame*)a->getFrames()->objectAtIndex(frameIndex);

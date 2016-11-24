@@ -20,7 +20,7 @@ You can animate a CCAnimation object by using the CCAnimate action. Example:
 [sprite runAction:[CCAnimate actionWithAnimation:animation]];
 
 */
-class CCAnimation : public CCObject
+class CCAnimation : public Resource
 {
     /* Creates an animation with an array of CCAnimationFrame, the delay per units in seconds and and how many times it should be executed.
      @since v2.0

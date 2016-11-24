@@ -804,9 +804,6 @@
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.cpp">
       <Filter>cocos2d-x\core\sprite_nodes</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimationCache.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCScale9Sprite.cpp">
       <Filter>cocos2d-x\core\sprite_nodes</Filter>
     </ClCompile>
@@ -1707,9 +1704,6 @@
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCAnimationCache.h">
       <Filter>cocos2d-x\core\sprite_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCScale9Sprite.h">

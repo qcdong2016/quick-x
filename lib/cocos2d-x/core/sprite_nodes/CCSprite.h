@@ -399,7 +399,7 @@ public:
      * Changes the display frame with animation name and index.
      * The animation name will be get from the CCAnimationCache
      */
-    virtual void setDisplayFrameWithAnimationName(const char *animationName, int frameIndex);
+    virtual void setDisplayFrameWithAnimationName(CCAnimation* ani, int frameIndex);
     /// @}
 
 

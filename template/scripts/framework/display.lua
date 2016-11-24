@@ -71,7 +71,7 @@ local resourceCache  = sharedDirector.resourceCache
 
 -- local sharedTextureCache     = CCTextureCache:sharedTextureCache()
 -- local sharedSpriteFrameCache = CCSpriteFrameCache:sharedSpriteFrameCache()
-local sharedAnimationCache   = CCAnimationCache:sharedAnimationCache()
+-- local sharedAnimationCache   = CCAnimationCache:sharedAnimationCache()
 
 -- check device screen size
 local glview = sharedDirector:getOpenGLView()
@@ -707,20 +707,6 @@ function display.newMaskedSprite(__mask, __pic)
 	return __resultSprite
 end
 
---[[--
-
-Create a Gray Sprite by CCFilteredSprite
-
-@param mixed filename As same a the first parameter for display.newSprite
-@param table params As same as the third parameter for display.newFilteredSprite
-
-@return An instance of CCFilteredSprite
-
-]]
-function display.newGraySprite(filename, params)
-	return display.newFilteredSprite(filename, "GRAY", params)
-end
-
 function display.newDrawNode()
 	return CCDrawNode:create()
 end
@@ -934,73 +920,6 @@ end
 
 --[[--
 
-将指定的 Sprite Sheets 材质文件及其数据文件载入图像帧缓存。
-
-格式：
-
-display.addSpriteFramesWithFile(数据文件名, 材质文件名)
-
-~~~ lua
-
-display.addSpriteFramesWithFile("Sprites.plist", "Sprites.png")
-
-~~~
-
-Sprite Sheets 通俗一点解释就是包含多张图片的集合。Sprite Sheets 材质文件由多张图片组成，而数据文件则记录了图片在材质文件中的位置等信息。
-
-@param string plistFilename 数据文件名
-@param string image 材质文件名
-
-@see Sprite Sheets
-
-]]
-function display.addSpriteFramesWithFile(plistFilename, image, handler)
-	local async = type(handler) == "function"
-	local asyncHandler = nil
-	if async then
-		asyncHandler = function()
-			-- printf("%s, %s async done.", plistFilename, image)
-			local texture = sharedTextureCache:textureForKey(image)
-			assert(texture, string.format("The texture %s, %s is unavailable.", plistFilename, image))
-			sharedSpriteFrameCache:addSpriteFramesWithFile(plistFilename, texture)
-			handler(plistFilename, image)
-		end
-	end
-
-    if display.TEXTURES_PIXEL_FORMAT[image] then
-        CCTexture2D:setDefaultAlphaPixelFormat(display.TEXTURES_PIXEL_FORMAT[image])
-		if async then
-			sharedTextureCache:addImageAsync(image, asyncHandler)
-		else
-			sharedSpriteFrameCache:addSpriteFramesWithFile(plistFilename, image)
-		end
-        CCTexture2D:setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888)
-    else
-		if async then
-			sharedTextureCache:addImageAsync(image, asyncHandler)
-		else
-			sharedSpriteFrameCache:addSpriteFramesWithFile(plistFilename, image)
-		end
-    end
-end
-
---[[--
-
-从内存中卸载 Sprite Sheets 材质和数据文件
-
-@param string plistFilename 数据文件名
-@param string image 材质文件名
-
-]]
-function display.removeSpriteFramesWithFile(plistFilename, imageName)
-    sharedSpriteFrameCache:removeSpriteFramesFromFile(plistFilename)
-    if imageName then
-        display.removeSpriteFrameByImageName(imageName)
-    end
-end
-
---[[--
-
 设置材质格式。
 
 
@@ -1174,54 +1093,6 @@ function display.newAnimation(frames, time)
     end
     time = time or 1.0 / count
     return CCAnimation:createWithSpriteFrames(array, time)
-end
-
---[[
-
-以指定名字缓存创建好的动画对象，以便后续反复使用。
-
-~~~ lua
-
-local frames = display.newFrames("Walk%04d.png", 1, 8)
-local animation = display.newAnimation(frames, 0.5 / 8) -- 0.5 秒播放 8 桢
-display.setAnimationCache("Walk", animation)
-
--- 在需要使用 Walk 动画的地方
-sprite:playAnimationOnce(display.getAnimationCache("Walk")) -- 播放一次动画
-
-~~~
-
-@param string name 名字
-@param CCAnimation animation 动画对象
-
-
-]]
-function display.setAnimationCache(name, animation)
-    sharedAnimationCache:addAnimation(animation, name)
-end
-
---[[--
-
-取得以指定名字缓存的动画对象，如果不存在则返回 nil。
-
-@param string name
-
-@return CCAnimation
-
-]]
-function display.getAnimationCache(name)
-    return sharedAnimationCache:animationByName(name)
-end
-
---[[--
-
-删除指定名字缓存的动画对象。
-
-@param string name
-
-]]
-function display.removeAnimationCache(name)
-    sharedAnimationCache:removeAnimationByName(name)
 end
 
 function display.removeUnusedSpriteFrames()

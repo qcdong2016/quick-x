@@ -94,9 +94,9 @@ public:
  [sprite runAction:[CCAnimate actionWithAnimation:animation]];
 
  */
-class CC_DLL CCAnimation : public CCObject
+class CC_DLL CCAnimation : public Resource
 {
-	CCOBJECT(CCAnimation, CCObject)
+	CCOBJECT(CCAnimation, Resource)
 public:
     /**
      * @js ctor

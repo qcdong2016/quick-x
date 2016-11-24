@@ -48,7 +48,6 @@ THE SOFTWARE.
 #include "actions/CCActionManager.h"
 #include "CCConfiguration.h"
 #include "CCAccelerometer.h"
-#include "sprite_nodes/CCAnimationCache.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "support/user_default/CCUserDefault.h"
 #include "shaders/ccGLStateCache.h"
@@ -719,7 +718,6 @@ void CCDirector::purgeDirector()
 
     // purge all managed caches
     ccDrawFree();
-    CCAnimationCache::purgeSharedAnimationCache();
     CCShaderCache::purgeSharedShaderCache();
     CCConfiguration::purgeConfiguration();
 

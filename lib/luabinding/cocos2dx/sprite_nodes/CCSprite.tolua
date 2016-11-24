@@ -140,7 +140,7 @@ class CCSprite : public CCNode
      * Changes the display frame with animation name and index.
      * The animation name will be get from the CCAnimationCache
      */
-    void setDisplayFrameWithAnimationName(const char *animationName, int frameIndex);
+    void setDisplayFrameWithAnimationName(CCAnimation* a, int frameIndex);
     /// @}
 
 
