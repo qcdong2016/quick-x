@@ -27,9 +27,10 @@ LuaFunction::LuaFunction(lua_State* L, lua_CFunction func) :
 }
 
 LuaFunction::LuaFunction(int index) :
-	LuaFunction(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState(), index)
+    _luaState(CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState())
 {
-
+    lua_pushvalue(_luaState, index);
+    _functionRef = luaL_ref(_luaState, LUA_REGISTRYINDEX);
 }
 
 LuaFunction::~LuaFunction()

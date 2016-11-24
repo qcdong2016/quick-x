@@ -89,7 +89,7 @@ LOCAL_SRC_FILES := \
     platform/android/jni/IMEJni.cpp \
     platform/android/jni/TouchesJni.cpp \
     script_support/CCScriptSupport.cpp \
-    shaders/CCMaterial.cpp \
+    shaders/CCRenderState.cpp \
     shaders/CCGLProgram.cpp \
     shaders/ccGLStateCache.cpp \
     shaders/CCShaderCache.cpp \
