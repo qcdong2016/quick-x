@@ -18,7 +18,7 @@
     <application android:label="@string/app_name"
         android:icon="@drawable/icon">
 
-        <activity android:name=".PlayerActivity"
+        <activity android:name=".QuickXPlayer"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"

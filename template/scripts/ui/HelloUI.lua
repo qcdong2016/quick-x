@@ -45,7 +45,7 @@ function HelloUI:ctor()
         label:setText(k)
         label:onClicked(function()
             print('use', k)
-            hello:setMaterial(v)
+            hello:setRenderState(v)
             -- spine:setMaterial(v)
             currentMaterial = v;
             if currentLabel then

@@ -28,7 +28,8 @@ LOCAL_SRC_FILES := \
     engine/CCModule.cpp \
     engine/CCObject.cpp \
     engine/CCResourceCache.cpp \
-    engine/SubSystem.cpp \
+    engine/CCSubSystem.cpp \
+    engine/CCDebugHud.cpp \
     IO/FileSystem.cpp \
     resources/CCPlistResource.cpp \
     crypto/CCCrypto.cpp \
@@ -94,7 +95,6 @@ LOCAL_SRC_FILES := \
     shaders/ccGLStateCache.cpp \
     shaders/CCShaderCache.cpp \
     sprite_nodes/CCAnimation.cpp \
-    sprite_nodes/CCAnimationCache.cpp \
     sprite_nodes/CCSprite.cpp \
     sprite_nodes/CCSpriteBatchNode.cpp \
     sprite_nodes/CCSpriteFrame.cpp \

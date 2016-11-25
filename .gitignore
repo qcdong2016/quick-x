@@ -14,8 +14,8 @@
 project.xcworkspace/
 xcuserdata/
 
-lib/cocos2d-x/cocos2dx/platform/android/java/bin
-lib/cocos2d-x/cocos2dx/platform/android/java/gen
+lib/cocos2d-x/core/platform/android/java/bin
+lib/cocos2d-x/core/platform/android/java/gen
 
 */proj.win32/Debug/
 */proj.win32/Release/
@@ -34,13 +34,6 @@ player/build-*-Debug/
 player/proj.qt/*.pro.user
 player/proj.qt/*.pro.user.*
 lib/debug/*
-lib/proj.qt/Makefile.libquickqt
-lib/proj.qt/obj/
-lib/proj.qt/Makefile.libchipmunk
-lib/proj.qt/Makefile.libchipmunk.Debug
-lib/proj.qt/Makefile.libchipmunk.Release
-lib/proj.qt/Makefile.libquickqt.Debug
-lib/proj.qt/Makefile.libquickqt.Release
 /template/proj.android/assets
 /template/proj.android/bin
 /template/proj.android/obj

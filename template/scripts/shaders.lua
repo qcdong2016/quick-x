@@ -5,7 +5,7 @@ end
 local function build(v, f)
     assert(v, 'vert shader NULL')
     assert(f, 'frag shader NULL')
-    return CCShaderCache:sharedShaderCache():addMaterialFromShaderSource(v, f)
+    return CCShaderCache:sharedShaderCache():addRenderStateFromShaderSource(v, f)
 end
     
 local gray_frag           = load("shaders/gray.frag")
