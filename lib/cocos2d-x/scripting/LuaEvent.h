@@ -18,7 +18,7 @@ public:
 	{
 	}
 
-	virtual void invoke(EventDataMap& evt);
+	virtual void invoke(IEventData& evt);
 	virtual EventHandler* clone() const;
 private:
 	SharedPtr<LuaFunction> _function;

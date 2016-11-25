@@ -68,21 +68,21 @@ void DebugHud::createLabels()
 	_pSPFLabel->setPosition(ccpAdd(ccp(0, 17 * factor), CC_DIRECTOR_STATS_POSITION));
 	_pFPSLabel->setPosition(CC_DIRECTOR_STATS_POSITION);
 
-	subscribeToEvent(UpdateEvent::Param::Name, Handler(this, &DebugHud::updateLabel));
-	subscribeToEvent(AfterDraw::Param::Name, Handler(this, &DebugHud::render));
+	subscribeToEvent<UpdateEvent>(Handler(this, &DebugHud::updateLabel));
+	subscribeToEvent<AfterDraw>(Handler(this, &DebugHud::render));
 }
 
 
-void DebugHud::render(EventDataMap& map)
+void DebugHud::render(IEventData& map)
 {
 	_pDrawsLabel->visit();
 	_pFPSLabel->visit();
 	_pSPFLabel->visit();
 }
 
-void DebugHud::updateLabel(EventDataMap& map)
+void DebugHud::updateLabel(IEventData& map)
 {
-	float dt = map[UpdateEvent::Param::timeStep].GetFloat();
+	float dt = map[UpdateEvent::timeStep].GetFloat();
 
 	_inteval += dt;
 	_frames++;

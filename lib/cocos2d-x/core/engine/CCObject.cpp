@@ -30,6 +30,7 @@ THE SOFTWARE.
 #include <map>
 
 #include "CCDirector.h"
+#include "CCEngineEvents.h"
 
 NS_CC_BEGIN
 
@@ -351,11 +352,11 @@ void CCObject::unsubscribeFromEvents(CCObject* sender)
 
 void CCObject::sendEvent(EventID eventType)
 {
-	EventDataMap map;
+	EventData<EmptyEvent> map;
 	sendEvent(eventType, map);
 }
 
-void CCObject::sendEvent(EventID eventType, EventDataMap& eventData)
+void CCObject::sendEvent(EventID eventType, IEventData& eventData)
 {
 	WeakPtr<CCObject> self(this);
 	std::set<CCObject*> processed;
@@ -439,7 +440,7 @@ void CCObject::sendEvent(EventID eventType, EventDataMap& eventData)
 	}
 }
 
-void CCObject::onEvent(CCObject* sender, EventID eventType, EventDataMap& eventData)
+void CCObject::onEvent(CCObject* sender, EventID eventType, IEventData& eventData)
 {
 	EventHandler* specific = 0;
 	EventHandler* nonSpecific = 0;
@@ -518,27 +519,6 @@ CCObject* CCObject::copy()
 	return o;
 }
 
-
-static std::vector<EventID> s_allEvents;
-
-EventID CCObject::findEventID(const char* name)
-{
-	for (EventID id : s_allEvents)
-	{
-		if (strcmp(id, name) == 0)
-			return id;
-	}
-
-	return nullptr;
-}
-
-EventID CCObject::regEvent(EventID id)
-{
-	s_allEvents.push_back(id);
-	return id;
-}
-
-
 static std::map<ID, SharedPtr<ObjectFactoryBase> > factorys;
 
 void ObjectFactoryManager::addFactory(ID type, ObjectFactoryBase* factory)
@@ -553,6 +533,14 @@ CCObject* ObjectFactoryManager::createObject(ID type)
 		return nullptr;
 
 	return iter->second->newObject();
+}
+
+
+
+void EventHandler::invoke()
+{
+	EventData<EmptyEvent> m;
+	invoke(m);
 }
 
 NS_CC_END

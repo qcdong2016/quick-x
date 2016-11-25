@@ -235,9 +235,9 @@ void CCDirector::drawScene(void)
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
-		static EventDataMap map;
-		map[UpdateEvent::Param::timeStep] = m_fDeltaTime;
-		sendEvent(UpdateEvent::Param::Name, map);
+		static EventData<UpdateEvent> map;
+		map[UpdateEvent::timeStep] = m_fDeltaTime;
+		sendEvent<UpdateEvent>(map);
     }
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -268,8 +268,8 @@ void CCDirector::drawScene(void)
 #endif
 
     {
-		static EventDataMap map;
-		sendEvent(AfterDraw::Param::Name, map);
+		static EventData<AfterDraw> map;
+		sendEvent<AfterDraw>(map);
     }
     
 	g_uNumberOfDraws = 0;

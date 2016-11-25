@@ -247,7 +247,7 @@ CCScheduler::CCScheduler(void)
 , m_bUpdateHashLocked(false)
 , m_pScriptHandlerEntries(NULL)
 {
-	subscribeToEvent(UpdateEvent::Param::Name, Handler(this, &CCScheduler::update));
+	subscribeToEvent<UpdateEvent>(Handler(this, &CCScheduler::update));
 
 }
 
@@ -782,9 +782,9 @@ void CCScheduler::resumeTargets(CCSet* pTargetsToResume)
 }
 
 // main loop
-void CCScheduler::update(EventDataMap& data)
+void CCScheduler::update(IEventData& data)
 {
-	float dt = data[UpdateEvent::Param::timeStep].GetFloat();
+	float dt = data[UpdateEvent::timeStep].GetFloat();
 
     m_bUpdateHashLocked = true;
 

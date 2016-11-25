@@ -36,7 +36,7 @@ static int tolua_Cocos2d_CCObject_subscribeToEvent00(lua_State* tolua_S)
 #endif
 	{
 		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
-		const char* eventType = CCObject::findEventID((const char*)tolua_tostring(tolua_S, 2, 0));
+		const char* eventType = (const char*)tolua_tostring(tolua_S, 2, 0);
 		EventHandler* handler = ((EventHandler*)tolua_to_EventHandler(tolua_S, 3, 0));
 #ifndef TOLUA_RELEASE
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'subscribeToEvent'", NULL);
@@ -71,7 +71,7 @@ static int tolua_Cocos2d_CCObject_subscribeToEvent01(lua_State* tolua_S)
 	{
 		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
 		CCObject* sender = ((CCObject*)tolua_tousertype(tolua_S, 2, 0));
-		const char* eventType = CCObject::findEventID((const char*)tolua_tostring(tolua_S, 3, 0));
+		const char* eventType = (const char*)tolua_tostring(tolua_S, 3, 0);
 		EventHandler* handler = ((EventHandler*)tolua_to_EventHandler(tolua_S, 4, 0));
 #ifndef TOLUA_RELEASE
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'subscribeToEvent'", NULL);
@@ -102,7 +102,7 @@ static int tolua_Cocos2d_CCObject_unsubscribeFromEvent00(lua_State* tolua_S)
 #endif
 	{
 		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
-		const char* eventType = CCObject::findEventID((const char*)tolua_tostring(tolua_S, 2, 0));
+		const char* eventType = ((const char*)tolua_tostring(tolua_S, 2, 0));
 #ifndef TOLUA_RELEASE
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'unsubscribeFromEvent'", NULL);
 #endif
@@ -136,7 +136,7 @@ static int tolua_Cocos2d_CCObject_unsubscribeFromEvent01(lua_State* tolua_S)
 	{
 		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
 		CCObject* sender = (CCObject*)tolua_tousertype(tolua_S,2, 0);
-		const char* eventType = CCObject::findEventID((const char*)tolua_tostring(tolua_S, 3, 0));
+		const char* eventType = ((const char*)tolua_tostring(tolua_S, 3, 0));
 #ifndef TOLUA_RELEASE
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'unsubscribeFromEvent'", NULL);
 #endif
@@ -199,7 +199,7 @@ static int tolua_Cocos2d_CCObject_sendEvent00(lua_State* tolua_S)
 #endif
 	{
 		CCObject* self = (CCObject*)tolua_tousertype(tolua_S, 1, 0);
-		const char* eventType = CCObject::findEventID(((const char*)tolua_tostring(tolua_S, 2, 0)));
+		const char* eventType = (((const char*)tolua_tostring(tolua_S, 2, 0)));
 #ifndef TOLUA_RELEASE
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'sendEvent'", NULL);
 #endif

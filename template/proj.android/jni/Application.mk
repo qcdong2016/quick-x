@@ -1,4 +1,5 @@
 APP_STL := gnustl_static
+APP_PLATFORM := android-9
 APP_CPPFLAGS := -frtti -std=c++11 -Wno-error=format-security -Wno-deprecated-declarations -fsigned-char -Os $(CPPFLAGS)
 APP_DEBUG := $(strip $(NDK_DEBUG))
 ifeq ($(APP_DEBUG),1)

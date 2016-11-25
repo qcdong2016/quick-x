@@ -54,7 +54,7 @@ CCActionManager::CCActionManager(void)
   m_pCurrentTarget(NULL),
   m_bCurrentTargetSalvaged(false)
 {
-	subscribeToEvent(UpdateEvent::Param::Name, Handler(this, &CCActionManager::update));
+	subscribeToEvent<UpdateEvent>(Handler(this, &CCActionManager::update));
 }
 
 CCActionManager::~CCActionManager(void)
@@ -337,9 +337,9 @@ unsigned int CCActionManager::numberOfRunningActionsInTarget(CCObject *pTarget)
 }
 
 // main loop
-void CCActionManager::update(EventDataMap& data)
+void CCActionManager::update(IEventData& data)
 {
-	float dt = data[UpdateEvent::Param::timeStep].GetFloat();
+	float dt = data[UpdateEvent::timeStep].GetFloat();
 
     for (tHashElement *elt = m_pTargets; elt != NULL; )
     {

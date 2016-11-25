@@ -30,6 +30,8 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
+class CCNode;
+
 class CC_DLL CCComponent : public CCObject
 {
 protected:

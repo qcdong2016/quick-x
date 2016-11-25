@@ -161,14 +161,14 @@ void CCDevice::showAlert()
 	delete[] wszTitleBuf;
 	delete[] wszMessageBuf;
 
-	EventDataMap map;
+	EventData<AlertEvent> map;
 
 	if (button == IDOK || button == IDYES)
-		map[AlertEvent::Param::buttonIndex] = 0;
+		map[AlertEvent::buttonIndex] = 0;
 	else
-		map[AlertEvent::Param::buttonIndex] = 1;
+		map[AlertEvent::buttonIndex] = 1;
 
-	CCDirector::sharedDirector()->sendEvent<AlertEvent::Param>(map);
+	CCDirector::sharedDirector()->sendEvent<AlertEvent>(map);
 }
 
 void CCDevice::cancelAlert(void)

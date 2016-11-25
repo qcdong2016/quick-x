@@ -1,4 +1,6 @@
 
+CC_EVENT_DEFINE(EmptyEvent)
+CC_EVENT_END()
 
 CC_EVENT_DEFINE(KeypadEvent)
 CC_PARAM(key)

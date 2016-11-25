@@ -32,14 +32,37 @@ THE SOFTWARE.
 #include "base/ID.h"
 #include <string>
 #include <map>
+#include <vector>
 
 NS_CC_BEGIN
 
 class CCObject;
 class EventHandler;
 
-typedef const char* EventID;
-typedef std::map<EventID, Variant> EventDataMap;
+typedef ID EventID;
+
+class IEventData
+{
+public:
+	virtual int getParamCount() = 0;
+	virtual const char* getParamName(int id) = 0;
+	virtual Variant& operator [] (int i) = 0;
+	virtual const Variant & operator[](int i) const = 0;
+};
+
+template<typename T>
+class EventData : public IEventData
+{
+public:
+	EventData() { _data.resize(T::_count); }
+	virtual int getParamCount() { return T::_count; };
+	virtual const char* getParamName(int id) { return T::eventsName[id]; }
+	virtual Variant& operator [] (int i) { return _data[i]; }
+	virtual const Variant & operator[](int i) const { return _data[i]; }
+
+private:
+	std::vector<Variant> _data;
+};
 
 class CC_DLL TypeInfo
 {
@@ -163,6 +186,7 @@ public:
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
 
 	/// Subscribe to an event that can be sent by any sender.
+	template<typename T> void subscribeToEvent(EventHandler* handler) { subscribeToEvent(T::_ID, handler); }
 	void subscribeToEvent(EventID eventType, EventHandler* handler);
 	void subscribeToEvent(CCObject* sender, EventID eventType, EventHandler* handler);
 	/// Unsubscribe from an event.
@@ -173,19 +197,16 @@ public:
 	void unsubscribeFromAllEvents();
 	/// Send event to all subscribers.
 	void sendEvent(EventID eventType);
-	void sendEvent(EventID eventType, EventDataMap& eventData);
-	template<typename T> void sendEvent() { sendEvent(T::Name); }
-	template<typename T> void sendEvent(EventDataMap& eventData) { sendEvent(T::Name, eventData); }
+	void sendEvent(EventID eventType, IEventData& eventData);
+	template<typename T> void sendEvent() { sendEvent(T::_ID); }
+	template<typename T> void sendEvent(IEventData& eventData) { sendEvent(T::_ID, eventData); }
 
-	void onEvent(CCObject* sender, EventID eventType, EventDataMap& eventData);
+	void onEvent(CCObject* sender, EventID eventType, IEventData& eventData);
 
 	EventHandler* findEventHandler(CCObject* sender, EventID eventType, EventHandler** previous);
 	EventHandler* findEventHandler(CCObject* sender, EventHandler** previous);
 
 	void removeEventSender(CCObject* sender);
-
-	static EventID findEventID(const char* name);
-	static EventID regEvent(EventID id);
 private:
 	LinkedList<EventHandler> _eventHandlers;
 
@@ -222,12 +243,8 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(EventDataMap& eventData) = 0;
-	virtual void invoke()
-	{
-		EventDataMap m;
-		invoke(m);
-	}
+	virtual void invoke(IEventData& eventData) = 0;
+	virtual void invoke();
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const = 0;
 
@@ -245,7 +262,7 @@ template <typename ReceiverType>
 class EventHandlerImpl : public EventHandler
 {
 public:
-	typedef void (ReceiverType::*HandlerFunctionPtr)(EventDataMap&);
+	typedef void (ReceiverType::*HandlerFunctionPtr)(IEventData&);
 
 	/// Construct with receiver and function pointers and userdata.
 	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) 
@@ -256,7 +273,7 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(EventDataMap& eventData)
+	virtual void invoke(IEventData& eventData)
 	{
 		(_receiver->*_function)(eventData);
 	}
@@ -289,7 +306,7 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(EventDataMap& eventData)
+	virtual void invoke(IEventData& eventData)
 	{
 		(_receiver->*_function)();
 	}
@@ -308,7 +325,7 @@ private:
 };
 
 template <typename ReceiverType>
-static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(EventDataMap&))
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(IEventData&))
 {
 	return new EventHandlerImpl<ReceiverType>(receiver, function);
 }
@@ -318,38 +335,18 @@ static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::
 	return new EventHandlerImplNoArg<ReceiverType>(receiver, function);
 }
 
-#define CC_EVENT_DEFINE(eventName) \
-	namespace eventName { \
-		class Param { public: \
-			static cocos2d::EventID Name;
+#define CC_EVENT_DEFINE(name) class name  { public: enum {
 
-#define CC_PARAM(paramName) \
-		static cocos2d::EventID paramName;
+#define CC_EVENT_END() \
+		_count}; \
+		static const char* eventsName[]; \
+		static cocos2d::ID _ID; \
+	};
 
-#define CC_EVENT_END() }; }
-
-//
-class CCObject;
-class CCNode;
-class CCEvent;
+#define CC_PARAM(name) name,
 
 typedef void (CCObject::*SEL_SCHEDULE)(float);
-typedef void (CCObject::*SEL_CallFunc)();
-typedef void (CCObject::*SEL_CallFuncN)(CCNode*);
-typedef void (CCObject::*SEL_CallFuncND)(CCNode*, void*);
-typedef void (CCObject::*SEL_CallFuncO)(CCObject*);
-typedef void (CCObject::*SEL_MenuHandler)(CCObject*);
-typedef void (CCObject::*SEL_EventHandler)(CCEvent*);
-typedef int (CCObject::*SEL_Compare)(CCObject*);
-
 #define schedule_selector(_SELECTOR) (SEL_SCHEDULE)(&_SELECTOR)
-#define callfunc_selector(_SELECTOR) (SEL_CallFunc)(&_SELECTOR)
-#define callfuncN_selector(_SELECTOR) (SEL_CallFuncN)(&_SELECTOR)
-#define callfuncND_selector(_SELECTOR) (SEL_CallFuncND)(&_SELECTOR)
-#define callfuncO_selector(_SELECTOR) (SEL_CallFuncO)(&_SELECTOR)
-#define menu_selector(_SELECTOR) (SEL_MenuHandler)(&_SELECTOR)
-#define event_selector(_SELECTOR) (SEL_EventHandler)(&_SELECTOR)
-#define compare_selector(_SELECTOR) (SEL_Compare)(&_SELECTOR)
 
 // end of base_nodes group
 /// @}

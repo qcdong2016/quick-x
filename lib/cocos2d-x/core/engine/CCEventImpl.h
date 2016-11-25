@@ -2,12 +2,9 @@
 #undef CC_PARAM
 #undef CC_EVENT_END
 
-#define CC_EVENT_DEFINE(eventName) \
-	namespace eventName { \
-		cocos2d::EventID Param::Name = #eventName; \
-		static cocos2d::EventID eventName##_reg = cocos2d::CCObject::regEvent(Param::Name);
+#define CC_EVENT_DEFINE(name) \
+	cocos2d::ID name ::_ID(#name); \
+	const char* name ::eventsName[] = {
 
-#define CC_PARAM(paramName) \
-		cocos2d::EventID Param::paramName = #paramName;
-
-#define CC_EVENT_END() }
+#define CC_EVENT_END() nullptr};
+#define CC_PARAM(name) #name,

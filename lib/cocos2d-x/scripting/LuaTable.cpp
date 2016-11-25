@@ -14,6 +14,7 @@ LuaTable::LuaTable(lua_State* L)
 LuaTable::LuaTable()
 {
     _luaState = CCLuaEngine::defaultEngine()->getLuaStack()->getLuaState();
+	lua_newtable(_luaState);
 }
 
 void LuaTable::setInt(int index, int value)

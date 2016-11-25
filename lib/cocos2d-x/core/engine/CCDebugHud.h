@@ -19,9 +19,9 @@ private:
 private:
 
 	void createLabels();
-	void render(EventDataMap& map);
+	void render(IEventData& map);
 
-	void updateLabel(EventDataMap& map);
+	void updateLabel(IEventData& map);
 	float _inteval;
 	float _frames;
 

@@ -38,6 +38,7 @@ enum {
     kCCActionTagInvalid = -1,
 };
 
+class CCNode;
 /**
  * @addtogroup actions
  * @{

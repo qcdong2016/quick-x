@@ -6,28 +6,28 @@ NS_CC_BEGIN;
 
 void Input::onKeypadBack()
 {
-	EventDataMap eventData;
-	eventData[KeypadEvent::Param::key] = "back";
-	sendEvent<KeypadEvent::Param>(eventData);
+	EventData<KeypadEvent> eventData;
+	eventData[KeypadEvent::key] = "back";
+	sendEvent<KeypadEvent>(eventData);
 }
 
 void Input::onKeypadMenu()
 {
-	EventDataMap eventData;
-	eventData[KeypadEvent::Param::key] = "menu";
-	sendEvent<KeypadEvent::Param>(eventData);
+	EventData<KeypadEvent> eventData;
+	eventData[KeypadEvent::key] = "menu";
+	sendEvent<KeypadEvent>(eventData);
 }
 
 void Input::onEnterBackground()
 {
-	EventDataMap eventData;
-	sendEvent<EnterBackground::Param>(eventData);
+	EventData<EnterBackground> eventData;
+	sendEvent<EnterBackground>(eventData);
 }
 
 void Input::onEnterForeground()
 {
-	EventDataMap eventData;
-	sendEvent<EnterForeground::Param>(eventData);
+	EventData<EnterForeground> eventData;
+	sendEvent<EnterForeground>(eventData);
 }
 
 NS_CC_END;

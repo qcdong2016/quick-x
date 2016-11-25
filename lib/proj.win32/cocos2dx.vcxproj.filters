@@ -957,9 +957,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp">
-      <Filter>cocos2d-x\core\engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
@@ -985,6 +982,9 @@
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCSubSystem.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
   </ItemGroup>

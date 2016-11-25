@@ -195,7 +195,7 @@ void SkeletonAnimation::clearTrack (int trackIndex) {
 template<typename T>
 static void send(CCObject* sender, int trackIndex, int loopCount)
 {
-	EventDataMap map;
+	EventData<T> map;
 
 	map[T::trackIndex] = trackIndex;
 	map[T::loopCount] = loopCount;
@@ -204,25 +204,25 @@ static void send(CCObject* sender, int trackIndex, int loopCount)
 }
 static void call(CCObject* sender, int trackIndex, int loopCount, spEvent* event = nullptr)
 {
-	EventDataMap map;
+	EventData<SpineEvent> map;
 
-	map[SpineEvent::Param::trackIndex] = trackIndex;
-	map[SpineEvent::Param::loopCount] = loopCount;
+	map[SpineEvent::trackIndex] = trackIndex;
+	map[SpineEvent::loopCount] = loopCount;
 
-	map[SpineEvent::Param::eventName] = event->data->name;
-	map[SpineEvent::Param::floatValue] = event->data->floatValue;
-	map[SpineEvent::Param::intValue] = event->data->intValue;
+	map[SpineEvent::eventName] = event->data->name;
+	map[SpineEvent::floatValue] = event->data->floatValue;
+	map[SpineEvent::intValue] = event->data->intValue;
 	if (event->data->stringValue)
-		map[SpineEvent::Param::stringValue] = event->data->stringValue;
-	sender->sendEvent<SpineEvent::Param>(map);
+		map[SpineEvent::stringValue] = event->data->stringValue;
+	sender->sendEvent<SpineEvent>(map);
 }
 
 void SkeletonAnimation::onAnimationStateEvent (int trackIndex, spEventType type, spEvent* event, int loopCount) {
 
 	switch (type) {
-	case SP_ANIMATION_START: send<SpineStart::Param>(this, trackIndex, loopCount); break;
-	case SP_ANIMATION_END:   send<SpineEnd::Param>(this, trackIndex, loopCount); break;
-	case SP_ANIMATION_COMPLETE:send<SpineComplete::Param>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_START: send<SpineStart>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_END:   send<SpineEnd>(this, trackIndex, loopCount); break;
+	case SP_ANIMATION_COMPLETE:send<SpineComplete>(this, trackIndex, loopCount); break;
 	case SP_ANIMATION_EVENT:  call(this, trackIndex, loopCount, event); break;
 	}
 }

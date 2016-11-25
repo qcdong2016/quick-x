@@ -37,6 +37,7 @@ typedef struct lua_State lua_State;
 
 NS_CC_BEGIN
 
+class CCNode;
 class CCTimer;
 class CCLayer;
 class CCMenuItem;
