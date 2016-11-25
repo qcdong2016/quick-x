@@ -27,8 +27,8 @@ extern "C"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
-// #include <android/asset_manager.h>
-// extern AAssetManager* __assetManager;
+#include "android/asset_manager_jni.h"
+static AAssetManager* s_assetManager = nullptr;
 #endif
 
 #include "support/zip_support/ZipUtils.h"
@@ -66,28 +66,18 @@ MemBuffer::~MemBuffer()
 }
 
 static std::vector<std::string> s_searchPath;
-static SharedPtr<ZipFile> s_pZipFile;
-
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-static std::string s_searchRoot = "assets";
-#else
 static std::string s_searchRoot = ".";
-#endif
 
-void FileSystem::init()
+void FileSystem::setAssetsManager(void* assetsManager)
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	std::string resourcePath = getApkPath();
-	s_pZipFile = SharedPtr<ZipFile>(new ZipFile(resourcePath, "assets/"));
+	s_assetManager = (AAssetManager*)assetsManager;
 #endif
 }
 
 void FileSystem::setResourceRoot(const std::string& root)
 {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#else
 	s_searchRoot = root;
-#endif
 }
 
 void FileSystem::addResourcePath(const std::string& path)
@@ -107,28 +97,6 @@ std::string FileSystem::getWritablePath()
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     return CCDevice::getWritablePath();
 #endif
-}
-
-std::string FileSystem::fullPathOfFile(const std::string& filename)
-{
-	std::string test;
-
-	if (!isAbsolutePath(filename))
-		test = join(s_searchRoot, filename);
-	else
-		test = filename;
-
-	if (isFileExist(test))
-		return test;
-
-	for (std::string& ps : s_searchPath) {
-		test = join(ps, filename);
-		if (isFileExist(test)) {
-			return test;
-		}
-	}
-
-	return filename;
 }
 
 bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>& files)
@@ -170,8 +138,34 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
 
 #else
 
-    path.append("/.");
     bool result = false;
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    if (!isAbsolutePath(dirPath)) {
+    	// List the files that are in the android APK at this path
+	    AAssetDir* assetDir = AAssetManager_openDir(s_assetManager, dirPath.c_str());
+	    if (assetDir != NULL)
+	    {
+	        AAssetDir_rewind(assetDir);
+	        const char* file = NULL;
+	        while ((file = AAssetDir_getNextFileName(assetDir)) != NULL)
+	        {
+	            std::string filename(file);
+	            // Check if this file was already added to the list because it was copied to the SD card.
+	            if (find(files.begin(), files.end(), filename) == files.end())
+	            {
+	                files.push_back(filename);
+	            }
+	        }
+	        AAssetDir_close(assetDir);
+	        result = true;
+	    }
+	    return result;
+    }
+    
+#endif
+
+    path.append("/.");
 
     struct dirent* dp;
     DIR* dir = opendir(path.c_str());
@@ -197,85 +191,94 @@ bool FileSystem::listFiles(const std::string& dirPath, std::vector<std::string>&
         result = true;
     }
 
-#ifdef __ANDROID__
-    // List the files that are in the android APK at this path
-    // AAssetDir* assetDir = AAssetManager_openDir(__assetManager, dirPath);
-    // if (assetDir != NULL)
-    // {
-    //     AAssetDir_rewind(assetDir);
-    //     const char* file = NULL;
-    //     while ((file = AAssetDir_getNextFileName(assetDir)) != NULL)
-    //     {
-    //         std::string filename(file);
-    //         // Check if this file was already added to the list because it was copied to the SD card.
-    //         if (find(files.begin(), files.end(), filename) == files.end())
-    //         {
-    //             files.push_back(filename);
-    //         }
-    //     }
-    //     AAssetDir_close(assetDir);
-    //     result = true;
-    // }
-#endif
-
     return result;
 #endif
 }
 
+
 bool FileSystem::isFileExist(const std::string& filePath)
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	if (!isAbsolutePath(filePath))
-		return s_pZipFile->fileExists(filePath);
+    if (!isAbsolutePath(filePath)) {
+        AAsset* asset = AAssetManager_open(s_assetManager, filePath.c_str(), AASSET_MODE_UNKNOWN);
+        if (asset) {
+            int length = AAsset_getLength(asset);
+            AAsset_close(asset);
+            return length > 0;
+        }
+        return false;
+    }
 #endif
-
+    
     gp_stat_struct s;
     return stat(filePath.c_str(), &s) == 0;
-
+    
 }
 
-unsigned char* readFile(const std::string& fullPath, size_t* pSize)
+std::string FileSystem::fullPathOfFile(const std::string& filename)
+{
+    std::string test;
+    
+    if (!isAbsolutePath(filename))
+        test = join(s_searchRoot, filename);
+    else
+        test = filename;
+    
+    if (isFileExist(test))
+        return test;
+    
+    for (std::string& ps : s_searchPath) {
+        test = join(ps, filename);
+        
+        if (isFileExist(test)) {
+            return test;
+        }
+    }
+    
+    return filename;
+}
+
+static unsigned char* readFile(const std::string& fullPath, size_t* pSize)
 {
 	unsigned char * pBuffer = NULL;
 	CCAssert(!fullPath.empty() && pSize != NULL, "Invalid parameters.");
 	*pSize = 0;
-
+	
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	pBuffer = s_pZipFile->getFileData(fullPath.c_str(), (unsigned long*)pSize);
 
-	if (pBuffer)
-		return pBuffer;
+	if (!FileSystem::isAbsolutePath(fullPath)) {
+		AAsset* asset = AAssetManager_open(s_assetManager, fullPath.c_str(), AASSET_MODE_UNKNOWN);
+	    if (asset) {
+		    *pSize = AAsset_getLength(asset);
+			pBuffer = new unsigned char[*pSize];
+
+		    int readsize = AAsset_read(asset, pBuffer, *pSize);
+		    AAsset_close(asset);
+	    }
+	}
+	else
 #endif
-
-	do
 	{
 		// read the file from hardware
 		FILE *fp = fopen(fullPath.c_str(), "rb");
-		CC_BREAK_IF(!fp);
-
-		fseek(fp, 0, SEEK_END);
-		*pSize = ftell(fp);
-		fseek(fp, 0, SEEK_SET);
-		pBuffer = new unsigned char[*pSize];
-		*pSize = fread(pBuffer, sizeof(unsigned char), *pSize, fp);
-		fclose(fp);
-	} while (0);
-
-	if (!pBuffer)
-	{
-		std::string msg = "Get data from file(";
-		msg.append(fullPath).append(") failed!");
-
-		CCLOG("%s", msg.c_str());
+		if (fp) {
+			fseek(fp, 0, SEEK_END);
+			*pSize = ftell(fp);
+			fseek(fp, 0, SEEK_SET);
+			pBuffer = new unsigned char[*pSize];
+			*pSize = fread(pBuffer, sizeof(unsigned char), *pSize, fp);
+			fclose(fp);
+		}
 	}
 
+	if (!pBuffer)
+		CCLog("Get data from file(%s) failed.", fullPath.c_str());
 
 	return pBuffer;
 }
 
 SharedPtr<MemBuffer> FileSystem::readAll(const std::string& filePath)
 {
-
 	size_t size;
 	unsigned char* data = readFile(fullPathOfFile(filePath), &size);
 

@@ -82,7 +82,8 @@ public:
 	/// replaceExtension('a.jpg', 'png') -> a.png
 	static std::string replaceExtension(const std::string& path, const std::string& newExt);
 
-	static void init();
+	/// internal
+	static void setAssetsManager(void* assetsManager);
 private:
 	static SharedPtr<Decoder> _dataDecoder;
 };

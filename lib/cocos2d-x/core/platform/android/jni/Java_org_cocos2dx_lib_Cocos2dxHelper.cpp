@@ -6,6 +6,7 @@
 #include "cocoa/CCString.h"
 #include "IO/FileSystem.h"
 #include "Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/asset_manager_jni.h"
 
 
 #define  LOG_TAG    "Java_org_cocos2dx_lib_Cocos2dxHelper.cpp"
@@ -25,10 +26,10 @@ extern "C" {
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath) {
         g_apkPath = JniHelper::jstring2string(apkPath);
-        FileSystem::init();
     }
-    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetContext(JNIEnv*  env, jobject thiz, jobject context) {
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetContext(JNIEnv*  env, jobject thiz, jobject context, jobject assetManager) {
         JniHelper::setClassLoaderFrom(context);
+        FileSystem::setAssetsManager(AAssetManager_fromJava(env, assetManager));
     }
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) {
         jsize  size = env->GetArrayLength(text);

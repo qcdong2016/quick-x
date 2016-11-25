@@ -34,9 +34,8 @@ extern "C"
 {
     int cocos2dx_lua_loader(lua_State *L)
     {
-        static const std::string SUFFIX_LUA = ".lua";
-
         std::string filename(luaL_checkstring(L, 1));
+
         lua_getglobal(L, kCCLuaDebuggerGlobalKey);
         if (lua_toboolean(L, -1))
         {
@@ -44,54 +43,20 @@ extern "C"
         }
         lua_pop(L, 1);
 
-        size_t pos = filename.rfind(SUFFIX_LUA);
-        if (pos == filename.length() - SUFFIX_LUA.length())
-        {
-            filename = filename.substr(0, pos);
+        // replace . -> /
+        for (unsigned i = 0; i < filename.size(); i++) {
+            if (filename[i] == '.')
+                filename[i] = '/';
         }
 
-        pos = filename.find_first_of(".");
-        while (pos != std::string::npos)
+        std::string chunkName = FileSystem::join("scripts", filename) + ".lua";
+
+		SharedPtr<MemBuffer> bf = FileSystem::readAll(chunkName);
+        if (bf)
         {
-            filename.replace(pos, 1, "/");
-            pos = filename.find_first_of(".");
+			CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
+			return 1;
         }
-        filename.append(".lua");
-
-        // search file in package.path
-        std::string chunkName;
-
-        lua_getglobal(L, "package");
-        lua_getfield(L, -1, "path");
-        std::string searchpath(lua_tostring(L, -1));
-        lua_pop(L, 1);
-        size_t begin = 0;
-        size_t next = searchpath.find_first_of(";", 0);
-
-		SharedPtr<MemBuffer> bf;
-
-        do
-        {
-            if (next == std::string::npos) next = searchpath.length();
-            std::string prefix = searchpath.substr(begin, next);
-            if (prefix[0] == '.' && prefix[1] == '/')
-            {
-                prefix = prefix.substr(2);
-            }
-
-            pos = prefix.find("?.lua");
-            chunkName = prefix.substr(0, pos).append(filename);
-            chunkName = FileSystem::fullPathOfFile(chunkName);
-            if (FileSystem::isFileExist(chunkName))
-            {
-				bf = FileSystem::readAll(chunkName);
-				CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
-				return 1;
-            }
-
-            begin = next + 1;
-            next = searchpath.find_first_of(";", begin);
-        } while ( begin < (size_t)searchpath.length());
 
         return 0;
     }
