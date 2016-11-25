@@ -25,7 +25,7 @@
 #include <algorithm>
 
 #include "CCScriptEventDispatcher.h"
-#include "script_support/CCScriptSupport.h"
+#include "cocoa/CCScriptSupport.h"
 
 NS_CC_BEGIN
 

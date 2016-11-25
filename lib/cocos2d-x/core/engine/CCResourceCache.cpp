@@ -1,6 +1,6 @@
 #include "CCResourceCache.h"
 #include <algorithm>
-#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCSpriteFrame.h"
 #include "resources/CCPlistResource.h"
 
 NS_CC_BEGIN

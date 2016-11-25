@@ -23,8 +23,8 @@
  ****************************************************************************/
 
 #include "UILoadingBar.h"
-#include "sprite_nodes/CCScale9Sprite.h"
-#include "sprite_nodes/CCSprite.h"
+#include "nodes/CCScale9Sprite.h"
+#include "nodes/CCSprite.h"
 
 
 NS_CC_BEGIN

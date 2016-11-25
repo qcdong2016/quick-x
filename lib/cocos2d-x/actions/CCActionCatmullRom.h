@@ -40,7 +40,7 @@
 #include <vector>
 
 #include "CCActionInterval.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCPointArray.h"
 

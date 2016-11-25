@@ -26,15 +26,12 @@ THE SOFTWARE.
 #define __EFFECTS_CCGRID_H__
 
 #include "engine/CCObject.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "CCCamera.h"
 #include "ccTypes.h"
 #include "textures/CCTexture2D.h"
 #include "engine/CCDirector.h"
 #include "kazmath/mat4.h"
-#ifdef EMSCRIPTEN
-#include "base_nodes/CCGLBufferedNode.h"
-#endif // EMSCRIPTEN
 
 NS_CC_BEGIN
 
@@ -203,9 +200,6 @@ protected:
  @lua NA
 */
 class CC_DLL CCTiledGrid3D : public CCGridBase
-#ifdef EMSCRIPTEN
-, public CCGLBufferedNode
-#endif // EMSCRIPTEN
 {
 public:
     CCTiledGrid3D();

@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCArray.h"
 #include "kazmath/mat4.h"
-#include "label_nodes/CCLabelAtlas.h"
+#include "nodes/CCLabelAtlas.h"
 
 #include "engine/CCSubSystem.h"
 #include "base/Ptr.h"

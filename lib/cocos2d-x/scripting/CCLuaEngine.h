@@ -34,8 +34,8 @@ extern "C" {
 #include "engine/CCObject.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "cocoa/CCSet.h"
-#include "base_nodes/CCNode.h"
-#include "script_support/CCScriptSupport.h"
+#include "nodes/CCNode.h"
+#include "cocoa/CCScriptSupport.h"
 #include "CCLuaStack.h"
 #include "CCLuaValue.h"
 

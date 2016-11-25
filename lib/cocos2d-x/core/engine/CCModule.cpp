@@ -5,9 +5,9 @@
 #include <vector>
 #include <string>
 #include "textures/CCTexture2D.h"
-#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCSpriteFrame.h"
 #include "resources/CCPlistResource.h"
-#include "label_nodes/CCLabelBMFont.h"
+#include "nodes/CCLabelBMFont.h"
 #include "CCDebugHud.h"
 #include "CCScheduler.h"
 #include "actions/CCActionManager.h"

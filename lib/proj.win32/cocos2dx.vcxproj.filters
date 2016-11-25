@@ -82,17 +82,11 @@
     <Filter Include="cocos2d-x\core\base">
       <UniqueIdentifier>{eddd423f-f4a1-45bf-b42a-9a560c2b3080}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\base_nodes">
-      <UniqueIdentifier>{aba578dd-c626-4c70-bd47-593d8d6e7e8a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\cocoa">
       <UniqueIdentifier>{136bbd26-dbca-44f6-85a9-dd0ce37bfd57}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\core\crypto">
       <UniqueIdentifier>{d00ce798-f871-4724-9b0b-96dcce74d520}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\core\draw_nodes">
-      <UniqueIdentifier>{1b24f056-e2a6-4f4c-92a5-9a3c1cb8a7e9}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\core\effects">
       <UniqueIdentifier>{85b14f7b-4086-458d-b4ae-4e8662f2ccc6}</UniqueIdentifier>
@@ -100,29 +94,14 @@
     <Filter Include="cocos2d-x\core\kazmath">
       <UniqueIdentifier>{67a51e0b-01b9-4693-93e3-33707006f10e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\label_nodes">
-      <UniqueIdentifier>{e9405f1d-527a-4f26-9e6c-000ac2f5d8ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\core\layers_scenes_transitions_nodes">
-      <UniqueIdentifier>{12b49141-2852-48b1-b22e-3a30af30c141}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\core\misc_nodes">
-      <UniqueIdentifier>{19a5f6d8-b794-4c75-9a4d-9687205e7cca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\platform">
       <UniqueIdentifier>{8b7ac836-66ee-41b4-8105-63db9753e4f8}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\core\platform\win32">
       <UniqueIdentifier>{8e5f3063-8120-433b-9179-b20ea1e29c98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\script_support">
-      <UniqueIdentifier>{ba22a5f7-e023-4eb8-9616-645c91c09646}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\shaders">
       <UniqueIdentifier>{ff9d0380-5d71-45cf-b469-b53f050834b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="cocos2d-x\core\sprite_nodes">
-      <UniqueIdentifier>{613f014a-69e2-4c48-8ea0-9fc3237f05c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="cocos2d-x\core\support">
       <UniqueIdentifier>{f37de488-b642-46a1-9f95-a00fe1dc2515}</UniqueIdentifier>
@@ -162,6 +141,9 @@
     </Filter>
     <Filter Include="cocos2d-x\core\resources">
       <UniqueIdentifier>{f4eab4ee-ef1d-43dd-87dd-8b8ab8306777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\core\nodes">
+      <UniqueIdentifier>{bd280e3c-b56c-4c61-ade9-a8be9dcc960a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -615,15 +597,6 @@
     <ClCompile Include="..\cocos2d-x\core\base\Variant.cpp">
       <Filter>cocos2d-x\core\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\base_nodes\CCAtlasNode.cpp">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\base_nodes\CCGLBufferedNode.cpp">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\base_nodes\CCNode.cpp">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAffineTransform.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
@@ -659,15 +632,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\crypto\xxtea.c">
       <Filter>cocos2d-x\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\draw_nodes\CCDrawingPrimitives.cpp">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\draw_nodes\CCDrawNode.cpp">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\draw_nodes\CCShapeNode.cpp">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\effects\CCGrabber.cpp">
       <Filter>cocos2d-x\core\effects</Filter>
@@ -714,30 +678,6 @@
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\vec4.c">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.cpp">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelBMFont.cpp">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\label_nodes\CCLabelTTF.cpp">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCLayer.cpp">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCScene.cpp">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransition.cpp">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransitionPageTurn.cpp">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransitionProgress.cpp">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
@@ -771,21 +711,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\script_support\CCScriptSupport.cpp">
-      <Filter>cocos2d-x\core\script_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\misc_nodes\CCClippingNode.cpp">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\misc_nodes\CCClippingRegionNode.cpp">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\misc_nodes\CCProgressTimer.cpp">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\misc_nodes\CCRenderTexture.cpp">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\shaders\CCGLProgram.cpp">
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClCompile>
@@ -794,21 +719,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp">
       <Filter>cocos2d-x\core\shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCScale9Sprite.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSprite.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSpriteBatchNode.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrame.cpp">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexture2D.cpp">
       <Filter>cocos2d-x\core\textures</Filter>
@@ -936,9 +846,6 @@
     <ClCompile Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.cpp">
       <Filter>cocos2d-x\core\text_input_node</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\text_input_node\CCTextFieldTTF.cpp">
-      <Filter>cocos2d-x\core\text_input_node</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
@@ -983,6 +890,78 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCFileSystem.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCAtlasNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCClippingNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCClippingRegionNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCDrawingPrimitives.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCDrawNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCLabelAtlas.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCLabelBMFont.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCLabelTTF.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCLayer.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCProgressTimer.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCRenderTexture.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCScale9Sprite.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCScene.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCShapeNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCSprite.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransition.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionProgress.cpp">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptSupport.cpp">
+      <Filter>cocos2d-x\core\cocoa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\resources\CCSpriteFrame.cpp">
+      <Filter>cocos2d-x\core\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\resources\CCAnimation.cpp">
+      <Filter>cocos2d-x\core\resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1439,15 +1418,6 @@
     <ClInclude Include="..\cocos2d-x\core\base\Variant.h">
       <Filter>cocos2d-x\core\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\base_nodes\CCAtlasNode.h">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\base_nodes\CCGLBufferedNode.h">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\base_nodes\CCNode.h">
-      <Filter>cocos2d-x\core\base_nodes</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCAffineTransform.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
@@ -1486,15 +1456,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\crypto\xxtea.h">
       <Filter>cocos2d-x\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\draw_nodes\CCDrawingPrimitives.h">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\draw_nodes\CCDrawNode.h">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\draw_nodes\CCShapeNode.h">
-      <Filter>cocos2d-x\core\draw_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\effects\CCGrabber.h">
       <Filter>cocos2d-x\core\effects</Filter>
@@ -1543,30 +1504,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec4.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelAtlas.h">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelBMFont.h">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\label_nodes\CCLabelTTF.h">
-      <Filter>cocos2d-x\core\label_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCLayer.h">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCScene.h">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransition.h">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransitionPageTurn.h">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\layers_scenes_transitions_nodes\CCTransitionProgress.h">
-      <Filter>cocos2d-x\core\layers_scenes_transitions_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCAccelerometerDelegate.h">
       <Filter>cocos2d-x\core\platform</Filter>
@@ -1628,21 +1565,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\win32\compat\stdint.h">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\script_support\CCScriptSupport.h">
-      <Filter>cocos2d-x\core\script_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\misc_nodes\CCClippingNode.h">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\misc_nodes\CCClippingRegionNode.h">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\misc_nodes\CCProgressTimer.h">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\misc_nodes\CCRenderTexture.h">
-      <Filter>cocos2d-x\core\misc_nodes</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h">
       <Filter>cocos2d-x\core\shaders</Filter>
     </ClInclude>
@@ -1699,21 +1621,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_vert.h">
       <Filter>cocos2d-x\core\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCAnimation.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCScale9Sprite.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSprite.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteBatchNode.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\sprite_nodes\CCSpriteFrame.h">
-      <Filter>cocos2d-x\core\sprite_nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\textures\CCTexture2D.h">
       <Filter>cocos2d-x\core\textures</Filter>
@@ -1862,9 +1769,6 @@
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.h">
       <Filter>cocos2d-x\core\text_input_node</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\text_input_node\CCTextFieldTTF.h">
-      <Filter>cocos2d-x\core\text_input_node</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h">
       <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
@@ -1912,6 +1816,78 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\engine\CCFileSystem.h">
       <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCAtlasNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCClippingNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCClippingRegionNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCDrawingPrimitives.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCDrawNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCLabelAtlas.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCLabelBMFont.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCLabelTTF.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCLayer.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCProgressTimer.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCRenderTexture.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCScale9Sprite.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCScene.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCShapeNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCSprite.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransition.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionProgress.h">
+      <Filter>cocos2d-x\core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptSupport.h">
+      <Filter>cocos2d-x\core\cocoa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\resources\CCSpriteFrame.h">
+      <Filter>cocos2d-x\core\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h">
+      <Filter>cocos2d-x\core\resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

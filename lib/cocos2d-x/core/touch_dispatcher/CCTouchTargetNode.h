@@ -27,7 +27,7 @@
 #ifndef __CCTOUCH_TARGET_NODE_H_
 #define __CCTOUCH_TARGET_NODE_H_
 
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 
 NS_CC_BEGIN
 

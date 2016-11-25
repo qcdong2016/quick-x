@@ -35,7 +35,7 @@
 #include <spine/spine.h>
 #include "PolygonBatch.h"
 #include "base/Ptr.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "SpineResource.h"
 
 namespace cocos2d {

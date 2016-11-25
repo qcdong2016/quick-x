@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include "CCTMXLayer.h"
 #include "CCTMXXMLParser.h"
 #include "CCTMXTiledMap.h"
-#include "sprite_nodes/CCSprite.h"
+#include "nodes/CCSprite.h"
 
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"

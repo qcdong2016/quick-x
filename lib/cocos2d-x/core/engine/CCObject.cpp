@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #include "engine/CCObject.h"
 #include "ccMacros.h"
-#include "script_support/CCScriptSupport.h"
+#include "cocoa/CCScriptSupport.h"
 #include "cocoa/CCAutoreleasePool.h"
 #include <vector>
 #include <map>

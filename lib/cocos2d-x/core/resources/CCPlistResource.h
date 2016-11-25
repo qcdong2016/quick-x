@@ -3,7 +3,7 @@
 
 #include "CCPlatformMacros.h"
 #include "engine/CCResourceCache.h"
-#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 

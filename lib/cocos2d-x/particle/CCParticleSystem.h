@@ -26,7 +26,7 @@ THE SOFTWARE.
 #ifndef __CCPARTICLE_SYSTEM_H__
 #define __CCPARTICLE_SYSTEM_H__
 
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "cocoa/CCDictionary.h"
 #include "cocoa/CCString.h"
 

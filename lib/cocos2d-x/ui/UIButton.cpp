@@ -24,9 +24,9 @@
 
 #include "UIButton.h"
 
-#include "sprite_nodes/CCSprite.h"
-#include "sprite_nodes/CCScale9Sprite.h"
-#include "label_nodes/CCLabelTTF.h"
+#include "nodes/CCSprite.h"
+#include "nodes/CCScale9Sprite.h"
+#include "nodes/CCLabelTTF.h"
 #include "actions/CCActionInterval.h"
 
 NS_CC_BEGIN

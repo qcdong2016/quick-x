@@ -1,7 +1,7 @@
 #include "CCPlistResource.h"
 #include "cocoa/CCDictionary.h"
 #include "textures/CCTexture2D.h"
-#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 

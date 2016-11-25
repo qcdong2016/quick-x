@@ -28,7 +28,7 @@
 
 #include "CCEditBox.h"
 #include "Win32InputBox.h"
-#include "label_nodes/CCLabelTTF.h"
+#include "nodes/CCLabelTTF.h"
 #include "ccUTF8.h"
 #include "CCPointExtension.h"
 

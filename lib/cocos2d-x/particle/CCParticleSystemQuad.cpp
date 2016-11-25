@@ -27,7 +27,7 @@ THE SOFTWARE.
 
 #include "CCGL.h"
 #include "CCParticleSystemQuad.h"
-#include "sprite_nodes/CCSpriteFrame.h"
+#include "resources/CCSpriteFrame.h"
 #include "engine/CCDirector.h"
 #include "CCParticleBatchNode.h"
 #include "textures/CCTextureAtlas.h"

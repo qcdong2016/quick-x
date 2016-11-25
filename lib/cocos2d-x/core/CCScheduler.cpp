@@ -30,7 +30,7 @@
 #include "support/data_support/utlist.h"
 #include "support/data_support/ccCArray.h"
 #include "cocoa/CCArray.h"
-#include "script_support/CCScriptSupport.h"
+#include "cocoa/CCScriptSupport.h"
 #include "engine/CCEngineEvents.h"
 
 using namespace std;

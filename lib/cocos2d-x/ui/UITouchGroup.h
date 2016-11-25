@@ -28,7 +28,7 @@
 
 #include "CCPlatformMacros.h"
 #include "UIWidget.h"
-#include "layers_scenes_transitions_nodes/CCLayer.h"
+#include "nodes/CCLayer.h"
 
 NS_CC_BEGIN
 

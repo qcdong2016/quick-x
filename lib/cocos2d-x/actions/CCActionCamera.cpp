@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCActionCamera.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "CCCamera.h"
 #include "CCStdC.h"
 

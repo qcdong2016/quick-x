@@ -5,7 +5,7 @@
 #include "CCPlatformMacros.h"
 
 #include <string>
-#include "label_nodes/CCLabelAtlas.h"
+#include "nodes/CCLabelAtlas.h"
 
 NS_CC_BEGIN
 

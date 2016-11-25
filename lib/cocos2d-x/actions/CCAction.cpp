@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 #include "CCAction.h"
 #include "CCActionInterval.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 #include "support/CCPointExtension.h"
 #include "engine/CCDirector.h"
 

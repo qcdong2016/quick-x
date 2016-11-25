@@ -25,9 +25,9 @@
  ****************************************************************************/
 
 #include "CCActionInstant.h"
-#include "base_nodes/CCNode.h"
-#include "sprite_nodes/CCSprite.h"
-#include "script_support/CCScriptSupport.h"
+#include "nodes/CCNode.h"
+#include "nodes/CCSprite.h"
+#include "cocoa/CCScriptSupport.h"
 
 NS_CC_BEGIN
 //

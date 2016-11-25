@@ -29,7 +29,7 @@
 #include "Layouts/UILayoutParameter.h"
 #include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
-#include "base_nodes/CCNode.h"
+#include "nodes/CCNode.h"
 
 NS_CC_BEGIN
 
