@@ -34,7 +34,7 @@ THE SOFTWARE.
 // extern
 #include "kazmath/GL/matrix.h"
 #include "kazmath/kazmath.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 
 #define GL_ASSERT( gl_code ) do \

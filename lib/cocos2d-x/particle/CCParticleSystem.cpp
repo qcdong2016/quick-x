@@ -57,7 +57,7 @@ THE SOFTWARE.
 
 #include <string>
 #include "crypto/CCCrypto.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 #include "base/MathDefs.h"
 #include "textures/CCTexture2D.h"

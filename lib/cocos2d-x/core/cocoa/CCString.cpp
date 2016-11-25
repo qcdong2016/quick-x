@@ -2,7 +2,7 @@
 #include "ccMacros.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

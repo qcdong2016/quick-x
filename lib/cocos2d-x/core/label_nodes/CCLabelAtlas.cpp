@@ -36,7 +36,7 @@ THE SOFTWARE.
 #include "support/TransformUtils.h"
 // external
 #include "kazmath/GL/matrix.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "textures/CCTexture2D.h"
 #include "cocoa/CCDictionary.h"
 

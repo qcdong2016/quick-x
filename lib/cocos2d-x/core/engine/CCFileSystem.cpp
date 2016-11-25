@@ -1,4 +1,4 @@
-#include "FileSystem.h"
+#include "CCFileSystem.h"
 #include "CCPlatformMacros.h"
 #include "ccMacros.h"
 

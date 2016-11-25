@@ -31,7 +31,7 @@
 
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "engine/CCModule.h"
 #include "SpineResource.h"
 #include "engine/CCDirector.h"

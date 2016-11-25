@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 #include "MciPlayer.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 USING_NS_CC;
 

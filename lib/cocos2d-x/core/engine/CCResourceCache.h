@@ -3,7 +3,7 @@
 
 #include "CCSubSystem.h"
 #include <vector>
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

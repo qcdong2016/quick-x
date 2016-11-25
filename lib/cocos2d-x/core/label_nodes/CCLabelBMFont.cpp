@@ -41,7 +41,7 @@
 #include "engine/CCDirector.h"
 
 #include "support/ccUTF8.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "textures/CCTexture2D.h"
 
 using namespace std;

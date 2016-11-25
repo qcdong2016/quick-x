@@ -46,7 +46,7 @@ THE SOFTWARE.
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #endif // EMSCRIPTEN
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "ccMacros.h"
 
 NS_CC_BEGIN

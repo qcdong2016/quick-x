@@ -38,7 +38,7 @@ THE SOFTWARE.
 // extern
 #include "kazmath/GL/matrix.h"
 #include "CCEGLView.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

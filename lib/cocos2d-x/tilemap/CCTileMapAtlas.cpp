@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "engine/CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "textures/CCTexture2D.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

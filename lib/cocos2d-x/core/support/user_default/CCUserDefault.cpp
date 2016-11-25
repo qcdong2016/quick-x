@@ -23,7 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCUserDefault.h"
 #include "../tinyxml2/tinyxml2.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "ccMacros.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)

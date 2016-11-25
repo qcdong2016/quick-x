@@ -24,7 +24,7 @@
 
 #include "CCSAXParser.h"
 #include "cocoa/CCDictionary.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "support/tinyxml2/tinyxml2.h"
 
 #include <vector> // because its based on windows 8 build :P

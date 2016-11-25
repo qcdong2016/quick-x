@@ -27,7 +27,7 @@
 #include "CCInteger.h"
 #include <stack>
 #include "CCSAXParser.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 using namespace std;
 

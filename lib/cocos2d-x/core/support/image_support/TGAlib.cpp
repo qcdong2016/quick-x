@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include <stdlib.h>
 
 #include "TGAlib.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 namespace cocos2d {
 

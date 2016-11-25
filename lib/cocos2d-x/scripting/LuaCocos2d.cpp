@@ -45,7 +45,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S);
 #include "engine/CCResourceCache.h"
 #include "shaders/CCShaderCache.h"
 #include "crypto/CCCrypto.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "platform/CCDevice.h"
 #include "CCApplication.h"
 #include "CCEGLView.h"

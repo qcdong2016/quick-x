@@ -24,7 +24,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCArray.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "CCDictionary.h"
 #include <math.h>
 

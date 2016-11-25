@@ -26,7 +26,7 @@
 #include <algorithm>
 
 #include "CCLuaStack.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 using namespace cocos2d;
 

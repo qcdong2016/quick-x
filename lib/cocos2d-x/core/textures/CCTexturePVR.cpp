@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <ctype.h>
 #include <cctype>
 #include "base/Ptr.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 #include "base/MathDefs.h"
 

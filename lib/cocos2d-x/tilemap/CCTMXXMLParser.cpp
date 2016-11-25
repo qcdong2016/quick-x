@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "support/CCPointExtension.h"
 #include "platform/platform.h"
 #include "crypto/CCCrypto.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 using namespace std;
 /*

@@ -97,9 +97,6 @@
     <Filter Include="cocos2d-x\core\effects">
       <UniqueIdentifier>{85b14f7b-4086-458d-b4ae-4e8662f2ccc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\IO">
-      <UniqueIdentifier>{d0e19fdf-ba85-4d9b-9d4f-0e756b4e0626}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\kazmath">
       <UniqueIdentifier>{67a51e0b-01b9-4693-93e3-33707006f10e}</UniqueIdentifier>
     </Filter>
@@ -678,9 +675,6 @@
     <ClCompile Include="..\cocos2d-x\core\effects\CCGrid.cpp">
       <Filter>cocos2d-x\core\effects</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\IO\FileSystem.cpp">
-      <Filter>cocos2d-x\core\IO</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClCompile>
@@ -985,6 +979,9 @@
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCFileSystem.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1505,9 +1502,6 @@
     <ClInclude Include="..\cocos2d-x\core\effects\CCGrid.h">
       <Filter>cocos2d-x\core\effects</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\IO\FileSystem.h">
-      <Filter>cocos2d-x\core\IO</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\aabb.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
@@ -1914,6 +1908,9 @@
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\engine\CCSubSystem.h">
+      <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCFileSystem.h">
       <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
   </ItemGroup>

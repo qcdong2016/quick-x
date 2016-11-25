@@ -73,7 +73,7 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 #include <string>
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 using namespace std;
 
