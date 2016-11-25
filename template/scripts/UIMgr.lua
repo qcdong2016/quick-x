@@ -35,6 +35,10 @@ function UIMgr:showAll()
     end
 end
 
+function UIMgr:open(name)
+	return require('ui.'..name).new():show()
+end
+
 function UIMgr:close(instance)
 	local old_top_info = self.show_layers[#self.show_layers]
 	local close_info = self:findAndRemove(instance)

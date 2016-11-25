@@ -21,8 +21,6 @@ function UILayer:close()
     local cname = self.__cname
 
     UIMgr:close(self)
-    self:removeAllSocketListenner()
-    self:removeAllGameEvents()
     self:dispatchEvent({name=Event.Close});
     self:removeSelf()
 
