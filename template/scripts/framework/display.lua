@@ -1055,7 +1055,8 @@ function display.newFrames(pattern, begin, length, isReversed)
 
     for index = begin, last, step do
         local frameName = string.format(pattern, index)
-        local frame = sharedSpriteFrameCache:spriteFrameByName(frameName)
+        local frame = CCSpriteFrame:create(frameName)
+        -- local frame = sharedSpriteFrameCache:spriteFrameByName(frameName)
         if not frame then
             printError("display.newFrames() - invalid frame, name %s", tostring(frameName))
             return

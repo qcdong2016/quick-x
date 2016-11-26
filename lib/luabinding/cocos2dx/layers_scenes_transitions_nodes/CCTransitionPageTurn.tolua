@@ -1,5 +1,5 @@
 
-$#include "layers_scenes_transitions_nodes/CCTransitionPageTurn.h"
+$#include "nodes/CCTransitionPageTurn.h"
 
 class CCTransitionPageTurn : public CCTransitionScene
 {

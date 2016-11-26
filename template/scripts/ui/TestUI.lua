@@ -2,7 +2,7 @@ local UILayer = require "UILayer"
 
 TestUI = class('TestUI', UILayer)
 
-function TestUI:ctor()
+function TestUI:ctor(name)
     UILayer.ctor(self)
 
     local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
@@ -10,6 +10,7 @@ function TestUI:ctor()
 
     local root = Widget:create()
     touchLayer:addWidget(root)
+
     local listView = ListView:create():addTo(root)
     listView:setSize(CCSize(200, display.height))
     listView:setPosition(ccp(display.width - 200, 0))
@@ -29,6 +30,12 @@ function TestUI:ctor()
     btn:onClicked(function()
         self:close();
     end)
+
+    local label = LabelBMFont:create()
+        :addTo(self, 999)
+        :pos(0, display.cy - 40)
+    label:setFntFile('UIFont.fnt')
+    label:setText(name)
 end
 
 function TestUI:pushButton(name, func)

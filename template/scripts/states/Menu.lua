@@ -25,7 +25,8 @@ function Menu:ctor()
 
     local tests = {
     	'ShaderTest',
-    	'SpineTest',
+        'SpineTest',
+    	'SpriteTest',
 	}
 
 	for i, v in ipairs(tests) do
@@ -44,7 +45,7 @@ function Menu:gotoTest(name)
 
 	self.touchLayer:hide()
 
-	local ui = UIMgr:open(name)
+	local ui = UIMgr:open(name, name)
 	ui:setup();
 	ui:onClose(function()
 		self.touchLayer:show()

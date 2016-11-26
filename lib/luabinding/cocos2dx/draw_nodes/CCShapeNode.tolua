@@ -1,5 +1,5 @@
 
-$#include "draw_nodes/CCShapeNode.h"
+$#include "nodes/CCShapeNode.h"
 
 class CCShapeNode : public CCNode
 {

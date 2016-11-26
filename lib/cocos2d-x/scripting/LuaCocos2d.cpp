@@ -956,6 +956,34 @@ static int tolua_Cocos2d_ResourceCache_addResource00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: addResource of class  ResourceCache */
+#ifndef TOLUA_DISABLE_tolua_Cocos2d_ResourceCache_addResource01
+static int tolua_Cocos2d_ResourceCache_addResource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"ResourceCache",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,2,"Resource",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  ResourceCache* self = (ResourceCache*)  tolua_tousertype(tolua_S,1,0);
+  Resource* res = ((Resource*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addResource'", NULL);
+#endif
+ {
+  self->addResource(res);
+ }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_Cocos2d_ResourceCache_addResource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: removeUnused of class  ResourceCache */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_ResourceCache_removeUnused00
 static int tolua_Cocos2d_ResourceCache_removeUnused00(lua_State* tolua_S)
@@ -45508,6 +45536,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
  tolua_beginmodule(tolua_S,"ResourceCache");
   tolua_function(tolua_S,"getResource",tolua_Cocos2d_ResourceCache_getResource00);
   tolua_function(tolua_S,"addResource",tolua_Cocos2d_ResourceCache_addResource00);
+  tolua_function(tolua_S,"addResource",tolua_Cocos2d_ResourceCache_addResource01);
   tolua_function(tolua_S,"removeUnused",tolua_Cocos2d_ResourceCache_removeUnused00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"kCCShader_PositionTextureColor",kCCShader_PositionTextureColor);

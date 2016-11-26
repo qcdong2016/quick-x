@@ -1,5 +1,5 @@
 
-$#include "misc_nodes/CCRenderTexture.h"
+$#include "nodes/CCRenderTexture.h"
 
 class CCRenderTexture : public CCNode
 {

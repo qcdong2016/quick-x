@@ -1,5 +1,5 @@
 
-$#include "layers_scenes_transitions_nodes/CCTransitionProgress.h"
+$#include "nodes/CCTransitionProgress.h"
 
 class CCTransitionProgress : public CCTransitionScene
 {

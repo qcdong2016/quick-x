@@ -1,5 +1,5 @@
 
-$#include "sprite_nodes/CCSprite.h"
+$#include "nodes/CCSprite.h"
 
 class CCSprite : public CCNode
 {

@@ -1,5 +1,5 @@
 
-$#include "layers_scenes_transitions_nodes/CCTransition.h"
+$#include "nodes/CCTransition.h"
 
 typedef enum {
     /// An horizontal orientation where the Left is nearer

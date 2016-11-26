@@ -1,4 +1,4 @@
-$#include "label_nodes/CCLabelTTF.h"
+$#include "nodes/CCLabelTTF.h"
 
 class CCLabelTTF : public CCSprite
 {

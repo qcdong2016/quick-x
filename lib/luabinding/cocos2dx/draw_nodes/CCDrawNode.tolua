@@ -1,6 +1,6 @@
 
 
-$#include "draw_nodes/CCDrawNode.h"
+$#include "nodes/CCDrawNode.h"
 
 class CCDrawNode : public CCNode
 {

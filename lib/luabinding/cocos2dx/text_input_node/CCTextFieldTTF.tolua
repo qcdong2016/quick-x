@@ -1,5 +1,5 @@
 
-$#include "text_input_node/CCTextFieldTTF.h"
+$#include "nodes/CCTextFieldTTF.h"
 
 class CCTextFieldTTF : public CCLabelTTF
 {

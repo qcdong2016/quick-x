@@ -1,5 +1,5 @@
 
-$#include "sprite_nodes/CCSpriteBatchNode.h"
+$#include "nodes/CCSpriteBatchNode.h"
 
 class CCSpriteBatchNode : public CCNode
 {

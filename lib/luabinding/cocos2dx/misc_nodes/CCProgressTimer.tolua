@@ -1,5 +1,5 @@
 
-$#include "misc_nodes/CCProgressTimer.h"
+$#include "nodes/CCProgressTimer.h"
 
 typedef enum {
     /// Radial Counter-Clockwise

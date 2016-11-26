@@ -1,4 +1,4 @@
-$#include "layers_scenes_transitions_nodes/CCLayer.h"
+$#include "nodes/CCLayer.h"
 
 class CCLayer : public CCNode
 {

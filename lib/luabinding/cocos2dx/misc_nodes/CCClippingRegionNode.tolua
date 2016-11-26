@@ -1,4 +1,4 @@
-$#include "misc_nodes/CCClippingRegionNode.h"
+$#include "nodes/CCClippingRegionNode.h"
 
 
 class CCClippingRegionNode : public CCNode

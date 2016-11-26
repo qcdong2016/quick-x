@@ -239,6 +239,7 @@ void CCDirector::drawScene(void)
 		map[UpdateEvent::timeStep] = m_fDeltaTime;
 		sendEvent<UpdateEvent>(map);
     }
+	g_uNumberOfDraws = 0;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -271,8 +272,6 @@ void CCDirector::drawScene(void)
 		static EventData<AfterDraw> map;
 		sendEvent<AfterDraw>(map);
     }
-    
-	g_uNumberOfDraws = 0;
 
     kmGLPopMatrix();
 

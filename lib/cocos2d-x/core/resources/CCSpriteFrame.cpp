@@ -138,7 +138,7 @@ void CCSpriteFrame::beginLoad(MemBuffer* buf, void* userdata)
 	tex->setPath(this->getPath());
 	tex->initWithImage(image);
 
-	SubSystem::get<ResourceCache>()->addResource<CCTexture2D>(tex);
+	SubSystem::get<ResourceCache>()->addResource(tex);
 
 	CCRect rect = CC_RECT_PIXELS_TO_POINTS(CCRect(0,0, tex->getPixelsWide(), tex->getPixelsHigh()));
 	this->initWithTexture(tex, rect);

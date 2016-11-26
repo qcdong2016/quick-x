@@ -33,9 +33,9 @@ public:
 	ResourceCache();
 
 	void addResource(ID resType, Resource* res);
-	template<typename T>void addResource(Resource* res)
+	void addResource(Resource* res)
 	{
-		addResource(T::getTypeStatic(), res);
+		addResource(res->getType(), res);
 	}
 
 	Resource* findResource(ID type, const std::string& path);

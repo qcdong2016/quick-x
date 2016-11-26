@@ -35,8 +35,8 @@ function UIMgr:showAll()
     end
 end
 
-function UIMgr:open(name)
-	return require('ui.'..name).new():show()
+function UIMgr:open(name, ...)
+	return require('ui.'..name).new( ...):show()
 end
 
 function UIMgr:close(instance)

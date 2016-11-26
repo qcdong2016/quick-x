@@ -317,7 +317,7 @@ void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 		}
 
 		// add sprite frame
-		cache->addResource<CCSpriteFrame>(spriteFrame);
+		cache->addResource(spriteFrame);
 		_frames[spriteFrameName] = (SharedPtr<CCSpriteFrame>(spriteFrame));
 	}
 }
