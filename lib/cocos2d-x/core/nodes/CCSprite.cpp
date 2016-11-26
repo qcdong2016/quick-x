@@ -219,13 +219,9 @@ bool CCSprite::initWithFile(const char *pszFilename)
 {
     CCAssert(pszFilename != NULL, "Invalid filename for sprite");
 
-	CCTexture2D *pTexture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(pszFilename);
-    if (pTexture)
-    {
-        CCRect rect = CCRectZero;
-        rect.size = pTexture->getContentSize();
-        return initWithTexture(pTexture, rect);
-    }
+	CCSpriteFrame* frame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(pszFilename);
+    if (frame)
+		return initWithSpriteFrame(frame);
 
     // don't release here.
     // when load texture failed, it's better to get a "transparent" sprite than a crashed program

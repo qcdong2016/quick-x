@@ -510,9 +510,9 @@ CCScale9Sprite* CCScale9Sprite::create(CCRect capInsets, const char* file)
 
 bool CCScale9Sprite::initWithFile(const char* file)
 {
-    bool pReturn = this->initWithFile(file, CCRectZero);
+	CCSpriteFrame* frame = SubSystem::get<ResourceCache>()->getResource<CCSpriteFrame>(file);
+    bool pReturn = this->initWithSpriteFrame(frame);
     return pReturn;
-    
 }
 
 CCScale9Sprite* CCScale9Sprite::create(const char* file)

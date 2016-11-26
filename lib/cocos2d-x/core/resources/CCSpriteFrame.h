@@ -101,6 +101,7 @@ public:
      *  @lua NA
      */
 	virtual void paste(CCObject* o);
+	virtual void beginLoad(MemBuffer* buf, void* userdata);
 
     static CCSpriteFrame* create(const char* filaname);
     /** Create a CCSpriteFrame with a texture filename, rect in points.

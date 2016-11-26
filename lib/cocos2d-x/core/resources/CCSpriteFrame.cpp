@@ -129,6 +129,21 @@ void CCSpriteFrame::paste(CCObject* o)
     pCopy->setTexture(_texture);
 }
 
+void CCSpriteFrame::beginLoad(MemBuffer* buf, void* userdata)
+{
+	SharedPtr<CCImage> image(new CCImage());
+	image->initWithImageData(buf->getData(), buf->getSize(), EImageFormat::kFmtUnKnown);
+
+	SharedPtr<CCTexture2D> tex(new CCTexture2D());
+	tex->setPath(this->getPath());
+	tex->initWithImage(image);
+
+	SubSystem::get<ResourceCache>()->addResource<CCTexture2D>(tex);
+
+	CCRect rect = CC_RECT_PIXELS_TO_POINTS(CCRect(0,0, tex->getPixelsWide(), tex->getPixelsHigh()));
+	this->initWithTexture(tex, rect);
+}
+
 void CCSpriteFrame::setRect(const CCRect& rect)
 {
     m_obRect = rect;

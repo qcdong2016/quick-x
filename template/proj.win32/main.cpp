@@ -1,7 +1,7 @@
 
 
 #include "base/ProcessUtils.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
 

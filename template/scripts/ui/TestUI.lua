@@ -23,12 +23,10 @@ function TestUI:ctor()
     self.touchLayer = touchLayer
     self.root = root
 
-
-    local label = Label:create():addTo(root)
-    label:setFontSize(30)
-    label:setText('Back')
-    label:setPosition(ccp(100, display.top -50))
-    label:onClicked(function()
+    local btn = Button:create():addTo(root):scale(0.5)
+    btn:loadTextureNormal('AllSprites/ExitButton.png')
+    btn:setPosition(ccp(40, display.top -40))
+    btn:onClicked(function()
         self:close();
     end)
 end

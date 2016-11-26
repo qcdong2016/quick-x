@@ -17,31 +17,32 @@ void ResourceCache::addResource(ID resType, Resource* res)
 
 Resource* ResourceCache::getResource(ID resType, const std::string& path, void* userdata /* = 0 */)
 {
-	Resource* cached = findResource(resType, path);
+	std::string fullpath = FileSystem::fullPathOfFile(path);
+	Resource* cached = findResource(resType, fullpath);
 
 	if (cached)
 		return cached;
-
+	
 	// For auto loading plist. 
 	// TODO: bg loading.
-	if (!FileSystem::isFileExist(path) && resType == CCSpriteFrame::getTypeStatic()) {
-		std::string plist = (FileSystem::getDirectory(path) + ".plist");
+	if (!FileSystem::isFileExist(fullpath) && resType == CCSpriteFrame::getTypeStatic()) {
+		std::string plist = (FileSystem::getDirectory(fullpath) + ".plist");
 
 		if (!FileSystem::isFileExist(FileSystem::fullPathOfFile(plist)))
 			return nullptr;
 
 		PlistResource* p = ResourceCache::getResource<PlistResource>(plist);
         
-        return p->getFrame(FileSystem::getName(path));
+        return p->getFrame(FileSystem::getName(fullpath));
 	}
 
 
-	SharedPtr<MemBuffer> buf = FileSystem::readAll(path);
+	SharedPtr<MemBuffer> buf = FileSystem::readAll(fullpath);
 	if (!buf->isNull()) {
 
 		SharedPtr<Resource> res(ObjectFactoryManager::newObject<Resource>(resType));
 
-		res->_path = path;
+		res->_path = fullpath;
 
 		res->beginLoad(buf, userdata);
 		_resources.insert(_resources.begin(), res);
