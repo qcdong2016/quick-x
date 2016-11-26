@@ -2,6 +2,7 @@
 #include "cocoa/CCDictionary.h"
 #include "textures/CCTexture2D.h"
 #include "resources/CCSpriteFrame.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

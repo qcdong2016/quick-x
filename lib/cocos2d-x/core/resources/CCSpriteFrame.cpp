@@ -26,6 +26,7 @@
 
 #include "CCSpriteFrame.h"
 #include "engine/CCDirector.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

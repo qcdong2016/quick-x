@@ -46,6 +46,7 @@ THE SOFTWARE.
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCRenderState.h"
+#include "engine/CCFileSystem.h"
 
 NS_CC_BEGIN
 

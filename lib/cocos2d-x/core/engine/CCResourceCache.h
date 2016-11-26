@@ -2,10 +2,11 @@
 #pragma once
 
 #include "CCSubSystem.h"
-#include <vector>
-#include "engine/CCFileSystem.h"
+#include <set>
 
 NS_CC_BEGIN
+
+class MemBuffer;
 
 class CC_DLL Resource : public CCObject
 {
@@ -51,11 +52,24 @@ public:
 		return (T*)getResource(T::getTypeStatic(), path, userdata);
 	}
 
+	Resource* getResourceBG(ID resType, const std::string& path, void* userdata = 0);
+	template <class T>
+	T* getResourceBG(const std::string& path, void* userdata = 0)
+	{
+		return (T*)getResourceBG(T::getTypeStatic(), path, userdata);
+	}
+
+	void removeUnusedByType(ID resType);
+	template <class T>
+	void removeUnusedByType() { removeUnusedByType(T::getTypeStatic()); }
+
 	void removeUnused();
 
 private:
+	typedef std::set<SharedPtr<Resource> > ResourceGroup;
+	typedef std::map<ID, ResourceGroup> ResourceMap;
 
-	std::vector<SharedPtr<Resource> > _resources;
+	ResourceMap _resources;
 };
 
 NS_CC_END

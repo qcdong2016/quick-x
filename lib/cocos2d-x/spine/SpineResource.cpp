@@ -1,6 +1,7 @@
 #include "SpineResource.h"
 #include "spine/SkeletonJson.h"
 #include "ccMacros.h"
+#include "engine/CCFileSystem.h"
 NS_CC_BEGIN
 
 

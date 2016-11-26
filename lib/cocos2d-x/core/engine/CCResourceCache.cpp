@@ -2,9 +2,10 @@
 #include <algorithm>
 #include "resources/CCSpriteFrame.h"
 #include "resources/CCPlistResource.h"
+#include "resources/CCAnimation.h"
+#include "CCFileSystem.h"
 
 NS_CC_BEGIN
-static const SharedPtr<Resource> noResource;
 
 ResourceCache::ResourceCache()
 {
@@ -12,7 +13,7 @@ ResourceCache::ResourceCache()
 
 void ResourceCache::addResource(ID resType, Resource* res)
 {
-	_resources.insert(_resources.begin(), SharedPtr<Resource>(res));
+	_resources[resType].insert(SharedPtr<Resource>(res));
 }
 
 Resource* ResourceCache::getResource(ID resType, const std::string& path, void* userdata /* = 0 */)
@@ -45,30 +46,65 @@ Resource* ResourceCache::getResource(ID resType, const std::string& path, void* 
 		res->_path = fullpath;
 
 		res->beginLoad(buf, userdata);
-		_resources.insert(_resources.begin(), res);
+		addResource(res);
 		return res;
 	}
 
 	return nullptr;
 }
 
-Resource* ResourceCache::findResource(ID type, const std::string& path)
+Resource* ResourceCache::findResource(ID resType, const std::string& path)
 {
-	auto iter = std::find_if(_resources.begin(), _resources.end(), 
-		[&](SharedPtr<Resource>& ele)
+	auto iter = _resources.find(resType);
+
+	if (iter == _resources.end())
+		return nullptr;
+
+	auto& group = iter->second;
+	auto resIter = std::find_if(group.begin(), group.end(),
+		[&](const SharedPtr<Resource>& res)
 	{
-		return (ele->getType() == type && ele->getPath() == path);
+		return (res->getPath() == path);
 	});
 
-	if (iter != _resources.end())
-		return *iter;
+	if (resIter != group.end())
+		return *resIter;
 
-	return noResource;
+	return nullptr;
+}
+
+Resource* ResourceCache::getResourceBG(ID resType, const std::string& path, void* userdata /*= 0*/)
+{
+	// todo
+	return nullptr;
+}
+
+void ResourceCache::removeUnusedByType(ID resType)
+{
+	auto groupIter = _resources.find(resType);
+
+	if (groupIter == _resources.end())
+		return;
+
+	auto& group = groupIter->second;
+
+	for (auto iter = group.begin(); iter != group.end();)
+	{
+		if (iter->Refs() == 1)
+			iter = group.erase(iter);
+		else
+			iter++;
+	}
 }
 
 void ResourceCache::removeUnused()
 {
-	// todo
+	removeUnusedByType<PlistResource>();
+	removeUnusedByType<CCAnimation>();
+	removeUnusedByType<CCSpriteFrame>();
+	removeUnusedByType<CCTexture2D>();
 }
 
 NS_CC_END
+
+
