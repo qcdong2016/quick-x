@@ -6,12 +6,9 @@ DEBUG_FPS = true
 -- dump memory info every 10 seconds
 DEBUG_MEM = false
 
--- screen orientation
-CONFIG_SCREEN_ORIENTATION = "__SCREEN_ORIENTATION_L__"
-
 -- design resolution
 CONFIG_SCREEN_WIDTH  = 960
 CONFIG_SCREEN_HEIGHT = 640
 
 -- auto scale mode
-CONFIG_SCREEN_AUTOSCALE = "__SCREEN_ORIENTATION_QUICK__"
+CONFIG_SCREEN_AUTOSCALE = "FIXED_HEIGHT"

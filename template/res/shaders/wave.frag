@@ -2,8 +2,13 @@
 // http://blog.csdn.net/zmzsoftware/article/details/32737605
 //
 
+
 varying vec4 v_fragmentColor; 
-varying vec2 v_texCoord;                    
+varying vec2 v_texCoord;
+
+#ifdef GL_ES
+precision highp float;
+#endif
 
 uniform sampler2D CC_Texture0;
 uniform float u_time;  
