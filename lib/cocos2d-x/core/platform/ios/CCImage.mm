@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #import "CCImage.h"
-#import "IO/FileSystem.h"
+#import "engine/CCFileSystem.h"
 #import <string>
 
 #import <Foundation/Foundation.h>

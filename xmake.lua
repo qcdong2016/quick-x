@@ -269,7 +269,8 @@ executable {
 	name = 'player',
 	kind = 'shared',
 	files = {
-		'template/proj.android/jni/**.c*',
+		android = { 'template/proj.android/jni/**.c*', },
+		mac = { 'template/proj.mac/**.m*', },
 		'template/sources/**.c*',
 	},
 	includes = {

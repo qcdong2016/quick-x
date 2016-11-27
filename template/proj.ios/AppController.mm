@@ -28,7 +28,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "engine/CCDirector.h"
 
 @implementation AppController

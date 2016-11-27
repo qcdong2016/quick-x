@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #include "SimpleAudioEngine.h"
 #include "SimpleAudioEngine_objc.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 USING_NS_CC;
 

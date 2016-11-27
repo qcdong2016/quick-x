@@ -26,7 +26,7 @@
 #include "CCEGLView.h"
 
 #include "support/CCPointExtension.h"
-#include "label_nodes/CCLabelTTF.h"
+#include "nodes/CCLabelTTF.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 

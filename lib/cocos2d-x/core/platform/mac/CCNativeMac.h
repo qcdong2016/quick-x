@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
+#include "platform/CCDevice.h"
 
 USING_NS_CC;
 

@@ -99,7 +99,7 @@ void DebugHud::updateLabel(IEventData& map)
 #if COCOS2D_DEBUG > 0
 		sprintf(buf, "%.1f %05d", frameRate, CCObject::s_livingCount);
 #else
-		sprintf(buf, "%.1f", m_fFrameRate);
+		sprintf(buf, "%.1f", frameRate);
 #endif
 		_pFPSLabel->setString(buf);
 
