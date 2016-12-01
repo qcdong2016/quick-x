@@ -162,6 +162,12 @@ void SkeletonAnimation::setMix (const char* fromAnimation, const char* toAnimati
 	spAnimationStateData_setMixByName(state->data, fromAnimation, toAnimation, duration);
 }
 
+bool SkeletonAnimation::hasAnimation(const char* name)
+{
+	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
+	return animation != nullptr;
+}
+
 spTrackEntry* SkeletonAnimation::setAnimation (int trackIndex, const char* name, bool loop) {
 	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
 	if (!animation) {
