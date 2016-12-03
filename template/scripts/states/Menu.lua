@@ -1,6 +1,6 @@
 require('ui.TestUI')
 
-local Menu = class("Menu", function() 
+local Menu = class("Menu", function()
     return display.newLayer()
 end)
 
@@ -24,32 +24,32 @@ function Menu:ctor()
     listView:setClippingType(LAYOUT_CLIPPING_SCISSOR)
 
     local tests = {
-    	'ShaderTest',
+        'ShaderTest',
         'SpineTest',
-    	'SpriteTest',
-	}
+        'SpriteTest',
+    }
 
-	for i, v in ipairs(tests) do
-		local label = Label:create()
+    for i, v in ipairs(tests) do
+        local label = Label:create()
         label:setFontSize(30)
         label:setText(v)
         label:onClicked(function()
-			self:gotoTest(v)            
+            self:gotoTest(v)
         end)
-		listView:pushBackCustomItem(label)
-	end
+        listView:pushBackCustomItem(label)
+    end
 
 end
 
 function Menu:gotoTest(name)
 
-	self.touchLayer:hide()
+    self.touchLayer:hide()
 
-	local ui = UIMgr:open(name, name)
-	ui:setup();
-	ui:onClose(function()
-		self.touchLayer:show()
-	end)
+    local ui = UIMgr:open(name, name)
+    ui:setup();
+    ui:onClose(function()
+        self.touchLayer:show()
+    end)
 end
 
 
