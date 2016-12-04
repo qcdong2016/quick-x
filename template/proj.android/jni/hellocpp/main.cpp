@@ -3,7 +3,7 @@
 #include "CCEGLView.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
-#include "draw_nodes/CCDrawingPrimitives.h"
+#include "nodes/CCDrawingPrimitives.h"
 #include "engine/CCDirector.h"
 #include "platform/android/jni/JniHelper.h"
 #include <jni.h>

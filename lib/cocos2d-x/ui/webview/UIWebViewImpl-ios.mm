@@ -25,10 +25,10 @@
 #include "platform/CCPlatformConfig.h"
 
 #include "UIWebViewImpl-ios.h"
-#include "IO/FileSystem.h"
 #include "UIWebView.h"
 #include "platform/ios/EAGLView.h"
 #include "engine/CCDirector.h"
+#include "engine/CCFileSystem.h"
 #include "CCEGLView.h"
 #include "support/CCPointExtension.h"
 

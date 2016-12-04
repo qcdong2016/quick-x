@@ -23,10 +23,10 @@
  ****************************************************************************/
 #import <Foundation/Foundation.h>
 #import "CCDirectorCaller.h"
-#import "CCDirector.h"
+#import "engine/CCDirector.h"
 #import "EAGLView.h"
 #import "CCEventDispatcherMac.h"
-#include "CCAutoreleasePool.h"
+#include "cocoa/CCAutoreleasePool.h"
 
 static id s_sharedDirectorCaller;
 

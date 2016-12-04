@@ -26,7 +26,8 @@ THE SOFTWARE.
 
 //#define __CC_PLATFORM_IMAGE_CPP__
 //#include "platform/CCImageCommon_cpp.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
+#include "engine/CCFileSystem.h"
 #include "ccMacros.h"
 #include "CCImage.h"
 #include "textures/CCTexture2D.h"
@@ -34,7 +35,6 @@ THE SOFTWARE.
 #include <sys/stat.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "IO/FileSystem.h"
 
 typedef struct
 {

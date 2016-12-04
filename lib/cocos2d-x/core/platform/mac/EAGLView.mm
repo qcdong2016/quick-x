@@ -31,7 +31,7 @@ THE SOFTWARE.
 #import "EAGLView.h"
 #import "CCEGLView.h"
 #import <OpenGL/gl.h>
-#import "CCDirector.h"
+#include "engine/CCDirector.h"
 #import "ccConfig.h"
 #import "CCSet.h"
 #import "touch_dispatcher/CCTouch.h"

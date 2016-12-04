@@ -26,9 +26,9 @@
 #import <Cocoa/Cocoa.h>
 #include <algorithm>
 #include "CCGeometry.h"
-#include "CCDirector.h"
+#include "engine/CCDirector.h"
+#include "engine/CCFileSystem.h"
 #import "CCDirectorCaller.h"
-#include "IO/FileSystem.h"
 
 NS_CC_BEGIN
 

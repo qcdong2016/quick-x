@@ -32,9 +32,9 @@
 
 #include "AppDelegate.h"
 #include "engine/CCDirector.h"
+#include "engine/CCFileSystem.h"
 #include "audio/SimpleAudioEngine.h"
 #include "base/ProcessUtils.h"
-#include "IO/FileSystem.h"
 
 #include "AppDelegate.h"
 

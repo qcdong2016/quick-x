@@ -27,7 +27,7 @@
 #import "../tinyxml2/tinyxml2.h"
 #import "platform/CCPlatformConfig.h"
 #import "platform/CCPlatformMacros.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
