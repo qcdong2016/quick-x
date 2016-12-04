@@ -135,6 +135,7 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
     if (!self.uiWebView) {
         self.uiWebView = [[[UIWebView alloc] init] autorelease];
         self.uiWebView.delegate = self;
+        self.uiWebView.detectsPhoneNumbers = NO;
     }
     if (!self.uiWebView.superview) {
         EAGLView* eaglview = [EAGLView sharedEGLView];

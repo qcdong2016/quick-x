@@ -3,6 +3,7 @@
 #include <iostream>
 #include "CCScheduler.h"
 #include <sstream>
+#include "CCEngineEvents.h"
 
 extern "C" {
 #include "lua.h"
@@ -245,7 +246,8 @@ bool CCHTTPRequest::start(void)
     pthread_create(&m_thread, NULL, requestCURL, this);
     pthread_detach(m_thread);
 #endif
-    SubSystem::get<CCScheduler>()->scheduleUpdateForTarget(this, 0, false);
+    this->subscribeToEvent<UpdateEvent>(Handler(this, &CCHTTPRequest::update));
+//    SubSystem::get<CCScheduler>()->scheduleUpdateForTarget(this, 0, false);
     // CCLOG("CCHTTPRequest[0x%04x] - request start", s_id);
     return true;
 #else
@@ -350,18 +352,19 @@ CCHTTPRequestDelegate* CCHTTPRequest::getDelegate(void)
     return m_delegate;
 }
 
-void CCHTTPRequest::checkCURLState(float dt)
+void CCHTTPRequest::checkCURLState(IEventData& data)
 {
-    CC_UNUSED_PARAM(dt);
+    CC_UNUSED_PARAM(data);
     if (m_curlState != kCCHTTPRequestCURLStateBusy)
     {
-		SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
+//		SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
 		release();
     }
 }
 
-void CCHTTPRequest::update(float dt)
+void CCHTTPRequest::update(IEventData& data)
 {
+    float dt = data[UpdateEvent::timeStep].GetFloat();
     if (m_state == kCCHTTPRequestStateInProgress)
     {
 
@@ -382,11 +385,13 @@ void CCHTTPRequest::update(float dt)
         }
         return;
     }
-	SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
+	//SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
+    this->unsubscribeFromEvent(UpdateEvent::_ID);
 
     if (m_curlState != kCCHTTPRequestCURLStateIdle)
     {
-		SubSystem::get<CCScheduler>()->scheduleSelector(schedule_selector(CCHTTPRequest::checkCURLState), this, 0, false);
+        this->subscribeToEvent<UpdateEvent>(Handler(this, &CCHTTPRequest::checkCURLState));
+//		SubSystem::get<CCScheduler>()->scheduleSelector(schedule_selector(CCHTTPRequest::checkCURLState), this, 0, false);
     }
 
     if (m_state == kCCHTTPRequestStateCompleted)
