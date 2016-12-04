@@ -131,8 +131,8 @@ public:
     CCHTTPRequestDelegate* getDelegate(void);
 
     /** @brief timer function. */
-    void checkCURLState(float dt);
-    virtual void update(float dt);
+    void checkCURLState(IEventData& map);
+    virtual void update(IEventData& map);
 
 private:
     CCHTTPRequest(void)
