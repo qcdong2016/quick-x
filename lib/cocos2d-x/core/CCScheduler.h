@@ -162,7 +162,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    void update(IEventData& data);
+    void update(EventData& data);
 
     /** The scheduled method will be called every 'interval' seconds.
      If paused is YES, then it won't be called until it is resumed.

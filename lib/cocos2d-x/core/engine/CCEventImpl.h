@@ -4,7 +4,8 @@
 
 #define CC_EVENT_DEFINE(name) \
 	cocos2d::ID name ::_ID(#name); \
-	const char* name ::eventsName[] = {
+	const char* name::getParamName(int param) { \
+        switch (param) {
 
-#define CC_EVENT_END() nullptr};
-#define CC_PARAM(name) #name,
+#define CC_EVENT_END() }}
+#define CC_PARAM(name) case name: return #name; break;

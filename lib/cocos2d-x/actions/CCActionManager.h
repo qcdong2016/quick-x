@@ -129,7 +129,7 @@ protected:
     void deleteHashElement(struct _hashElement *pElement);
     void actionAllocWithHashElement(struct _hashElement *pElement);
 
-	void update(IEventData& data);
+	void update(EventData& data);
 protected:
     struct _hashElement    *m_pTargets;
     struct _hashElement    *m_pCurrentTarget;

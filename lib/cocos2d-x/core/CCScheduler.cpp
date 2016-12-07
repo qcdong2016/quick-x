@@ -782,7 +782,7 @@ void CCScheduler::resumeTargets(CCSet* pTargetsToResume)
 }
 
 // main loop
-void CCScheduler::update(IEventData& data)
+void CCScheduler::update(EventData& data)
 {
 	float dt = data[UpdateEvent::timeStep].GetFloat();
 

@@ -352,11 +352,11 @@ void CCObject::unsubscribeFromEvents(CCObject* sender)
 
 void CCObject::sendEvent(EventID eventType)
 {
-	EventData<EmptyEvent> map;
+	EmptyEvent map;
 	sendEvent(eventType, map);
 }
 
-void CCObject::sendEvent(EventID eventType, IEventData& eventData)
+void CCObject::sendEvent(EventID eventType, EventData& eventData)
 {
 	WeakPtr<CCObject> self(this);
 	std::set<CCObject*> processed;
@@ -440,7 +440,7 @@ void CCObject::sendEvent(EventID eventType, IEventData& eventData)
 	}
 }
 
-void CCObject::onEvent(CCObject* sender, EventID eventType, IEventData& eventData)
+void CCObject::onEvent(CCObject* sender, EventID eventType, EventData& eventData)
 {
 	EventHandler* specific = 0;
 	EventHandler* nonSpecific = 0;
@@ -539,7 +539,7 @@ CCObject* ObjectFactoryManager::createObject(ID type)
 
 void EventHandler::invoke()
 {
-	EventData<EmptyEvent> m;
+	EmptyEvent m;
 	invoke(m);
 }
 

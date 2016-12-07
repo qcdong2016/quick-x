@@ -203,7 +203,7 @@ static int tolua_Cocos2d_CCObject_sendEvent00(lua_State* tolua_S)
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'sendEvent'", NULL);
 #endif
 		{
-			self->sendEvent(eventType);
+			self->sendEvent(ID(eventType));
 		}
 	}
 	return 0;

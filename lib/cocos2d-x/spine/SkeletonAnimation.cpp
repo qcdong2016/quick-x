@@ -201,7 +201,7 @@ void SkeletonAnimation::clearTrack (int trackIndex) {
 template<typename T>
 static void send(CCObject* sender, int trackIndex, int loopCount)
 {
-	EventData<T> map;
+	T map;
 
 	map[T::trackIndex] = trackIndex;
 	map[T::loopCount] = loopCount;
@@ -210,7 +210,7 @@ static void send(CCObject* sender, int trackIndex, int loopCount)
 }
 static void call(CCObject* sender, int trackIndex, int loopCount, spEvent* event = nullptr)
 {
-	EventData<SpineEvent> map;
+	SpineEvent map;
 
 	map[SpineEvent::trackIndex] = trackIndex;
 	map[SpineEvent::loopCount] = loopCount;

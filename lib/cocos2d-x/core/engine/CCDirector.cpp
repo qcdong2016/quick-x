@@ -235,9 +235,9 @@ void CCDirector::drawScene(void)
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
-		static EventData<UpdateEvent> map;
-		map[UpdateEvent::timeStep] = m_fDeltaTime;
-		sendEvent<UpdateEvent>(map);
+		static UpdateEvent data;
+		data[UpdateEvent::timeStep] = m_fDeltaTime;
+		sendEvent(data);
     }
 	g_uNumberOfDraws = 0;
 
@@ -269,8 +269,8 @@ void CCDirector::drawScene(void)
 #endif
 
     {
-		static EventData<AfterDraw> map;
-		sendEvent<AfterDraw>(map);
+		static AfterDraw data;
+		sendEvent(data);
     }
 
     kmGLPopMatrix();

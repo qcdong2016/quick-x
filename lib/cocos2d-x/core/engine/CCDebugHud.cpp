@@ -73,14 +73,14 @@ void DebugHud::createLabels()
 }
 
 
-void DebugHud::render(IEventData& map)
+void DebugHud::render(EventData& map)
 {
 	_pDrawsLabel->visit();
 	_pFPSLabel->visit();
 	_pSPFLabel->visit();
 }
 
-void DebugHud::updateLabel(IEventData& map)
+void DebugHud::updateLabel(EventData& map)
 {
 	float dt = map[UpdateEvent::timeStep].GetFloat();
 

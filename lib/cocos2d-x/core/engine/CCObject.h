@@ -41,28 +41,17 @@ class EventHandler;
 
 typedef ID EventID;
 
-class IEventData
+class EventData
 {
 public:
 	virtual int getParamCount() = 0;
 	virtual const char* getParamName(int id) = 0;
-	virtual Variant& operator [] (int i) = 0;
-	virtual const Variant & operator[](int i) const = 0;
+    virtual Variant& operator [] (int i) { return _data[i]; }
+    virtual const Variant & operator[](int i) const { return _data[i]; }
+protected:
+    std::vector<Variant> _data;
 };
 
-template<typename T>
-class EventData : public IEventData
-{
-public:
-	EventData() { _data.resize(T::_count); }
-	virtual int getParamCount() { return T::_count; };
-	virtual const char* getParamName(int id) { return T::eventsName[id]; }
-	virtual Variant& operator [] (int i) { return _data[i]; }
-	virtual const Variant & operator[](int i) const { return _data[i]; }
-
-private:
-	std::vector<Variant> _data;
-};
 
 class CC_DLL TypeInfo
 {
@@ -197,11 +186,11 @@ public:
 	void unsubscribeFromAllEvents();
 	/// Send event to all subscribers.
 	void sendEvent(EventID eventType);
-	void sendEvent(EventID eventType, IEventData& eventData);
+	void sendEvent(EventID eventType, EventData& eventData);
 	template<typename T> void sendEvent() { sendEvent(T::_ID); }
-	template<typename T> void sendEvent(IEventData& eventData) { sendEvent(T::_ID, eventData); }
+	template<typename T> void sendEvent(T& eventData) { sendEvent(T::_ID, eventData); }
 
-	void onEvent(CCObject* sender, EventID eventType, IEventData& eventData);
+	void onEvent(CCObject* sender, EventID eventType, EventData& eventData);
 
 	EventHandler* findEventHandler(CCObject* sender, EventID eventType, EventHandler** previous);
 	EventHandler* findEventHandler(CCObject* sender, EventHandler** previous);
@@ -243,7 +232,7 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(IEventData& eventData) = 0;
+	virtual void invoke(EventData& eventData) = 0;
 	virtual void invoke();
 	/// Return a unique copy of the event handler.
 	virtual EventHandler* clone() const = 0;
@@ -262,7 +251,7 @@ template <typename ReceiverType>
 class EventHandlerImpl : public EventHandler
 {
 public:
-	typedef void (ReceiverType::*HandlerFunctionPtr)(IEventData&);
+	typedef void (ReceiverType::*HandlerFunctionPtr)(EventData&);
 
 	/// Construct with receiver and function pointers and userdata.
 	EventHandlerImpl(ReceiverType* receiver, HandlerFunctionPtr function) 
@@ -273,7 +262,7 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(IEventData& eventData)
+	virtual void invoke(EventData& eventData)
 	{
 		(_receiver->*_function)(eventData);
 	}
@@ -306,7 +295,7 @@ public:
 	}
 
 	/// Invoke event handler function.
-	virtual void invoke(IEventData& eventData)
+	virtual void invoke(EventData& eventData)
 	{
 		(_receiver->*_function)();
 	}
@@ -325,7 +314,7 @@ private:
 };
 
 template <typename ReceiverType>
-static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(IEventData&))
+static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::*function)(EventData&))
 {
 	return new EventHandlerImpl<ReceiverType>(receiver, function);
 }
@@ -335,11 +324,12 @@ static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::
 	return new EventHandlerImplNoArg<ReceiverType>(receiver, function);
 }
 
-#define CC_EVENT_DEFINE(name) class name  { public: enum {
+#define CC_EVENT_DEFINE(name) class name : public cocos2d::EventData  { public: enum {
 
 #define CC_EVENT_END() \
 		_count}; \
-		static const char* eventsName[]; \
+        virtual int getParamCount() { return _count; };\
+        virtual const char* getParamName(int param); \
 		static cocos2d::ID _ID; \
 	};
 
