@@ -3,7 +3,7 @@
 #include <iostream>
 #include "CCScheduler.h"
 #include <sstream>
-#include "CCEngineEvents.h"
+#include "engine/CCEngineEvents.h"
 
 extern "C" {
 #include "lua.h"

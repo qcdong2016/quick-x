@@ -161,7 +161,7 @@ void CCDevice::showAlert()
 	delete[] wszTitleBuf;
 	delete[] wszMessageBuf;
 
-	EventData<AlertEvent> map;
+	AlertEvent map;
 
 	if (button == IDOK || button == IDYES)
 		map[AlertEvent::buttonIndex] = 0;

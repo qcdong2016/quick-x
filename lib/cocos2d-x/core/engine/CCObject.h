@@ -44,6 +44,9 @@ typedef ID EventID;
 class EventData
 {
 public:
+	EventData(int cap) {
+		_data.resize(cap);
+	}
 	virtual int getParamCount() = 0;
 	virtual const char* getParamName(int id) = 0;
     virtual Variant& operator [] (int i) { return _data[i]; }
@@ -324,7 +327,7 @@ static inline EventHandler* Handler(ReceiverType* receiver, void (ReceiverType::
 	return new EventHandlerImplNoArg<ReceiverType>(receiver, function);
 }
 
-#define CC_EVENT_DEFINE(name) class name : public cocos2d::EventData  { public: enum {
+#define CC_EVENT_DEFINE(name) class name : public cocos2d::EventData  { public: name(); enum {
 
 #define CC_EVENT_END() \
 		_count}; \
