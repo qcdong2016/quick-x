@@ -106,7 +106,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\render\CCFontRenderTTF.cpp" />
     <ClCompile Include="..\cocos2d-x\core\resources\CCAnimation.cpp" />
     <ClCompile Include="..\cocos2d-x\core\resources\CCPlistResource.cpp" />
     <ClCompile Include="..\cocos2d-x\core\resources\CCSpriteFrame.cpp" />
@@ -398,7 +397,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\compat\stdint.h" />
-    <ClInclude Include="..\cocos2d-x\core\render\CCFontRender.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCSpriteFrame.h" />

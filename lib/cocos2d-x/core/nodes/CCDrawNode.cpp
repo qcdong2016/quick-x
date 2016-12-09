@@ -160,6 +160,8 @@ bool CCDrawNode::init()
     
     ensureCapacity(512);
     
+	_renderState->use();
+
 #if CC_TEXTURE_ATLAS_USE_VAO    
     glGenVertexArrays(1, &m_uVao);
     ccGLBindVAO(m_uVao);

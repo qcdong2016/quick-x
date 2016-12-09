@@ -124,9 +124,6 @@
     <Filter Include="cocos2d-x\core\nodes">
       <UniqueIdentifier>{bd280e3c-b56c-4c61-ade9-a8be9dcc960a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\render">
-      <UniqueIdentifier>{59a60351-d3cb-4ca4-b53c-910420ee5b14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\support">
       <UniqueIdentifier>{f37de488-b642-46a1-9f95-a00fe1dc2515}</UniqueIdentifier>
     </Filter>
@@ -965,9 +962,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\resources\CCAnimation.cpp">
       <Filter>cocos2d-x\core\resources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\render\CCFontRenderTTF.cpp">
-      <Filter>cocos2d-x\core\render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1894,9 +1888,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h">
       <Filter>cocos2d-x\core\resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\render\CCFontRender.h">
-      <Filter>cocos2d-x\core\render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
