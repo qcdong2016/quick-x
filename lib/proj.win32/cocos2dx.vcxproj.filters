@@ -963,6 +963,12 @@
     <ClCompile Include="..\cocos2d-x\core\resources\CCAnimation.cpp">
       <Filter>cocos2d-x\core\resources</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\imgui\imgui\nanovg.c">
+      <Filter>cocos2d-x\imgui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\imgui\NoUI.cpp">
+      <Filter>cocos2d-x\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
@@ -1888,6 +1894,18 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h">
       <Filter>cocos2d-x\core\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\nanovg_gl_utils.h">
+      <Filter>cocos2d-x\imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\nanovg.h">
+      <Filter>cocos2d-x\imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\imgui\nanovg_gl.h">
+      <Filter>cocos2d-x\imgui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\NoUI.h">
+      <Filter>cocos2d-x\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

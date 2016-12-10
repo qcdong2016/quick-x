@@ -38,8 +38,7 @@ NS_CC_BEGIN
 class SpineModule : public Module
 {
 public:
-	virtual void attach();
-	virtual void detach();
+	SpineModule();
 };
 
 NS_CC_END

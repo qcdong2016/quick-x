@@ -64,16 +64,10 @@ char* _spUtil_readFile (const char* path, int* length) {
 
 NS_CC_BEGIN
 
-void SpineModule::attach()
+SpineModule::SpineModule()
 {
 	ObjectFactoryManager::addFactory<SpineSkeletonDataResource>();
 	ObjectFactoryManager::addFactory<SpineAtlasResource>();
 }
-
-void SpineModule::detach()
-{
-}
-
-
 
 NS_CC_END
