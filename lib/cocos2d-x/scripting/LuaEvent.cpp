@@ -4,7 +4,7 @@
 
 NS_CC_BEGIN
 
-void EventHandlerLua::invoke(IEventData& data)
+void EventHandlerLua::invoke(EventData& data)
 {
 	_function->BeginCall();
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include "CCScheduler.h"
 #include <sstream>
-#include "CCEngineEvents.h"
+#include "engine/CCEngineEvents.h"
 
 extern "C" {
 #include "lua.h"
@@ -352,7 +352,7 @@ CCHTTPRequestDelegate* CCHTTPRequest::getDelegate(void)
     return m_delegate;
 }
 
-void CCHTTPRequest::checkCURLState(IEventData& data)
+void CCHTTPRequest::checkCURLState(EventData& data)
 {
     CC_UNUSED_PARAM(data);
     if (m_curlState != kCCHTTPRequestCURLStateBusy)
@@ -362,7 +362,7 @@ void CCHTTPRequest::checkCURLState(IEventData& data)
     }
 }
 
-void CCHTTPRequest::update(IEventData& data)
+void CCHTTPRequest::update(EventData& data)
 {
     float dt = data[UpdateEvent::timeStep].GetFloat();
     if (m_state == kCCHTTPRequestStateInProgress)

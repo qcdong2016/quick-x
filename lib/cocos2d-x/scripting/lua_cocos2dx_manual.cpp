@@ -147,8 +147,7 @@ static int tolua_Cocos2d_CCObject_unsubscribeFromEvent01(lua_State* tolua_S)
 	return 0;
 #ifndef TOLUA_RELEASE
 	tolua_lerror :
-				 tolua_error(tolua_S, "#ferror in function 'unsubscribeFromEvent'.", &tolua_err);
-				 return 0;
+				 return tolua_Cocos2d_CCObject_unsubscribeFromEvent00(tolua_S);
 #endif
 }
 
@@ -204,7 +203,7 @@ static int tolua_Cocos2d_CCObject_sendEvent00(lua_State* tolua_S)
 		if (!self) tolua_error(tolua_S, "invalid 'self' in function 'sendEvent'", NULL);
 #endif
 		{
-			self->sendEvent(eventType);
+			self->sendEvent(ID(eventType));
 		}
 	}
 	return 0;

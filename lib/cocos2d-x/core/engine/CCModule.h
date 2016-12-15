@@ -1,18 +1,16 @@
 
 #pragma once
 
-#include "CCPlatformMacros.h"
-#include "base/RefCounted.h"
+#include "CCObject.h"
 #include <string>
 
 NS_CC_BEGIN
 
 
-class CC_DLL Module : public RefCounted
+class CC_DLL Module : public CCObject
 {
 public:
-	virtual void attach() = 0;
-	virtual void detach() = 0;
+	virtual ~Module() {};
 };
 
 class CC_DLL ModuleManager
@@ -23,14 +21,15 @@ public:
 		return addModule(new T);
 	}
 	static bool addModule(Module* m);
+
+	static void shutdown();
 };
 
 
 class CC_DLL CoreModule : public Module
 {
 public:
-	virtual void attach();
-	virtual void detach();
+	CoreModule();
 };
 
 NS_CC_END

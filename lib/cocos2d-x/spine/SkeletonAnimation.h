@@ -100,6 +100,7 @@ public:
 	void setAnimationStateData (spAnimationStateData* stateData);
 	void setMix (const char* fromAnimation, const char* toAnimation, float duration);
 
+	bool hasAnimation(const char* name);
 	spTrackEntry* setAnimation (int trackIndex, const char* name, bool loop);
 	spTrackEntry* addAnimation (int trackIndex, const char* name, bool loop, float delay = 0);
 	spTrackEntry* getCurrent (int trackIndex = 0);

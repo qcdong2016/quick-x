@@ -337,7 +337,7 @@ unsigned int CCActionManager::numberOfRunningActionsInTarget(CCObject *pTarget)
 }
 
 // main loop
-void CCActionManager::update(IEventData& data)
+void CCActionManager::update(EventData& data)
 {
 	float dt = data[UpdateEvent::timeStep].GetFloat();
 

@@ -21,12 +21,16 @@ static std::vector<SharedPtr<Module> > s_modules;
 bool ModuleManager::addModule(Module* m)
 {
 	s_modules.push_back(SharedPtr<Module>(m));
-	m->attach();
 	return true;
 }
 
 
-void CoreModule::attach()
+void ModuleManager::shutdown()
+{
+	s_modules.clear();
+}
+
+CoreModule::CoreModule()
 {
 	// subsystems 
 	ObjectFactoryManager::addFactory<DebugHud>();
@@ -42,12 +46,6 @@ void CoreModule::attach()
     ObjectFactoryManager::addFactory<PlistResource>();
     ObjectFactoryManager::addFactory<CCBMFontConfiguration>();
 }
-
-void CoreModule::detach()
-{
-
-}
-
 
 NS_CC_END
 

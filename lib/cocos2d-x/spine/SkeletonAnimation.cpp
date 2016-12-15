@@ -162,6 +162,12 @@ void SkeletonAnimation::setMix (const char* fromAnimation, const char* toAnimati
 	spAnimationStateData_setMixByName(state->data, fromAnimation, toAnimation, duration);
 }
 
+bool SkeletonAnimation::hasAnimation(const char* name)
+{
+	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
+	return animation != nullptr;
+}
+
 spTrackEntry* SkeletonAnimation::setAnimation (int trackIndex, const char* name, bool loop) {
 	spAnimation* animation = spSkeletonData_findAnimation(skeleton->data, name);
 	if (!animation) {
@@ -195,7 +201,7 @@ void SkeletonAnimation::clearTrack (int trackIndex) {
 template<typename T>
 static void send(CCObject* sender, int trackIndex, int loopCount)
 {
-	EventData<T> map;
+	T map;
 
 	map[T::trackIndex] = trackIndex;
 	map[T::loopCount] = loopCount;
@@ -204,7 +210,7 @@ static void send(CCObject* sender, int trackIndex, int loopCount)
 }
 static void call(CCObject* sender, int trackIndex, int loopCount, spEvent* event = nullptr)
 {
-	EventData<SpineEvent> map;
+	SpineEvent map;
 
 	map[SpineEvent::trackIndex] = trackIndex;
 	map[SpineEvent::loopCount] = loopCount;

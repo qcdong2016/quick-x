@@ -8,6 +8,7 @@
 #include "engine/CCModule.h"
 #include "engine/CCDirector.h"
 #include "spine/spine-cocos2dx.h"
+#include "imgui/NoUI.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -22,11 +23,13 @@ AppDelegate::~AppDelegate()
 {
     // end simple audio engine here, or it may crashed on win32
     SimpleAudioEngine::sharedEngine()->end();
+	ModuleManager::shutdown();//re-write
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    ModuleManager::addModule<SpineModule>();
+	ModuleManager::addModule<SpineModule>();
+	ModuleManager::addModule<NoUIModule>();
 
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
