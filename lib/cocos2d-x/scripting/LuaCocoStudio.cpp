@@ -19063,8 +19063,8 @@ static int tolua_CocoStudio_WebView_evaluateJS00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateJS'", NULL);
 #endif
  {
-  self->evaluateJS(js);
- tolua_pushcppstring(tolua_S,(const char*)js);
+     std::string ret = self->evaluateJS(js);
+     tolua_pushcppstring(tolua_S, ret);
  }
  }
  return 1;

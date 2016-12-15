@@ -124,9 +124,9 @@ namespace cocos2d {
             _impl->goForward();
         }
         
-        void WebView::evaluateJS(const std::string &js)
+        std::string WebView::evaluateJS(const std::string &js)
         {
-            _impl->evaluateJS(js);
+            return _impl->evaluateJS(js);
         }
         
         void WebView::setScalesPageToFit(bool const scalesPageToFit)

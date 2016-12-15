@@ -22,7 +22,7 @@ public:
     bool canGoForward();
     void goBack();
     void goForward();
-    void evaluateJS(const std::string& js);
+    std::string evaluateJS(const std::string& js);
     void setScalesPageToFit(const bool scalesPageToFit);
     void setOpaque(bool yes);
 };

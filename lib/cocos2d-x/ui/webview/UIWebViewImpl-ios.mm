@@ -87,7 +87,7 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 
 - (void)reload;
 
-- (void)evaluateJS:(const std::string &)js;
+- (NSString*)evaluateJS:(const std::string &)js;
 
 - (void)goBack;
 
@@ -209,9 +209,10 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
     [self.uiWebView goForward];
 }
 
-- (void)evaluateJS:(const std::string &)js {
+- (NSString*)evaluateJS:(const std::string &)js {
     if (!self.uiWebView) {[self setupWebView];}
-    [self.uiWebView stringByEvaluatingJavaScriptFromString:@(js.c_str())];
+    
+    return [self.uiWebView stringByEvaluatingJavaScriptFromString:@(js.c_str())];
 }
 
 - (void)setScalesPageToFit:(const bool)scalesPageToFit {
@@ -346,8 +347,8 @@ void WebViewImpl::goForward() {
     [_uiWebViewWrapper goForward];
 }
 
-void WebViewImpl::evaluateJS(const std::string &js) {
-    [_uiWebViewWrapper evaluateJS:js];
+std::string WebViewImpl::evaluateJS(const std::string &js) {
+    return [[_uiWebViewWrapper evaluateJS:js] UTF8String];
 }
 
 void WebViewImpl::setScalesPageToFit(const bool scalesPageToFit) {

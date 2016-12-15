@@ -128,7 +128,7 @@ public:
     /**
      * Evaluates JavaScript in the context of the currently displayed page.
      */
-    void evaluateJS(const std::string &js);
+    std::string evaluateJS(const std::string &js);
 
     /**
      * Set WebView should support zooming. The default value is false.
