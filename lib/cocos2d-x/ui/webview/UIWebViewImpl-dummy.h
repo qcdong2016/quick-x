@@ -59,7 +59,7 @@ public:
 
     void goForward(){};
 
-    void evaluateJS(const std::string &js){};
+    std::string evaluateJS(const std::string &js) { return ""; };
 
     void setScalesPageToFit(const bool scalesPageToFit){};
 

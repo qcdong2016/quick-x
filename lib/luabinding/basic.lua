@@ -418,5 +418,10 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
         [[tolua_usertype(tolua_S,"%1");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(%1)), "%1");]])
 
+
+    result = string.gsub(result,
+        [[LUA_FUNCTION%* (%w+) = %(%(LUA_FUNCTION%*%)  toluafix_ref_function%(tolua_S,(%d+),0%)%);]],
+        [[SharedPtr<LuaFunction> %1(new LuaFunction(%2));]])
+
     WRITE(result)
 end
