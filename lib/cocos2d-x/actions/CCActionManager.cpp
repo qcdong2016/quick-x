@@ -41,7 +41,7 @@ NS_CC_BEGIN
 typedef struct _hashElement
 {
     struct _ccArray             *actions;
-    CCObject                    *target;
+	SharedPtr<CCObject>			actionTarget;
     unsigned int                actionIndex;
     CCAction                    *currentAction;
     bool                        currentActionSalvaged;
@@ -70,7 +70,6 @@ void CCActionManager::deleteHashElement(tHashElement *pElement)
 {
     ccArrayFree(pElement->actions);
     HASH_DEL(m_pTargets, pElement);
-    pElement->target->release();
     free(pElement);
 }
 
@@ -151,7 +150,7 @@ CCSet* CCActionManager::pauseAllRunningActions()
         if (! element->paused) 
         {
             element->paused = true;
-            idsWithActions->addObject(element->target);
+            idsWithActions->addObject(element->actionTarget);
         }
     }    
     
@@ -182,9 +181,8 @@ void CCActionManager::addAction(CCAction *pAction, CCNode *pTarget, bool paused)
     {
         pElement = (tHashElement*)calloc(sizeof(*pElement), 1);
         pElement->paused = paused;
-        pTarget->retain();
-        pElement->target = pTarget;
-        HASH_ADD_INT(m_pTargets, target, pElement);
+        pElement->actionTarget = pTarget;
+        HASH_ADD_INT(m_pTargets, actionTarget, pElement);
     }
 
      actionAllocWithHashElement(pElement);
@@ -201,7 +199,7 @@ void CCActionManager::removeAllActions(void)
 {
     for (tHashElement *pElement = m_pTargets; pElement != NULL; )
     {
-        CCObject *pTarget = pElement->target;
+        CCObject *pTarget = pElement->actionTarget;
         pElement = (tHashElement*)pElement->hh.next;
         removeAllActionsFromTarget(pTarget);
     }
