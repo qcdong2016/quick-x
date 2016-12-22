@@ -3,7 +3,6 @@
 #define __CC_EXTENSION_CCNETWORK_H_
 
 #include "CCHTTPRequest.h"
-#include "CCHTTPRequestDelegate.h"
 
 NS_CC_BEGIN
 
@@ -26,13 +25,8 @@ public:
     /** @brief Checks Internet connection reachability status */
     static int getInternetConnectionStatus(void);
 
-    static CCHTTPRequest* createHTTPRequest(CCHTTPRequestDelegate* delegate,
-                                            const char* url,
+    static CCHTTPRequest* createHTTPRequest(const char* url,
                                             int method = kCCHTTPRequestMethodGET);
-
-    static CCHTTPRequest* createHTTPRequestLua(cocos2d::LUA_FUNCTION listener,
-                                               const char* url,
-                                               int method = kCCHTTPRequestMethodGET);
 
 
 private:

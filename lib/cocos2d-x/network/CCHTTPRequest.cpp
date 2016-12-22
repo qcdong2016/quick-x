@@ -4,11 +4,7 @@
 #include "CCScheduler.h"
 #include <sstream>
 #include "engine/CCEngineEvents.h"
-
-extern "C" {
-#include "lua.h"
-}
-#include "CCLuaEngine.h"
+#include "CCNetworkEvents.h"
 
 using namespace cocos2d;
 
@@ -16,39 +12,12 @@ NS_CC_BEGIN
 
 unsigned int CCHTTPRequest::s_id = 0;
 
-CCHTTPRequest *CCHTTPRequest::createWithUrl(CCHTTPRequestDelegate *delegate,
-                                            const char *url,
-                                            int method)
+CCHTTPRequest *CCHTTPRequest::createWithUrl(const char *url, int method)
 {
     CCHTTPRequest *request = new CCHTTPRequest();
-    request->initWithDelegate(delegate, url, method);
+    request->initWithUrl(url, method);
     request->autorelease();
     return request;
-}
-
-
-CCHTTPRequest *CCHTTPRequest::createWithUrlLua(LUA_FUNCTION listener,
-                                               const char *url,
-                                               int method)
-{
-    CCHTTPRequest *request = new CCHTTPRequest();
-    request->initWithListener(listener, url, method);
-    request->autorelease();
-    return request;
-}
-
-
-bool CCHTTPRequest::initWithDelegate(CCHTTPRequestDelegate *delegate, const char *url, int method)
-{
-    m_delegate = delegate;
-    return initWithUrl(url, method);
-}
-
-
-bool CCHTTPRequest::initWithListener(LUA_FUNCTION listener, const char *url, int method)
-{
-    m_listener = listener;
-    return initWithUrl(url, method);
 }
 
 bool CCHTTPRequest::initWithUrl(const char *url, int method)
@@ -82,10 +51,6 @@ bool CCHTTPRequest::initWithUrl(const char *url, int method)
 CCHTTPRequest::~CCHTTPRequest(void)
 {
     cleanup();
-    if (m_listener)
-    {
-        CCLuaEngine::defaultEngine()->removeScriptHandler(m_listener);
-    }
     CCLOG("CCHTTPRequest[0x%04x] - request removed", s_id);
 }
 
@@ -98,7 +63,7 @@ void CCHTTPRequest::setRequestUrl(const char *url)
 #endif
 }
 
-const string CCHTTPRequest::getRequestUrl(void)
+const std::string CCHTTPRequest::getRequestUrl(void)
 {
     return m_url;
 }
@@ -107,14 +72,14 @@ void CCHTTPRequest::addRequestHeader(const char *header)
 {
     CCAssert(m_state == kCCHTTPRequestStateIdle, "CCHTTPRequest::addRequestHeader() - request not idle");
     CCAssert(header, "CCHTTPRequest::addRequestHeader() - invalid header");
-    m_headers.push_back(string(header));
+    m_headers.push_back(std::string(header));
 }
 
 void CCHTTPRequest::addPOSTValue(const char *key, const char *value)
 {
     CCAssert(m_state == kCCHTTPRequestStateIdle, "CCHTTPRequest::addPOSTValue() - request not idle");
     CCAssert(key, "CCHTTPRequest::addPOSTValue() - invalid key");
-    m_postFields[string(key)] = string(value ? value : "");
+    m_postFields[std::string(key)] = std::string(value ? value : "");
 }
 
 void CCHTTPRequest::setPOSTData(const char *data, size_t len)
@@ -181,7 +146,7 @@ void CCHTTPRequest::setCookieString(const char *cookie)
 #endif
 }
 
-const string CCHTTPRequest::getCookieString(void)
+const std::string CCHTTPRequest::getCookieString(void)
 {
     CCAssert(m_state == kCCHTTPRequestStateCompleted, "CCHTTPRequest::getResponseData() - request not completed");
     return m_responseCookies;
@@ -257,7 +222,6 @@ bool CCHTTPRequest::start(void)
 
 void CCHTTPRequest::cancel(void)
 {
-    m_delegate = NULL;
     if (m_state == kCCHTTPRequestStateIdle || m_state == kCCHTTPRequestStateInProgress)
     {
         m_state = kCCHTTPRequestStateCancelled;
@@ -281,9 +245,9 @@ const CCHTTPRequestHeaders &CCHTTPRequest::getResponseHeaders(void)
     return m_responseHeaders;
 }
 
-const string CCHTTPRequest::getResponseHeadersString()
+const std::string CCHTTPRequest::getResponseHeadersString()
 {
-    string buf;
+	std::string buf;
     for (CCHTTPRequestHeadersIterator it = m_responseHeaders.begin(); it != m_responseHeaders.end(); ++it)
     {
         buf.append(*it);
@@ -291,10 +255,15 @@ const string CCHTTPRequest::getResponseHeadersString()
     return buf;
 }
 
-const string CCHTTPRequest::getResponseString(void)
+bool CCHTTPRequest::hasResponseData()
+{
+	return !!m_responseBuffer;
+}
+
+const std::string CCHTTPRequest::getResponseString(void)
 {
     CCAssert(m_state == kCCHTTPRequestStateCompleted, "CCHTTPRequest::getResponseString() - request not completed");
-    return string(m_responseBuffer ? static_cast<char*>(m_responseBuffer) : "");
+    return std::string(m_responseBuffer ? static_cast<char*>(m_responseBuffer) : "");
 }
 
 void *CCHTTPRequest::getResponseData(void)
@@ -303,16 +272,6 @@ void *CCHTTPRequest::getResponseData(void)
     void *buff = malloc(m_responseDataLength);
     memcpy(buff, m_responseBuffer, m_responseDataLength);
     return buff;
-}
-
-
-LUA_STRING CCHTTPRequest::getResponseDataLua(void)
-{
-    CCAssert(m_state == kCCHTTPRequestStateCompleted, "CCHTTPRequest::getResponseDataLua() - request not completed");
-    CCLuaStack *stack = CCLuaEngine::defaultEngine()->getLuaStack();
-    stack->clean();
-    stack->pushString(static_cast<char*>(m_responseBuffer), (int)m_responseDataLength);
-    return 1;
 }
 
 int CCHTTPRequest::getResponseDataLength(void)
@@ -342,14 +301,9 @@ int CCHTTPRequest::getErrorCode(void)
     return m_errorCode;
 }
 
-const string CCHTTPRequest::getErrorMessage(void)
+const std::string CCHTTPRequest::getErrorMessage(void)
 {
     return m_errorMessage;
-}
-
-CCHTTPRequestDelegate* CCHTTPRequest::getDelegate(void)
-{
-    return m_delegate;
 }
 
 void CCHTTPRequest::checkCURLState(EventData& data)
@@ -367,22 +321,11 @@ void CCHTTPRequest::update(EventData& data)
     float dt = data[UpdateEvent::timeStep].GetFloat();
     if (m_state == kCCHTTPRequestStateInProgress)
     {
-
-        if (m_listener)
-        {
-            CCLuaValueDict dict;
-            
-            dict["name"] = CCLuaValue::stringValue("inprogress");
-            dict["dltotal"] = CCLuaValue::floatValue((float)m_dltotal);
-            dict["dlnow"] = CCLuaValue::floatValue((float)m_dlnow);
-            dict["ultotal"] = CCLuaValue::floatValue((float)m_ultotal);
-            dict["ulnow"] = CCLuaValue::floatValue((float)m_ulnow);
-            dict["request"] = CCLuaValue::ccobjectValue(this, "CCHTTPRequest");
-            CCLuaStack *stack = CCLuaEngine::defaultEngine()->getLuaStack();
-            stack->clean();
-            stack->pushCCLuaValueDict(dict);
-            stack->executeFunctionByHandler(m_listener, 1);
-        }
+		HttpRequestEvent eventData;
+		eventData[HttpRequestEvent::name] = "inprogress";
+		eventData[HttpRequestEvent::download_progress] = m_dlnow / m_dltotal;
+		eventData[HttpRequestEvent::unload_progress] = m_ultotal / m_ulnow;
+		sendEvent(eventData);
         return;
     }
 	//SubSystem::get<CCScheduler>()->unscheduleAllForTarget(this);
@@ -394,45 +337,21 @@ void CCHTTPRequest::update(EventData& data)
 //		SubSystem::get<CCScheduler>()->scheduleSelector(schedule_selector(CCHTTPRequest::checkCURLState), this, 0, false);
     }
 
-    if (m_state == kCCHTTPRequestStateCompleted)
+	const char* name = nullptr;
+
+    switch (m_state)
     {
-        // CCLOG("CCHTTPRequest[0x%04x] - request completed", s_id);
-        if (m_delegate) m_delegate->requestFinished(this);
-    }
-    else
-    {
-        // CCLOG("CCHTTPRequest[0x%04x] - request failed", s_id);
-        if (m_delegate) m_delegate->requestFailed(this);
+        case kCCHTTPRequestStateCompleted: name = "completed"; break;
+		case kCCHTTPRequestStateCancelled: name = "cancelled"; break;
+		case kCCHTTPRequestStateFailed:    name = "failed";    break;
+        default:name = "unknown";
     }
 
-
-    if (m_listener)
-    {
-        CCLuaValueDict dict;
-
-        switch (m_state)
-        {
-            case kCCHTTPRequestStateCompleted:
-                dict["name"] = CCLuaValue::stringValue("completed");
-                break;
-                
-            case kCCHTTPRequestStateCancelled:
-                dict["name"] = CCLuaValue::stringValue("cancelled");
-                break;
-                
-            case kCCHTTPRequestStateFailed:
-                dict["name"] = CCLuaValue::stringValue("failed");
-                break;
-                
-            default:
-                dict["name"] = CCLuaValue::stringValue("unknown");
-        }
-        dict["request"] = CCLuaValue::ccobjectValue(this, "CCHTTPRequest");
-        CCLuaStack *stack = CCLuaEngine::defaultEngine()->getLuaStack();
-        stack->clean();
-        stack->pushCCLuaValueDict(dict);
-        stack->executeFunctionByHandler(m_listener, 1);
-    }
+	HttpRequestEvent eventData;
+	eventData[HttpRequestEvent::name] = name;
+	eventData[HttpRequestEvent::download_progress] = 0;
+	eventData[HttpRequestEvent::unload_progress] = 0;
+	sendEvent(eventData);
 }
 
 // instance callback
@@ -443,7 +362,7 @@ void CCHTTPRequest::onRequest(void)
     if (m_postFields.size() > 0)
     {
         curl_easy_setopt(m_curl, CURLOPT_POST, 1L);
-        stringbuf buf;
+		std::stringbuf buf;
         for (Fields::iterator it = m_postFields.begin(); it != m_postFields.end(); ++it)
         {
             char *part = curl_easy_escape(m_curl, it->first.c_str(), 0);
@@ -480,7 +399,7 @@ void CCHTTPRequest::onRequest(void)
     if (cookies)
     {
         struct curl_slist *nc = cookies;
-        stringbuf buf;
+		std::stringbuf buf;
         while (nc)
         {
             buf.sputn(nc->data, strlen(nc->data));
@@ -527,7 +446,7 @@ size_t CCHTTPRequest::onWriteHeader(void *buffer, size_t bytes)
     char *headerBuffer = new char[bytes + 1];
     headerBuffer[bytes] = 0;
     memcpy(headerBuffer, buffer, bytes);    
-    m_responseHeaders.push_back(string(headerBuffer));
+    m_responseHeaders.push_back(std::string(headerBuffer));
     delete []headerBuffer;
     return bytes;
 }
@@ -599,3 +518,7 @@ int CCHTTPRequest::progressCURL(void *userdata, double dltotal, double dlnow, do
 }
 
 NS_CC_END
+
+#include "engine/CCEventImpl.h"
+#include "CCNetworkEvents.h"
+

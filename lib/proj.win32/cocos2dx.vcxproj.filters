@@ -579,9 +579,6 @@
     <ClCompile Include="..\cocos2d-x\imgui\imgui_binding.cpp">
       <Filter>cocos2d-x\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\LuaEvent.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\base\ID.cpp">
       <Filter>cocos2d-x\core\base</Filter>
     </ClCompile>
@@ -845,9 +842,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.cpp">
       <Filter>cocos2d-x\core\text_input_node</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\network\cocos2dx_httprequest_luabinding.cpp">
       <Filter>cocos2d-x\network</Filter>
@@ -1238,9 +1232,6 @@
     <ClInclude Include="..\cocos2d-x\network\CCHTTPRequest.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequestDelegate.h">
-      <Filter>cocos2d-x\network</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
@@ -1399,9 +1390,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\particle\CCParticleExamples.h">
       <Filter>cocos2d-x\particle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\LuaEvent.h">
-      <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\base\ID.h">
       <Filter>cocos2d-x\core\base</Filter>
@@ -1775,9 +1763,6 @@
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.h">
       <Filter>cocos2d-x\core\text_input_node</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCInput.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
@@ -1906,6 +1891,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\imgui\NoUI.h">
       <Filter>cocos2d-x\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\network\CCNetworkEvents.h">
+      <Filter>cocos2d-x\network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

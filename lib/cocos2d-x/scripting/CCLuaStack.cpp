@@ -43,9 +43,6 @@ extern "C" {
 #include "platform/android/CCLuaJavaBridge.h"
 #endif
 
-#include "Cocos2dxLuaLoader.h"
-
-
 // cocos2d-x luabinding
 #include "LuaCocos2d.h"
 
@@ -80,7 +77,38 @@ TOLUA_API int  tolua_spine_open(lua_State* tolua_S);
 TOLUA_API int luaopen_imgui(lua_State *L);
 #endif
 
+
 NS_CC_BEGIN
+
+static int cocos2dx_lua_loader(lua_State *L)
+{
+	std::string filename(luaL_checkstring(L, 1));
+
+	lua_getglobal(L, kCCLuaDebuggerGlobalKey);
+	if (lua_toboolean(L, -1))
+	{
+		return luaL_loadfile(L, filename.c_str()) == 0 ? 1 : 0;
+	}
+	lua_pop(L, 1);
+
+	// replace . -> /
+	for (unsigned i = 0; i < filename.size(); i++) {
+		if (filename[i] == '.')
+			filename[i] = '/';
+	}
+
+	std::string chunkName = FileSystem::join("scripts", filename) + ".lua";
+
+	SharedPtr<MemBuffer> bf = FileSystem::readAll(chunkName);
+	if (bf)
+	{
+		CCLuaStack::lua_loadbuffer(L, (char*)bf->getData(), (int)bf->getSize(), chunkName.c_str());
+		return 1;
+	}
+
+	return 0;
+}
+
 
 struct cc_timeval CCLuaStack::m_lasttime = {0};
 CCLuaStackMap CCLuaStack::s_map;

@@ -2,8 +2,6 @@
 #ifndef __CC_HTTP_REQUEST_H_
 #define __CC_HTTP_REQUEST_H_
 
-#include "CCHTTPRequestDelegate.h"
-
 #include "CCLuaEngine.h"
 #include "CCStdC.h"
 
@@ -23,8 +21,6 @@
 #else
 #include "curl/curl.h"
 #endif
-
-using namespace std;
 
 NS_CC_BEGIN
 
@@ -46,19 +42,14 @@ NS_CC_BEGIN
 #define kCCHTTPRequestCURLStateBusy             1
 #define kCCHTTPRequestCURLStateClosed           2
 
-typedef vector<string> CCHTTPRequestHeaders;
+typedef std::vector<std::string> CCHTTPRequestHeaders;
 typedef CCHTTPRequestHeaders::iterator CCHTTPRequestHeadersIterator;
 
 class CCHTTPRequest : public CCObject
 {
 public:
-    static CCHTTPRequest *createWithUrl(CCHTTPRequestDelegate *delegate,
-                                        const char *url,
-                                        int method = kCCHTTPRequestMethodGET);
 
-    static CCHTTPRequest* createWithUrlLua(LUA_FUNCTION listener,
-                                           const char *url,
-                                           int method = kCCHTTPRequestMethodGET);
+    static CCHTTPRequest* createWithUrl(const char *url, int method = kCCHTTPRequestMethodGET);
 
     ~CCHTTPRequest(void);
 
@@ -66,7 +57,7 @@ public:
     void setRequestUrl(const char *url);
 
     /** @brief Get request url. */
-    const string getRequestUrl(void);
+    const std::string getRequestUrl(void);
 
     /** @brief Add a custom header to the request. */
     void addRequestHeader(const char *header);
@@ -83,7 +74,7 @@ public:
 
     /** @brief Set/Get cookie string. */
     void setCookieString(const char *cookie);
-    const string getCookieString(void);
+    const std::string getCookieString(void);
 
     /** @brief Set accept encoding. */
     void setAcceptEncoding(int acceptEncoding);
@@ -105,15 +96,13 @@ public:
 
     /** @brief Return HTTP response headers. */
     const CCHTTPRequestHeaders &getResponseHeaders(void);
-    const string getResponseHeadersString(void);
+    const std::string getResponseHeadersString(void);
 
+	bool hasResponseData();
     /** @brief Returns the contents of the result. */
-    const string getResponseString(void);
-
+    const std::string getResponseString(void);
     /** @brief Alloc memory block, return response data. use free() release memory block */
-    void *getResponseData(void);
-
-    LUA_STRING getResponseDataLua(void);
+	void *getResponseData(void);
 
     /** @brief Get response data length (bytes). */
     int getResponseDataLength(void);
@@ -125,10 +114,7 @@ public:
     int getErrorCode(void);
 
     /** @brief Get error message. */
-    const string getErrorMessage(void);
-
-    /** @brief Return CCHTTPRequestDelegate delegate. */
-    CCHTTPRequestDelegate* getDelegate(void);
+    const std::string getErrorMessage(void);
 
     /** @brief timer function. */
     void checkCURLState(EventData& map);
@@ -136,9 +122,7 @@ public:
 
 private:
     CCHTTPRequest(void)
-    : m_delegate(NULL)
-    , m_listener(0)
-    , m_state(kCCHTTPRequestStateIdle)
+    : m_state(kCCHTTPRequestStateIdle)
     , m_errorCode(0)
     , m_responseCode(0)
     , m_responseBuffer(NULL)
@@ -161,8 +145,6 @@ private:
     , m_ulnow(0)
     {
     }
-    bool initWithDelegate(CCHTTPRequestDelegate* delegate, const char *url, int method);
-    bool initWithListener(LUA_FUNCTION listener, const char *url, int method);
     bool initWithUrl(const char *url, int method);
 
     enum {
@@ -171,9 +153,7 @@ private:
     };
 
     static unsigned int s_id;
-    string m_url;
-    CCHTTPRequestDelegate* m_delegate;
-    int m_listener;
+	std::string m_url;
     int m_curlState;
 
 #if !((CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) && (CC_CURL_ENABLED == 0))
@@ -184,10 +164,10 @@ private:
 
     int     m_state;
     int     m_errorCode;
-    string  m_errorMessage;
+	std::string  m_errorMessage;
 
     // request
-    typedef map<string, string> Fields;
+    typedef std::map<std::string, std::string> Fields;
     Fields m_postFields;
     CCHTTPRequestHeaders m_headers;
     
@@ -209,7 +189,7 @@ private:
     void *m_responseBuffer;
     size_t m_responseBufferLength;
     size_t m_responseDataLength;
-    string m_responseCookies;
+	std::string m_responseCookies;
     
     double m_dltotal;
     double m_dlnow;

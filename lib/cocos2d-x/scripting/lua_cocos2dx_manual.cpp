@@ -13,7 +13,6 @@ extern "C" {
 #include "CCLuaStack.h"
 #include "CCLuaValue.h"
 #include "CCLuaEngine.h"
-#include "LuaEvent.h"
 
 
 USING_NS_CC;

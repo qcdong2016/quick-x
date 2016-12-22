@@ -157,10 +157,8 @@
     <ClCompile Include="..\cocos2d-x\scripting\CCLuaEngine.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\CCLuaStack.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\CCLuaValue.cpp" />
-    <ClCompile Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocos2d.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocoStudio.cpp" />
-    <ClCompile Include="..\cocos2d-x\scripting\LuaEvent.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaFunction.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\LuaTable.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\lua\lapi.c" />
@@ -463,8 +461,8 @@
     <ClInclude Include="..\cocos2d-x\imgui\NoUI.h" />
     <ClInclude Include="..\cocos2d-x\imgui\PlayerUI.h" />
     <ClInclude Include="..\cocos2d-x\network\CCHTTPRequest.h" />
-    <ClInclude Include="..\cocos2d-x\network\CCHTTPRequestDelegate.h" />
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h" />
+    <ClInclude Include="..\cocos2d-x\network\CCNetworkEvents.h" />
     <ClInclude Include="..\cocos2d-x\particle\CCParticleBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\particle\CCParticleExamples.h" />
     <ClInclude Include="..\cocos2d-x\particle\CCParticleSystem.h" />
@@ -474,10 +472,8 @@
     <ClInclude Include="..\cocos2d-x\scripting\CCLuaEngine.h" />
     <ClInclude Include="..\cocos2d-x\scripting\CCLuaStack.h" />
     <ClInclude Include="..\cocos2d-x\scripting\CCLuaValue.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\Cocos2dxLuaLoader.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocoStudio.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\LuaEvent.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaFunction.h" />
     <ClInclude Include="..\cocos2d-x\scripting\LuaTable.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua\lapi.h" />

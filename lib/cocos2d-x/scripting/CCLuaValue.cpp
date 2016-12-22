@@ -23,7 +23,9 @@
  ****************************************************************************/
 
 #include "CCLuaValue.h"
-#include "LuaEvent.h"
+#include "LuaFunction.h"
+#include "engine\CCEngineEvents.h"
+#include "LuaTable.h"
 
 
 NS_CC_BEGIN
@@ -154,6 +156,67 @@ void CCLuaValue::copy(const CCLuaValue& rhs)
         m_ccobjectType = new std::string(*rhs.m_ccobjectType);
     }
 }
+
+class EventHandlerLua : public EventHandler
+{
+public:
+	EventHandlerLua(int funcIdx) :
+		_function(new LuaFunction(funcIdx))
+	{
+		assert(_function);
+	}
+	EventHandlerLua(SharedPtr<LuaFunction> func) :
+		_function(func)
+	{
+	}
+
+	virtual void invoke(EventData& evt);
+	virtual EventHandler* clone() const;
+private:
+	SharedPtr<LuaFunction> _function;
+};
+
+void EventHandlerLua::invoke(EventData& data)
+{
+	_function->BeginCall();
+
+	if (this->getEventType() == UpdateEvent::_ID)
+	{
+		_function->PushFloat(data[UpdateEvent::timeStep].GetFloat());
+	}
+	else
+	{
+		//_function->PushInt(this->getEventType());
+		LuaTable t;
+
+		for (int i = 0; i < data.getParamCount(); i++) {
+			const char* key = data.getParamName(i);
+			Variant& v = data[i];
+			switch (v.GetType())
+			{
+			case VAR_INT: t.setInt(key, v.GetInt()); break;
+			case VAR_STRING: t.setString(key, v.GetString().c_str()); break;
+			case VAR_FLOAT: t.setFloat(key, v.GetFloat()); break;
+			case VAR_DOUBLE: t.setDouble(key, v.GetDouble()); break;
+			case VAR_BOOL: t.setBool(key, v.GetBool()); break;
+			case VAR_PTR:
+			default:
+				break;
+			}
+		}
+		_function->PushLuaTable(&t);
+	}
+
+
+	_function->EndCall();
+}
+
+/// Return a unique copy of the event handler.
+EventHandler* EventHandlerLua::clone() const
+{
+	return new EventHandlerLua(_function);
+}
+
 
 TOLUA_API int tolua_is_EventHandler(lua_State* L, int lo, const char* type, int def, tolua_Error* err)
 {
