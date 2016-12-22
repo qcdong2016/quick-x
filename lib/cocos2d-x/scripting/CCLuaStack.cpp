@@ -60,10 +60,6 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
-// cocos2dx_extra luabinding
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "cocos2dx_extra_ios_iap_luabinding.h"
-#endif
 // lua extensions
 #include "scripting/lua_extensions/lua_extensions.h"
 
@@ -160,10 +156,6 @@ bool CCLuaStack::init(void)
 
     // register CCLuaStackSnapshot
     luaopen_snapshot(m_state);
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    luaopen_cocos2dx_extra_ios_iap_luabinding(m_state);
-#endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     luaopen_cocos2dx_httprequest_luabinding(m_state);

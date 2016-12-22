@@ -34,7 +34,6 @@
 		F456F10515EE0D2D00FCF3E2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F456F10415EE0D2D00FCF3E2 /* MobileCoreServices.framework */; };
 		F4949C791699553B00DB561E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4949C781699553B00DB561E /* AddressBook.framework */; };
 		F4949C7B1699554600DB561E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4949C7A1699554600DB561E /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F4F40D1B16573CE0007937AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F40D1A16573CE0007937AD /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +99,6 @@
 				F4949C791699553B00DB561E /* AddressBook.framework in Frameworks */,
 				F456ECC815EE018E00FCF3E2 /* OpenGLES.framework in Frameworks */,
 				F452BFC51687EEF900DC5BCC /* CoreText.framework in Frameworks */,
-				F4F40D1B16573CE0007937AD /* StoreKit.framework in Frameworks */,
 				F456F10515EE0D2D00FCF3E2 /* MobileCoreServices.framework in Frameworks */,
 				F456F0F915EE0CDB00FCF3E2 /* CFNetwork.framework in Frameworks */,
 				F456ECCA15EE018E00FCF3E2 /* OpenAL.framework in Frameworks */,
@@ -239,11 +237,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0440;
-				TargetAttributes = {
-					F456ECC015EE018E00FCF3E2 = {
-						DevelopmentTeam = 2QR44F365H;
-					};
-				};
 			};
 			buildConfigurationList = F456ECBB15EE018E00FCF3E2 /* Build configuration list for PBXProject "QuickXPlayer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -388,7 +381,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 2QR44F365H;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -414,7 +407,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.shining.ddz;
+				PRODUCT_BUNDLE_IDENTIFIER = org.quick.player;
 				PRODUCT_NAME = QuickXPlayer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -434,7 +427,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = 2QR44F365H;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -458,7 +451,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.shining.ddz;
+				PRODUCT_BUNDLE_IDENTIFIER = org.quick.player;
 				PRODUCT_NAME = QuickXPlayer;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
