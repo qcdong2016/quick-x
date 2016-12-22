@@ -202,6 +202,7 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\lsqlite3.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\sqlite3.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\lua_extensions.c" />
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\auxiliar.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\except.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\inet.c" />
@@ -217,7 +218,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\udp.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\socket\wsocket.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.c" />
-    <ClCompile Include="..\cocos2d-x\scripting\snapshot.c" />
     <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_event.c" />
     <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_is.c" />
     <ClCompile Include="..\cocos2d-x\scripting\tolua\tolua_map.c" />
@@ -510,6 +510,7 @@
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\lsqlite3.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lsqlite3\sqlite3.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\lua_extensions.h" />
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\auxiliar.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\except.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\inet.h" />
@@ -526,11 +527,9 @@
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\udp.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\socket\wsocket.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\zlib\lua_zlib.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\snapshot.h" />
     <ClInclude Include="..\cocos2d-x\scripting\tolua\tolua++.h" />
     <ClInclude Include="..\cocos2d-x\scripting\tolua\tolua_event.h" />
     <ClInclude Include="..\cocos2d-x\scripting\tolua_fix.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\xxdefaultkey.h" />
     <ClInclude Include="..\cocos2d-x\spine\PolygonBatch.h" />
     <ClInclude Include="..\cocos2d-x\spine\SkeletonAnimation.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine-cocos2dx.h" />

@@ -418,10 +418,14 @@ static int
         return 1;
 }
 
+static const luaL_Reg snapshot_functions[] = {
+	{ "snapshot", snapshot },
+};
 int
     luaopen_snapshot(lua_State *L) {
         luaL_checkversion(L);
-        lua_pushcfunction(L, snapshot);
-        lua_setglobal(L, "CCLuaStackSnapshot");
-        return 0;
+
+		luaL_register(L, "snapshot", snapshot_functions);
+
+        return 1;
 }

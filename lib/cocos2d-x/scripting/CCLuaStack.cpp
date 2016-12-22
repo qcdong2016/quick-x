@@ -31,7 +31,6 @@ extern "C" {
 #include "lualib.h"
 #include "lauxlib.h"
 #include "tolua_fix.h"
-#include "snapshot.h"
 }
 
 #include "ccMacros.h"
@@ -182,8 +181,6 @@ bool CCLuaStack::init(void)
     lua_pushcfunction(m_state, lua_loadChunksFromZIP);
     lua_setglobal(m_state, "CCLuaLoadChunksFromZIP");
 
-    // register CCLuaStackSnapshot
-    luaopen_snapshot(m_state);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     luaopen_cocos2dx_httprequest_luabinding(m_state);

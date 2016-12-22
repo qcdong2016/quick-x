@@ -27,8 +27,11 @@ extern "C" {
 #include "lsqlite3/lsqlite3.h"
 #endif
 
+#include "snapshot/snapshot.h"
+
 static luaL_Reg luax_exts[] = {
-    {"cjson", luaopen_cjson_safe},
+	{"snapshot", luaopen_snapshot},
+	{ "cjson", luaopen_cjson_safe },
     {"zlib", luaopen_zlib},
     {"pack", luaopen_pack},
     {"socket.core", luaopen_socket_core},

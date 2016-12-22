@@ -145,6 +145,9 @@
     <Filter Include="cocos2d-x\core\support\zip_support">
       <UniqueIdentifier>{e5135e5d-4498-4d94-a86d-7b97d0dd379b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cocos2d-x\scripting\lua_extensions\snapshot">
+      <UniqueIdentifier>{876cb910-b59e-4d15-8f5f-2cbfd2963a28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c">
@@ -520,9 +523,6 @@
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\LuaTable.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\snapshot.c">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\tolua_fix.c">
@@ -963,6 +963,9 @@
     <ClCompile Include="..\cocos2d-x\imgui\NoUI.cpp">
       <Filter>cocos2d-x\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.c">
+      <Filter>cocos2d-x\scripting\lua_extensions\snapshot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
@@ -1334,13 +1337,7 @@
     <ClInclude Include="..\cocos2d-x\scripting\LuaTable.h">
       <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\snapshot.h">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\tolua_fix.h">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\xxdefaultkey.h">
       <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\CCLuaBridge.h">
@@ -1894,6 +1891,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\network\CCNetworkEvents.h">
       <Filter>cocos2d-x\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.h">
+      <Filter>cocos2d-x\scripting\lua_extensions\snapshot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
