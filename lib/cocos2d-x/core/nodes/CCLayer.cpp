@@ -81,47 +81,6 @@ CCLayer *CCLayer::create()
     }
 }
 
-/// Accelerometer related
-
-/// isAccelerometerEnabled getter
-bool CCLayer::isAccelerometerEnabled()
-{
-    return m_bAccelerometerEnabled;
-}
-/// isAccelerometerEnabled setter
-void CCLayer::setAccelerometerEnabled(bool enabled)
-{
-    if (enabled != m_bAccelerometerEnabled)
-    {
-        m_bAccelerometerEnabled = enabled;
-
-        if (m_bRunning)
-        {
-            CCDirector* pDirector = CCDirector::sharedDirector();
-            if (enabled)
-            {
-                //pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
-            }
-            else
-            {
-               // pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
-            }
-        }
-    }
-}
-
-
-void CCLayer::setAccelerometerInterval(double interval) {
-    if (m_bAccelerometerEnabled)
-    {
-        if (m_bRunning)
-        {
-            CCDirector* pDirector = CCDirector::sharedDirector();
-            //pDirector->getSubSystem<CCAccelerometer>()->setAccelerometerInterval(interval);
-        }
-    }
-}
-
 /// Callbacks
 void CCLayer::onEnter()
 {

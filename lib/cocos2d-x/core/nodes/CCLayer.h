@@ -77,14 +77,6 @@ public:
      */
     virtual void onEnterTransitionDidFinish();
 
-    /** whether or not it will receive Accelerometer events
-    You can enable / disable accelerometer events with this property.
-    @since v0.8.1
-    */
-    virtual bool isAccelerometerEnabled();
-    virtual void setAccelerometerEnabled(bool value);
-    virtual void setAccelerometerInterval(double interval);
-
 protected:
     bool m_bAccelerometerEnabled;
 };

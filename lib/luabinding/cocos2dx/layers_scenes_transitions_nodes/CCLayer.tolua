@@ -3,10 +3,6 @@ $#include "nodes/CCLayer.h"
 class CCLayer : public CCNode
 {
     static CCLayer *create(void);
-
-    void setAccelerometerEnabled(bool value);
-    bool isAccelerometerEnabled();
-    void setAccelerometerInterval(double interval);
 };
 
 //
