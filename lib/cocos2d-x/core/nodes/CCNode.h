@@ -29,17 +29,17 @@
 #define __PLATFORM_CCNODE_H__
 
 #include "ccMacros.h"
+#include "CCGL.h"
+#include "ccTypes.h"
 #include "cocoa/CCAffineTransform.h"
 #include "cocoa/CCArray.h"
 #include "cocoa/CCScriptEventDispatcher.h"
-#include "CCGL.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCGLProgram.h"
+#include "shaders/CCRenderState.h"
 #include "kazmath/kazmath.h"
 #include "touch_dispatcher/CCTouchDelegateProtocol.h"
 #include "cocoa/CCScriptSupport.h"
-#include "ccTypes.h"
-#include "shaders/CCRenderState.h"
 
 NS_CC_BEGIN
 
@@ -301,7 +301,7 @@ public:
      * @param position  The position (x,y) of the node in OpenGL coordinates
      * @js NA
      */
-    virtual void setPosition(const CCPoint &position);
+	virtual void setPosition(const CCPoint &position);
     /**
      * Gets the position (x,y) of the node in OpenGL coordinates
      *
@@ -395,7 +395,8 @@ public:
      *
      * @param anchorPoint   The anchor point of node.
      */
-    virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(float x, float y) { setAnchorPoint(CCPoint(x, y)); }
     /**
      * Returns the anchor point in percent.
      *
@@ -423,7 +424,8 @@ public:
      *
      * @param contentSize   The untransformed size of the node.
      */
-    virtual void setContentSize(const CCSize& contentSize);
+	virtual void setContentSize(const CCSize& contentSize);
+	virtual void setContentSize(float w, float h) { setContentSize(CCSize(w, h)); };
     /**
      * Returns the untransformed size of the node.
      *

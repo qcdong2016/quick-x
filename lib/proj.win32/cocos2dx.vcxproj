@@ -191,7 +191,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua\lzio.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua\print.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.cpp" />
-    <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.cpp" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\fpconv.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\lua_cjson.c" />
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\cjson\strbuf.c" />
@@ -497,7 +496,6 @@
     <ClInclude Include="..\cocos2d-x\scripting\lua\lvm.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua\lzio.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.h" />
-    <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\fpconv.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\lua_cjson.h" />
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\cjson\strbuf.h" />

@@ -116,6 +116,7 @@ public:
   
     inline const CCPoint& getPosition(void) { return m_position; }
     void setPosition(const CCPoint& position);
+	void setPosition(float x, float y) { setPosition(CCPoint(x, y)); }
 
     /** initializes the action with center position, radius, a grid size and duration */
     bool initWithDuration(float duration, const CCSize& gridSize, const CCPoint& position, float radius);
@@ -150,6 +151,7 @@ public:
     inline const CCPoint& getPosition(void) { return m_position; }
     /** set center position */
     void setPosition(const CCPoint& position);
+	void setPosition(float x, float y) { setPosition(CCPoint(x, y)); }
 
     inline float getAmplitude(void) { return m_fAmplitude; }
     inline void setAmplitude(float fAmplitude) { m_fAmplitude = fAmplitude; }
@@ -270,6 +272,7 @@ public:
     inline const CCPoint& getPosition(void) { return m_position; }
     /** set twirl center */
     void setPosition(const CCPoint& position);
+	void setPosition(float x, float y) { setPosition(CCPoint(x, y)); }
 
     inline float getAmplitude(void) { return m_fAmplitude; }
     inline void setAmplitude(float fAmplitude) { m_fAmplitude = fAmplitude; }

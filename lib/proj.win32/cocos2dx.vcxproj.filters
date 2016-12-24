@@ -543,9 +543,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\tilemap\CCParallaxNode.cpp">
       <Filter>cocos2d-x\tilemap</Filter>
     </ClCompile>
@@ -1318,9 +1315,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\audio\win32\MciPlayer.h">
       <Filter>cocos2d-x\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_manual.h">
-      <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h">
       <Filter>cocos2d-x\scripting</Filter>

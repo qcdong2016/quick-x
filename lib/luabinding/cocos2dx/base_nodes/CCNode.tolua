@@ -16,7 +16,7 @@ class CCNode : public CCScriptEventDispatcher
     void setPosition(float x, float y);
     void setPosition(CCPoint point);
     void getPosition(float* x = 0, float* y = 0);
-    CCPoint getPosition @ getPositionInCCPoint();
+    CCPoint getPosition();
     void  setPositionX(float x);
     float getPositionX(void);
     void  setPositionY(float y);
@@ -26,9 +26,10 @@ class CCNode : public CCScriptEventDispatcher
     void setSkewY(float fSkewY);
     float getSkewY();
     void setAnchorPoint(CCPoint anchorPoint);
+    void setAnchorPoint(float x, float y);
     CCPoint getAnchorPoint();
-    CCPoint getAnchorPointInPoints();
     void setContentSize(CCSize contentSize);
+    void setContentSize(float w, float h);
     CCSize getContentSize();
     void setVisible(bool visible);
     bool isVisible();

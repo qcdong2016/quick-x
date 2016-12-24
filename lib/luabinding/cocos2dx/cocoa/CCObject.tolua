@@ -9,4 +9,16 @@ class CCObject
     bool isSingleReference(void);
     unsigned int retainCount(void);
     void update(float dt);
+
+    void subscribeToEvent(const char* eventType, EventHandler* handler);
+    void subscribeToEvent(CCObject* sender, const char* eventType, EventHandler* handler);
+    /// Unsubscribe from an event.
+    void unsubscribeFromEvent(const char* eventType);
+    void unsubscribeFromEvent(CCObject* sender, const char* eventType);
+    void unsubscribeFromEvents(CCObject* sender);
+    /// Unsubscribe from all events.
+    void unsubscribeFromAllEvents();
+    /// Send event to all subscribers.
+    // void sendEvent(const char* eventType);
+    // void sendEvent(const char* eventType, EventData& eventData);
 };

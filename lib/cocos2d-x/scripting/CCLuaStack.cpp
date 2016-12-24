@@ -45,7 +45,6 @@ extern "C" {
 // cocos2d-x luabinding
 #include "LuaCocos2d.h"
 
-#include "lua_cocos2dx_manual.h"
 // Cocos Studio
 #include "LuaCocoStudio.h"
 #include "lua_cocos2dx_cocostudio_manual.h"
@@ -151,8 +150,6 @@ bool CCLuaStack::init(void)
     tolua_Cocos2d_open(m_state);
 
 	tolua_spine_open(m_state);
-
-	register_all_cocos2dx_manual(m_state);
 
     // Cocos Studio
     tolua_CocoStudio_open(m_state);
