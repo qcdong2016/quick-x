@@ -9,7 +9,7 @@
 
 extern "C" {
 
-	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxAccelerometer_onSensorChanged(JNIEnv*  env, jobject thiz, jfloat x, jfloat y, jfloat z, jlong timeStamp) {
+	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxAccelerometer_onSensorChanged(JNIEnv*  env, jobject thiz, jfloat x, jfloat y, jfloat z, jfloat timeStamp) {
 		SubSystem::get<Input>()->onAcceleration(x, y, z, timeStamp);
 	}
 }
@@ -77,7 +77,7 @@ void Input::onEnterForeground()
 	sendEvent(eventData);
 }
 
-void Input::onAcceleration(float x, float y, float z, long timeStamp)
+void Input::onAcceleration(float x, float y, float z, float timeStamp)
 {
 	AccelerationEvent eventData;
 	eventData[AccelerationEvent::x] = x;

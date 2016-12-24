@@ -24,7 +24,7 @@ public:
 	void onEnterForeground();
 	void onEnterBackground();
 
-	void onAcceleration(float x, float y, float z, long timeStamp);
+	void onAcceleration(float x, float y, float z, float timeStamp);
 };
 
 NS_CC_END;

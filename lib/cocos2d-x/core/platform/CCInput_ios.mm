@@ -25,21 +25,16 @@
 #include "CCInput.h"
 
 #import <Foundation/Foundation.h>
-#import "CCAccelerometerDelegate.h"
 #import <UIKit/UIKit.h>
 
 @interface AccelerometerDispatcher : NSObject<UIAccelerometerDelegate>
 {
-    cocos2d::CCAccelerometerDelegate *delegate_;
-    cocos2d::CCAcceleration *acceleration_;
 }
 
-@property(readwrite) cocos2d::CCAccelerometerDelegate *delegate_;
-@property(readwrite) cocos2d::CCAcceleration *acceleration_;
 
 + (id) sharedAccelerometerDispather;
+- (void) enable : (bool) e;
 - (id) init;
-- (void) addDelegate: (cocos2d::CCAccelerometerDelegate *) delegate;
 - (void) setAccelerometerInterval:(float)interval;
 
 @end
@@ -48,8 +43,6 @@
 
 static AccelerometerDispatcher* s_pAccelerometerDispatcher;
 
-@synthesize delegate_;
-@synthesize acceleration_;
 
 + (id) sharedAccelerometerDispather
 {
@@ -60,32 +53,25 @@ static AccelerometerDispatcher* s_pAccelerometerDispatcher;
     return s_pAccelerometerDispatcher;
 }
 
+- (void) enable : (bool) e
+{
+    if (e) {
+        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+    } else {
+        [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
+    }
+    
+}
+
 - (id) init
 {
-    acceleration_ = new cocos2d::CCAcceleration();
     return self;
 }
 
 - (void) dealloc
 {
     s_pAccelerometerDispatcher = 0;
-    delegate_ = 0;
-    delete acceleration_;
     [super dealloc];
-}
-
-- (void) addDelegate: (cocos2d::CCAccelerometerDelegate *) delegate
-{
-    delegate_ = delegate;
-    
-    if (delegate_)
-    {
-        [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-    }
-    else
-    {
-        [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
-    }
 }
 
 -(void) setAccelerometerInterval:(float)interval
@@ -95,40 +81,34 @@ static AccelerometerDispatcher* s_pAccelerometerDispatcher;
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
-    if (! delegate_)
-    {
-        return;
-    }
-    
-    acceleration_->x = acceleration.x;
-    acceleration_->y = acceleration.y;
-    acceleration_->z = acceleration.z;
-    acceleration_->timestamp = acceleration.timestamp;
-    
-    double tmp = acceleration_->x;
+    double x = acceleration.x;
+    double y = acceleration.y;
+    double z = acceleration.z;
+    double timeStamp = acceleration.timestamp;
+    double x_ = x;
     
     switch ([[UIApplication sharedApplication] statusBarOrientation])
     {
         case UIInterfaceOrientationLandscapeRight:
-            acceleration_->x = -acceleration_->y;
-            acceleration_->y = tmp;
+            x = -y;
+            y = x_;
             break;
             
         case UIInterfaceOrientationLandscapeLeft:
-            acceleration_->x = acceleration_->y;
-            acceleration_->y = -tmp;
+            x = y;
+            y = -x_;
             break;
             
         case UIInterfaceOrientationPortraitUpsideDown:
-            acceleration_->x = -acceleration_->y;
-            acceleration_->y = -tmp;
+            x = -y;
+            y = -x_;
             break;
             
         case UIInterfaceOrientationPortrait:
             break;
     }
     
-    delegate_->didAccelerate(acceleration_);
+    cocos2d::SubSystem::get<cocos2d::Input>()->onAcceleration(x, y, z, timeStamp);
 }
 
 @end
@@ -138,7 +118,7 @@ NS_CC_BEGIN
     
 void Input::setAccelerationEnable(bool enable)
 {
-    
+    [[AccelerometerDispatcher sharedAccelerometerDispather] enable:enable];
 }
 
 void Input::setAccelerationInterval(float interval)
