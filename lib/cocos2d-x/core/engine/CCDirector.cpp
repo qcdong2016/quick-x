@@ -47,7 +47,6 @@ THE SOFTWARE.
 #include "nodes/CCLabelAtlas.h"
 #include "actions/CCActionManager.h"
 #include "CCConfiguration.h"
-#include "CCAccelerometer.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "support/user_default/CCUserDefault.h"
 #include "shaders/ccGLStateCache.h"
@@ -152,7 +151,6 @@ bool CCDirector::init(void)
 	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
 	addSubSystem<CCTouchDispatcher>();
-	addSubSystem<CCAccelerometer>();
 	addSubSystem<ResourceCache>();
 
     // create autorelease pool

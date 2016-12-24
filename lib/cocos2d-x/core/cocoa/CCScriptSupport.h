@@ -25,10 +25,8 @@
 #ifndef __SCRIPT_SUPPORT_H__
 #define __SCRIPT_SUPPORT_H__
 
-#include "CCAccelerometer.h"
 #include "touch_dispatcher/CCTouch.h"
 #include "cocoa/CCSet.h"
-#include "CCAccelerometer.h"
 #include <map>
 #include <string>
 #include <list>
@@ -42,7 +40,6 @@ class CCTimer;
 class CCLayer;
 class CCMenuItem;
 class CCCallFunc;
-class CCAcceleration;
 
 enum ccScriptType {
     kScriptTypeNone = 0,
@@ -145,34 +142,9 @@ public:
      */
     virtual int executeGlobalFunction(const char* functionName, int numArgs = 0) = 0;
 
-    /**
-     @brief Execute a node event function
-     @param pNode which node produce this event
-     @param nAction kCCNodeOnEnter, kCCNodeOnExit,
-     kCCNodeOnEnterTransitionDidFinish, kCCNodeOnExitTransitionDidStart,
-     kCCMenuItemActivated
-     @return The integer value returned from the script function.
-     */
-    virtual int executeNodeEvent(CCNode* pNode, int nAction) = 0;
-    /**
-     kCCNodeOnEnterFrame
-     */
-    virtual int executeNodeEnterFrameEvent(CCNode* pNode, float dt) = 0;
-
-    /**
-     CCMenuItem Event
-     */
-    virtual int executeMenuItemEvent(CCMenuItem* pMenuItem) = 0;
-
-    /** execute a schedule function */
-    virtual int executeSchedule(int nHandler, float dt, CCNode* pNode = NULL) = 0;
-
     /** functions for executing touch event */
     virtual int executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase) = 0;
     virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase) = 0;
-
-    /** execute a accelerometer event */
-    virtual int executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue) = 0;
 
     /** function for common event */
     virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL) = 0;

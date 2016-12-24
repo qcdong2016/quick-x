@@ -83,7 +83,6 @@ class CCNode;
 class CCScheduler;
 class CCActionManager;
 class CCTouchDispatcher;
-class CCAccelerometer;
 
 /**
 @brief Class that creates and handle the main Window and manages how

@@ -28,7 +28,6 @@ THE SOFTWARE.
 #define __CCLAYER_H__
 
 #include "nodes/CCNode.h"
-#include "platform/CCAccelerometerDelegate.h"
 #include "cocoa/CCArray.h"
 
 NS_CC_BEGIN
@@ -47,7 +46,7 @@ All features from CCNode are valid, plus the following new features:
 - It can receive iPhone Touches
 - It can receive Accelerometer input
 */
-class CC_DLL CCLayer : public CCNode, public CCAccelerometerDelegate
+class CC_DLL CCLayer : public CCNode
 {
 public:
     /**
@@ -77,12 +76,6 @@ public:
      *  @lua NA
      */
     virtual void onEnterTransitionDidFinish();
-
-    /**
-     * @js NA
-     * @lua NA
-     */
-    virtual void didAccelerate(CCAcceleration* pAccelerationValue);
 
     /** whether or not it will receive Accelerometer events
     You can enable / disable accelerometer events with this property.

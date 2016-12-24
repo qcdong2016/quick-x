@@ -112,14 +112,8 @@ public:
      */
     virtual int executeGlobalFunction(const char* functionName, int numArgs = 0);
 
-    virtual int executeNodeEvent(CCNode* pNode, int nAction);
-    virtual int executeNodeEnterFrameEvent(CCNode* pNode, float dt);
-    virtual int executeMenuItemEvent(CCMenuItem* pMenuItem);
-    virtual int executeSchedule(int nHandler, float dt, CCNode* pNode = NULL);
     virtual int executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase);
     virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase);
-    /** execute a accelerometer event */
-    virtual int executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue);
     virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL);
 
     virtual bool handleAssert(const char *msg);

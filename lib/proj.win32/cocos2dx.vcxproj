@@ -101,7 +101,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\platform.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\win32\CCAccelerometer.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCApplication.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp" />
@@ -376,7 +375,6 @@
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTransition.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionProgress.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\CCAccelerometerDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCApplicationProtocol.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCDevice.h" />
@@ -391,7 +389,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\platform.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCAccelerometer.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCApplication.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />

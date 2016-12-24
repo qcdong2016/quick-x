@@ -100,96 +100,6 @@ int CCLuaEngine::executeGlobalFunction(const char* functionName, int numArgs /* 
     return ret;
 }
 
-int CCLuaEngine::executeNodeEvent(CCNode* pNode, int nAction)
-{
-    CCLuaValueDict event;
-    switch (nAction)
-    {
-        case kCCNodeOnEnter:
-            event["name"] = CCLuaValue::stringValue("enter");
-            break;
-
-        case kCCNodeOnExit:
-            event["name"] = CCLuaValue::stringValue("exit");
-            break;
-
-        case kCCNodeOnEnterTransitionDidFinish:
-            event["name"] = CCLuaValue::stringValue("enterTransitionFinish");
-            break;
-
-        case kCCNodeOnExitTransitionDidStart:
-            event["name"] = CCLuaValue::stringValue("exitTransitionStart");
-            break;
-
-        case kCCNodeOnCleanup:
-            event["name"] = CCLuaValue::stringValue("cleanup");
-            break;
-
-        default:
-            return 0;
-    }
-
-    m_stack->clean();
-    m_stack->pushCCLuaValueDict(event);
-
-    CCArray *listeners = pNode->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != NODE_EVENT || p->removed) continue;
-        m_stack->copyValue(1);
-        m_stack->executeFunctionByHandler(p->listener, 1);
-        m_stack->settop(1);
-    }
-
-    m_stack->clean();
-    return 0;
-}
-
-int CCLuaEngine::executeNodeEnterFrameEvent(CCNode* pNode, float dt)
-{
-    CCArray *listeners = pNode->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != NODE_ENTER_FRAME_EVENT || p->removed) continue;
-        m_stack->pushFloat(dt);
-        m_stack->executeFunctionByHandler(p->listener, 1);
-        m_stack->clean();
-    }
-    return 0;
-}
-
-int CCLuaEngine::executeMenuItemEvent(CCMenuItem* pMenuItem)
-{
-	/*
-    CCArray *listeners = pMenuItem->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != MENU_ITEM_CLICKED_EVENT || p->removed) continue;
-        m_stack->pushInt(pMenuItem->getTag());
-        m_stack->pushCCObject(pMenuItem, "CCMenuItem");
-        m_stack->executeFunctionByHandler(p->listener, 2);
-        m_stack->clean();
-    }
-	*/
-    return 0;
-}
-
-
-int CCLuaEngine::executeSchedule(int nHandler, float dt, CCNode* pNode/* = NULL*/)
-{
-    if (!nHandler) return 0;
-    m_stack->pushFloat(dt);
-    int ret = m_stack->executeFunctionByHandler(nHandler, 1);
-    m_stack->clean();
-    return ret;
-}
-
 int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase)
 {
     m_stack->clean();
@@ -369,31 +279,6 @@ int CCLuaEngine::executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pT
     m_stack->clean();
     
     return 1;
-}
-
-int CCLuaEngine::executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
-{
-    m_stack->clean();
-    CCLuaValueDict event;
-    event["name"] = CCLuaValue::stringValue("changed");
-    event["x"] = CCLuaValue::floatValue(pAccelerationValue->x);
-    event["y"] = CCLuaValue::floatValue(pAccelerationValue->y);
-    event["z"] = CCLuaValue::floatValue(pAccelerationValue->z);
-    event["timestamp"] = CCLuaValue::floatValue(pAccelerationValue->timestamp);
-
-    m_stack->pushCCLuaValueDict(event);
-
-    CCArray *listeners = pLayer->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != ACCELERATE_EVENT || p->removed) continue;
-        m_stack->copyValue(1);
-        m_stack->executeFunctionByHandler(p->listener, 1);
-        m_stack->settop(1);
-    }
-    return 0;
 }
 
 int CCLuaEngine::executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource /* = NULL*/, const char* pEventSourceClassName /* = NULL*/)

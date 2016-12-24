@@ -693,9 +693,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\platform.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\win32\CCAccelerometer.cpp">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCApplication.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
@@ -1496,9 +1493,6 @@
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec4.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCAccelerometerDelegate.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
@@ -1537,9 +1531,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\platform.h">
       <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCAccelerometer.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCApplication.h">
       <Filter>cocos2d-x\core\platform\win32</Filter>

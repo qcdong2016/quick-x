@@ -625,7 +625,6 @@ void CCNode::cleanup()
 
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnCleanup);
     }
 }
 
@@ -995,7 +994,6 @@ void CCNode::onEnter()
 
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnEnter);
     }
 
     //Judge the running state for prevent called onEnter method more than once,it's possible that this function called by addChild
@@ -1022,7 +1020,6 @@ void CCNode::onEnterTransitionDidFinish()
 
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnEnterTransitionDidFinish);
     }
 }
 
@@ -1030,7 +1027,6 @@ void CCNode::onExitTransitionDidStart()
 {
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnExitTransitionDidStart);
     }
 
     arrayMakeObjectsPerformSelector(m_pChildren, onExitTransitionDidStart, CCNode*);
@@ -1051,7 +1047,6 @@ void CCNode::onExit()
 
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEvent(this, kCCNodeOnExit);
     }
 }
 
@@ -1186,7 +1181,6 @@ void CCNode::update(float fDelta)
 {
     if (m_scriptEventListeners)
     {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeEnterFrameEvent(this, fDelta);
     }
 
     if (m_pComponentContainer && !m_pComponentContainer->isEmpty())

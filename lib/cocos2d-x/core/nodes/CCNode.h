@@ -65,12 +65,6 @@ enum {
     kCCNodeTagInvalid = -1,
 };
 
-#define kCCNodeOnEnter                      0
-#define kCCNodeOnExit                       1
-#define kCCNodeOnEnterTransitionDidFinish   2
-#define kCCNodeOnExitTransitionDidStart     3
-#define kCCNodeOnCleanup                    4
-
 #define kCCTouchesAllAtOnce                 0
 #define kCCTouchesOneByOne                  1
 

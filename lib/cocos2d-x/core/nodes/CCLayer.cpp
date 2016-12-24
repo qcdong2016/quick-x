@@ -27,7 +27,6 @@
 #include <stdarg.h>
 #include "CCLayer.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
-#include "CCAccelerometer.h"
 #include "engine/CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"
@@ -101,11 +100,11 @@ void CCLayer::setAccelerometerEnabled(bool enabled)
             CCDirector* pDirector = CCDirector::sharedDirector();
             if (enabled)
             {
-                pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
+                //pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
             }
             else
             {
-                pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
+               // pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
             }
         }
     }
@@ -118,18 +117,8 @@ void CCLayer::setAccelerometerInterval(double interval) {
         if (m_bRunning)
         {
             CCDirector* pDirector = CCDirector::sharedDirector();
-            pDirector->getSubSystem<CCAccelerometer>()->setAccelerometerInterval(interval);
+            //pDirector->getSubSystem<CCAccelerometer>()->setAccelerometerInterval(interval);
         }
-    }
-}
-
-
-void CCLayer::didAccelerate(CCAcceleration* pAccelerationValue)
-{
-    CC_UNUSED_PARAM(pAccelerationValue);
-    if (m_scriptEventListeners)
-    {
-        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeAccelerometerEvent(this, pAccelerationValue);
     }
 }
 
@@ -144,7 +133,7 @@ void CCLayer::onEnter()
     // add this layer to concern the Accelerometer Sensor
     if (m_bAccelerometerEnabled)
     {
-        pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
+        //pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
     }
 }
 
@@ -155,7 +144,7 @@ void CCLayer::onExit()
     // remove this layer from the delegates who concern Accelerometer Sensor
     if (m_bAccelerometerEnabled)
     {
-		pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
+		//pDirector->getSubSystem<CCAccelerometer>()->setDelegate(NULL);
     }
 
     CCNode::onExit();
@@ -166,7 +155,7 @@ void CCLayer::onEnterTransitionDidFinish()
     if (m_bAccelerometerEnabled)
     {
         CCDirector* pDirector = CCDirector::sharedDirector();
-		pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
+		//pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
     }
 
     CCNode::onEnterTransitionDidFinish();

@@ -24,7 +24,6 @@ $pfile "cocos2dx/platform/platform.tolua"
 $pfile "cocos2dx/platform/CCApplication.tolua"
 $pfile "cocos2dx/platform/CCImage.tolua"
 $pfile "cocos2dx/platform/CCEGLViewProtocol.tolua"
-$pfile "cocos2dx/platform/CCAccelerometer.tolua"
 
 $pfile "cocos2dx/support/CCPointExtension.tolua"
 $pfile "cocos2dx/support/user_default/CCUserDefault.tolua"

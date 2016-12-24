@@ -163,7 +163,6 @@ void CCTimer::update(float dt)
 
                 if (m_nScriptHandler)
                 {
-                    CCScriptEngineManager::sharedManager()->getScriptEngine()->executeSchedule(m_nScriptHandler, m_fElapsed);
                 }
                 m_fElapsed = 0;
             }
@@ -182,7 +181,6 @@ void CCTimer::update(float dt)
 
                     if (m_nScriptHandler)
                     {
-                        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeSchedule(m_nScriptHandler, m_fElapsed);
                     }
 
                     m_fElapsed = m_fElapsed - m_fDelay;
@@ -201,7 +199,6 @@ void CCTimer::update(float dt)
 
                     if (m_nScriptHandler)
                     {
-                        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeSchedule(m_nScriptHandler, m_fElapsed);
                     }
 
                     m_fElapsed = 0;
