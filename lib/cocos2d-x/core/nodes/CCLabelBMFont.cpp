@@ -399,7 +399,7 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
     CCAssert(!_pConfiguration, "re-init is no longer supported");
     CCAssert( (theString && fntFile) || (theString==NULL && fntFile==NULL), "Invalid params for CCLabelBMFont");
 
-    CCTexture2D *texture = NULL;
+	SharedPtr<CCTexture2D> texture;
 
     if (fntFile)
     {
@@ -415,11 +415,11 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
         m_sFntFile = fntFile;
 
 		texture = SubSystem::get<ResourceCache>()->getResource<CCTexture2D>(_pConfiguration->getAtlasName());
+		CCAssert(texture, "CCLabelBMFont: can't load texture file");
     }
     else
     {
         texture = new CCTexture2D();
-        texture->autorelease();
     }
 
     if (theString == NULL)
