@@ -19,7 +19,6 @@
 		9F1FE68A1DAD389E008FE0C7 /* CCLuaStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6681DAD389E008FE0C7 /* CCLuaStack.cpp */; };
 		9F1FE68B1DAD389E008FE0C7 /* CCLuaValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE66A1DAD389E008FE0C7 /* CCLuaValue.cpp */; };
 		9F1FE68D1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE66E1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */; };
-		9F1FE68E1DAD389E008FE0C7 /* lua_cocos2dx_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6701DAD389E008FE0C7 /* lua_cocos2dx_manual.cpp */; };
 		9F1FE68F1DAD389E008FE0C7 /* LuaCocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */; };
 		9F1FE6901DAD389E008FE0C7 /* LuaCocoStudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */; };
 		9F1FE6911DAD389E008FE0C7 /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */; };
@@ -318,8 +317,6 @@
 		9F1FE66B1DAD389E008FE0C7 /* CCLuaValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLuaValue.h; sourceTree = "<group>"; };
 		9F1FE66E1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_cocostudio_manual.cpp; sourceTree = "<group>"; };
 		9F1FE66F1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_cocostudio_manual.h; sourceTree = "<group>"; };
-		9F1FE6701DAD389E008FE0C7 /* lua_cocos2dx_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_manual.cpp; sourceTree = "<group>"; };
-		9F1FE6711DAD389E008FE0C7 /* lua_cocos2dx_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_manual.h; sourceTree = "<group>"; };
 		9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocos2d.cpp; sourceTree = "<group>"; };
 		9F1FE6731DAD389E008FE0C7 /* LuaCocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCocos2d.h; sourceTree = "<group>"; };
 		9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocoStudio.cpp; sourceTree = "<group>"; };
@@ -1726,8 +1723,6 @@
 				B1F870651D7D796F00AF7173 /* lua */,
 				9F1FE66E1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */,
 				9F1FE66F1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.h */,
-				9F1FE6701DAD389E008FE0C7 /* lua_cocos2dx_manual.cpp */,
-				9F1FE6711DAD389E008FE0C7 /* lua_cocos2dx_manual.h */,
 				B1F870A11D7D796F00AF7173 /* lua_extensions */,
 				9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */,
 				9F1FE6731DAD389E008FE0C7 /* LuaCocos2d.h */,
@@ -2136,7 +2131,6 @@
 				B1A756CB1DEA79E1002F0D4C /* vec4.c in Sources */,
 				9F1FE68D1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp in Sources */,
 				B1A756A81DEA79E1002F0D4C /* CCArray.cpp in Sources */,
-				9F1FE68E1DAD389E008FE0C7 /* lua_cocos2dx_manual.cpp in Sources */,
 				B1A756D71DEA79E1002F0D4C /* CCRenderTexture.cpp in Sources */,
 				B1B8960E1D8C664C00F80112 /* UIButton.cpp in Sources */,
 				B1B896191D8C664C00F80112 /* UITouchGroup.cpp in Sources */,
