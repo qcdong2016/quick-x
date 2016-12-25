@@ -27,6 +27,7 @@ function Menu:ctor()
         'ShaderTest',
         'SpineTest',
         'SpriteTest',
+        'Game2048',
     }
 
     for i, v in ipairs(tests) do

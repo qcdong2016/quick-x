@@ -1,3 +1,9 @@
+require("ui.logic2048")
+
+local MainScene = class('SpriteTest', function()
+    return display.newLayer()
+end)
+
 --[[=============================================================================
 #     FileName: MainScene.lua
 #         Desc: mainScene for 2048 game
@@ -16,10 +22,6 @@ local WINSTR = ""
 local touchStart={0,0}
 local configFile = device.writablePath.."hxgame.config"
 
-local MainScene = class("MainScene", function()
-    return display.newScene("MainScene")
-end)
-
 local function doOpList(op_list)
     for _,op in ipairs(op_list or {}) do
         local o = op[1]
@@ -31,15 +33,15 @@ local function doOpList(op_list)
 end
 
 function getPosFormIdx(mx,my)
-    local cellsize=150   -- cell size
+    local cellsize=110   -- cell size
     local cdis = 2*cellsize-cellsize/2
     local origin = {x=display.cx-cdis,y=display.cy+cdis}
     local x = (my-1)*cellsize+origin.x
-    local y = -(mx-1)*cellsize+origin.y - 100
+    local y = -(mx-1)*cellsize+origin.y - 50
     return x,y
 end
 
-function MainScene:show(cell,mx,my)
+function MainScene:showGird(cell,mx,my)
     local x,y = getPosFormIdx(mx,my)
     local bsz = cell.backgroundsize/2
     cell.background:setPosition(ccp(x-bsz,y-bsz))
@@ -121,9 +123,6 @@ function MainScene:loadStatus()
 end
 
 function MainScene:createLabel(title)
-    cc.ui.UILabel.new({text = "== " .. title .. " ==", size = 20, color = display.COLOR_BLACK})
-        :align(display.CENTER, display.cx, display.top - 20)
-        :addTo(self)
     self.scoreLabel = cc.ui.UILabel.new({
         text = "SCORE:0",
         size = 30,
@@ -172,7 +171,7 @@ function MainScene:onTouch(event, x, y)
         if totalScore>bestScore then
             bestScore = totalScore
         end
-        self.scoreLabel:setString(string.format("BEST:%d     \nSCORE:%d    \n%s",bestScore,totalScore,WINSTR or ""))
+        self:updateScore()
         isOver = not canMove(grid)
         saveStatus()
     end
@@ -193,8 +192,8 @@ function MainScene:createGridShow()
             gridShow[i] = {}
         end
         local cell = {
-            backgroundsize = 140,
-            background = CCLayerColor:create(colors[-1], 140, 140),
+            backgroundsize = 100,
+            background = CCLayerColor:create(colors[-1], 100, 100),
             num = cc.ui.UILabel.new({
                 text = s,
                 size = 40,
@@ -202,7 +201,7 @@ function MainScene:createGridShow()
             }),
         }
         gridShow[i][j] = cell
-        self:show(gridShow[i][j],i,j)
+        self:showGird(gridShow[i][j],i,j)
     end
 
 end
@@ -215,7 +214,11 @@ function MainScene:reLoadGame()
             setnum(gridShow[i][j],grid[i][j],i,j)
         end
     end
-    self.scoreLabel:setString(string.format("BEST:%d     \nSCORE:%d    \n%s",bestScore,totalScore,WINSTR or ""))
+    self:updateScore()
+end
+
+function MainScene:updateScore()
+    self.scoreLabel:setString(string.format("BEST:%d  SCORE:%d %s",bestScore,totalScore,WINSTR or ""))
 end
 
 function MainScene:restartGame()
@@ -227,48 +230,40 @@ function MainScene:restartGame()
     saveStatus()
 end
 
-function MainScene:createButtons()
-    local images = {
-        normal = "GreenButton.png",
-        pressed = "GreenScale9Block.png",
-        disabled = "GreenButton.png",
-    }
-    cc.ui.UIPushButton.new(images, {scale9 = true})
-        :setButtonSize(200, 60)
-        :setButtonLabel("normal", ui.newTTFLabel({
-            text = "New Game",
-            size = 32
-        }))
-        :onButtonClicked(function(event)
-            self:restartGame()
-        end)
-        :align(display.CENTER_TOP, display.left+display.width/2, display.top - 170)
-        :addTo(self)
-end
-
 function MainScene:ctor()
     WINSTR = ""
-    display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self)
     grid = initGrid(4,4)
 
     self:createLabel("2048")
     self:createGridShow()
-    self:createButtons()
 
     self:loadStatus()
     if isOver then
         self:restartGame()
     end
-end
 
-function MainScene:onEnter()
-    local layer = display.newLayer()
+    local layer = display.newLayer():addTo(self)
+    layer:setTouchEnabled(true)
+    layer:setTouchSwallowEnabled(false)
     layer:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
         return self:onTouch(event.name, event.x, event.y)
     end)
-    layer:setTouchEnabled(true)
-    layer:setTouchSwallowEnabled(false)
-    self:addChild(layer)
+
 end
 
-return MainScene
+local M = class('ShaderTest', TestUI)
+
+function M:setup()
+    display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self, -1):pos(-display.cx, -display.cy)
+    self.game = MainScene:new():addTo(self):pos(-display.cx, -display.cy)
+
+    local btn = Button:create():addTo(self.root):scale(0.5)
+    btn:loadTextureNormal('AllSprites/AddCoinButton.png')
+    btn:setPosition(ccp(display.right - 40, display.top -40))
+    btn:onClicked(function()
+        self.game:restartGame()
+    end)
+end
+
+
+return M
