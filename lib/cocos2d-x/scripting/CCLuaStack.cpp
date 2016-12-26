@@ -36,11 +36,7 @@ extern "C" {
 #include "ccMacros.h"
 #include "platform/CCZipFile.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || (CC_TARGET_PLATFORM == CC_PLATFORM_QT && defined(Q_OS_MAC)))
-#include "platform/ios/CCLuaObjcBridge.h"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#include "platform/android/CCLuaJavaBridge.h"
-#endif
+#include "CCLuaBridge.h"
 
 // cocos2d-x luabinding
 #include "LuaCocos2d.h"
@@ -159,12 +155,6 @@ bool CCLuaStack::init(void)
 	luaopen_imgui(m_state);
 #endif
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || (CC_TARGET_PLATFORM == CC_PLATFORM_QT && defined(Q_OS_MAC)))
-    CCLuaObjcBridge::luaopen_luaoc(m_state);
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    CCLuaJavaBridge::luaopen_luaj(m_state);
-#endif
-
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
     // load debugger
     //luaopen_debugger(m_state);
@@ -176,7 +166,10 @@ bool CCLuaStack::init(void)
 
     // register CCLuaLoadChunksFromZIP
     lua_pushcfunction(m_state, lua_loadChunksFromZIP);
-    lua_setglobal(m_state, "CCLuaLoadChunksFromZIP");
+    lua_setglobal(m_state, "loadChunksFromZIP");
+    
+    lua_pushcfunction(m_state, CCLuaBridge::callStaticMethod);
+    lua_setglobal(m_state, "callStaticMethod");
 
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

@@ -62,9 +62,12 @@ public:
     static int retainLuaFunctionById(int functionId);
     static int releaseLuaFunctionById(int functionId);
     
-protected:
+    static int callStaticMethod(lua_State* L);
+    
+
     static int retainLuaFunction(lua_State *L, int functionIndex, int *retainCountReturn);
 
+protected:
     static lua_State *s_luaState;
     static int        s_newFunctionId;
 };
