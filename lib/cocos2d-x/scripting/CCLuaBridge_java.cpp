@@ -1,5 +1,8 @@
 
-#include "CCLuaJavaBridge.h"
+#include "CCLuaBridge.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+
 #include "platform/android/jni/JniHelper.h"
 #include <android/log.h>
 
@@ -1108,3 +1111,5 @@ void CCLuaJavaBridge::PSJNIHelper::pushArrayListElement(string value){
 		t.env->DeleteLocalRef(t.classID);
     }
 }
+
+#endif

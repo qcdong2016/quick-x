@@ -23,7 +23,6 @@
 		9F1FE6901DAD389E008FE0C7 /* LuaCocoStudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */; };
 		9F1FE6911DAD389E008FE0C7 /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */; };
 		9F1FE6921DAD389E008FE0C7 /* LuaTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */; };
-		9F1FE6951DAD389E008FE0C7 /* CCLuaObjcBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6821DAD389E008FE0C7 /* CCLuaObjcBridge.mm */; };
 		9F1FE6971DAD389E008FE0C7 /* tolua_fix.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6851DAD389E008FE0C7 /* tolua_fix.c */; };
 		9F1FE6A21DAD3905008FE0C7 /* CCParticleBatchNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6991DAD3905008FE0C7 /* CCParticleBatchNode.cpp */; };
 		9F1FE6A31DAD3905008FE0C7 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE69B1DAD3905008FE0C7 /* CCParticleExamples.cpp */; };
@@ -226,6 +225,8 @@
 		B1D371441DBFC54600E591CE /* CCActionProgressTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D371331DBFC54600E591CE /* CCActionProgressTimer.cpp */; };
 		B1D371451DBFC54600E591CE /* CCActionTiledGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D371351DBFC54600E591CE /* CCActionTiledGrid.cpp */; };
 		B1D371461DBFC54600E591CE /* CCActionTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D371371DBFC54600E591CE /* CCActionTween.cpp */; };
+		B1E033E11E10E65200C3E3C1 /* CCLuaBridge_java.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1E033DF1E10E65200C3E3C1 /* CCLuaBridge_java.cpp */; };
+		B1E033E21E10E65200C3E3C1 /* CCLuaBridge_oc.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1E033E01E10E65200C3E3C1 /* CCLuaBridge_oc.mm */; };
 		B1F870F91D7D796F00AF7173 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870661D7D796F00AF7173 /* lapi.c */; };
 		B1F870FA1D7D796F00AF7173 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F870681D7D796F00AF7173 /* lauxlib.c */; };
 		B1F870FB1D7D796F00AF7173 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = B1F8706A1D7D796F00AF7173 /* lbaselib.c */; };
@@ -325,8 +326,6 @@
 		9F1FE6771DAD389E008FE0C7 /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
 		9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTable.cpp; sourceTree = "<group>"; };
 		9F1FE6791DAD389E008FE0C7 /* LuaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaTable.h; sourceTree = "<group>"; };
-		9F1FE6811DAD389E008FE0C7 /* CCLuaObjcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLuaObjcBridge.h; sourceTree = "<group>"; };
-		9F1FE6821DAD389E008FE0C7 /* CCLuaObjcBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaObjcBridge.mm; sourceTree = "<group>"; };
 		9F1FE6851DAD389E008FE0C7 /* tolua_fix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_fix.c; sourceTree = "<group>"; };
 		9F1FE6861DAD389E008FE0C7 /* tolua_fix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tolua_fix.h; sourceTree = "<group>"; };
 		9F1FE6991DAD3905008FE0C7 /* CCParticleBatchNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCParticleBatchNode.cpp; sourceTree = "<group>"; };
@@ -774,6 +773,8 @@
 		B1D371361DBFC54600E591CE /* CCActionTiledGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionTiledGrid.h; sourceTree = "<group>"; };
 		B1D371371DBFC54600E591CE /* CCActionTween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionTween.cpp; sourceTree = "<group>"; };
 		B1D371381DBFC54600E591CE /* CCActionTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionTween.h; sourceTree = "<group>"; };
+		B1E033DF1E10E65200C3E3C1 /* CCLuaBridge_java.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLuaBridge_java.cpp; sourceTree = "<group>"; };
+		B1E033E01E10E65200C3E3C1 /* CCLuaBridge_oc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaBridge_oc.mm; sourceTree = "<group>"; };
 		B1F870661D7D796F00AF7173 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		B1F870671D7D796F00AF7173 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		B1F870681D7D796F00AF7173 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -935,23 +936,6 @@
 				9F1FE63D1DAD365D008FE0C7 /* SimpleAudioEngine.mm */,
 				9F1FE63E1DAD365D008FE0C7 /* SimpleAudioEngine_objc.h */,
 				9F1FE63F1DAD365D008FE0C7 /* SimpleAudioEngine_objc.m */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
-		9F1FE67A1DAD389E008FE0C7 /* platform */ = {
-			isa = PBXGroup;
-			children = (
-				9F1FE6801DAD389E008FE0C7 /* ios */,
-			);
-			path = platform;
-			sourceTree = "<group>";
-		};
-		9F1FE6801DAD389E008FE0C7 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				9F1FE6811DAD389E008FE0C7 /* CCLuaObjcBridge.h */,
-				9F1FE6821DAD389E008FE0C7 /* CCLuaObjcBridge.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -1712,6 +1696,8 @@
 		B1F8703C1D7D796F00AF7173 /* scripting */ = {
 			isa = PBXGroup;
 			children = (
+				B1E033DF1E10E65200C3E3C1 /* CCLuaBridge_java.cpp */,
+				B1E033E01E10E65200C3E3C1 /* CCLuaBridge_oc.mm */,
 				9F1FE6641DAD389E008FE0C7 /* CCLuaBridge.cpp */,
 				9F1FE6651DAD389E008FE0C7 /* CCLuaBridge.h */,
 				9F1FE6661DAD389E008FE0C7 /* CCLuaEngine.cpp */,
@@ -1732,7 +1718,6 @@
 				9F1FE6771DAD389E008FE0C7 /* LuaFunction.h */,
 				9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */,
 				9F1FE6791DAD389E008FE0C7 /* LuaTable.h */,
-				9F1FE67A1DAD389E008FE0C7 /* platform */,
 				B1F870E01D7D796F00AF7173 /* tolua */,
 				9F1FE6851DAD389E008FE0C7 /* tolua_fix.c */,
 				9F1FE6861DAD389E008FE0C7 /* tolua_fix.h */,
@@ -2164,6 +2149,7 @@
 				B1B896141D8C664C00F80112 /* UILabelBMFont.cpp in Sources */,
 				B1D371441DBFC54600E591CE /* CCActionProgressTimer.cpp in Sources */,
 				9F1FE68F1DAD389E008FE0C7 /* LuaCocos2d.cpp in Sources */,
+				B1E033E11E10E65200C3E3C1 /* CCLuaBridge_java.cpp in Sources */,
 				B1A7574B1DEA79E1002F0D4C /* CCTouchTargetNode.cpp in Sources */,
 				B1A756D61DEA79E1002F0D4C /* CCProgressTimer.cpp in Sources */,
 				9F1FE6581DAD365D008FE0C7 /* CocosDenshion.m in Sources */,
@@ -2249,7 +2235,6 @@
 				B1B896181D8C664C00F80112 /* UITextField.cpp in Sources */,
 				B1A7570D1DEA79E1002F0D4C /* CCEGLView.mm in Sources */,
 				B1A7570C1DEA79E1002F0D4C /* CCDirectorCaller.mm in Sources */,
-				9F1FE6951DAD389E008FE0C7 /* CCLuaObjcBridge.mm in Sources */,
 				B1A7569E1DEA79E1002F0D4C /* ID.cpp in Sources */,
 				B1F871311D7D796F00AF7173 /* lua_zlib.c in Sources */,
 				B1B8961A1D8C664C00F80112 /* UIWidget.cpp in Sources */,
@@ -2278,6 +2263,7 @@
 				B1A756D51DEA79E1002F0D4C /* CCNode.cpp in Sources */,
 				9F1FE6B41DAD3921008FE0C7 /* CCTileMapAtlas.cpp in Sources */,
 				B1A756A61DEA79E1002F0D4C /* CCScheduler.cpp in Sources */,
+				B1E033E21E10E65200C3E3C1 /* CCLuaBridge_oc.mm in Sources */,
 				B1FE16AC1DDBFD5300975FBD /* SpineResource.cpp in Sources */,
 				B1D371431DBFC54600E591CE /* CCActionPageTurn3D.cpp in Sources */,
 				B1D3713C1DBFC54600E591CE /* CCActionEase.cpp in Sources */,

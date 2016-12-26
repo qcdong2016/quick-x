@@ -242,4 +242,11 @@ int CCLuaBridge::retainLuaFunction(lua_State *L, int functionIndex, int *retainC
     return functionId;
 }
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+int CCLuaBridge::callStaticMethod(lua_State* L)
+{
+    return 0;
+}
+#endif
+
 NS_CC_END
