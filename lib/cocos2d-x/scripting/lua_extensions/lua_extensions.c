@@ -31,7 +31,7 @@ extern "C" {
 
 static luaL_Reg luax_exts[] = {
 	{"snapshot", luaopen_snapshot},
-	{ "cjson", luaopen_cjson_safe },
+	{"json", luaopen_cjson_safe },
     {"zlib", luaopen_zlib},
     {"pack", luaopen_pack},
     {"socket.core", luaopen_socket_core},

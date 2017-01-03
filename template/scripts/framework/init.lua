@@ -84,8 +84,8 @@ local CURRENT_MODULE_NAME = ...
 
 cc = cc or {}
 cc.PACKAGE_NAME = string.sub(CURRENT_MODULE_NAME, 1, -6)
-cc.VERSION = "2.2.5"
-cc.FRAMEWORK_NAME = "quick-cocos2d-x"
+cc.VERSION = "2.2.6"
+cc.FRAMEWORK_NAME = "quick-x"
 
 -- disable stdout buffer
 io.stdout:setvbuf("no")
@@ -105,18 +105,10 @@ audio      = require(cc.PACKAGE_NAME .. ".audio")
 ui         = require(cc.PACKAGE_NAME .. ".ui")
 network    = require(cc.PACKAGE_NAME .. ".network")
 crypto     = require(cc.PACKAGE_NAME .. ".crypto")
-json       = require(cc.PACKAGE_NAME .. ".json")
 path       = require(cc.PACKAGE_NAME .. ".path")
+json       = require("json")
 
-if device.platform == "android" then
-    require(cc.PACKAGE_NAME .. ".platform.android")
-elseif device.platform == "ios" then
-    require(cc.PACKAGE_NAME .. ".platform.ios")
-elseif device.platform == "mac" then
-    require(cc.PACKAGE_NAME .. ".platform.mac")
-end
-
-require(cc.PACKAGE_NAME .. ".cc.init")
+-- require(cc.PACKAGE_NAME .. ".cc.init")
 require(cc.PACKAGE_NAME .. ".shortcodes")
 
 if DEBUG_FPS then
