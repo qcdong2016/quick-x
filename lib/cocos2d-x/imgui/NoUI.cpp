@@ -1,11 +1,17 @@
 
 #include "NoUI.h"
 #include "CCPlatformMacros.h"
+#include "CCPlatformConfig.h"
 #include "engine/CCDirector.h"
 
 
 #include "imgui/nanovg.h"
+
+#if OS_IS(MAC)
+#define NANOVG_GL2_IMPLEMENTATION
+#else
 #define NANOVG_GL3_IMPLEMENTATION
+#endif
 #include "imgui/nanovg_gl.h"
 
 #include "engine/CCEngineEvents.h"
@@ -15,11 +21,19 @@ NS_CC_BEGIN
 
 
 static NVGcontext* NCreate() {
+#if OS_IS(MAC)
+    return nvgCreateGL2(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
+#else
 	return nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
+#endif
 }
 
 static void NDelete(NVGcontext* nvg) {
+#if OS_IS(MAC)
+    return nvgDeleteGL2(nvg);
+#else
 	return nvgDeleteGL3(nvg);
+#endif
 }
 
 // Returns 1 if col.rgba is 0.0f,0.0f,0.0f,0.0f, 0 otherwise

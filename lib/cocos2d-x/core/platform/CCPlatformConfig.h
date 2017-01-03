@@ -36,24 +36,28 @@ Config of cocos2d-x project, per target platform.
 
 // define supported target platform macro which CC uses.
 #define CC_PLATFORM_UNKNOWN            0
-#define CC_PLATFORM_IOS                1
-#define CC_PLATFORM_ANDROID            2
-#define CC_PLATFORM_WIN32              3
-#define CC_PLATFORM_MARMALADE          4
-#define CC_PLATFORM_LINUX              5
-#define CC_PLATFORM_BADA               6
-#define CC_PLATFORM_BLACKBERRY         7
-#define CC_PLATFORM_MAC                8
-#define CC_PLATFORM_NACL               9
-#define CC_PLATFORM_EMSCRIPTEN        10
-#define CC_PLATFORM_TIZEN             11
-#define CC_PLATFORM_WINRT             12
-#define CC_PLATFORM_WP8               13
-#define CC_PLATFORM_QT                20
+#define CC_PLATFORM_IOS                1<<1
+#define CC_PLATFORM_ANDROID            1<<2
+#define CC_PLATFORM_WIN32              1<<3
+#define CC_PLATFORM_MAC                1<<4
+
+#define CC_PLATFORM_MARMALADE          1<<5
+#define CC_PLATFORM_LINUX              1<<6
+#define CC_PLATFORM_BADA               1<<7
+#define CC_PLATFORM_BLACKBERRY         1<<8
+#define CC_PLATFORM_NACL               1<<9
+#define CC_PLATFORM_EMSCRIPTEN         1<<10
+#define CC_PLATFORM_TIZEN              1<<11
+#define CC_PLATFORM_WINRT              1<<12
+#define CC_PLATFORM_WP8                1<<13
+#define CC_PLATFORM_QT                 1<<14
+
+
 
 // Determine target platform by compile environment macro.
 #define CC_TARGET_PLATFORM             CC_PLATFORM_UNKNOWN
 
+#define OS_IS(OS) CC_TARGET_PLATFORM & CC_PLATFORM_##OS
 // mac
 #if defined(CC_TARGET_OS_MAC)
 #undef  CC_TARGET_PLATFORM
