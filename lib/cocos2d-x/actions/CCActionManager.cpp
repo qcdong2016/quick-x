@@ -70,6 +70,7 @@ void CCActionManager::deleteHashElement(tHashElement *pElement)
 {
     ccArrayFree(pElement->actions);
     HASH_DEL(m_pTargets, pElement);
+	pElement->actionTarget = nullptr;
     free(pElement);
 }
 
@@ -366,8 +367,8 @@ void CCActionManager::update(EventData& data)
                     // accidentally deallocating itself before finishing its step, we retained
                     // it. Now that step is done, it's safe to release it.
                     m_pCurrentTarget->currentAction->release();
-                } else
-                if (m_pCurrentTarget->currentAction->isDone())
+                } 
+				else if (m_pCurrentTarget->currentAction->isDone())
                 {
                     m_pCurrentTarget->currentAction->stop();
 
