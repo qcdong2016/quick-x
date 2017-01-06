@@ -115,10 +115,6 @@ CCNode::CCNode(void)
 CCNode::~CCNode(void)
 {
     CCLOGINFO( "cocos2d: deallocing" );
-
-    // attributes
-    CC_SAFE_RELEASE(m_pCamera);
-
     // m_pComsContainer
     m_pComponentContainer->removeAll();
     CC_SAFE_DELETE(m_pComponentContainer);
@@ -344,9 +340,7 @@ unsigned int CCNode::getChildrenCount(void) const
 CCCamera* CCNode::getCamera()
 {
     if (!m_pCamera)
-    {
         m_pCamera = new CCCamera();
-    }
 
     return m_pCamera;
 }
