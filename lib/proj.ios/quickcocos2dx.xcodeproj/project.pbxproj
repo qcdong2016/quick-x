@@ -184,11 +184,7 @@
 		B1A7574A1DEA79E1002F0D4C /* CCTouchHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7569A1DEA79E1002F0D4C /* CCTouchHandler.cpp */; };
 		B1A7574B1DEA79E1002F0D4C /* CCTouchTargetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7569C1DEA79E1002F0D4C /* CCTouchTargetNode.cpp */; };
 		B1B896021D8C664C00F80112 /* CCEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895CC1D8C664C00F80112 /* CCEditBox.cpp */; };
-		B1B896031D8C664C00F80112 /* CCEditBoxImplAndroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895CF1D8C664C00F80112 /* CCEditBoxImplAndroid.cpp */; };
 		B1B896041D8C664C00F80112 /* CCEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1B895D21D8C664C00F80112 /* CCEditBoxImplIOS.mm */; };
-		B1B896051D8C664C00F80112 /* CCEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1B895D41D8C664C00F80112 /* CCEditBoxImplMac.mm */; };
-		B1B896061D8C664C00F80112 /* CCEditBoxImplWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895D51D8C664C00F80112 /* CCEditBoxImplWin.cpp */; };
-		B1B896071D8C664C00F80112 /* Win32InputBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895D71D8C664C00F80112 /* Win32InputBox.cpp */; };
 		B1B896081D8C664C00F80112 /* UILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895DA1D8C664C00F80112 /* UILayout.cpp */; };
 		B1B896091D8C664C00F80112 /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895DC1D8C664C00F80112 /* UILayoutDefine.cpp */; };
 		B1B8960A1D8C664C00F80112 /* UILayoutParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895DE1D8C664C00F80112 /* UILayoutParameter.cpp */; };
@@ -688,17 +684,8 @@
 		B1B895C81D8C664C00F80112 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
 		B1B895CC1D8C664C00F80112 /* CCEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBox.cpp; sourceTree = "<group>"; };
 		B1B895CD1D8C664C00F80112 /* CCEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBox.h; sourceTree = "<group>"; };
-		B1B895CE1D8C664C00F80112 /* CCEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImpl.h; sourceTree = "<group>"; };
-		B1B895CF1D8C664C00F80112 /* CCEditBoxImplAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBoxImplAndroid.cpp; sourceTree = "<group>"; };
-		B1B895D01D8C664C00F80112 /* CCEditBoxImplAndroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplAndroid.h; sourceTree = "<group>"; };
 		B1B895D11D8C664C00F80112 /* CCEditBoxImplIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplIOS.h; sourceTree = "<group>"; };
 		B1B895D21D8C664C00F80112 /* CCEditBoxImplIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCEditBoxImplIOS.mm; sourceTree = "<group>"; };
-		B1B895D31D8C664C00F80112 /* CCEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplMac.h; sourceTree = "<group>"; };
-		B1B895D41D8C664C00F80112 /* CCEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCEditBoxImplMac.mm; sourceTree = "<group>"; };
-		B1B895D51D8C664C00F80112 /* CCEditBoxImplWin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBoxImplWin.cpp; sourceTree = "<group>"; };
-		B1B895D61D8C664C00F80112 /* CCEditBoxImplWin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplWin.h; sourceTree = "<group>"; };
-		B1B895D71D8C664C00F80112 /* Win32InputBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Win32InputBox.cpp; sourceTree = "<group>"; };
-		B1B895D81D8C664C00F80112 /* Win32InputBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32InputBox.h; sourceTree = "<group>"; };
 		B1B895DA1D8C664C00F80112 /* UILayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayout.cpp; sourceTree = "<group>"; };
 		B1B895DB1D8C664C00F80112 /* UILayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayout.h; sourceTree = "<group>"; };
 		B1B895DC1D8C664C00F80112 /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
@@ -1600,17 +1587,8 @@
 			children = (
 				B1B895CC1D8C664C00F80112 /* CCEditBox.cpp */,
 				B1B895CD1D8C664C00F80112 /* CCEditBox.h */,
-				B1B895CE1D8C664C00F80112 /* CCEditBoxImpl.h */,
-				B1B895CF1D8C664C00F80112 /* CCEditBoxImplAndroid.cpp */,
-				B1B895D01D8C664C00F80112 /* CCEditBoxImplAndroid.h */,
 				B1B895D11D8C664C00F80112 /* CCEditBoxImplIOS.h */,
 				B1B895D21D8C664C00F80112 /* CCEditBoxImplIOS.mm */,
-				B1B895D31D8C664C00F80112 /* CCEditBoxImplMac.h */,
-				B1B895D41D8C664C00F80112 /* CCEditBoxImplMac.mm */,
-				B1B895D51D8C664C00F80112 /* CCEditBoxImplWin.cpp */,
-				B1B895D61D8C664C00F80112 /* CCEditBoxImplWin.h */,
-				B1B895D71D8C664C00F80112 /* Win32InputBox.cpp */,
-				B1B895D81D8C664C00F80112 /* Win32InputBox.h */,
 			);
 			path = EditBox;
 			sourceTree = "<group>";
@@ -2121,7 +2099,6 @@
 				B1B896191D8C664C00F80112 /* UITouchGroup.cpp in Sources */,
 				B1A756C11DEA79E1002F0D4C /* matrix.c in Sources */,
 				B1A756C21DEA79E1002F0D4C /* mat3.c in Sources */,
-				B1B896061D8C664C00F80112 /* CCEditBoxImplWin.cpp in Sources */,
 				B1D371411DBFC54600E591CE /* CCActionInterval.cpp in Sources */,
 				B1D371421DBFC54600E591CE /* CCActionManager.cpp in Sources */,
 				B17812CA1D6949C90093D282 /* IkConstraint.c in Sources */,
@@ -2145,7 +2122,6 @@
 				B1F871221D7D796F00AF7173 /* inet.c in Sources */,
 				B1F8711F1D7D796F00AF7173 /* lua_extensions.c in Sources */,
 				B1A756A11DEA79E1002F0D4C /* RefCounted.cpp in Sources */,
-				B1B896071D8C664C00F80112 /* Win32InputBox.cpp in Sources */,
 				B1B896141D8C664C00F80112 /* UILabelBMFont.cpp in Sources */,
 				B1D371441DBFC54600E591CE /* CCActionProgressTimer.cpp in Sources */,
 				9F1FE68F1DAD389E008FE0C7 /* LuaCocos2d.cpp in Sources */,
@@ -2165,7 +2141,6 @@
 				B1A757411DEA79E1002F0D4C /* unzip.cpp in Sources */,
 				B1F870FC1D7D796F00AF7173 /* lcode.c in Sources */,
 				B17812CC1D6949C90093D282 /* Json.c in Sources */,
-				B1B896051D8C664C00F80112 /* CCEditBoxImplMac.mm in Sources */,
 				B1A756AE1DEA79E1002F0D4C /* CCScriptSupport.cpp in Sources */,
 				B1A756AA1DEA79E1002F0D4C /* CCDictionary.cpp in Sources */,
 				B1A756C51DEA79E1002F0D4C /* plane.c in Sources */,
@@ -2277,7 +2252,6 @@
 				B1F871281D7D796F00AF7173 /* select.c in Sources */,
 				9F1FE6B51DAD3921008FE0C7 /* CCTMXLayer.cpp in Sources */,
 				B1A756BE1DEA79E1002F0D4C /* CCSubSystem.cpp in Sources */,
-				B1B896031D8C664C00F80112 /* CCEditBoxImplAndroid.cpp in Sources */,
 				B1F8710B1D7D796F00AF7173 /* loslib.c in Sources */,
 				B1A756C41DEA79E1002F0D4C /* neon_matrix_impl.c in Sources */,
 				B1F871271D7D796F00AF7173 /* options.c in Sources */,

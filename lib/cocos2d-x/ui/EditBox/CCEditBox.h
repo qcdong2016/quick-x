@@ -174,11 +174,10 @@ public:
  * 
  */
  
-class CC_DLL CCEditBox
-: public Button
-, public CCIMEDelegate
+class CC_DLL CCEditBox : public Widget, public CCIMEDelegate
 {
 public:
+    typedef Widget BaseWidget;
     /**
      * Constructor.
      */
@@ -360,22 +359,14 @@ public:
     /* override functions */
     virtual void setPosition(const CCPoint& pos);
     virtual void setVisible(bool visible);
-    virtual void setContentSize(const CCSize& size);
+    virtual void setSize(const CCSize& size);
 	virtual void setAnchorPoint(const CCPoint& anchorPoint);
-    /**
-     *  @js NA
-     */
+
     virtual void visit(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
 	virtual void onEnter(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
     virtual void onExit(void);
+    virtual bool init();
+    
     /**
      *  @js NA
      *  @lua NA

@@ -37,11 +37,10 @@
 
 #define getEditBoxImplIOS() ((cocos2d::ui::CCEditBoxImplIOS*)editBox_)
 
-static const int CC_EDIT_BOX_PADDING = 5;
 
 @implementation CustomUITextField
 - (CGRect)textRectForBounds:(CGRect)bounds {
-    float padding = CC_EDIT_BOX_PADDING * cocos2d::CCEGLView::sharedOpenGLView()->getScaleX() / [[EAGLView sharedEGLView] contentScaleFactor ];
+    float padding = 0;//CC_EDIT_BOX_PADDING * cocos2d::CCEGLView::sharedOpenGLView()->getScaleX() / [[EAGLView sharedEGLView] contentScaleFactor ];
     return CGRectMake(bounds.origin.x + padding, bounds.origin.y + padding,
                       bounds.size.width - padding*2, bounds.size.height - padding*2);
 }
@@ -337,21 +336,24 @@ void CCEditBoxImplIOS::initInactiveLabels(const CCSize& size)
     m_pLabel->setAnchorPoint(ccp(0, 0.5f));
     m_pLabel->setColor(ccWHITE);
     m_pLabel->setVisible(false);
-    m_pEditBox->addChild(m_pLabel, kLabelZOrder);
+    m_pEditBox->addNode(m_pLabel, kLabelZOrder);
 	
     m_pLabelPlaceHolder = CCLabelTTF::create("", "", 0.0f);
 	// align the text vertically center
     m_pLabelPlaceHolder->setAnchorPoint(ccp(0, 0.5f));
     m_pLabelPlaceHolder->setColor(ccGRAY);
-    m_pEditBox->addChild(m_pLabelPlaceHolder, kLabelZOrder);
+    m_pEditBox->addNode(m_pLabelPlaceHolder, kLabelZOrder);
     
     setFont(pDefaultFontName, size.height*2/3);
     setPlaceholderFont(pDefaultFontName, size.height*2/3);
 }
 
 void CCEditBoxImplIOS::placeInactiveLabels() {
-    m_pLabel->setPosition(ccp(CC_EDIT_BOX_PADDING, m_tContentSize.height / 2.0f));
-    m_pLabelPlaceHolder->setPosition(ccp(CC_EDIT_BOX_PADDING, m_tContentSize.height / 2.0f));
+    float left = -m_tContentSize.width * m_obAnchorPoint.x;
+    float cy = m_tContentSize.height * (0.5 - m_obAnchorPoint.y);
+    
+    m_pLabel->setPosition(ccp(left, cy));
+    m_pLabelPlaceHolder->setPosition(ccp(left, cy));
 }
 
 void CCEditBoxImplIOS::setInactiveText(const char* pText)
@@ -365,14 +367,13 @@ void CCEditBoxImplIOS::setInactiveText(const char* pText)
 	}
 	else
 		m_pLabel->setString(getText());
-	
-	// Clip the text width to fit to the text box
-	float fMaxWidth = m_pEditBox->getContentSize().width - CC_EDIT_BOX_PADDING * 2;
-	CCRect clippingRect = m_pLabel->getTextureRect();
-	if(clippingRect.size.width > fMaxWidth) {
-		clippingRect.size.width = fMaxWidth;
-		m_pLabel->setTextureRect(clippingRect);
-	}
+    
+    float fMaxWidth = m_pEditBox->getContentSize().width;
+    CCRect labelSize = m_pLabel->getTextureRect();
+    if(labelSize.size.width > fMaxWidth)
+    {
+        m_pLabel->setTextureRect(CCRect(0, 0, fMaxWidth, labelSize.size.height));
+    }
 }
 
 void CCEditBoxImplIOS::setFont(const char* pFontName, int fontSize)
@@ -574,6 +575,7 @@ void CCEditBoxImplIOS::setContentSize(const CCSize& size)
     m_tContentSize = size;
     //    CCLOG("[Edit text] content size = (%f, %f)", size.width, size.height);
     placeInactiveLabels();
+    
     CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
     CGSize controlSize = CGSizeMake(size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
     
@@ -583,6 +585,9 @@ void CCEditBoxImplIOS::setContentSize(const CCSize& size)
     controlSize.height /= scaleFactor;
 
     [m_systemControl setContentSize:controlSize];
+    
+    const CCRect& rect = m_pLabel->getTextureRect();
+    m_pLabel->setTextureRect(CCRect(0, 0, size.width, rect.size.height));
 }
 
 void CCEditBoxImplIOS::setAnchorPoint(const CCPoint& anchorPoint)
@@ -608,8 +613,12 @@ void CCEditBoxImplIOS::onEnter(void)
 
 void CCEditBoxImplIOS::adjustTextFieldPosition()
 {
-	CCSize contentSize = m_pEditBox->getContentSize();
-	CCRect rect = CCRectMake(0, 0, contentSize.width, contentSize.height);
+    
+    CCSize contentSize = m_pEditBox->getSize();
+    float left = -contentSize.width * m_obAnchorPoint.x;
+    float cy = contentSize.height * (0.5 - m_obAnchorPoint.y) - contentSize.height/2;
+    
+	CCRect rect = CCRectMake(left, cy, contentSize.width, contentSize.height);
     rect = CCRectApplyAffineTransform(rect, m_pEditBox->nodeToWorldTransform());
 	
 	CCPoint designCoord = ccp(rect.origin.x, rect.origin.y + rect.size.height);
