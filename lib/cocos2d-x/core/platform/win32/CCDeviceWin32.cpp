@@ -242,7 +242,16 @@ const std::string CCDevice::getOpenUDID(void)
 
 void CCDevice::openURL(const char* url)
 {
-	if (!url) return;
+	if (url == NULL || *url == '\0')
+		return /*false*/;
+
+	// Success when result code > 32
+	int len = MultiByteToWideChar(CP_ACP, 0, url, -1, NULL, 0);
+	wchar_t* wurl = new wchar_t[len];
+	MultiByteToWideChar(CP_ACP, 0, url, -1, wurl, len);
+	int r = (int)ShellExecute(NULL, NULL, wurl, NULL, NULL, SW_SHOWNORMAL);
+	CC_SAFE_DELETE_ARRAY(wurl);
+	return/* (r > 32)*/;
 }
 
 typedef struct {

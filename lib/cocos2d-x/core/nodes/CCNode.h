@@ -1526,9 +1526,8 @@ protected:
     CCAffineTransform m_sTransform;     ///< transform
     CCAffineTransform m_sInverse;       ///< transform
 
-    CCCamera *m_pCamera;                ///< a camera
-
-    SharedPtr<CCGridBase> m_pGrid;                ///< a grid
+	SharedPtr<CCCamera> m_pCamera;       ///< a camera
+	SharedPtr<CCGridBase> m_pGrid;                ///< a grid
 
     int m_nZOrder;                      ///< z-order value that affects the draw order
 
