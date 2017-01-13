@@ -3,10 +3,10 @@ $pfile "cocos2dx/Cocos2d.tolua"
 
 $pfile "audio/SimpleAudioEngine.tolua"
 
-$pfile "ui/UIEditBox.tolua"
 $pfile "ui/UIWidget.tolua"
 $pfile "ui/UILayout.tolua"
 $pfile "ui/UIButton.tolua"
+$pfile "ui/UIEditBox.tolua"
 $pfile "ui/UICheckBox.tolua"
 $pfile "ui/UIImageView.tolua"
 $pfile "ui/UILabel.tolua"

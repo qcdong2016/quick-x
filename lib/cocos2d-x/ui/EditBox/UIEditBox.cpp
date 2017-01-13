@@ -61,6 +61,7 @@ bool EditBox::init()
         m_pEditBoxImpl->initWithSize(dfSize);
         setSize(dfSize);
         ignoreContentAdaptWithSize(false);
+        setTouchEnabled(true);
         
         return true;
     }

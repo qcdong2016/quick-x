@@ -97,7 +97,7 @@ enum EditBoxInputFlag
  *
  */
 
-class EditBox : public Button
+class EditBox : public Widget
 {
     /**
      * create a edit box with size.
@@ -105,30 +105,6 @@ class EditBox : public Button
      */
     static EditBox* create();
 
-    /**
-     * Registers a script function that will be called for EditBox events.
-     *
-     * This handler will be removed automatically after onExit() called.
-     * @code
-     * -- lua sample
-     * local function editboxEventHandler(eventType)
-     *     if eventType == "began" then
-     *         -- triggered when an edit box gains focus after keyboard is shown
-     *     elseif eventType == "ended" then
-     *         -- triggered when an edit box loses focus after keyboard is hidden.
-     *     elseif eventType == "changed" then
-     *         -- triggered when the edit box text was changed.
-     *     elseif eventType == "return" then
-     *         -- triggered when the return button was pressed or the outside area of keyboard was touched.
-     *     end
-     * end
-     *
-     * local editbox = UIEditBox:create(CCSize(...), CCScale9Sprite:create(...))
-     * editbox = registerScriptEditBoxHandler(editboxEventHandler)
-     * @endcode
-     *
-     * @param handler A number that indicates a lua function.
-     */
     void registerScriptEditBoxHandler(LUA_FUNCTION handler);
     void registerScriptEditBoxHandler @ addEditBoxEventListener (LUA_FUNCTION handler);
 

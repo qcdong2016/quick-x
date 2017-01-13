@@ -20,7 +20,6 @@
 		9F1FE68B1DAD389E008FE0C7 /* CCLuaValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE66A1DAD389E008FE0C7 /* CCLuaValue.cpp */; };
 		9F1FE68D1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE66E1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */; };
 		9F1FE68F1DAD389E008FE0C7 /* LuaCocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */; };
-		9F1FE6901DAD389E008FE0C7 /* LuaCocoStudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */; };
 		9F1FE6911DAD389E008FE0C7 /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */; };
 		9F1FE6921DAD389E008FE0C7 /* LuaTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */; };
 		9F1FE6971DAD389E008FE0C7 /* tolua_fix.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6851DAD389E008FE0C7 /* tolua_fix.c */; };
@@ -316,8 +315,6 @@
 		9F1FE66F1DAD389E008FE0C7 /* lua_cocos2dx_cocostudio_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_cocostudio_manual.h; sourceTree = "<group>"; };
 		9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocos2d.cpp; sourceTree = "<group>"; };
 		9F1FE6731DAD389E008FE0C7 /* LuaCocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCocos2d.h; sourceTree = "<group>"; };
-		9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocoStudio.cpp; sourceTree = "<group>"; };
-		9F1FE6751DAD389E008FE0C7 /* LuaCocoStudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCocoStudio.h; sourceTree = "<group>"; };
 		9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaFunction.cpp; sourceTree = "<group>"; };
 		9F1FE6771DAD389E008FE0C7 /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
 		9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTable.cpp; sourceTree = "<group>"; };
@@ -1692,8 +1689,6 @@
 				B1F870A11D7D796F00AF7173 /* lua_extensions */,
 				9F1FE6721DAD389E008FE0C7 /* LuaCocos2d.cpp */,
 				9F1FE6731DAD389E008FE0C7 /* LuaCocos2d.h */,
-				9F1FE6741DAD389E008FE0C7 /* LuaCocoStudio.cpp */,
-				9F1FE6751DAD389E008FE0C7 /* LuaCocoStudio.h */,
 				9F1FE6761DAD389E008FE0C7 /* LuaFunction.cpp */,
 				9F1FE6771DAD389E008FE0C7 /* LuaFunction.h */,
 				9F1FE6781DAD389E008FE0C7 /* LuaTable.cpp */,
@@ -2246,7 +2241,6 @@
 				B1D3713C1DBFC54600E591CE /* CCActionEase.cpp in Sources */,
 				B1F8712B1D7D796F00AF7173 /* tcp.c in Sources */,
 				B1A757251DEA79E1002F0D4C /* platform.cpp in Sources */,
-				9F1FE6901DAD389E008FE0C7 /* LuaCocoStudio.cpp in Sources */,
 				B1A7570F1DEA79E1002F0D4C /* CCImage.mm in Sources */,
 				B1A756AD1DEA79E1002F0D4C /* CCScriptEventDispatcher.cpp in Sources */,
 				B1A756AC1DEA79E1002F0D4C /* CCPointArray.cpp in Sources */,

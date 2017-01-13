@@ -595,6 +595,7 @@ void EditBoxImplIOS::setAnchorPoint(const CCPoint& anchorPoint)
     //    CCLOG("[Edit text] anchor point = (%f, %f)", anchorPoint.x, anchorPoint.y);
 	m_obAnchorPoint = anchorPoint;
 	setPosition(m_obPosition);
+    placeInactiveLabels();
 }
 
 void EditBoxImplIOS::visit(void)
