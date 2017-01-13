@@ -1,4 +1,4 @@
-$#include "ui/EditBox/CCEditBox.h"
+$#include "ui/EditBox/UIEditBox.h"
 
 enum KeyboardReturnType {
     kKeyboardReturnTypeDefault = 0,
@@ -97,13 +97,13 @@ enum EditBoxInputFlag
  *
  */
 
-class CCEditBox : public Button
+class EditBox : public Button
 {
     /**
      * create a edit box with size.
-     * @return An autorelease pointer of CCEditBox, you don't need to release it only if you retain it again.
+     * @return An autorelease pointer of UIEditBox, you don't need to release it only if you retain it again.
      */
-    static CCEditBox* create();
+    static EditBox* create();
 
     /**
      * Registers a script function that will be called for EditBox events.
@@ -123,7 +123,7 @@ class CCEditBox : public Button
      *     end
      * end
      *
-     * local editbox = CCEditBox:create(CCSize(...), CCScale9Sprite:create(...))
+     * local editbox = UIEditBox:create(CCSize(...), CCScale9Sprite:create(...))
      * editbox = registerScriptEditBoxHandler(editboxEventHandler)
      * @endcode
      *

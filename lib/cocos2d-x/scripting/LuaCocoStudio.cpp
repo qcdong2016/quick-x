@@ -42,7 +42,7 @@ using namespace cocos2d::ui;
 TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S);
 
 #include "LuaCocoStudio.h"
-#include "ui/EditBox/CCEditBox.h"
+#include "ui/EditBox/UIEditBox.h"
 #include "ui/webview/UIWebView.h"
 
 /* function to release collected object via destructor */
@@ -272,6 +272,8 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCEvent)), "CCEvent");
  tolua_usertype(tolua_S,"CheckBox");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CheckBox)), "CheckBox");
+ tolua_usertype(tolua_S,"EditBox");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(EditBox)), "EditBox");
  tolua_usertype(tolua_S,"ccColor3B");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(ccColor3B)), "ccColor3B");
  tolua_usertype(tolua_S,"LUA_FUNCTION");
@@ -289,38 +291,36 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElementCustomNode)), "RichElementCustomNode");
  tolua_usertype(tolua_S,"RichElementImage");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElementImage)), "RichElementImage");
- tolua_usertype(tolua_S,"RichElementText");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElementText)), "RichElementText");
  tolua_usertype(tolua_S,"CCSize");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCSize)), "CCSize");
- tolua_usertype(tolua_S,"RichElement");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElement)), "RichElement");
+ tolua_usertype(tolua_S,"RichElementText");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElementText)), "RichElementText");
  tolua_usertype(tolua_S,"Button");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(Button)), "Button");
+ tolua_usertype(tolua_S,"RichElement");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(RichElement)), "RichElement");
  tolua_usertype(tolua_S,"CCLayer");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCLayer)), "CCLayer");
- tolua_usertype(tolua_S,"ImageView");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(ImageView)), "ImageView");
  tolua_usertype(tolua_S,"CCArray");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCArray)), "CCArray");
  tolua_usertype(tolua_S,"LinearLayoutParameter");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(LinearLayoutParameter)), "LinearLayoutParameter");
+ tolua_usertype(tolua_S,"PageView");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(PageView)), "PageView");
  tolua_usertype(tolua_S,"UIRelativeAlign");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(UIRelativeAlign)), "UIRelativeAlign");
  tolua_usertype(tolua_S,"UIRelativeLayoutParameter");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(UIRelativeLayoutParameter)), "UIRelativeLayoutParameter");
- tolua_usertype(tolua_S,"CCEditBox");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCEditBox)), "CCEditBox");
- tolua_usertype(tolua_S,"CCTouch");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCTouch)), "CCTouch");
+ tolua_usertype(tolua_S,"ImageView");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(ImageView)), "ImageView");
  tolua_usertype(tolua_S,"Layout");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(Layout)), "Layout");
+ tolua_usertype(tolua_S,"CCTouch");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCTouch)), "CCTouch");
  tolua_usertype(tolua_S,"CCObject");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCObject)), "CCObject");
  tolua_usertype(tolua_S,"ScrollView");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(ScrollView)), "ScrollView");
- tolua_usertype(tolua_S,"PageView");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(PageView)), "PageView");
  tolua_usertype(tolua_S,"LoadingBar");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(LoadingBar)), "LoadingBar");
  tolua_usertype(tolua_S,"TouchGroup");
@@ -335,14 +335,14 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(Slider)), "Slider");
 }
 
-/* method: create of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_create00
-static int tolua_CocoStudio_CCEditBox_create00(lua_State* tolua_S)
+/* method: create of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_create00
+static int tolua_CocoStudio_EditBox_create00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertable(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertable(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
@@ -350,8 +350,8 @@ static int tolua_CocoStudio_CCEditBox_create00(lua_State* tolua_S)
 #endif
  {
  {
-  CCEditBox* tolua_ret = (CCEditBox*)  CCEditBox::create();
-  tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCEditBox");
+  EditBox* tolua_ret = (EditBox*)  EditBox::create();
+  tolua_pushusertype(tolua_S,(void*)tolua_ret,"EditBox");
  }
  }
  return 1;
@@ -363,14 +363,14 @@ static int tolua_CocoStudio_CCEditBox_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: registerScriptEditBoxHandler of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_registerScriptEditBoxHandler00
-static int tolua_CocoStudio_CCEditBox_registerScriptEditBoxHandler00(lua_State* tolua_S)
+/* method: registerScriptEditBoxHandler of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_registerScriptEditBoxHandler00
+static int tolua_CocoStudio_EditBox_registerScriptEditBoxHandler00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -378,7 +378,7 @@ static int tolua_CocoStudio_CCEditBox_registerScriptEditBoxHandler00(lua_State* 
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   LUA_FUNCTION handler = (  toluafix_ref_function(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'registerScriptEditBoxHandler'", NULL);
@@ -396,14 +396,14 @@ static int tolua_CocoStudio_CCEditBox_registerScriptEditBoxHandler00(lua_State* 
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: registerScriptEditBoxHandler of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_addEditBoxEventListener00
-static int tolua_CocoStudio_CCEditBox_addEditBoxEventListener00(lua_State* tolua_S)
+/* method: registerScriptEditBoxHandler of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_addEditBoxEventListener00
+static int tolua_CocoStudio_EditBox_addEditBoxEventListener00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluafix_isfunction(tolua_S,2,"LUA_FUNCTION",0,&tolua_err)) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -411,7 +411,7 @@ static int tolua_CocoStudio_CCEditBox_addEditBoxEventListener00(lua_State* tolua
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   LUA_FUNCTION handler = (  toluafix_ref_function(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'registerScriptEditBoxHandler'", NULL);
@@ -429,21 +429,21 @@ static int tolua_CocoStudio_CCEditBox_addEditBoxEventListener00(lua_State* tolua
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: unregisterScriptEditBoxHandler of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_unregisterScriptEditBoxHandler00
-static int tolua_CocoStudio_CCEditBox_unregisterScriptEditBoxHandler00(lua_State* tolua_S)
+/* method: unregisterScriptEditBoxHandler of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_unregisterScriptEditBoxHandler00
+static int tolua_CocoStudio_EditBox_unregisterScriptEditBoxHandler00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unregisterScriptEditBoxHandler'", NULL);
 #endif
@@ -460,21 +460,21 @@ static int tolua_CocoStudio_CCEditBox_unregisterScriptEditBoxHandler00(lua_State
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: unregisterScriptEditBoxHandler of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_removeEditBoxEventListener00
-static int tolua_CocoStudio_CCEditBox_removeEditBoxEventListener00(lua_State* tolua_S)
+/* method: unregisterScriptEditBoxHandler of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_removeEditBoxEventListener00
+static int tolua_CocoStudio_EditBox_removeEditBoxEventListener00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unregisterScriptEditBoxHandler'", NULL);
 #endif
@@ -491,14 +491,14 @@ static int tolua_CocoStudio_CCEditBox_removeEditBoxEventListener00(lua_State* to
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setText of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setText00
-static int tolua_CocoStudio_CCEditBox_setText00(lua_State* tolua_S)
+/* method: setText of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setText00
+static int tolua_CocoStudio_EditBox_setText00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -506,7 +506,7 @@ static int tolua_CocoStudio_CCEditBox_setText00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pText = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setText'", NULL);
@@ -524,21 +524,21 @@ static int tolua_CocoStudio_CCEditBox_setText00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getText of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_getText00
-static int tolua_CocoStudio_CCEditBox_getText00(lua_State* tolua_S)
+/* method: getText of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_getText00
+static int tolua_CocoStudio_EditBox_getText00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getText'", NULL);
 #endif
@@ -556,14 +556,14 @@ static int tolua_CocoStudio_CCEditBox_getText00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setFont of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setFont00
-static int tolua_CocoStudio_CCEditBox_setFont00(lua_State* tolua_S)
+/* method: setFont of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setFont00
+static int tolua_CocoStudio_EditBox_setFont00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -572,7 +572,7 @@ static int tolua_CocoStudio_CCEditBox_setFont00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pFontName = ((const char*)  tolua_tostring(tolua_S,2,0));
   int fontSize = ((int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -591,14 +591,14 @@ static int tolua_CocoStudio_CCEditBox_setFont00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setFontName of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setFontName00
-static int tolua_CocoStudio_CCEditBox_setFontName00(lua_State* tolua_S)
+/* method: setFontName of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setFontName00
+static int tolua_CocoStudio_EditBox_setFontName00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -606,7 +606,7 @@ static int tolua_CocoStudio_CCEditBox_setFontName00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pFontName = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFontName'", NULL);
@@ -624,14 +624,14 @@ static int tolua_CocoStudio_CCEditBox_setFontName00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setFontSize of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setFontSize00
-static int tolua_CocoStudio_CCEditBox_setFontSize00(lua_State* tolua_S)
+/* method: setFontSize of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setFontSize00
+static int tolua_CocoStudio_EditBox_setFontSize00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -639,7 +639,7 @@ static int tolua_CocoStudio_CCEditBox_setFontSize00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   int fontSize = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFontSize'", NULL);
@@ -657,14 +657,14 @@ static int tolua_CocoStudio_CCEditBox_setFontSize00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setFontColor of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setFontColor00
-static int tolua_CocoStudio_CCEditBox_setFontColor00(lua_State* tolua_S)
+/* method: setFontColor of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setFontColor00
+static int tolua_CocoStudio_EditBox_setFontColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ccColor3B",0,&tolua_err)) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -672,7 +672,7 @@ static int tolua_CocoStudio_CCEditBox_setFontColor00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   ccColor3B color = *((ccColor3B*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFontColor'", NULL);
@@ -690,14 +690,14 @@ static int tolua_CocoStudio_CCEditBox_setFontColor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPlaceholderFont of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setPlaceholderFont00
-static int tolua_CocoStudio_CCEditBox_setPlaceholderFont00(lua_State* tolua_S)
+/* method: setPlaceholderFont of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setPlaceholderFont00
+static int tolua_CocoStudio_EditBox_setPlaceholderFont00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -706,7 +706,7 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFont00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pFontName = ((const char*)  tolua_tostring(tolua_S,2,0));
   int fontSize = ((int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -725,14 +725,14 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFont00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPlaceholderFontName of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setPlaceholderFontName00
-static int tolua_CocoStudio_CCEditBox_setPlaceholderFontName00(lua_State* tolua_S)
+/* method: setPlaceholderFontName of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setPlaceholderFontName00
+static int tolua_CocoStudio_EditBox_setPlaceholderFontName00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -740,7 +740,7 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontName00(lua_State* tolua_
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pFontName = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPlaceholderFontName'", NULL);
@@ -758,14 +758,14 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontName00(lua_State* tolua_
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPlaceholderFontSize of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setPlaceholderFontSize00
-static int tolua_CocoStudio_CCEditBox_setPlaceholderFontSize00(lua_State* tolua_S)
+/* method: setPlaceholderFontSize of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setPlaceholderFontSize00
+static int tolua_CocoStudio_EditBox_setPlaceholderFontSize00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -773,7 +773,7 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontSize00(lua_State* tolua_
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   int fontSize = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPlaceholderFontSize'", NULL);
@@ -791,14 +791,14 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontSize00(lua_State* tolua_
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPlaceholderFontColor of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setPlaceholderFontColor00
-static int tolua_CocoStudio_CCEditBox_setPlaceholderFontColor00(lua_State* tolua_S)
+/* method: setPlaceholderFontColor of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setPlaceholderFontColor00
+static int tolua_CocoStudio_EditBox_setPlaceholderFontColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ccColor3B",0,&tolua_err)) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -806,7 +806,7 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontColor00(lua_State* tolua
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   ccColor3B color = *((ccColor3B*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPlaceholderFontColor'", NULL);
@@ -824,14 +824,14 @@ static int tolua_CocoStudio_CCEditBox_setPlaceholderFontColor00(lua_State* tolua
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPlaceHolder of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setPlaceHolder00
-static int tolua_CocoStudio_CCEditBox_setPlaceHolder00(lua_State* tolua_S)
+/* method: setPlaceHolder of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setPlaceHolder00
+static int tolua_CocoStudio_EditBox_setPlaceHolder00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isstring(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -839,7 +839,7 @@ static int tolua_CocoStudio_CCEditBox_setPlaceHolder00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   const char* pText = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPlaceHolder'", NULL);
@@ -857,21 +857,21 @@ static int tolua_CocoStudio_CCEditBox_setPlaceHolder00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getPlaceHolder of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_getPlaceHolder00
-static int tolua_CocoStudio_CCEditBox_getPlaceHolder00(lua_State* tolua_S)
+/* method: getPlaceHolder of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_getPlaceHolder00
+static int tolua_CocoStudio_EditBox_getPlaceHolder00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPlaceHolder'", NULL);
 #endif
@@ -889,14 +889,14 @@ static int tolua_CocoStudio_CCEditBox_getPlaceHolder00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setInputMode of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setInputMode00
-static int tolua_CocoStudio_CCEditBox_setInputMode00(lua_State* tolua_S)
+/* method: setInputMode of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setInputMode00
+static int tolua_CocoStudio_EditBox_setInputMode00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -904,7 +904,7 @@ static int tolua_CocoStudio_CCEditBox_setInputMode00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   EditBoxInputMode inputMode = ((EditBoxInputMode) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setInputMode'", NULL);
@@ -922,14 +922,14 @@ static int tolua_CocoStudio_CCEditBox_setInputMode00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setMaxLength of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setMaxLength00
-static int tolua_CocoStudio_CCEditBox_setMaxLength00(lua_State* tolua_S)
+/* method: setMaxLength of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setMaxLength00
+static int tolua_CocoStudio_EditBox_setMaxLength00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -937,7 +937,7 @@ static int tolua_CocoStudio_CCEditBox_setMaxLength00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   int maxLength = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaxLength'", NULL);
@@ -955,21 +955,21 @@ static int tolua_CocoStudio_CCEditBox_setMaxLength00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaxLength of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_getMaxLength00
-static int tolua_CocoStudio_CCEditBox_getMaxLength00(lua_State* tolua_S)
+/* method: getMaxLength of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_getMaxLength00
+static int tolua_CocoStudio_EditBox_getMaxLength00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaxLength'", NULL);
 #endif
@@ -987,14 +987,14 @@ static int tolua_CocoStudio_CCEditBox_getMaxLength00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setInputFlag of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setInputFlag00
-static int tolua_CocoStudio_CCEditBox_setInputFlag00(lua_State* tolua_S)
+/* method: setInputFlag of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setInputFlag00
+static int tolua_CocoStudio_EditBox_setInputFlag00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -1002,7 +1002,7 @@ static int tolua_CocoStudio_CCEditBox_setInputFlag00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   EditBoxInputFlag inputFlag = ((EditBoxInputFlag) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setInputFlag'", NULL);
@@ -1020,14 +1020,14 @@ static int tolua_CocoStudio_CCEditBox_setInputFlag00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setReturnType of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_setReturnType00
-static int tolua_CocoStudio_CCEditBox_setReturnType00(lua_State* tolua_S)
+/* method: setReturnType of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_setReturnType00
+static int tolua_CocoStudio_EditBox_setReturnType00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -1035,7 +1035,7 @@ static int tolua_CocoStudio_CCEditBox_setReturnType00(lua_State* tolua_S)
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
   KeyboardReturnType returnType = ((KeyboardReturnType) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setReturnType'", NULL);
@@ -1053,21 +1053,21 @@ static int tolua_CocoStudio_CCEditBox_setReturnType00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getReturnType of class  CCEditBox */
-#ifndef TOLUA_DISABLE_tolua_CocoStudio_CCEditBox_getReturnType00
-static int tolua_CocoStudio_CCEditBox_getReturnType00(lua_State* tolua_S)
+/* method: getReturnType of class  EditBox */
+#ifndef TOLUA_DISABLE_tolua_CocoStudio_EditBox_getReturnType00
+static int tolua_CocoStudio_EditBox_getReturnType00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
- !tolua_isusertype(tolua_S,1,"CCEditBox",0,&tolua_err) ||
+ !tolua_isusertype(tolua_S,1,"EditBox",0,&tolua_err) ||
  !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
  goto tolua_lerror;
  else
 #endif
  {
-  CCEditBox* self = (CCEditBox*)  tolua_tousertype(tolua_S,1,0);
+  EditBox* self = (EditBox*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getReturnType'", NULL);
 #endif
@@ -19063,11 +19063,12 @@ static int tolua_CocoStudio_WebView_evaluateJS00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateJS'", NULL);
 #endif
  {
-     std::string ret = self->evaluateJS(js);
-     tolua_pushcppstring(tolua_S, ret);
+  std::string tolua_ret = (std::string)  self->evaluateJS(js);
+ tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+ tolua_pushcppstring(tolua_S,(const char*)js);
  }
  }
- return 1;
+ return 2;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'evaluateJS'.",&tolua_err);
@@ -19166,31 +19167,31 @@ TOLUA_API int tolua_CocoStudio_open (lua_State* tolua_S)
  tolua_constant(tolua_S,"kEditBoxInputFlagInitialCapsWord",kEditBoxInputFlagInitialCapsWord);
  tolua_constant(tolua_S,"kEditBoxInputFlagInitialCapsSentence",kEditBoxInputFlagInitialCapsSentence);
  tolua_constant(tolua_S,"kEditBoxInputFlagInitialCapsAllCharacters",kEditBoxInputFlagInitialCapsAllCharacters);
- tolua_cclass(tolua_S,"CCEditBox","CCEditBox","Button",NULL);
- tolua_beginmodule(tolua_S,"CCEditBox");
-  tolua_function(tolua_S,"create",tolua_CocoStudio_CCEditBox_create00);
-  tolua_function(tolua_S,"registerScriptEditBoxHandler",tolua_CocoStudio_CCEditBox_registerScriptEditBoxHandler00);
-  tolua_function(tolua_S,"addEditBoxEventListener",tolua_CocoStudio_CCEditBox_addEditBoxEventListener00);
-  tolua_function(tolua_S,"unregisterScriptEditBoxHandler",tolua_CocoStudio_CCEditBox_unregisterScriptEditBoxHandler00);
-  tolua_function(tolua_S,"removeEditBoxEventListener",tolua_CocoStudio_CCEditBox_removeEditBoxEventListener00);
-  tolua_function(tolua_S,"setText",tolua_CocoStudio_CCEditBox_setText00);
-  tolua_function(tolua_S,"getText",tolua_CocoStudio_CCEditBox_getText00);
-  tolua_function(tolua_S,"setFont",tolua_CocoStudio_CCEditBox_setFont00);
-  tolua_function(tolua_S,"setFontName",tolua_CocoStudio_CCEditBox_setFontName00);
-  tolua_function(tolua_S,"setFontSize",tolua_CocoStudio_CCEditBox_setFontSize00);
-  tolua_function(tolua_S,"setFontColor",tolua_CocoStudio_CCEditBox_setFontColor00);
-  tolua_function(tolua_S,"setPlaceholderFont",tolua_CocoStudio_CCEditBox_setPlaceholderFont00);
-  tolua_function(tolua_S,"setPlaceholderFontName",tolua_CocoStudio_CCEditBox_setPlaceholderFontName00);
-  tolua_function(tolua_S,"setPlaceholderFontSize",tolua_CocoStudio_CCEditBox_setPlaceholderFontSize00);
-  tolua_function(tolua_S,"setPlaceholderFontColor",tolua_CocoStudio_CCEditBox_setPlaceholderFontColor00);
-  tolua_function(tolua_S,"setPlaceHolder",tolua_CocoStudio_CCEditBox_setPlaceHolder00);
-  tolua_function(tolua_S,"getPlaceHolder",tolua_CocoStudio_CCEditBox_getPlaceHolder00);
-  tolua_function(tolua_S,"setInputMode",tolua_CocoStudio_CCEditBox_setInputMode00);
-  tolua_function(tolua_S,"setMaxLength",tolua_CocoStudio_CCEditBox_setMaxLength00);
-  tolua_function(tolua_S,"getMaxLength",tolua_CocoStudio_CCEditBox_getMaxLength00);
-  tolua_function(tolua_S,"setInputFlag",tolua_CocoStudio_CCEditBox_setInputFlag00);
-  tolua_function(tolua_S,"setReturnType",tolua_CocoStudio_CCEditBox_setReturnType00);
-  tolua_function(tolua_S,"getReturnType",tolua_CocoStudio_CCEditBox_getReturnType00);
+ tolua_cclass(tolua_S,"EditBox","EditBox","Button",NULL);
+ tolua_beginmodule(tolua_S,"EditBox");
+  tolua_function(tolua_S,"create",tolua_CocoStudio_EditBox_create00);
+  tolua_function(tolua_S,"registerScriptEditBoxHandler",tolua_CocoStudio_EditBox_registerScriptEditBoxHandler00);
+  tolua_function(tolua_S,"addEditBoxEventListener",tolua_CocoStudio_EditBox_addEditBoxEventListener00);
+  tolua_function(tolua_S,"unregisterScriptEditBoxHandler",tolua_CocoStudio_EditBox_unregisterScriptEditBoxHandler00);
+  tolua_function(tolua_S,"removeEditBoxEventListener",tolua_CocoStudio_EditBox_removeEditBoxEventListener00);
+  tolua_function(tolua_S,"setText",tolua_CocoStudio_EditBox_setText00);
+  tolua_function(tolua_S,"getText",tolua_CocoStudio_EditBox_getText00);
+  tolua_function(tolua_S,"setFont",tolua_CocoStudio_EditBox_setFont00);
+  tolua_function(tolua_S,"setFontName",tolua_CocoStudio_EditBox_setFontName00);
+  tolua_function(tolua_S,"setFontSize",tolua_CocoStudio_EditBox_setFontSize00);
+  tolua_function(tolua_S,"setFontColor",tolua_CocoStudio_EditBox_setFontColor00);
+  tolua_function(tolua_S,"setPlaceholderFont",tolua_CocoStudio_EditBox_setPlaceholderFont00);
+  tolua_function(tolua_S,"setPlaceholderFontName",tolua_CocoStudio_EditBox_setPlaceholderFontName00);
+  tolua_function(tolua_S,"setPlaceholderFontSize",tolua_CocoStudio_EditBox_setPlaceholderFontSize00);
+  tolua_function(tolua_S,"setPlaceholderFontColor",tolua_CocoStudio_EditBox_setPlaceholderFontColor00);
+  tolua_function(tolua_S,"setPlaceHolder",tolua_CocoStudio_EditBox_setPlaceHolder00);
+  tolua_function(tolua_S,"getPlaceHolder",tolua_CocoStudio_EditBox_getPlaceHolder00);
+  tolua_function(tolua_S,"setInputMode",tolua_CocoStudio_EditBox_setInputMode00);
+  tolua_function(tolua_S,"setMaxLength",tolua_CocoStudio_EditBox_setMaxLength00);
+  tolua_function(tolua_S,"getMaxLength",tolua_CocoStudio_EditBox_getMaxLength00);
+  tolua_function(tolua_S,"setInputFlag",tolua_CocoStudio_EditBox_setInputFlag00);
+  tolua_function(tolua_S,"setReturnType",tolua_CocoStudio_EditBox_setReturnType00);
+  tolua_function(tolua_S,"getReturnType",tolua_CocoStudio_EditBox_getReturnType00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"BRIGHT_NONE",BRIGHT_NONE);
  tolua_constant(tolua_S,"BRIGHT_NORMAL",BRIGHT_NORMAL);

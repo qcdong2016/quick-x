@@ -27,17 +27,17 @@
 #define __CCEditBoxIMPL_H__
 
 #include "CCPlatformMacros.h"
-#include "CCEditBox.h"
+#include "UIEditBox.h"
 
 NS_CC_BEGIN
 namespace ui {
 
 
-class CCEditBoxImpl
+class EditBoxImpl
 {
 public:
-    CCEditBoxImpl(CCEditBox* pEditBox) : m_pDelegate(NULL),m_pEditBox(pEditBox) {}
-    virtual ~CCEditBoxImpl() {}
+    EditBoxImpl(EditBox* pEditBox) : m_pDelegate(NULL),m_pEditBox(pEditBox) {}
+    virtual ~EditBoxImpl() {}
     
     virtual bool initWithSize(const CCSize& size) = 0;
     virtual void setFont(const char* pFontName, int fontSize) = 0;
@@ -75,14 +75,14 @@ public:
     
     void setDelegate(CCEditBoxDelegate* pDelegate) { m_pDelegate = pDelegate; };
     CCEditBoxDelegate* getDelegate() { return m_pDelegate; };
-    CCEditBox* getCCEditBox() { return m_pEditBox; };
+    EditBox* getCCEditBox() { return m_pEditBox; };
 protected:
     CCEditBoxDelegate* m_pDelegate;
-    CCEditBox* m_pEditBox;
+    EditBox* m_pEditBox;
 };
 
 // This method must be implemented at each subclass of CCEditBoxImpl.
-extern CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox);
+extern EditBoxImpl* __createSystemEditBox(EditBox* pEditBox);
 
 }
 NS_CC_END

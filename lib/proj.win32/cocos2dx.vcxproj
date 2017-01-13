@@ -259,8 +259,8 @@
     <ClCompile Include="..\cocos2d-x\tilemap\CCTMXObjectGroup.cpp" />
     <ClCompile Include="..\cocos2d-x\tilemap\CCTMXTiledMap.cpp" />
     <ClCompile Include="..\cocos2d-x\tilemap\CCTMXXMLParser.cpp" />
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBox.cpp" />
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.cpp" />
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\UIEditBox.cpp" />
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\EditBox\Win32InputBox.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayout.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.cpp" />
@@ -564,9 +564,9 @@
     <ClInclude Include="..\cocos2d-x\tilemap\CCTMXTiledMap.h" />
     <ClInclude Include="..\cocos2d-x\tilemap\CCTMXXMLParser.h" />
     <ClInclude Include="..\cocos2d-x\ui\CocosGUI.h" />
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBox.h" />
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImpl.h" />
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.h" />
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBox.h" />
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBoxImpl.h" />
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.h" />
     <ClInclude Include="..\cocos2d-x\ui\EditBox\Win32InputBox.h" />
     <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayout.h" />
     <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.h" />

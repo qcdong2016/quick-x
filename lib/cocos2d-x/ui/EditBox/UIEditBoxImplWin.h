@@ -30,21 +30,21 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
 #include "CCPlatformMacros.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
 
 NS_CC_BEGIN
 namespace ui {
 
-class CCEditBox;
+class EditBox;
 /**
  *  @js NA
  *  @lua NA
  */
-class CCEditBoxImplWin : public CCEditBoxImpl
+class EditBoxImplWin : public EditBoxImpl
 {
 public:
-    CCEditBoxImplWin(CCEditBox* pEditText);
-    virtual ~CCEditBoxImplWin();
+    EditBoxImplWin(EditBox* pEditText);
+    virtual ~EditBoxImplWin();
     
     virtual bool initWithSize(const CCSize& size);
 	virtual void setFont(const char* pFontName, int fontSize);
