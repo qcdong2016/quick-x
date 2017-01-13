@@ -260,6 +260,30 @@ local CCObjectTypes = {
     "CCWaves",
     "CCWaves3D",
     "CCWavesTiles3D",
+
+    "EditBox",
+    "ImageView",
+    "Label",
+    "LabelAtlas",
+    "Layer",
+    "Layout",
+    "LayoutParameter",
+    "LinearLayoutParameter",
+    "ListView",
+    "LoadingBar",
+    "NodeReader",
+    "PageView",
+    "RichElement",
+    "RichElementCustomNode",
+    "RichElementImage",
+    "RichElementText",
+    "RichText",
+    "RootWidget",
+    "ScrollView",
+    "Slider",
+    "TextField",
+    "Timeline",
+    "Widget",
 }
 
 -- register CCObject types
@@ -370,34 +394,6 @@ TOLUA_API int  tolua_Cocos2d_open (lua_State* tolua_S);]], [[]])
         [[int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
     int* pLuaID = (tolua_ret) ? &tolua_ret->m_nLuaID : NULL;
     toluafix_pushusertype_ccobject(tolua_S, nID, pLuaID, (void*)tolua_ret]])
-
-    replace([[int tolua_ret = (int)  self->getFileData(pszFileName);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);]],
-        [[unsigned long size = 0;
-    unsigned char* buffer = self->getFileData(pszFileName, "rb", &size);
-    if (buffer && size)
-    {
-        lua_pushlstring(tolua_S, (char*)buffer, size);
-    }
-    else
-    {
-        lua_pushnil(tolua_S);
-    }
-    if (buffer) delete[] buffer;]])
-
-    replace([[int tolua_ret = (int)  self->getFileDataFromZip(pszZipFilePath,pszFileName);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);]],
-        [[unsigned long size = 0;
-    unsigned char* buffer = self->getFileDataFromZip(pszZipFilePath, pszFileName, &size);
-    if (buffer && size)
-    {
-        lua_pushlstring(tolua_S, (char*)buffer, size);
-    }
-    else
-    {
-        lua_pushnil(tolua_S);
-    }
-    if (buffer) delete[] buffer;]])
 
     replace([[   {
 #ifdef __cplusplus

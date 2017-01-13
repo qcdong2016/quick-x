@@ -510,9 +510,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocos2d.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\LuaCocoStudio.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\LuaFunction.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
@@ -1308,9 +1305,6 @@
       <Filter>cocos2d-x\audio</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\LuaCocoStudio.h">
       <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\LuaFunction.h">
