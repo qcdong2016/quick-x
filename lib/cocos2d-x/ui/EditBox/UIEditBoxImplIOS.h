@@ -23,15 +23,15 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CCEditBoxIMPLIOS_H__
-#define __CCEditBoxIMPLIOS_H__
+#ifndef __UIEditBoxImplIOS_H__
+#define __UIEditBoxImplIOS_H__
 
 
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
 #include "CCPlatformMacros.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -43,7 +43,7 @@
 @end
 
 
-@interface EditBoxImplIOS : NSObject <UITextFieldDelegate>
+@interface EditBoxImplIOSInternal : NSObject <UITextFieldDelegate>
 {
     CustomUITextField* textField_;
     void* editBox_;
@@ -67,16 +67,16 @@
 NS_CC_BEGIN
 namespace ui {
 
-class CCEditBox;
+class EditBox;
 /**
  *  @js NA
  *  @lua NA
  */
-class CCEditBoxImplIOS : public CCEditBoxImpl
+class EditBoxImplIOS : public EditBoxImpl
 {
 public:
-    CCEditBoxImplIOS(CCEditBox* pEditText);
-    virtual ~CCEditBoxImplIOS();
+    EditBoxImplIOS(EditBox* pEditText);
+    virtual ~EditBoxImplIOS();
     
     virtual bool initWithSize(const CCSize& size);
     virtual void setFont(const char* pFontName, int fontSize);
@@ -116,7 +116,7 @@ private:
     CCSize          m_tContentSize;
     CCPoint         m_obPosition;
     CCPoint         m_obAnchorPoint;
-    EditBoxImplIOS* m_systemControl;
+    EditBoxImplIOSInternal* m_systemControl;
     int             m_nMaxTextLength;
 };
 
@@ -127,5 +127,5 @@ NS_CC_END
 
 #endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) */
 
-#endif /* __CCEditBoxIMPLIOS_H__ */
+#endif /* __UIEditBoxImplIOS_H__ */
 
