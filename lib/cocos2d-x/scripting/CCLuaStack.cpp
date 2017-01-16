@@ -42,7 +42,6 @@ extern "C" {
 #include "LuaCocos2d.h"
 
 // Cocos Studio
-#include "LuaCocoStudio.h"
 #include "lua_cocos2dx_cocostudio_manual.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -147,8 +146,6 @@ bool CCLuaStack::init(void)
 
 	tolua_spine_open(m_state);
 
-    // Cocos Studio
-    tolua_CocoStudio_open(m_state);
     register_all_cocos2dx_studio_manual(m_state);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)

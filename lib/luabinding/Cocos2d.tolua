@@ -1,6 +1,30 @@
 
 $pfile "cocos2dx/Cocos2d.tolua"
-$pfile "CocosDenshion/SimpleAudioEngine.tolua"
+
+$pfile "audio/SimpleAudioEngine.tolua"
+
+$pfile "ui/UIWidget.tolua"
+$pfile "ui/UILayout.tolua"
+$pfile "ui/UIButton.tolua"
+$pfile "ui/UIEditBox.tolua"
+$pfile "ui/UICheckBox.tolua"
+$pfile "ui/UIImageView.tolua"
+$pfile "ui/UILabel.tolua"
+$pfile "ui/UILabelAtlas.tolua"
+$pfile "ui/UILabelBMFont.tolua"
+$pfile "ui/UILoadingBar.tolua"
+$pfile "ui/UISlider.tolua"
+$pfile "ui/UITextField.tolua"
+$pfile "ui/UIScrollView.tolua"
+$pfile "ui/UIPageView.tolua"
+$pfile "ui/UIListView.tolua"
+$pfile "ui/UILayoutDefine.tolua"
+$pfile "ui/UILayoutParameter.tolua"
+$pfile "ui/UILinearLayoutParameter.tolua"
+$pfile "ui/UIRelativeLayoutParameter.tolua"
+$pfile "ui/UITouchGroup.tolua"
+$pfile "ui/UIRichText.tolua"
+$pfile "ui/UIWebView.tolua"
 
 $[
 

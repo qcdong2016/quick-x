@@ -2,7 +2,12 @@
 require("config")
 require("framework.init")
 
-local App = class("App", cc.mvc.AppBase)
+local App = class("App")
+
+function App:ctor()
+    app = self
+end
+
 
 function App:enterState(name, ...)
     if self.state_ then
@@ -18,7 +23,7 @@ end
 
 function App:run()
     self.scene_ = display.newScene("Scene")
-    self.setting = cc.utils.setting.new('local.lua', 'MyKey')
+    -- self.setting = cc.utils.setting.new('local.lua', 'MyKey')
     
     UIMgr = require('UIMgr').new():addTo(self.scene_, 2)
 
@@ -33,6 +38,13 @@ function App:onEnterBackground()
 end
 
 function App:onEnterForeground()
+end
+
+function App:exit()
+    CCDirector:sharedDirector():endToLua()
+    if device.platform ~= "ios" then
+        os.exit()
+    end
 end
 
 return App

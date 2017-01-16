@@ -4,7 +4,6 @@
 #include "CCPlatformConfig.h"
 #include "engine/CCDirector.h"
 
-
 #include "imgui/nanovg.h"
 
 #if OS_IS(MAC)
@@ -24,7 +23,7 @@ static NVGcontext* NCreate() {
 #if OS_IS(MAC)
     return nvgCreateGL2(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
 #else
-	return nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
+    return nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
 #endif
 }
 
@@ -32,7 +31,7 @@ static void NDelete(NVGcontext* nvg) {
 #if OS_IS(MAC)
     return nvgDeleteGL2(nvg);
 #else
-	return nvgDeleteGL3(nvg);
+    return nvgDeleteGL3(nvg);
 #endif
 }
 

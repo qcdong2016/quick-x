@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
- Copyright (c) 2013 Jozef Pridavok
+ Copyright (c) 2012 James Chen
  
  http://www.cocos2d-x.org
  
@@ -23,31 +23,63 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CCEditBoxIMPLWIN_H__
-#define __CCEditBoxIMPLWIN_H__
+#ifndef __UIEditBoxImplIOS_H__
+#define __UIEditBoxImplIOS_H__
 
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
 #include "CCPlatformMacros.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface CustomUITextField : UITextField
+{
+}
+
+@end
+
+
+@interface EditBoxImplIOSInternal : NSObject <UITextFieldDelegate>
+{
+    CustomUITextField* textField_;
+    void* editBox_;
+    BOOL editState_;
+}
+
+@property(nonatomic, retain) UITextField* textField;
+@property(nonatomic, readonly, getter = isEditState) BOOL editState;
+@property(nonatomic, assign) void* editBox;
+
+-(id) initWithFrame: (CGRect) frameRect editBox: (void*) editBox;
+-(void) doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)distance;
+-(void) setPosition:(CGPoint) pos;
+-(void) setContentSize:(CGSize) size;
+-(void) visit;
+-(void) openKeyboard;
+-(void) closeKeyboard;
+
+@end
 
 NS_CC_BEGIN
 namespace ui {
 
-class CCEditBox;
+class EditBox;
 /**
  *  @js NA
  *  @lua NA
  */
-class CCEditBoxImplWin : public CCEditBoxImpl
+class EditBoxImplIOS : public EditBoxImpl
 {
 public:
-    CCEditBoxImplWin(CCEditBox* pEditText);
-    virtual ~CCEditBoxImplWin();
+    EditBoxImplIOS(EditBox* pEditText);
+    virtual ~EditBoxImplIOS();
     
     virtual bool initWithSize(const CCSize& size);
-	virtual void setFont(const char* pFontName, int fontSize);
+    virtual void setFont(const char* pFontName, int fontSize);
     virtual void setFontColor(const ccColor3B& color);
     virtual void setPlaceholderFont(const char* pFontName, int fontSize);
     virtual void setPlaceholderFontColor(const ccColor3B& color);
@@ -62,42 +94,38 @@ public:
     virtual const char* getText(void);
     virtual void setPlaceHolder(const char* pText);
     virtual void setPosition(const CCPoint& pos);
-	virtual void setVisible(bool visible);
+    virtual void setVisible(bool visible);
     virtual void setContentSize(const CCSize& size);
-    virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(const CCPoint& anchorPoint);
     virtual void visit(void);
+	virtual void onEnter(void);
     virtual void doAnimationWhenKeyboardMove(float duration, float distance);
     virtual void openKeyboard();
     virtual void closeKeyboard();
-    virtual void onEnter(void);
+	
+	virtual void onEndEditing();
+    
 private:
-
-    CCLabelTTF* m_pLabel;
-    CCLabelTTF* m_pLabelPlaceHolder;
-    EditBoxInputMode    m_eEditBoxInputMode;
-    EditBoxInputFlag    m_eEditBoxInputFlag;
-    KeyboardReturnType  m_eKeyboardReturnType;
-    
-    std::string m_strText;
-    std::string m_strPlaceHolder;
-    
-    ccColor3B m_colText;
-    ccColor3B m_colPlaceHolder;
-
-    int   m_nMaxLength;
-    CCSize m_EditSize;
-
-	/*
-    CCSize     m_tContentSize;
-    HWND       m_pSysEdit;
-    int        m_nMaxTextLength;
-	*/
+	void			initInactiveLabels(const CCSize& size);
+	void			setInactiveText(const char* pText);
+	void			adjustTextFieldPosition();
+    void            placeInactiveLabels();
+	
+    CCLabelTTF*     m_pLabel;
+    CCLabelTTF*     m_pLabelPlaceHolder;
+    CCSize          m_tContentSize;
+    CCPoint         m_obPosition;
+    CCPoint         m_obAnchorPoint;
+    EditBoxImplIOSInternal* m_systemControl;
+    int             m_nMaxTextLength;
 };
+
 
 }
 NS_CC_END
 
-#endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */
 
-#endif /* __CCEditBoxIMPLWIN_H__ */
+#endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) */
+
+#endif /* __UIEditBoxImplIOS_H__ */
 

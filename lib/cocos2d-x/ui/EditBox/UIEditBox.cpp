@@ -23,49 +23,15 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CCEditBox.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBox.h"
+#include "UIEditBoxImpl.h"
 #include "textures/CCTexture2D.h"
 #include "resources/CCSpriteFrame.h"
 
 NS_CC_BEGIN
 namespace ui {
 
-const static unsigned char transImgData[] = {
-	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00,
-	0x00, 0x0D, 0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x0A,
-	0x00, 0x00, 0x00, 0x0A, 0x08, 0x06, 0x00, 0x00, 0x00, 0x8D,
-	0x32, 0xCF, 0xBD, 0x00, 0x00, 0x00, 0x06, 0x62, 0x4B, 0x47,
-	0x44, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xA0, 0xBD, 0xA7,
-	0x93, 0x00, 0x00, 0x00, 0x09, 0x70, 0x48, 0x59, 0x73, 0x00,
-	0x00, 0x0B, 0x13, 0x00, 0x00, 0x0B, 0x13, 0x01, 0x00, 0x9A,
-	0x9C, 0x18, 0x00, 0x00, 0x00, 0x07, 0x74, 0x49, 0x4D, 0x45,
-	0x07, 0xDE, 0x08, 0x01, 0x06, 0x36, 0x3A, 0x27, 0xB1, 0xCF,
-	0x2E, 0x00, 0x00, 0x00, 0x0C, 0x69, 0x54, 0x58, 0x74, 0x43,
-	0x6F, 0x6D, 0x6D, 0x65, 0x6E, 0x74, 0x00, 0x00, 0x00, 0x00,
-	0x00, 0xBC, 0xAE, 0xB2, 0x99, 0x00, 0x00, 0x00, 0x0E, 0x49,
-	0x44, 0x41, 0x54, 0x18, 0xD3, 0x63, 0x60, 0x18, 0x05, 0x83,
-	0x13, 0x00, 0x00, 0x01, 0x9A, 0x00, 0x01, 0x0B, 0xA2, 0x9D,
-	0x1F, 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE,
-	0x42, 0x60, 0x82
-};
-
-CCScale9Sprite* newTransParentSprite() {
-    CCScale9Sprite* sp = NULL;
-    CCSpriteFrame* spFrame = nullptr;
-    CCTexture2D* texture = nullptr;
-    
-    texture = new CCTexture2D();
-    texture->initWithData(transImgData, CCTexture2DPixelFormat::kCCTexture2DPixelFormat_RGBA8888, 10, 10, CCSize(10, 10));
-    spFrame = CCSpriteFrame::createWithTexture(texture, CCRect(0, 0, 10, 10));
-    sp = CCScale9Sprite::createWithSpriteFrame(spFrame);
-    sp->setOpacity(0);
-
-    texture->release();
-    return sp;
-}
-
-CCEditBox::CCEditBox(void)
+EditBox::EditBox(void)
 : m_pEditBoxImpl(NULL)
 , m_pDelegate(NULL)
 , m_eEditBoxInputMode(kEditBoxInputModeSingleLine)
@@ -81,20 +47,36 @@ CCEditBox::CCEditBox(void)
 {
 }
 
-CCEditBox::~CCEditBox(void)
+EditBox::~EditBox(void)
 {
     CC_SAFE_DELETE(m_pEditBoxImpl);
     unregisterScriptEditBoxHandler();
 }
+bool EditBox::init()
+{
+    if (BaseWidget::init())
+    {
+        CCSize dfSize(100, 50);
+        m_pEditBoxImpl = __createSystemEditBox(this);
+        m_pEditBoxImpl->initWithSize(dfSize);
+        setSize(dfSize);
+        ignoreContentAdaptWithSize(false);
+        setTouchEnabled(true);
+        
+        return true;
+    }
+    
+    return false;
+}
 
-void CCEditBox::onPressStateChangedToPressed()
+void EditBox::onPressStateChangedToPressed()
 {
 	m_pEditBoxImpl->openKeyboard();
 }
 
-CCEditBox* CCEditBox::create()
+EditBox* EditBox::create()
 {
-	CCEditBox* pRet = new CCEditBox();
+	EditBox* pRet = new EditBox();
 	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
@@ -104,7 +86,7 @@ CCEditBox* CCEditBox::create()
 	return nullptr;
 }
 
-void CCEditBox::setDelegate(CCEditBoxDelegate* pDelegate)
+void EditBox::setDelegate(CCEditBoxDelegate* pDelegate)
 {
     m_pDelegate = pDelegate;
     if (m_pEditBoxImpl != NULL)
@@ -113,12 +95,12 @@ void CCEditBox::setDelegate(CCEditBoxDelegate* pDelegate)
     }
 }
 
-CCEditBoxDelegate* CCEditBox::getDelegate()
+CCEditBoxDelegate* EditBox::getDelegate()
 {
     return m_pDelegate;
 }
 
-void CCEditBox::setText(const char* pText)
+void EditBox::setText(const char* pText)
 {
     if (pText != NULL)
     {
@@ -130,7 +112,7 @@ void CCEditBox::setText(const char* pText)
     }
 }
 
-const char* CCEditBox::getText(void)
+const char* EditBox::getText(void)
 {
     if (m_pEditBoxImpl != NULL)
     {
@@ -142,7 +124,7 @@ const char* CCEditBox::getText(void)
     return "";
 }
 
-void CCEditBox::setFont(const char* pFontName, int fontSize)
+void EditBox::setFont(const char* pFontName, int fontSize)
 {
     m_strFontName = pFontName;
     m_nFontSize = fontSize;
@@ -155,7 +137,7 @@ void CCEditBox::setFont(const char* pFontName, int fontSize)
     }
 }
 
-void CCEditBox::setFontName(const char* pFontName)
+void EditBox::setFontName(const char* pFontName)
 {
     m_strFontName = pFontName;
     if (m_pEditBoxImpl != NULL && m_nFontSize != -1)
@@ -164,7 +146,7 @@ void CCEditBox::setFontName(const char* pFontName)
     }
 }
 
-void CCEditBox::setFontSize(int fontSize)
+void EditBox::setFontSize(int fontSize)
 {
     m_nFontSize = fontSize;
     if (m_pEditBoxImpl != NULL && m_strFontName.length() > 0)
@@ -173,7 +155,7 @@ void CCEditBox::setFontSize(int fontSize)
     }
 }
 
-void CCEditBox::setFontColor(const ccColor3B& color)
+void EditBox::setFontColor(const ccColor3B& color)
 {
     m_colText = color;
     if (m_pEditBoxImpl != NULL)
@@ -182,7 +164,7 @@ void CCEditBox::setFontColor(const ccColor3B& color)
     }
 }
 
-void CCEditBox::setPlaceholderFont(const char* pFontName, int fontSize)
+void EditBox::setPlaceholderFont(const char* pFontName, int fontSize)
 {
     m_strPlaceholderFontName = pFontName;
     m_nPlaceholderFontSize = fontSize;
@@ -195,7 +177,7 @@ void CCEditBox::setPlaceholderFont(const char* pFontName, int fontSize)
     }
 }
 
-void CCEditBox::setPlaceholderFontName(const char* pFontName)
+void EditBox::setPlaceholderFontName(const char* pFontName)
 {
     m_strPlaceholderFontName = pFontName;
     if (m_pEditBoxImpl != NULL && m_nPlaceholderFontSize != -1)
@@ -204,7 +186,7 @@ void CCEditBox::setPlaceholderFontName(const char* pFontName)
     }
 }
 
-void CCEditBox::setPlaceholderFontSize(int fontSize)
+void EditBox::setPlaceholderFontSize(int fontSize)
 {
     m_nPlaceholderFontSize = fontSize;
     if (m_pEditBoxImpl != NULL && m_strPlaceholderFontName.length() > 0)
@@ -213,7 +195,7 @@ void CCEditBox::setPlaceholderFontSize(int fontSize)
     }
 }
 
-void CCEditBox::setPlaceholderFontColor(const ccColor3B& color)
+void EditBox::setPlaceholderFontColor(const ccColor3B& color)
 {
     m_colText = color;
     if (m_pEditBoxImpl != NULL)
@@ -222,7 +204,7 @@ void CCEditBox::setPlaceholderFontColor(const ccColor3B& color)
     }
 }
 
-void CCEditBox::setPlaceHolder(const char* pText)
+void EditBox::setPlaceHolder(const char* pText)
 {
     if (pText != NULL)
     {
@@ -234,12 +216,12 @@ void CCEditBox::setPlaceHolder(const char* pText)
     }
 }
 
-const char* CCEditBox::getPlaceHolder(void)
+const char* EditBox::getPlaceHolder(void)
 {
     return m_strPlaceHolder.c_str();
 }
 
-void CCEditBox::setInputMode(EditBoxInputMode inputMode)
+void EditBox::setInputMode(EditBoxInputMode inputMode)
 {
     m_eEditBoxInputMode = inputMode;
     if (m_pEditBoxImpl != NULL)
@@ -248,7 +230,7 @@ void CCEditBox::setInputMode(EditBoxInputMode inputMode)
     }
 }
 
-void CCEditBox::setMaxLength(int maxLength)
+void EditBox::setMaxLength(int maxLength)
 {
     m_nMaxLength = maxLength;
     if (m_pEditBoxImpl != NULL)
@@ -258,12 +240,12 @@ void CCEditBox::setMaxLength(int maxLength)
 }
 
 
-int CCEditBox::getMaxLength()
+int EditBox::getMaxLength()
 {
     return m_nMaxLength;
 }
 
-void CCEditBox::setInputFlag(EditBoxInputFlag inputFlag)
+void EditBox::setInputFlag(EditBoxInputFlag inputFlag)
 {
     m_eEditBoxInputFlag = inputFlag;
     if (m_pEditBoxImpl != NULL)
@@ -272,7 +254,7 @@ void CCEditBox::setInputFlag(EditBoxInputFlag inputFlag)
     }
 }
 
-void CCEditBox::setReturnType(KeyboardReturnType returnType)
+void EditBox::setReturnType(KeyboardReturnType returnType)
 {
     m_eKeyboardReturnType = returnType;
     if (m_pEditBoxImpl != NULL)
@@ -281,69 +263,69 @@ void CCEditBox::setReturnType(KeyboardReturnType returnType)
     }
 }
 
-KeyboardReturnType CCEditBox::getReturnType()
+KeyboardReturnType EditBox::getReturnType()
 {
     return m_eKeyboardReturnType;
 }
 
 /* override function */
-void CCEditBox::setPosition(const CCPoint& pos)
+void EditBox::setPosition(const CCPoint& pos)
 {
-	Button::setPosition(pos);
+	BaseWidget::setPosition(pos);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setPosition(pos);
     }
 }
 
-void CCEditBox::setVisible(bool visible)
+void EditBox::setVisible(bool visible)
 {
-	Button::setVisible(visible);
+	BaseWidget::setVisible(visible);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setVisible(visible);
     }
 }
 
-void CCEditBox::setContentSize(const CCSize& size)
+void EditBox::setSize(const CCSize& size)
 {
-	Button::setContentSize(size);
+	BaseWidget::setSize(size);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setContentSize(size);
     }
 }
 
-void CCEditBox::setAnchorPoint(const CCPoint& anchorPoint)
+void EditBox::setAnchorPoint(const CCPoint& anchorPoint)
 {
-	Button::setAnchorPoint(anchorPoint);
+	BaseWidget::setAnchorPoint(anchorPoint);
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->setAnchorPoint(anchorPoint);
     }
 }
 
-void CCEditBox::visit(void)
+void EditBox::visit(void)
 {
-	Button::visit();
+	BaseWidget::visit();
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->visit();
     }
 }
 
-void CCEditBox::onEnter(void)
+void EditBox::onEnter(void)
 {
-	Button::onEnter();
+	BaseWidget::onEnter();
     if (m_pEditBoxImpl != NULL)
     {
         m_pEditBoxImpl->onEnter();
     }
 }
 
-void CCEditBox::onExit(void)
+void EditBox::onExit(void)
 {
-	Button::onExit();
+	BaseWidget::onExit();
     if (m_pEditBoxImpl != NULL)
     {
         // remove system edit control
@@ -351,17 +333,15 @@ void CCEditBox::onExit(void)
     }
 }
 
-static CCRect getRect(CCNode * pNode)
+void EditBox::keyboardWillShow(CCIMEKeyboardNotificationInfo& info)
 {
-	CCSize contentSize = pNode->getContentSize();
-	CCRect rect = CCRectMake(0, 0, contentSize.width, contentSize.height);
-	return CCRectApplyAffineTransform(rect, pNode->nodeToWorldTransform());
-}
+    CCSize contentSize = this->getSize();
+    float left = -contentSize.width * m_obAnchorPoint.x;
+    float bottom = contentSize.height * (0.5 - m_obAnchorPoint.y) - contentSize.height/2;
 
-void CCEditBox::keyboardWillShow(CCIMEKeyboardNotificationInfo& info)
-{
-    // CCLOG("CCEditBox::keyboardWillShow");
-    CCRect rectTracked = getRect(this);
+    CCRect rect = CCRectMake(left, bottom, contentSize.width, contentSize.height);
+    CCRect rectTracked = CCRectApplyAffineTransform(rect, this->nodeToWorldTransform());
+
 	// some adjustment for margin between the keyboard and the edit box.
 	rectTracked.origin.y -= 4;
 
@@ -382,12 +362,12 @@ void CCEditBox::keyboardWillShow(CCIMEKeyboardNotificationInfo& info)
     }
 }
 
-void CCEditBox::keyboardDidShow(CCIMEKeyboardNotificationInfo& info)
+void EditBox::keyboardDidShow(CCIMEKeyboardNotificationInfo& info)
 {
 	
 }
 
-void CCEditBox::keyboardWillHide(CCIMEKeyboardNotificationInfo& info)
+void EditBox::keyboardWillHide(CCIMEKeyboardNotificationInfo& info)
 {
     // CCLOG("CCEditBox::keyboardWillHide");
     if (m_pEditBoxImpl != NULL)
@@ -396,18 +376,18 @@ void CCEditBox::keyboardWillHide(CCIMEKeyboardNotificationInfo& info)
     }
 }
 
-void CCEditBox::keyboardDidHide(CCIMEKeyboardNotificationInfo& info)
+void EditBox::keyboardDidHide(CCIMEKeyboardNotificationInfo& info)
 {
 	
 }
 
-void CCEditBox::registerScriptEditBoxHandler(int handler)
+void EditBox::registerScriptEditBoxHandler(int handler)
 {
     unregisterScriptEditBoxHandler();
     m_nScriptEditBoxHandler = handler;
 }
 
-void CCEditBox::unregisterScriptEditBoxHandler(void)
+void EditBox::unregisterScriptEditBoxHandler(void)
 {
     if (0 != m_nScriptEditBoxHandler)
     {

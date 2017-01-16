@@ -127,8 +127,8 @@ enum EditBoxInputFlag
 };
 
 
-class CCEditBox;
-class CCEditBoxImpl;
+class EditBox;
+class EditBoxImpl;
 
 /**
  *  @js NA
@@ -143,27 +143,27 @@ public:
      * This method is called when an edit box gains focus after keyboard is shown.
      * @param editBox The edit box object that generated the event.
      */
-    virtual void editBoxEditingDidBegin(CCEditBox* editBox) {};
+    virtual void editBoxEditingDidBegin(EditBox* editBox) {};
     
     
     /**
      * This method is called when an edit box loses focus after keyboard is hidden.
      * @param editBox The edit box object that generated the event.
      */
-    virtual void editBoxEditingDidEnd(CCEditBox* editBox) {};
+    virtual void editBoxEditingDidEnd(EditBox* editBox) {};
     
     /**
      * This method is called when the edit box text was changed.
      * @param editBox The edit box object that generated the event.
      * @param text The new text.
      */
-    virtual void editBoxTextChanged(CCEditBox* editBox, const std::string& text) {};
+    virtual void editBoxTextChanged(EditBox* editBox, const std::string& text) {};
     
     /**
      * This method is called when the return button was pressed or the outside area of keyboard was touched.
      * @param editBox The edit box object that generated the event.
      */
-    virtual void editBoxReturn(CCEditBox* editBox) = 0;
+    virtual void editBoxReturn(EditBox* editBox) = 0;
     
 };
 
@@ -174,27 +174,26 @@ public:
  * 
  */
  
-class CC_DLL CCEditBox
-: public Button
-, public CCIMEDelegate
+class CC_DLL EditBox : public Widget, public CCIMEDelegate
 {
 public:
+    typedef Widget BaseWidget;
     /**
      * Constructor.
      */
-    CCEditBox(void);
+    EditBox(void);
     
     /**
      * Destructor.
      */
-    virtual ~CCEditBox(void);
+    virtual ~EditBox(void);
 
     /**
      * create a edit box with size.
      * @return An autorelease pointer of CCEditBox, you don't need to release it only if you retain it again.
      */
     //static CCEditBox* create(const CCSize& size, CCScale9Sprite* pNormal9SpriteBg, CCScale9Sprite* pPressed9SpriteBg = NULL, CCScale9Sprite* pDisabled9SpriteBg = NULL);
-	static CCEditBox* create();
+	static EditBox* create();
     /**
      * Init edit box with specified size. This method should be invoked right after constructor.
      * @param size The size of edit box.
@@ -360,22 +359,14 @@ public:
     /* override functions */
     virtual void setPosition(const CCPoint& pos);
     virtual void setVisible(bool visible);
-    virtual void setContentSize(const CCSize& size);
+    virtual void setSize(const CCSize& size);
 	virtual void setAnchorPoint(const CCPoint& anchorPoint);
-    /**
-     *  @js NA
-     */
+
     virtual void visit(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
 	virtual void onEnter(void);
-    /**
-     *  @js NA
-     *  @lua NA
-     */
     virtual void onExit(void);
+    virtual bool init();
+    
     /**
      *  @js NA
      *  @lua NA
@@ -400,7 +391,7 @@ public:
 	virtual void onPressStateChangedToPressed();
 
 protected:
-    CCEditBoxImpl*      m_pEditBoxImpl;
+    EditBoxImpl*      m_pEditBoxImpl;
     CCEditBoxDelegate*  m_pDelegate;
     
     EditBoxInputMode    m_eEditBoxInputMode;

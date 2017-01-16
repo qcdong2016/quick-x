@@ -477,13 +477,7 @@
     <ClCompile Include="..\cocos2d-x\ui\UIWidget.cpp">
       <Filter>cocos2d-x\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.cpp">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\EditBox\Win32InputBox.cpp">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\ui\EditBox\CCEditBox.cpp">
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.cpp">
@@ -514,9 +508,6 @@
       <Filter>cocos2d-x\audio</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\LuaCocos2d.cpp">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\scripting\LuaCocoStudio.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\LuaFunction.cpp">
@@ -960,6 +951,12 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.c">
       <Filter>cocos2d-x\scripting\lua_extensions\snapshot</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\UIEditBox.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.cpp">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
@@ -1271,16 +1268,7 @@
     <ClInclude Include="..\cocos2d-x\ui\CocosGUI.h">
       <Filter>cocos2d-x\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImplWin.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\EditBox\Win32InputBox.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBox.h">
-      <Filter>cocos2d-x\ui\EditBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\ui\EditBox\CCEditBoxImpl.h">
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\Layouts\UILayoutDefine.h">
@@ -1317,9 +1305,6 @@
       <Filter>cocos2d-x\audio</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\LuaCocos2d.h">
-      <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\scripting\LuaCocoStudio.h">
       <Filter>cocos2d-x\scripting</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\LuaFunction.h">
@@ -1879,6 +1864,15 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.h">
       <Filter>cocos2d-x\scripting\lua_extensions\snapshot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBox.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBoxImpl.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.h">
+      <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
