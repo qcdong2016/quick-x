@@ -300,6 +300,7 @@ CCSprite* CCTMXLayer::reusedTileWithRect(CCRect rect)
     if (! m_pReusedTile) 
     {
         m_pReusedTile = new CCSprite();
+		m_pReusedTile->retain();
         m_pReusedTile->initWithTexture(m_pobTextureAtlas->getTexture(), rect, false);
         m_pReusedTile->setBatchNode(this);
     }

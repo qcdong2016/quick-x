@@ -27,6 +27,7 @@ function Menu:ctor()
         'ShaderTest',
         'SpineTest',
         'SpriteTest',
+        'TileTest',
         'Game2048',
     }
 

@@ -73,7 +73,8 @@ CCTMXLayerInfo::CCTMXLayerInfo()
 , m_uMaxGID(0)        
 , m_tOffset(CCPointZero)
 {
-    m_pProperties= new CCDictionary();;
+    m_pProperties = new CCDictionary();
+	m_pProperties->retain();
 }
 
 CCTMXLayerInfo::~CCTMXLayerInfo()
@@ -171,7 +172,9 @@ void CCTMXMapInfo::internalInit(const char* tmxFileName, const char* resourcePat
     m_pObjectGroups->retain();
 
     m_pProperties = new CCDictionary();
+	m_pProperties->retain();
     m_pTileProperties = new CCDictionary();
+	m_pTileProperties->retain();
 
     // tmp vars
     m_sCurrentString = "";
@@ -399,7 +402,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             tileset->m_tTileSize = s;
 
             pTMXMapInfo->getTilesets()->addObject(tileset);
-            tileset->release();
         }
     }
     else if (elementName == "tile")
@@ -408,7 +410,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
         CCDictionary *dict = new CCDictionary();
         pTMXMapInfo->setParentGID(info->m_uFirstGid + atoi(valueForKey("id", attributeDict)));
         pTMXMapInfo->getTileProperties()->setObject(dict, pTMXMapInfo->getParentGID());
-        CC_SAFE_RELEASE(dict);
         
         pTMXMapInfo->setParentElement(TMXPropertyTile);
 
@@ -441,7 +442,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
         layer->m_tOffset = ccp(x,y);
 
         pTMXMapInfo->getLayers()->addObject(layer);
-        layer->release();
 
         // The parent element is now "layer"
         pTMXMapInfo->setParentElement(TMXPropertyLayer);
@@ -457,7 +457,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
         objectGroup->setPositionOffset(positionOffset);
 
         pTMXMapInfo->getObjectGroups()->addObject(objectGroup);
-        objectGroup->release();
 
         // The parent element is now "objectgroup"
         pTMXMapInfo->setParentElement(TMXPropertyObjectGroup);
@@ -523,7 +522,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             CCString* obj = new CCString(valueForKey(key, attributeDict));
             if( obj )
             {
-                obj->autorelease();
                 dict->setObject(obj, key);
             }
         }
@@ -537,7 +535,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             int x = atoi(value) + (int)objectGroup->getPositionOffset().x;
             sprintf(buffer, "%d", x);
             CCString* pStr = new CCString(buffer);
-            pStr->autorelease();
             dict->setObject(pStr, "x");
         }
 
@@ -550,13 +547,11 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             y = (int)(m_tMapSize.height * m_tTileSize.height) - y - atoi(valueForKey("height", attributeDict));
             sprintf(buffer, "%d", y);
             CCString* pStr = new CCString(buffer);
-            pStr->autorelease();
             dict->setObject(pStr, "y");
         }
 
         // Add the object to the objectGroup
         objectGroup->getObjects()->addObject(dict);
-        dict->release();
 
          // The parent element is now "object"
          pTMXMapInfo->setParentElement(TMXPropertyObject);
@@ -575,7 +570,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             CCString *value = new CCString(valueForKey("value", attributeDict));
             std::string key = valueForKey("name", attributeDict);
             pTMXMapInfo->getProperties()->setObject(value, key.c_str());
-            value->release();
 
         } 
         else if ( pTMXMapInfo->getParentElement() == TMXPropertyLayer )
@@ -586,7 +580,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             std::string key = valueForKey("name", attributeDict);
             // Add the property to the layer
             layer->getProperties()->setObject(value, key.c_str());
-            value->release();
 
         } 
         else if ( pTMXMapInfo->getParentElement() == TMXPropertyObjectGroup ) 
@@ -596,7 +589,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             CCString *value = new CCString(valueForKey("value", attributeDict));
             const char* key = valueForKey("name", attributeDict);
             objectGroup->getProperties()->setObject(value, key);
-            value->release();
 
         } 
         else if ( pTMXMapInfo->getParentElement() == TMXPropertyObject )
@@ -608,7 +600,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             const char* propertyName = valueForKey("name", attributeDict);
             CCString *propertyValue = new CCString(valueForKey("value", attributeDict));
             dict->setObject(propertyValue, propertyName);
-            propertyValue->release();
         } 
         else if ( pTMXMapInfo->getParentElement() == TMXPropertyTile ) 
         {
@@ -617,7 +608,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
             const char* propertyName = valueForKey("name", attributeDict);
             CCString *propertyValue = new CCString(valueForKey("value", attributeDict));
             dict->setObject(propertyValue, propertyName);
-            propertyValue->release();
         }
     }
     else if (elementName == "polygon") 
@@ -650,7 +640,6 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
                     int x = atoi(xStr.c_str()) + (int)objectGroup->getPositionOffset().x;
                     sprintf(buffer, "%d", x);
                     CCString* pStr = new CCString(buffer);
-                    pStr->autorelease();
                     pPointDict->setObject(pStr, "x");
                 }
 
@@ -660,17 +649,14 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
                     int y = atoi(yStr.c_str()) + (int)objectGroup->getPositionOffset().y;
                     sprintf(buffer, "%d", y);
                     CCString* pStr = new CCString(buffer);
-                    pStr->autorelease();
                     pPointDict->setObject(pStr, "y");
                 }
                 
                 // add to points array
                 pPointsArray->addObject(pPointDict);
-                pPointDict->release();
             }
             
             dict->setObject(pPointsArray, "points");
-            pPointsArray->release();
         }
     } 
     else if (elementName == "polyline")
@@ -703,6 +689,9 @@ void CCTMXMapInfo::endElement(void *ctx, const char *name)
         CCTMXLayerInfo* layer = (CCTMXLayerInfo*)pTMXMapInfo->getLayers()->lastObject();
 
         std::string currentString = pTMXMapInfo->getCurrentString();
+		currentString.erase(0, currentString.find_first_not_of(" \n\r\t"));
+		currentString.erase(currentString.find_last_not_of(" \n\r\t") + 1);
+
 		len = (unsigned int)currentString.length();
         char *buffer = CCCrypto::decodeBase64(currentString.c_str(), len);
         if( ! buffer ) 
