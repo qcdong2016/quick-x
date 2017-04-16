@@ -29,7 +29,7 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
 	ModuleManager::addModule<SpineModule>();
-	ModuleManager::addModule<NoUIModule>();
+	//ModuleManager::addModule<NoUIModule>();
 
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
