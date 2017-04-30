@@ -29,7 +29,9 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
 	ModuleManager::addModule<SpineModule>();
+#if OS_IS(MAC) || OS_IS(WIN)
 	ModuleManager::addModule<NoUIModule>();
+#endif
 
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();

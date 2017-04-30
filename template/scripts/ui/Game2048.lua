@@ -79,7 +79,7 @@ local numcolors = {
 function setnum(self,num,i,j)
     local s = tostring(num)
     --s = s.."("..i..","..j..")"
-    if s=='0' then 
+    if s=='0' then
         s=''
         self.background:setOpacity(100)
     else
@@ -123,7 +123,7 @@ function MainScene:loadStatus()
 end
 
 function MainScene:createLabel(title)
-    self.scoreLabel = cc.ui.UILabel.new({
+    self.scoreLabel = ui.newTTFLabel({
         text = "SCORE:0",
         size = 30,
         color = display.COLOR_BLUE,
@@ -194,7 +194,7 @@ function MainScene:createGridShow()
         local cell = {
             backgroundsize = 100,
             background = CCLayerColor:create(colors[-1], 100, 100),
-            num = cc.ui.UILabel.new({
+            num = ui.newTTFLabel({
                 text = s,
                 size = 40,
                 color = numcolors[0],
