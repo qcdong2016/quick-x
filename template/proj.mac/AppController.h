@@ -23,15 +23,22 @@
  ****************************************************************************/
 
 #import "EAGLView.h"
+#import "ConsoleWindowController.h"
 
 
 @interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
 {
+    id eventMonitor;
     NSWindow *window;
     EAGLView *glView;
     NSMenu *menu;
 
     BOOL isAlwaysOnTop;
+
+    //console pipe
+    ConsoleWindowController *consoleController;
+    NSPipe *pipe;
+    NSFileHandle *pipeReadHandle;
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;

@@ -36,7 +36,8 @@
 #include "audio/SimpleAudioEngine.h"
 #include "base/ProcessUtils.h"
 
-#include "AppDelegate.h"
+#include "imgui/imgui_cocos2dx.h"
+#include "core/platform/CCInput.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -63,6 +64,7 @@ using namespace cocos2d;
     [self startup];
 
     [window orderFrontRegardless];
+    [self windowDidLoad];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
@@ -76,11 +78,79 @@ using namespace cocos2d;
     return NO;
 }
 
+- (void) windowDidLoad {
+    NSEvent* (^handler)(NSEvent*) = ^(NSEvent *theEvent) {
+        NSWindow *targetWindow = theEvent.window;
+        if (targetWindow != window) {
+            return theEvent;
+        }
+
+        NSEvent *result = theEvent;
+        //NSLog(@"event monitor: %@", theEvent);
+        int keyCode = theEvent.keyCode;
+        if (keyCode == 96) { // F5
+            [self relaunch];
+        } else if (keyCode == 97) { // F6
+            cocos2d::ImGuiCC::toggleVisible();
+        } else if (keyCode == 122) { // F1
+            cocos2d::CCDirector::sharedDirector()->getSubSystem<cocos2d::Input>()->onKeypadBack();
+        } else if (keyCode == 120) { // F2
+            cocos2d::CCDirector::sharedDirector()->getSubSystem<cocos2d::Input>()->onKeypadMenu();
+        } else if (keyCode == 53) { // ESCAPE
+            cocos2d::CCDirector::sharedDirector()->getSubSystem<cocos2d::Input>()->onKeypadBack();
+        }
+
+        return result;
+    };
+    eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask
+                                                         handler:handler];
+}
+
 - (void) windowWillClose:(NSNotification *)notification
 {
+    [NSEvent removeMonitor:eventMonitor];
+    eventMonitor = nil;
     [self saveLastState];
     CCDirector::sharedDirector()->end();
     [[NSApplication sharedApplication] terminate:self];
+}
+
+- (void) openConsoleWindow
+{
+    if (!consoleController)
+    {
+        consoleController = [[ConsoleWindowController alloc] initWithWindowNibName:@"ConsoleWindow"];
+    }
+    [consoleController.window orderFrontRegardless];
+
+    NSDictionary *state = [[NSUserDefaults standardUserDefaults] objectForKey:@"last-state"];
+    if (state)
+    {
+        NSNumber *x = [state objectForKey:@"console_x"];
+        NSNumber *y = [state objectForKey:@"console_y"];
+        if (x && y)
+        {
+            int posx = [x intValue];
+            int posy = [y intValue];
+            [consoleController.window setFrameOrigin:NSMakePoint(posx, posy)];
+        }
+    }
+
+    //set console pipe
+    pipe = [NSPipe pipe] ;
+    pipeReadHandle = [pipe fileHandleForReading] ;
+
+    int outfd = [[pipe fileHandleForWriting] fileDescriptor];
+    if (dup2(outfd, fileno(stderr)) != fileno(stderr) || dup2(outfd, fileno(stdout)) != fileno(stdout))
+    {
+        perror("Unable to redirect output");
+        [self showAlert:@"Unable to redirect output to console!" withTitle:@"quick player error"];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleNotification:) name: NSFileHandleReadCompletionNotification object: pipeReadHandle] ;
+        [pipeReadHandle readInBackgroundAndNotify] ;
+    }
 }
 
 #pragma mark -
@@ -164,6 +234,8 @@ using namespace cocos2d;
         workdir = [[[NSString stringWithCString:workdir.c_str() encoding:NSUTF8StringEncoding] stringByExpandingTildeInPath] stringByStandardizingPath].UTF8String;
     }
 
+    [self openConsoleWindow];
+
     FileSystem::setResourceRoot(workdir);
 
     AppDelegate* app = new AppDelegate();
@@ -231,8 +303,23 @@ using namespace cocos2d;
     NSMutableDictionary *state = [NSMutableDictionary dictionary];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.x] forKey:@"x"];
     [state setObject:[NSNumber numberWithInt:window.frame.origin.y] forKey:@"y"];
+    if (consoleController)
+    {
+        [state setObject:[NSNumber numberWithInt:consoleController.window.frame.origin.x] forKey:@"console_x"];
+        [state setObject:[NSNumber numberWithInt:consoleController.window.frame.origin.y] forKey:@"console_y"];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:state forKey:@"last-state"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)handleNotification:(NSNotification *)note
+{
+    //NSLog(@"Received notification: %@", note);
+    [pipeReadHandle readInBackgroundAndNotify] ;
+    NSData *data = [[note userInfo] objectForKey:NSFileHandleNotificationDataItem];
+    NSString *str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    //show log to console
+    [consoleController trace:str];
 }
 
 #pragma mark -
@@ -275,4 +362,8 @@ using namespace cocos2d;
     [self setAlwaysOnTop:!isAlwaysOnTop];
 }
 
+-(void)keyDown:(NSEvent*) event
+{
+    printf("PRESS\n");
+}
 @end
