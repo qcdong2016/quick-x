@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #import "EAGLView.h"
+#import "ConsoleWindowController.h"
 
 
 @interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
@@ -33,6 +34,11 @@
     NSMenu *menu;
 
     BOOL isAlwaysOnTop;
+
+    //console pipe
+    ConsoleWindowController *consoleController;
+    NSPipe *pipe;
+    NSFileHandle *pipeReadHandle;
 }
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;

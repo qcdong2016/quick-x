@@ -771,7 +771,6 @@
 		B1A753A51DEA7968002F0D4C /* CCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCThread.h; sourceTree = "<group>"; };
 		B1A753A61DEA7968002F0D4C /* CCZipFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCZipFile.cpp; sourceTree = "<group>"; };
 		B1A753A71DEA7968002F0D4C /* CCZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCZipFile.h; sourceTree = "<group>"; };
-		B1A753CE1DEA7968002F0D4C /* CCAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometer.h; sourceTree = "<group>"; };
 		B1A753CF1DEA7968002F0D4C /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
 		B1A753D01DEA7968002F0D4C /* CCApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCApplication.mm; sourceTree = "<group>"; };
 		B1A753D11DEA7968002F0D4C /* CCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCommon.mm; sourceTree = "<group>"; };
@@ -1730,7 +1729,6 @@
 		B1A753CD1DEA7968002F0D4C /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				B1A753CE1DEA7968002F0D4C /* CCAccelerometer.h */,
 				B1A753CF1DEA7968002F0D4C /* CCApplication.h */,
 				B1A753D01DEA7968002F0D4C /* CCApplication.mm */,
 				B1A753D11DEA7968002F0D4C /* CCCommon.mm */,
