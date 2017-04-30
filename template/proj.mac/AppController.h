@@ -27,6 +27,7 @@
 
 @interface AppController : NSObject <NSApplicationDelegate, NSWindowDelegate>
 {
+    id eventMonitor;
     NSWindow *window;
     EAGLView *glView;
     NSMenu *menu;

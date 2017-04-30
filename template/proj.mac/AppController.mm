@@ -63,6 +63,7 @@ using namespace cocos2d;
     [self startup];
 
     [window orderFrontRegardless];
+    [self windowDidLoad];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 }
 
@@ -76,8 +77,30 @@ using namespace cocos2d;
     return NO;
 }
 
+- (void) windowDidLoad {
+    NSEvent* (^handler)(NSEvent*) = ^(NSEvent *theEvent) {
+        NSWindow *targetWindow = theEvent.window;
+        if (targetWindow != window) {
+            return theEvent;
+        }
+
+        NSEvent *result = theEvent;
+        //NSLog(@"event monitor: %@", theEvent);
+        int keyCode = theEvent.keyCode;
+        if (keyCode == 96) { // F5
+            [self relaunch];
+        }
+
+        return result;
+    };
+    eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask
+                                                         handler:handler];
+}
+
 - (void) windowWillClose:(NSNotification *)notification
 {
+    [NSEvent removeMonitor:eventMonitor];
+    eventMonitor = nil;
     [self saveLastState];
     CCDirector::sharedDirector()->end();
     [[NSApplication sharedApplication] terminate:self];
@@ -275,4 +298,8 @@ using namespace cocos2d;
     [self setAlwaysOnTop:!isAlwaysOnTop];
 }
 
+-(void)keyDown:(NSEvent*) event
+{
+    printf("PRESS\n");
+}
 @end
