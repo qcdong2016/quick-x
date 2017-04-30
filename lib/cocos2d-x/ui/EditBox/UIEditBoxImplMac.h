@@ -34,7 +34,7 @@
 #import <AppKit/AppKit.h>
 
 #include "CCPlatformMacros.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
 
 @interface CustomNSTextField : NSTextField
 {
@@ -71,10 +71,10 @@ class CCEditBox;
  *  @js NA
  *  @lua NA
  */
-class CCEditBoxImplMac : public CCEditBoxImpl
+class CCEditBoxImplMac : public EditBoxImpl
 {
 public:
-    CCEditBoxImplMac(CCEditBox* pEditText);
+    CCEditBoxImplMac(EditBox* pEditText);
     virtual ~CCEditBoxImplMac();
     
     virtual bool initWithSize(const CCSize& size);

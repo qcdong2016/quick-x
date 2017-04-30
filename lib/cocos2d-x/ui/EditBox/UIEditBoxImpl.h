@@ -23,8 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CCEditBoxIMPL_H__
-#define __CCEditBoxIMPL_H__
+#ifndef __UIEditBoxIMPL_H__
+#define __UIEditBoxIMPL_H__
 
 #include "CCPlatformMacros.h"
 #include "UIEditBox.h"
@@ -87,4 +87,4 @@ extern EditBoxImpl* __createSystemEditBox(EditBox* pEditBox);
 }
 NS_CC_END
 
-#endif /* __CCEditBoxIMPL_H__ */
+#endif /* __UIEditBoxIMPL_H__ */
