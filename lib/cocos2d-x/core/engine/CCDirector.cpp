@@ -114,21 +114,14 @@ bool CCDirector::init(void)
     imgui_init();
 #endif
 	m_bInvalid = (false);
-    // scenes
-    m_pRunningScene = NULL;
-    m_pNextScene = NULL;
 
     m_pNotificationNode = NULL;
-
-    m_pobScenesStack = new CCArray();
-    m_pobScenesStack->init();
 
     // projection delegate if "Custom" projection is used
     m_pProjectionDelegate = NULL;
 
     // FPS
-
-    m_uTotalFrames = 0;
+	m_uTotalFrames = 0;
     m_pLastUpdate = new struct cc_timeval();
 
     // paused ?
@@ -153,6 +146,10 @@ bool CCDirector::init(void)
     // create autorelease pool
     CCPoolManager::sharedPoolManager()->push();
 
+	_scene = CCScene::create();
+	_scene->onEnter();
+	startAnimation();
+
     return true;
 }
     
@@ -160,7 +157,6 @@ CCDirector::~CCDirector(void)
 {
     CCLOG("deallocing CCDirector %p", this);
     
-    CC_SAFE_RELEASE(m_pRunningScene);
     CC_SAFE_RELEASE(m_pNotificationNode);
 
     // pop the autorelease pool
@@ -238,19 +234,12 @@ void CCDirector::drawScene(void)
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    /* to avoid flickr, nextScene MUST be here: after tick and before draw.
-     XXX: Which bug is this one. It seems that it can't be reproduced with v0.9 */
-    if (m_pNextScene)
-    {
-        setNextScene();
-    }
-
     kmGLPushMatrix();
 
     // draw the scene
-    if (m_pRunningScene)
+    if (_scene)
     {
-        m_pRunningScene->visit();
+        _scene->visit();
     }
 
     // draw the notifications node
@@ -555,99 +544,6 @@ CCPoint CCDirector::getVisibleOrigin()
 	return CCPointZero;
 }
 
-// scene management
-
-void CCDirector::runWithScene(CCScene *pScene)
-{
-    CCAssert(pScene != NULL, "This command can only be used to start the CCDirector. There is already a scene present.");
-    CCAssert(m_pRunningScene == NULL, "m_pRunningScene should be null");
-
-    pushScene(pScene);
-    startAnimation();
-}
-
-void CCDirector::replaceScene(CCScene *pScene)
-{
-    CCAssert(m_pRunningScene, "Use runWithScene: instead to start the director");
-    CCAssert(pScene != NULL, "the scene should not be null");
-
-    unsigned int index = m_pobScenesStack->count();
-
-    m_bSendCleanupToScene = true;
-    m_pobScenesStack->replaceObjectAtIndex(index - 1, pScene);
-
-    m_pNextScene = pScene;
-}
-
-void CCDirector::pushScene(CCScene *pScene)
-{
-    CCAssert(pScene, "the scene should not null");
-
-    m_bSendCleanupToScene = false;
-
-    m_pobScenesStack->addObject(pScene);
-    m_pNextScene = pScene;
-}
-
-void CCDirector::popScene(void)
-{
-    CCAssert(m_pRunningScene != NULL, "running scene should not null");
-
-    m_pobScenesStack->removeLastObject();
-    unsigned int c = m_pobScenesStack->count();
-
-    if (c == 0)
-    {
-        end();
-    }
-    else
-    {
-        m_bSendCleanupToScene = true;
-        m_pNextScene = (CCScene*)m_pobScenesStack->objectAtIndex(c - 1);
-    }
-}
-
-void CCDirector::popToRootScene(void)
-{
-    popToSceneStackLevel(1);
-}
-
-void CCDirector::popToSceneStackLevel(int level)
-{
-    CCAssert(m_pRunningScene != NULL, "A running Scene is needed");
-    int c = (int)m_pobScenesStack->count();
-
-    // level 0? -> end
-    if (level == 0)
-    {
-        end();
-        return;
-    }
-
-    // current level or lower -> nothing
-    if (level >= c)
-        return;
-
-	// pop stack until reaching desired level
-	while (c > level)
-    {
-		CCScene *current = (CCScene*)m_pobScenesStack->lastObject();
-
-		if (current->isRunning())
-        {
-            current->onExitTransitionDidStart();
-            current->onExit();
-		}
-
-        current->cleanup();
-        m_pobScenesStack->removeLastObject();
-		c--;
-	}
-
-	m_pNextScene = (CCScene*)m_pobScenesStack->lastObject();
-	m_bSendCleanupToScene = false;
-}
-
 void CCDirector::end()
 {
     m_bPurgeDirecotorInNextLoop = true;
@@ -662,20 +558,7 @@ void CCDirector::purgeDirector()
     // They are needed in case the director is run again
     getSubSystem<CCTouchDispatcher>()->removeAllDelegates();
 
-    if (m_pRunningScene)
-    {
-        m_pRunningScene->onExitTransitionDidStart();
-        m_pRunningScene->onExit();
-        m_pRunningScene->cleanup();
-        m_pRunningScene->release();
-    }
-    
-    m_pRunningScene = NULL;
-    m_pNextScene = NULL;
-
-    // remove all objects, but don't release it.
-    // runWithScene might be executed after 'end'.
-    m_pobScenesStack->removeAllObjects();
+	_scene.Reset();
 
     stopAnimation();
 
@@ -699,42 +582,6 @@ void CCDirector::purgeDirector()
     setCCOBJ_director_ref(nullptr);
 }
 
-void CCDirector::setNextScene(void)
-{
-	bool runningIsTransition = false;
-	bool newIsTransition = false; 
-
-    // If it is not a transition, call onExit/cleanup
-     if (! newIsTransition)
-     {
-         if (m_pRunningScene)
-         {
-             m_pRunningScene->onExitTransitionDidStart();
-             m_pRunningScene->onExit();
-         }
- 
-         // issue #709. the root node (scene) should receive the cleanup message too
-         // otherwise it might be leaked.
-         if (m_bSendCleanupToScene && m_pRunningScene)
-         {
-             m_pRunningScene->cleanup();
-         }
-     }
-
-    if (m_pRunningScene)
-    {
-        m_pRunningScene->release();
-    }
-    m_pRunningScene = m_pNextScene;
-    m_pNextScene->retain();
-    m_pNextScene = NULL;
-
-    if ((! runningIsTransition) && m_pRunningScene)
-    {
-        m_pRunningScene->onEnter();
-        m_pRunningScene->onEnterTransitionDidFinish();
-    }
-}
 
 void CCDirector::pause(void)
 {

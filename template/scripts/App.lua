@@ -22,12 +22,9 @@ function App:enterState(name, ...)
 end
 
 function App:run()
-    self.scene_ = display.newScene("Scene")
-    -- self.setting = cc.utils.setting.new('local.lua', 'MyKey')
+    self.scene_ = director:getScene()
     
     UIMgr = require('UIMgr').new():addTo(self.scene_, 2)
-
-    display.replaceScene(self.scene_)
 
     FileSystem:addResourcePath("res/")
 

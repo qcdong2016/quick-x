@@ -131,7 +131,7 @@ public:
     // attribute
 
     /** Get current running Scene. Director can only run one Scene at the time */
-    inline CCScene* getRunningScene(void) { return m_pRunningScene; }
+    inline CCScene* getScene(void) { return _scene; }
 
     /** Get the FPS value */
     inline double getAnimationInterval(void) { return m_dAnimationInterval; }
@@ -166,14 +166,6 @@ public:
     void setViewport();
 
     /** How many frames were called since the director started */
-    
-    
-    /** Whether or not the replaced scene will receive the cleanup message.
-     If the new scene is pushed, then the old scene won't receive the "cleanup" message.
-     If the new scene replaces the old one, the it will receive the "cleanup" message.
-     @since v0.99.0
-     */
-    inline bool isSendCleanupToScene(void) { return m_bSendCleanupToScene; }
 
     /** This object will be visited after the main scene is visited.
      This object MUST implement the "visit" selector.
@@ -221,48 +213,6 @@ public:
 
     /// XXX: missing description 
     float getZEye(void);
-
-    // Scene Management
-
-    /** Enters the Director's main loop with the given Scene.
-     * Call it to run only your FIRST scene.
-     * Don't call it if there is already a running scene.
-     *
-     * It will call pushScene: and then it will call startAnimation
-     */
-    void runWithScene(CCScene *pScene);
-
-    /** Suspends the execution of the running scene, pushing it on the stack of suspended scenes.
-     * The new scene will be executed.
-     * Try to avoid big stacks of pushed scenes to reduce memory allocation. 
-     * ONLY call it if there is a running scene.
-     */
-    void pushScene(CCScene *pScene);
-
-    /** Pops out a scene from the queue.
-     * This scene will replace the running one.
-     * The running scene will be deleted. If there are no more scenes in the stack the execution is terminated.
-     * ONLY call it if there is a running scene.
-     */
-    void popScene(void);
-
-    /** Pops out all scenes from the queue until the root scene in the queue.
-     * This scene will replace the running one.
-     * Internally it will call `popToSceneStackLevel(1)`
-     */
-    void popToRootScene(void);
-
-    /** Pops out all scenes from the queue until it reaches `level`.
-     If level is 0, it will end the director.
-     If level is 1, it will pop all scenes until it reaches to root scene.
-     If level is <= than the current stack level, it won't do anything.
-     */
- 	void popToSceneStackLevel(int level);
-
-    /** Replaces the running scene with a new one. The running scene is terminated.
-     * ONLY call it if there is a running scene.
-     */
-    void replaceScene(CCScene *pScene);
 
     /** Ends the execution, releases the running scene.
      It doesn't remove the OpenGL view from its parent. You have to do it manually.
@@ -378,8 +328,6 @@ protected:
     void purgeDirector();
     bool m_bPurgeDirecotorInNextLoop; // this flag will be set to true in end()
     
-    void setNextScene(void);
-    
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
     
     /** calculates delta time since last time it was called */    
@@ -404,17 +352,7 @@ protected:
     unsigned int m_uTotalFrames;
      
     /* The running scene */
-    CCScene *m_pRunningScene;
-    
-    /* will be the next 'runningScene' in the next frame
-     nextScene is a weak reference. */
-    CCScene *m_pNextScene;
-    
-    /* If YES, then "old" scene will receive the cleanup message */
-    bool    m_bSendCleanupToScene;
-
-    /* scheduled scenes */
-	SharedPtr<CCArray> m_pobScenesStack;
+	SharedPtr<CCScene> _scene;
     
     /* last time the main loop was updated */
     struct cc_timeval *m_pLastUpdate;

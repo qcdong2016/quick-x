@@ -70,7 +70,6 @@ $pfile "cocos2dx/misc_nodes/CCProgressTimer.tolua"
 $pfile "cocos2dx/misc_nodes/CCRenderTexture.tolua"
 
 $pfile "cocos2dx/layers_scenes_transitions_nodes/CCLayer.tolua"
-$pfile "cocos2dx/layers_scenes_transitions_nodes/CCScene.tolua"
 
 $pfile "cocos2dx/label_nodes/CCLabelAtlas.tolua"
 $pfile "cocos2dx/label_nodes/CCLabelBMFont.tolua"

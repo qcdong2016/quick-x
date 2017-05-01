@@ -115,7 +115,6 @@ class CCNode : public CCScriptEventDispatcher
     bool isCascadeOpacityEnabled(void);
     void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
     void updateDisplayedOpacity(GLubyte opacity);
-    CCScene *getScene();
     bool isTouchCaptureEnabled();
     void setTouchCaptureEnabled(bool value);
     bool isTouchSwallowEnabled();
