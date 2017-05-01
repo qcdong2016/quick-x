@@ -29,7 +29,6 @@
 
 #include "nodes/CCDrawingPrimitives.h"
 #include "nodes/CCNode.h"
-#include "cocoa/CCPointArray.h"
 
 NS_CC_BEGIN
 
@@ -236,8 +235,7 @@ protected:
 class CCPolygonShape : public CCShapeNode
 {
 public:
-    static CCPolygonShape* create(CCPoint* vertices, unsigned int numVertices);
-    static CCPolygonShape* create(CCPointArray* vertices);
+	static CCPolygonShape* create(const std::vector<CCPoint>& vertices);
     ~CCPolygonShape(void);
 
     bool isFill(void) {
@@ -258,19 +256,14 @@ public:
 
 protected:
     CCPolygonShape(void)
-    : m_vertices(NULL)
-    , m_verticesDraw(NULL)
-    , m_numberOfVertices(0)
-    , m_fill(false)
+    : m_fill(false)
     , m_close(false)
     {
     }
-    bool initWithVertices(CCPoint* vertices, unsigned int numVertices);
-    bool initWithVertices(CCPointArray* vertices);
+    bool initWithVertices(const std::vector<CCPoint>& vertices);
 
-    CCPoint* m_vertices;
-    CCPoint* m_verticesDraw;
-    unsigned int m_numberOfVertices;
+	std::vector<CCPoint> _vertices;
+	std::vector<CCPoint> _drawVertives;
     bool m_fill;
     bool m_close;
 

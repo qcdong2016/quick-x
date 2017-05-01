@@ -594,9 +594,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCGeometry.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCPointArray.cpp">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
@@ -1397,9 +1394,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCInteger.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCPointArray.h">
-      <Filter>cocos2d-x\core\cocoa</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
@@ -1506,9 +1500,6 @@
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\compat\stdint.h">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h">

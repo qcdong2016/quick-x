@@ -42,7 +42,6 @@
 #include "CCActionInterval.h"
 #include "nodes/CCNode.h"
 #include "cocoa/CCGeometry.h"
-#include "cocoa/CCPointArray.h"
 
 NS_CC_BEGIN;
 
@@ -66,7 +65,7 @@ public:
      *  js:var create(var duration,var pointTable,var tension)
      *  @endcode
      */
-    static CCCardinalSplineTo* create(float duration, CCPointArray* points, float tension);
+    static CCCardinalSplineTo* create(float duration, const std::vector<CCPoint>& points, float tension);
     /**
      *  @js NA
      *  @lua NA
@@ -81,7 +80,7 @@ public:
     /** initializes the action with a duration and an array of points 
      *  @lua NA
      */
-    bool initWithDuration(float duration, CCPointArray* points, float tension);
+    bool initWithDuration(float duration, const std::vector<CCPoint>& points, float tension);
     
     /**
      *  @js NA
@@ -102,20 +101,17 @@ public:
      */
     virtual void updatePosition(CCPoint &newPos);
     
-    inline CCPointArray* getPoints() { return m_pPoints; }
+    inline const std::vector<CCPoint>& getPoints() { return _points; }
     /**
      *  @js NA
      */
-    inline void  setPoints(CCPointArray* points)
+    inline void  setPoints(const std::vector<CCPoint>& points)
     {
-        CC_SAFE_RETAIN(points);
-        CC_SAFE_RELEASE(m_pPoints);
-        m_pPoints = points;
+        _points = points;
     }
     
 protected:
-    /** Array of control points */
-    CCPointArray *m_pPoints;
+	std::vector<CCPoint> _points;
     float m_fDeltaT;
     float m_fTension;
     CCPoint	m_previousPosition;
@@ -136,7 +132,7 @@ public:
      *  js:var create(var duration,var pointTable,var tension)
      *  @endcode
      */
-    static CCCardinalSplineBy* create(float duration, CCPointArray* points, float tension);
+    static CCCardinalSplineBy* create(float duration, const std::vector<CCPoint>& points, float tension);
     /**
      *  @js NA
      *  @lua NA
@@ -171,13 +167,13 @@ public:
      *  js:var create(var dt,var pointTable)
      *  @endcode
      */
-    static CCCatmullRomTo* create(float dt, CCPointArray* points);
+    static CCCatmullRomTo* create(float dt, const std::vector<CCPoint>& points);
 
     /** initializes the action with a duration and an array of points 
      *  @js NA
      *  @lua NA
      */
-    bool initWithDuration(float dt, CCPointArray* points);
+    bool initWithDuration(float dt, const std::vector<CCPoint>& points);
 };
 
 /** An action that moves the target with a CatmullRom curve by a certain distance.
@@ -196,13 +192,13 @@ public:
      *  js:var create(var dt,var pointTable)
      *  @endcode
      */
-    static CCCatmullRomBy* create(float dt, CCPointArray* points);
+    static CCCatmullRomBy* create(float dt, const std::vector<CCPoint>& points);
 
     /** initializes the action with a duration and an array of points 
      *  @js NA
      *  @lua NA
      */
-    bool initWithDuration(float dt, CCPointArray* points);
+    bool initWithDuration(float dt, const std::vector<CCPoint>& points);
 };
 
 /** Returns the Cardinal Spline position for a given set of control points, tension and time */

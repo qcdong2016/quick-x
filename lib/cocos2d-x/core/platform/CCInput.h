@@ -2,8 +2,7 @@
 #pragma once
 
 #include "engine/CCSubSystem.h"
-
-
+#include "CCKeyCode.h"
 
 NS_CC_BEGIN;
 

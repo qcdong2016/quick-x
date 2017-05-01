@@ -41,7 +41,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCAutoreleasePool.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCDictionary.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCGeometry.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\cocoa\CCPointArray.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCSet.cpp" />
@@ -317,7 +316,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCDictionary.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCGeometry.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCInteger.h" />
-    <ClInclude Include="..\cocos2d-x\core\cocoa\CCPointArray.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptEventDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCSet.h" />
@@ -388,7 +386,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\compat\stdint.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCSpriteFrame.h" />

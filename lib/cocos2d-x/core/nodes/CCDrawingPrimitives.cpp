@@ -335,12 +335,12 @@ void ccDrawQuadBezier(const CCPoint& origin, const CCPoint& control, const CCPoi
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawCatmullRom( CCPointArray *points, unsigned int segments )
+void ccDrawCatmullRom(const std::vector<CCPoint>& points, unsigned int segments)
 {
     ccDrawCardinalSpline( points, 0.5f, segments );
 }
 
-void ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int segments )
+void ccDrawCardinalSpline(const std::vector<CCPoint>& config, float tension,  unsigned int segments )
 {
     lazy_init();
 
@@ -348,7 +348,7 @@ void ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int se
 
     unsigned int p;
     float lt;
-    float deltaT = 1.0f / config->count();
+    float deltaT = 1.0f / config.size();
 
     for( unsigned int i=0; i < segments+1;i++) {
 
@@ -356,7 +356,7 @@ void ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int se
 
         // border
         if( dt == 1 ) {
-            p = config->count() - 1;
+            p = config.size() - 1;
             lt = 1;
         } else {
             p = dt / deltaT;
@@ -364,10 +364,10 @@ void ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int se
         }
 
         // Interpolate
-        CCPoint pp0 = config->get(p-1);
-        CCPoint pp1 = config->get(p+0);
-        CCPoint pp2 = config->get(p+1);
-        CCPoint pp3 = config->get(p+2);
+        CCPoint pp0 = config[p-1];
+        CCPoint pp1 = config[p+0];
+        CCPoint pp2 = config[p+1];
+        CCPoint pp3 = config[p+2];
 
         CCPoint newPos = ccCardinalSplineAt( pp0, pp1, pp2, pp3, tension, lt);
         vertices[i].x = newPos.x;

@@ -35,6 +35,7 @@
 #include "ccMacros.h"
 #include "support/CCPointExtension.h"
 #include "CCActionCatmullRom.h"
+#include <xutility>
 
 using namespace std;
 
@@ -65,7 +66,7 @@ CCPoint ccCardinalSplineAt(CCPoint &p0, CCPoint &p1, CCPoint &p2, CCPoint &p3, f
 /* Implementation of CCCardinalSplineTo
  */
 
-CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, cocos2d::CCPointArray *points, float tension)
+CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, const std::vector<CCPoint>& points, float tension)
 {
     CCCardinalSplineTo *ret = new CCCardinalSplineTo();
     if (ret)
@@ -83,9 +84,9 @@ CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, cocos2d::CCPointA
     return ret;
 }
 
-bool CCCardinalSplineTo::initWithDuration(float duration, cocos2d::CCPointArray *points, float tension)
+bool CCCardinalSplineTo::initWithDuration(float duration, const std::vector<CCPoint>& points, float tension)
 {
-    CCAssert(points->count() > 0, "Invalid configuration. It must at least have one control point");
+    CCAssert(points.size() > 0, "Invalid configuration. It must at least have one control point");
 
     if (CCActionInterval::initWithDuration(duration))
     {
@@ -100,12 +101,10 @@ bool CCCardinalSplineTo::initWithDuration(float duration, cocos2d::CCPointArray 
 
 CCCardinalSplineTo::~CCCardinalSplineTo()
 {
-    CC_SAFE_RELEASE_NULL(m_pPoints);
 }
 
 CCCardinalSplineTo::CCCardinalSplineTo()
-: m_pPoints(NULL)
-, m_fDeltaT(0.f)
+: m_fDeltaT(0.f)
 , m_fTension(0.f)
 {
 }
@@ -114,10 +113,10 @@ void CCCardinalSplineTo::startWithTarget(cocos2d::CCNode *pTarget)
 {
     CCActionInterval::startWithTarget(pTarget);
 	
-//    m_fDeltaT = (float) 1 / m_pPoints->count();
+//    m_fDeltaT = (float) 1 / _points->count();
     
     // Issue #1441
-    m_fDeltaT = (float) 1 / (m_pPoints->count() - 1);
+    m_fDeltaT = (float) 1 / (_points.size() - 1);
 
     m_previousPosition = pTarget->getPosition();
     m_accumulatedDiff = CCPointZero;
@@ -126,7 +125,7 @@ void CCCardinalSplineTo::startWithTarget(cocos2d::CCNode *pTarget)
 void CCCardinalSplineTo::paste(CCObject* o)
 {
 	Super::paste(o);
-    O->initWithDuration(this->getDuration(), this->m_pPoints, this->m_fTension);
+    O->initWithDuration(this->getDuration(), this->_points, this->m_fTension);
 }
 
 void CCCardinalSplineTo::update(float time)
@@ -140,7 +139,7 @@ void CCCardinalSplineTo::update(float time)
 	// want p to be 1, 2, 3, 4, 5, 6
     if (time == 1)
     {
-        p = m_pPoints->count() - 1;
+        p = _points.size() - 1;
         lt = 1;
     }
     else 
@@ -150,10 +149,10 @@ void CCCardinalSplineTo::update(float time)
     }
     
 	// Interpolate    
-    CCPoint pp0 = m_pPoints->get(p-1);
-    CCPoint pp1 = m_pPoints->get(p+0);
-    CCPoint pp2 = m_pPoints->get(p+1);
-    CCPoint pp3 = m_pPoints->get(p+2);
+    CCPoint pp0 = _points[p-1];
+    CCPoint pp1 = _points[p+0];
+    CCPoint pp2 = _points[p+1];
+    CCPoint pp3 = _points[p+2];
 	
     CCPoint newPos = ccCardinalSplineAt(pp0, pp1, pp2, pp3, m_fTension, lt);
 	
@@ -178,15 +177,16 @@ void CCCardinalSplineTo::updatePosition(cocos2d::CCPoint &newPos)
 
 CCActionInterval* CCCardinalSplineTo::reverse()
 {
-    CCPointArray *pReverse = m_pPoints->reverse();
-    
-    return CCCardinalSplineTo::create(m_fDuration, pReverse, m_fTension);
+	std::vector<CCPoint> reverse;
+	for (auto& i = _points.rbegin(); i != _points.rend(); i++)
+		reverse.push_back(*i);
+    return CCCardinalSplineTo::create(m_fDuration, reverse, m_fTension);
 }
 
 /* CCCardinalSplineBy
  */
 
-CCCardinalSplineBy* CCCardinalSplineBy::create(float duration, cocos2d::CCPointArray *points, float tension)
+CCCardinalSplineBy* CCCardinalSplineBy::create(float duration, const std::vector<CCPoint>& points, float tension)
 {
     CCCardinalSplineBy *ret = new CCCardinalSplineBy();
     if (ret)
@@ -217,46 +217,45 @@ void CCCardinalSplineBy::updatePosition(cocos2d::CCPoint &newPos)
 
 CCActionInterval* CCCardinalSplineBy::reverse()
 {
-    CCPointArray *copyConfig = (CCPointArray*)m_pPoints->copy();
-	
+	std::vector<CCPoint> points = _points;
 	//
 	// convert "absolutes" to "diffs"
 	//
-    CCPoint p = copyConfig->get(0);
-    for (unsigned int i = 1; i < copyConfig->count(); ++i)
+	CCPoint p = points[0];
+    for (unsigned int i = 1; i < points.size(); ++i)
     {
-        CCPoint current = copyConfig->get(i);
+        CCPoint current = points[i];
         CCPoint diff = ccpSub(current, p);
-        copyConfig->replace(diff, i);
+		points[i] = diff;
         
         p = current;
     }
 	
 	
 	// convert to "diffs" to "reverse absolute"
-	
-    CCPointArray *pReverse = copyConfig->reverse();
-    copyConfig->release();
+	std::vector<CCPoint> reverse;
+	for (auto& i = _points.rbegin(); i != _points.rend(); i++)
+		reverse.push_back(*i);
 	
 	// 1st element (which should be 0,0) should be here too
     
-    p = pReverse->get(pReverse->count()-1);
-    pReverse->remove(pReverse->count()-1);
+	p = reverse[reverse.size() - 1];
+	reverse.pop_back();
     
     p = ccpNeg(p);
-    pReverse->insert(p, 0);
+	reverse.insert(reverse.begin(), p);
     
-    for (unsigned int i = 1; i < pReverse->count(); ++i)
+    for (unsigned int i = 1; i < reverse.size(); ++i)
     {
-        CCPoint current = pReverse->get(i);
+        CCPoint current = reverse[i];
         current = ccpNeg(current);
         CCPoint abs = ccpAdd(current, p);
-        pReverse->replace(abs, i);
+		reverse[i] = abs;
         
         p = abs;
     }
 	
-    return CCCardinalSplineBy::create(m_fDuration, pReverse, m_fTension);
+    return CCCardinalSplineBy::create(m_fDuration, reverse, m_fTension);
 }
 
 void CCCardinalSplineBy::startWithTarget(cocos2d::CCNode *pTarget)
@@ -268,7 +267,7 @@ void CCCardinalSplineBy::startWithTarget(cocos2d::CCNode *pTarget)
 /* CCCatmullRomTo
  */
 
-CCCatmullRomTo* CCCatmullRomTo::create(float dt, cocos2d::CCPointArray *points)
+CCCatmullRomTo* CCCatmullRomTo::create(float dt, const std::vector<CCPoint>& points)
 {
     CCCatmullRomTo *ret = new CCCatmullRomTo();
     if (ret)
@@ -286,7 +285,7 @@ CCCatmullRomTo* CCCatmullRomTo::create(float dt, cocos2d::CCPointArray *points)
     return ret;
 }
 
-bool CCCatmullRomTo::initWithDuration(float dt, cocos2d::CCPointArray *points)
+bool CCCatmullRomTo::initWithDuration(float dt, const std::vector<CCPoint>& points)
 {
     if (CCCardinalSplineTo::initWithDuration(dt, points, 0.5f))
     {
@@ -299,7 +298,7 @@ bool CCCatmullRomTo::initWithDuration(float dt, cocos2d::CCPointArray *points)
 /* CCCatmullRomBy
  */
 
-CCCatmullRomBy* CCCatmullRomBy::create(float dt, cocos2d::CCPointArray *points)
+CCCatmullRomBy* CCCatmullRomBy::create(float dt, const std::vector<CCPoint>& points)
 {
     CCCatmullRomBy *ret = new CCCatmullRomBy();
     if (ret)
@@ -317,7 +316,7 @@ CCCatmullRomBy* CCCatmullRomBy::create(float dt, cocos2d::CCPointArray *points)
     return ret;
 }
 
-bool CCCatmullRomBy::initWithDuration(float dt, cocos2d::CCPointArray *points)
+bool CCCatmullRomBy::initWithDuration(float dt, const std::vector<CCPoint>& points)
 {
     if (CCCardinalSplineTo::initWithDuration(dt, points, 0.5f))
     {
