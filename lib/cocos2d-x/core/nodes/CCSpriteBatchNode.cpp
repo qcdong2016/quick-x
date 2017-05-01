@@ -27,7 +27,6 @@
 #include "CCSpriteBatchNode.h"
 #include "ccConfig.h"
 #include "CCSprite.h"
-#include "effects/CCGrid.h"
 #include "nodes/CCDrawingPrimitives.h"
 
 #include "support/CCPointExtension.h"
@@ -144,21 +143,10 @@ void CCSpriteBatchNode::visit(void)
 
     kmGLPushMatrix();
 
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->beforeDraw();
-        transformAncestors();
-    }
-
     sortAllChildren();
     transform();
 
     draw();
-
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->afterDraw(this);
-    }
 
     kmGLPopMatrix();
     setOrderOfArrival(0);

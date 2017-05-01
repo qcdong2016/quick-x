@@ -16,14 +16,10 @@
     <ClCompile Include="..\cocos2d-x\actions\CCActionCatmullRom.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionEase.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionFiniteTime.cpp" />
-    <ClCompile Include="..\cocos2d-x\actions\CCActionGrid.cpp" />
-    <ClCompile Include="..\cocos2d-x\actions\CCActionGrid3D.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionInstant.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionInterval.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionManager.cpp" />
-    <ClCompile Include="..\cocos2d-x\actions\CCActionPageTurn3D.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionProgressTimer.cpp" />
-    <ClCompile Include="..\cocos2d-x\actions\CCActionTiledGrid.cpp" />
     <ClCompile Include="..\cocos2d-x\actions\CCActionTween.cpp" />
     <ClCompile Include="..\cocos2d-x\audio\win32\MciPlayer.cpp" />
     <ClCompile Include="..\cocos2d-x\audio\win32\SimpleAudioEngine.cpp" />
@@ -49,8 +45,6 @@
     <ClCompile Include="..\cocos2d-x\core\crypto\libbase64.c" />
     <ClCompile Include="..\cocos2d-x\core\crypto\md5.cpp" />
     <ClCompile Include="..\cocos2d-x\core\crypto\xxtea.c" />
-    <ClCompile Include="..\cocos2d-x\core\effects\CCGrabber.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\effects\CCGrid.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDebugHud.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
@@ -90,9 +84,6 @@
     <ClCompile Include="..\cocos2d-x\core\nodes\CCSprite.cpp" />
     <ClCompile Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.cpp" />
     <ClCompile Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransition.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionProgress.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp" />
@@ -285,14 +276,10 @@
     <ClInclude Include="..\cocos2d-x\actions\CCActionCatmullRom.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionEase.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionFiniteTime.h" />
-    <ClInclude Include="..\cocos2d-x\actions\CCActionGrid.h" />
-    <ClInclude Include="..\cocos2d-x\actions\CCActionGrid3D.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionInstant.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionInterval.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionManager.h" />
-    <ClInclude Include="..\cocos2d-x\actions\CCActionPageTurn3D.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionProgressTimer.h" />
-    <ClInclude Include="..\cocos2d-x\actions\CCActionTiledGrid.h" />
     <ClInclude Include="..\cocos2d-x\actions\CCActionTween.h" />
     <ClInclude Include="..\cocos2d-x\audio\SimpleAudioEngine.h" />
     <ClInclude Include="..\cocos2d-x\audio\win32\MciPlayer.h" />
@@ -324,8 +311,6 @@
     <ClInclude Include="..\cocos2d-x\core\crypto\libbase64.h" />
     <ClInclude Include="..\cocos2d-x\core\crypto\md5.h" />
     <ClInclude Include="..\cocos2d-x\core\crypto\xxtea.h" />
-    <ClInclude Include="..\cocos2d-x\core\effects\CCGrabber.h" />
-    <ClInclude Include="..\cocos2d-x\core\effects\CCGrid.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDebugHud.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDirector.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h" />
@@ -367,9 +352,6 @@
     <ClInclude Include="..\cocos2d-x\core\nodes\CCSprite.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.h" />
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransition.h" />
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.h" />
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionProgress.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCDevice.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.h" />

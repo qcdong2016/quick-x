@@ -88,9 +88,6 @@
     <Filter Include="cocos2d-x\core\crypto">
       <UniqueIdentifier>{d00ce798-f871-4724-9b0b-96dcce74d520}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\effects">
-      <UniqueIdentifier>{85b14f7b-4086-458d-b4ae-4e8662f2ccc6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\kazmath">
       <UniqueIdentifier>{67a51e0b-01b9-4693-93e3-33707006f10e}</UniqueIdentifier>
     </Filter>
@@ -615,12 +612,6 @@
     <ClCompile Include="..\cocos2d-x\core\crypto\xxtea.c">
       <Filter>cocos2d-x\core\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\effects\CCGrabber.cpp">
-      <Filter>cocos2d-x\core\effects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\effects\CCGrid.cpp">
-      <Filter>cocos2d-x\core\effects</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClCompile>
@@ -771,12 +762,6 @@
     <ClCompile Include="..\cocos2d-x\core\support\zip_support\ZipUtils.cpp">
       <Filter>cocos2d-x\core\support\zip_support</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\actions\CCActionGrid.cpp">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\actions\CCActionGrid3D.cpp">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\actions\CCActionInstant.cpp">
       <Filter>cocos2d-x\actions</Filter>
     </ClCompile>
@@ -786,13 +771,7 @@
     <ClCompile Include="..\cocos2d-x\actions\CCActionManager.cpp">
       <Filter>cocos2d-x\actions</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\actions\CCActionPageTurn3D.cpp">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\actions\CCActionProgressTimer.cpp">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\actions\CCActionTiledGrid.cpp">
       <Filter>cocos2d-x\actions</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\actions\CCActionTween.cpp">
@@ -910,15 +889,6 @@
       <Filter>cocos2d-x\core\nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.cpp">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransition.cpp">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.cpp">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\nodes\CCTransitionProgress.cpp">
       <Filter>cocos2d-x\core\nodes</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptSupport.cpp">
@@ -1415,12 +1385,6 @@
     <ClInclude Include="..\cocos2d-x\core\crypto\xxtea.h">
       <Filter>cocos2d-x\core\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\effects\CCGrabber.h">
-      <Filter>cocos2d-x\core\effects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\effects\CCGrid.h">
-      <Filter>cocos2d-x\core\effects</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\aabb.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
@@ -1661,12 +1625,6 @@
     <ClInclude Include="..\cocos2d-x\actions\CCActionFiniteTime.h">
       <Filter>cocos2d-x\actions</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\actions\CCActionGrid.h">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\actions\CCActionGrid3D.h">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\actions\CCActionInstant.h">
       <Filter>cocos2d-x\actions</Filter>
     </ClInclude>
@@ -1676,13 +1634,7 @@
     <ClInclude Include="..\cocos2d-x\actions\CCActionManager.h">
       <Filter>cocos2d-x\actions</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\actions\CCActionPageTurn3D.h">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\actions\CCActionProgressTimer.h">
-      <Filter>cocos2d-x\actions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\actions\CCActionTiledGrid.h">
       <Filter>cocos2d-x\actions</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\actions\CCActionTween.h">
@@ -1803,15 +1755,6 @@
       <Filter>cocos2d-x\core\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.h">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransition.h">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionPageTurn.h">
-      <Filter>cocos2d-x\core\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\nodes\CCTransitionProgress.h">
       <Filter>cocos2d-x\core\nodes</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptSupport.h">

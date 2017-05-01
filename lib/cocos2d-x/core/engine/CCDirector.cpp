@@ -38,7 +38,6 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "support/CCPointExtension.h"
-#include "nodes/CCTransition.h"
 
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/CCTimer.h"
@@ -702,8 +701,8 @@ void CCDirector::purgeDirector()
 
 void CCDirector::setNextScene(void)
 {
-    bool runningIsTransition = dynamic_cast<CCTransitionScene*>(m_pRunningScene) != NULL;
-    bool newIsTransition = dynamic_cast<CCTransitionScene*>(m_pNextScene) != NULL;
+	bool runningIsTransition = false;
+	bool newIsTransition = false; 
 
     // If it is not a transition, call onExit/cleanup
      if (! newIsTransition)

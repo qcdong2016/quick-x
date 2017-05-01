@@ -44,7 +44,6 @@
 NS_CC_BEGIN
 
 class CCCamera;
-class CCGridBase;
 class CCPoint;
 class CCTouch;
 class CCAction;
@@ -730,27 +729,6 @@ public:
     virtual void sortAllChildren();
 
     /// @} end of Children and Parent
-
-
-
-    /// @{
-    /// @name Grid object for effects
-
-    /**
-     * Returns a grid object that is used when applying effects
-     *
-     * @return A CCGrid object that is used when applying effects
-     * @js NA
-     */
-    virtual CCGridBase* getGrid();
-    /**
-     * Changes a grid object that is used when applying effects
-     *
-     * @param A CCGrid object that is used when applying effects
-     */
-    virtual void setGrid(CCGridBase *pGrid);
-
-    /// @} end of Grid
 
 
     /// @{
@@ -1527,7 +1505,6 @@ protected:
     CCAffineTransform m_sInverse;       ///< transform
 
 	SharedPtr<CCCamera> m_pCamera;       ///< a camera
-	SharedPtr<CCGridBase> m_pGrid;                ///< a grid
 
     int m_nZOrder;                      ///< z-order value that affects the draw order
 
