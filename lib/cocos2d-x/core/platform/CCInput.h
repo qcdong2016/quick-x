@@ -25,6 +25,11 @@ public:
 	void onEnterBackground();
 
 	void onAcceleration(float x, float y, float z, float timeStamp);
+
+	void update();
+
+private:
+	void handleEvent(void* evt);
 };
 
 NS_CC_END;

@@ -4,6 +4,7 @@
 #include "CCStdC.h"
 #include "platform/CCApplicationProtocol.h"
 #include <string>
+#include "CCTimer.h"
 
 NS_CC_BEGIN
 
@@ -20,7 +21,11 @@ public:
     */
     int run();
 
-    /**
+	bool isRunning();
+	void runFrame();
+	void timeLimit();
+	void setFps(int fps);
+	/**
     @brief    Get current applicaiton instance.
     @return Current application instance pointer.
     */
@@ -30,9 +35,9 @@ public:
     virtual void setAnimationInterval(double interval);
 
 protected:
-    HINSTANCE           m_hInstance;
-    HACCEL              m_hAccelTable;
-    LARGE_INTEGER       m_nAnimationInterval;
+	int _fps;
+	bool _running;
+	CCTimerHiRes _frameTimer;
 
     static CCApplication * sm_pSharedApplication;
 };

@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "support/zip_support/ZipUtils.h"
 #include "support/CCPointExtension.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "crypto/CCCrypto.h"
 #include "engine/CCFileSystem.h"
 

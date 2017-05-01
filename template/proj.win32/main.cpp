@@ -4,18 +4,10 @@
 #include "engine/CCFileSystem.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
-
 #include <tchar.h>
 
-int APIENTRY _tWinMain(HINSTANCE hInstance,
-    HINSTANCE hPrevInstance,
-    LPTSTR    lpCmdLine,
-    int       nCmdShow)
-{
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
 
-
+int quickx_main(int argc, char** argv) {
 	USING_NS_CC;
 
 	AppDelegate app;
@@ -30,11 +22,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	FileSystem::setResourceRoot(workdir);
 
+	int ret = app.run();
 	CCEGLView* eglView = CCEGLView::sharedOpenGLView();
 	eglView->setFrameSize(width, height);
-	eglView->setFrameZoomFactor(zoom);
-
-	int ret = app.run();
-
 	return ret;
 }

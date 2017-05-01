@@ -27,7 +27,7 @@ THE SOFTWARE.
 
 #include "ccConfig.h"
 #include "engine/CCObject.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "cocoa/CCDictionary.h"
 #include <string>
 

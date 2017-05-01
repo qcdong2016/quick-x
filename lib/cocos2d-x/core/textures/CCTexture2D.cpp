@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include "ccMacros.h"
 #include "CCConfiguration.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "platform/CCImage.h"
 #include "CCGL.h"
 #include "base/MathDefs.h"

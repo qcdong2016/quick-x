@@ -35,7 +35,7 @@ extern "C" {
 #include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "CCLuaValue.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 
 NS_CC_BEGIN
 

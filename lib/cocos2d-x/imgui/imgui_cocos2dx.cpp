@@ -134,9 +134,6 @@ bool ImGui_ImplIOS_CreateFontsTexture()
 
 	// Store our identifier
 	io.Fonts->TexID = (void *)(intptr_t)g_FontTexture;
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-	io.ImeWindowHandle = CCEGLView::sharedOpenGLView()->getHWnd();
-#endif
 	// Restore state
 	glBindTexture(GL_TEXTURE_2D, last_texture);
 

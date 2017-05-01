@@ -22,82 +22,34 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CC_EGLVIEW_WIN32_H__
-#define __CC_EGLVIEW_WIN32_H__
+#ifndef __CC_EGL__H__
+#define __CC_EGL__H__
 
-#include "CCStdC.h"
-#include "cocoa/CCGeometry.h"
 #include "platform/CCEGLViewProtocol.h"
 
 NS_CC_BEGIN
 
-#define CCLOG_STRING        1
-
-typedef LRESULT (*CUSTOM_WND_PROC)(UINT message, WPARAM wParam, LPARAM lParam, BOOL* pProcessed);
-
-class CCEGL;
 
 class CC_DLL CCEGLView : public CCEGLViewProtocol
 {
 public:
-    CCEGLView();
-    virtual ~CCEGLView();
+	CCEGLView();
+	virtual ~CCEGLView();
 
-    /* override functions */
-    virtual bool isOpenGLReady();
-    virtual void end();
-    virtual void swapBuffers();
-    virtual void setFrameSize(float width, float height);
-    virtual void setIMEKeyboardState(bool bOpen);
+	/* override functions */
+	virtual bool isOpenGLReady();
+	virtual void end();
+	virtual void swapBuffers();
+	virtual void setIMEKeyboardState(bool bOpen);
 
-    void setMenuResource(LPCWSTR menu);
-    void setWndProc(CUSTOM_WND_PROC proc);
+	static CCEGLView* sharedOpenGLView();
 
 private:
-    virtual bool Create();
-    bool initGL();
-    void destroyGL();
-public:
-    virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
-    // win32 platform function
-    HWND getHWnd();
-    void resize(int width, int height);
-    /* 
-     * Set zoom factor for frame. This method is for debugging big resolution (e.g.new ipad) app on desktop.
-     */
-    void setFrameZoomFactor(float fZoomFactor);
-	float getFrameZoomFactor();
-    void centerWindow();
-    void moveWindow(int left, int top);
+	void resize(int width, int height);
+	bool createWithSize(int w, int h);
 
-    typedef void (*LPFN_ACCELEROMETER_KEYHOOK)( UINT message,WPARAM wParam, LPARAM lParam );
-    void setAccelerometerKeyHook( LPFN_ACCELEROMETER_KEYHOOK lpfnAccelerometerKeyHook );
-
-    virtual void setViewPortInPoints(float x , float y , float w , float h);
-    virtual void setScissorInPoints(float x , float y , float w , float h);
-    
-    // static function
-    /**
-    @brief    get the shared main open gl window
-    */
-    static CCEGLView* sharedOpenGLView();
-    static void purgeSharedOpenGLView();
-
-protected:
-
-private:
-    bool m_bCaptured;
-    HWND m_hWnd;
-    HDC  m_hDC;
-    HGLRC m_hRC;
-    LPFN_ACCELEROMETER_KEYHOOK m_lpfnAccelerometerKeyHook;
-    bool m_bSupportTouch;
-
-    LPCWSTR m_menu;
-    CUSTOM_WND_PROC m_wndproc;
-
-    float m_fFrameZoomFactor;
+	friend class CCApplication;
 };
 
 NS_CC_END

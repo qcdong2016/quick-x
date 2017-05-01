@@ -41,7 +41,7 @@ THE SOFTWARE.
 #include "nodes/CCTransition.h"
 
 #include "cocoa/CCAutoreleasePool.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "CCApplication.h"
 #include "nodes/CCLabelBMFont.h"
 #include "nodes/CCLabelAtlas.h"

@@ -99,8 +99,8 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\platform\CCTimer.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\platform.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCApplication.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp" />
@@ -385,8 +385,8 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCStdC.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCTimer.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\platform.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCApplication.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />
@@ -638,7 +638,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CC_LUA_ENGINE_ENABLED=1;CURL_STATICLIB;GLEW_STATIC;GLEW_NO_GLU;CC_CURL_ENABLED=1;CC_JPEG_ENABLED=1;CC_TIFF_ENABLED=1;CC_WEBP_ENABLED=1;CC_PHYSICS_ENABLED=1;CC_SQLITE_ENABLED=1;CC_CCSTUDIO_ENABLED=1;CC_CCB_ENABLED=1;CC_DRAGONBONES_ENABLED=1;CC_FILTERS_ENABLED=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x;$(QUICKX_ROOT)\lib\cocos2d-x\spine;$(QUICKX_ROOT)\lib\cocos2d-x\core;$(QUICKX_ROOT)\lib\cocos2d-x\core\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\support;$(QUICKX_ROOT)\lib\cocos2d-x\core\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\cocoslua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x;$(QUICKX_ROOT)\lib\cocos2d-x\spine;$(QUICKX_ROOT)\lib\cocos2d-x\core;$(QUICKX_ROOT)\lib\cocos2d-x\core\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\support;$(QUICKX_ROOT)\lib\cocos2d-x\core\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\SDL2\;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\cocoslua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
@@ -668,7 +668,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;CURL_STATICLIB;GLEW_STATIC;GLEW_NO_GLU;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;CC_LUA_ENGINE_ENABLED=1;CC_CURL_ENABLED=1;CC_JPEG_ENABLED=1;CC_TIFF_ENABLED=1;CC_WEBP_ENABLED=1;CC_PHYSICS_ENABLED=1;CC_SQLITE_ENABLED=1;CC_CCSTUDIO_ENABLED=1;CC_CCB_ENABLED=1;CC_DRAGONBONES_ENABLED=1;CC_FILTERS_ENABLED=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x;$(QUICKX_ROOT)\lib\cocos2d-x\spine;$(QUICKX_ROOT)\lib\cocos2d-x\core;$(QUICKX_ROOT)\lib\cocos2d-x\core\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\support;$(QUICKX_ROOT)\lib\cocos2d-x\core\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QUICKX_ROOT)\lib\cocos2d-x;$(QUICKX_ROOT)\lib\cocos2d-x\spine;$(QUICKX_ROOT)\lib\cocos2d-x\core;$(QUICKX_ROOT)\lib\cocos2d-x\core\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\kazmath\include;$(QUICKX_ROOT)\lib\cocos2d-x\core\support;$(QUICKX_ROOT)\lib\cocos2d-x\core\support\tinyxml2;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform;$(QUICKX_ROOT)\lib\cocos2d-x\core\platform\win32;$(QUICKX_ROOT)\lib\third_party\win32;$(QUICKX_ROOT)\lib\third_party\win32\curl;$(QUICKX_ROOT)\lib\third_party\win32\libjpeg;$(QUICKX_ROOT)\lib\third_party\win32\libpng;$(QUICKX_ROOT)\lib\third_party\win32\libwebp;$(QUICKX_ROOT)\lib\third_party\win32\OGLES;$(QUICKX_ROOT)\lib\third_party\win32\SDL2\;$(QUICKX_ROOT)\lib\third_party\win32\pthread;$(QUICKX_ROOT)\lib\third_party\win32\zlib;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\lua;$(QUICKX_ROOT)\lib\cocos2d-x\scripting\tolua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4251;4068;4244;4800</DisableSpecificWarnings>

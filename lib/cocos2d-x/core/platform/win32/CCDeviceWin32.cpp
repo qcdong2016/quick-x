@@ -262,7 +262,7 @@ typedef struct {
 
 const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
 {
-	HWND handle = CCEGLView::sharedOpenGLView()->getHWnd();
+	HWND handle;// = CCEGLView::sharedOpenGLView()->getHWnd();
 
 	CCNativeWin32InputBoxStruct inputbox;
 	inputbox.title = std::string(title ? title : "INPUT TEXT");

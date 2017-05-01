@@ -32,7 +32,7 @@
  ****************************************************************************/
 #include "CCLabelBMFont.h"
 #include "cocoa/CCString.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "cocoa/CCDictionary.h"
 #include "CCConfiguration.h"
 #include "nodes/CCDrawingPrimitives.h"

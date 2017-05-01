@@ -678,9 +678,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\platform.cpp">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCApplication.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
@@ -956,6 +953,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.cpp">
       <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\platform\CCTimer.cpp">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1508,9 +1508,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\platform.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCApplication.h">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
@@ -1873,6 +1870,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\ui\EditBox\UIEditBoxImplWin.h">
       <Filter>cocos2d-x\ui\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCTimer.h">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
