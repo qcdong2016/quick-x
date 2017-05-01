@@ -50,7 +50,6 @@ NS_CC_END;
 
 #endif
 #include "CCEGLView.h"
-#include "CCApplication.h"
 
 NS_CC_BEGIN;
 

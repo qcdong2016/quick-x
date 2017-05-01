@@ -54,12 +54,6 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground() = 0;
-
-    /**
-    @brief    Callback by CCDirector for limit FPS.
-    @interval       The time, expressed in seconds, between current frame and next. 
-    */
-    virtual void setAnimationInterval(double interval) = 0;
 };
 
 // end of platform group

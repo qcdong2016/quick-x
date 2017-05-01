@@ -6,13 +6,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\AppDelegate.cpp">
+    <ClCompile Include="..\sources\App.cpp">
       <Filter>sources</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\sources\AppDelegate.h">
-      <Filter>sources</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

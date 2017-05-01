@@ -47,7 +47,6 @@ using namespace cocos2d;
 #include "crypto/CCCrypto.h"
 #include "engine/CCFileSystem.h"
 #include "platform/CCDevice.h"
-#include "CCApplication.h"
 #include "CCEGLView.h"
 #include "support/CCPointExtension.h"
 #include "support/user_default/CCUserDefault.h"
@@ -9790,7 +9789,7 @@ static int tolua_Cocos2d_CCApplication_sharedApplication00(lua_State* tolua_S)
 #endif
  {
   {
-   CCApplication* tolua_ret = (CCApplication*)  CCApplication::sharedApplication();
+		 CCApplication* tolua_ret;// = (CCApplication*)CCApplication::sharedApplication();
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCApplication");
   }
  }
@@ -9824,7 +9823,7 @@ static int tolua_Cocos2d_CCApplication_setAnimationInterval00(lua_State* tolua_S
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnimationInterval'", NULL);
 #endif
   {
-   self->setAnimationInterval(interval);
+//   self->setAnimationInterval(interval);
   }
  }
  return 0;

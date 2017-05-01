@@ -42,7 +42,6 @@ THE SOFTWARE.
 
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/CCTimer.h"
-#include "CCApplication.h"
 #include "nodes/CCLabelBMFont.h"
 #include "nodes/CCLabelAtlas.h"
 #include "actions/CCActionManager.h"
@@ -93,7 +92,6 @@ CCDirector* CCDirector::sharedDirector(void)
     if (!s_SharedDirector)
     {
         s_SharedDirector = new CCDirector();
-        s_SharedDirector->init();
         
         setCCOBJ_director_ref(s_SharedDirector);
     }
@@ -173,7 +171,7 @@ CCDirector::~CCDirector(void)
     // delete m_pLastUpdate
     CC_SAFE_DELETE(m_pLastUpdate);
     
-    _subSustems.clear();
+    _subSystems.clear();
 }
 
 void CCDirector::setDefaultValues(void)
@@ -829,7 +827,6 @@ void CCDirector::startAnimation(void)
     }
 
     m_bInvalid = false;
-    CCApplication::sharedApplication()->setAnimationInterval(m_dAnimationInterval);
 }
 
 void CCDirector::mainLoop(void)
@@ -861,6 +858,75 @@ void CCDirector::setAnimationInterval(double dValue)
         stopAnimation();
         startAnimation();
     }    
+}
+
+
+int CCDirector::run(CCApplication* app)
+{
+	/*
+	std::string args;
+	for (int i = 1; i < argc; ++i)
+	{
+	args.append((const char*)argv[i]);
+	args.append(" ");
+	}
+
+	parseArguments(args);
+	*/
+	CCEGLView* e = CCEGLView::sharedOpenGLView();
+	e->createWithSize(640, 960);
+
+	this->init();
+	this->setOpenGLView(e);
+
+	if (!app->applicationDidFinishLaunching())
+		return 1;
+
+	while (isRunning())
+		runFrame();
+
+	return 0;
+}
+
+bool CCDirector::isRunning()
+{
+	return _running;
+}
+
+void CCDirector::runFrame()
+{
+	CCDirector::sharedDirector()->mainLoop();
+
+	SubSystem::get<Input>()->update();
+	//_input->update();
+
+	timeLimit();
+}
+
+void CCDirector::timeLimit()
+{
+	long long targetMax = 1000000LL / _fps;
+	long long elapsed = 0;
+
+	for (;;)
+	{
+		elapsed = _frameTimer.elapsed();
+		if (elapsed >= targetMax)
+			break;
+
+		// Sleep if 1 ms or more off the frame limiting goal
+		if (targetMax - elapsed >= 1000LL)
+		{
+			unsigned sleepTime = (unsigned)((targetMax - elapsed) / 1000LL);
+			CCTime::sleep(sleepTime);
+		}
+	}
+	_frameTimer.reset();
+}
+
+void CCDirector::setFps(int fps)
+{
+	_fps = fps;
 }
 
 NS_CC_END

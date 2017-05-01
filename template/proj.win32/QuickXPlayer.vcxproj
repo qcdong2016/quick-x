@@ -11,10 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\AppDelegate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\sources\AppDelegate.h" />
+    <ClCompile Include="..\sources\App.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{71666DE3-D772-41E9-8624-8881686C7AED}</ProjectGuid>

@@ -38,10 +38,20 @@ THE SOFTWARE.
 
 #include "engine/CCSubSystem.h"
 #include "base/Ptr.h"
+#include "CCTimer.h"
 
 
 NS_CC_BEGIN
+#define QUICKX_APP(APP) \
+	extern "C" { int SDL_main(int argc, char** argv) {  return CCDirector::sharedDirector()->run(new APP()); } }
 
+class CC_DLL CCApplication
+{
+public:
+	virtual void applicationWillEnterForeground() = 0;
+	virtual void applicationDidEnterBackground() = 0;
+	virtual bool applicationDidFinishLaunching() = 0;
+};
 
 class CC_DLL CCDirectorDelegate
 {
@@ -339,15 +349,23 @@ public:
 	SubSystem* addSubSystem(ID type)
 	{
 		SubSystem* s = ObjectFactoryManager::newObject<SubSystem>(type);
-		_subSustems[type] = s;
+		_subSystems[type] = s;
 		return s;
 	}
 
 	SubSystem* getSubSystem(ID type)
 	{
-		auto it = _subSustems.find(type);
-		return (it != _subSustems.end()) ? it->second.Get() : nullptr;
+		auto it = _subSystems.find(type);
+		return (it != _subSystems.end()) ? it->second.Get() : nullptr;
 	}
+
+
+	int run(CCApplication* app);
+
+	bool isRunning();
+	void runFrame();
+	void timeLimit();
+	void setFps(int fps);
 
 public:
     /** returns a shared instance of the director 
@@ -368,7 +386,7 @@ protected:
     void calculateDeltaTime();
 protected:
 
-	std::map<ID, SharedPtr<SubSystem> > _subSustems;
+	std::map<ID, SharedPtr<SubSystem> > _subSystems;
 
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;
@@ -423,6 +441,11 @@ protected:
     friend class CCEGLViewProtocol;
 
 	bool m_bInvalid;
+
+
+	int _fps;
+	bool _running;
+	CCTimerHiRes _frameTimer;
 };
 
 // end of base_node group

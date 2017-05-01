@@ -675,9 +675,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\win32\CCApplication.cpp">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
@@ -1475,9 +1472,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCApplicationProtocol.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCDevice.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
@@ -1504,9 +1498,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h">
       <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCApplication.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h">
       <Filter>cocos2d-x\core\platform\win32</Filter>

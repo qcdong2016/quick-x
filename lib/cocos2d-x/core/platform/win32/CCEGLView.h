@@ -49,7 +49,7 @@ private:
 	void resize(int width, int height);
 	bool createWithSize(int w, int h);
 
-	friend class CCApplication;
+	friend class CCDirector;
 };
 
 NS_CC_END
