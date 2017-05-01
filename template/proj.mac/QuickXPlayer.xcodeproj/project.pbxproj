@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9F0082031DAFD40900D6D370 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 9F0082011DAFD40900D6D370 /* res */; };
 		9F0082041DAFD40900D6D370 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 9F0082021DAFD40900D6D370 /* scripts */; };
+		9F7FE2BD1EB64C96008C06D4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7FE2BC1EB64C96008C06D4 /* MainMenu.xib */; };
+		9FB6DAB71EB613F500B5B482 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB6DAB41EB613F500B5B482 /* ConsoleWindow.xib */; };
+		9FB6DAB81EB613F500B5B482 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DAB61EB613F500B5B482 /* ConsoleWindowController.m */; };
 		F40EE898163F83E000090121 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44C957915F49004004D4151 /* AppKit.framework */; };
 		F44C957715F49004004D4151 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44C957615F49004004D4151 /* Cocoa.framework */; };
 		F4A5C15E16B7A35700A12606 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A5C15816B7A35700A12606 /* AudioToolbox.framework */; };
@@ -54,6 +57,10 @@
 /* Begin PBXFileReference section */
 		9F0082011DAFD40900D6D370 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../res; sourceTree = "<group>"; };
 		9F0082021DAFD40900D6D370 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../scripts; sourceTree = "<group>"; };
+		9F7FE2BC1EB64C96008C06D4 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		9FB6DAB41EB613F500B5B482 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
+		9FB6DAB51EB613F500B5B482 /* ConsoleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleWindowController.h; sourceTree = "<group>"; };
+		9FB6DAB61EB613F500B5B482 /* ConsoleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleWindowController.m; sourceTree = "<group>"; };
 		F44C957215F49004004D4151 /* QuickXPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickXPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44C957615F49004004D4151 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F44C957915F49004004D4151 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -173,6 +180,10 @@
 			children = (
 				F4B0813F175C89050029F472 /* AppController.h */,
 				F4B08140175C89050029F472 /* AppController.mm */,
+				9FB6DAB41EB613F500B5B482 /* ConsoleWindow.xib */,
+				9FB6DAB51EB613F500B5B482 /* ConsoleWindowController.h */,
+				9FB6DAB61EB613F500B5B482 /* ConsoleWindowController.m */,
+				9F7FE2BC1EB64C96008C06D4 /* MainMenu.xib */,
 				F4B08146175C89050029F472 /* Icon.icns */,
 				F4B08147175C89050029F472 /* Info.plist */,
 				F4B08148175C89050029F472 /* main.m */,
@@ -259,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F0082031DAFD40900D6D370 /* res in Resources */,
+				9F7FE2BD1EB64C96008C06D4 /* MainMenu.xib in Resources */,
+				9FB6DAB71EB613F500B5B482 /* ConsoleWindow.xib in Resources */,
 				F4B0814D175C89050029F472 /* Icon.icns in Resources */,
 				9F0082041DAFD40900D6D370 /* scripts in Resources */,
 			);
@@ -274,6 +287,7 @@
 				F4B0814A175C89050029F472 /* AppController.mm in Sources */,
 				F4B0814F175C89050029F472 /* main.m in Sources */,
 				F4B0815E175C8A1E0029F472 /* AppDelegate.cpp in Sources */,
+				9FB6DAB81EB613F500B5B482 /* ConsoleWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,13 +23,13 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CCEditBoxImplMac.h"
+#include "UIEditBoxImplMac.h"
 #include "support/CCPointExtension.h"
 #include "CCEGLView.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
-#include "CCEditBox.h"
+#include "UIEditBox.h"
 #import "EAGLView.h"
 
 #define getEditBoxImplMac() ((cocos2d::ui::CCEditBoxImplMac*)editBox_)
@@ -149,7 +149,7 @@
         pDelegate->editBoxEditingDidBegin(getEditBoxImplMac()->getCCEditBox());
     }
     
-    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::EditBox* pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -168,7 +168,7 @@
         pDelegate->editBoxReturn(getEditBoxImplMac()->getCCEditBox());
     }
     
-    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::EditBox* pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -233,7 +233,7 @@
         pDelegate->editBoxTextChanged(getEditBoxImplMac()->getCCEditBox(), getEditBoxImplMac()->getText());
     }
     
-    cocos2d::ui::CCEditBox*  pEditBox= getEditBoxImplMac()->getCCEditBox();
+    cocos2d::ui::EditBox* pEditBox= getEditBoxImplMac()->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -247,14 +247,16 @@ NS_CC_BEGIN
 
 namespace ui {
 
-CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox)
+EditBoxImpl* __createSystemEditBox(EditBox* pEditBox)
 {
     return new CCEditBoxImplMac(pEditBox);
 }
 
-CCEditBoxImplMac::CCEditBoxImplMac(CCEditBox* pEditText)
-: CCEditBoxImpl(pEditText), m_pSysEdit(NULL), m_nMaxTextLength(-1)
-, m_obAnchorPoint(ccp(0.5f, 0.5f))
+CCEditBoxImplMac::CCEditBoxImplMac(EditBox* pEditText)
+    : EditBoxImpl(pEditText)
+    , m_pSysEdit(NULL)
+    , m_nMaxTextLength(-1)
+    , m_obAnchorPoint(ccp(0.5f, 0.5f))
 {
     //! TODO: Retina on Mac
     //! m_bInRetinaMode = [[EAGLView sharedEGLView] contentScaleFactor] == 2.0f ? true : false;

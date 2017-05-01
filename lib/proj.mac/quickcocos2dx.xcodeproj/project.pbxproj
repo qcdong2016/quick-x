@@ -30,7 +30,6 @@
 		9F1FE7431DAD3ACB008FE0C7 /* CCLuaValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE7221DAD3ACB008FE0C7 /* CCLuaValue.cpp */; };
 		9F1FE7451DAD3ACB008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE7261DAD3ACB008FE0C7 /* lua_cocos2dx_cocostudio_manual.cpp */; };
 		9F1FE7471DAD3ACB008FE0C7 /* LuaCocos2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE72A1DAD3ACB008FE0C7 /* LuaCocos2d.cpp */; };
-		9F1FE7481DAD3ACB008FE0C7 /* LuaCocoStudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE72C1DAD3ACB008FE0C7 /* LuaCocoStudio.cpp */; };
 		9F1FE7491DAD3ACB008FE0C7 /* LuaFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE72E1DAD3ACB008FE0C7 /* LuaFunction.cpp */; };
 		9F1FE74A1DAD3ACB008FE0C7 /* LuaTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE7301DAD3ACB008FE0C7 /* LuaTable.cpp */; };
 		9F1FE74F1DAD3ACC008FE0C7 /* tolua_fix.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE73D1DAD3ACB008FE0C7 /* tolua_fix.c */; };
@@ -69,8 +68,7 @@
 		9F7366B61DAD491400D0B435 /* CCNetworkIOSMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366AE1DAD491400D0B435 /* CCNetworkIOSMac.mm */; };
 		9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366B01DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp */; };
 		9F8EE1531DB5FE53007A0DFD /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8EE1521DB5FE53007A0DFD /* libwebp.a */; };
-		9F9A38841DAB88E000236246 /* CCEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38461DAB88E000236246 /* CCEditBox.cpp */; };
-		9F9A38871DAB88E000236246 /* CCEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A384E1DAB88E000236246 /* CCEditBoxImplMac.mm */; };
+		9F9A38871DAB88E000236246 /* UIEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A384E1DAB88E000236246 /* UIEditBoxImplMac.mm */; };
 		9F9A388A1DAB88E000236246 /* UILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38541DAB88E000236246 /* UILayout.cpp */; };
 		9F9A388B1DAB88E000236246 /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38561DAB88E000236246 /* UILayoutDefine.cpp */; };
 		9F9A388C1DAB88E000236246 /* UILayoutParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38581DAB88E000236246 /* UILayoutParameter.cpp */; };
@@ -151,6 +149,7 @@
 		9F9A39911DAB896700236246 /* tolua_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39431DAB896700236246 /* tolua_map.c */; };
 		9F9A39921DAB896700236246 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39441DAB896700236246 /* tolua_push.c */; };
 		9F9A39931DAB896700236246 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39451DAB896700236246 /* tolua_to.c */; };
+		9FB6DAB01EB5B93800B5B482 /* UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DAAD1EB5B93800B5B482 /* UIEditBox.cpp */; };
 		B15BD46C1E1B80E30053EA7D /* NoUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15BD46B1E1B80E30053EA7D /* NoUI.cpp */; };
 		B15BD46F1E1B815C0053EA7D /* CCLuaBridge_oc.mm in Sources */ = {isa = PBXBuildFile; fileRef = B15BD46E1E1B815C0053EA7D /* CCLuaBridge_oc.mm */; };
 		B15BD4741E1B847A0053EA7D /* nanovg.c in Sources */ = {isa = PBXBuildFile; fileRef = B15BD4721E1B847A0053EA7D /* nanovg.c */; };
@@ -347,7 +346,6 @@
 		9F1FE7271DAD3ACB008FE0C7 /* lua_cocos2dx_cocostudio_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_cocostudio_manual.h; sourceTree = "<group>"; };
 		9F1FE72A1DAD3ACB008FE0C7 /* LuaCocos2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocos2d.cpp; sourceTree = "<group>"; };
 		9F1FE72B1DAD3ACB008FE0C7 /* LuaCocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCocos2d.h; sourceTree = "<group>"; };
-		9F1FE72C1DAD3ACB008FE0C7 /* LuaCocoStudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaCocoStudio.cpp; sourceTree = "<group>"; };
 		9F1FE72D1DAD3ACB008FE0C7 /* LuaCocoStudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaCocoStudio.h; sourceTree = "<group>"; };
 		9F1FE72E1DAD3ACB008FE0C7 /* LuaFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaFunction.cpp; sourceTree = "<group>"; };
 		9F1FE72F1DAD3ACB008FE0C7 /* LuaFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaFunction.h; sourceTree = "<group>"; };
@@ -426,11 +424,8 @@
 		9F7366B11DAD491400D0B435 /* cocos2dx_httprequest_luabinding.tolua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cocos2dx_httprequest_luabinding.tolua; sourceTree = "<group>"; };
 		9F8EE1521DB5FE53007A0DFD /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../third_party/mac/libraries/libwebp.a; sourceTree = "<group>"; };
 		9F9A38441DAB88E000236246 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
-		9F9A38461DAB88E000236246 /* CCEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBox.cpp; sourceTree = "<group>"; };
-		9F9A38471DAB88E000236246 /* CCEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBox.h; sourceTree = "<group>"; };
-		9F9A38481DAB88E000236246 /* CCEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImpl.h; sourceTree = "<group>"; };
-		9F9A384D1DAB88E000236246 /* CCEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplMac.h; sourceTree = "<group>"; };
-		9F9A384E1DAB88E000236246 /* CCEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCEditBoxImplMac.mm; sourceTree = "<group>"; };
+		9F9A384D1DAB88E000236246 /* UIEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplMac.h; sourceTree = "<group>"; };
+		9F9A384E1DAB88E000236246 /* UIEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxImplMac.mm; sourceTree = "<group>"; };
 		9F9A38541DAB88E000236246 /* UILayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayout.cpp; sourceTree = "<group>"; };
 		9F9A38551DAB88E000236246 /* UILayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayout.h; sourceTree = "<group>"; };
 		9F9A38561DAB88E000236246 /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
@@ -586,6 +581,9 @@
 		9F9A39431DAB896700236246 /* tolua_map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_map.c; sourceTree = "<group>"; };
 		9F9A39441DAB896700236246 /* tolua_push.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_push.c; sourceTree = "<group>"; };
 		9F9A39451DAB896700236246 /* tolua_to.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_to.c; sourceTree = "<group>"; };
+		9FB6DAAD1EB5B93800B5B482 /* UIEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIEditBox.cpp; sourceTree = "<group>"; };
+		9FB6DAAE1EB5B93800B5B482 /* UIEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBox.h; sourceTree = "<group>"; };
+		9FB6DAAF1EB5B93800B5B482 /* UIEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImpl.h; sourceTree = "<group>"; };
 		B15BD46B1E1B80E30053EA7D /* NoUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoUI.cpp; sourceTree = "<group>"; };
 		B15BD46D1E1B80EB0053EA7D /* NoUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoUI.h; sourceTree = "<group>"; };
 		B15BD46E1E1B815C0053EA7D /* CCLuaBridge_oc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaBridge_oc.mm; sourceTree = "<group>"; };
@@ -773,7 +771,6 @@
 		B1A753A51DEA7968002F0D4C /* CCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCThread.h; sourceTree = "<group>"; };
 		B1A753A61DEA7968002F0D4C /* CCZipFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCZipFile.cpp; sourceTree = "<group>"; };
 		B1A753A71DEA7968002F0D4C /* CCZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCZipFile.h; sourceTree = "<group>"; };
-		B1A753CE1DEA7968002F0D4C /* CCAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometer.h; sourceTree = "<group>"; };
 		B1A753CF1DEA7968002F0D4C /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
 		B1A753D01DEA7968002F0D4C /* CCApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCApplication.mm; sourceTree = "<group>"; };
 		B1A753D11DEA7968002F0D4C /* CCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCommon.mm; sourceTree = "<group>"; };
@@ -1137,11 +1134,11 @@
 		9F9A38451DAB88E000236246 /* EditBox */ = {
 			isa = PBXGroup;
 			children = (
-				9F9A38461DAB88E000236246 /* CCEditBox.cpp */,
-				9F9A38471DAB88E000236246 /* CCEditBox.h */,
-				9F9A38481DAB88E000236246 /* CCEditBoxImpl.h */,
-				9F9A384D1DAB88E000236246 /* CCEditBoxImplMac.h */,
-				9F9A384E1DAB88E000236246 /* CCEditBoxImplMac.mm */,
+				9FB6DAAD1EB5B93800B5B482 /* UIEditBox.cpp */,
+				9FB6DAAE1EB5B93800B5B482 /* UIEditBox.h */,
+				9FB6DAAF1EB5B93800B5B482 /* UIEditBoxImpl.h */,
+				9F9A384D1DAB88E000236246 /* UIEditBoxImplMac.h */,
+				9F9A384E1DAB88E000236246 /* UIEditBoxImplMac.mm */,
 			);
 			path = EditBox;
 			sourceTree = "<group>";
@@ -1201,7 +1198,6 @@
 				9F9A38FF1DAB896700236246 /* lua_extensions */,
 				9F1FE72A1DAD3ACB008FE0C7 /* LuaCocos2d.cpp */,
 				9F1FE72B1DAD3ACB008FE0C7 /* LuaCocos2d.h */,
-				9F1FE72C1DAD3ACB008FE0C7 /* LuaCocoStudio.cpp */,
 				9F1FE72D1DAD3ACB008FE0C7 /* LuaCocoStudio.h */,
 				9F1FE72E1DAD3ACB008FE0C7 /* LuaFunction.cpp */,
 				9F1FE72F1DAD3ACB008FE0C7 /* LuaFunction.h */,
@@ -1733,7 +1729,6 @@
 		B1A753CD1DEA7968002F0D4C /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				B1A753CE1DEA7968002F0D4C /* CCAccelerometer.h */,
 				B1A753CF1DEA7968002F0D4C /* CCApplication.h */,
 				B1A753D01DEA7968002F0D4C /* CCApplication.mm */,
 				B1A753D11DEA7968002F0D4C /* CCCommon.mm */,
@@ -2162,7 +2157,6 @@
 				B1A754BA1DEA7968002F0D4C /* CCDevice.cpp in Sources */,
 				B1A754F71DEA7968002F0D4C /* ioapi_mem.cpp in Sources */,
 				9F9A39621DAB896700236246 /* llex.c in Sources */,
-				9F1FE7481DAD3ACB008FE0C7 /* LuaCocoStudio.cpp in Sources */,
 				9F7366A31DAD484700D0B435 /* spine-cocos2dx.cpp in Sources */,
 				9F73669A1DAD484700D0B435 /* RegionAttachment.c in Sources */,
 				B1A754841DEA7968002F0D4C /* CCClippingNode.cpp in Sources */,
@@ -2276,7 +2270,7 @@
 				9F1FE7151DAD3AA0008FE0C7 /* CCParticleSystemQuad.cpp in Sources */,
 				9F9A39811DAB896700236246 /* luasocket_buffer.c in Sources */,
 				B1A754E21DEA7968002F0D4C /* CCAnimation.cpp in Sources */,
-				9F9A38871DAB88E000236246 /* CCEditBoxImplMac.mm in Sources */,
+				9F9A38871DAB88E000236246 /* UIEditBoxImplMac.mm in Sources */,
 				9F73669C1DAD484700D0B435 /* SkeletonBounds.c in Sources */,
 				9F9A395B1DAB896700236246 /* ldebug.c in Sources */,
 				9F9A39721DAB896700236246 /* lzio.c in Sources */,
@@ -2320,6 +2314,7 @@
 				9F73668C1DAD484700D0B435 /* Atlas.c in Sources */,
 				B1A7547B1DEA7968002F0D4C /* neon_matrix_impl.c in Sources */,
 				B15D37711DB1053800EE3D22 /* PlayerUI.cpp in Sources */,
+				9FB6DAB01EB5B93800B5B482 /* UIEditBox.cpp in Sources */,
 				B1A7547D1DEA7968002F0D4C /* quaternion.c in Sources */,
 				B1A7546C1DEA7968002F0D4C /* CCGrabber.cpp in Sources */,
 				9F9A39801DAB896700236246 /* luasocket.c in Sources */,
@@ -2352,7 +2347,6 @@
 				B1A754831DEA7968002F0D4C /* CCAtlasNode.cpp in Sources */,
 				B1A754E41DEA7968002F0D4C /* CCSpriteFrame.cpp in Sources */,
 				9F9A388C1DAB88E000236246 /* UILayoutParameter.cpp in Sources */,
-				9F9A38841DAB88E000236246 /* CCEditBox.cpp in Sources */,
 				9F9A388D1DAB88E000236246 /* UIListView.cpp in Sources */,
 				9F9A388B1DAB88E000236246 /* UILayoutDefine.cpp in Sources */,
 				B1A754921DEA7968002F0D4C /* CCSprite.cpp in Sources */,
