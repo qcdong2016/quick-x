@@ -4,16 +4,10 @@
     <Filter Include="sources">
       <UniqueIdentifier>{da35f943-2f62-4dbf-bd58-91a522b39592}</UniqueIdentifier>
     </Filter>
-    <Filter Include="win32">
-      <UniqueIdentifier>{54d36d2c-b373-4c65-962b-76ff1fedc28b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\AppDelegate.cpp">
       <Filter>sources</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
