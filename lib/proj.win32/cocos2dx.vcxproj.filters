@@ -669,9 +669,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
@@ -955,6 +952,9 @@
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\CCTimer.cpp">
+      <Filter>cocos2d-x\core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1496,9 +1496,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformMacros.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCStdC.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
@@ -1872,6 +1869,9 @@
       <Filter>cocos2d-x\ui\EditBox</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCTimer.h">
+      <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
   </ItemGroup>

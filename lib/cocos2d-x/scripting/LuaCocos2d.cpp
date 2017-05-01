@@ -10454,7 +10454,7 @@ static int tolua_Cocos2d_CCEGLView_getVisibleSize00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getVisibleSize'", NULL);
 #endif
   {
-   CCSize tolua_ret = (CCSize)  self->getVisibleSize();
+	  CCSize tolua_ret;// = (CCSize)self->getVisibleSize();
    {
 #ifdef __cplusplus
     void* tolua_obj = Mtolua_new((CCSize)(tolua_ret));
@@ -10496,7 +10496,7 @@ static int tolua_Cocos2d_CCEGLView_getVisibleOrigin00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getVisibleOrigin'", NULL);
 #endif
   {
-   CCPoint tolua_ret = (CCPoint)  self->getVisibleOrigin();
+	  CCPoint tolua_ret;// = (CCPoint)self->getVisibleOrigin();
    {
 #ifdef __cplusplus
     void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
@@ -10523,36 +10523,7 @@ static int tolua_Cocos2d_CCEGLView_getVisibleOrigin00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCEGLView_setDesignResolutionSize00
 static int tolua_Cocos2d_CCEGLView_setDesignResolutionSize00(lua_State* tolua_S)
 {
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"CCEGLView",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  CCEGLView* self = (CCEGLView*)  tolua_tousertype(tolua_S,1,0);
-  float width = ((float)  tolua_tonumber(tolua_S,2,0));
-  float height = ((float)  tolua_tonumber(tolua_S,3,0));
-  ResolutionPolicy resolutionPolicy = ((ResolutionPolicy) (int)  tolua_tonumber(tolua_S,4,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDesignResolutionSize'", NULL);
-#endif
-  {
-   self->setDesignResolutionSize(width,height,resolutionPolicy);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setDesignResolutionSize'.",&tolua_err);
- return 0;
-#endif
+	return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -10575,7 +10546,7 @@ static int tolua_Cocos2d_CCEGLView_getDesignResolutionSize00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDesignResolutionSize'", NULL);
 #endif
   {
-   CCSize tolua_ret = (CCSize)  self->getDesignResolutionSize();
+	  CCSize tolua_ret;// = (CCSize)self->getDesignResolutionSize();
    {
 #ifdef __cplusplus
     void* tolua_obj = Mtolua_new((CCSize)(tolua_ret));
@@ -10811,7 +10782,7 @@ static int tolua_Cocos2d_CCEGLView_getScaleX00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScaleX'", NULL);
 #endif
   {
-   float tolua_ret = (float)  self->getScaleX();
+	  float tolua_ret;// = (float)self->getScaleX();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -10843,7 +10814,7 @@ static int tolua_Cocos2d_CCEGLView_getScaleY00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScaleY'", NULL);
 #endif
   {
-   float tolua_ret = (float)  self->getScaleY();
+	  float tolua_ret;// = (float)self->getScaleY();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -65252,12 +65223,7 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getHeight",tolua_Cocos2d_CCImage_getHeight00);
    tolua_function(tolua_S,"getBitsPerComponent",tolua_Cocos2d_CCImage_getBitsPerComponent00);
   tolua_endmodule(tolua_S);
-  tolua_constant(tolua_S,"kResolutionExactFit",kResolutionExactFit);
-  tolua_constant(tolua_S,"kResolutionNoBorder",kResolutionNoBorder);
-  tolua_constant(tolua_S,"kResolutionShowAll",kResolutionShowAll);
-  tolua_constant(tolua_S,"kResolutionFixedHeight",kResolutionFixedHeight);
-  tolua_constant(tolua_S,"kResolutionFixedWidth",kResolutionFixedWidth);
-  tolua_constant(tolua_S,"kResolutionUnKnown",kResolutionUnKnown);
+
   tolua_cclass(tolua_S,"CCEGLView","CCEGLView","",NULL);
   tolua_beginmodule(tolua_S,"CCEGLView");
    tolua_function(tolua_S,"sharedOpenGLView",tolua_Cocos2d_CCEGLView_sharedOpenGLView00);

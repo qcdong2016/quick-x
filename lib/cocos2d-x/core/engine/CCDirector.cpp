@@ -336,7 +336,7 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         m_pobOpenGLView = pobOpenGLView;
 
         // set size
-        m_obWinSizeInPoints = m_pobOpenGLView->getDesignResolutionSize();
+        m_obWinSizeInPoints = m_pobOpenGLView->getFrameSize();
         
         if (m_pobOpenGLView)
         {
@@ -515,7 +515,7 @@ CCPoint CCDirector::convertToGL(const CCPoint& uiPoint)
 	// Calculate z=0 using -> transform*[0, 0, 0, 1]/w
 	kmScalar zClip = transform.mat[14]/transform.mat[15];
 	
-    CCSize glSize = m_pobOpenGLView->getDesignResolutionSize();
+    CCSize glSize = m_pobOpenGLView->getFrameSize();
 	kmVec3 clipCoord = {2.0f*uiPoint.x/glSize.width - 1.0f, 1.0f - 2.0f*uiPoint.y/glSize.height, zClip};
 	
 	kmVec3 glCoord;
@@ -534,7 +534,7 @@ CCPoint CCDirector::convertToUI(const CCPoint& glPoint)
 	kmVec3 glCoord = {glPoint.x, glPoint.y, 0.0};
 	kmVec3TransformCoord(&clipCoord, &glCoord, &transform);
 	
-	CCSize glSize = m_pobOpenGLView->getDesignResolutionSize();
+	CCSize glSize = m_pobOpenGLView->getFrameSize();
 	return ccp(glSize.width*(clipCoord.x*0.5 + 0.5), glSize.height*(-clipCoord.y*0.5 + 0.5));
 }
 
@@ -550,26 +550,12 @@ CCSize CCDirector::getWinSizeInPixels()
 
 CCSize CCDirector::getVisibleSize()
 {
-    if (m_pobOpenGLView)
-    {
-        return m_pobOpenGLView->getVisibleSize();
-    }
-    else 
-    {
-        return CCSizeZero;
-    }
+	return m_pobOpenGLView->getFrameSize();
 }
 
 CCPoint CCDirector::getVisibleOrigin()
 {
-    if (m_pobOpenGLView)
-    {
-        return m_pobOpenGLView->getVisibleOrigin();
-    }
-    else 
-    {
-        return CCPointZero;
-    }
+	return CCPointZero;
 }
 
 // scene management
