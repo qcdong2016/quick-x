@@ -12,6 +12,7 @@
 #include "CCScheduler.h"
 #include "actions/CCActionManager.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
+#include "CCInput.h"
 
 NS_CC_BEGIN
 
@@ -37,6 +38,7 @@ CoreModule::CoreModule()
 	ObjectFactoryManager::addFactory<CCScheduler>();
 	ObjectFactoryManager::addFactory<CCActionManager>();
 	ObjectFactoryManager::addFactory<CCTouchDispatcher>();
+	ObjectFactoryManager::addFactory<Input>();
 
 	// resources
 	ObjectFactoryManager::addFactory<CCTexture2D>();

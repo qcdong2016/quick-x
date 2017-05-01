@@ -181,8 +181,6 @@ void ImGuiCC::init()
 {
 	static bool inited = false;
 	if (!inited) {
-		g_visible = getIntArgument("menu") == 1;
-
 		inited = true;
 		ImGui_ImplGlfwGL3_Init(true);
 		//_program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionColor);
@@ -354,19 +352,3 @@ void ImGuiCC::setFont(const char* font, float size)
 }
 
 NS_CC_END;
-
-extern "C" {
-    
-void imgui_draw()
-{
-	cocos2d::ImGuiCC::draw();
-}
-
-void imgui_init()
-{
-	cocos2d::ImGuiCC::init();
-	cocos2d::ImGuiCC::add<cocos2d::PlayerUI>();
-	cocos2d::ImGuiCC::add<cocos2d::LuaUI>();
-}
-
-}

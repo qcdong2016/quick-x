@@ -131,7 +131,7 @@
     <ClCompile Include="..\cocos2d-x\imgui\imgui\nanovg.c" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui_binding.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui_cocos2dx.cpp" />
-    <ClCompile Include="..\cocos2d-x\imgui\NoUI.cpp" />
+    <ClCompile Include="..\cocos2d-x\imgui\PlayerModule.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\PlayerUI.cpp" />
     <ClCompile Include="..\cocos2d-x\network\CCHTTPRequest.cpp" />
     <ClCompile Include="..\cocos2d-x\network\CCNetwork.cpp" />
@@ -429,7 +429,7 @@
     <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_textedit.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\stb_truetype.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui_cocos2dx.h" />
-    <ClInclude Include="..\cocos2d-x\imgui\NoUI.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\PlayerModule.h" />
     <ClInclude Include="..\cocos2d-x\imgui\PlayerUI.h" />
     <ClInclude Include="..\cocos2d-x\network\CCHTTPRequest.h" />
     <ClInclude Include="..\cocos2d-x\network\CCNetwork.h" />

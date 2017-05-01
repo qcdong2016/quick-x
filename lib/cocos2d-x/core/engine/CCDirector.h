@@ -45,7 +45,7 @@ NS_CC_BEGIN
 #define QUICKX_APP(APP) \
 	extern "C" { int SDL_main(int argc, char** argv) {  return CCDirector::sharedDirector()->run(new APP()); } }
 
-class CC_DLL CCApplication
+class CC_DLL CCApplication : public RefCounted
 {
 public:
 	virtual void applicationWillEnterForeground() = 0;
@@ -93,6 +93,7 @@ class CCNode;
 class CCScheduler;
 class CCActionManager;
 class CCTouchDispatcher;
+class Input;
 
 /**
 @brief Class that creates and handle the main Window and manages how
@@ -133,11 +134,6 @@ public:
     /** Get current running Scene. Director can only run one Scene at the time */
     inline CCScene* getScene(void) { return _scene; }
 
-    /** Get the FPS value */
-    inline double getAnimationInterval(void) { return m_dAnimationInterval; }
-    /** Set the FPS value. */
-    virtual void setAnimationInterval(double dValue);
-
     /** Get the CCEGLView, where everything is rendered
      * @js NA
      */
@@ -166,14 +162,6 @@ public:
     void setViewport();
 
     /** How many frames were called since the director started */
-
-    /** This object will be visited after the main scene is visited.
-     This object MUST implement the "visit" selector.
-     Useful to hook a notification object, like CCNotifications (http://github.com/manucorporat/CCNotifications)
-     @since v0.99.5
-     */
-    CCNode* getNotificationNode();
-    void setNotificationNode(CCNode *node);
     
     /** CCDirector delegate. It shall implemente the CCDirectorDelegate protocol
      @since v0.99.5
@@ -217,7 +205,7 @@ public:
     /** Ends the execution, releases the running scene.
      It doesn't remove the OpenGL view from its parent. You have to do it manually.
      */
-    void end(void);
+    void shutdown(void);
 
     /** Pauses the running scene.
      The running scene will be _drawed_ but all scheduled timers will be paused
@@ -231,21 +219,6 @@ public:
      */
     void resume(void);
 
-    /** Stops the animation. Nothing will be drawn. The main loop won't be triggered anymore.
-     If you don't want to pause your animation call [pause] instead.
-     */
-    virtual void stopAnimation(void);
-
-    /** The main loop is triggered again.
-     Call this function only if [stopAnimation] was called earlier
-     @warning Don't call this function to start the main loop. To run the main loop call runWithScene
-     */
-    virtual void startAnimation(void);
-
-    /** Draw the scene.
-    This method is called every frame. Don't call it manually.
-    */
-    void drawScene(void);
 
     // Memory Helper
 
@@ -318,15 +291,10 @@ public:
 	void setFps(int fps);
 
 public:
-    /** returns a shared instance of the director 
-     *  @js getInstance
-     */
+	SharedPtr<Input> input;
     static CCDirector* sharedDirector(void);
 
 protected:
-
-    void purgeDirector();
-    bool m_bPurgeDirecotorInNextLoop; // this flag will be set to true in end()
     
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
     
@@ -338,9 +306,6 @@ protected:
 
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;
-
-    double m_dAnimationInterval;
-    double m_dOldAnimationInterval;
 
     /* landscape mode ? */
     bool m_bLandscape;
@@ -369,21 +334,18 @@ protected:
     /* content scale factor */
     float    m_fContentScaleFactor;
 
-    /* This object will be visited after the scene. Useful to hook a notification node */
-    CCNode *m_pNotificationNode;
-
     /* Projection protocol delegate */
     CCDirectorDelegate *m_pProjectionDelegate;
     
     // CCEGLViewProtocol will recreate stats labels to fit visible rect
     friend class CCEGLViewProtocol;
 
-	bool m_bInvalid;
-
-
 	int _fps;
+	int _pausedFps;
 	bool _running;
 	CCTimerHiRes _frameTimer;
+
+	SharedPtr<CCApplication> _app;
 };
 
 // end of base_node group

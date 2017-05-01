@@ -903,9 +903,6 @@
     <ClCompile Include="..\cocos2d-x\imgui\imgui\nanovg.c">
       <Filter>cocos2d-x\imgui\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\imgui\NoUI.cpp">
-      <Filter>cocos2d-x\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\scripting\lua_extensions\snapshot\snapshot.c">
       <Filter>cocos2d-x\scripting\lua_extensions\snapshot</Filter>
     </ClCompile>
@@ -920,6 +917,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\imgui\PlayerModule.cpp">
+      <Filter>cocos2d-x\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1775,9 +1775,6 @@
     <ClInclude Include="..\cocos2d-x\imgui\imgui\nanovg_gl.h">
       <Filter>cocos2d-x\imgui\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\imgui\NoUI.h">
-      <Filter>cocos2d-x\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\network\CCNetworkEvents.h">
       <Filter>cocos2d-x\network</Filter>
     </ClInclude>
@@ -1798,6 +1795,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h">
       <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\PlayerModule.h">
+      <Filter>cocos2d-x\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

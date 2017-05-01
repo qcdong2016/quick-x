@@ -61,6 +61,7 @@ THE SOFTWARE.
 #include "engine/CCEngineEvents.h"
 #include "CCResourceCache.h"
 #include "CCModule.h"
+#include "audio/SimpleAudioEngine.h"
 
 /**
  Position of the FPS
@@ -79,20 +80,18 @@ NS_CC_BEGIN
 // XXX it should be a Director ivar. Move it there once support for multiple directors is added
 
 // singleton stuff
-static WeakPtr<CCDirector> s_SharedDirector;
+static SharedPtr<CCDirector> s_SharedDirector;
 
 #define kDefaultFPS        60  // 60 frames per second
 extern const char* cocos2dVersion(void);
-
-// define in ccobject.cpp
 void setCCOBJ_director_ref(CCDirector* ref);
+
 CCDirector* CCDirector::sharedDirector(void)
 {
     if (!s_SharedDirector)
     {
         s_SharedDirector = new CCDirector();
-        
-        setCCOBJ_director_ref(s_SharedDirector);
+		setCCOBJ_director_ref(s_SharedDirector);
     }
 
     return s_SharedDirector;
@@ -103,19 +102,9 @@ CCDirector::CCDirector(void)
     CCLOG("alloc CCDirector %p", this);
 }
 
-extern "C" {
-void imgui_init();
-void imgui_draw();
-}
 bool CCDirector::init(void)
 {
 	setDefaultValues();
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
-    imgui_init();
-#endif
-	m_bInvalid = (false);
-
-    m_pNotificationNode = NULL;
 
     // projection delegate if "Custom" projection is used
     m_pProjectionDelegate = NULL;
@@ -127,9 +116,6 @@ bool CCDirector::init(void)
     // paused ?
     m_bPaused = false;
    
-    // purge ?
-    m_bPurgeDirecotorInNextLoop = false;
-
     m_obWinSizeInPoints = CCSizeZero;    
 
     m_pobOpenGLView = NULL;
@@ -140,24 +126,50 @@ bool CCDirector::init(void)
 
 	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
-	addSubSystem<CCTouchDispatcher>();
+	CCTouchDispatcher* t = addSubSystem<CCTouchDispatcher>();
 	addSubSystem<ResourceCache>();
+
+	input = addSubSystem<Input>();
 
     // create autorelease pool
     CCPoolManager::sharedPoolManager()->push();
-
+	
 	_scene = CCScene::create();
 	_scene->onEnter();
-	startAnimation();
+	resume();
 
     return true;
 }
     
 CCDirector::~CCDirector(void)
 {
+	SimpleAudioEngine::sharedEngine()->end();
+	ModuleManager::shutdown();
+
     CCLOG("deallocing CCDirector %p", this);
-    
-    CC_SAFE_RELEASE(m_pNotificationNode);
+	// cleanup scheduler
+	CCScheduler* sc = getSubSystem<CCScheduler>();
+	sc->unscheduleAll();
+	CCTouchDispatcher* touch = getSubSystem<CCTouchDispatcher>();
+	touch->removeAllDelegates();
+
+	// purge all managed caches
+	ccDrawFree();
+	CCShaderCache::purgeSharedShaderCache();
+	CCConfiguration::purgeConfiguration();
+
+	// cocos2d-x specific data structures
+	CCUserDefault::purgeSharedUserDefault();
+
+	ccGLInvalidateStateCache();
+
+	CHECK_GL_ERROR_DEBUG();
+
+	_app.Reset();
+	_scene.Reset();
+	// OpenGL view
+	m_pobOpenGLView->end();
+	m_pobOpenGLView = NULL;
 
     // pop the autorelease pool
     CCPoolManager::sharedPoolManager()->pop();
@@ -173,9 +185,7 @@ void CCDirector::setDefaultValues(void)
 {
 	CCConfiguration *conf = CCConfiguration::sharedConfiguration();
 
-	// default FPS
-	double fps = conf->getNumber("cocos2d.x.fps", kDefaultFPS);
-	m_dOldAnimationInterval = m_dAnimationInterval = 1.0 / fps;
+	setFps(kDefaultFPS);
 
 	// GL projection
 	const char *projection = conf->getCString("cocos2d.x.gl.projection", "3d");
@@ -218,7 +228,7 @@ void CCDirector::setGLDefaultValues(void)
 }
 
 // Draw the Scene
-void CCDirector::drawScene(void)
+void CCDirector::mainLoop(void)
 {
     // calculate "global" dt
     calculateDeltaTime();
@@ -241,17 +251,7 @@ void CCDirector::drawScene(void)
     {
         _scene->visit();
     }
-
-    // draw the notifications node
-    if (m_pNotificationNode)
-    {
-        m_pNotificationNode->visit();
-    }
     
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
-    imgui_draw();
-#endif
-
     {
 		static AfterDraw data;
 		sendEvent(data);
@@ -266,6 +266,8 @@ void CCDirector::drawScene(void)
     {
         m_pobOpenGLView->swapBuffers();
     }
+
+	CCPoolManager::sharedPoolManager()->pop();
 }
 
 void CCDirector::calculateDeltaTime(void)
@@ -301,10 +303,12 @@ void CCDirector::calculateDeltaTime(void)
 
     *m_pLastUpdate = now;
 }
+
 float CCDirector::getDeltaTime()
 {
 	return m_fDeltaTime;
 }
+
 void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
 {
     CCAssert(pobOpenGLView, "opengl view should not be null");
@@ -544,74 +548,30 @@ CCPoint CCDirector::getVisibleOrigin()
 	return CCPointZero;
 }
 
-void CCDirector::end()
+void CCDirector::shutdown()
 {
-    m_bPurgeDirecotorInNextLoop = true;
+	_running = false;
 }
-
-void CCDirector::purgeDirector()
-{
-    // cleanup scheduler
-	getSubSystem<CCScheduler>()->unscheduleAll();
-    
-    // don't release the event handlers
-    // They are needed in case the director is run again
-    getSubSystem<CCTouchDispatcher>()->removeAllDelegates();
-
-	_scene.Reset();
-
-    stopAnimation();
-
-    // purge all managed caches
-    ccDrawFree();
-    CCShaderCache::purgeSharedShaderCache();
-    CCConfiguration::purgeConfiguration();
-
-    // cocos2d-x specific data structures
-    CCUserDefault::purgeSharedUserDefault();
-
-    ccGLInvalidateStateCache();
-    
-    CHECK_GL_ERROR_DEBUG();
-    
-    // OpenGL view
-    m_pobOpenGLView->end();
-    m_pobOpenGLView = NULL;
-
-	s_SharedDirector.Reset();
-    setCCOBJ_director_ref(nullptr);
-}
-
 
 void CCDirector::pause(void)
 {
-    if (m_bPaused)
-    {
-        return;
-    }
-
-    m_dOldAnimationInterval = m_dAnimationInterval;
-
-    // when paused, don't consume CPU
-    setAnimationInterval(1 / 4.0);
     m_bPaused = true;
 }
 
 void CCDirector::resume(void)
 {
-    if (! m_bPaused)
+	if (!m_bPaused)
     {
         return;
     }
 
-    setAnimationInterval(m_dOldAnimationInterval);
+	m_bPaused = false;
 
     if (CCTime::gettimeofdayCocos2d(m_pLastUpdate, NULL) != 0)
     {
         CCLOG("CCDirector: Error in gettimeofday");
     }
 
-    m_bPaused = false;
 	m_fDeltaTime = 0;
 }
 
@@ -636,18 +596,6 @@ void CCDirector::setContentScaleFactor(float scaleFactor)
     }
 }
 
-CCNode* CCDirector::getNotificationNode() 
-{ 
-    return m_pNotificationNode; 
-}
-
-void CCDirector::setNotificationNode(CCNode *node)
-{
-    CC_SAFE_RELEASE(m_pNotificationNode);
-    m_pNotificationNode = node;
-    CC_SAFE_RETAIN(m_pNotificationNode);
-}
-
 CCDirectorDelegate* CCDirector::getDelegate() const
 {
     return m_pProjectionDelegate;
@@ -658,57 +606,9 @@ void CCDirector::setDelegate(CCDirectorDelegate* pDelegate)
     m_pProjectionDelegate = pDelegate;
 }
 
-/***************************************************
-* implementation of DisplayLinkDirector
-**************************************************/
-
-// should we implement 4 types of director ??
-// I think DisplayLinkDirector is enough
-// so we now only support DisplayLinkDirector
-void CCDirector::startAnimation(void)
-{
-    if (CCTime::gettimeofdayCocos2d(m_pLastUpdate, NULL) != 0)
-    {
-        CCLOG("cocos2d: DisplayLinkDirector: Error on gettimeofday");
-    }
-
-    m_bInvalid = false;
-}
-
-void CCDirector::mainLoop(void)
-{
-    if (m_bPurgeDirecotorInNextLoop)
-    {
-        m_bPurgeDirecotorInNextLoop = false;
-        purgeDirector();
-    }
-    else if (! m_bInvalid)
-     {
-         drawScene();
-     
-         // release the objects
-         CCPoolManager::sharedPoolManager()->pop();        
-     }
-}
-
-void CCDirector::stopAnimation(void)
-{
-    m_bInvalid = true;
-}
-
-void CCDirector::setAnimationInterval(double dValue)
-{
-    m_dAnimationInterval = dValue;
-    if (! m_bInvalid)
-    {
-        stopAnimation();
-        startAnimation();
-    }    
-}
-
-
 int CCDirector::run(CCApplication* app)
 {
+	_app = app;
 	/*
 	std::string args;
 	for (int i = 1; i < argc; ++i)
@@ -741,10 +641,9 @@ bool CCDirector::isRunning()
 
 void CCDirector::runFrame()
 {
-	CCDirector::sharedDirector()->mainLoop();
+	mainLoop();
 
-	SubSystem::get<Input>()->update();
-	//_input->update();
+	input->update();
 
 	timeLimit();
 }

@@ -6,22 +6,19 @@
 
 #include "engine/CCModule.h"
 #include "spine/spine-cocos2dx.h"
-#include "imgui/NoUI.h"
+#include "imgui/PlayerModule.h"
 
 using namespace cocos2d;
 class  App : public CCApplication
 {
 public:
-	virtual ~App() {
-		SimpleAudioEngine::sharedEngine()->end();
-		ModuleManager::shutdown();//re-write
-	}
+	virtual ~App() { }
 
 	bool applicationDidFinishLaunching()
 	{
 		ModuleManager::addModule<SpineModule>();
-#if OS_IS(MAC) || OS_IS(WIN)
-		ModuleManager::addModule<NoUIModule>();
+#if OS_IS(MAC) || OS_IS(WIN32)
+		ModuleManager::addModule<PlayerModule>();
 #endif
 
 		// initialize director
@@ -30,7 +27,7 @@ public:
 		pDirector->setProjection(kCCDirectorProjection2D);
 
 		// set FPS. the default value is 1.0/60 if you don't call this
-		pDirector->setAnimationInterval(1.0 / 60);
+		pDirector->setFps(60);
 
 		// register lua engine
 		CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
@@ -43,7 +40,6 @@ public:
 	// This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 	void applicationDidEnterBackground()
 	{
-		CCDirector::sharedDirector()->stopAnimation();
 		CCDirector::sharedDirector()->pause();
 		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 		SimpleAudioEngine::sharedEngine()->pauseAllEffects();
@@ -52,7 +48,6 @@ public:
 	// this function will be called when the app is active again
 	void applicationWillEnterForeground()
 	{
-		CCDirector::sharedDirector()->startAnimation();
 		CCDirector::sharedDirector()->resume();
 		SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 		SimpleAudioEngine::sharedEngine()->resumeAllEffects();

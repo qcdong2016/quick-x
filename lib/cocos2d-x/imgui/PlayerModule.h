@@ -2,19 +2,21 @@
 #pragma once
 #include "engine/CCSubSystem.h"
 #include "engine/CCModule.h"
+#include "PlayerUI.h"
 
 NS_CC_BEGIN
 
-class NoUIModule : public Module
+class PlayerModule : public Module
 {
 public:
-	NoUIModule();
-	~NoUIModule();
+	PlayerModule();
+	~PlayerModule();
 
+	void update(EventData& data);
 	void draw(EventData& data);
 
 private:
-	void* _nvg;
+	PlayerUI ui;
 };
 
 NS_CC_END
