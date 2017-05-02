@@ -124,7 +124,7 @@ CCSpriteFrame::~CCSpriteFrame(void)
 void CCSpriteFrame::paste(CCObject* o)
 {
 	Super::paste(o);
-	CCSpriteFrame *pCopy = O;
+	CCSpriteFrame *pCopy = static_cast<SelfType*>(o);
 
     pCopy->initWithTextureFilename(m_strTextureFilename.c_str(), m_obRectInPixels, m_bRotated, m_obOffsetInPixels, m_obOriginalSizeInPixels);
     pCopy->setTexture(_texture);

@@ -380,7 +380,7 @@ void CCArray::paste(CCObject* o)
 {
 	Super::paste(o);
 
-    CCArray* pArray = O;
+	CCArray* pArray = static_cast<SelfType*>(o);
     pArray->initWithCapacity(this->data->num > 0 ? this->data->num : 1);
 
     CCObject* pObj = NULL;

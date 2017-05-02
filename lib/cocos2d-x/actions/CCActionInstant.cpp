@@ -284,7 +284,7 @@ CCCallFunc::~CCCallFunc(void)
 
 void CCCallFunc::paste(CCObject* o) {
     Super::paste(o);
-	CCCallFunc* cf = O;
+	CCCallFunc* cf = static_cast<SelfType*>(o);
 	cf->_handler = _handler->clone();
 }
 

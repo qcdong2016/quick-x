@@ -620,7 +620,7 @@ void CCDictionary::paste(CCObject* o)
 {
 	Super::paste(o);
 
-	CCDictionary* pNewDict = O;
+	CCDictionary* pNewDict = static_cast<SelfType*>(o);
 
     CCDictElement* pElement = NULL;
     CCObject* pTmpObj = NULL;
