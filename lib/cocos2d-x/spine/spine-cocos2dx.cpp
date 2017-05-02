@@ -32,7 +32,7 @@
 #include "spine-cocos2dx.h"
 #include <spine/extension.h>
 #include "engine/CCFileSystem.h"
-#include "engine/CCModule.h"
+#include "engine/CCDirector.h"
 #include "SpineResource.h"
 #include "engine/CCDirector.h"
 #include "textures/CCTexture2D.h"

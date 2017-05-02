@@ -4,7 +4,6 @@
 #include <string>
 #include "CCEGLView.h"
 
-#include "engine/CCModule.h"
 #include "spine/spine-cocos2dx.h"
 #include "imgui/PlayerModule.h"
 
@@ -16,18 +15,19 @@ public:
 
 	bool applicationDidFinishLaunching()
 	{
-		ModuleManager::addModule<SpineModule>();
+		CCDirector *d = CCDirector::sharedDirector();
+
+		d->addModule<SpineModule>();
 #if OS_IS(MAC) || OS_IS(WIN32)
-		ModuleManager::addModule<PlayerModule>();
+		d->addModule<PlayerModule>();
 #endif
 
 		// initialize director
-		CCDirector *pDirector = CCDirector::sharedDirector();
-		pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-		pDirector->setProjection(kCCDirectorProjection2D);
+		d->setOpenGLView(CCEGLView::sharedOpenGLView());
+		d->setProjection(kCCDirectorProjection2D);
 
 		// set FPS. the default value is 1.0/60 if you don't call this
-		pDirector->setFps(60);
+		d->setFps(60);
 
 		// register lua engine
 		CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();

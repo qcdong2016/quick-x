@@ -43,7 +43,12 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 #define QUICKX_APP(APP) \
-	extern "C" { int SDL_main(int argc, char** argv) {  return CCDirector::sharedDirector()->run(new APP()); } }
+	extern "C" { \
+		int SDL_main(int argc, char** argv) {  \
+			SharedPtr<CCDirector> d(new CCDirector(new APP));\
+			return d->run(); \
+		} \
+	} 
 
 class CC_DLL CCApplication : public RefCounted
 {
@@ -51,6 +56,12 @@ public:
 	virtual void applicationWillEnterForeground() = 0;
 	virtual void applicationDidEnterBackground() = 0;
 	virtual bool applicationDidFinishLaunching() = 0;
+};
+
+class CC_DLL Module : public CCObject
+{
+public:
+	virtual ~Module() {};
 };
 
 class CC_DLL CCDirectorDelegate
@@ -121,7 +132,7 @@ public:
     /**
      *  @js ctor
      */
-    CCDirector(void);
+    CCDirector(CCApplication* app);
     /**
      *  @js NA
      *  @lua NA
@@ -283,13 +294,16 @@ public:
 	}
 
 
-	int run(CCApplication* app);
+	int run();
 
 	bool isRunning();
 	void runFrame();
 	void timeLimit();
 	void setFps(int fps);
 
+	void addModule(SharedPtr<Module>& m) { _modules.push_back(m); }
+	template<typename T>
+	void addModule() { addModule(SharedPtr<Module>(new T));  }
 public:
 	SharedPtr<Input> input;
     static CCDirector* sharedDirector(void);
@@ -297,12 +311,14 @@ public:
 protected:
     
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
-    
     /** calculates delta time since last time it was called */    
     void calculateDeltaTime();
+	void clear();
+
 protected:
 
 	std::map<ID, SharedPtr<SubSystem> > _subSystems;
+	std::vector<SharedPtr<Module> > _modules;
 
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;

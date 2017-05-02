@@ -91,17 +91,11 @@ void CCScene::handleTouchMove(EventData& data) {
 
 bool CCScene::init()
 {
-    bool bRet = false;
-    do
-    {
-        CCDirector *pDirector;
-		subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
-		subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
-		subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
-        // success
-        bRet = true;
-    } while (0);
-    return bRet;
+	CCDirector *pDirector;
+	subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
+	subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
+	subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
+	return CCLayer::init();
 }
 
 CCScene *CCScene::create()

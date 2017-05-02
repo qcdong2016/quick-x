@@ -59,8 +59,11 @@ THE SOFTWARE.
 #include "CCInput.h"
 #include "engine/CCEngineEvents.h"
 #include "CCResourceCache.h"
-#include "CCModule.h"
 #include "audio/SimpleAudioEngine.h"
+#include "CCObject.h"
+#include "CCDebugHud.h"
+#include "resources/CCSpriteFrame.h"
+#include "resources/CCPlistResource.h"
 
 /**
  Position of the FPS
@@ -79,25 +82,20 @@ NS_CC_BEGIN
 // XXX it should be a Director ivar. Move it there once support for multiple directors is added
 
 // singleton stuff
-static SharedPtr<CCDirector> s_SharedDirector;
+static WeakPtr<CCDirector> s_SharedDirector;
 
 #define kDefaultFPS        60  // 60 frames per second
 extern const char* cocos2dVersion(void);
-void setCCOBJ_director_ref(CCDirector* ref);
 
 CCDirector* CCDirector::sharedDirector(void)
 {
-    if (!s_SharedDirector)
-    {
-        s_SharedDirector = new CCDirector();
-		setCCOBJ_director_ref(s_SharedDirector);
-    }
-
     return s_SharedDirector;
 }
 
-CCDirector::CCDirector(void)
+CCDirector::CCDirector(CCApplication* app)
 {
+	this->_app = app;
+	s_SharedDirector = this;
     CCLOG("alloc CCDirector %p", this);
 }
 
@@ -121,7 +119,17 @@ bool CCDirector::init(void)
 
     m_fContentScaleFactor = 1.0f;
 
-	ModuleManager::addModule<CoreModule>();
+	ObjectFactoryManager::addFactory<DebugHud>();
+	ObjectFactoryManager::addFactory<ResourceCache>();
+	ObjectFactoryManager::addFactory<CCScheduler>();
+	ObjectFactoryManager::addFactory<CCActionManager>();
+	ObjectFactoryManager::addFactory<Input>();
+
+	// resources
+	ObjectFactoryManager::addFactory<CCTexture2D>();
+	ObjectFactoryManager::addFactory<CCSpriteFrame>();
+	ObjectFactoryManager::addFactory<PlistResource>();
+	ObjectFactoryManager::addFactory<CCBMFontConfiguration>();
 
 	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
@@ -134,6 +142,7 @@ bool CCDirector::init(void)
 	
 	_scene = CCScene::create();
 	_scene->onEnter();
+
 	resume();
 
     return true;
@@ -141,40 +150,7 @@ bool CCDirector::init(void)
     
 CCDirector::~CCDirector(void)
 {
-	SimpleAudioEngine::sharedEngine()->end();
-	ModuleManager::shutdown();
-
-    CCLOG("deallocing CCDirector %p", this);
-	// cleanup scheduler
-	CCScheduler* sc = getSubSystem<CCScheduler>();
-	sc->unscheduleAll();
-
-	// purge all managed caches
-	ccDrawFree();
-	CCShaderCache::purgeSharedShaderCache();
-	CCConfiguration::purgeConfiguration();
-
-	// cocos2d-x specific data structures
-	CCUserDefault::purgeSharedUserDefault();
-
-	ccGLInvalidateStateCache();
-
-	CHECK_GL_ERROR_DEBUG();
-
-	_app.Reset();
-	_scene.Reset();
-	// OpenGL view
-	m_pobOpenGLView->end();
-	m_pobOpenGLView = NULL;
-
-    // pop the autorelease pool
-    CCPoolManager::sharedPoolManager()->pop();
-    CCPoolManager::purgePoolManager();
-
-    // delete m_pLastUpdate
-    CC_SAFE_DELETE(m_pLastUpdate);
-    
-    _subSystems.clear();
+	CCLOG("~CCDirector");
 }
 
 void CCDirector::setDefaultValues(void)
@@ -298,6 +274,45 @@ void CCDirector::calculateDeltaTime(void)
 #endif
 
     *m_pLastUpdate = now;
+}
+
+void CCDirector::clear()
+{
+	SimpleAudioEngine::sharedEngine()->end();
+
+	CCLOG("deallocing CCDirector %p", this);
+	// cleanup scheduler
+	CCScheduler* sc = getSubSystem<CCScheduler>();
+	sc->unscheduleAll();
+
+	// purge all managed caches
+	ccDrawFree();
+	CCShaderCache::purgeSharedShaderCache();
+	CCConfiguration::purgeConfiguration();
+
+	// cocos2d-x specific data structures
+	CCUserDefault::purgeSharedUserDefault();
+
+	ccGLInvalidateStateCache();
+
+	CHECK_GL_ERROR_DEBUG();
+
+	_app.Reset();
+	_scene.Reset();
+
+	// pop the autorelease pool
+	CCPoolManager::sharedPoolManager()->pop();
+	CCPoolManager::purgePoolManager();
+
+	// delete m_pLastUpdate
+	CC_SAFE_DELETE(m_pLastUpdate);
+
+	_modules.clear();
+	_subSystems.clear();
+
+	// OpenGL view
+	m_pobOpenGLView->end();
+	m_pobOpenGLView = NULL;
 }
 
 float CCDirector::getDeltaTime()
@@ -598,9 +613,8 @@ void CCDirector::setDelegate(CCDirectorDelegate* pDelegate)
     m_pProjectionDelegate = pDelegate;
 }
 
-int CCDirector::run(CCApplication* app)
+int CCDirector::run()
 {
-	_app = app;
 	/*
 	std::string args;
 	for (int i = 1; i < argc; ++i)
@@ -617,11 +631,13 @@ int CCDirector::run(CCApplication* app)
 	this->init();
 	this->setOpenGLView(e);
 
-	if (!app->applicationDidFinishLaunching())
+	if (!_app->applicationDidFinishLaunching())
 		return 1;
 
 	while (isRunning())
 		runFrame();
+
+	clear();
 
 	return 0;
 }

@@ -45,7 +45,6 @@
     <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCFileSystem.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\engine\CCModule.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCResourceCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCSubSystem.cpp" />
@@ -308,7 +307,6 @@
     <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCEventImpl.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCFileSystem.h" />
-    <ClInclude Include="..\cocos2d-x\core\engine\CCModule.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCResourceCache.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCSubSystem.h" />

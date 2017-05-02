@@ -31,7 +31,7 @@
 
 #pragma once
 
-#include "engine/CCModule.h"
+#include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 

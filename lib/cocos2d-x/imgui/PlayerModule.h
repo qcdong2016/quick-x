@@ -1,7 +1,7 @@
 
 #pragma once
 #include "engine/CCSubSystem.h"
-#include "engine/CCModule.h"
+#include "engine/CCDirector.h"
 #include "PlayerUI.h"
 
 NS_CC_BEGIN
