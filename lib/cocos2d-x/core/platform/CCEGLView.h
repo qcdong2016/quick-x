@@ -25,12 +25,13 @@ THE SOFTWARE.
 #ifndef __CC_EGL__H__
 #define __CC_EGL__H__
 
-#include "platform/CCEGLViewProtocol.h"
+#include "CCPlatformDefine.h"
+#include "cocoa/CCGeometry.h"
 
 NS_CC_BEGIN
 
 
-class CC_DLL CCEGLView : public CCEGLViewProtocol
+class CC_DLL CCEGLView
 {
 public:
 	CCEGLView();
@@ -41,14 +42,45 @@ public:
 	virtual void end();
 	virtual void swapBuffers();
 	virtual void setIMEKeyboardState(bool bOpen);
+	virtual const CCSize& getFrameSize() const;
+	virtual void setFrameSize(const CCSize& size);
 
+	/**
+	* Set opengl view port rectangle with points.
+	*/
+	virtual void setViewPortInPoints(float x, float y, float w, float h);
+
+	/**
+	* Set Scissor rectangle with points.
+	*/
+	virtual void setScissorInPoints(float x, float y, float w, float h);
+
+	/**
+	* Get whether GL_SCISSOR_TEST is enable
+	* @lua NA
+	*/
+	virtual bool isScissorEnabled();
+
+	/**
+	* Get the current scissor rectangle
+	* @lua NA
+	*/
+	virtual CCRect getScissorRect();
+
+	/**
+	* Get the opengl view port rectangle.
+	*/
+	const CCRect& getViewPortRect() const;
 	static CCEGLView* sharedOpenGLView();
 
 private:
 
 	void resize(int width, int height);
 	bool createWithSize(int w, int h);
-
+	// real screen size
+	CCSize m_obScreenSize;
+	// the view port size
+	CCRect m_obViewPortRect;
 	friend class CCDirector;
 };
 

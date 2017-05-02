@@ -8,7 +8,6 @@
 #include "ccMacros.h"
 
 
-
 NS_CC_BEGIN
 
 static CCEGLView* _instance = nullptr;
@@ -19,6 +18,16 @@ CCEGLView::CCEGLView()
 
 CCEGLView::~CCEGLView()
 {
+}
+
+const CCSize& CCEGLView::getFrameSize() const
+{
+	return m_obScreenSize;
+}
+
+void CCEGLView::setFrameSize(const CCSize& size)
+{
+	m_obScreenSize = size;
 }
 
 SDL_Window* _window;
@@ -70,7 +79,7 @@ bool CCEGLView::createWithSize(int w, int h)
 	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 	SDL_GL_SetSwapInterval(1);
 
-	setFrameSize(w, h);
+	setFrameSize(CCSize(w, h));
 	//    setDesignResolutionSize(800, 600, kResolutionShowAll);
 #endif
 
@@ -110,4 +119,40 @@ CCEGLView* CCEGLView::sharedOpenGLView()
 }
 
 
+void CCEGLView::setViewPortInPoints(float x, float y, float w, float h)
+{
+	glViewport((GLint)(x + m_obViewPortRect.origin.x),
+		(GLint)(y + m_obViewPortRect.origin.y),
+		(GLsizei)(w),
+		(GLsizei)(h));
+}
+
+void CCEGLView::setScissorInPoints(float x, float y, float w, float h)
+{
+	glScissor((GLint)(x + m_obViewPortRect.origin.x),
+		(GLint)(y + m_obViewPortRect.origin.y),
+		(GLsizei)(w),
+		(GLsizei)(h));
+}
+
+bool CCEGLView::isScissorEnabled()
+{
+	return (GL_FALSE == glIsEnabled(GL_SCISSOR_TEST)) ? false : true;
+}
+
+CCRect CCEGLView::getScissorRect()
+{
+	GLfloat params[4];
+	glGetFloatv(GL_SCISSOR_BOX, params);
+	float x = (params[0] - m_obViewPortRect.origin.x);
+	float y = (params[1] - m_obViewPortRect.origin.y);
+	float w = params[2];
+	float h = params[3];
+	return CCRectMake(x, y, w, h);
+}
+
+const CCRect& CCEGLView::getViewPortRect() const
+{
+	return m_obViewPortRect;
+}
 NS_CC_END

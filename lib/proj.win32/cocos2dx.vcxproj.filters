@@ -85,9 +85,6 @@
     <Filter Include="cocos2d-x\core\cocoa">
       <UniqueIdentifier>{136bbd26-dbca-44f6-85a9-dd0ce37bfd57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\crypto">
-      <UniqueIdentifier>{d00ce798-f871-4724-9b0b-96dcce74d520}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\core\kazmath">
       <UniqueIdentifier>{67a51e0b-01b9-4693-93e3-33707006f10e}</UniqueIdentifier>
     </Filter>
@@ -139,11 +136,14 @@
     <Filter Include="cocos2d-x\core\support\user_default">
       <UniqueIdentifier>{ea137a3e-d00d-4a77-8999-233fd8fc116d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cocos2d-x\core\support\zip_support">
-      <UniqueIdentifier>{e5135e5d-4498-4d94-a86d-7b97d0dd379b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cocos2d-x\scripting\lua_extensions\snapshot">
       <UniqueIdentifier>{876cb910-b59e-4d15-8f5f-2cbfd2963a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\zip">
+      <UniqueIdentifier>{36d26393-9204-4bd5-8464-9542606a71cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cocos2d-x\crypto">
+      <UniqueIdentifier>{d00ce798-f871-4724-9b0b-96dcce74d520}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -600,18 +600,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCString.cpp">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\crypto\CCCrypto.cpp">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\crypto\libbase64.c">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\crypto\md5.cpp">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\crypto\xxtea.c">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClCompile>
@@ -654,19 +642,10 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.cpp">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp">
@@ -740,18 +719,6 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\support\user_default\CCUserDefault.cpp">
       <Filter>cocos2d-x\core\support\user_default</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ioapi.cpp">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ioapi_mem.cpp">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\unzip.cpp">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ZipUtils.cpp">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\actions\CCActionInstant.cpp">
       <Filter>cocos2d-x\actions</Filter>
@@ -911,6 +878,36 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\imgui\PlayerModule.cpp">
       <Filter>cocos2d-x\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\crypto\CCCrypto.cpp">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\crypto\libbase64.c">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\crypto\md5.cpp">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\crypto\xxtea.c">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\zip\ZipUtils.cpp">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\zip\CCZipFile.cpp">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\zip\ioapi.cpp">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\zip\ioapi_mem.cpp">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\zip\unzip.cpp">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\platform\CCEGLView.cpp">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1364,18 +1361,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCString.h">
       <Filter>cocos2d-x\core\cocoa</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\crypto\CCCrypto.h">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\crypto\libbase64.h">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\crypto\md5.h">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\crypto\xxtea.h">
-      <Filter>cocos2d-x\core\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\aabb.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
@@ -1418,13 +1403,7 @@
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\vec4.h">
       <Filter>cocos2d-x\core\kazmath</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCDevice.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCImage.h">
@@ -1444,18 +1423,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h">
       <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h">
-      <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h">
       <Filter>cocos2d-x\core\shaders</Filter>
@@ -1588,18 +1555,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\user_default\CCUserDefault.h">
       <Filter>cocos2d-x\core\support\user_default</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ioapi.h">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ioapi_mem.h">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\unzip.h">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ZipUtils.h">
-      <Filter>cocos2d-x\core\support\zip_support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\actions\CCActionFiniteTime.h">
       <Filter>cocos2d-x\actions</Filter>
@@ -1779,6 +1734,42 @@
       <Filter>cocos2d-x\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCInputEvent.h">
+      <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\crypto\CCCrypto.h">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\crypto\libbase64.h">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\crypto\md5.h">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\crypto\xxtea.h">
+      <Filter>cocos2d-x\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\zip\unzip.h">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\zip\ZipUtils.h">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\zip\CCZipFile.h">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\zip\ioapi.h">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\zip\ioapi_mem.h">
+      <Filter>cocos2d-x\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCEGLView.h">
+      <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformDefine.h">
+      <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCGL.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
   </ItemGroup>

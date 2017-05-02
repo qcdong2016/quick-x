@@ -41,10 +41,6 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCSet.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCString.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\crypto\CCCrypto.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\crypto\libbase64.c" />
-    <ClCompile Include="..\cocos2d-x\core\crypto\md5.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\crypto\xxtea.c" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDebugHud.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
@@ -85,14 +81,12 @@
     <ClCompile Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.cpp" />
     <ClCompile Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\platform\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCTimer.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\CCZipFile.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\win32\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp" />
     <ClCompile Include="..\cocos2d-x\core\resources\CCAnimation.cpp" />
     <ClCompile Include="..\cocos2d-x\core\resources\CCPlistResource.cpp" />
@@ -112,16 +106,16 @@
     <ClCompile Include="..\cocos2d-x\core\support\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\TransformUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\user_default\CCUserDefault.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ioapi.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ioapi_mem.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\unzip.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\zip_support\ZipUtils.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexture2D.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureAtlas.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTextureETC.cpp" />
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexturePVR.cpp" />
     <ClCompile Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.cpp" />
+    <ClCompile Include="..\cocos2d-x\crypto\CCCrypto.cpp" />
+    <ClCompile Include="..\cocos2d-x\crypto\libbase64.c" />
+    <ClCompile Include="..\cocos2d-x\crypto\md5.cpp" />
+    <ClCompile Include="..\cocos2d-x\crypto\xxtea.c" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_draw.cpp" />
@@ -266,6 +260,11 @@
     <ClCompile Include="..\cocos2d-x\ui\UITouchGroup.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\UIWidget.cpp" />
     <ClCompile Include="..\cocos2d-x\ui\webview\UIWebView.cpp" />
+    <ClCompile Include="..\cocos2d-x\zip\CCZipFile.cpp" />
+    <ClCompile Include="..\cocos2d-x\zip\ioapi.cpp" />
+    <ClCompile Include="..\cocos2d-x\zip\ioapi_mem.cpp" />
+    <ClCompile Include="..\cocos2d-x\zip\unzip.cpp" />
+    <ClCompile Include="..\cocos2d-x\zip\ZipUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\actions\CCAction.h" />
@@ -304,10 +303,6 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCSet.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCString.h" />
-    <ClInclude Include="..\cocos2d-x\core\crypto\CCCrypto.h" />
-    <ClInclude Include="..\cocos2d-x\core\crypto\libbase64.h" />
-    <ClInclude Include="..\cocos2d-x\core\crypto\md5.h" />
-    <ClInclude Include="..\cocos2d-x\core\crypto\xxtea.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDebugHud.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDirector.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h" />
@@ -349,23 +344,20 @@
     <ClInclude Include="..\cocos2d-x\core\nodes\CCSprite.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCSpriteBatchNode.h" />
     <ClInclude Include="..\cocos2d-x\core\nodes\CCTextFieldTTF.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\CCAlertViewDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCDevice.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\CCEGLViewProtocol.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCEGLView.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCGL.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCImage.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCImageCommon_cpp.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCInput.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCInputEvent.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformConfig.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformDefine.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformMacros.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCStdC.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCTimer.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\CCZipFile.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCEGLView.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCGL.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\win32\CCPlatformDefine.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCSpriteFrame.h" />
@@ -402,10 +394,6 @@
     <ClInclude Include="..\cocos2d-x\core\support\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\cocos2d-x\core\support\TransformUtils.h" />
     <ClInclude Include="..\cocos2d-x\core\support\user_default\CCUserDefault.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ioapi.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ioapi_mem.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\unzip.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\zip_support\ZipUtils.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTexture2D.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureAtlas.h" />
     <ClInclude Include="..\cocos2d-x\core\textures\CCTextureETC.h" />
@@ -413,6 +401,10 @@
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.h" />
+    <ClInclude Include="..\cocos2d-x\crypto\CCCrypto.h" />
+    <ClInclude Include="..\cocos2d-x\crypto\libbase64.h" />
+    <ClInclude Include="..\cocos2d-x\crypto\md5.h" />
+    <ClInclude Include="..\cocos2d-x\crypto\xxtea.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imconfig.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui_internal.h" />
@@ -557,6 +549,11 @@
     <ClInclude Include="..\cocos2d-x\ui\UIWidget.h" />
     <ClInclude Include="..\cocos2d-x\ui\webview\UIWebView-inl.h" />
     <ClInclude Include="..\cocos2d-x\ui\webview\UIWebView.h" />
+    <ClInclude Include="..\cocos2d-x\zip\CCZipFile.h" />
+    <ClInclude Include="..\cocos2d-x\zip\ioapi.h" />
+    <ClInclude Include="..\cocos2d-x\zip\ioapi_mem.h" />
+    <ClInclude Include="..\cocos2d-x\zip\unzip.h" />
+    <ClInclude Include="..\cocos2d-x\zip\ZipUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\cocos2d-x\imgui\imgui\LICENSE" />

@@ -9830,7 +9830,7 @@ static int tolua_Cocos2d_CCEGLView_setFrameSize00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFrameSize'", NULL);
 #endif
  {
-  self->setFrameSize(width,height);
+//  self->setFrameSize(width,height);
  }
  }
  return 0;
