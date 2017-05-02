@@ -26,7 +26,6 @@
 
 #include <stdarg.h>
 #include "CCLayer.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "engine/CCDirector.h"
 #include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"

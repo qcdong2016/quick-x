@@ -3,6 +3,9 @@
 #include "engine/CCEngineEvents.h"
 #include "SDL_events.h"
 #include "CCKeyCode.h"
+#include "CCInputEvent.h"
+
+const unsigned TOUCHID_MAX = 32;
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include <jni.h>
@@ -139,6 +142,54 @@ void Input::setMouseButton(bool down, int button) {
 	}
 }
 
+int Input::getTouchIndexFromID(int touchID) {
+	const auto& i = _touchIDMap.find(touchID);
+	if (i != _touchIDMap.end())
+		return i->second;
+	int index = popTouchIndex();
+	_touchIDMap[touchID] = index;
+	return index;
+}
+
+int Input::popTouchIndex() {
+	if (_availableTouchIDs.empty())
+		return 0;
+	int index = _availableTouchIDs.front();
+	_availableTouchIDs.pop_front();
+	return index;
+}
+
+void Input::pushTouchIndex(int touchID) {
+	const auto& i = _touchIDMap.find(touchID);
+	if (i == _touchIDMap.end())
+		return;
+	int index = _touchIDMap[touchID];
+	_touchIDMap.erase(touchID);
+	bool inserted = false;
+	for (auto& i = _availableTouchIDs.begin(); i != _availableTouchIDs.end(); i++) {
+		if (*i == index) {
+			inserted = true;
+			break;
+		}
+
+		if (*i > index) {
+			_availableTouchIDs.insert(i, index);
+			inserted = true;
+			break;
+		}
+	}
+	if (inserted)
+		_availableTouchIDs.push_back(index);
+}
+
+void Input::resetTouches()
+{
+	_touches.clear();
+	_touchIDMap.clear();
+	_availableTouchIDs.clear();
+	for (int i = 0; i < TOUCHID_MAX; i++)
+		_availableTouchIDs.push_back(i);
+}
 
 void Input::handleEvent(void* evt)
 {
@@ -210,23 +261,63 @@ void Input::handleEvent(void* evt)
 	}
 	case SDL_FINGERDOWN:
 	{
-		CCPoint pt((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
-		int id = 0;
-		CCEGLView::sharedOpenGLView()->handleTouchesBegin(1, &id, &pt.x, &pt.y);
+		if (e.tfinger.touchId != SDL_TOUCH_MOUSEID) {
+			int touchID = getTouchIndexFromID(e.tfinger.fingerId & 0x7ffffff);
+			
+			TouchState& state = _touches[touchID];
+			state.touchid = touchID;
+			state.lastPosition = CCPoint((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
+			state.positon = state.lastPosition;
+			state.delta = CCPointZero;
+			state.pressure = e.tfinger.pressure;
+
+			TouchBegin eventData;
+			eventData[TouchBegin::touchID] = state.touchid;
+			eventData[TouchBegin::x] = state.positon.x;
+			eventData[TouchBegin::y] = state.positon.y;
+			eventData[TouchBegin::pressure] = state.pressure;
+			sendEvent(eventData);
+		}
 		break;
 	}
 	case SDL_FINGERUP:
 	{
-		CCPoint pt((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
-		int id = 0;
-		CCEGLView::sharedOpenGLView()->handleTouchesEnd(1, &id, &pt.x, &pt.y);
+		if (e.tfinger.touchId != SDL_TOUCH_MOUSEID) {
+			int touchID = getTouchIndexFromID(e.tfinger.fingerId & 0x7ffffff);
+
+			TouchState& state = _touches[touchID];
+			
+			pushTouchIndex(e.tfinger.fingerId & 0x7ffffff);
+
+			TouchEnd eventData;
+			eventData[TouchEnd::touchID] = state.touchid;
+			eventData[TouchEnd::x] = state.positon.x;
+			eventData[TouchEnd::y] = state.positon.y;
+			sendEvent(eventData);
+
+			_touches.erase(touchID);
+		}
 		break;
 	}
 	case SDL_FINGERMOTION:
 	{
-		CCPoint pt((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
-		int id = 0;
-		CCEGLView::sharedOpenGLView()->handleTouchesMove(1, &id, &pt.x, &pt.y);
+		if (e.tfinger.touchId != SDL_TOUCH_MOUSEID) {
+			int touchID = getTouchIndexFromID(e.tfinger.fingerId & 0x7ffffff);
+
+			TouchState& state = _touches[touchID];
+			state.touchid = touchID;
+			state.positon = CCPoint((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
+			state.delta = state.positon - state.lastPosition;
+			state.pressure = e.tfinger.pressure;
+
+			TouchMove eventData;
+			eventData[TouchMove::touchID] = state.touchid;
+			eventData[TouchMove::x] = state.positon.x;
+			eventData[TouchMove::y] = state.positon.y;
+			eventData[TouchMove::dx] = e.tfinger.dx * size.width;
+			eventData[TouchMove::dy] = e.tfinger.dy * size.height;
+			sendEvent(eventData);
+		}
 		break;
 	}
 	case SDL_KEYDOWN:
@@ -249,4 +340,5 @@ void Input::handleEvent(void* evt)
 }
 
 NS_CC_END;
-
+#include "engine/CCEventImpl.h"
+#include "CCInputEvent.h"_

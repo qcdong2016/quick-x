@@ -36,7 +36,6 @@ THE SOFTWARE.
 #include "cocoa/CCArray.h"
 #include "CCScheduler.h"
 #include "ccMacros.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "support/CCPointExtension.h"
 
 #include "cocoa/CCAutoreleasePool.h"
@@ -126,7 +125,6 @@ bool CCDirector::init(void)
 
 	addSubSystem<CCScheduler>();
 	addSubSystem<CCActionManager>();
-	CCTouchDispatcher* t = addSubSystem<CCTouchDispatcher>();
 	addSubSystem<ResourceCache>();
 
 	input = addSubSystem<Input>();
@@ -150,8 +148,6 @@ CCDirector::~CCDirector(void)
 	// cleanup scheduler
 	CCScheduler* sc = getSubSystem<CCScheduler>();
 	sc->unscheduleAll();
-	CCTouchDispatcher* touch = getSubSystem<CCTouchDispatcher>();
-	touch->removeAllDelegates();
 
 	// purge all managed caches
 	ccDrawFree();
@@ -334,10 +330,6 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         }  
         
         CHECK_GL_ERROR_DEBUG();
-
-		CCTouchDispatcher* td = getSubSystem<CCTouchDispatcher>();
-        m_pobOpenGLView->setTouchDelegate(td);
-        td->setDispatchEvents(true);
     }
 }
 

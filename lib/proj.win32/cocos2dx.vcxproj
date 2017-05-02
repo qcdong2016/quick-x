@@ -122,9 +122,6 @@
     <ClCompile Include="..\cocos2d-x\core\textures\CCTexturePVR.cpp" />
     <ClCompile Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.cpp" />
     <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDispatcher.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchHandler.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchTargetNode.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_draw.cpp" />
@@ -358,6 +355,7 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCImage.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCImageCommon_cpp.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCInput.h" />
+    <ClInclude Include="..\cocos2d-x\core\platform\CCInputEvent.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformConfig.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformMacros.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h" />
@@ -415,10 +413,6 @@
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDelegate.h" />
     <ClInclude Include="..\cocos2d-x\core\text_input_node\CCIMEDispatcher.h" />
     <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.h" />
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDelegateProtocol.h" />
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDispatcher.h" />
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchHandler.h" />
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchTargetNode.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imconfig.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui_internal.h" />

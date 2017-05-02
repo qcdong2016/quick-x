@@ -102,6 +102,10 @@ public:
     virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
     virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
 
+	void handleTouchBegin(EventData& data);
+	void handleTouchEnd(EventData& data);
+	void handleTouchMove(EventData& data);
+
     virtual void visit();
     virtual void cleanup(void);
 

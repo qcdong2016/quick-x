@@ -28,7 +28,6 @@
 #include "CCScheduler.h"
 #include "nodes/CCNode.h"
 
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "engine/CCDirector.h"
 #include "nodes/CCLayer.h"
 

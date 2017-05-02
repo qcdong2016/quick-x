@@ -34,7 +34,12 @@ NS_CC_BEGIN
  * @addtogroup input
  * @{
  */
-
+#define CCTOUCHBEGAN        0
+#define CCTOUCHMOVED        1
+#define CCTOUCHENDED        2
+#define CCTOUCHCANCELLED    3
+#define CCTOUCHADDED        4
+#define CCTOUCHREMOVED      5
 class CC_DLL CCTouch : public CCObject
 {
 public:
@@ -95,6 +100,34 @@ private:
 class CC_DLL CCEvent : public CCObject
 {
 };
+
+class CCNode;
+class CCSet;
+
+class CC_DLL CCTouchTargetNode : public CCObject
+{
+public:
+	static CCTouchTargetNode *create(CCNode *node);
+	~CCTouchTargetNode();
+
+	CCNode *getNode();
+
+	int getTouchMode();
+
+	int getTouchId();
+	void setTouchId(int touchId);
+
+	CCTouch *findTouch(CCSet *touches);
+	static CCTouch *findTouchFromTouchesSet(CCSet *touches, int touchId);
+
+private:
+	CCTouchTargetNode(CCNode *node);
+
+	CCNode *m_node;
+	int m_touchMode;
+	int m_touchId;
+};
+
 
 // end of input group
 /// @}

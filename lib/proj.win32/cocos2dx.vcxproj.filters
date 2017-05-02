@@ -696,15 +696,6 @@
     <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.cpp">
       <Filter>cocos2d-x\core\touch_dispatcher</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDispatcher.cpp">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchHandler.cpp">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\touch_dispatcher\CCTouchTargetNode.cpp">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\CCCamera.cpp">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
@@ -1538,18 +1529,6 @@
     <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouch.h">
       <Filter>cocos2d-x\core\touch_dispatcher</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDelegateProtocol.h">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchDispatcher.h">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchHandler.h">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\touch_dispatcher\CCTouchTargetNode.h">
-      <Filter>cocos2d-x\core\touch_dispatcher</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\CCCamera.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
@@ -1798,6 +1777,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\imgui\PlayerModule.h">
       <Filter>cocos2d-x\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\platform\CCInputEvent.h">
+      <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -77,4 +77,62 @@ CCTouch *CCTouch::copy()
     return copy;
 }
 
+
+
+CCTouchTargetNode *CCTouchTargetNode::create(CCNode *node)
+{
+	CCTouchTargetNode *touchableNode = new CCTouchTargetNode(node);
+	touchableNode->autorelease();
+	return touchableNode;
+}
+
+CCTouchTargetNode::CCTouchTargetNode(CCNode *node)
+	: m_touchId(0)
+{
+	m_node = node;
+	m_node->retain();
+	m_touchMode = node->getTouchMode();
+}
+
+CCTouchTargetNode::~CCTouchTargetNode()
+{
+	CC_SAFE_RELEASE(m_node);
+}
+
+CCNode *CCTouchTargetNode::getNode()
+{
+	return  m_node;
+}
+
+int CCTouchTargetNode::getTouchMode()
+{
+	return m_touchMode;
+}
+
+int CCTouchTargetNode::getTouchId()
+{
+	return m_touchId;
+}
+
+void CCTouchTargetNode::setTouchId(int touchId)
+{
+	m_touchId = touchId;
+}
+
+CCTouch *CCTouchTargetNode::findTouch(CCSet *touches)
+{
+	return findTouchFromTouchesSet(touches, getTouchId());
+}
+
+CCTouch *CCTouchTargetNode::findTouchFromTouchesSet(CCSet *touches, int touchId)
+{
+	CCTouch *touch = NULL;
+	for (CCSetIterator it = touches->begin(); it != touches->end(); ++it)
+	{
+		touch = (CCTouch*)*it;
+		if (touch->getID() == touchId) return touch;
+	}
+	return NULL;
+}
+
 NS_CC_END

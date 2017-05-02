@@ -32,7 +32,6 @@
 #include "engine/CCDirector.h"
 #include "CCScheduler.h"
 #include "touch_dispatcher/CCTouch.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "actions/CCActionManager.h"
 #include "cocoa/CCScriptSupport.h"
 #include "shaders/CCGLProgram.h"
