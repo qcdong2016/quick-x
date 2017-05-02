@@ -26,6 +26,10 @@ void PlayerModule::update(EventData& data)
 		ImGuiCC::setMouseDown(false);
 	}
 	ImGuiCC::setMousePos(input->getMousePos().x, input->getMousePos().y);
+
+	if (input->isKeyDown(KEY_F5)) {
+		PlayerUI::relunch();
+	}
 }
 
 

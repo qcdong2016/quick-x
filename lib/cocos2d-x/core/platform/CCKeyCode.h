@@ -1,4 +1,5 @@
 #include "SDL_mouse.h"
+#include "SDL_keycode.h"
 
 #define MOUSEB_LEFT SDL_BUTTON_LMASK
 #define MOUSEB_MIDDLE SDL_BUTTON_MMASK
