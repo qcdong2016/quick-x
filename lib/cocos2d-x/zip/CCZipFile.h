@@ -27,7 +27,7 @@
 
 #include <string>
 #include "engine/CCObject.h"
-#include "support/zip_support/unzip.h"
+#include "zip/unzip.h"
 
 NS_CC_BEGIN
 

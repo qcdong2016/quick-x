@@ -49,7 +49,7 @@ THE SOFTWARE.
 #include "support/CCPointExtension.h"
 #include "platform/CCImage.h"
 #include "platform/CCTimer.h"
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "engine/CCDirector.h"
 #include "support/CCProfiling.h"
 // opengl

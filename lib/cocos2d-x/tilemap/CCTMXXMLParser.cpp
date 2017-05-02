@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "CCTMXXMLParser.h"
 #include "CCTMXTiledMap.h"
 #include "ccMacros.h"
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "support/CCPointExtension.h"
 #include "platform/CCTimer.h"
 #include "crypto/CCCrypto.h"

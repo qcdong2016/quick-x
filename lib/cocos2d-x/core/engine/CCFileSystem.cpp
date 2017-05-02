@@ -31,7 +31,7 @@ extern "C"
 static AAssetManager* s_assetManager = nullptr;
 #endif
 
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "CCDevice.h"
 
 NS_CC_BEGIN

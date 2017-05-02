@@ -34,7 +34,7 @@ extern "C" {
 }
 
 #include "ccMacros.h"
-#include "platform/CCZipFile.h"
+#include "zip/ZipUtils.h"
 
 #include "CCLuaBridge.h"
 
@@ -60,6 +60,7 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 
 #include <string>
 #include "engine/CCFileSystem.h"
+#include "zip/CCZipFile.h"
 
 using namespace std;
 

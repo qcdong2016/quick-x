@@ -37,7 +37,7 @@
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "kazmath/GL/matrix.h"
 #include "support/CCProfiling.h"
 
