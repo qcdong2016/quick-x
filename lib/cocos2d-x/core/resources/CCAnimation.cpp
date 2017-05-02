@@ -60,7 +60,7 @@ CCAnimationFrame::~CCAnimationFrame()
 void CCAnimationFrame::paste(CCObject* o)
 {
 	Super::paste(o);
-    O->initWithSpriteFrame((CCSpriteFrame*)m_pSpriteFrame->copy(),
+    dynamic_cast<SelfType*>(o)->initWithSpriteFrame((CCSpriteFrame*)m_pSpriteFrame->copy(),
                                m_fDelayUnits, m_pUserInfo != NULL ? (CCDictionary*)m_pUserInfo->copy() : NULL);
 }
 
@@ -193,8 +193,8 @@ float CCAnimation::getDuration(void)
 void CCAnimation::paste(CCObject* o)
 {
 	Super::paste(o);
-    O->initWithAnimationFrames(m_pFrames, m_fDelayPerUnit, m_uLoops);
-    O->setRestoreOriginalFrame(m_bRestoreOriginalFrame);
+    dynamic_cast<SelfType*>(o)->initWithAnimationFrames(m_pFrames, m_fDelayPerUnit, m_uLoops);
+    dynamic_cast<SelfType*>(o)->setRestoreOriginalFrame(m_bRestoreOriginalFrame);
 }
 
 NS_CC_END

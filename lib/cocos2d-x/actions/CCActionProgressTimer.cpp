@@ -55,7 +55,7 @@ bool CCProgressTo::initWithDuration(float duration, float fPercent)
 void CCProgressTo::paste(CCObject* o)
 {
 	Super::paste(o);
-	O->initWithDuration(m_fDuration, m_fTo);
+	dynamic_cast<SelfType*>(o)->initWithDuration(m_fDuration, m_fTo);
 }
 
 void CCProgressTo::startWithTarget(CCNode *pTarget)
@@ -103,7 +103,7 @@ bool CCProgressFromTo::initWithDuration(float duration, float fFromPercentage, f
 void CCProgressFromTo::paste(CCObject* o)
 {
 	Super::paste(o);
-	O->initWithDuration(m_fDuration, m_fFrom, m_fTo);
+	dynamic_cast<SelfType*>(o)->initWithDuration(m_fDuration, m_fFrom, m_fTo);
 }
 
 CCActionInterval* CCProgressFromTo::reverse(void)

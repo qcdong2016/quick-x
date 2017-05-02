@@ -125,7 +125,7 @@ void CCCardinalSplineTo::startWithTarget(cocos2d::CCNode *pTarget)
 void CCCardinalSplineTo::paste(CCObject* o)
 {
 	Super::paste(o);
-    O->initWithDuration(this->getDuration(), this->_points, this->m_fTension);
+    dynamic_cast<SelfType*>(o)->initWithDuration(this->getDuration(), this->_points, this->m_fTension);
 }
 
 void CCCardinalSplineTo::update(float time)

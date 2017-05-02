@@ -74,7 +74,7 @@ bool CCSpeed::initWithAction(CCActionInterval *pAction, float fSpeed)
 void CCSpeed::paste(CCObject* o)
 {
     Super::paste(o);
-	O->initWithAction( (CCActionInterval*)(m_pInnerAction->copy()) , m_fSpeed );
+	dynamic_cast<SelfType*>(o)->initWithAction( (CCActionInterval*)(m_pInnerAction->copy()) , m_fSpeed );
 }
 
 void CCSpeed::startWithTarget(CCNode* pTarget)

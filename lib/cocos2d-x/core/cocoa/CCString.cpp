@@ -132,7 +132,7 @@ int CCString::compare(const char * pStr) const
 void CCString::paste(CCObject* o)
 {
 	Super::paste(o);
-	O->m_sString = m_sString;
+	dynamic_cast<SelfType*>(o)->m_sString = m_sString;
 }
 
 bool CCString::isEqual(const CCObject* pObject)
