@@ -93,6 +93,7 @@ public:
      */
     static int getDPI();
     static std::string getWritablePath();
+    static std::string getResourcePath();
 
 #pragma mark -
 #pragma mark activity indicator

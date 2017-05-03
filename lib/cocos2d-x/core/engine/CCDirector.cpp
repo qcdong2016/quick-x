@@ -103,6 +103,7 @@ bool CCDirector::init(void)
 {
 	setDefaultValues();
 
+    _running = true;
     // projection delegate if "Custom" projection is used
     m_pProjectionDelegate = NULL;
 

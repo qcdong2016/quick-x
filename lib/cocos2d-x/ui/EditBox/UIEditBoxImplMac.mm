@@ -30,7 +30,7 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 
 #include "UIEditBox.h"
-#import "EAGLView.h"
+//#import "EAGLView.h"
 
 #define getEditBoxImplMac() ((cocos2d::ui::CCEditBoxImplMac*)editBox_)
 
@@ -86,7 +86,7 @@
         [textField_ setDelegate:self];
         self.editBox = editBox;
         
-        [[EAGLView sharedEGLView] addSubview:textField_];
+        //[[EAGLView sharedEGLView] addSubview:textField_];
         
         return self;
     }while(0);
@@ -96,8 +96,8 @@
 
 -(void) doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)distance
 {
-    id eglView = [EAGLView sharedEGLView];
-    [eglView doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
+//    id eglView = [EAGLView sharedEGLView];
+//    [eglView doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
 }
 
 -(void) setPosition:(NSPoint) pos
@@ -276,19 +276,19 @@ void CCEditBoxImplMac::doAnimationWhenKeyboardMove(float duration, float distanc
 
 bool CCEditBoxImplMac::initWithSize(const CCSize& size)
 {
-    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-
-    NSRect rect = NSMakeRect(0, 0, size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
-
-    if (m_bInRetinaMode) {
-         rect.size.width /= 2.0f;
-         rect.size.height /= 2.0f;
-    }
-    
-    m_pSysEdit = [[EditBoxImplMac alloc] initWithFrame:rect editBox:this];
-    
-    if (!m_pSysEdit)
-        return false;
+//    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
+//
+//    NSRect rect = NSMakeRect(0, 0, size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
+//
+//    if (m_bInRetinaMode) {
+//         rect.size.width /= 2.0f;
+//         rect.size.height /= 2.0f;
+//    }
+//    
+//    m_pSysEdit = [[EditBoxImplMac alloc] initWithFrame:rect editBox:this];
+//    
+//    if (!m_pSysEdit)
+//        return false;
     
     return true;
 }
@@ -367,21 +367,22 @@ NSPoint CCEditBoxImplMac::convertDesignCoordToScreenCoord(const CCPoint& designC
     NSRect frame = [m_pSysEdit.textField frame];
     CGFloat height = frame.size.height;
     
-    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-
-    CCPoint visiblePos = ccp(designCoord.x * eglView->getScaleX(), designCoord.y * eglView->getScaleY());
-    CCPoint screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
-    
-    //TODO: I don't know why here needs to substract `height`.
-    NSPoint screenPos = NSMakePoint(screenGLPos.x, screenGLPos.y-height);
-    
-    if (bInRetinaMode) {
-        screenPos.x = screenPos.x / 2.0f;
-        screenPos.y = screenPos.y / 2.0f;
-    }
-    
-    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
-    return screenPos;
+//    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
+//
+//    CCPoint visiblePos = ccp(designCoord.x * eglView->getScaleX(), designCoord.y * eglView->getScaleY());
+//    CCPoint screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
+//    
+//    //TODO: I don't know why here needs to substract `height`.
+//    NSPoint screenPos = NSMakePoint(screenGLPos.x, screenGLPos.y-height);
+//    
+//    if (bInRetinaMode) {
+//        screenPos.x = screenPos.x / 2.0f;
+//        screenPos.y = screenPos.y / 2.0f;
+//    }
+//    
+//    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
+//    return screenPos;
+    return NSMakePoint(0, 0);
 }
 
 void CCEditBoxImplMac::adjustTextFieldPosition()

@@ -35,7 +35,7 @@
 #include "ccMacros.h"
 #include "support/CCPointExtension.h"
 #include "CCActionCatmullRom.h"
-#include <xutility>
+//#include <xutility>
 
 using namespace std;
 
@@ -178,7 +178,7 @@ void CCCardinalSplineTo::updatePosition(cocos2d::CCPoint &newPos)
 CCActionInterval* CCCardinalSplineTo::reverse()
 {
 	std::vector<CCPoint> reverse;
-	for (auto& i = _points.rbegin(); i != _points.rend(); i++)
+	for (auto i = _points.rbegin(); i != _points.rend(); i++)
 		reverse.push_back(*i);
     return CCCardinalSplineTo::create(m_fDuration, reverse, m_fTension);
 }
@@ -234,7 +234,7 @@ CCActionInterval* CCCardinalSplineBy::reverse()
 	
 	// convert to "diffs" to "reverse absolute"
 	std::vector<CCPoint> reverse;
-	for (auto& i = _points.rbegin(); i != _points.rend(); i++)
+	for (auto i = _points.rbegin(); i != _points.rend(); i++)
 		reverse.push_back(*i);
 	
 	// 1st element (which should be 0,0) should be here too

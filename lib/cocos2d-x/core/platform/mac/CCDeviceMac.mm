@@ -2,7 +2,7 @@
 
 #include <Cocoa/Cocoa.h>
 #include <sys/sysctl.h>
-#import "EAGLView.h"
+//#import "EAGLView.h"
 #import "CCNativeMac.h"
 #import "openudid/OpenUDIDMac.h"
 #include "CCDevice.h"
@@ -26,11 +26,11 @@ void CCDevice::showMessageBox(const char *pszMsg, const char *pszTitle)
     [alert setInformativeText:title];
     [alert setAlertStyle:NSWarningAlertStyle];
 
-    NSWindow *window = [[EAGLView sharedEGLView] window];
-    [alert beginSheetModalForWindow:window
-                      modalDelegate:[window delegate]
-                     didEndSelector:nil
-                        contextInfo:nil];
+//    NSWindow *window = [[EAGLView sharedEGLView] window];
+//    [alert beginSheetModalForWindow:window
+//                      modalDelegate:[window delegate]
+//                     didEndSelector:nil
+//                        contextInfo:nil];
 }
 
 // @return /Users/{WHOAMI}/Library/Application Support/{bundleID}
@@ -65,6 +65,12 @@ std::string CCDevice::getWritablePath()
     std::string strRet = [dirPath fileSystemRepresentation];
     strRet.append("/");
     return strRet;
+}
+
+
+std::string CCDevice::getResourcePath()
+{
+    return [[NSBundle mainBundle] resourcePath].UTF8String;
 }
 
 void CCDevice::logS(const char * str)

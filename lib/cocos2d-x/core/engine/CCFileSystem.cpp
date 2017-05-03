@@ -66,7 +66,6 @@ MemBuffer::~MemBuffer()
 }
 
 static std::vector<std::string> s_searchPath;
-static std::string s_searchRoot = ".";
 
 void FileSystem::setAssetsManager(void* assetsManager)
 {
@@ -77,13 +76,12 @@ void FileSystem::setAssetsManager(void* assetsManager)
 
 void FileSystem::setResourceRoot(const std::string& root)
 {
-	s_searchRoot = root;
 }
 
 void FileSystem::addResourcePath(const std::string& path)
 {
 	if (!isAbsolutePath(path))
-		s_searchPath.push_back(join(s_searchRoot, path));
+        s_searchPath.push_back(join(CCDevice::getResourcePath(), path));
 	else
 		s_searchPath.push_back(path);
 }
@@ -220,7 +218,7 @@ std::string FileSystem::fullPathOfFile(const std::string& filename)
     std::string test;
     
     if (!isAbsolutePath(filename))
-        test = join(s_searchRoot, filename);
+        test = join(CCDevice::getResourcePath(), filename);
     else
         test = filename;
     

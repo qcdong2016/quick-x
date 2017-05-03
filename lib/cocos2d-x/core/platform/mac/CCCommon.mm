@@ -26,7 +26,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-#import "EAGLView.h"
+//#import "EAGLView.h"
 
 NS_CC_BEGIN
 
@@ -42,11 +42,11 @@ void CCMessageBox(const char * pszMsg, const char * pszTitle)
 	[alert setInformativeText:title];
 	[alert setAlertStyle:NSWarningAlertStyle];
 
-	NSWindow *window = [[EAGLView sharedEGLView] window];
-	[alert beginSheetModalForWindow:window
-					  modalDelegate:[window delegate]
-					 didEndSelector:nil
-						contextInfo:nil];
+//	NSWindow *window = [[EAGLView sharedEGLView] window];
+//	[alert beginSheetModalForWindow:window
+//					  modalDelegate:[window delegate]
+//					 didEndSelector:nil
+//						contextInfo:nil];
 }
 
 NS_CC_END

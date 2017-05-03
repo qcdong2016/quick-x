@@ -44,7 +44,7 @@ THE SOFTWARE.
 NS_CC_BEGIN
 #define QUICKX_APP(APP) \
 	extern "C" { \
-		int SDL_main(int argc, char** argv) {  \
+		int main(int argc, char** argv) {  \
 			SharedPtr<CCDirector> d(new CCDirector(new APP));\
 			return d->run(); \
 		} \
@@ -301,7 +301,7 @@ public:
 	void timeLimit();
 	void setFps(int fps);
 
-	void addModule(SharedPtr<Module>& m) { _modules.push_back(m); }
+	void addModule(SharedPtr<Module> m) { _modules.push_back(m); }
 	template<typename T>
 	void addModule() { addModule(SharedPtr<Module>(new T));  }
 public:

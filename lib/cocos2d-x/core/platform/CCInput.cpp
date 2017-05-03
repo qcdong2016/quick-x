@@ -166,7 +166,7 @@ void Input::pushTouchIndex(int touchID) {
 	int index = _touchIDMap[touchID];
 	_touchIDMap.erase(touchID);
 	bool inserted = false;
-	for (auto& i = _availableTouchIDs.begin(); i != _availableTouchIDs.end(); i++) {
+	for (auto i = _availableTouchIDs.begin(); i != _availableTouchIDs.end(); i++) {
 		if (*i == index) {
 			inserted = true;
 			break;
@@ -341,4 +341,4 @@ void Input::handleEvent(void* evt)
 
 NS_CC_END;
 #include "engine/CCEventImpl.h"
-#include "CCInputEvent.h"_
+#include "CCInputEvent.h"

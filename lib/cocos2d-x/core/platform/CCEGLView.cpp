@@ -5,6 +5,7 @@
 #endif
 
 #include "SDL.h"
+#include "SDL_opengl.h"
 #include "ccMacros.h"
 
 
@@ -58,30 +59,29 @@ bool CCEGLView::createWithSize(int w, int h)
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 	if (glewInit() != GLEW_OK)
 		return false;
-
-	if (GLEW_ARB_vertex_shader && GLEW_ARB_fragment_shader)
-	{
-		CCLog("Ready for GLSL");
-	}
-	else
-	{
-		CCLog("Not totally ready :(");
-	}
-
-	if (glewIsSupported("GL_VERSION_2_0"))
-	{
-		CCLog("Ready for OpenGL 2.0");
-	}
-	else
-	{
-		CCLog("OpenGL 2.0 not supported");
-	}
-	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-	SDL_GL_SetSwapInterval(1);
-
-	setFrameSize(CCSize(w, h));
-	//    setDesignResolutionSize(800, 600, kResolutionShowAll);
+    if (GLEW_ARB_vertex_shader && GLEW_ARB_fragment_shader)
+    {
+        CCLog("Ready for GLSL");
+    }
+    else
+    {
+        CCLog("Not totally ready :(");
+    }
+    
+    if (glewIsSupported("GL_VERSION_2_0"))
+    {
+        CCLog("Ready for OpenGL 2.0");
+    }
+    else
+    {
+        CCLog("OpenGL 2.0 not supported");
+    }
 #endif
+
+    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    SDL_GL_SetSwapInterval(1);
+    
+    setFrameSize(CCSize(w, h));
 
 	return true;
 }

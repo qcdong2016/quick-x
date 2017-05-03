@@ -1,8 +1,11 @@
 #include "CCTimer.h"
 #include "SDL_timer.h"
 #include "CCPlatformDefine.h"
+#include "CCPlatformMacros.h"
 #include <ctype.h>
+#if OS_IS(WIN32)
 #include <winsock.h>
+#endif
 
 namespace cocos2d
 {
@@ -42,6 +45,7 @@ long long cocos2d::CCTimerHiRes::elapsed()
 int CCTime::gettimeofdayCocos2d(struct cc_timeval *tp, void *tzp)
 {
 	CC_UNUSED_PARAM(tzp);
+#if OS_IS(WIN32)
 	if (tp)
 	{
 		LARGE_INTEGER liTime, liFreq;
@@ -50,6 +54,7 @@ int CCTime::gettimeofdayCocos2d(struct cc_timeval *tp, void *tzp)
 		tp->tv_sec = (long)(liTime.QuadPart / liFreq.QuadPart);
 		tp->tv_usec = (long)(liTime.QuadPart * 1000000.0 / liFreq.QuadPart - tp->tv_sec * 1000000.0);
 	}
+#endif
 	return 0;
 }
 
