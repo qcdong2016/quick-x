@@ -642,9 +642,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCDevice.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp">
       <Filter>cocos2d-x\core\platform\win32</Filter>
     </ClCompile>
@@ -1416,9 +1413,6 @@
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCStdC.h">
-      <Filter>cocos2d-x\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\shaders\CCGLProgram.h">

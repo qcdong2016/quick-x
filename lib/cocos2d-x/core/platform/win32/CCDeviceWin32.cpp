@@ -281,5 +281,9 @@ void CCDevice::vibrate()
 {
 }
 
+std::string CCDevice::getResourcePath() {
+	return "";
+}
+
 
 NS_CC_END

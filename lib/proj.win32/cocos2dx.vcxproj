@@ -83,7 +83,6 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCEGLView.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCInput.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCSAXParser.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\platform\CCThread.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\CCTimer.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCDeviceWin32.cpp" />
     <ClCompile Include="..\cocos2d-x\core\platform\win32\CCImage.cpp" />
@@ -354,7 +353,6 @@
     <ClInclude Include="..\cocos2d-x\core\platform\CCPlatformMacros.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCSAXParser.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCStdC.h" />
-    <ClInclude Include="..\cocos2d-x\core\platform\CCThread.h" />
     <ClInclude Include="..\cocos2d-x\core\platform\CCTimer.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCAnimation.h" />
     <ClInclude Include="..\cocos2d-x\core\resources\CCPlistResource.h" />
