@@ -6,6 +6,7 @@
 #include "CCEGLView.h"
 #include "PlayerUI.h"
 #include "base/ProcessUtils.h"
+#import <OpenGL/gl3.h>
 
 NS_CC_BEGIN;
 static double       g_Time = 0.0f;

@@ -231,12 +231,9 @@
 		B1A754BA1DEA7968002F0D4C /* CCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753971DEA7968002F0D4C /* CCDevice.cpp */; };
 		B1A754BC1DEA7968002F0D4C /* CCInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7539D1DEA7968002F0D4C /* CCInput.cpp */; };
 		B1A754BD1DEA7968002F0D4C /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753A11DEA7968002F0D4C /* CCSAXParser.cpp */; };
-		B1A754BE1DEA7968002F0D4C /* CCThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753A41DEA7968002F0D4C /* CCThread.cpp */; };
-		B1A754D11DEA7968002F0D4C /* CCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753D11DEA7968002F0D4C /* CCCommon.mm */; };
 		B1A754D21DEA7968002F0D4C /* CCDeviceMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */; };
 		B1A754D61DEA7968002F0D4C /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753DA1DEA7968002F0D4C /* CCImage.mm */; };
 		B1A754D71DEA7968002F0D4C /* CCNativeMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */; };
-		B1A754D81DEA7968002F0D4C /* CCThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753DE1DEA7968002F0D4C /* CCThread.mm */; };
 		B1A754DB1DEA7968002F0D4C /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A753E51DEA7968002F0D4C /* OpenUDIDMac.m */; };
 		B1A754E21DEA7968002F0D4C /* CCAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753F61DEA7968002F0D4C /* CCAnimation.cpp */; };
 		B1A754E31DEA7968002F0D4C /* CCPlistResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753F81DEA7968002F0D4C /* CCPlistResource.cpp */; };
@@ -565,6 +562,7 @@
 		9FB6DAAD1EB5B93800B5B482 /* UIEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIEditBox.cpp; sourceTree = "<group>"; };
 		9FB6DAAE1EB5B93800B5B482 /* UIEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBox.h; sourceTree = "<group>"; };
 		9FB6DAAF1EB5B93800B5B482 /* UIEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImpl.h; sourceTree = "<group>"; };
+		B109C17A1EB9D19F00A01BC7 /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		B15BD46E1E1B815C0053EA7D /* CCLuaBridge_oc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaBridge_oc.mm; sourceTree = "<group>"; };
 		B15BD4701E1B847A0053EA7D /* nanovg_gl_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanovg_gl_utils.h; sourceTree = "<group>"; };
 		B15BD4711E1B847A0053EA7D /* nanovg_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanovg_gl.h; sourceTree = "<group>"; };
@@ -748,16 +746,11 @@
 		B1A753A11DEA7968002F0D4C /* CCSAXParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSAXParser.cpp; sourceTree = "<group>"; };
 		B1A753A21DEA7968002F0D4C /* CCSAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSAXParser.h; sourceTree = "<group>"; };
 		B1A753A31DEA7968002F0D4C /* CCStdC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStdC.h; sourceTree = "<group>"; };
-		B1A753A41DEA7968002F0D4C /* CCThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCThread.cpp; sourceTree = "<group>"; };
-		B1A753A51DEA7968002F0D4C /* CCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCThread.h; sourceTree = "<group>"; };
-		B1A753D11DEA7968002F0D4C /* CCCommon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCommon.mm; sourceTree = "<group>"; };
 		B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDeviceMac.mm; sourceTree = "<group>"; };
-		B1A753D91DEA7968002F0D4C /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		B1A753DA1DEA7968002F0D4C /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
 		B1A753DB1DEA7968002F0D4C /* CCNativeMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNativeMac.h; sourceTree = "<group>"; };
 		B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNativeMac.mm; sourceTree = "<group>"; };
 		B1A753DD1DEA7968002F0D4C /* CCPlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformDefine.h; sourceTree = "<group>"; };
-		B1A753DE1DEA7968002F0D4C /* CCThread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCThread.mm; sourceTree = "<group>"; };
 		B1A753E41DEA7968002F0D4C /* OpenUDIDMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDMac.h; sourceTree = "<group>"; };
 		B1A753E51DEA7968002F0D4C /* OpenUDIDMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDIDMac.m; sourceTree = "<group>"; };
 		B1A753F61DEA7968002F0D4C /* CCAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAnimation.cpp; sourceTree = "<group>"; };
@@ -854,7 +847,6 @@
 		B1FE16A71DDBFCD700975FBD /* SpineResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpineResource.h; sourceTree = "<group>"; };
 		B1FE2F381E0EA79D00BB0D3D /* snapshot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = snapshot.c; sourceTree = "<group>"; };
 		B1FE2F391E0EA79D00BB0D3D /* snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = snapshot.h; sourceTree = "<group>"; };
-		F45FF35316C7DE1F00275222 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		F4B08150175C89880029F472 /* quickcocos2dx.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quickcocos2dx.pch; sourceTree = "<group>"; };
 		F4DE082016800061005DB2DB /* libquickcocos2dx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickcocos2dx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4DE082316800061005DB2DB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -1647,13 +1639,12 @@
 				B1A7539C1DEA7968002F0D4C /* CCImageCommon_cpp.h */,
 				B1A7539D1DEA7968002F0D4C /* CCInput.cpp */,
 				B1A7539E1DEA7968002F0D4C /* CCInput.h */,
+				B109C17A1EB9D19F00A01BC7 /* CCGL.h */,
 				B1A7539F1DEA7968002F0D4C /* CCPlatformConfig.h */,
 				B1A753A01DEA7968002F0D4C /* CCPlatformMacros.h */,
 				B1A753A11DEA7968002F0D4C /* CCSAXParser.cpp */,
 				B1A753A21DEA7968002F0D4C /* CCSAXParser.h */,
 				B1A753A31DEA7968002F0D4C /* CCStdC.h */,
-				B1A753A41DEA7968002F0D4C /* CCThread.cpp */,
-				B1A753A51DEA7968002F0D4C /* CCThread.h */,
 				B17848D01EB9B27E00EA61F5 /* CCInput.cpp */,
 				B17848D11EB9B27E00EA61F5 /* CCInput.h */,
 				B17848D21EB9B27E00EA61F5 /* CCInputEvent.h */,
@@ -1667,14 +1658,11 @@
 		B1A753CD1DEA7968002F0D4C /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				B1A753D11DEA7968002F0D4C /* CCCommon.mm */,
 				B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */,
-				B1A753D91DEA7968002F0D4C /* CCGL.h */,
 				B1A753DA1DEA7968002F0D4C /* CCImage.mm */,
 				B1A753DB1DEA7968002F0D4C /* CCNativeMac.h */,
 				B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */,
 				B1A753DD1DEA7968002F0D4C /* CCPlatformDefine.h */,
-				B1A753DE1DEA7968002F0D4C /* CCThread.mm */,
 				B1A753E31DEA7968002F0D4C /* openudid */,
 			);
 			path = mac;
@@ -1901,7 +1889,6 @@
 			children = (
 				9F8EE1521DB5FE53007A0DFD /* libwebp.a */,
 				F4DE082316800061005DB2DB /* Cocoa.framework */,
-				F45FF35316C7DE1F00275222 /* libcurl.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2095,7 +2082,6 @@
 				B1A754611DEA7968002F0D4C /* CCDictionary.cpp in Sources */,
 				B1A7547C1DEA7968002F0D4C /* plane.c in Sources */,
 				B1A754701DEA7968002F0D4C /* CCEngineEvents.cpp in Sources */,
-				B1A754D81DEA7968002F0D4C /* CCThread.mm in Sources */,
 				9F7366971DAD484700D0B435 /* IkConstraintData.c in Sources */,
 				B1A7546F1DEA7968002F0D4C /* CCDirector.cpp in Sources */,
 				B1A7546E1DEA7968002F0D4C /* CCDebugHud.cpp in Sources */,
@@ -2153,7 +2139,6 @@
 				9F9A395C1DAB896700236246 /* ldo.c in Sources */,
 				B1A754F11DEA7968002F0D4C /* tinyxml2.cpp in Sources */,
 				9F9A389D1DAB88E000236246 /* UIWebView.cpp in Sources */,
-				B1A754D11DEA7968002F0D4C /* CCCommon.mm in Sources */,
 				9F7366A21DAD484700D0B435 /* SlotData.c in Sources */,
 				B1A754551DEA7968002F0D4C /* ID.cpp in Sources */,
 				9F73668D1DAD484700D0B435 /* AtlasAttachmentLoader.c in Sources */,
@@ -2239,7 +2224,6 @@
 				9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */,
 				9F9A38931DAB88E000236246 /* UIImageView.cpp in Sources */,
 				9F7366871DAD484700D0B435 /* PolygonBatch.cpp in Sources */,
-				B1A754BE1DEA7968002F0D4C /* CCThread.cpp in Sources */,
 				9F9A39561DAB896700236246 /* lapi.c in Sources */,
 				9F9A395A1DAB896700236246 /* ldblib.c in Sources */,
 				B1A754E71DEA7968002F0D4C /* CCRenderState.cpp in Sources */,
