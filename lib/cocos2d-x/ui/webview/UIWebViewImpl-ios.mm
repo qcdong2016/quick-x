@@ -26,7 +26,7 @@
 
 #include "UIWebViewImpl-ios.h"
 #include "UIWebView.h"
-#include "platform/ios/EAGLView.h"
+//#include "platform/ios/EAGLView.h"
 #include "engine/CCDirector.h"
 #include "engine/CCFileSystem.h"
 #include "CCEGLView.h"
@@ -138,8 +138,8 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
         self.uiWebView.detectsPhoneNumbers = NO;
     }
     if (!self.uiWebView.superview) {
-        EAGLView* eaglview = [EAGLView sharedEGLView];
-        [eaglview addSubview:self.uiWebView];
+//        EAGLView* eaglview = [EAGLView sharedEGLView];
+//        [eaglview addSubview:self.uiWebView];
     }
 }
 
@@ -366,25 +366,25 @@ void WebViewImpl::draw() {
     CCEGLView* glView = direcrot->getOpenGLView();
     auto frameSize = glView->getFrameSize();
     
-    
-    EAGLView* eagview = [EAGLView sharedEGLView];
-        
-    auto scaleFactor = [eagview contentScaleFactor];
-
-    auto winSize = direcrot->getWinSize();
-
-    auto leftBottom = this->_webView->convertToWorldSpace(CCPointZero);
-    auto rightTop = this->_webView->convertToWorldSpace(ccp(this->_webView->getContentSize().width, this->_webView->getContentSize().height));
-
-    auto x = (frameSize.width / 2 + (leftBottom.x - winSize.width / 2) * glView->getScaleX()) / scaleFactor;
-    auto y = (frameSize.height / 2 - (rightTop.y - winSize.height / 2) * glView->getScaleY()) / scaleFactor;
-    auto width = (rightTop.x - leftBottom.x) * glView->getScaleX() / scaleFactor;
-    auto height = (rightTop.y - leftBottom.y) * glView->getScaleY() / scaleFactor;
-
-    [_uiWebViewWrapper setFrameWithX:x
-                                    y:y
-                                width:width
-                                height:height];
+//    
+//    EAGLView* eagview = [EAGLView sharedEGLView];
+//        
+//    auto scaleFactor = [eagview contentScaleFactor];
+//
+//    auto winSize = direcrot->getWinSize();
+//
+//    auto leftBottom = this->_webView->convertToWorldSpace(CCPointZero);
+//    auto rightTop = this->_webView->convertToWorldSpace(ccp(this->_webView->getContentSize().width, this->_webView->getContentSize().height));
+//
+//    auto x = (frameSize.width / 2 + (leftBottom.x - winSize.width / 2) * glView->getScaleX()) / scaleFactor;
+//    auto y = (frameSize.height / 2 - (rightTop.y - winSize.height / 2) * glView->getScaleY()) / scaleFactor;
+//    auto width = (rightTop.x - leftBottom.x) * glView->getScaleX() / scaleFactor;
+//    auto height = (rightTop.y - leftBottom.y) * glView->getScaleY() / scaleFactor;
+//
+//    [_uiWebViewWrapper setFrameWithX:x
+//                                    y:y
+//                                width:width
+//                                height:height];
 }
 
 void WebViewImpl::setVisible(bool visible){

@@ -209,4 +209,10 @@ void CCDevice::vibrate()
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+std::string CCDevice::getResourcePath()
+{
+    return [[NSBundle mainBundle] resourcePath].UTF8String;
+}
+
+
 NS_CC_END
