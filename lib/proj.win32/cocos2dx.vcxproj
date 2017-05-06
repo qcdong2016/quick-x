@@ -114,6 +114,7 @@
     <ClCompile Include="..\cocos2d-x\crypto\libbase64.c" />
     <ClCompile Include="..\cocos2d-x\crypto\md5.cpp" />
     <ClCompile Include="..\cocos2d-x\crypto\xxtea.c" />
+    <ClCompile Include="..\cocos2d-x\imgui\ImGuiDock.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\cocos2d-x\imgui\imgui\imgui_draw.cpp" />
@@ -401,6 +402,7 @@
     <ClInclude Include="..\cocos2d-x\crypto\libbase64.h" />
     <ClInclude Include="..\cocos2d-x\crypto\md5.h" />
     <ClInclude Include="..\cocos2d-x\crypto\xxtea.h" />
+    <ClInclude Include="..\cocos2d-x\imgui\ImGuiDock.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imconfig.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui.h" />
     <ClInclude Include="..\cocos2d-x\imgui\imgui\imgui_internal.h" />

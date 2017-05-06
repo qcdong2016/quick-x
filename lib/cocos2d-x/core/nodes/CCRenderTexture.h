@@ -55,8 +55,10 @@ class CC_DLL CCRenderTexture : public CCNode
     The blending function can be changed in runtime by calling:
     - [[renderTexture sprite] setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
     */
-    CC_PROPERTY(CCSprite*, m_pSprite, Sprite)
+	SharedPtr<CCSprite> _sprite;
 public:
+	void setSprite(CCSprite* sp) { _sprite = sp; }
+	CCSprite* getSprite() { return _sprite; }
     /**
      * @js ctor
      */

@@ -39,6 +39,7 @@ THE SOFTWARE.
 #include "engine/CCSubSystem.h"
 #include "base/Ptr.h"
 #include "CCTimer.h"
+#include "nodes/CCScene.h"
 
 
 NS_CC_BEGIN
@@ -144,6 +145,7 @@ public:
 
     /** Get current running Scene. Director can only run one Scene at the time */
     inline CCScene* getScene(void) { return _scene; }
+	void setScene(CCScene* sc) { _scene = sc; }
 
     /** Get the CCEGLView, where everything is rendered
      * @js NA

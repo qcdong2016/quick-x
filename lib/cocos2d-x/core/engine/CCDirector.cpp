@@ -627,7 +627,7 @@ int CCDirector::run()
 	parseArguments(args);
 	*/
 	CCEGLView* e = CCEGLView::sharedOpenGLView();
-	e->createWithSize(640, 960);
+	e->createWithSize();
 
 	this->init();
 	this->setOpenGLView(e);

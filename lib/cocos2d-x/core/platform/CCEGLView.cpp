@@ -11,9 +11,11 @@
 
 NS_CC_BEGIN
 
+SDL_Window* _window = nullptr;
 static CCEGLView* _instance = nullptr;
 
 CCEGLView::CCEGLView()
+	: m_obScreenSize(960, 640)
 {
 }
 
@@ -29,11 +31,12 @@ const CCSize& CCEGLView::getFrameSize() const
 void CCEGLView::setFrameSize(const CCSize& size)
 {
 	m_obScreenSize = size;
+	if (_window)
+		SDL_SetWindowSize(_window, (int)size.width, (int)size.height);
 }
 
-SDL_Window* _window;
 
-bool CCEGLView::createWithSize(int w, int h)
+bool CCEGLView::createWithSize()
 {
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
@@ -50,7 +53,7 @@ bool CCEGLView::createWithSize(int w, int h)
 	//  flags |= SDL_WINDOW_RESIZABLE;
 	//  flags |= SDL_WINDOW_BORDERLESS;
 
-	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
+	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)m_obScreenSize.width, (int)m_obScreenSize.height, flags);
 	//SDL_GL_MakeCurrent(_window, SDL_GL_CreateContext(_window));
 
 
@@ -80,8 +83,6 @@ bool CCEGLView::createWithSize(int w, int h)
 
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
     SDL_GL_SetSwapInterval(1);
-    
-    setFrameSize(CCSize(w, h));
 
 	return true;
 }

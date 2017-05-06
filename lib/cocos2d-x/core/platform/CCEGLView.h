@@ -76,7 +76,7 @@ public:
 private:
 
 	void resize(int width, int height);
-	bool createWithSize(int w, int h);
+	bool createWithSize();
 	// real screen size
 	CCSize m_obScreenSize;
 	// the view port size

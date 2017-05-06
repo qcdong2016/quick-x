@@ -23,7 +23,9 @@ public:
 #endif
 
 		// initialize director
-		d->setOpenGLView(CCEGLView::sharedOpenGLView());
+		CCEGLView* view = CCEGLView::sharedOpenGLView();
+		view->setFrameSize(CCSize(960, 640));
+		d->setOpenGLView(view);
 		d->setProjection(kCCDirectorProjection2D);
 
 		// set FPS. the default value is 1.0/60 if you don't call this

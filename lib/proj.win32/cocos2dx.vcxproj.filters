@@ -903,6 +903,9 @@
     <ClCompile Include="..\cocos2d-x\core\platform\CCEGLView.cpp">
       <Filter>cocos2d-x\core\platform</Filter>
     </ClCompile>
+    <ClCompile Include="..\cocos2d-x\imgui\ImGuiDock.cpp">
+      <Filter>cocos2d-x\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cocos2d-x\spine\spine\AnimationStateData.h">
@@ -1759,6 +1762,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\platform\CCGL.h">
       <Filter>cocos2d-x\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\imgui\ImGuiDock.h">
+      <Filter>cocos2d-x\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
