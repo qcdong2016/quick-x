@@ -151,6 +151,7 @@
 		9F9A39931DAB896700236246 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A39451DAB896700236246 /* tolua_to.c */; };
 		9FB6DAB01EB5B93800B5B482 /* UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB6DAAD1EB5B93800B5B482 /* UIEditBox.cpp */; };
 		B159BB841EBD97AF00BB6E5D /* ImGuiDock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B159BB821EBD97AF00BB6E5D /* ImGuiDock.cpp */; };
+		B159BB891EBDB57600BB6E5D /* CCAttributeAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B159BB871EBDB57600BB6E5D /* CCAttributeAccessor.cpp */; };
 		B15BD46F1E1B815C0053EA7D /* CCLuaBridge_oc.mm in Sources */ = {isa = PBXBuildFile; fileRef = B15BD46E1E1B815C0053EA7D /* CCLuaBridge_oc.mm */; };
 		B15BD4741E1B847A0053EA7D /* nanovg.c in Sources */ = {isa = PBXBuildFile; fileRef = B15BD4721E1B847A0053EA7D /* nanovg.c */; };
 		B15D376C1DB1053800EE3D22 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B15D375E1DB1053800EE3D22 /* imgui.cpp */; };
@@ -565,6 +566,8 @@
 		B109C17A1EB9D19F00A01BC7 /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
 		B159BB821EBD97AF00BB6E5D /* ImGuiDock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImGuiDock.cpp; sourceTree = "<group>"; };
 		B159BB831EBD97AF00BB6E5D /* ImGuiDock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImGuiDock.h; sourceTree = "<group>"; };
+		B159BB871EBDB57600BB6E5D /* CCAttributeAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAttributeAccessor.cpp; sourceTree = "<group>"; };
+		B159BB881EBDB57600BB6E5D /* CCAttributeAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAttributeAccessor.h; sourceTree = "<group>"; };
 		B15BD46E1E1B815C0053EA7D /* CCLuaBridge_oc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaBridge_oc.mm; sourceTree = "<group>"; };
 		B15BD4701E1B847A0053EA7D /* nanovg_gl_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanovg_gl_utils.h; sourceTree = "<group>"; };
 		B15BD4711E1B847A0053EA7D /* nanovg_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanovg_gl.h; sourceTree = "<group>"; };
@@ -1493,6 +1496,8 @@
 		B1A752F91DEA7968002F0D4C /* engine */ = {
 			isa = PBXGroup;
 			children = (
+				B159BB871EBDB57600BB6E5D /* CCAttributeAccessor.cpp */,
+				B159BB881EBDB57600BB6E5D /* CCAttributeAccessor.h */,
 				B1A752FA1DEA7968002F0D4C /* CCDebugHud.cpp */,
 				B1A752FB1DEA7968002F0D4C /* CCDebugHud.h */,
 				B1A752FC1DEA7968002F0D4C /* CCDirector.cpp */,
@@ -2052,6 +2057,7 @@
 				B1D36EB61DBFB76200E591CE /* CCActionFiniteTime.cpp in Sources */,
 				B1A754621DEA7968002F0D4C /* CCGeometry.cpp in Sources */,
 				B1A754DB1DEA7968002F0D4C /* OpenUDIDMac.m in Sources */,
+				B159BB891EBDB57600BB6E5D /* CCAttributeAccessor.cpp in Sources */,
 				9F1FE7131DAD3AA0008FE0C7 /* CCParticleExamples.cpp in Sources */,
 				9F1FE7141DAD3AA0008FE0C7 /* CCParticleSystem.cpp in Sources */,
 				B1A754891DEA7968002F0D4C /* CCLabelBMFont.cpp in Sources */,
