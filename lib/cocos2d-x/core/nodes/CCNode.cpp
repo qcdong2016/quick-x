@@ -57,6 +57,7 @@ unsigned int CCNode::g_drawOrder = 0;
 CCNode::CCNode(void)
 : m_fRotationX(0.0f)
 , m_fRotationY(0.0f)
+, _name("node")
 , m_fScaleX(1.0f)
 , m_fScaleY(1.0f)
 , m_fVertexZ(0.0f)

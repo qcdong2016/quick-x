@@ -465,21 +465,6 @@ public:
      */
     const CCPoint& getTouchEndPos();
     
-    /**
-     * Changes the name that is used to identify the widget easily.
-     *
-     * @param A const char* that indentifies the widget.
-     */
-    void setName(const char* name);
-    
-    /**
-     * Returns a name that is used to identify the widget easily.
-     *
-     * You can set tags to widget then identify them easily.
-     *
-     * @return A const char* that identifies the widget.
-     */
-    const char* getName() const;
     
     /**
      * Changes the size that is widget's size
@@ -688,9 +673,7 @@ protected:
     CCObject*       _touchEventListener;
     SEL_TouchEvent    _touchEventSelector;
     
-
     
-    std::string _name;
 	int _actionTag;
     CCSize _size;
     CCSize _customSize;

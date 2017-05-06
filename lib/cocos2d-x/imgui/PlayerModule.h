@@ -19,6 +19,8 @@ public:
 
 
 	void drawScene(ImVec2 area);
+    void hierarchyDraw(ImVec2 area);
+    void inspectorDraw(ImVec2 area);
 private:
 	PlayerUI ui;
 	ImGuiDock::Dockspace dockspace;

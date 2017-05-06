@@ -5,6 +5,8 @@
 #include "CCKeyCode.h"
 #include "CCInputEvent.h"
 
+#include "CCEGLView.h"
+
 const unsigned TOUCHID_MAX = 32;
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
@@ -334,6 +336,18 @@ void Input::handleEvent(void* evt)
 	{
 		break;
 	}
+    case SDL_WINDOWEVENT:
+    {
+        switch (e.window.event)
+        {
+        case SDL_WINDOWEVENT_RESIZED:
+            CCEGLView::sharedOpenGLView()->onWindowResized();
+            break;
+        case SDL_WINDOWEVENT_MOVED:
+            break;
+        }
+        break;
+    }
 	default:
 		break;
 	}

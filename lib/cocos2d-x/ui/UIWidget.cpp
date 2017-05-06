@@ -42,7 +42,6 @@ _touchMovePos(CCPointZero),
 _touchEndPos(CCPointZero),
 _touchEventListener(NULL),
 _touchEventSelector(NULL),
-_name("default"),
 _actionTag(0),
 _size(CCSizeZero),
 _customSize(CCSizeZero),
@@ -957,17 +956,7 @@ const CCPoint& Widget::getTouchEndPos()
 {
     return _touchEndPos;
 }
-
-void Widget::setName(const char* name)
-{
-    _name = name;
-}
-
-const char* Widget::getName() const
-{
-    return _name.c_str();
-}
-
+    
 void Widget::setLayoutParameter(LayoutParameter *parameter)
 {
     if (!parameter)

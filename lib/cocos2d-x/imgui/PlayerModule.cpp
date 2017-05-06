@@ -63,6 +63,47 @@ void PlayerModule::update(EventData& data)
 	}
 }
 
+static void DrawNode(CCNode* node)
+{
+    CCArray* arr = node->getChildren();
+    if (!arr)
+        return;
+    
+    for (int i = 0; i < arr->count(); i++)
+    {
+        CCNode* child = (CCNode*)arr->objectAtIndex(i);
+        if (ImGui::TreeNode(node->getName()))
+        {
+            ImGui::TreePop();
+        }
+        DrawNode(child);
+    }
+}
+
+void PlayerModule::hierarchyDraw(ImVec2 area)
+{
+    if (!root)
+        return;
+   
+    CCArray* arr = root->getChildren();
+    if (!arr)
+        return;
+    
+    for (int i = 0; i < arr->count(); i++)
+    {
+        CCNode* node = (CCNode*)arr->objectAtIndex(i);
+        if (ImGui::TreeNode(node->getName()))
+        {
+            ImGui::TreePop();
+        }
+        DrawNode(node);
+    }
+}
+
+void PlayerModule::inspectorDraw(ImVec2 area)
+{
+    
+}
 
 void PlayerModule::drawScene(ImVec2 area)
 {
@@ -100,8 +141,8 @@ PlayerModule::PlayerModule()
 	subscribeToEvent<UpdateEvent>(Handler(this, &PlayerModule::update));
 
 	scene.initialize("scene", true, ImVec2(250, 300), std::bind(&PlayerModule::drawScene, this, std::placeholders::_1));
-	inspector.initialize("inspector", true, ImVec2(250, 300), [](ImVec2 area) { ImGui::Text("Hello :)"); });
-	hierarchy.initialize("hierarchy", true, ImVec2(250, 300), [](ImVec2 area) { ImGui::Text("Hello :)"); });
+	inspector.initialize("inspector", true, ImVec2(250, 300), std::bind(&PlayerModule::inspectorDraw, this, std::placeholders::_1));
+	hierarchy.initialize("hierarchy", true, ImVec2(250, 300), std::bind(&PlayerModule::hierarchyDraw, this, std::placeholders::_1));
 	console.initialize("console", true, ImVec2(250, 300), [](ImVec2 area) { ImGui::Text("Hello :)"); });
 	assets.initialize("assets", true, ImVec2(250, 300), [](ImVec2 area) { ImGui::Text("Hello :)"); });
 
@@ -111,8 +152,11 @@ PlayerModule::PlayerModule()
 	dockspace.dock(&console, ImGuiDock::DockSlot::Bottom, 250, true);
 	dockspace.dockWith(&assets, &console, ImGuiDock::DockSlot::Tab, 250, true);
 
-	root = CCSprite::create("E:\\projects\\quick-x\\template\\res\\HelloWorld.png");
-	root->setAnchorPoint(CCPoint(0, 0));
+    FileSystem::addResourcePath("res/");
+    root = CCNode::create();
+	CCSprite* sp = CCSprite::create("res/HelloWorld.png");
+	sp->setAnchorPoint(CCPoint(0, 0));
+    root->addChild(sp);
 
 	CCLabelTTF* label = CCLabelTTF::create();
 	label->setFontSize(100);

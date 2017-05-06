@@ -51,7 +51,7 @@ bool CCEGLView::createWithSize()
 	unsigned flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 
 	//  flags |= SDL_WINDOW_FULLSCREEN;
-	//  flags |= SDL_WINDOW_RESIZABLE;
+	  flags |= SDL_WINDOW_RESIZABLE;
 	//  flags |= SDL_WINDOW_BORDERLESS;
 
 	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)m_obScreenSize.width, (int)m_obScreenSize.height, flags);
@@ -159,4 +159,12 @@ const CCRect& CCEGLView::getViewPortRect() const
 {
 	return m_obViewPortRect;
 }
+
+void CCEGLView::onWindowResized()
+{
+    int w, h;
+    SDL_GetWindowSize(_window, &w, &h);
+    m_obScreenSize = CCSize((float)w, (float)h);
+}
+
 NS_CC_END

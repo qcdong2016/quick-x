@@ -45,6 +45,8 @@ public:
 	virtual const CCSize& getFrameSize() const;
 	virtual void setFrameSize(const CCSize& size);
 
+    
+    void onWindowResized();
 	/**
 	* Set opengl view port rectangle with points.
 	*/

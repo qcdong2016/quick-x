@@ -1462,6 +1462,21 @@ public:
 
     /// @}
 
+    /**
+     * Changes the name that is used to identify the widget easily.
+     *
+     * @param A const char* that indentifies the widget.
+     */
+    void setName(const char* name) { _name = name; }
+    
+    /**
+     * Returns a name that is used to identify the widget easily.
+     *
+     * You can set tags to widget then identify them easily.
+     *
+     * @return A const char* that identifies the widget.
+     */
+    const char* getName() const { return _name.c_str(); }
 private:
     /// lazy allocs
     void childrenAlloc(void);
@@ -1479,6 +1494,8 @@ private:
     CCPoint convertToWindowSpace(const CCPoint& nodePoint);
 
 protected:
+    std::string _name;
+    
     float m_fRotationX;                 ///< rotation angle on x-axis
     float m_fRotationY;                 ///< rotation angle on y-axis
 
