@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include "ccMacros.h"
+#include "CCGL.h"
 
 
 NS_CC_BEGIN
@@ -81,7 +82,9 @@ bool CCEGLView::createWithSize()
     }
 #endif
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 && CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+#endif 
     SDL_GL_SetSwapInterval(1);
 
 	return true;

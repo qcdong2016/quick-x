@@ -33,7 +33,7 @@
 #define kLabelZOrder  9999
 
 #include "UIEditBox.h"
-#import "EAGLView.h"
+//#import "EAGLView.h"
 
 #define getEditBoxImplIOS() ((cocos2d::ui::EditBoxImplIOS*)editBox_)
 
@@ -93,8 +93,8 @@
 
 -(void) doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)distance
 {
-    id eglView = [EAGLView sharedEGLView];
-    [eglView doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
+//    id eglView = [EAGLView sharedEGLView];
+//    [eglView doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
 }
 
 -(void) setPosition:(CGPoint) pos
@@ -118,8 +118,8 @@
 
 -(void) openKeyboard
 {
-    [[EAGLView sharedEGLView] addSubview:textField_];
-    [textField_ becomeFirstResponder];
+//    [[EAGLView sharedEGLView] addSubview:textField_];
+//    [textField_ becomeFirstResponder];
 }
 
 -(void) closeKeyboard
@@ -138,35 +138,35 @@
 
 -(void)animationSelector
 {
-    id eglView = [EAGLView sharedEGLView];
-    [eglView doAnimationWhenAnotherEditBeClicked];
+//    id eglView = [EAGLView sharedEGLView];
+//    [eglView doAnimationWhenAnotherEditBeClicked];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)sender        // return NO to disallow editing.
 {
     //    CCLOG("textFieldShouldBeginEditing...");
-    editState_ = YES;
-    id eglView = [EAGLView sharedEGLView];
-    if ([eglView isKeyboardShown])
-    {
-        [self performSelector:@selector(animationSelector) withObject:nil afterDelay:0.0f];
-    }
-    
-    
-    using namespace cocos2d::ui;
-    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
-    
-    if (pDelegate != NULL)
-    {
-        pDelegate->editBoxEditingDidBegin(getEditBoxImplIOS()->getCCEditBox());
-    }
-    
-    cocos2d::ui::EditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
-    if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
-    {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
-        pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
-    }
+//    editState_ = YES;
+//    id eglView = [EAGLView sharedEGLView];
+//    if ([eglView isKeyboardShown])
+//    {
+//        [self performSelector:@selector(animationSelector) withObject:nil afterDelay:0.0f];
+//    }
+//    
+//    
+//    using namespace cocos2d::ui;
+//    cocos2d::ui::CCEditBoxDelegate* pDelegate = getEditBoxImplIOS()->getDelegate();
+//    
+//    if (pDelegate != NULL)
+//    {
+//        pDelegate->editBoxEditingDidBegin(getEditBoxImplIOS()->getCCEditBox());
+//    }
+//    
+//    cocos2d::ui::EditBox*  pEditBox= getEditBoxImplIOS()->getCCEditBox();
+//    if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
+//    {
+//        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
+//        pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
+//    }
     return YES;
 }
 
@@ -308,21 +308,21 @@ bool EditBoxImplIOS::initWithSize(const CCSize& size)
 {
     do 
     {
-        CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-
-        CGRect rect = CGRectMake(0, 0, size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
-
-        float factor = [[EAGLView sharedEGLView] contentScaleFactor];
-        rect.size.width /= factor;
-        rect.size.height /= factor;
-        
-        m_systemControl = [[EditBoxImplIOSInternal alloc] initWithFrame:rect editBox:this];
-        if (!m_systemControl) break;
-        
-		initInactiveLabels(size);
-        setContentSize(size);
-		
-        return true;
+//        CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
+//
+//        CGRect rect = CGRectMake(0, 0, size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
+//
+//        float factor = [[EAGLView sharedEGLView] contentScaleFactor];
+//        rect.size.width /= factor;
+//        rect.size.height /= factor;
+//        
+//        m_systemControl = [[EditBoxImplIOSInternal alloc] initWithFrame:rect editBox:this];
+//        if (!m_systemControl) break;
+//        
+//		initInactiveLabels(size);
+//        setContentSize(size);
+//		
+//        return true;
     }while (0);
     
     return false;
@@ -378,26 +378,26 @@ void EditBoxImplIOS::setInactiveText(const char* pText)
 
 void EditBoxImplIOS::setFont(const char* pFontName, int fontSize)
 {
-    bool isValidFontName = true;
-	if(pFontName == NULL || strlen(pFontName) == 0) {
-        isValidFontName = false;
-    }
-
-    float retinaFactor = [[EAGLView sharedEGLView] contentScaleFactor];
-	NSString * fntName = [NSString stringWithUTF8String:pFontName];
-    float scaleFactor = CCEGLView::sharedOpenGLView()->getScaleX();
-    UIFont *textFont = nil;
-    if (isValidFontName) {
-        textFont = [UIFont fontWithName:fntName size:fontSize * scaleFactor / retinaFactor];
-    }
-    
-    if (!isValidFontName || textFont == nil){
-        textFont = [UIFont systemFontOfSize:fontSize * scaleFactor / retinaFactor];
-    }
-
-	if(textFont != nil) {
-		[m_systemControl.textField setFont:textFont];
-    }
+//    bool isValidFontName = true;
+//	if(pFontName == NULL || strlen(pFontName) == 0) {
+//        isValidFontName = false;
+//    }
+//
+//    float retinaFactor = [[EAGLView sharedEGLView] contentScaleFactor];
+//	NSString * fntName = [NSString stringWithUTF8String:pFontName];
+//    float scaleFactor = CCEGLView::sharedOpenGLView()->getScaleX();
+//    UIFont *textFont = nil;
+//    if (isValidFontName) {
+//        textFont = [UIFont fontWithName:fntName size:fontSize * scaleFactor / retinaFactor];
+//    }
+//    
+//    if (!isValidFontName || textFont == nil){
+//        textFont = [UIFont systemFontOfSize:fontSize * scaleFactor / retinaFactor];
+//    }
+//
+//	if(textFont != nil) {
+//		[m_systemControl.textField setFont:textFont];
+//    }
 
 	m_pLabel->setFontName(pFontName);
 	m_pLabel->setFontSize(fontSize);
@@ -543,20 +543,21 @@ void EditBoxImplIOS::setPlaceHolder(const char* pText)
 
 static CGPoint convertDesignCoordToScreenCoord(const CCPoint& designCoord)
 {
-    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-    float viewH = (float)[[EAGLView sharedEGLView] getHeight];
-    
-    CCPoint visiblePos = ccp(designCoord.x * eglView->getScaleX(), designCoord.y * eglView->getScaleY());
-    CCPoint screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
-    
-    CGPoint screenPos = CGPointMake(screenGLPos.x, viewH - screenGLPos.y);
-    
-    float scaleFactor = [[EAGLView sharedEGLView] contentScaleFactor];
-    screenPos.x = screenPos.x / scaleFactor;
-    screenPos.y = screenPos.y / scaleFactor;
-    
-    //    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
-    return screenPos;
+//    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
+//    float viewH = (float)[[EAGLView sharedEGLView] getHeight];
+//    
+//    CCPoint visiblePos = ccp(designCoord.x * eglView->getScaleX(), designCoord.y * eglView->getScaleY());
+//    CCPoint screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
+//    
+//    CGPoint screenPos = CGPointMake(screenGLPos.x, viewH - screenGLPos.y);
+//    
+//    float scaleFactor = [[EAGLView sharedEGLView] contentScaleFactor];
+//    screenPos.x = screenPos.x / scaleFactor;
+//    screenPos.y = screenPos.y / scaleFactor;
+//    
+//    //    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
+//    return screenPos;
+    return CGPointMake(0, 0);
 }
 
 void EditBoxImplIOS::setPosition(const CCPoint& pos)
@@ -574,20 +575,20 @@ void EditBoxImplIOS::setContentSize(const CCSize& size)
 {
     m_tContentSize = size;
     //    CCLOG("[Edit text] content size = (%f, %f)", size.width, size.height);
-    placeInactiveLabels();
-    
-    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-    CGSize controlSize = CGSizeMake(size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
-    
-    float scaleFactor = [[EAGLView sharedEGLView] contentScaleFactor];
-    
-    controlSize.width /= scaleFactor;
-    controlSize.height /= scaleFactor;
-
-    [m_systemControl setContentSize:controlSize];
-    
-    const CCRect& rect = m_pLabel->getTextureRect();
-    m_pLabel->setTextureRect(CCRect(0, 0, size.width, rect.size.height));
+//    placeInactiveLabels();
+//    
+//    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
+//    CGSize controlSize = CGSizeMake(size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
+//    
+//    float scaleFactor = [[EAGLView sharedEGLView] contentScaleFactor];
+//    
+//    controlSize.width /= scaleFactor;
+//    controlSize.height /= scaleFactor;
+//
+//    [m_systemControl setContentSize:controlSize];
+//    
+//    const CCRect& rect = m_pLabel->getTextureRect();
+//    m_pLabel->setTextureRect(CCRect(0, 0, size.width, rect.size.height));
 }
 
 void EditBoxImplIOS::setAnchorPoint(const CCPoint& anchorPoint)
