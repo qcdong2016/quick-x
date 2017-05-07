@@ -41,6 +41,7 @@
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCScriptSupport.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCSet.cpp" />
     <ClCompile Include="..\cocos2d-x\core\cocoa\CCString.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\CCAttributeAccessor.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDebugHud.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCDirector.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
@@ -302,6 +303,7 @@
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCScriptSupport.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCSet.h" />
     <ClInclude Include="..\cocos2d-x\core\cocoa\CCString.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCAttributeAccessor.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDebugHud.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCDirector.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCEngineEvents.h" />
