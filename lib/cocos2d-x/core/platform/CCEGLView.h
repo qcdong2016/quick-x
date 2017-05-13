@@ -44,6 +44,7 @@ public:
 	virtual void setIMEKeyboardState(bool bOpen);
 	virtual const CCSize& getFrameSize() const;
 	virtual void setFrameSize(const CCSize& size);
+	virtual void setFrameSize(int w, int h) { setFrameSize(CCSize(w, h)); }
 
     
     void onWindowResized();

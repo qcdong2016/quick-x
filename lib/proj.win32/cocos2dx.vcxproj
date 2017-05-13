@@ -232,7 +232,6 @@
     <ClCompile Include="..\cocos2d-x\spine\spine\Slot.c" />
     <ClCompile Include="..\cocos2d-x\spine\spine\SlotData.c" />
     <ClCompile Include="..\cocos2d-x\spine\spine_luabinding.cpp" />
-    <ClCompile Include="..\cocos2d-x\tilemap\CCParallaxNode.cpp" />
     <ClCompile Include="..\cocos2d-x\tilemap\CCTileMapAtlas.cpp" />
     <ClCompile Include="..\cocos2d-x\tilemap\CCTMXLayer.cpp" />
     <ClCompile Include="..\cocos2d-x\tilemap\CCTMXObjectGroup.cpp" />
@@ -517,7 +516,6 @@
     <ClInclude Include="..\cocos2d-x\spine\spine\Slot.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine\SlotData.h" />
     <ClInclude Include="..\cocos2d-x\spine\spine\spine.h" />
-    <ClInclude Include="..\cocos2d-x\tilemap\CCParallaxNode.h" />
     <ClInclude Include="..\cocos2d-x\tilemap\CCTileMapAtlas.h" />
     <ClInclude Include="..\cocos2d-x\tilemap\CCTMXLayer.h" />
     <ClInclude Include="..\cocos2d-x\tilemap\CCTMXObjectGroup.h" />

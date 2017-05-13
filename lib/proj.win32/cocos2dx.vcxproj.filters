@@ -531,9 +531,6 @@
     <ClCompile Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.cpp">
       <Filter>cocos2d-x\scripting</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\tilemap\CCParallaxNode.cpp">
-      <Filter>cocos2d-x\tilemap</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\tilemap\CCTileMapAtlas.cpp">
       <Filter>cocos2d-x\tilemap</Filter>
     </ClCompile>
@@ -1282,9 +1279,6 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\scripting\lua_cocos2dx_cocostudio_manual.h">
       <Filter>cocos2d-x\scripting</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\tilemap\CCParallaxNode.h">
-      <Filter>cocos2d-x\tilemap</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\tilemap\CCTileMapAtlas.h">
       <Filter>cocos2d-x\tilemap</Filter>
