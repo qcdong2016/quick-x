@@ -877,7 +877,7 @@ CCActionInterval* CCRotateBy::reverse(void)
 // MoveBy
 //
 
-CCMoveBy* CCMoveBy::create(float duration, const CCPoint& deltaPosition)
+CCMoveBy* CCMoveBy::create(float duration, const Vec2& deltaPosition)
 {
     CCMoveBy *pRet = new CCMoveBy();
     pRet->initWithDuration(duration, deltaPosition);
@@ -886,7 +886,7 @@ CCMoveBy* CCMoveBy::create(float duration, const CCPoint& deltaPosition)
     return pRet;
 }
 
-bool CCMoveBy::initWithDuration(float duration, const CCPoint& deltaPosition)
+bool CCMoveBy::initWithDuration(float duration, const Vec2& deltaPosition)
 {
     if (CCActionInterval::initWithDuration(duration))
     {
@@ -920,10 +920,10 @@ void CCMoveBy::update(float t)
     if (m_pTarget)
     {
 #if CC_ENABLE_STACKABLE_ACTIONS
-        CCPoint currentPos = m_pTarget->getPosition();
-        CCPoint diff = ccpSub(currentPos, m_previousPosition);
+        Vec2 currentPos = m_pTarget->getPosition();
+        Vec2 diff = ccpSub(currentPos, m_previousPosition);
         m_startPosition = ccpAdd( m_startPosition, diff);
-        CCPoint newPos =  ccpAdd( m_startPosition, ccpMult(m_positionDelta, t) );
+        Vec2 newPos =  ccpAdd( m_startPosition, ccpMult(m_positionDelta, t) );
         m_pTarget->setPosition(newPos);
         m_previousPosition = newPos;
 #else
@@ -936,7 +936,7 @@ void CCMoveBy::update(float t)
 // MoveTo
 //
 
-CCMoveTo* CCMoveTo::create(float duration, const CCPoint& position)
+CCMoveTo* CCMoveTo::create(float duration, const Vec2& position)
 {
     CCMoveTo *pRet = new CCMoveTo();
     pRet->initWithDuration(duration, position);
@@ -945,7 +945,7 @@ CCMoveTo* CCMoveTo::create(float duration, const CCPoint& position)
     return pRet;
 }
 
-bool CCMoveTo::initWithDuration(float duration, const CCPoint& position)
+bool CCMoveTo::initWithDuration(float duration, const Vec2& position)
 {
     if (CCActionInterval::initWithDuration(duration))
     {
@@ -1132,7 +1132,7 @@ CCActionInterval* CCSkewBy::reverse()
 // JumpBy
 //
 
-CCJumpBy* CCJumpBy::create(float duration, const CCPoint& position, float height, unsigned int jumps)
+CCJumpBy* CCJumpBy::create(float duration, const Vec2& position, float height, unsigned int jumps)
 {
     CCJumpBy *pJumpBy = new CCJumpBy();
     pJumpBy->initWithDuration(duration, position, height, jumps);
@@ -1141,7 +1141,7 @@ CCJumpBy* CCJumpBy::create(float duration, const CCPoint& position, float height
     return pJumpBy;
 }
 
-bool CCJumpBy::initWithDuration(float duration, const CCPoint& position, float height, unsigned int jumps)
+bool CCJumpBy::initWithDuration(float duration, const Vec2& position, float height, unsigned int jumps)
 {
     if (CCActionInterval::initWithDuration(duration))
     {
@@ -1178,12 +1178,12 @@ void CCJumpBy::update(float t)
 
         float x = m_delta.x * t;
 #if CC_ENABLE_STACKABLE_ACTIONS
-        CCPoint currentPos = m_pTarget->getPosition();
+        Vec2 currentPos = m_pTarget->getPosition();
 
-        CCPoint diff = ccpSub( currentPos, m_previousPos );
+        Vec2 diff = ccpSub( currentPos, m_previousPos );
         m_startPosition = ccpAdd( diff, m_startPosition);
 
-        CCPoint newPos = ccpAdd( m_startPosition, ccp(x,y));
+        Vec2 newPos = ccpAdd( m_startPosition, ccp(x,y));
         m_pTarget->setPosition(newPos);
 
         m_previousPos = newPos;
@@ -1203,7 +1203,7 @@ CCActionInterval* CCJumpBy::reverse(void)
 // JumpTo
 //
 
-CCJumpTo* CCJumpTo::create(float duration, const CCPoint& position, float height, int jumps)
+CCJumpTo* CCJumpTo::create(float duration, const Vec2& position, float height, int jumps)
 {
     CCJumpTo *pJumpTo = new CCJumpTo();
     pJumpTo->initWithDuration(duration, position, height, jumps);
@@ -1290,11 +1290,11 @@ void CCBezierBy::update(float time)
         float y = bezierat(ya, yb, yc, yd, time);
 
 #if CC_ENABLE_STACKABLE_ACTIONS
-        CCPoint currentPos = m_pTarget->getPosition();
-        CCPoint diff = ccpSub(currentPos, m_previousPosition);
+        Vec2 currentPos = m_pTarget->getPosition();
+        Vec2 diff = ccpSub(currentPos, m_previousPosition);
         m_startPosition = ccpAdd( m_startPosition, diff);
 
-        CCPoint newPos = ccpAdd( m_startPosition, ccp(x,y));
+        Vec2 newPos = ccpAdd( m_startPosition, ccp(x,y));
         m_pTarget->setPosition(newPos);
 
         m_previousPosition = newPos;

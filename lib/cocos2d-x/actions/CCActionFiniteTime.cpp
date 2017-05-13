@@ -194,7 +194,7 @@ void CCFollow::step(float dt)
         if(m_bBoundaryFullyCovered)
             return;
 
-        CCPoint tempPos = ccpSub( m_obHalfScreenSize, m_pobFollowedNode->getPosition());
+        Vec2 tempPos = ccpSub( m_obHalfScreenSize, m_pobFollowedNode->getPosition());
 
         m_pTarget->setPosition(ccp(clampf(tempPos.x, m_fLeftBoundary, m_fRightBoundary), 
                                    clampf(tempPos.y, m_fBottomBoundary, m_fTopBoundary)));

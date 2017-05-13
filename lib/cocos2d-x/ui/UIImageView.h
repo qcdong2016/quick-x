@@ -88,7 +88,7 @@ public:
     const CCRect& getCapInsets();
     
     //override "setAnchorPoint" method of widget.
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     //override "ignoreContentAdaptWithSize" method of widget.
     virtual void ignoreContentAdaptWithSize(bool ignore);

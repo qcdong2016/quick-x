@@ -87,7 +87,7 @@ protected:
     virtual void drawProc(void) = 0;
     virtual void afterDraw(void);
 
-    inline const CCPoint getDrawPosition(void) {
+    inline const Vec2 getDrawPosition(void) {
         const CCSize& size = getContentSize();
         return CCPointMake(size.width / 2, size.height / 2);
     }
@@ -235,7 +235,7 @@ protected:
 class CCPolygonShape : public CCShapeNode
 {
 public:
-	static CCPolygonShape* create(const std::vector<CCPoint>& vertices);
+	static CCPolygonShape* create(const std::vector<Vec2>& vertices);
     ~CCPolygonShape(void);
 
     bool isFill(void) {
@@ -260,10 +260,10 @@ protected:
     , m_close(false)
     {
     }
-    bool initWithVertices(const std::vector<CCPoint>& vertices);
+    bool initWithVertices(const std::vector<Vec2>& vertices);
 
-	std::vector<CCPoint> _vertices;
-	std::vector<CCPoint> _drawVertives;
+	std::vector<Vec2> _vertices;
+	std::vector<Vec2> _drawVertives;
     bool m_fill;
     bool m_close;
 

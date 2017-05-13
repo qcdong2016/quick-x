@@ -129,12 +129,12 @@ class CCParticleSystem : public CCNode
     void setDuration(float v);
 
     /** sourcePosition of the emitter */
-    CCPoint getSourcePosition();
-    void setSourcePosition(CCPoint p);
+    Vec2 getSourcePosition();
+    void setSourcePosition(Vec2 p);
 
     /** Position variance of the emitter */
-    CCPoint getPosVar();
-    void setPosVar(CCPoint p);
+    Vec2 getPosVar();
+    void setPosVar(Vec2 p);
 
     /** life, and life variation of each particle */
     float getLife();
@@ -153,8 +153,8 @@ class CCParticleSystem : public CCNode
     void setAngleVar(float v);
 
     // mode A
-    CCPoint getGravity();
-    void setGravity(CCPoint g);
+    Vec2 getGravity();
+    void setGravity(Vec2 g);
     float getSpeed();
     void setSpeed(float speed);
     float getSpeedVar();

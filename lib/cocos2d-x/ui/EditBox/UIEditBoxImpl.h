@@ -59,10 +59,10 @@ public:
     virtual void openKeyboard() = 0;
     virtual void closeKeyboard() = 0;
     
-    virtual void setPosition(const CCPoint& pos) = 0;
+    virtual void setPosition(const Vec2& pos) = 0;
     virtual void setVisible(bool visible) = 0;
     virtual void setContentSize(const CCSize& size) = 0;
-	virtual void setAnchorPoint(const CCPoint& anchorPoint) = 0;
+	virtual void setAnchorPoint(const Vec2& anchorPoint) = 0;
     /**
      *  @js NA
      */

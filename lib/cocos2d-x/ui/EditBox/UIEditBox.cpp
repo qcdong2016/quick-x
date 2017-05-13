@@ -269,7 +269,7 @@ KeyboardReturnType EditBox::getReturnType()
 }
 
 /* override function */
-void EditBox::setPosition(const CCPoint& pos)
+void EditBox::setPosition(const Vec2& pos)
 {
 	BaseWidget::setPosition(pos);
     if (m_pEditBoxImpl != NULL)
@@ -296,7 +296,7 @@ void EditBox::setSize(const CCSize& size)
     }
 }
 
-void EditBox::setAnchorPoint(const CCPoint& anchorPoint)
+void EditBox::setAnchorPoint(const Vec2& anchorPoint)
 {
 	BaseWidget::setAnchorPoint(anchorPoint);
     if (m_pEditBoxImpl != NULL)

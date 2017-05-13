@@ -107,7 +107,7 @@ const char* LabelBMFont::getStringValue()
     return _stringValue.c_str();
 }
 
-void LabelBMFont::setAnchorPoint(const CCPoint &pt)
+void LabelBMFont::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _labelBMFontRenderer->setAnchorPoint(pt);

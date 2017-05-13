@@ -109,7 +109,7 @@ void ccDrawFree()
 	s_bInitialized = false;
 }
 
-void ccDrawPoint( const CCPoint& point )
+void ccDrawPoint( const Vec2& point )
 {
     lazy_init();
 
@@ -126,7 +126,7 @@ void ccDrawPoint( const CCPoint& point )
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints )
+void ccDrawPoints( const Vec2 *points, unsigned int numberOfPoints )
 {
     lazy_init();
 
@@ -137,7 +137,7 @@ void ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints )
     ccVertex2F* newPoints = new ccVertex2F[numberOfPoints];
 
     // iPhone and 32-bit machines optimization
-    if( sizeof(CCPoint) == sizeof(ccVertex2F) )
+    if( sizeof(Vec2) == sizeof(ccVertex2F) )
     {
         ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, points);
     }
@@ -159,7 +159,7 @@ void ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints )
 }
 
 
-void ccDrawLine( const CCPoint& origin, const CCPoint& destination )
+void ccDrawLine( const Vec2& origin, const Vec2& destination )
 {
     lazy_init();
 
@@ -178,7 +178,7 @@ void ccDrawLine( const CCPoint& origin, const CCPoint& destination )
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawRect( CCPoint origin, CCPoint destination )
+void ccDrawRect( Vec2 origin, Vec2 destination )
 {
     ccDrawLine(CCPointMake(origin.x, origin.y), CCPointMake(destination.x, origin.y));
     ccDrawLine(CCPointMake(destination.x, origin.y), CCPointMake(destination.x, destination.y));
@@ -186,9 +186,9 @@ void ccDrawRect( CCPoint origin, CCPoint destination )
     ccDrawLine(CCPointMake(origin.x, destination.y), CCPointMake(origin.x, origin.y));
 }
 
-void ccDrawSolidRect( CCPoint origin, CCPoint destination, ccColor4F color )
+void ccDrawSolidRect( Vec2 origin, Vec2 destination, ccColor4F color )
 {
-    CCPoint vertices[] = {
+    Vec2 vertices[] = {
         origin,
         ccp(destination.x, origin.y),
         destination,
@@ -198,7 +198,7 @@ void ccDrawSolidRect( CCPoint origin, CCPoint destination, ccColor4F color )
     ccDrawSolidPoly(vertices, 4, color );
 }
 
-void ccDrawPoly( const CCPoint *poli, unsigned int numberOfPoints, bool closePolygon )
+void ccDrawPoly( const Vec2 *poli, unsigned int numberOfPoints, bool closePolygon )
 {
     lazy_init();
 
@@ -206,7 +206,7 @@ void ccDrawPoly( const CCPoint *poli, unsigned int numberOfPoints, bool closePol
     ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
 
     // iPhone and 32-bit machines optimization
-    if( sizeof(CCPoint) == sizeof(ccVertex2F) )
+    if( sizeof(Vec2) == sizeof(ccVertex2F) )
     {
         ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
 
@@ -237,7 +237,7 @@ void ccDrawPoly( const CCPoint *poli, unsigned int numberOfPoints, bool closePol
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4F color )
+void ccDrawSolidPoly( const Vec2 *poli, unsigned int numberOfPoints, ccColor4F color )
 {
     lazy_init();
 
@@ -248,7 +248,7 @@ void ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4
     ccVertex2F* newPoli = new ccVertex2F[numberOfPoints];
 
     // iPhone and 32-bit machines optimization
-    if( sizeof(CCPoint) == sizeof(ccVertex2F) )
+    if( sizeof(Vec2) == sizeof(ccVertex2F) )
     {
         ccSetVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, 0, poli);
     }
@@ -268,7 +268,7 @@ void ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawCircle(const CCPoint& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY, bool fill)
+void ccDrawCircle(const Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY, bool fill)
 {
     lazy_init();
 
@@ -304,12 +304,12 @@ void ccDrawCircle(const CCPoint& center, float radius, float angle, unsigned int
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void CC_DLL ccDrawCircle( const CCPoint& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, bool fill)
+void CC_DLL ccDrawCircle( const Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, bool fill)
 {
 	ccDrawCircle(center, radius, angle, segments, drawLineToCenter, 1.0f, 1.0f, fill);
 }
 
-void ccDrawQuadBezier(const CCPoint& origin, const CCPoint& control, const CCPoint& destination, unsigned int segments)
+void ccDrawQuadBezier(const Vec2& origin, const Vec2& control, const Vec2& destination, unsigned int segments)
 {
     lazy_init();
 
@@ -335,12 +335,12 @@ void ccDrawQuadBezier(const CCPoint& origin, const CCPoint& control, const CCPoi
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawCatmullRom(const std::vector<CCPoint>& points, unsigned int segments)
+void ccDrawCatmullRom(const std::vector<Vec2>& points, unsigned int segments)
 {
     ccDrawCardinalSpline( points, 0.5f, segments );
 }
 
-void ccDrawCardinalSpline(const std::vector<CCPoint>& config, float tension,  unsigned int segments )
+void ccDrawCardinalSpline(const std::vector<Vec2>& config, float tension,  unsigned int segments )
 {
     lazy_init();
 
@@ -364,12 +364,12 @@ void ccDrawCardinalSpline(const std::vector<CCPoint>& config, float tension,  un
         }
 
         // Interpolate
-        CCPoint pp0 = config[p-1];
-        CCPoint pp1 = config[p+0];
-        CCPoint pp2 = config[p+1];
-        CCPoint pp3 = config[p+2];
+        Vec2 pp0 = config[p-1];
+        Vec2 pp1 = config[p+0];
+        Vec2 pp2 = config[p+1];
+        Vec2 pp3 = config[p+2];
 
-        CCPoint newPos = ccCardinalSplineAt( pp0, pp1, pp2, pp3, tension, lt);
+        Vec2 newPos = ccCardinalSplineAt( pp0, pp1, pp2, pp3, tension, lt);
         vertices[i].x = newPos.x;
         vertices[i].y = newPos.y;
     }
@@ -384,7 +384,7 @@ void ccDrawCardinalSpline(const std::vector<CCPoint>& config, float tension,  un
     CC_INCREMENT_GL_DRAWS(1);
 }
 
-void ccDrawCubicBezier(const CCPoint& origin, const CCPoint& control1, const CCPoint& control2, const CCPoint& destination, unsigned int segments)
+void ccDrawCubicBezier(const Vec2& origin, const Vec2& control1, const Vec2& control2, const Vec2& destination, unsigned int segments)
 {
     lazy_init();
 

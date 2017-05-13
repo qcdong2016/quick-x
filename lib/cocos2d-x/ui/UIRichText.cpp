@@ -428,7 +428,7 @@ void RichText::setVerticalSpace(float space)
     _verticalSpace = space;
 }
     
-void RichText::setAnchorPoint(const CCPoint &pt)
+void RichText::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _elementRenderersContainer->setAnchorPoint(pt);

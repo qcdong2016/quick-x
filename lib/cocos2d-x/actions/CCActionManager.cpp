@@ -100,7 +100,7 @@ void CCActionManager::removeAllActionsFromTarget(CCObject *pTarget)
     if (pTarget == NULL)
         return;
 
-	if (_currentTarget->target == pTarget)
+	if (_currentTarget && _currentTarget->target == pTarget)
 	{
 		_currentTargetRemoved = true;
 		return;

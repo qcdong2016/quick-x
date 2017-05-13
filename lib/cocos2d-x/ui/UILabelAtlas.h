@@ -104,7 +104,7 @@ public:
     const char* getStringValue() const;
     
     //override "setAnchorPoint" method of widget.
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     //override "getContentSize" method of widget.
     virtual const CCSize& getContentSize() const;

@@ -82,17 +82,17 @@ public:
      For the moment only channel R is used
      @js getTileAt
      */
-    ccColor3B tileAt(const CCPoint& position);
+    ccColor3B tileAt(const Vec2& position);
     /** sets a tile at position x,y.
     For the moment only channel R is used
     */
-    void setTile(const ccColor3B& tile, const CCPoint& position);
+    void setTile(const ccColor3B& tile, const Vec2& position);
     /** dealloc the map from memory */
     void releaseMap();
 private:
     void loadTGAfile(const char *file);
     void calculateItemsToRender();
-    void updateAtlasValueAt(const CCPoint& pos, const ccColor3B& value, unsigned int index);
+    void updateAtlasValueAt(const Vec2& pos, const ccColor3B& value, unsigned int index);
     void updateAtlasValues();
 
 protected:

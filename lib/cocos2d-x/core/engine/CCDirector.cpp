@@ -502,7 +502,7 @@ GLToClipTransform(kmMat4 *transformOut)
 	kmMat4Multiply(transformOut, &projection, &modelview);
 }
 
-CCPoint CCDirector::convertToGL(const CCPoint& uiPoint)
+Vec2 CCDirector::convertToGL(const Vec2& uiPoint)
 {
     kmMat4 transform;
 	GLToClipTransform(&transform);
@@ -522,7 +522,7 @@ CCPoint CCDirector::convertToGL(const CCPoint& uiPoint)
 	return ccp(glCoord.x, glCoord.y);
 }
 
-CCPoint CCDirector::convertToUI(const CCPoint& glPoint)
+Vec2 CCDirector::convertToUI(const Vec2& glPoint)
 {
     kmMat4 transform;
 	GLToClipTransform(&transform);
@@ -551,7 +551,7 @@ CCSize CCDirector::getVisibleSize()
 	return m_pobOpenGLView->getFrameSize();
 }
 
-CCPoint CCDirector::getVisibleOrigin()
+Vec2 CCDirector::getVisibleOrigin()
 {
 	return CCPointZero;
 }

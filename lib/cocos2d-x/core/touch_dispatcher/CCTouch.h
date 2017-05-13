@@ -53,19 +53,19 @@ public:
     }
 
     /** returns the current touch location in OpenGL coordinates */
-    CCPoint getLocation() const;
+    Vec2 getLocation() const;
     /** returns the previous touch location in OpenGL coordinates */
-    CCPoint getPreviousLocation() const;
+    Vec2 getPreviousLocation() const;
     /** returns the start touch location in OpenGL coordinates */
-    CCPoint getStartLocation() const;
+    Vec2 getStartLocation() const;
     /** returns the delta of 2 current touches locations in screen coordinates */
-    CCPoint getDelta() const;
+    Vec2 getDelta() const;
     /** returns the current touch location in screen coordinates */
-    CCPoint getLocationInView() const;
+    Vec2 getLocationInView() const;
     /** returns the previous touch location in screen coordinates */
-    CCPoint getPreviousLocationInView() const;
+    Vec2 getPreviousLocationInView() const;
     /** returns the start touch location in screen coordinates */
-    CCPoint getStartLocationInView() const;
+    Vec2 getStartLocationInView() const;
 
     void setTouchInfo(int id, float x, float y)
     {
@@ -92,9 +92,9 @@ public:
 private:
     int m_nId;
     bool m_startPointCaptured;
-    CCPoint m_startPoint;
-    CCPoint m_point;
-    CCPoint m_prevPoint;
+    Vec2 m_startPoint;
+    Vec2 m_point;
+    Vec2 m_prevPoint;
 };
 
 class CC_DLL CCEvent : public CCObject

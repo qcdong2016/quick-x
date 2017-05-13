@@ -38,7 +38,7 @@ struct CCAffineTransform {
 CC_DLL CCAffineTransform __CCAffineTransformMake(float a, float b, float c, float d, float tx, float ty);
 #define CCAffineTransformMake __CCAffineTransformMake
 
-CC_DLL CCPoint __CCPointApplyAffineTransform(const CCPoint& point, const CCAffineTransform& t);
+CC_DLL Vec2 __CCPointApplyAffineTransform(const Vec2& point, const CCAffineTransform& t);
 #define CCPointApplyAffineTransform __CCPointApplyAffineTransform
 
 CC_DLL CCSize __CCSizeApplyAffineTransform(const CCSize& size, const CCAffineTransform& t);

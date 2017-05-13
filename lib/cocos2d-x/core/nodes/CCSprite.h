@@ -39,7 +39,7 @@ class CCSpriteBatchNode;
 class CCSpriteFrame;
 class CCAnimation;
 class CCRect;
-class CCPoint;
+class Vec2;
 class CCSize;
 class CCTexture2D;
 struct transformValues_;
@@ -275,7 +275,7 @@ public:
     /**
      * @lua NA
      */
-    virtual void setPosition(const CCPoint& pos);
+    virtual void setPosition(const Vec2& pos);
     virtual void setRotation(float fRotation);
     virtual void setRotationX(float fRotationX);
     virtual void setRotationY(float fRotationY);
@@ -290,7 +290,7 @@ public:
     virtual void sortAllChildren();
     virtual void setScale(float fScale);
     virtual void setVertexZ(float fVertexZ);
-    virtual void setAnchorPoint(const CCPoint& anchor);
+    virtual void setAnchorPoint(const Vec2& anchor);
     virtual void ignoreAnchorPointForPosition(bool value);
     virtual void setVisible(bool bVisible);
     virtual void draw(void);
@@ -452,7 +452,7 @@ public:
     /**
      * Gets the offset position of the sprite. Calculated automatically by editors like Zwoptex.
      */
-    inline const CCPoint& getOffsetPosition(void) { return m_obOffsetPosition; }
+    inline const Vec2& getOffsetPosition(void) { return m_obOffsetPosition; }
 
 
     /**
@@ -530,8 +530,8 @@ protected:
     bool   m_bRectRotated;                      /// Whether the texture is rotated
 
     // Offset Position (used by Zwoptex)
-    CCPoint m_obOffsetPosition;
-    CCPoint m_obUnflippedOffsetPositionFromCenter;
+    Vec2 m_obOffsetPosition;
+    Vec2 m_obUnflippedOffsetPositionFromCenter;
 
     // vertex coords, texture coords and color info
     ccV3F_C4B_T2F_Quad m_sQuad;

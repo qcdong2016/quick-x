@@ -183,8 +183,8 @@ protected:
 	bool m_bBoundaryFullyCovered;
 
 	// fast access to the screen dimensions
-	CCPoint m_obHalfScreenSize;
-	CCPoint m_obFullScreenSize;
+	Vec2 m_obHalfScreenSize;
+	Vec2 m_obFullScreenSize;
 
 	// world boundaries
 	float m_fLeftBoundary;

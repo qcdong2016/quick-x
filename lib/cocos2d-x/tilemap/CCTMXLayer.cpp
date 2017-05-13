@@ -86,7 +86,7 @@ bool CCTMXLayer::initWithTilesetInfo(CCTMXTilesetInfo *tilesetInfo, CCTMXLayerIn
         m_uLayerOrientation = mapInfo->getOrientation();
 
         // offset (after layer orientation is set);
-        CCPoint offset = this->calculateLayerOffset(layerInfo->m_tOffset);
+        Vec2 offset = this->calculateLayerOffset(layerInfo->m_tOffset);
         this->setPosition(CC_POINT_PIXELS_TO_POINTS(offset));
 
         m_pAtlasIndexArray = ccCArrayNew((unsigned int)totalNumberOfTiles);
@@ -238,7 +238,7 @@ void CCTMXLayer::parseInternalProperties()
     }
 }
 
-void CCTMXLayer::setupTileSprite(CCSprite* sprite, CCPoint pos, unsigned int gid)
+void CCTMXLayer::setupTileSprite(CCSprite* sprite, Vec2 pos, unsigned int gid)
 {
     sprite->setPosition(positionAt(pos));
     sprite->setVertexZ((float)vertexZForPos(pos));
@@ -321,7 +321,7 @@ CCSprite* CCTMXLayer::reusedTileWithRect(CCRect rect)
 }
 
 // CCTMXLayer - obtaining tiles/gids
-CCSprite * CCTMXLayer::tileAt(const CCPoint& pos)
+CCSprite * CCTMXLayer::tileAt(const Vec2& pos)
 {
     CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
@@ -358,12 +358,12 @@ CCSprite * CCTMXLayer::tileAt(const CCPoint& pos)
     return tile;
 }
 
-unsigned int CCTMXLayer::tileGIDAt(const CCPoint& pos)
+unsigned int CCTMXLayer::tileGIDAt(const Vec2& pos)
 {
     return tileGIDAt(pos, NULL);
 }
 
-unsigned int CCTMXLayer::tileGIDAt(const CCPoint& pos, ccTMXTileFlags* flags)
+unsigned int CCTMXLayer::tileGIDAt(const Vec2& pos, ccTMXTileFlags* flags)
 {
     CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
@@ -382,7 +382,7 @@ unsigned int CCTMXLayer::tileGIDAt(const CCPoint& pos, ccTMXTileFlags* flags)
 }
 
 // CCTMXLayer - adding helper methods
-CCSprite * CCTMXLayer::insertTileForGID(unsigned int gid, const CCPoint& pos)
+CCSprite * CCTMXLayer::insertTileForGID(unsigned int gid, const Vec2& pos)
 {
     CCRect rect = m_pTileSet->rectForGID(gid);
     rect = CC_RECT_PIXELS_TO_POINTS(rect);
@@ -422,7 +422,7 @@ CCSprite * CCTMXLayer::insertTileForGID(unsigned int gid, const CCPoint& pos)
     m_pTiles[z] = gid;
     return tile;
 }
-CCSprite * CCTMXLayer::updateTileForGID(unsigned int gid, const CCPoint& pos)    
+CCSprite * CCTMXLayer::updateTileForGID(unsigned int gid, const Vec2& pos)    
 {
     CCRect rect = m_pTileSet->rectForGID(gid);
     rect = CCRectMake(rect.origin.x / m_fContentScaleFactor, rect.origin.y / m_fContentScaleFactor, rect.size.width/ m_fContentScaleFactor, rect.size.height/ m_fContentScaleFactor);
@@ -444,7 +444,7 @@ CCSprite * CCTMXLayer::updateTileForGID(unsigned int gid, const CCPoint& pos)
 
 // used only when parsing the map. useless after the map was parsed
 // since lot's of assumptions are no longer true
-CCSprite * CCTMXLayer::appendTileForGID(unsigned int gid, const CCPoint& pos)
+CCSprite * CCTMXLayer::appendTileForGID(unsigned int gid, const Vec2& pos)
 {
     CCRect rect = m_pTileSet->rectForGID(gid);
     rect = CC_RECT_PIXELS_TO_POINTS(rect);
@@ -501,12 +501,12 @@ unsigned int CCTMXLayer::atlasIndexForNewZ(int z)
 }
 
 // CCTMXLayer - adding / remove tiles
-void CCTMXLayer::setTileGID(unsigned int gid, const CCPoint& pos)
+void CCTMXLayer::setTileGID(unsigned int gid, const Vec2& pos)
 {
     setTileGID(gid, pos, (ccTMXTileFlags)0);
 }
 
-void CCTMXLayer::setTileGID(unsigned int gid, const CCPoint& pos, ccTMXTileFlags flags)
+void CCTMXLayer::setTileGID(unsigned int gid, const Vec2& pos, ccTMXTileFlags flags)
 {
     CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
@@ -577,7 +577,7 @@ void CCTMXLayer::removeChild(CCNode* node, bool cleanup)
     ccCArrayRemoveValueAtIndex(m_pAtlasIndexArray, atlasIndex);
     CCSpriteBatchNode::removeChild(sprite, cleanup);
 }
-void CCTMXLayer::removeTileAt(const CCPoint& pos)
+void CCTMXLayer::removeTileAt(const Vec2& pos)
 {
     CCAssert(pos.x < m_tLayerSize.width && pos.y < m_tLayerSize.height && pos.x >=0 && pos.y >=0, "TMXLayer: invalid position");
     CCAssert(m_pTiles && m_pAtlasIndexArray, "TMXLayer: the tiles map has been released");
@@ -627,9 +627,9 @@ void CCTMXLayer::removeTileAt(const CCPoint& pos)
 }
 
 //CCTMXLayer - obtaining positions, offset
-CCPoint CCTMXLayer::calculateLayerOffset(const CCPoint& pos)
+Vec2 CCTMXLayer::calculateLayerOffset(const Vec2& pos)
 {
-    CCPoint ret = CCPointZero;
+    Vec2 ret = CCPointZero;
     switch (m_uLayerOrientation) 
     {
     case CCTMXOrientationOrtho:
@@ -645,9 +645,9 @@ CCPoint CCTMXLayer::calculateLayerOffset(const CCPoint& pos)
     }
     return ret;    
 }
-CCPoint CCTMXLayer::positionAt(const CCPoint& pos)
+Vec2 CCTMXLayer::positionAt(const Vec2& pos)
 {
-    CCPoint ret = CCPointZero;
+    Vec2 ret = CCPointZero;
     switch (m_uLayerOrientation)
     {
     case CCTMXOrientationOrtho:
@@ -663,19 +663,19 @@ CCPoint CCTMXLayer::positionAt(const CCPoint& pos)
     ret = CC_POINT_PIXELS_TO_POINTS( ret );
     return ret;
 }
-CCPoint CCTMXLayer::positionForOrthoAt(const CCPoint& pos)
+Vec2 CCTMXLayer::positionForOrthoAt(const Vec2& pos)
 {
-    CCPoint xy = CCPointMake(pos.x * m_tMapTileSize.width,
+    Vec2 xy = CCPointMake(pos.x * m_tMapTileSize.width,
                             (m_tLayerSize.height - pos.y - 1) * m_tMapTileSize.height);
     return xy;
 }
-CCPoint CCTMXLayer::positionForIsoAt(const CCPoint& pos)
+Vec2 CCTMXLayer::positionForIsoAt(const Vec2& pos)
 {
-    CCPoint xy = CCPointMake(m_tMapTileSize.width /2 * (m_tLayerSize.width + pos.x - pos.y - 1),
+    Vec2 xy = CCPointMake(m_tMapTileSize.width /2 * (m_tLayerSize.width + pos.x - pos.y - 1),
                              m_tMapTileSize.height /2 * ((m_tLayerSize.height * 2 - pos.x - pos.y) - 2));
     return xy;
 }
-CCPoint CCTMXLayer::positionForHexAt(const CCPoint& pos)
+Vec2 CCTMXLayer::positionForHexAt(const Vec2& pos)
 {
     float diffY = 0;
     if ((int)pos.x % 2 == 1)
@@ -683,11 +683,11 @@ CCPoint CCTMXLayer::positionForHexAt(const CCPoint& pos)
         diffY = -m_tMapTileSize.height/2 ;
     }
 
-    CCPoint xy = CCPointMake(pos.x * m_tMapTileSize.width*3/4,
+    Vec2 xy = CCPointMake(pos.x * m_tMapTileSize.width*3/4,
                             (m_tLayerSize.height - pos.y - 1) * m_tMapTileSize.height + diffY);
     return xy;
 }
-int CCTMXLayer::vertexZForPos(const CCPoint& pos)
+int CCTMXLayer::vertexZForPos(const Vec2& pos)
 {
     int ret = 0;
     unsigned int maxVal = 0;

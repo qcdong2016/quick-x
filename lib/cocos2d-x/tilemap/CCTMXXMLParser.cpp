@@ -451,7 +451,7 @@ void CCTMXMapInfo::startElement(void *ctx, const char *name, const char **atts)
     {
         CCTMXObjectGroup *objectGroup = new CCTMXObjectGroup();
         objectGroup->setGroupName(valueForKey("name", attributeDict));
-        CCPoint positionOffset;
+        Vec2 positionOffset;
         positionOffset.x = (float)atof(valueForKey("x", attributeDict)) * pTMXMapInfo->getTileSize().width;
         positionOffset.y = (float)atof(valueForKey("y", attributeDict)) * pTMXMapInfo->getTileSize().height;
         objectGroup->setPositionOffset(positionOffset);

@@ -42,7 +42,7 @@ using namespace std;
 NS_CC_BEGIN;
 
 // CatmullRom Spline formula:
-CCPoint ccCardinalSplineAt(CCPoint &p0, CCPoint &p1, CCPoint &p2, CCPoint &p3, float tension, float t)
+Vec2 ccCardinalSplineAt(Vec2 &p0, Vec2 &p1, Vec2 &p2, Vec2 &p3, float tension, float t)
 {
     float t2 = t * t;
     float t3 = t2 * t;
@@ -66,7 +66,7 @@ CCPoint ccCardinalSplineAt(CCPoint &p0, CCPoint &p1, CCPoint &p2, CCPoint &p3, f
 /* Implementation of CCCardinalSplineTo
  */
 
-CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, const std::vector<CCPoint>& points, float tension)
+CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, const std::vector<Vec2>& points, float tension)
 {
     CCCardinalSplineTo *ret = new CCCardinalSplineTo();
     if (ret)
@@ -84,7 +84,7 @@ CCCardinalSplineTo* CCCardinalSplineTo::create(float duration, const std::vector
     return ret;
 }
 
-bool CCCardinalSplineTo::initWithDuration(float duration, const std::vector<CCPoint>& points, float tension)
+bool CCCardinalSplineTo::initWithDuration(float duration, const std::vector<Vec2>& points, float tension)
 {
     CCAssert(points.size() > 0, "Invalid configuration. It must at least have one control point");
 
@@ -149,17 +149,17 @@ void CCCardinalSplineTo::update(float time)
     }
     
 	// Interpolate    
-    CCPoint pp0 = _points[p-1];
-    CCPoint pp1 = _points[p+0];
-    CCPoint pp2 = _points[p+1];
-    CCPoint pp3 = _points[p+2];
+    Vec2 pp0 = _points[p-1];
+    Vec2 pp1 = _points[p+0];
+    Vec2 pp2 = _points[p+1];
+    Vec2 pp3 = _points[p+2];
 	
-    CCPoint newPos = ccCardinalSplineAt(pp0, pp1, pp2, pp3, m_fTension, lt);
+    Vec2 newPos = ccCardinalSplineAt(pp0, pp1, pp2, pp3, m_fTension, lt);
 	
 #if CC_ENABLE_STACKABLE_ACTIONS
     // Support for stacked actions
     CCNode *node = m_pTarget;
-    CCPoint diff = ccpSub( node->getPosition(), m_previousPosition);
+    Vec2 diff = ccpSub( node->getPosition(), m_previousPosition);
     if( diff.x !=0 || diff.y != 0 ) {
         m_accumulatedDiff = ccpAdd( m_accumulatedDiff, diff);
         newPos = ccpAdd( newPos, m_accumulatedDiff);
@@ -169,7 +169,7 @@ void CCCardinalSplineTo::update(float time)
     this->updatePosition(newPos);
 }
 
-void CCCardinalSplineTo::updatePosition(cocos2d::CCPoint &newPos)
+void CCCardinalSplineTo::updatePosition(cocos2d::Vec2 &newPos)
 {
     m_pTarget->setPosition(newPos);
     m_previousPosition = newPos;
@@ -177,7 +177,7 @@ void CCCardinalSplineTo::updatePosition(cocos2d::CCPoint &newPos)
 
 CCActionInterval* CCCardinalSplineTo::reverse()
 {
-	std::vector<CCPoint> reverse;
+	std::vector<Vec2> reverse;
 	for (auto i = _points.rbegin(); i != _points.rend(); i++)
 		reverse.push_back(*i);
     return CCCardinalSplineTo::create(m_fDuration, reverse, m_fTension);
@@ -186,7 +186,7 @@ CCActionInterval* CCCardinalSplineTo::reverse()
 /* CCCardinalSplineBy
  */
 
-CCCardinalSplineBy* CCCardinalSplineBy::create(float duration, const std::vector<CCPoint>& points, float tension)
+CCCardinalSplineBy* CCCardinalSplineBy::create(float duration, const std::vector<Vec2>& points, float tension)
 {
     CCCardinalSplineBy *ret = new CCCardinalSplineBy();
     if (ret)
@@ -208,24 +208,24 @@ CCCardinalSplineBy::CCCardinalSplineBy() : m_startPosition(0,0)
 {
 }
 
-void CCCardinalSplineBy::updatePosition(cocos2d::CCPoint &newPos)
+void CCCardinalSplineBy::updatePosition(cocos2d::Vec2 &newPos)
 {
-    CCPoint p = ccpAdd(newPos, m_startPosition);
+    Vec2 p = ccpAdd(newPos, m_startPosition);
     m_pTarget->setPosition(p);
     m_previousPosition = p;
 }
 
 CCActionInterval* CCCardinalSplineBy::reverse()
 {
-	std::vector<CCPoint> points = _points;
+	std::vector<Vec2> points = _points;
 	//
 	// convert "absolutes" to "diffs"
 	//
-	CCPoint p = points[0];
+	Vec2 p = points[0];
     for (unsigned int i = 1; i < points.size(); ++i)
     {
-        CCPoint current = points[i];
-        CCPoint diff = ccpSub(current, p);
+        Vec2 current = points[i];
+        Vec2 diff = ccpSub(current, p);
 		points[i] = diff;
         
         p = current;
@@ -233,7 +233,7 @@ CCActionInterval* CCCardinalSplineBy::reverse()
 	
 	
 	// convert to "diffs" to "reverse absolute"
-	std::vector<CCPoint> reverse;
+	std::vector<Vec2> reverse;
 	for (auto i = _points.rbegin(); i != _points.rend(); i++)
 		reverse.push_back(*i);
 	
@@ -247,9 +247,9 @@ CCActionInterval* CCCardinalSplineBy::reverse()
     
     for (unsigned int i = 1; i < reverse.size(); ++i)
     {
-        CCPoint current = reverse[i];
+        Vec2 current = reverse[i];
         current = ccpNeg(current);
-        CCPoint abs = ccpAdd(current, p);
+        Vec2 abs = ccpAdd(current, p);
 		reverse[i] = abs;
         
         p = abs;
@@ -267,7 +267,7 @@ void CCCardinalSplineBy::startWithTarget(cocos2d::CCNode *pTarget)
 /* CCCatmullRomTo
  */
 
-CCCatmullRomTo* CCCatmullRomTo::create(float dt, const std::vector<CCPoint>& points)
+CCCatmullRomTo* CCCatmullRomTo::create(float dt, const std::vector<Vec2>& points)
 {
     CCCatmullRomTo *ret = new CCCatmullRomTo();
     if (ret)
@@ -285,7 +285,7 @@ CCCatmullRomTo* CCCatmullRomTo::create(float dt, const std::vector<CCPoint>& poi
     return ret;
 }
 
-bool CCCatmullRomTo::initWithDuration(float dt, const std::vector<CCPoint>& points)
+bool CCCatmullRomTo::initWithDuration(float dt, const std::vector<Vec2>& points)
 {
     if (CCCardinalSplineTo::initWithDuration(dt, points, 0.5f))
     {
@@ -298,7 +298,7 @@ bool CCCatmullRomTo::initWithDuration(float dt, const std::vector<CCPoint>& poin
 /* CCCatmullRomBy
  */
 
-CCCatmullRomBy* CCCatmullRomBy::create(float dt, const std::vector<CCPoint>& points)
+CCCatmullRomBy* CCCatmullRomBy::create(float dt, const std::vector<Vec2>& points)
 {
     CCCatmullRomBy *ret = new CCCatmullRomBy();
     if (ret)
@@ -316,7 +316,7 @@ CCCatmullRomBy* CCCatmullRomBy::create(float dt, const std::vector<CCPoint>& poi
     return ret;
 }
 
-bool CCCatmullRomBy::initWithDuration(float dt, const std::vector<CCPoint>& points)
+bool CCCatmullRomBy::initWithDuration(float dt, const std::vector<Vec2>& points)
 {
     if (CCCardinalSplineTo::initWithDuration(dt, points, 0.5f))
     {

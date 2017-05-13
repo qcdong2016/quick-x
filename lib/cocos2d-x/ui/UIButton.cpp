@@ -440,13 +440,13 @@ void Button::updateFlippedY()
     }
 }
 
-void Button::setAnchorPoint(const CCPoint &pt)
+void Button::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _buttonNormalRenderer->setAnchorPoint(pt);
     _buttonClickedRenderer->setAnchorPoint(pt);
     _buttonDisableRenderer->setAnchorPoint(pt);
-    _titleRenderer->setPosition(CCPoint(_size.width*(0.5f-m_obAnchorPoint.x), _size.height*(0.5f-m_obAnchorPoint.y)));
+    _titleRenderer->setPosition(Vec2(_size.width*(0.5f-m_obAnchorPoint.x), _size.height*(0.5f-m_obAnchorPoint.y)));
 }
 
 void Button::onSizeChanged()

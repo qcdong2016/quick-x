@@ -122,9 +122,9 @@ static CCRect CCRectFromString(const char* pszContent)
 	return result;
 }
 
-static CCPoint CCPointFromString(const char* pszContent)
+static Vec2 CCPointFromString(const char* pszContent)
 {
-	CCPoint ret = CCPointZero;
+	Vec2 ret = CCPointZero;
 
 	do
 	{
@@ -278,7 +278,7 @@ void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 				rotated = frameDict->valueForKey("rotated")->boolValue();
 			}
 
-			CCPoint offset = CCPointFromString(frameDict->valueForKey("offset")->getCString());
+			Vec2 offset = CCPointFromString(frameDict->valueForKey("offset")->getCString());
 			CCSize sourceSize = CCSizeFromString(frameDict->valueForKey("sourceSize")->getCString());
 
 			// create frame
@@ -293,7 +293,7 @@ void PlistResource::beginLoad(MemBuffer* buf, void* userdata)
 		{
 			// get values
 			CCSize spriteSize = CCSizeFromString(frameDict->valueForKey("spriteSize")->getCString());
-			CCPoint spriteOffset = CCPointFromString(frameDict->valueForKey("spriteOffset")->getCString());
+			Vec2 spriteOffset = CCPointFromString(frameDict->valueForKey("spriteOffset")->getCString());
 			CCSize spriteSourceSize = CCSizeFromString(frameDict->valueForKey("spriteSourceSize")->getCString());
 			CCRect textureRect = CCRectFromString(frameDict->valueForKey("textureRect")->getCString());
 			bool textureRotated = frameDict->valueForKey("textureRotated")->boolValue();

@@ -311,7 +311,7 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
     setVertexRect(rect);
     setTextureCoords(rect);
 
-    CCPoint relativeOffset = m_obUnflippedOffsetPositionFromCenter;
+    Vec2 relativeOffset = m_obUnflippedOffsetPositionFromCenter;
 
     // issue #732
     if (m_bFlipX)
@@ -524,7 +524,7 @@ void CCSprite::updateTransform(void)
 
 #if CC_SPRITE_DEBUG_DRAW
     // draw bounding box
-    CCPoint vertices[4] = {
+    Vec2 vertices[4] = {
         ccp( m_sQuad.bl.vertices.x, m_sQuad.bl.vertices.y ),
         ccp( m_sQuad.br.vertices.x, m_sQuad.br.vertices.y ),
         ccp( m_sQuad.tr.vertices.x, m_sQuad.tr.vertices.y ),
@@ -577,7 +577,7 @@ void CCSprite::draw(void)
 
 #if CC_SPRITE_DEBUG_DRAW == 1
     // draw bounding box
-    CCPoint vertices[4]={
+    Vec2 vertices[4]={
         ccp(m_sQuad.tl.vertices.x,m_sQuad.tl.vertices.y),
         ccp(m_sQuad.bl.vertices.x,m_sQuad.bl.vertices.y),
         ccp(m_sQuad.br.vertices.x,m_sQuad.br.vertices.y),
@@ -587,8 +587,8 @@ void CCSprite::draw(void)
 #elif CC_SPRITE_DEBUG_DRAW == 2
     // draw texture box
     CCSize s = this->getTextureRect().size;
-    CCPoint offsetPix = this->getOffsetPosition();
-    CCPoint vertices[4] = {
+    Vec2 offsetPix = this->getOffsetPosition();
+    Vec2 vertices[4] = {
         ccp(offsetPix.x,offsetPix.y), ccp(offsetPix.x+s.width,offsetPix.y),
         ccp(offsetPix.x+s.width,offsetPix.y+s.height), ccp(offsetPix.x,offsetPix.y+s.height)
     };
@@ -766,7 +766,7 @@ setDirtyRecursively(true);                \
 }                                            \
 }
 
-void CCSprite::setPosition(const CCPoint& pos)
+void CCSprite::setPosition(const Vec2& pos)
 {
     CCNode::setPosition(pos);
     SET_DIRTY_RECURSIVELY();
@@ -826,7 +826,7 @@ void CCSprite::setVertexZ(float fVertexZ)
     SET_DIRTY_RECURSIVELY();
 }
 
-void CCSprite::setAnchorPoint(const CCPoint& anchor)
+void CCSprite::setAnchorPoint(const Vec2& anchor)
 {
     CCNode::setAnchorPoint(anchor);
     SET_DIRTY_RECURSIVELY();

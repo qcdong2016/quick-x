@@ -182,7 +182,7 @@ using namespace ui;
 
 static int tolua_collect_CCPoint (lua_State* tolua_S)
 {
- CCPoint* self = (CCPoint*) tolua_tousertype(tolua_S,1,0);
+ Vec2* self = (Vec2*) tolua_tousertype(tolua_S,1,0);
  Mtolua_delete(self);
  return 0;
 }
@@ -753,7 +753,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CCParticleSnow");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCParticleSnow)), "CCParticleSnow");
  tolua_usertype(tolua_S,"CCPoint");
- toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCPoint)), "CCPoint");
+ toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(Vec2)), "CCPoint");
  tolua_usertype(tolua_S,"CCDrawNode");
  toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CCDrawNode)), "CCDrawNode");
  tolua_usertype(tolua_S,"CCParticleMeteor");
@@ -3941,7 +3941,7 @@ static int tolua_Cocos2d_CCString_createWithContentsOfFile00(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_CCPoint_x
 static int tolua_get_CCPoint_x(lua_State* tolua_S)
 {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
 #endif
@@ -3954,7 +3954,7 @@ static int tolua_get_CCPoint_x(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_CCPoint_x
 static int tolua_set_CCPoint_x(lua_State* tolua_S)
 {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
@@ -3971,7 +3971,7 @@ static int tolua_set_CCPoint_x(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_get_CCPoint_y
 static int tolua_get_CCPoint_y(lua_State* tolua_S)
 {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
 #endif
@@ -3984,7 +3984,7 @@ static int tolua_get_CCPoint_y(lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_set_CCPoint_y
 static int tolua_set_CCPoint_y(lua_State* tolua_S)
 {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
@@ -4016,7 +4016,7 @@ static int tolua_Cocos2d_CCPoint_new00(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(x,y));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(x,y));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  }
  }
@@ -4048,7 +4048,7 @@ static int tolua_Cocos2d_CCPoint_new00_local(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(x,y));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(x,y));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
  }
@@ -4075,9 +4075,9 @@ static int tolua_Cocos2d_CCPoint_new01(lua_State* tolua_S)
  goto tolua_lerror;
  else
  {
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(other));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(other));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  }
  }
@@ -4100,9 +4100,9 @@ static int tolua_Cocos2d_CCPoint_new01_local(lua_State* tolua_S)
  goto tolua_lerror;
  else
  {
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(other));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(other));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
  }
@@ -4128,7 +4128,7 @@ static int tolua_Cocos2d_CCPoint_new02(lua_State* tolua_S)
  {
   CCSize size = *((CCSize*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(size));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(size));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  }
  }
@@ -4153,7 +4153,7 @@ static int tolua_Cocos2d_CCPoint_new02_local(lua_State* tolua_S)
  {
   CCSize size = *((CCSize*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)(size));
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)(size));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
  }
@@ -4177,7 +4177,7 @@ static int tolua_Cocos2d_CCPoint_new03(lua_State* tolua_S)
  else
  {
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)());
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)());
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  }
  }
@@ -4200,7 +4200,7 @@ static int tolua_Cocos2d_CCPoint_new03_local(lua_State* tolua_S)
  else
  {
  {
-  CCPoint* tolua_ret = (CCPoint*)  Mtolua_new((CCPoint)());
+  Vec2* tolua_ret = (Vec2*)  Mtolua_new((Vec2)());
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
  }
@@ -4227,7 +4227,7 @@ static int tolua_Cocos2d_CCPoint_setPoint00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -4261,8 +4261,8 @@ static int tolua_Cocos2d_CCPoint_equals00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint target = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 target = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equals'", NULL);
 #endif
@@ -4296,8 +4296,8 @@ static int tolua_Cocos2d_CCPoint_fuzzyEquals00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint target = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 target = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float variance = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'fuzzyEquals'", NULL);
@@ -4330,7 +4330,7 @@ static int tolua_Cocos2d_CCPoint_getLength00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getLength'", NULL);
 #endif
@@ -4362,7 +4362,7 @@ static int tolua_Cocos2d_CCPoint_getLengthSq00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getLengthSq'", NULL);
 #endif
@@ -4395,8 +4395,8 @@ static int tolua_Cocos2d_CCPoint_getDistanceSq00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDistanceSq'", NULL);
 #endif
@@ -4429,8 +4429,8 @@ static int tolua_Cocos2d_CCPoint_getDistance00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDistance'", NULL);
 #endif
@@ -4462,7 +4462,7 @@ static int tolua_Cocos2d_CCPoint_getAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAngle'", NULL);
 #endif
@@ -4493,8 +4493,8 @@ static int tolua_Cocos2d_CCPoint_getAngle01(lua_State* tolua_S)
  goto tolua_lerror;
  else
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAngle'", NULL);
 #endif
@@ -4524,8 +4524,8 @@ static int tolua_Cocos2d_CCPoint_dot00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dot'", NULL);
 #endif
@@ -4558,8 +4558,8 @@ static int tolua_Cocos2d_CCPoint_cross00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'cross'", NULL);
 #endif
@@ -4591,19 +4591,19 @@ static int tolua_Cocos2d_CCPoint_getPerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPerp'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getPerp();
+  Vec2 tolua_ret = (Vec2)  self->getPerp();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4633,19 +4633,19 @@ static int tolua_Cocos2d_CCPoint_getRPerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRPerp'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getRPerp();
+  Vec2 tolua_ret = (Vec2)  self->getRPerp();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4676,20 +4676,20 @@ static int tolua_Cocos2d_CCPoint_project00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'project'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->project(other);
+  Vec2 tolua_ret = (Vec2)  self->project(other);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4720,20 +4720,20 @@ static int tolua_Cocos2d_CCPoint_rotate00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rotate'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->rotate(other);
+  Vec2 tolua_ret = (Vec2)  self->rotate(other);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4764,20 +4764,20 @@ static int tolua_Cocos2d_CCPoint_unrotate00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unrotate'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->unrotate(other);
+  Vec2 tolua_ret = (Vec2)  self->unrotate(other);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4807,19 +4807,19 @@ static int tolua_Cocos2d_CCPoint_normalize00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'normalize'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->normalize();
+  Vec2 tolua_ret = (Vec2)  self->normalize();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4851,21 +4851,21 @@ static int tolua_Cocos2d_CCPoint_lerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint other = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 other = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float alpha = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'lerp'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->lerp(other,alpha);
+  Vec2 tolua_ret = (Vec2)  self->lerp(other,alpha);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4897,21 +4897,21 @@ static int tolua_Cocos2d_CCPoint_rotateByAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint pivot = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
+  Vec2 pivot = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float angle = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rotateByAngle'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->rotateByAngle(pivot,angle);
+  Vec2 tolua_ret = (Vec2)  self->rotateByAngle(pivot,angle);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4942,20 +4942,20 @@ static int tolua_Cocos2d_CCPoint_forAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint* self = (CCPoint*)  tolua_tousertype(tolua_S,1,0);
+  Vec2* self = (Vec2*)  tolua_tousertype(tolua_S,1,0);
   float a = ((float)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'forAngle'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->forAngle(a);
+  Vec2 tolua_ret = (Vec2)  self->forAngle(a);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -4989,14 +4989,14 @@ static int tolua_Cocos2d_ccp00(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,1,0));
   float y = ((float)  tolua_tonumber(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccp(x,y);
+  Vec2 tolua_ret = (Vec2)  ccp(x,y);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -5030,14 +5030,14 @@ static int tolua_Cocos2d_CCPointMake00(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,1,0));
   float y = ((float)  tolua_tonumber(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  CCPointMake(x,y);
+  Vec2 tolua_ret = (Vec2)  CCPointMake(x,y);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -5242,7 +5242,7 @@ static int tolua_Cocos2d_CCSize_new02(lua_State* tolua_S)
  goto tolua_lerror;
  else
  {
-  CCPoint point = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 point = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   CCSize* tolua_ret = (CCSize*)  Mtolua_new((CCSize)(point));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCSize");
@@ -5267,7 +5267,7 @@ static int tolua_Cocos2d_CCSize_new02_local(lua_State* tolua_S)
  goto tolua_lerror;
  else
  {
-  CCPoint point = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 point = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   CCSize* tolua_ret = (CCSize*)  Mtolua_new((CCSize)(point));
   tolua_pushusertype(tolua_S,(void*)tolua_ret,"CCSize");
@@ -5461,7 +5461,7 @@ static int tolua_set_CCRect_origin(lua_State* tolua_S)
  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
-  self->origin = *((CCPoint*)  tolua_tousertype(tolua_S,2,0))
+  self->origin = *((Vec2*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
 }
@@ -5949,7 +5949,7 @@ static int tolua_Cocos2d_CCRect_containsPoint00(lua_State* tolua_S)
 #endif
  {
   CCRect* self = (CCRect*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint point = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 point = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'containsPoint'", NULL);
 #endif
@@ -10047,16 +10047,16 @@ static int tolua_Cocos2d_ccpNeg00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpNeg(v);
+  Vec2 tolua_ret = (Vec2)  ccpNeg(v);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10087,17 +10087,17 @@ static int tolua_Cocos2d_ccpAdd00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpAdd(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpAdd(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10128,17 +10128,17 @@ static int tolua_Cocos2d_ccpSub00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpSub(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpSub(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10169,17 +10169,17 @@ static int tolua_Cocos2d_ccpMult00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
   float s = ((float)  tolua_tonumber(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpMult(v,s);
+  Vec2 tolua_ret = (Vec2)  ccpMult(v,s);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10210,17 +10210,17 @@ static int tolua_Cocos2d_ccpMidpoint00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpMidpoint(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpMidpoint(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10251,8 +10251,8 @@ static int tolua_Cocos2d_ccpDot00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpDot(v1,v2);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10282,8 +10282,8 @@ static int tolua_Cocos2d_ccpCross00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpCross(v1,v2);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10312,16 +10312,16 @@ static int tolua_Cocos2d_ccpPerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpPerp(v);
+  Vec2 tolua_ret = (Vec2)  ccpPerp(v);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10351,16 +10351,16 @@ static int tolua_Cocos2d_ccpRPerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpRPerp(v);
+  Vec2 tolua_ret = (Vec2)  ccpRPerp(v);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10391,17 +10391,17 @@ static int tolua_Cocos2d_ccpProject00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpProject(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpProject(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10432,17 +10432,17 @@ static int tolua_Cocos2d_ccpRotate00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpRotate(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpRotate(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10473,17 +10473,17 @@ static int tolua_Cocos2d_ccpUnrotate00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpUnrotate(v1,v2);
+  Vec2 tolua_ret = (Vec2)  ccpUnrotate(v1,v2);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10513,7 +10513,7 @@ static int tolua_Cocos2d_ccpLengthSQ00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
   float tolua_ret = (float)  ccpLengthSQ(v);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10543,8 +10543,8 @@ static int tolua_Cocos2d_ccpDistanceSQ00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint p1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint p2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 p2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpDistanceSQ(p1,p2);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10573,7 +10573,7 @@ static int tolua_Cocos2d_ccpLength00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
   float tolua_ret = (float)  ccpLength(v);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10603,8 +10603,8 @@ static int tolua_Cocos2d_ccpDistance00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint v2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpDistance(v1,v2);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10633,16 +10633,16 @@ static int tolua_Cocos2d_ccpNormalize00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpNormalize(v);
+  Vec2 tolua_ret = (Vec2)  ccpNormalize(v);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10674,14 +10674,14 @@ static int tolua_Cocos2d_ccpForAngle00(lua_State* tolua_S)
  {
   float a = ((float)  tolua_tonumber(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpForAngle(a);
+  Vec2 tolua_ret = (Vec2)  ccpForAngle(a);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10711,7 +10711,7 @@ static int tolua_Cocos2d_ccpToAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
  {
   float tolua_ret = (float)  ccpToAngle(v);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -10775,18 +10775,18 @@ static int tolua_Cocos2d_ccpClamp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint from = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint to = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 from = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 to = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpClamp(p,from,to);
+  Vec2 tolua_ret = (Vec2)  ccpClamp(p,from,to);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10818,14 +10818,14 @@ static int tolua_Cocos2d_ccpFromSize00(lua_State* tolua_S)
  {
   CCSize s = *((CCSize*)  tolua_tousertype(tolua_S,1,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpFromSize(s);
+  Vec2 tolua_ret = (Vec2)  ccpFromSize(s);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10857,18 +10857,18 @@ static int tolua_Cocos2d_ccpLerp00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint a = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint b = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 a = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 b = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float alpha = ((float)  tolua_tonumber(tolua_S,3,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpLerp(a,b,alpha);
+  Vec2 tolua_ret = (Vec2)  ccpLerp(a,b,alpha);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10900,8 +10900,8 @@ static int tolua_Cocos2d_ccpFuzzyEqual00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint a = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint b = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 a = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 b = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float variance = ((float)  tolua_tonumber(tolua_S,3,0));
  {
   bool tolua_ret = (bool)  ccpFuzzyEqual(a,b,variance);
@@ -10932,17 +10932,17 @@ static int tolua_Cocos2d_ccpCompMult00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint a = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint b = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 a = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 b = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpCompMult(a,b);
+  Vec2 tolua_ret = (Vec2)  ccpCompMult(a,b);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -10973,8 +10973,8 @@ static int tolua_Cocos2d_ccpAngleSigned00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint a = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint b = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 a = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 b = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpAngleSigned(a,b);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -11004,8 +11004,8 @@ static int tolua_Cocos2d_ccpAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint a = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint b = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 a = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 b = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   float tolua_ret = (float)  ccpAngle(a,b);
  tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
@@ -11036,18 +11036,18 @@ static int tolua_Cocos2d_ccpRotateByAngle00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint pivot = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 pivot = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float angle = ((float)  tolua_tonumber(tolua_S,3,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpRotateByAngle(v,pivot,angle);
+  Vec2 tolua_ret = (Vec2)  ccpRotateByAngle(v,pivot,angle);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -11082,10 +11082,10 @@ static int tolua_Cocos2d_ccpLineIntersect00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint p1 = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint p2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint p3 = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
-  CCPoint p4 = *((CCPoint*)  tolua_tousertype(tolua_S,4,0));
+  Vec2 p1 = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 p2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p3 = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 p4 = *((Vec2*)  tolua_tousertype(tolua_S,4,0));
   float s = ((float)  tolua_tonumber(tolua_S,5,0));
   float t = ((float)  tolua_tonumber(tolua_S,6,0));
  {
@@ -11121,10 +11121,10 @@ static int tolua_Cocos2d_ccpSegmentIntersect00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint A = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint B = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint C = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
-  CCPoint D = *((CCPoint*)  tolua_tousertype(tolua_S,4,0));
+  Vec2 A = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 B = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 C = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 D = *((Vec2*)  tolua_tousertype(tolua_S,4,0));
  {
   bool tolua_ret = (bool)  ccpSegmentIntersect(A,B,C,D);
  tolua_pushboolean(tolua_S,(bool)tolua_ret);
@@ -11156,19 +11156,19 @@ static int tolua_Cocos2d_ccpIntersectPoint00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint A = *((CCPoint*)  tolua_tousertype(tolua_S,1,0));
-  CCPoint B = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint C = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
-  CCPoint D = *((CCPoint*)  tolua_tousertype(tolua_S,4,0));
+  Vec2 A = *((Vec2*)  tolua_tousertype(tolua_S,1,0));
+  Vec2 B = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 C = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 D = *((Vec2*)  tolua_tousertype(tolua_S,4,0));
  {
-  CCPoint tolua_ret = (CCPoint)  ccpIntersectPoint(A,B,C,D);
+  Vec2 tolua_ret = (Vec2)  ccpIntersectPoint(A,B,C,D);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -12909,7 +12909,7 @@ static int tolua_Cocos2d_CCPlace_create00(lua_State* tolua_S)
  else
 #endif
  {
-  CCPoint pos = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 pos = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
  {
   CCPlace* tolua_ret = (CCPlace*)  CCPlace::create(pos);
   int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
@@ -13273,7 +13273,7 @@ static int tolua_Cocos2d_CCMoveBy_create00(lua_State* tolua_S)
 #endif
  {
   float duration = ((float)  tolua_tonumber(tolua_S,2,0));
-  CCPoint deltaPosition = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 deltaPosition = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
  {
   CCMoveBy* tolua_ret = (CCMoveBy*)  CCMoveBy::create(duration,deltaPosition);
   int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
@@ -13307,7 +13307,7 @@ static int tolua_Cocos2d_CCMoveTo_create00(lua_State* tolua_S)
 #endif
  {
   float duration = ((float)  tolua_tonumber(tolua_S,2,0));
-  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 position = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
  {
   CCMoveTo* tolua_ret = (CCMoveTo*)  CCMoveTo::create(duration,position);
   int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
@@ -13415,7 +13415,7 @@ static int tolua_Cocos2d_CCJumpBy_create00(lua_State* tolua_S)
 #endif
  {
   float duration = ((float)  tolua_tonumber(tolua_S,2,0));
-  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 position = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
   float height = ((float)  tolua_tonumber(tolua_S,4,0));
   unsigned int jumps = ((unsigned int)  tolua_tonumber(tolua_S,5,0));
  {
@@ -13453,7 +13453,7 @@ static int tolua_Cocos2d_CCJumpTo_create00(lua_State* tolua_S)
 #endif
  {
   float duration = ((float)  tolua_tonumber(tolua_S,2,0));
-  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 position = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
   float height = ((float)  tolua_tonumber(tolua_S,4,0));
   int jumps = ((int)  tolua_tonumber(tolua_S,5,0));
  {
@@ -13582,7 +13582,7 @@ static int tolua_set_ccBezierConfig_endPosition(lua_State* tolua_S)
  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
-  self->endPosition = *((CCPoint*)  tolua_tousertype(tolua_S,2,0))
+  self->endPosition = *((Vec2*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
 }
@@ -13612,7 +13612,7 @@ static int tolua_set_ccBezierConfig_controlPoint_1(lua_State* tolua_S)
  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
-  self->controlPoint_1 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0))
+  self->controlPoint_1 = *((Vec2*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
 }
@@ -13642,7 +13642,7 @@ static int tolua_set_ccBezierConfig_controlPoint_2(lua_State* tolua_S)
  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
-  self->controlPoint_2 = *((CCPoint*)  tolua_tousertype(tolua_S,2,0))
+  self->controlPoint_2 = *((Vec2*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
 }
@@ -16276,7 +16276,7 @@ static int tolua_Cocos2d_CCTexture2D_drawAtPoint00(lua_State* tolua_S)
 #endif
  {
   CCTexture2D* self = (CCTexture2D*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint point = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 point = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'drawAtPoint'", NULL);
 #endif
@@ -17301,7 +17301,7 @@ static int tolua_Cocos2d_CCNode_setPosition01(lua_State* tolua_S)
  else
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint point = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 point = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPosition'", NULL);
 #endif
@@ -17369,14 +17369,14 @@ static int tolua_Cocos2d_CCNode_getPosition01(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPosition'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getPosition();
+  Vec2 tolua_ret = (Vec2)  self->getPosition();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -17665,7 +17665,7 @@ static int tolua_Cocos2d_CCNode_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint anchorPoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 anchorPoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -17731,14 +17731,14 @@ static int tolua_Cocos2d_CCNode_getAnchorPoint00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchorPoint'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getAnchorPoint();
+  Vec2 tolua_ret = (Vec2)  self->getAnchorPoint();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19728,19 +19728,19 @@ static int tolua_Cocos2d_CCNode_convertToNodeSpace00(lua_State* tolua_S)
 #endif
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint worldPoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 worldPoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToNodeSpace'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToNodeSpace(worldPoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToNodeSpace(worldPoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19772,19 +19772,19 @@ static int tolua_Cocos2d_CCNode_convertToWorldSpace00(lua_State* tolua_S)
 #endif
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint nodePoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 nodePoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToWorldSpace'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToWorldSpace(nodePoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToWorldSpace(nodePoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19816,19 +19816,19 @@ static int tolua_Cocos2d_CCNode_convertToNodeSpaceAR00(lua_State* tolua_S)
 #endif
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint worldPoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 worldPoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToNodeSpaceAR'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToNodeSpaceAR(worldPoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToNodeSpaceAR(worldPoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19860,19 +19860,19 @@ static int tolua_Cocos2d_CCNode_convertToWorldSpaceAR00(lua_State* tolua_S)
 #endif
  {
   CCNode* self = (CCNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint nodePoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 nodePoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToWorldSpaceAR'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToWorldSpaceAR(nodePoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToWorldSpaceAR(nodePoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19909,14 +19909,14 @@ static int tolua_Cocos2d_CCNode_convertTouchToNodeSpace00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertTouchToNodeSpace'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertTouchToNodeSpace(touch);
+  Vec2 tolua_ret = (Vec2)  self->convertTouchToNodeSpace(touch);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -19953,14 +19953,14 @@ static int tolua_Cocos2d_CCNode_convertTouchToNodeSpaceAR00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertTouchToNodeSpaceAR'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertTouchToNodeSpaceAR(touch);
+  Vec2 tolua_ret = (Vec2)  self->convertTouchToNodeSpaceAR(touch);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -21709,14 +21709,14 @@ static int tolua_Cocos2d_CCSpriteFrame_getOffsetInPixels00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOffsetInPixels'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getOffsetInPixels();
+  Vec2 tolua_ret = (Vec2)  self->getOffsetInPixels();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -21748,7 +21748,7 @@ static int tolua_Cocos2d_CCSpriteFrame_setOffsetInPixels00(lua_State* tolua_S)
 #endif
  {
   CCSpriteFrame* self = (CCSpriteFrame*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint offsetInPixels = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 offsetInPixels = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setOffsetInPixels'", NULL);
 #endif
@@ -22001,14 +22001,14 @@ static int tolua_Cocos2d_CCSpriteFrame_getOffset00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOffset'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getOffset();
+  Vec2 tolua_ret = (Vec2)  self->getOffset();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -22040,7 +22040,7 @@ static int tolua_Cocos2d_CCSpriteFrame_setOffset00(lua_State* tolua_S)
 #endif
  {
   CCSpriteFrame* self = (CCSpriteFrame*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint offsets = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 offsets = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setOffset'", NULL);
 #endif
@@ -22079,7 +22079,7 @@ static int tolua_Cocos2d_CCSpriteFrame_create00(lua_State* tolua_S)
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
   CCRect rect = *((CCRect*)  tolua_tousertype(tolua_S,3,0));
   bool rotated = ((bool)  tolua_toboolean(tolua_S,4,0));
-  CCPoint offset = *((CCPoint*)  tolua_tousertype(tolua_S,5,0));
+  Vec2 offset = *((Vec2*)  tolua_tousertype(tolua_S,5,0));
   CCSize originalSize = *((CCSize*)  tolua_tousertype(tolua_S,6,0));
  {
   CCSpriteFrame* tolua_ret = (CCSpriteFrame*)  CCSpriteFrame::create(filename,rect,rotated,offset,originalSize);
@@ -22175,7 +22175,7 @@ static int tolua_Cocos2d_CCSpriteFrame_createWithTexture00(lua_State* tolua_S)
   CCTexture2D* pobTexture = ((CCTexture2D*)  tolua_tousertype(tolua_S,2,0));
   CCRect rect = *((CCRect*)  tolua_tousertype(tolua_S,3,0));
   bool rotated = ((bool)  tolua_toboolean(tolua_S,4,0));
-  CCPoint offset = *((CCPoint*)  tolua_tousertype(tolua_S,5,0));
+  Vec2 offset = *((Vec2*)  tolua_tousertype(tolua_S,5,0));
   CCSize originalSize = *((CCSize*)  tolua_tousertype(tolua_S,6,0));
  {
   CCSpriteFrame* tolua_ret = (CCSpriteFrame*)  CCSpriteFrame::createWithTexture(pobTexture,rect,rotated,offset,originalSize);
@@ -23033,14 +23033,14 @@ static int tolua_Cocos2d_CCSprite_getOffsetPosition00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOffsetPosition'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getOffsetPosition();
+  Vec2 tolua_ret = (Vec2)  self->getOffsetPosition();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -24870,14 +24870,14 @@ static int tolua_Cocos2d_CCParticleSystem_getSourcePosition00(lua_State* tolua_S
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSourcePosition'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getSourcePosition();
+  Vec2 tolua_ret = (Vec2)  self->getSourcePosition();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -24909,7 +24909,7 @@ static int tolua_Cocos2d_CCParticleSystem_setSourcePosition00(lua_State* tolua_S
 #endif
  {
   CCParticleSystem* self = (CCParticleSystem*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSourcePosition'", NULL);
 #endif
@@ -24945,14 +24945,14 @@ static int tolua_Cocos2d_CCParticleSystem_getPosVar00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPosVar'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getPosVar();
+  Vec2 tolua_ret = (Vec2)  self->getPosVar();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -24984,7 +24984,7 @@ static int tolua_Cocos2d_CCParticleSystem_setPosVar00(lua_State* tolua_S)
 #endif
  {
   CCParticleSystem* self = (CCParticleSystem*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPosVar'", NULL);
 #endif
@@ -25280,14 +25280,14 @@ static int tolua_Cocos2d_CCParticleSystem_getGravity00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getGravity'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getGravity();
+  Vec2 tolua_ret = (Vec2)  self->getGravity();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -25319,7 +25319,7 @@ static int tolua_Cocos2d_CCParticleSystem_setGravity00(lua_State* tolua_S)
 #endif
  {
   CCParticleSystem* self = (CCParticleSystem*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint g = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 g = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setGravity'", NULL);
 #endif
@@ -28324,7 +28324,7 @@ static int tolua_Cocos2d_CCParticleSystemQuad_updateQuadWithParticle00(lua_State
  {
   CCParticleSystemQuad* self = (CCParticleSystemQuad*)  tolua_tousertype(tolua_S,1,0);
   tCCParticle* particle = ((tCCParticle*)  tolua_tousertype(tolua_S,2,0));
-  const CCPoint* newPosition = ((const CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  const Vec2* newPosition = ((const Vec2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateQuadWithParticle'", NULL);
 #endif
@@ -29504,7 +29504,7 @@ static int tolua_set_CCTMXLayerInfo_m_tOffset(lua_State* tolua_S)
  if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)))
  tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
 #endif
-  self->m_tOffset = *((CCPoint*)  tolua_tousertype(tolua_S,2,0))
+  self->m_tOffset = *((Vec2*)  tolua_tousertype(tolua_S,2,0))
 ;
  return 0;
 }
@@ -30789,7 +30789,7 @@ static int tolua_Cocos2d_CCTileMapAtlas_tileAt00(lua_State* tolua_S)
 #endif
  {
   CCTileMapAtlas* self = (CCTileMapAtlas*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 position = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'tileAt'", NULL);
 #endif
@@ -30835,7 +30835,7 @@ static int tolua_Cocos2d_CCTileMapAtlas_setTile00(lua_State* tolua_S)
  {
   CCTileMapAtlas* self = (CCTileMapAtlas*)  tolua_tousertype(tolua_S,1,0);
   ccColor3B tile = *((ccColor3B*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 position = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTile'", NULL);
 #endif
@@ -31278,7 +31278,7 @@ static int tolua_Cocos2d_CCTMXLayer_tileAt00(lua_State* tolua_S)
 #endif
  {
   CCTMXLayer* self = (CCTMXLayer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint tileCoordinate = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 tileCoordinate = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'tileAt'", NULL);
 #endif
@@ -31314,7 +31314,7 @@ static int tolua_Cocos2d_CCTMXLayer_tileGIDAt00(lua_State* tolua_S)
 #endif
  {
   CCTMXLayer* self = (CCTMXLayer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint tileCoordinate = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 tileCoordinate = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'tileGIDAt'", NULL);
 #endif
@@ -31350,7 +31350,7 @@ static int tolua_Cocos2d_CCTMXLayer_setTileGID00(lua_State* tolua_S)
  {
   CCTMXLayer* self = (CCTMXLayer*)  tolua_tousertype(tolua_S,1,0);
   unsigned int gid = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
-  CCPoint tileCoordinate = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 tileCoordinate = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTileGID'", NULL);
 #endif
@@ -31383,7 +31383,7 @@ static int tolua_Cocos2d_CCTMXLayer_removeTileAt00(lua_State* tolua_S)
 #endif
  {
   CCTMXLayer* self = (CCTMXLayer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint tileCoordinate = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 tileCoordinate = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeTileAt'", NULL);
 #endif
@@ -31416,19 +31416,19 @@ static int tolua_Cocos2d_CCTMXLayer_positionAt00(lua_State* tolua_S)
 #endif
  {
   CCTMXLayer* self = (CCTMXLayer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint tileCoordinate = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 tileCoordinate = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'positionAt'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->positionAt(tileCoordinate);
+  Vec2 tolua_ret = (Vec2)  self->positionAt(tileCoordinate);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -31635,14 +31635,14 @@ static int tolua_Cocos2d_CCTMXObjectGroup_getPositionOffset00(lua_State* tolua_S
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPositionOffset'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getPositionOffset();
+  Vec2 tolua_ret = (Vec2)  self->getPositionOffset();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -31674,7 +31674,7 @@ static int tolua_Cocos2d_CCTMXObjectGroup_setPositionOffset00(lua_State* tolua_S
 #endif
  {
   CCTMXObjectGroup* self = (CCTMXObjectGroup*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPositionOffset'", NULL);
 #endif
@@ -33059,7 +33059,7 @@ static int tolua_Cocos2d_CCDrawNode_drawDot00(lua_State* tolua_S)
 #endif
  {
   CCDrawNode* self = (CCDrawNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint pos = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 pos = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
   float radius = ((float)  tolua_tonumber(tolua_S,3,0));
   ccColor4F color = *((ccColor4F*)  tolua_tousertype(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
@@ -33097,8 +33097,8 @@ static int tolua_Cocos2d_CCDrawNode_drawSegment00(lua_State* tolua_S)
 #endif
  {
   CCDrawNode* self = (CCDrawNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint from = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  CCPoint to = *((CCPoint*)  tolua_tousertype(tolua_S,3,0));
+  Vec2 from = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 to = *((Vec2*)  tolua_tousertype(tolua_S,3,0));
   float radius = ((float)  tolua_tonumber(tolua_S,4,0));
   ccColor4F color = *((ccColor4F*)  tolua_tousertype(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
@@ -33137,7 +33137,7 @@ static int tolua_Cocos2d_CCDrawNode_drawPolygon00(lua_State* tolua_S)
 #endif
  {
   CCDrawNode* self = (CCDrawNode*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint* verts = ((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2* verts = ((Vec2*)  tolua_tousertype(tolua_S,2,0));
   unsigned int count = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
   ccColor4F fillColor = *((ccColor4F*)  tolua_tousertype(tolua_S,4,0));
   float borderWidth = ((float)  tolua_tonumber(tolua_S,5,0));
@@ -34029,14 +34029,14 @@ static int tolua_Cocos2d_CCProgressTimer_getMidpoint00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMidpoint'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getMidpoint();
+  Vec2 tolua_ret = (Vec2)  self->getMidpoint();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -34068,7 +34068,7 @@ static int tolua_Cocos2d_CCProgressTimer_setMidpoint00(lua_State* tolua_S)
 #endif
  {
   CCProgressTimer* self = (CCProgressTimer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMidpoint'", NULL);
 #endif
@@ -34104,14 +34104,14 @@ static int tolua_Cocos2d_CCProgressTimer_getBarChangeRate00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBarChangeRate'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getBarChangeRate();
+  Vec2 tolua_ret = (Vec2)  self->getBarChangeRate();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -34143,7 +34143,7 @@ static int tolua_Cocos2d_CCProgressTimer_setBarChangeRate00(lua_State* tolua_S)
 #endif
  {
   CCProgressTimer* self = (CCProgressTimer*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint p = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 p = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBarChangeRate'", NULL);
 #endif
@@ -35484,7 +35484,7 @@ static int tolua_Cocos2d_CCLayerGradient_create00(lua_State* tolua_S)
  {
   ccColor4B start = *((ccColor4B*)  tolua_tousertype(tolua_S,2,0));
   ccColor4B end = *((ccColor4B*)  tolua_tousertype(tolua_S,3,0));
-  CCPoint v = *((CCPoint*)  tolua_tousertype(tolua_S,4,0));
+  Vec2 v = *((Vec2*)  tolua_tousertype(tolua_S,4,0));
  {
   CCLayerGradient* tolua_ret = (CCLayerGradient*)  CCLayerGradient::create(start,end,v);
   int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
@@ -35854,14 +35854,14 @@ static int tolua_Cocos2d_CCLayerGradient_getVector00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getVector'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getVector();
+  Vec2 tolua_ret = (Vec2)  self->getVector();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -35893,7 +35893,7 @@ static int tolua_Cocos2d_CCLayerGradient_setVector00(lua_State* tolua_S)
 #endif
  {
   CCLayerGradient* self = (CCLayerGradient*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint vector = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 vector = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setVector'", NULL);
 #endif
@@ -36486,7 +36486,7 @@ static int tolua_Cocos2d_CCLabelBMFont_initWithString01(lua_State* tolua_S)
   const char* fntFile = ((const char*)  tolua_tostring(tolua_S,3,0));
   float width = ((float)  tolua_tonumber(tolua_S,4,0));
   CCTextAlignment alignment = ((CCTextAlignment) (int)  tolua_tonumber(tolua_S,5,0));
-  CCPoint imageOffset = *((CCPoint*)  tolua_tousertype(tolua_S,6,0));
+  Vec2 imageOffset = *((Vec2*)  tolua_tousertype(tolua_S,6,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'initWithString'", NULL);
 #endif
@@ -36524,7 +36524,7 @@ static int tolua_Cocos2d_CCLabelBMFont_create00(lua_State* tolua_S)
   const char* fntFile = ((const char*)  tolua_tostring(tolua_S,3,0));
   float width = ((float)  tolua_tonumber(tolua_S,4,0));
   CCTextAlignment alignment = ((CCTextAlignment) (int)  tolua_tonumber(tolua_S,5,0));
-  CCPoint imageOffset = *((CCPoint*)  tolua_tousertype(tolua_S,6,0));
+  Vec2 imageOffset = *((Vec2*)  tolua_tousertype(tolua_S,6,0));
  {
   CCLabelBMFont* tolua_ret = (CCLabelBMFont*)  CCLabelBMFont::create(text,fntFile,width,alignment,imageOffset);
   int nID = (tolua_ret) ? (int)tolua_ret->m_uID : -1;
@@ -39439,14 +39439,14 @@ static int tolua_Cocos2d_CCDirector_getVisibleOrigin00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getVisibleOrigin'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getVisibleOrigin();
+  Vec2 tolua_ret = (Vec2)  self->getVisibleOrigin();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -39478,19 +39478,19 @@ static int tolua_Cocos2d_CCDirector_convertToGL00(lua_State* tolua_S)
 #endif
  {
   CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint obPoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 obPoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToGL'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToGL(obPoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToGL(obPoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -39522,19 +39522,19 @@ static int tolua_Cocos2d_CCDirector_convertToUI00(lua_State* tolua_S)
 #endif
  {
   CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  CCPoint obPoint = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Vec2 obPoint = *((Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'convertToUI'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->convertToUI(obPoint);
+  Vec2 tolua_ret = (Vec2)  self->convertToUI(obPoint);
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -42980,7 +42980,7 @@ static int tolua_Cocos2d_Widget_setPositionPercent00(lua_State* tolua_S)
 #endif
  {
   Widget* self = (Widget*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* percent = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* percent = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPositionPercent'", NULL);
 #endif
@@ -43016,7 +43016,7 @@ static int tolua_Cocos2d_Widget_getPositionPercent00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPositionPercent'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getPositionPercent();
+  const Vec2& tolua_ret = (const Vec2&)  self->getPositionPercent();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -43401,7 +43401,7 @@ static int tolua_Cocos2d_Widget_clippingParentAreaContainPoint00(lua_State* tolu
 #endif
  {
   Widget* self = (Widget*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clippingParentAreaContainPoint'", NULL);
 #endif
@@ -43439,7 +43439,7 @@ static int tolua_Cocos2d_Widget_checkChildInfo00(lua_State* tolua_S)
   Widget* self = (Widget*)  tolua_tousertype(tolua_S,1,0);
   int handleState = ((int)  tolua_tonumber(tolua_S,2,0));
   Widget* sender = ((Widget*)  tolua_tousertype(tolua_S,3,0));
-  const CCPoint* touchPoint = ((const CCPoint*)  tolua_tousertype(tolua_S,4,0));
+  const Vec2* touchPoint = ((const Vec2*)  tolua_tousertype(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'checkChildInfo'", NULL);
 #endif
@@ -43475,7 +43475,7 @@ static int tolua_Cocos2d_Widget_getTouchStartPos00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchStartPos'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getTouchStartPos();
+  const Vec2& tolua_ret = (const Vec2&)  self->getTouchStartPos();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -43507,7 +43507,7 @@ static int tolua_Cocos2d_Widget_getTouchMovePos00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchMovePos'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getTouchMovePos();
+  const Vec2& tolua_ret = (const Vec2&)  self->getTouchMovePos();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -43539,7 +43539,7 @@ static int tolua_Cocos2d_Widget_getTouchEndPos00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchEndPos'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getTouchEndPos();
+  const Vec2& tolua_ret = (const Vec2&)  self->getTouchEndPos();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -43666,7 +43666,7 @@ static int tolua_Cocos2d_Widget_setSizePercent00(lua_State* tolua_S)
 #endif
  {
   Widget* self = (Widget*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* percent = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* percent = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSizePercent'", NULL);
 #endif
@@ -43831,7 +43831,7 @@ static int tolua_Cocos2d_Widget_getSizePercent00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSizePercent'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getSizePercent();
+  const Vec2& tolua_ret = (const Vec2&)  self->getSizePercent();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -43892,7 +43892,7 @@ static int tolua_Cocos2d_Widget_hitTest00(lua_State* tolua_S)
 #endif
  {
   Widget* self = (Widget*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hitTest'", NULL);
 #endif
@@ -44204,14 +44204,14 @@ static int tolua_Cocos2d_Widget_getWorldPosition00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getWorldPosition'", NULL);
 #endif
  {
-  CCPoint tolua_ret = (CCPoint)  self->getWorldPosition();
+  Vec2 tolua_ret = (Vec2)  self->getWorldPosition();
  {
 #ifdef __cplusplus
- void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+ void* tolua_obj = Mtolua_new((Vec2)(tolua_ret));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vec2));
   tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
  tolua_register_gc(tolua_S,lua_gettop(tolua_S));
 #endif
@@ -45165,7 +45165,7 @@ static int tolua_Cocos2d_Layout_setBackGroundColorVector00(lua_State* tolua_S)
 #endif
  {
   Layout* self = (Layout*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* vector = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* vector = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBackGroundColorVector'", NULL);
 #endif
@@ -45201,7 +45201,7 @@ static int tolua_Cocos2d_Layout_getBackGroundColorVector00(lua_State* tolua_S)
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBackGroundColorVector'", NULL);
 #endif
  {
-  const CCPoint& tolua_ret = (const CCPoint&)  self->getBackGroundColorVector();
+  const Vec2& tolua_ret = (const Vec2&)  self->getBackGroundColorVector();
   tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const CCPoint");
  }
  }
@@ -46027,7 +46027,7 @@ static int tolua_Cocos2d_Layout_hitTest00(lua_State* tolua_S)
 #endif
  {
   Layout* self = (Layout*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hitTest'", NULL);
 #endif
@@ -46635,7 +46635,7 @@ static int tolua_Cocos2d_Button_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   Button* self = (Button*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -48455,7 +48455,7 @@ static int tolua_Cocos2d_CheckBox_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   CheckBox* self = (CheckBox*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -49099,7 +49099,7 @@ static int tolua_Cocos2d_ImageView_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   ImageView* self = (ImageView*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -49677,7 +49677,7 @@ static int tolua_Cocos2d_Label_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   Label* self = (Label*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -50243,7 +50243,7 @@ static int tolua_Cocos2d_LabelAtlas_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   LabelAtlas* self = (LabelAtlas*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -50881,7 +50881,7 @@ static int tolua_Cocos2d_LabelBMFont_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   LabelBMFont* self = (LabelBMFont*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -52863,7 +52863,7 @@ static int tolua_Cocos2d_TextField_hitTest00(lua_State* tolua_S)
 #endif
  {
   TextField* self = (TextField*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hitTest'", NULL);
 #endif
@@ -53780,7 +53780,7 @@ static int tolua_Cocos2d_TextField_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   TextField* self = (TextField*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif
@@ -54711,7 +54711,7 @@ static int tolua_Cocos2d_ScrollView_scrollToPercentBothDirection00(lua_State* to
 #endif
  {
   ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* percent = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* percent = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
   float time = ((float)  tolua_tonumber(tolua_S,3,0));
   bool attenuated = ((bool)  tolua_toboolean(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
@@ -55060,7 +55060,7 @@ static int tolua_Cocos2d_ScrollView_jumpToPercentBothDirection00(lua_State* tolu
 #endif
  {
   ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* percent = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* percent = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'jumpToPercentBothDirection'", NULL);
 #endif
@@ -59727,7 +59727,7 @@ static int tolua_Cocos2d_RichText_setAnchorPoint00(lua_State* tolua_S)
 #endif
  {
   RichText* self = (RichText*)  tolua_tousertype(tolua_S,1,0);
-  const CCPoint* pt = ((const CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  const Vec2* pt = ((const Vec2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchorPoint'", NULL);
 #endif

@@ -55,7 +55,7 @@ _gradientRender(NULL),
 _cColor(ccWHITE),
 _gStartColor(ccWHITE),
 _gEndColor(ccWHITE),
-_alongVector(CCPoint(0.0f, -1.0f)),
+_alongVector(Vec2(0.0f, -1.0f)),
 _cOpacity(255),
 _backGroundImageTextureSize(CCSizeZero),
 _layoutType(LAYOUT_ABSOLUTE),
@@ -175,9 +175,9 @@ bool Layout::isClippingEnabled()
     return _clippingEnabled;
 }
     
-bool Layout::hitTest(const CCPoint &pt)
+bool Layout::hitTest(const Vec2 &pt)
 {
-    CCPoint nsp = convertToNodeSpace(pt);
+    Vec2 nsp = convertToNodeSpace(pt);
     CCRect bb = CCRect(0.0f, 0.0f, _size.width, _size.height);
     if (nsp.x >= bb.origin.x && nsp.x <= bb.origin.x + bb.size.width && nsp.y >= bb.origin.y && nsp.y <= bb.origin.y + bb.size.height)
     {
@@ -279,7 +279,7 @@ void Layout::stencilClippingVisit()
     kmGLMatrixMode(KM_GL_PROJECTION);
     kmGLPushMatrix();
     kmGLLoadIdentity();
-    ccDrawSolidRect(CCPoint(-1,-1), CCPoint(1,1), ccc4f(1, 1, 1, 1));
+    ccDrawSolidRect(Vec2(-1,-1), Vec2(1,1), ccc4f(1, 1, 1, 1));
     kmGLMatrixMode(KM_GL_PROJECTION);
     kmGLPopMatrix();
     kmGLMatrixMode(KM_GL_MODELVIEW);
@@ -376,11 +376,11 @@ void Layout::setStencilClippingSize(const CCSize &size)
 {
     if (_clippingEnabled && _clippingType == LAYOUT_CLIPPING_STENCIL)
     {
-        CCPoint rect[4];
+        Vec2 rect[4];
         rect[0] = CCPointZero;
-        rect[1] = CCPoint(_size.width, 0);
-        rect[2] = CCPoint(_size.width, _size.height);
-        rect[3] = CCPoint(0, _size.height);
+        rect[1] = Vec2(_size.width, 0);
+        rect[2] = Vec2(_size.width, _size.height);
+        rect[3] = Vec2(0, _size.height);
         ccColor4F green = ccc4f(0, 1, 0, 1);
         _clippingStencil->clear();
         _clippingStencil->drawPolygon(rect, 4, green, 0, green);
@@ -393,7 +393,7 @@ const CCRect& Layout::getClippingRect()
     {
         _handleScissor = true;
         
-       CCPoint worldPos = m_obPosition;
+       Vec2 worldPos = m_obPosition;
         if (this->getParent()) {
             worldPos = this->getParent()->convertToWorldSpace(m_obPosition);
         }
@@ -497,7 +497,7 @@ void Layout::onSizeChanged()
     _clippingRectDirty = true;
     if (_backGroundImage)
     {
-        _backGroundImage->setPosition(CCPoint(_size.width/2.0f, _size.height/2.0f));
+        _backGroundImage->setPosition(Vec2(_size.width/2.0f, _size.height/2.0f));
         if (_backGroundScale9Enabled && _backGroundImage)
         {
             static_cast<CCScale9Sprite*>(_backGroundImage)->setPreferredSize(_size);
@@ -564,7 +564,7 @@ void Layout::setBackGroundImage(const char* fileName)
 		static_cast<CCSprite*>(_backGroundImage)->initWithFile(fileName);
     }
     _backGroundImageTextureSize = _backGroundImage->getContentSize();
-    _backGroundImage->setPosition(CCPoint(_size.width/2.0f, _size.height/2.0f));
+    _backGroundImage->setPosition(Vec2(_size.width/2.0f, _size.height/2.0f));
     updateBackGroundImageRGBA();
 }
 
@@ -629,7 +629,7 @@ void Layout::addBackGroundImage()
         _backGroundImage = CCSprite::create();
         CCNode::addChild(_backGroundImage, BACKGROUNDIMAGE_Z, -1);
     }
-    _backGroundImage->setPosition(CCPoint(_size.width/2.0f, _size.height/2.0f));
+    _backGroundImage->setPosition(Vec2(_size.width/2.0f, _size.height/2.0f));
 }
 
 void Layout::removeBackGroundImage()
@@ -773,7 +773,7 @@ GLubyte Layout::getBackGroundColorOpacity()
     return _cOpacity;
 }
 
-void Layout::setBackGroundColorVector(const CCPoint &vector)
+void Layout::setBackGroundColorVector(const Vec2 &vector)
 {
     _alongVector = vector;
     if (_gradientRender)
@@ -782,7 +782,7 @@ void Layout::setBackGroundColorVector(const CCPoint &vector)
     }
 }
     
-const CCPoint& Layout::getBackGroundColorVector()
+const Vec2& Layout::getBackGroundColorVector()
 {
     return _alongVector;
 }
@@ -906,7 +906,7 @@ void Layout::doLayout()
                 if (layoutParameter)
                 {
                     LinearGravity childGravity = layoutParameter->getGravity();
-                    CCPoint ap = child->getAnchorPoint();
+                    Vec2 ap = child->getAnchorPoint();
                     CCSize cs = child->getSize();
                     float finalPosX = ap.x * cs.width;
                     float finalPosY = topBoundary - ((1.0f-ap.y) * cs.height);
@@ -927,7 +927,7 @@ void Layout::doLayout()
                     Margin mg = layoutParameter->getMargin();
                     finalPosX += mg.left;
                     finalPosY -= mg.top;
-                    child->setPosition(CCPoint(finalPosX, finalPosY));
+                    child->setPosition(Vec2(finalPosX, finalPosY));
                     topBoundary = child->getBottomInParent() - mg.bottom;
                 }
             }
@@ -946,7 +946,7 @@ void Layout::doLayout()
                 if (layoutParameter)
                 {
                     LinearGravity childGravity = layoutParameter->getGravity();
-                    CCPoint ap = child->getAnchorPoint();
+                    Vec2 ap = child->getAnchorPoint();
                     CCSize cs = child->getSize();
                     float finalPosX = leftBoundary + (ap.x * cs.width);
                     float finalPosY = layoutSize.height - (1.0f - ap.y) * cs.height;
@@ -967,7 +967,7 @@ void Layout::doLayout()
                     Margin mg = layoutParameter->getMargin();
                     finalPosX += mg.left;
                     finalPosY -= mg.top;
-                    child->setPosition(CCPoint(finalPosX, finalPosY));
+                    child->setPosition(Vec2(finalPosX, finalPosY));
                     leftBoundary = child->getRightInParent() + mg.right;
                 }
             }
@@ -999,7 +999,7 @@ void Layout::doLayout()
                         {
                             continue;
                         }
-                        CCPoint ap = child->getAnchorPoint();
+                        Vec2 ap = child->getAnchorPoint();
                         CCSize cs = child->getSize();
                         RelativeAlign align = layoutParameter->getAlign();
                         const char* relativeName = layoutParameter->getRelativeToWidgetName();
@@ -1308,7 +1308,7 @@ void Layout::doLayout()
                             default:
                                 break;
                         }
-                        child->setPosition(CCPoint(finalPosX, finalPosY));
+                        child->setPosition(Vec2(finalPosX, finalPosY));
                         layoutParameter->_put = true;
                         unlayoutChildCount--;
                     }

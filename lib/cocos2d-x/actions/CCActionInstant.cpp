@@ -231,7 +231,7 @@ void CCFlipY::paste(CCObject* o) {
 // Place
 //
 
-CCPlace* CCPlace::create(const CCPoint& pos)
+CCPlace* CCPlace::create(const Vec2& pos)
 {
     CCPlace *pRet = new CCPlace();
 
@@ -244,7 +244,7 @@ CCPlace* CCPlace::create(const CCPoint& pos)
     return NULL;
 }
 
-bool CCPlace::initWithPosition(const CCPoint& pos) {
+bool CCPlace::initWithPosition(const Vec2& pos) {
     m_tPosition = pos;
     return true;
 }

@@ -184,10 +184,10 @@ const char* LabelAtlas::getStringValue() const
     return _labelAtlasRenderer->getString();
 }
 
-void LabelAtlas::setAnchorPoint(const CCPoint &pt)
+void LabelAtlas::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
-    _labelAtlasRenderer->setAnchorPoint(CCPoint(pt.x, pt.y));
+    _labelAtlasRenderer->setAnchorPoint(Vec2(pt.x, pt.y));
 }
 
 void LabelAtlas::onSizeChanged()

@@ -69,7 +69,7 @@ void LoadingBar::initRenderer()
 {
     _barRenderer = CCSprite::create();
     CCNode::addChild(_barRenderer, BAR_RENDERER_Z, -1);
-    _barRenderer->setAnchorPoint(CCPoint(0.0,0.5));
+    _barRenderer->setAnchorPoint(Vec2(0.0,0.5));
 }
 
 void LoadingBar::setDirection(LoadingBarType dir)
@@ -83,16 +83,16 @@ void LoadingBar::setDirection(LoadingBarType dir)
     switch (_barType)
     {
         case LoadingBarTypeLeft:
-            _barRenderer->setAnchorPoint(CCPoint(0.0f,0.5f));
-            _barRenderer->setPosition(CCPoint(-_totalLength*0.5f,0.0f));
+            _barRenderer->setAnchorPoint(Vec2(0.0f,0.5f));
+            _barRenderer->setPosition(Vec2(-_totalLength*0.5f,0.0f));
             if (!_scale9Enabled)
             {
                 static_cast<CCSprite*>(_barRenderer)->setFlipX(false);
             }
             break;
         case LoadingBarTypeRight:
-            _barRenderer->setAnchorPoint(CCPoint(1.0f,0.5f));
-            _barRenderer->setPosition(CCPoint(_totalLength*0.5f,0.0f));
+            _barRenderer->setAnchorPoint(Vec2(1.0f,0.5f));
+            _barRenderer->setPosition(Vec2(_totalLength*0.5f,0.0f));
             if (!_scale9Enabled)
             {
                 static_cast<CCSprite*>(_barRenderer)->setFlipX(true);
@@ -129,14 +129,14 @@ void LoadingBar::loadTexture(const char* texture)
     switch (_barType)
     {
     case LoadingBarTypeLeft:
-        _barRenderer->setAnchorPoint(CCPoint(0.0f,0.5f));
+        _barRenderer->setAnchorPoint(Vec2(0.0f,0.5f));
         if (!_scale9Enabled)
         {
             static_cast<CCSprite*>(_barRenderer)->setFlipX(false);
         }
         break;
     case LoadingBarTypeRight:
-        _barRenderer->setAnchorPoint(CCPoint(1.0f,0.5f));
+        _barRenderer->setAnchorPoint(Vec2(1.0f,0.5f));
         if (!_scale9Enabled)
         {
             static_cast<CCSprite*>(_barRenderer)->setFlipX(true);
@@ -290,10 +290,10 @@ void LoadingBar::barRendererScaleChangedWithSize()
     switch (_barType)
     {
         case LoadingBarTypeLeft:
-            _barRenderer->setPosition(CCPoint(-_totalLength * 0.5f, 0.0f));
+            _barRenderer->setPosition(Vec2(-_totalLength * 0.5f, 0.0f));
             break;
         case LoadingBarTypeRight:
-            _barRenderer->setPosition(CCPoint(_totalLength * 0.5f, 0.0f));
+            _barRenderer->setPosition(Vec2(_totalLength * 0.5f, 0.0f));
             break;
         default:
             break;

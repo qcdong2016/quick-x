@@ -293,7 +293,7 @@ void CheckBox::updateFlippedY()
     _frontCrossDisabledRenderer->setFlipY(_flippedY);
 }
 
-void CheckBox::setAnchorPoint(const CCPoint &pt)
+void CheckBox::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _backGroundBoxRenderer->setAnchorPoint(pt);

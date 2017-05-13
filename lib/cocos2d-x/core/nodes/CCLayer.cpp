@@ -313,7 +313,7 @@ CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B
     return NULL;
 }
 
-CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B& end, const CCPoint& v)
+CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B& end, const Vec2& v)
 {
     CCLayerGradient * pLayer = new CCLayerGradient();
     if( pLayer && pLayer->initWithColor(start, end, v))
@@ -349,7 +349,7 @@ bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end
     return initWithColor(start, end, ccp(0, -1));
 }
 
-bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end, const CCPoint& v)
+bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end, const Vec2& v)
 {
     m_endColor.r  = end.r;
     m_endColor.g  = end.g;
@@ -373,7 +373,7 @@ void CCLayerGradient::updateColor()
         return;
 
     float c = sqrtf(2.0f);
-    CCPoint u = ccp(m_AlongVector.x / h, m_AlongVector.y / h);
+    Vec2 u = ccp(m_AlongVector.x / h, m_AlongVector.y / h);
 
     // Compressed Interpolation mode
     if (m_bCompressedInterpolation)
@@ -463,13 +463,13 @@ GLubyte CCLayerGradient::getEndOpacity()
     return m_cEndOpacity;
 }
 
-void CCLayerGradient::setVector(const CCPoint& var)
+void CCLayerGradient::setVector(const Vec2& var)
 {
     m_AlongVector = var;
     updateColor();
 }
 
-const CCPoint& CCLayerGradient::getVector()
+const Vec2& CCLayerGradient::getVector()
 {
     return m_AlongVector;
 }

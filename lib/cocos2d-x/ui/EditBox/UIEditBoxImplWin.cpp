@@ -204,7 +204,7 @@ void EditBoxImplWin::setPlaceHolder(const char* pText)
     }
 }
 
-void EditBoxImplWin::setPosition(const CCPoint& pos)
+void EditBoxImplWin::setPosition(const Vec2& pos)
 {
 	//m_pLabel->setPosition(pos);
 	//m_pLabelPlaceHolder->setPosition(pos);
@@ -218,7 +218,7 @@ void EditBoxImplWin::setContentSize(const CCSize& size)
 {
 }
 
-void EditBoxImplWin::setAnchorPoint(const CCPoint& anchorPoint)
+void EditBoxImplWin::setAnchorPoint(const Vec2& anchorPoint)
 { // don't need to be implemented on win32 platform.
 	
 }

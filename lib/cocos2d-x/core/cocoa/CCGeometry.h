@@ -42,62 +42,62 @@ class CC_DLL CCSize;
 /**
  * @js NA
  */
-class CC_DLL CCPoint
+class CC_DLL Vec2
 {
 public:
     float x;
     float y;
 
 public:
-    CCPoint();
-    CCPoint(float x, float y);
+    Vec2();
+    Vec2(float x, float y);
     /**
      * @lua NA
      */
-    CCPoint(const CCPoint& other);
+    Vec2(const Vec2& other);
     /**
      * @lua NA
      */
-    CCPoint(const CCSize& size);
+    Vec2(const CCSize& size);
     /**
      * @lua NA
      */
-    CCPoint& operator= (const CCPoint& other);
+    Vec2& operator= (const Vec2& other);
     /**
      * @lua NA
      */
-    CCPoint& operator= (const CCSize& size);
+    Vec2& operator= (const CCSize& size);
     /**
      * @lua NA
      */
-    CCPoint operator+(const CCPoint& right) const;
+    Vec2 operator+(const Vec2& right) const;
     /**
      * @lua NA
      */
-    CCPoint operator-(const CCPoint& right) const;
+    Vec2 operator-(const Vec2& right) const;
     /**
      * @lua NA
      */
-    CCPoint operator-() const;
+    Vec2 operator-() const;
     /**
      * @lua NA
      */
-    CCPoint operator*(float a) const;
+    Vec2 operator*(float a) const;
     /**
      * @lua NA
      */
-    CCPoint operator/(float a) const;
+    Vec2 operator/(float a) const;
     /**
      * @lua NA
      */
     void setPoint(float x, float y);
-    bool equals(const CCPoint& target) const;
+    bool equals(const Vec2& target) const;
     
     /** @returns if points have fuzzy equality which means equal with some degree of variance.
      * @since v2.1.4
      * @lua NA
      */
-    bool fuzzyEquals(const CCPoint& target, float variance) const;
+    bool fuzzyEquals(const Vec2& target, float variance) const;
 
     /** Calculates distance between point an origin
      * @return float
@@ -121,7 +121,7 @@ public:
      @return float
      @since v2.1.4
     */
-    inline float getDistanceSq(const CCPoint& other) const {
+    inline float getDistanceSq(const Vec2& other) const {
         return (*this - other).getLengthSq();
     };
 
@@ -129,7 +129,7 @@ public:
      @return float
      @since v2.1.4
      */
-    inline float getDistance(const CCPoint& other) const {
+    inline float getDistance(const Vec2& other) const {
         return (*this - other).getLength();
     };
 
@@ -143,13 +143,13 @@ public:
     /** @returns the angle in radians between two vector directions
      @since v2.1.4
     */
-    float getAngle(const CCPoint& other) const;
+    float getAngle(const Vec2& other) const;
 
     /** Calculates dot product of two points.
      @return float
      @since v2.1.4
      */
-    inline float dot(const CCPoint& other) const {
+    inline float dot(const Vec2& other) const {
         return x*other.x + y*other.y;
     };
 
@@ -157,7 +157,7 @@ public:
      @return float
      @since v2.1.4
      */
-    inline float cross(const CCPoint& other) const {
+    inline float cross(const Vec2& other) const {
         return x*other.y - y*other.x;
     };
 
@@ -165,23 +165,23 @@ public:
      @return CCPoint
      @since v2.1.4
      */
-    inline CCPoint getPerp() const {
-        return CCPoint(-y, x);
+    inline Vec2 getPerp() const {
+        return Vec2(-y, x);
     };
 
     /** Calculates perpendicular of v, rotated 90 degrees clockwise -- cross(v, rperp(v)) <= 0
      @return CCPoint
      @since v2.1.4
      */
-    inline CCPoint getRPerp() const {
-        return CCPoint(y, -x);
+    inline Vec2 getRPerp() const {
+        return Vec2(y, -x);
     };
 
     /** Calculates the projection of this over other.
      @return CCPoint
      @since v2.1.4
      */
-    inline CCPoint project(const CCPoint& other) const {
+    inline Vec2 project(const Vec2& other) const {
         return other * (dot(other)/other.dot(other));
     };
 
@@ -190,8 +190,8 @@ public:
      and a length of this.getLength() * other.getLength().
      @since v2.1.4
      */
-    inline CCPoint rotate(const CCPoint& other) const {
-        return CCPoint(x*other.x - y*other.y, x*other.y + y*other.x);
+    inline Vec2 rotate(const Vec2& other) const {
+        return Vec2(x*other.x - y*other.y, x*other.y + y*other.x);
     };
 
     /** Unrotates two points.
@@ -199,8 +199,8 @@ public:
      and a length of this.getLength() * other.getLength().
      @since v2.1.4
      */
-    inline CCPoint unrotate(const CCPoint& other) const {
-        return CCPoint(x*other.x + y*other.y, y*other.x - x*other.y);
+    inline Vec2 unrotate(const Vec2& other) const {
+        return Vec2(x*other.x + y*other.y, y*other.x - x*other.y);
     };
 
     /** Returns point multiplied to a length of 1.
@@ -208,9 +208,9 @@ public:
      @return CCPoint
      @since v2.1.4
      */
-    inline CCPoint normalize() const {
+    inline Vec2 normalize() const {
         float length = getLength();
-        if(length == 0.) return CCPoint(1.f, 0);
+        if(length == 0.) return Vec2(1.f, 0);
         return *this / getLength();
     };
 
@@ -221,7 +221,7 @@ public:
         otherwise a value between a..b
      @since v2.1.4
      */
-    inline CCPoint lerp(const CCPoint& other, float alpha) const {
+    inline Vec2 lerp(const Vec2& other, float alpha) const {
         return *this * (1.f - alpha) + other * alpha;
     };
 
@@ -231,11 +231,11 @@ public:
      @returns the rotated point
      @since v2.1.4
      */
-    CCPoint rotateByAngle(const CCPoint& pivot, float angle) const;
+    Vec2 rotateByAngle(const Vec2& pivot, float angle) const;
 
-    static inline CCPoint forAngle(const float a)
+    static inline Vec2 forAngle(const float a)
     {
-    	return CCPoint(cosf(a), sinf(a));
+    	return Vec2(cosf(a), sinf(a));
     }
 };
 
@@ -258,7 +258,7 @@ public:
     /**
      * @lua NA
      */
-    CCSize(const CCPoint& point);
+    CCSize(const Vec2& point);
     /**
      * @lua NA
      */
@@ -266,7 +266,7 @@ public:
     /**
      * @lua NA
      */
-    CCSize& operator= (const CCPoint& point);
+    CCSize& operator= (const Vec2& point);
     /**
      * @lua NA
      */
@@ -299,7 +299,7 @@ public:
 class CC_DLL CCRect
 {
 public:
-    CCPoint origin;
+    Vec2 origin;
     CCSize  size;
 
 public:
@@ -321,18 +321,18 @@ public:
     float getMidY() const; /// return the midpoint y-value of current rect
     float getMaxY() const; /// return the topmost y-value of current rect
     bool equals(const CCRect& rect) const;   
-    bool containsPoint(const CCPoint& point) const;
+    bool containsPoint(const Vec2& point) const;
     bool intersectsRect(const CCRect& rect) const;
     void merge(const CCRect& rect);
 };
 
 
-#define CCPointMake(x, y) CCPoint((float)(x), (float)(y))
+#define CCPointMake(x, y) Vec2((float)(x), (float)(y))
 #define CCSizeMake(width, height) CCSize((float)(width), (float)(height))
 #define CCRectMake(x, y, width, height) CCRect((float)(x), (float)(y), (float)(width), (float)(height))
 
 
-const CCPoint CCPointZero = CCPointMake(0,0);
+const Vec2 CCPointZero = CCPointMake(0,0);
 
 /* The "zero" size -- equivalent to CCSizeMake(0, 0). */ 
 const CCSize CCSizeZero = CCSizeMake(0,0);

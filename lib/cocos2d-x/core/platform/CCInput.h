@@ -11,9 +11,9 @@ NS_CC_BEGIN;
 
 struct TouchState {
 	int touchid;
-	CCPoint positon;
-	CCPoint lastPosition;
-	CCPoint delta;
+	Vec2 positon;
+	Vec2 lastPosition;
+	Vec2 delta;
 	float pressure;
 };
 
@@ -41,7 +41,7 @@ public:
 
 	bool isKeyDown(int key);
 	bool isMouseButtonDown(int button);
-	const CCPoint& getMousePos() { return _mousePos; }
+	const Vec2& getMousePos() { return _mousePos; }
 
 private:
 	void handleEvent(void* evt);
@@ -54,7 +54,7 @@ private:
 	void resetTouches();
 
 	int _mouseButton;
-	CCPoint _mousePos;
+	Vec2 _mousePos;
 	std::set<int> _keyDown;
 	std::map<int, TouchState> _touches;
 	std::map<int, int> _touchIDMap;

@@ -241,7 +241,7 @@ void CCParticleSystemQuad::initIndices()
     }
 }
 
-void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const CCPoint& newPosition)
+void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const Vec2& newPosition)
 {
     ccV3F_C4B_T2F_Quad *quad;
 

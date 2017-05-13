@@ -92,7 +92,7 @@ void Slider::initRenderer()
 {
     _barRenderer = CCSprite::create();
     _progressBarRenderer = CCSprite::create();
-    _progressBarRenderer->setAnchorPoint(CCPoint(0.0f, 0.5f));
+    _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
     CCNode::addChild(_barRenderer, BASEBAR_RENDERER_Z, -1);
     CCNode::addChild(_progressBarRenderer, PROGRESSBAR_RENDERER_Z, -1);
     _slidBallNormalRenderer = CCSprite::create();
@@ -135,7 +135,7 @@ void Slider::loadProgressBarTexture(const char *fileName)
 	else
 		static_cast<CCSprite*>(_progressBarRenderer)->initWithFile(fileName);
     updateRGBAToRenderer(_progressBarRenderer);
-    _progressBarRenderer->setAnchorPoint(CCPoint(0.0f, 0.5f));
+    _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
     _progressBarTextureSize = _progressBarRenderer->getContentSize();
     progressBarRendererScaleChangedWithSize();
 }
@@ -286,7 +286,7 @@ void Slider::setPercent(int percent)
     _percent = percent;
     float res = percent/100.0f;
     float dis = _barLength * res;
-    _slidBallRenderer->setPosition(CCPoint(-_barLength/2.0f + dis, 0.0f));
+    _slidBallRenderer->setPosition(Vec2(-_barLength/2.0f + dis, 0.0f));
     if (_scale9Enabled)
     {
         static_cast<CCScale9Sprite*>(_progressBarRenderer)->setPreferredSize(CCSize(dis,_progressBarTextureSize.height));
@@ -305,7 +305,7 @@ bool Slider::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
     bool pass = Widget::onTouchBegan(touch, unused_event);
     if (_hitted)
     {
-        CCPoint nsp = convertToNodeSpace(_touchStartPos);
+        Vec2 nsp = convertToNodeSpace(_touchStartPos);
         setPercent(getPercentWithBallPos(nsp.x));
         percentChangedEvent();
     }
@@ -315,8 +315,8 @@ bool Slider::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
 void Slider::onTouchMoved(CCTouch *touch, CCEvent *unused_event)
 {
     _touchMovePos = touch->getLocation();
-    CCPoint nsp = convertToNodeSpace(_touchMovePos);
-    _slidBallRenderer->setPosition(CCPoint(nsp.x,0));
+    Vec2 nsp = convertToNodeSpace(_touchMovePos);
+    _slidBallRenderer->setPosition(Vec2(nsp.x,0));
     setPercent(getPercentWithBallPos(nsp.x));
     percentChangedEvent();
 }
@@ -439,7 +439,7 @@ void Slider::progressBarRendererScaleChangedWithSize()
             _progressBarRenderer->setScaleY(pscaleY);
         }
     }
-    _progressBarRenderer->setPosition(CCPoint(-_barLength * 0.5f, 0.0f));
+    _progressBarRenderer->setPosition(Vec2(-_barLength * 0.5f, 0.0f));
     setPercent(_percent);
 }
 

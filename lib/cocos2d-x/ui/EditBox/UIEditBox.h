@@ -357,10 +357,10 @@ public:
     KeyboardReturnType getReturnType();
     
     /* override functions */
-    virtual void setPosition(const CCPoint& pos);
+    virtual void setPosition(const Vec2& pos);
     virtual void setVisible(bool visible);
     virtual void setSize(const CCSize& size);
-	virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(const Vec2& anchorPoint);
 
     virtual void visit(void);
 	virtual void onEnter(void);

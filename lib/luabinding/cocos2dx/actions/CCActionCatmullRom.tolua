@@ -3,9 +3,9 @@ $#include "actions/CCActionCatmullRom.h"
 class CCCardinalSplineTo : public CCActionInterval
 {
     /** creates an action with a Cardinal Spline array of points and tension */
-    static CCCardinalSplineTo* create(float duration, CCPointArray* points, float tension);
-    CCPointArray* getPoints();
-    void  setPoints(CCPointArray* points);
+    static CCCardinalSplineTo* create(float duration, Vec2Array* points, float tension);
+    Vec2Array* getPoints();
+    void  setPoints(Vec2Array* points);
 };
 
 /** Cardinal Spline path.
@@ -15,7 +15,7 @@ class CCCardinalSplineTo : public CCActionInterval
 class CCCardinalSplineBy : public CCCardinalSplineTo
 {
     /** creates an action with a Cardinal Spline array of points and tension */
-    static CCCardinalSplineBy* create(float duration, CCPointArray* points, float tension);
+    static CCCardinalSplineBy* create(float duration, Vec2Array* points, float tension);
 };
 
 /** An action that moves the target with a CatmullRom curve to a destination point.
@@ -26,7 +26,7 @@ class CCCardinalSplineBy : public CCCardinalSplineTo
 class CCCatmullRomTo : public CCCardinalSplineTo
 {
     /** creates an action with a Cardinal Spline array of points and tension */
-    static CCCatmullRomTo* create(float dt, CCPointArray* points);
+    static CCCatmullRomTo* create(float dt, Vec2Array* points);
 };
 
 /** An action that moves the target with a CatmullRom curve by a certain distance.
@@ -37,7 +37,7 @@ class CCCatmullRomTo : public CCCardinalSplineTo
 class CCCatmullRomBy : public CCCardinalSplineBy
 {
     /** creates an action with a Cardinal Spline array of points and tension */
-    static CCCatmullRomBy* create(float dt, CCPointArray* points);
+    static CCCatmullRomBy* create(float dt, Vec2Array* points);
 };
 
 // end of actions group

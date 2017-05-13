@@ -14,9 +14,9 @@ class CCSpriteFrame : public Resource
     void setRect(CCRect rect);
 
     /** get offset of the frame */
-    CCPoint getOffsetInPixels(void);
+    Vec2 getOffsetInPixels(void);
     /** set offset of the frame */
-    void setOffsetInPixels(CCPoint offsetInPixels);
+    void setOffsetInPixels(Vec2 offsetInPixels);
 
     /** get original size of the trimmed image */
     CCSize getOriginalSizeInPixels(void);
@@ -33,14 +33,14 @@ class CCSpriteFrame : public Resource
     /** set texture of the frame, the texture is retained */
     void setTexture(CCTexture2D* pobTexture);
 
-    CCPoint getOffset(void);
-    void setOffset(CCPoint offsets);
+    Vec2 getOffset(void);
+    void setOffset(Vec2 offsets);
 
-    static CCSpriteFrame* create(const char* filename, CCRect rect, bool rotated, CCPoint offset, CCSize originalSize);
+    static CCSpriteFrame* create(const char* filename, CCRect rect, bool rotated, Vec2 offset, CCSize originalSize);
     static CCSpriteFrame* create(const char* filename, CCRect rect);
     static CCSpriteFrame* create(const char* filename);
 
-    static CCSpriteFrame* createWithTexture(CCTexture2D* pobTexture, CCRect rect, bool rotated, CCPoint offset, CCSize originalSize);
+    static CCSpriteFrame* createWithTexture(CCTexture2D* pobTexture, CCRect rect, bool rotated, Vec2 offset, CCSize originalSize);
     static CCSpriteFrame* createWithTexture(CCTexture2D* pobTexture, CCRect rect);
 };
 

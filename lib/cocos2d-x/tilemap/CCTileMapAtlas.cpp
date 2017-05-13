@@ -127,7 +127,7 @@ void CCTileMapAtlas::loadTGAfile(const char *file)
 }
 
 // CCTileMapAtlas - Atlas generation / updates
-void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
+void CCTileMapAtlas::setTile(const ccColor3B& tile, const Vec2& position)
 {
     CCAssert(m_pTGAInfo != NULL, "tgaInfo must not be nil");
     CCAssert(position.x < m_pTGAInfo->width, "Invalid position.x");
@@ -153,7 +153,7 @@ void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
     }    
 }
 
-ccColor3B CCTileMapAtlas::tileAt(const CCPoint& position)
+ccColor3B CCTileMapAtlas::tileAt(const Vec2& position)
 {
     CCAssert( m_pTGAInfo != NULL, "tgaInfo must not be nil");
     CCAssert( position.x < m_pTGAInfo->width, "Invalid position.x");
@@ -165,7 +165,7 @@ ccColor3B CCTileMapAtlas::tileAt(const CCPoint& position)
     return value;    
 }
 
-void CCTileMapAtlas::updateAtlasValueAt(const CCPoint& pos, const ccColor3B& value, unsigned int index)
+void CCTileMapAtlas::updateAtlasValueAt(const Vec2& pos, const ccColor3B& value, unsigned int index)
 {
     CCAssert( index >= 0 && index < m_pTextureAtlas->getCapacity(), "updateAtlasValueAt: Invalid index");
 

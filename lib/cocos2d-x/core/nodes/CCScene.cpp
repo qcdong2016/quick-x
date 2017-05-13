@@ -194,7 +194,7 @@ void CCScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
         for (CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it)
         {
             touch = (CCTouch*)*it;
-            const CCPoint touchPoint = touch->getLocation();
+            const Vec2 touchPoint = touch->getLocation();
 
             if (boundingBox.containsPoint(touchPoint))
             {

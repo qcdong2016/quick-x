@@ -43,7 +43,7 @@
 NS_CC_BEGIN
 
 class CCCamera;
-class CCPoint;
+class Vec2;
 class CCTouch;
 class CCAction;
 class CCScheduler;
@@ -299,7 +299,7 @@ public:
      * @param position  The position (x,y) of the node in OpenGL coordinates
      * @js NA
      */
-	virtual void setPosition(const CCPoint &position);
+	virtual void setPosition(const Vec2 &position);
     /**
      * Gets the position (x,y) of the node in OpenGL coordinates
      *
@@ -307,7 +307,7 @@ public:
      *
      * @return The position (x,y) of the node in OpenGL coordinates
      */
-    virtual const CCPoint& getPosition();
+    virtual const Vec2& getPosition();
     /**
      * Sets position in a more efficient way.
      *
@@ -393,8 +393,8 @@ public:
      *
      * @param anchorPoint   The anchor point of node.
      */
-	virtual void setAnchorPoint(const CCPoint& anchorPoint);
-	virtual void setAnchorPoint(float x, float y) { setAnchorPoint(CCPoint(x, y)); }
+	virtual void setAnchorPoint(const Vec2& anchorPoint);
+	virtual void setAnchorPoint(float x, float y) { setAnchorPoint(Vec2(x, y)); }
     /**
      * Returns the anchor point in percent.
      *
@@ -402,7 +402,7 @@ public:
      *
      * @return The anchor point of node.
      */
-    virtual const CCPoint& getAnchorPoint();
+    virtual const Vec2& getAnchorPoint();
     /**
      * Returns the anchorPoint in absolute pixels.
      *
@@ -411,7 +411,7 @@ public:
      *
      * @return The anchor point in absolute pixels.
      */
-    virtual const CCPoint& getAnchorPointInPoints();
+    virtual const Vec2& getAnchorPointInPoints();
 
 
     /**
@@ -1216,34 +1216,34 @@ public:
     /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      */
-    CCPoint convertToNodeSpace(const CCPoint& worldPoint);
+    Vec2 convertToNodeSpace(const Vec2& worldPoint);
 
     /**
      * Converts a Point to world space coordinates. The result is in Points.
      */
-    CCPoint convertToWorldSpace(const CCPoint& nodePoint);
+    Vec2 convertToWorldSpace(const Vec2& nodePoint);
 
     /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
-    CCPoint convertToNodeSpaceAR(const CCPoint& worldPoint);
+    Vec2 convertToNodeSpaceAR(const Vec2& worldPoint);
 
     /**
      * Converts a local Point to world space coordinates.The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
-    CCPoint convertToWorldSpaceAR(const CCPoint& nodePoint);
+    Vec2 convertToWorldSpaceAR(const Vec2& nodePoint);
 
     /**
      * convenience methods which take a CCTouch instead of CCPoint
      */
-    CCPoint convertTouchToNodeSpace(CCTouch * touch);
+    Vec2 convertTouchToNodeSpace(CCTouch * touch);
 
     /**
      * converts a CCTouch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
      */
-    CCPoint convertTouchToNodeSpaceAR(CCTouch * touch);
+    Vec2 convertTouchToNodeSpaceAR(CCTouch * touch);
 
 	/**
      *  Sets the additional transform.
@@ -1491,7 +1491,7 @@ private:
      * @js NA
      * @lua NA
      */
-    CCPoint convertToWindowSpace(const CCPoint& nodePoint);
+    Vec2 convertToWindowSpace(const Vec2& nodePoint);
 
 protected:
     std::string _name;
@@ -1504,13 +1504,13 @@ protected:
 
     float m_fVertexZ;                   ///< OpenGL real Z vertex
 
-    CCPoint m_obPosition;               ///< position of the node
+    Vec2 m_obPosition;               ///< position of the node
 
     float m_fSkewX;                     ///< skew angle on x-axis
     float m_fSkewY;                     ///< skew angle on y-axis
 
-    CCPoint m_obAnchorPointInPoints;    ///< anchor point in points
-    CCPoint m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
+    Vec2 m_obAnchorPointInPoints;    ///< anchor point in points
+    Vec2 m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
 
     CCSize m_obContentSize;             ///< untransformed size of the node
     CCRect m_cascadeBoundingBox;

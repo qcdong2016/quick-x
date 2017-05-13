@@ -197,7 +197,7 @@ const CCRect& ImageView::getCapInsets()
     return _capInsets;
 }
 
-void ImageView::setAnchorPoint(const CCPoint &pt)
+void ImageView::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _imageRenderer->setAnchorPoint(pt);

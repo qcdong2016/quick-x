@@ -119,27 +119,27 @@ public:
     - or layer->removeTileAt(ccp(x,y));
     @js getTileGIDAt
     */
-    CCSprite* tileAt(const CCPoint& tileCoordinate);
+    CCSprite* tileAt(const Vec2& tileCoordinate);
 
     /** returns the tile gid at a given tile coordinate.
     if it returns 0, it means that the tile is empty.
     This method requires the the tile map has not been previously released (eg. don't call layer->releaseMap())
     @js tileGIDAt
     */
-    unsigned int  tileGIDAt(const CCPoint& tileCoordinate);
+    unsigned int  tileGIDAt(const Vec2& tileCoordinate);
 
     /** returns the tile gid at a given tile coordinate. It also returns the tile flags.
      This method requires the the tile map has not been previously released (eg. don't call [layer releaseMap])
      @js tileGIDAt
      @lua NA
      */
-    unsigned int tileGIDAt(const CCPoint& tileCoordinate, ccTMXTileFlags* flags);
+    unsigned int tileGIDAt(const Vec2& tileCoordinate, ccTMXTileFlags* flags);
 
     /** sets the tile gid (gid = tile global id) at a given tile coordinate.
     The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
     If a tile is already placed at that position, then it will be removed.
     */
-    void setTileGID(unsigned int gid, const CCPoint& tileCoordinate);
+    void setTileGID(unsigned int gid, const Vec2& tileCoordinate);
 
     /** sets the tile gid (gid = tile global id) at a given tile coordinate.
      The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
@@ -148,15 +148,15 @@ public:
      Use withFlags if the tile flags need to be changed as well
      */
 
-    void setTileGID(unsigned int gid, const CCPoint& tileCoordinate, ccTMXTileFlags flags);
+    void setTileGID(unsigned int gid, const Vec2& tileCoordinate, ccTMXTileFlags flags);
 
     /** removes a tile at given tile coordinate */
-    void removeTileAt(const CCPoint& tileCoordinate);
+    void removeTileAt(const Vec2& tileCoordinate);
 
     /** returns the position in points of a given tile coordinate 
      * @js getPositionAt
      */
-    CCPoint positionAt(const CCPoint& tileCoordinate);
+    Vec2 positionAt(const Vec2& tileCoordinate);
 
     /** return the value for the specific property name 
      *  @js getProperty
@@ -179,22 +179,22 @@ public:
     inline const char* getLayerName(){ return m_sLayerName.c_str(); }
     inline void setLayerName(const char *layerName){ m_sLayerName = layerName; }
 private:
-    CCPoint positionForIsoAt(const CCPoint& pos);
-    CCPoint positionForOrthoAt(const CCPoint& pos);
-    CCPoint positionForHexAt(const CCPoint& pos);
+    Vec2 positionForIsoAt(const Vec2& pos);
+    Vec2 positionForOrthoAt(const Vec2& pos);
+    Vec2 positionForHexAt(const Vec2& pos);
 
-    CCPoint calculateLayerOffset(const CCPoint& offset);
+    Vec2 calculateLayerOffset(const Vec2& offset);
 
     /* optimization methods */
-    CCSprite* appendTileForGID(unsigned int gid, const CCPoint& pos);
-    CCSprite* insertTileForGID(unsigned int gid, const CCPoint& pos);
-    CCSprite* updateTileForGID(unsigned int gid, const CCPoint& pos);
+    CCSprite* appendTileForGID(unsigned int gid, const Vec2& pos);
+    CCSprite* insertTileForGID(unsigned int gid, const Vec2& pos);
+    CCSprite* updateTileForGID(unsigned int gid, const Vec2& pos);
 
     /* The layer recognizes some special properties, like cc_vertez */
     void parseInternalProperties();
-    void setupTileSprite(CCSprite* sprite, CCPoint pos, unsigned int gid);
+    void setupTileSprite(CCSprite* sprite, Vec2 pos, unsigned int gid);
     CCSprite* reusedTileWithRect(CCRect rect);
-    int vertexZForPos(const CCPoint& pos);
+    int vertexZForPos(const Vec2& pos);
 
     // index
     unsigned int atlasIndexForExistantZ(unsigned int z);

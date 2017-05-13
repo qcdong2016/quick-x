@@ -23,7 +23,7 @@ $pfile "cocos2dx/platform/platform.tolua"
 $pfile "cocos2dx/platform/CCImage.tolua"
 $pfile "cocos2dx/platform/CCEGLViewProtocol.tolua"
 
-$pfile "cocos2dx/support/CCPointExtension.tolua"
+$pfile "cocos2dx/support/Vec2Extension.tolua"
 $pfile "cocos2dx/support/user_default/CCUserDefault.tolua"
 $pfile "cocos2dx/support/component/CCComponent.tolua"
 $pfile "cocos2dx/support/component/CCComponentContainer.tolua"

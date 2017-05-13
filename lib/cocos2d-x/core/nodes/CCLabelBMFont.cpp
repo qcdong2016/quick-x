@@ -377,7 +377,7 @@ CCLabelBMFont * CCLabelBMFont::create(const char *str, const char *fntFile)
 }
 
 //LabelBMFont - Creation & Init
-CCLabelBMFont *CCLabelBMFont::create(const char *str, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, CCPoint imageOffset/* = CCPointZero*/)
+CCLabelBMFont *CCLabelBMFont::create(const char *str, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, Vec2 imageOffset/* = CCPointZero*/)
 {
     CCLabelBMFont *pRet = new CCLabelBMFont();
     if(pRet && pRet->initWithString(str, fntFile, width, alignment, imageOffset))
@@ -394,7 +394,7 @@ bool CCLabelBMFont::init()
     return initWithString(NULL, NULL, kCCLabelAutomaticWidth, kCCTextAlignmentLeft, CCPointZero);
 }
 
-bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, CCPoint imageOffset/* = CCPointZero*/)
+bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, Vec2 imageOffset/* = CCPointZero*/)
 {
     CCAssert(!_pConfiguration, "re-init is no longer supported");
     CCAssert( (theString && fntFile) || (theString==NULL && fntFile==NULL), "Invalid params for CCLabelBMFont");
@@ -604,7 +604,7 @@ void CCLabelBMFont::createFontChars()
 
         // See issue 1343. cast( signed short + unsigned integer ) == unsigned integer (sign is lost!)
         int yOffset = _pConfiguration->m_nCommonHeight - fontDef.yOffset;
-        CCPoint fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
+        Vec2 fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
                               (float)nextFontPositionY + yOffset - rect.size.height*0.5f * CC_CONTENT_SCALE_FACTOR() );
         fontChar->setPosition(CC_POINT_PIXELS_TO_POINTS(fontPos));
 
@@ -703,7 +703,7 @@ void CCLabelBMFont::setCString(const char *label)
 }
 
 // LabelBMFont - AnchorPoint
-void CCLabelBMFont::setAnchorPoint(const CCPoint& point)
+void CCLabelBMFont::setAnchorPoint(const Vec2& point)
 {
     if( ! point.equals(m_obAnchorPoint))
     {
@@ -1039,7 +1039,7 @@ void CCLabelBMFont::draw()
 {
     CCSpriteBatchNode::draw();
     const CCSize& s = this->getContentSize();
-    CCPoint vertices[4]={
+    Vec2 vertices[4]={
         ccp(0,0),ccp(s.width,0),
         ccp(s.width,s.height),ccp(0,s.height),
     };

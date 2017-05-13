@@ -66,7 +66,7 @@ CCRectShape* CCRectShape::create(const cocos2d::CCSize &size)
 
 void CCRectShape::drawProc(void)
 {
-    const CCPoint center = getDrawPosition();
+    const Vec2 center = getDrawPosition();
     float w = m_size.width / 2;
     float h = m_size.height / 2;
     
@@ -94,7 +94,7 @@ void CCPointShape::drawProc(void)
     ccDrawPoint(getDrawPosition());
 }
 
-CCPolygonShape* CCPolygonShape::create(const std::vector<CCPoint>& vertices)
+CCPolygonShape* CCPolygonShape::create(const std::vector<Vec2>& vertices)
 {
     CCPolygonShape* polygon = new CCPolygonShape();
     polygon->initWithVertices(vertices);
@@ -102,7 +102,7 @@ CCPolygonShape* CCPolygonShape::create(const std::vector<CCPoint>& vertices)
     return polygon;
 }
 
-bool CCPolygonShape::initWithVertices(const std::vector<CCPoint>& vertices)
+bool CCPolygonShape::initWithVertices(const std::vector<Vec2>& vertices)
 {
 	_vertices = vertices;
 	_drawVertives = vertices;
@@ -115,7 +115,7 @@ CCPolygonShape::~CCPolygonShape(void)
 
 void CCPolygonShape::drawProc(void)
 {
-    const CCPoint center = getDrawPosition();
+    const Vec2 center = getDrawPosition();
     for (unsigned int i = 0; i < _vertices.size(); ++i)
     {
 		_drawVertives[i].x = _vertices[i].x + center.x;

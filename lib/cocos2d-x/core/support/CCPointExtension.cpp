@@ -33,36 +33,36 @@ NS_CC_BEGIN
 #define kCCPointEpsilon FLT_EPSILON
 
 float
-ccpLength(const CCPoint& v)
+ccpLength(const Vec2& v)
 {
     return v.getLength();
 }
 
 float
-ccpDistance(const CCPoint& v1, const CCPoint& v2)
+ccpDistance(const Vec2& v1, const Vec2& v2)
 {
     return (v1 - v2).getLength();
 }
 
-CCPoint
-ccpNormalize(const CCPoint& v)
+Vec2
+ccpNormalize(const Vec2& v)
 {
     return v.normalize();
 }
 
-CCPoint
+Vec2
 ccpForAngle(const float a)
 {
-    return CCPoint::forAngle(a);
+    return Vec2::forAngle(a);
 }
 
 float
-ccpToAngle(const CCPoint& v)
+ccpToAngle(const Vec2& v)
 {
     return v.getAngle();
 }
 
-CCPoint ccpLerp(const CCPoint& a, const CCPoint& b, float alpha)
+Vec2 ccpLerp(const Vec2& a, const Vec2& b, float alpha)
 {
     return a.lerp(b, alpha);
 }
@@ -75,43 +75,43 @@ float clampf(float value, float min_inclusive, float max_inclusive)
     return value < min_inclusive ? min_inclusive : value < max_inclusive? value : max_inclusive;
 }
 
-CCPoint ccpClamp(const CCPoint& p, const CCPoint& min_inclusive, const CCPoint& max_inclusive)
+Vec2 ccpClamp(const Vec2& p, const Vec2& min_inclusive, const Vec2& max_inclusive)
 {
     return ccp(clampf(p.x,min_inclusive.x,max_inclusive.x), clampf(p.y, min_inclusive.y, max_inclusive.y));
 }
 
-CCPoint ccpFromSize(const CCSize& s)
+Vec2 ccpFromSize(const CCSize& s)
 {
-    return CCPoint(s);
+    return Vec2(s);
 }
 
-CCPoint ccpCompOp(const CCPoint& p, float (*opFunc)(float))
+Vec2 ccpCompOp(const Vec2& p, float (*opFunc)(float))
 {
     return ccp(opFunc(p.x), opFunc(p.y));
 }
 
-bool ccpFuzzyEqual(const CCPoint& a, const CCPoint& b, float var)
+bool ccpFuzzyEqual(const Vec2& a, const Vec2& b, float var)
 {
 	return a.fuzzyEquals(b, var);
 }
 
-CCPoint ccpCompMult(const CCPoint& a, const CCPoint& b)
+Vec2 ccpCompMult(const Vec2& a, const Vec2& b)
 {
     return ccp(a.x * b.x, a.y * b.y);
 }
 
-float ccpAngleSigned(const CCPoint& a, const CCPoint& b)
+float ccpAngleSigned(const Vec2& a, const Vec2& b)
 {
 	return a.getAngle(b);
 }
 
-CCPoint ccpRotateByAngle(const CCPoint& v, const CCPoint& pivot, float angle)
+Vec2 ccpRotateByAngle(const Vec2& v, const Vec2& pivot, float angle)
 {
 	return v.rotateByAngle(pivot, angle);
 }
 
 
-bool ccpSegmentIntersect(const CCPoint& A, const CCPoint& B, const CCPoint& C, const CCPoint& D)
+bool ccpSegmentIntersect(const Vec2& A, const Vec2& B, const Vec2& C, const Vec2& D)
 {
     float S, T;
 
@@ -122,14 +122,14 @@ bool ccpSegmentIntersect(const CCPoint& A, const CCPoint& B, const CCPoint& C, c
     return false;
 }
 
-CCPoint ccpIntersectPoint(const CCPoint& A, const CCPoint& B, const CCPoint& C, const CCPoint& D)
+Vec2 ccpIntersectPoint(const Vec2& A, const Vec2& B, const Vec2& C, const Vec2& D)
 {
     float S, T;
 
     if( ccpLineIntersect(A, B, C, D, &S, &T) )
     {
         // Point of intersection
-        CCPoint P;
+        Vec2 P;
         P.x = A.x + S * (B.x - A.x);
         P.y = A.y + S * (B.y - A.y);
         return P;
@@ -138,8 +138,8 @@ CCPoint ccpIntersectPoint(const CCPoint& A, const CCPoint& B, const CCPoint& C, 
     return CCPointZero;
 }
 
-bool ccpLineIntersect(const CCPoint& A, const CCPoint& B, 
-                      const CCPoint& C, const CCPoint& D,
+bool ccpLineIntersect(const Vec2& A, const Vec2& B, 
+                      const Vec2& C, const Vec2& D,
                       float *S, float *T)
 {
     // FAIL: Line undefined
@@ -181,7 +181,7 @@ bool ccpLineIntersect(const CCPoint& A, const CCPoint& B,
     return true;
 }
 
-float ccpAngle(const CCPoint& a, const CCPoint& b)
+float ccpAngle(const Vec2& a, const Vec2& b)
 {
     float angle = acosf(ccpDot(ccpNormalize(a), ccpNormalize(b)));
     if( fabs(angle) < kCCPointEpsilon ) return 0.f;

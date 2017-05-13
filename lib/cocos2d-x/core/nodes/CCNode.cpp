@@ -281,13 +281,13 @@ void CCNode::setScaleY(float newScaleY)
 }
 
 /// position getter
-const CCPoint& CCNode::getPosition()
+const Vec2& CCNode::getPosition()
 {
     return m_obPosition;
 }
 
 /// position setter
-void CCNode::setPosition(const CCPoint& newPosition)
+void CCNode::setPosition(const Vec2& newPosition)
 {
     m_obPosition = newPosition;
     m_bTransformDirty = m_bInverseDirty = true;
@@ -356,18 +356,18 @@ void CCNode::setVisible(bool var)
     m_bVisible = var;
 }
 
-const CCPoint& CCNode::getAnchorPointInPoints()
+const Vec2& CCNode::getAnchorPointInPoints()
 {
     return m_obAnchorPointInPoints;
 }
 
 /// anchorPoint getter
-const CCPoint& CCNode::getAnchorPoint()
+const Vec2& CCNode::getAnchorPoint()
 {
     return m_obAnchorPoint;
 }
 
-void CCNode::setAnchorPoint(const CCPoint& point)
+void CCNode::setAnchorPoint(const Vec2& point)
 {
     if( ! point.equals(m_obAnchorPoint))
     {
@@ -1266,46 +1266,46 @@ CCAffineTransform CCNode::worldToNodeTransform(void)
     return CCAffineTransformInvert(this->nodeToWorldTransform());
 }
 
-CCPoint CCNode::convertToNodeSpace(const CCPoint& worldPoint)
+Vec2 CCNode::convertToNodeSpace(const Vec2& worldPoint)
 {
-    CCPoint ret = CCPointApplyAffineTransform(worldPoint, worldToNodeTransform());
+    Vec2 ret = CCPointApplyAffineTransform(worldPoint, worldToNodeTransform());
     return ret;
 }
 
-CCPoint CCNode::convertToWorldSpace(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWorldSpace(const Vec2& nodePoint)
 {
-    CCPoint ret = CCPointApplyAffineTransform(nodePoint, nodeToWorldTransform());
+    Vec2 ret = CCPointApplyAffineTransform(nodePoint, nodeToWorldTransform());
     return ret;
 }
 
-CCPoint CCNode::convertToNodeSpaceAR(const CCPoint& worldPoint)
+Vec2 CCNode::convertToNodeSpaceAR(const Vec2& worldPoint)
 {
-    CCPoint nodePoint = convertToNodeSpace(worldPoint);
+    Vec2 nodePoint = convertToNodeSpace(worldPoint);
     return ccpSub(nodePoint, m_obAnchorPointInPoints);
 }
 
-CCPoint CCNode::convertToWorldSpaceAR(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWorldSpaceAR(const Vec2& nodePoint)
 {
-    CCPoint pt = ccpAdd(nodePoint, m_obAnchorPointInPoints);
+    Vec2 pt = ccpAdd(nodePoint, m_obAnchorPointInPoints);
     return convertToWorldSpace(pt);
 }
 
-CCPoint CCNode::convertToWindowSpace(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWindowSpace(const Vec2& nodePoint)
 {
-    CCPoint worldPoint = this->convertToWorldSpace(nodePoint);
+    Vec2 worldPoint = this->convertToWorldSpace(nodePoint);
     return CCDirector::sharedDirector()->convertToUI(worldPoint);
 }
 
 // convenience methods which take a CCTouch instead of CCPoint
-CCPoint CCNode::convertTouchToNodeSpace(CCTouch *touch)
+Vec2 CCNode::convertTouchToNodeSpace(CCTouch *touch)
 {
-    CCPoint point = touch->getLocation();
+    Vec2 point = touch->getLocation();
     return this->convertToNodeSpace(point);
 }
 
-CCPoint CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
+Vec2 CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
 {
-    CCPoint point = touch->getLocation();
+    Vec2 point = touch->getLocation();
     return this->convertToNodeSpaceAR(point);
 }
 

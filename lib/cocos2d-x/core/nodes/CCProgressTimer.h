@@ -84,7 +84,7 @@ public:
     void setReverseProgress(bool reverse);
 
     virtual void draw(void);
-    void setAnchorPoint(CCPoint anchorPoint);
+    void setAnchorPoint(Vec2 anchorPoint);
 
     virtual void setColor(const ccColor3B& color);
     virtual const ccColor3B& getColor() const;
@@ -98,13 +98,13 @@ public:
     /** Creates a progress timer with the sprite as the shape the timer goes through */
     static CCProgressTimer* create(CCSprite* sp);
 protected:
-    ccTex2F textureCoordFromAlphaPoint(CCPoint alpha);
-    ccVertex2F vertexFromAlphaPoint(CCPoint alpha);
+    ccTex2F textureCoordFromAlphaPoint(Vec2 alpha);
+    ccVertex2F vertexFromAlphaPoint(Vec2 alpha);
     void updateProgress(void);
     void updateBar(void);
     void updateRadial(void);
     void updateColor(void);
-    CCPoint boundaryTexCoord(char index);
+    Vec2 boundaryTexCoord(char index);
 
 protected:
     CCProgressTimerType m_eType;
@@ -123,7 +123,7 @@ protected:
      *        you want a bottom to top then set the midpoint all the way to ccp(x,0)
      *        you want a top to bottom then set the midpoint all the way to ccp(x,1)
      */
-    CC_PROPERTY(CCPoint, m_tMidpoint, Midpoint);
+    CC_PROPERTY(Vec2, m_tMidpoint, Midpoint);
 
     /**
      *    This allows the bar type to move the component at a specific rate
@@ -131,7 +131,7 @@ protected:
      *    For example you want a left to right bar but not have the height stay 100%
      *    Set the rate to be ccp(0,1); and set the midpoint to = ccp(0,.5f);
      */
-    CC_SYNTHESIZE(CCPoint, m_tBarChangeRate, BarChangeRate);
+    CC_SYNTHESIZE(Vec2, m_tBarChangeRate, BarChangeRate);
 
     bool m_bReverseDirection;
 };

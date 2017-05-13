@@ -155,12 +155,12 @@ PlayerModule::PlayerModule()
     FileSystem::addResourcePath("res/");
     root = CCNode::create();
 	CCSprite* sp = CCSprite::create("res/HelloWorld.png");
-	sp->setAnchorPoint(CCPoint(0, 0));
+	sp->setAnchorPoint(Vec2(0, 0));
     root->addChild(sp);
 
 	CCLabelTTF* label = CCLabelTTF::create();
 	label->setFontSize(100);
-	label->setAnchorPoint(CCPoint(0, 0));
+	label->setAnchorPoint(Vec2(0, 0));
 	label->setString("hello world");
 	root->addChild(label);
 }

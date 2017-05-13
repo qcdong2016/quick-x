@@ -194,7 +194,7 @@ void Label::updateFlippedY()
     _labelRenderer->setFlipY(_flippedY);
 }
 
-void Label::setAnchorPoint(const CCPoint &pt)
+void Label::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _labelRenderer->setAnchorPoint(pt);

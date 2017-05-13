@@ -656,7 +656,7 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
 
 // implementation CCTexture2D (Drawing)
 
-void CCTexture2D::drawAtPoint(const CCPoint& point)
+void CCTexture2D::drawAtPoint(const Vec2& point)
 {
     GLfloat    coordinates[] = {    
         0.0f,    m_fMaxT,

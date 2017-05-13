@@ -105,7 +105,7 @@ public:
     void removeElement(RichElement* element);
     virtual void visit();
     void setVerticalSpace(float space);
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     virtual const CCSize& getContentSize() const;
     void formatText();
     virtual void ignoreContentAdaptWithSize(bool ignore);

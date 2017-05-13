@@ -101,10 +101,10 @@ protected:
     bool checkEventWidget(CCTouch* touch, CCEvent *pEvent);
     bool checkTouchEvent(Widget* root, CCTouch* touch, CCEvent* pEvent);
 protected:
-    CCPoint touchBeganedPoint;
-    CCPoint touchMovedPoint;
-    CCPoint touchEndedPoint;
-    CCPoint touchCanceledPoint;
+    Vec2 touchBeganedPoint;
+    Vec2 touchMovedPoint;
+    Vec2 touchEndedPoint;
+    Vec2 touchCanceledPoint;
 
 	SharedPtr<Widget> m_pRootWidget;
 	SharedPtr<CCArray> m_pSelectedWidgets;
