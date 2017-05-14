@@ -31,7 +31,6 @@ THE SOFTWARE.
 #include "CCTMXTiledMap.h"
 #include "ccMacros.h"
 #include "zip/ZipUtils.h"
-#include "support/CCPointExtension.h"
 #include "platform/CCTimer.h"
 #include "crypto/CCCrypto.h"
 #include "engine/CCFileSystem.h"

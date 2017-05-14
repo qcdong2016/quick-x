@@ -36,7 +36,6 @@ THE SOFTWARE.
 #include "cocoa/CCArray.h"
 #include "CCScheduler.h"
 #include "ccMacros.h"
-#include "support/CCPointExtension.h"
 
 #include "cocoa/CCAutoreleasePool.h"
 #include "platform/CCTimer.h"

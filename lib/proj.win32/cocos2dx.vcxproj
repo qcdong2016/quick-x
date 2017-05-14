@@ -49,6 +49,9 @@
     <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCResourceCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCSubSystem.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCColor.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCRendererBatcher.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCVec2.cpp" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\aabb.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\GL\mat4stack.c" />
     <ClCompile Include="..\cocos2d-x\core\kazmath\src\GL\matrix.c" />
@@ -94,7 +97,6 @@
     <ClCompile Include="..\cocos2d-x\core\shaders\ccGLStateCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCRenderState.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\CCPointExtension.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\CCVertex.cpp" />
@@ -311,6 +313,9 @@
     <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCResourceCache.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCSubSystem.h" />
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCColor.h" />
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCRendererBatcher.h" />
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCVec2.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\aabb.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\GL\mat4stack.h" />
     <ClInclude Include="..\cocos2d-x\core\kazmath\include\kazmath\GL\matrix.h" />
@@ -379,7 +384,6 @@
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionTexture_vert.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_frag.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_vert.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\CCPointExtension.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h" />
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCVertex.h" />

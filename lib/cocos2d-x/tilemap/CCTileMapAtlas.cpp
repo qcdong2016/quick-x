@@ -29,7 +29,6 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include "cocoa/CCDictionary.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "textures/CCTexture2D.h"
 #include "engine/CCFileSystem.h"
 

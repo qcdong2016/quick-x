@@ -24,7 +24,6 @@
 
 #include "UIRichText.h"
 #include "base/MathDefs.h"
-#include "support/CCPointExtension.h"
 #include "nodes/CCLabelTTF.h"
 
 NS_CC_BEGIN

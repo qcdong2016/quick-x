@@ -29,7 +29,6 @@
 #include "CCSprite.h"
 #include "nodes/CCDrawingPrimitives.h"
 
-#include "support/CCPointExtension.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"

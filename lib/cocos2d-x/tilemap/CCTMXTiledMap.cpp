@@ -27,7 +27,6 @@ THE SOFTWARE.
 #include "CCTMXXMLParser.h"
 #include "CCTMXLayer.h"
 #include "nodes/CCSprite.h"
-#include "support/CCPointExtension.h"
 
 #include "base/MathDefs.h"
 

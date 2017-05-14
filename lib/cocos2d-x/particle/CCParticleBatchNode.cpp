@@ -32,7 +32,6 @@
 #include "textures/CCTextureAtlas.h"
 #include "ccConfig.h"
 #include "ccMacros.h"
-#include "support/CCPointExtension.h"
 #include "CCParticleSystem.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"

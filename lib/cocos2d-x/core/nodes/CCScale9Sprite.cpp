@@ -27,7 +27,6 @@ THE SOFTWARE.
 
 #include "CCScale9Sprite.h"
 
-#include "support/CCPointExtension.h"
 #include "nodes/CCSpriteBatchNode.h"
 #include "nodes/CCSprite.h"
 #include "resources/CCSpriteFrame.h"

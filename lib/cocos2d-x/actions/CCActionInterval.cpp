@@ -27,7 +27,6 @@ THE SOFTWARE.
 #include "CCActionInterval.h"
 #include "nodes/CCSprite.h"
 #include "nodes/CCNode.h"
-#include "support/CCPointExtension.h"
 #include "CCStdC.h"
 #include "CCActionInstant.h"
 #include <stdarg.h>

@@ -37,7 +37,6 @@
 #include "CCConfiguration.h"
 #include "nodes/CCDrawingPrimitives.h"
 #include "nodes/CCSprite.h"
-#include "support/CCPointExtension.h"
 #include "engine/CCDirector.h"
 
 #include "support/ccUTF8.h"

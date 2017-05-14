@@ -25,7 +25,6 @@
  ****************************************************************************/
 
 #include "CCScene.h"
-#include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"
 #include "engine/CCDirector.h"
 #include "CCInputEvent.h"

@@ -46,7 +46,6 @@ THE SOFTWARE.
 #include "ccTypes.h"
 
 #include "textures/CCTextureAtlas.h"
-#include "support/CCPointExtension.h"
 #include "platform/CCImage.h"
 #include "platform/CCTimer.h"
 #include "zip/ZipUtils.h"

@@ -1,6 +1,5 @@
 
 #include "nodes/CCShapeNode.h"
-#include "support/CCPointExtension.h"
 
 NS_CC_BEGIN
 

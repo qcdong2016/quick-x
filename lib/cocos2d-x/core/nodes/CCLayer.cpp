@@ -27,7 +27,6 @@
 #include <stdarg.h>
 #include "CCLayer.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"

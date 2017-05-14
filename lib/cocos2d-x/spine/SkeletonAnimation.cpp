@@ -39,7 +39,6 @@
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
 #include "nodes/CCDrawingPrimitives.h"
-#include "support/CCPointExtension.h"
 
 namespace cocos2d {
 

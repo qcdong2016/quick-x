@@ -145,6 +145,9 @@
     <Filter Include="cocos2d-x\crypto">
       <UniqueIdentifier>{d00ce798-f871-4724-9b0b-96dcce74d520}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cocos2d-x\core\graphics">
+      <UniqueIdentifier>{e3ad52f7-eed7-414a-b68a-1556a8ae32bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cocos2d-x\spine\spine\AnimationStateData.c">
@@ -681,9 +684,6 @@
     <ClCompile Include="..\cocos2d-x\core\CCScheduler.cpp">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\CCPointExtension.cpp">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp">
       <Filter>cocos2d-x\core\support</Filter>
     </ClCompile>
@@ -905,6 +905,15 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\engine\CCAttributeAccessor.cpp">
       <Filter>cocos2d-x\core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCColor.cpp">
+      <Filter>cocos2d-x\core\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCRendererBatcher.cpp">
+      <Filter>cocos2d-x\core\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\graphics\CCVec2.cpp">
+      <Filter>cocos2d-x\core\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1508,9 +1517,6 @@
     <ClInclude Include="..\cocos2d-x\core\ccTypes.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\CCPointExtension.h">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h">
       <Filter>cocos2d-x\core\support</Filter>
     </ClInclude>
@@ -1765,6 +1771,15 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\engine\CCAttributeAccessor.h">
       <Filter>cocos2d-x\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCColor.h">
+      <Filter>cocos2d-x\core\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCRendererBatcher.h">
+      <Filter>cocos2d-x\core\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\graphics\CCVec2.h">
+      <Filter>cocos2d-x\core\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

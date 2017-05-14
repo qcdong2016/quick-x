@@ -48,7 +48,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S);
 #include "engine/CCFileSystem.h"
 #include "platform/CCDevice.h"
 #include "CCEGLView.h"
-#include "support/CCPointExtension.h"
 #include "support/user_default/CCUserDefault.h"
 #include "support/component/CCComponent.h"
 #include "support/component/CCComponentContainer.h"
