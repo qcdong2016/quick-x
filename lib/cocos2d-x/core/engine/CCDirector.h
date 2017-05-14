@@ -361,7 +361,7 @@ protected:
 	int _fps;
 	int _pausedFps;
 	bool _running;
-	CCTimerHiRes _frameTimer;
+	TimerHiRes _frameTimer;
 
 	SharedPtr<CCApplication> _app;
 };

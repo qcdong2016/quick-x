@@ -690,9 +690,6 @@
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp">
       <Filter>cocos2d-x\core\support</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\CCVertex.cpp">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\support\TransformUtils.cpp">
       <Filter>cocos2d-x\core\support</Filter>
     </ClCompile>
@@ -1521,9 +1518,6 @@
       <Filter>cocos2d-x\core\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\CCVertex.h">
       <Filter>cocos2d-x\core\support</Filter>
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\TransformUtils.h">

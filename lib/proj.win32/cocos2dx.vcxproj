@@ -99,7 +99,6 @@
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\CCVertex.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\component\CCComponent.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\component\CCComponentContainer.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\data_support\ccCArray.cpp" />
@@ -386,7 +385,6 @@
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_vert.h" />
     <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h" />
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\CCVertex.h" />
     <ClInclude Include="..\cocos2d-x\core\support\component\CCComponent.h" />
     <ClInclude Include="..\cocos2d-x\core\support\component\CCComponentContainer.h" />
     <ClInclude Include="..\cocos2d-x\core\support\data_support\ccCArray.h" />

@@ -7,10 +7,10 @@ namespace cocos2d
 {
 
 //high resolution
-class CCTimerHiRes
+class TimerHiRes
 {
 public:
-    CCTimerHiRes();
+    TimerHiRes();
 
     void reset();
     long long elapsed();

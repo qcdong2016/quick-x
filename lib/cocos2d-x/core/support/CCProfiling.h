@@ -25,88 +25,95 @@ THE SOFTWARE.
 #ifndef __SUPPORT_CCPROFILING_H__
 #define __SUPPORT_CCPROFILING_H__
 
-#include "ccConfig.h"
-#include "engine/CCObject.h"
 #include "platform/CCTimer.h"
-#include "cocoa/CCDictionary.h"
+#include "CCPlatformMacros.h"
+#include "base/RefCounted.h"
+#include "base/Ptr.h"
 #include <string>
+#include <vector>
 
 NS_CC_BEGIN
 
-/**
- * @addtogroup global
- * @{
- */
-
-class CCProfilingTimer;
-
-/** CCProfiler
- cocos2d builtin profiler.
-
- To use it, enable set the CC_ENABLE_PROFILERS=1 in the ccConfig.h file
- *@js NA
- *@lua NA
- */
-
-class CC_DLL CCProfiler : public CCObject
+class ProfilingBlock : public RefCounted
 {
 public:
-    ~CCProfiler(void);
-    /** display the timers */
-    void displayTimers(void);
-    bool init(void);
+	ProfilingBlock(const char* name_, ProfilingBlock* parent_)
+		: count(0)
+		, time(0)
+		, minTime(100000000)
+		, maxTime(0)
+		, name(name_)
+		, parent(parent_)
+	{}
 
-public:
-    static CCProfiler* sharedProfiler(void);
-    /** Creates and adds a new timer */
-    CCProfilingTimer* createAndAddTimerWithName(const char* timerName);
-    /** releases a timer */
-    void releaseTimer(const char* timerName);
-    /** releases all timers */
-    void releaseAllTimers();
+	void start()
+	{
+		timer.reset();
+		count++;
+	}
+	void stop()
+	{
+		long long t = timer.elapsed();
+		if (t > maxTime)
+			maxTime = t;
+		if (t < minTime)
+			minTime = t;
+		time += t;
+	}
 
-    CCDictionary* m_pActiveTimers;
+	ProfilingBlock* getChild(const char* name)
+	{
+		for (auto child : children)
+		{
+			if (child->name.compare(name) == 0)
+				return child;
+		}
+		SharedPtr<ProfilingBlock> child(new ProfilingBlock(name, this));
+		children.push_back(child);
+		return child;
+	}
+
+	const std::string& toString();
+
+	int               count;
+	long long         time;
+	long long		  maxTime;
+	long long         minTime;
+	std::string name;
+	TimerHiRes timer;
+	ProfilingBlock* parent;
+	std::vector<SharedPtr<ProfilingBlock> > children;
 };
-/**
- *@js NA
- *@lua NA
- */
-class CCProfilingTimer : public CCObject
+
+class CC_DLL CCProfiler : public RefCounted
 {
 public:
-    CCProfilingTimer();
-    ~CCProfilingTimer();
-    bool initWithName(const char* timerName);
-    const char* description(void);
-    struct cc_timeval* getStartTime(void) { return &m_sStartTime; };
-    /** resets the timer properties */
-    void reset();
+	CCProfiler()
+	{
+		_root = new ProfilingBlock("Profiling", nullptr);
+		_current = _root;
+	}
 
-    std::string m_NameStr;
-    int               numberOfCalls;
-    int               m_dAverageTime1;
-    long              m_dAverageTime2;
-    long long         totalTime;
-    long              minTime;
-    long              maxTime;
-    struct cc_timeval m_sStartTime;
+	void displayBlocks();
+
+	void start(const char* name)
+	{
+		_current = _current->getChild(name);
+		_current->start();
+	}
+	void stop()
+	{
+		_current->stop();
+		if (_current->parent)
+			_current = _current->parent;
+	}
+
+	ProfilingBlock* getRoot() { return _root; }
+
+public:
+	ProfilingBlock* _current;
+	SharedPtr<ProfilingBlock> _root;
 };
-
-extern CC_DLL void CCProfilingBeginTimingBlock(const char *timerName);
-extern CC_DLL void CCProfilingEndTimingBlock(const char *timerName);
-extern CC_DLL void CCProfilingResetTimingBlock(const char *timerName);
-
-/*
- * cocos2d profiling categories
- * used to enable / disable profilers with granularity
- */
-
-extern bool kCCProfilerCategorySprite;
-extern bool kCCProfilerCategoryBatchSprite;
-extern bool kCCProfilerCategoryParticles;
-
-// end of global group
-/// @}
 
 NS_CC_END
 

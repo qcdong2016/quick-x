@@ -20,17 +20,17 @@ static long long highResolutionFrequency()
     return SDL_GetPerformanceFrequency();
 }
 
-cocos2d::CCTimerHiRes::CCTimerHiRes()
+TimerHiRes::TimerHiRes()
 {
     reset();
 }
 
-void cocos2d::CCTimerHiRes::reset()
+void TimerHiRes::reset()
 {
     _startTime = highResolutionTick();
 }
 
-long long cocos2d::CCTimerHiRes::elapsed()
+long long TimerHiRes::elapsed()
 {
     long long currentTime = highResolutionTick();
     long long elapsedTime = currentTime - _startTime;

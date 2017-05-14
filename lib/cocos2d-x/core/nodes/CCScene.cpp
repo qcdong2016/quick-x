@@ -90,7 +90,6 @@ void CCScene::handleTouchMove(EventData& data) {
 
 bool CCScene::init()
 {
-	CCDirector *pDirector;
 	subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
 	subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
 	subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
