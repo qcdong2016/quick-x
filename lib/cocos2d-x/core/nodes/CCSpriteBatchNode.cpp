@@ -34,7 +34,6 @@
 #include "shaders/ccGLStateCache.h"
 #include "engine/CCDirector.h"
 #include "support/TransformUtils.h"
-#include "support/CCProfiling.h"
 // external
 #include "kazmath/GL/matrix.h"
 

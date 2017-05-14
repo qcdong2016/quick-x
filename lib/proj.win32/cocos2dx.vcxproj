@@ -47,6 +47,7 @@
     <ClCompile Include="..\cocos2d-x\core\engine\CCEngineEvents.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCFileSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCObject.cpp" />
+    <ClCompile Include="..\cocos2d-x\core\engine\CCProfiling.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCResourceCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\engine\CCSubSystem.cpp" />
     <ClCompile Include="..\cocos2d-x\core\graphics\CCColor.cpp" />
@@ -97,7 +98,6 @@
     <ClCompile Include="..\cocos2d-x\core\shaders\ccGLStateCache.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCRenderState.cpp" />
     <ClCompile Include="..\cocos2d-x\core\shaders\CCShaderCache.cpp" />
-    <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\component\CCComponent.cpp" />
     <ClCompile Include="..\cocos2d-x\core\support\component\CCComponentContainer.cpp" />
@@ -310,6 +310,7 @@
     <ClInclude Include="..\cocos2d-x\core\engine\CCEventImpl.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCFileSystem.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCObject.h" />
+    <ClInclude Include="..\cocos2d-x\core\engine\CCProfiling.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCResourceCache.h" />
     <ClInclude Include="..\cocos2d-x\core\engine\CCSubSystem.h" />
     <ClInclude Include="..\cocos2d-x\core\graphics\CCColor.h" />
@@ -383,7 +384,6 @@
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_PositionTexture_vert.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_frag.h" />
     <ClInclude Include="..\cocos2d-x\core\shaders\ccShader_Position_uColor_vert.h" />
-    <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h" />
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h" />
     <ClInclude Include="..\cocos2d-x\core\support\component\CCComponent.h" />
     <ClInclude Include="..\cocos2d-x\core\support\component\CCComponentContainer.h" />

@@ -50,7 +50,6 @@ THE SOFTWARE.
 #include "platform/CCTimer.h"
 #include "zip/ZipUtils.h"
 #include "engine/CCDirector.h"
-#include "support/CCProfiling.h"
 // opengl
 #include "CCGL.h"
 

@@ -38,7 +38,6 @@
 #include "shaders/ccGLStateCache.h"
 #include "zip/ZipUtils.h"
 #include "kazmath/GL/matrix.h"
-#include "support/CCProfiling.h"
 
 NS_CC_BEGIN
 

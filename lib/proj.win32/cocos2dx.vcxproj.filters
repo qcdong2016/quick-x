@@ -684,9 +684,6 @@
     <ClCompile Include="..\cocos2d-x\core\CCScheduler.cpp">
       <Filter>cocos2d-x\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\cocos2d-x\core\support\CCProfiling.cpp">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\support\ccUTF8.cpp">
       <Filter>cocos2d-x\core\support</Filter>
     </ClCompile>
@@ -911,6 +908,9 @@
     </ClCompile>
     <ClCompile Include="..\cocos2d-x\core\graphics\CCVec2.cpp">
       <Filter>cocos2d-x\core\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2d-x\core\engine\CCProfiling.cpp">
+      <Filter>cocos2d-x\core\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1514,9 +1514,6 @@
     <ClInclude Include="..\cocos2d-x\core\ccTypes.h">
       <Filter>cocos2d-x\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\cocos2d-x\core\support\CCProfiling.h">
-      <Filter>cocos2d-x\core\support</Filter>
-    </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\support\ccUTF8.h">
       <Filter>cocos2d-x\core\support</Filter>
     </ClInclude>
@@ -1774,6 +1771,9 @@
     </ClInclude>
     <ClInclude Include="..\cocos2d-x\core\graphics\CCVec2.h">
       <Filter>cocos2d-x\core\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2d-x\core\engine\CCProfiling.h">
+      <Filter>cocos2d-x\core\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
