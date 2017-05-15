@@ -33,6 +33,7 @@ THE SOFTWARE.
 #include "support/data_support/uthash.h"
 #include "cocoa/CCSet.h"
 #include "engine/CCEngineEvents.h"
+#include <algorithm>
 
 NS_CC_BEGIN
 

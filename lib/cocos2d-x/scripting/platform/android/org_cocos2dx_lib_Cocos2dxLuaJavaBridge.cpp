@@ -14,9 +14,10 @@ JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_callLuaFuncti
   (JNIEnv *env, jclass cls, jint functionId, jstring value)
 {
     const char *value_ = env->GetStringUTFChars(value, 0);
-    int ret = CCLuaJavaBridge::callLuaFunctionById(functionId, value_);
+    // int ret = CCLuaJavaBridge::callLuaFunctionById(functionId, value_);
     env->ReleaseStringUTFChars(value, value_);
-    return ret;
+    // return ret;
+    return 0;
 }
 
 JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_callLuaGlobalFunctionWithString
@@ -24,22 +25,25 @@ JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_callLuaGlobal
 {
     const char *luaFunctionName_ = env->GetStringUTFChars(luaFunctionName, 0);
     const char *value_ = env->GetStringUTFChars(value, 0);
-    int ret = CCLuaJavaBridge::callLuaGlobalFunction(luaFunctionName_, value_);
+    // int ret = CCLuaJavaBridge::callLuaGlobalFunction(luaFunctionName_, value_);
     env->ReleaseStringUTFChars(luaFunctionName, luaFunctionName_);
     env->ReleaseStringUTFChars(value, value_);
-    return ret;
+    // return ret;
+    return 0;
 }
 
 JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_retainLuaFunction
   (JNIEnv *env, jclass cls, jint luaFunctionId)
 {
-    return CCLuaJavaBridge::retainLuaFunctionById(luaFunctionId);
+    // return CCLuaJavaBridge::retainLuaFunctionById(luaFunctionId);
+    return 0;
 }
 
 JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_releaseLuaFunction
   (JNIEnv *env, jclass cls, jint luaFunctionId)
 {
-    return CCLuaJavaBridge::releaseLuaFunctionById(luaFunctionId);
+    // return CCLuaJavaBridge::releaseLuaFunctionById(luaFunctionId);
+    return 0;
 }
 
 } // extern "C"

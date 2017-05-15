@@ -1,6 +1,5 @@
 #include "text_input_node/CCIMEDispatcher.h"
 #include "engine/CCDirector.h"
-#include "../CCApplication.h"
 #include "JniHelper.h"
 #include <jni.h>
 
@@ -12,14 +11,14 @@ extern "C" {
     }
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnPause() {
-        CCApplication::sharedApplication()->applicationDidEnterBackground();
+        // CCApplication::sharedApplication()->applicationDidEnterBackground();
 
         //CCNotificationCenter::sharedNotificationCenter()->postNotification(EVENT_COME_TO_BACKGROUND, NULL);
     }
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnResume() {
         if (CCDirector::sharedDirector()->getOpenGLView()) {
-            CCApplication::sharedApplication()->applicationWillEnterForeground();
+            // CCApplication::sharedApplication()->applicationWillEnterForeground();
         }
     }
 

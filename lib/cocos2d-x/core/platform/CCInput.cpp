@@ -17,7 +17,7 @@ const unsigned TOUCHID_MAX = 32;
 extern "C" {
 
 	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxAccelerometer_onSensorChanged(JNIEnv*  env, jobject thiz, jfloat x, jfloat y, jfloat z, jfloat timeStamp) {
-		SubSystem::get<Input>()->onAcceleration(x, y, z, timeStamp);
+		// SubSystem::get<Input>()->onAcceleration(x, y, z, timeStamp);
 	}
 }
 

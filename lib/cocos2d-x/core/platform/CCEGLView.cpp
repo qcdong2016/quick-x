@@ -5,7 +5,6 @@
 #endif
 
 #include "SDL.h"
-#include "SDL_opengl.h"
 #include "ccMacros.h"
 #include "CCGL.h"
 

@@ -27,25 +27,24 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-#include "CCEditBox.h"
-#include "label_nodes/CCLabelTTF.h"
-#include "support/CCPointExtension.h"
+#include "UIEditBox.h"
+#include "nodes/CCLabelTTF.h"
 #include "support/ccUTF8.h"
 
-#include "jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h"
-#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h"
+#include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 
 
 NS_CC_BEGIN
 namespace ui {
 
-CCEditBoxImpl* __createSystemEditBox(CCEditBox* pEditBox)
+EditBoxImpl* __createSystemEditBox(EditBox* pEditBox)
 {
     return new CCEditBoxImplAndroid(pEditBox);
 }
 
-CCEditBoxImplAndroid::CCEditBoxImplAndroid(CCEditBox* pEditText)
-: CCEditBoxImpl(pEditText)
+CCEditBoxImplAndroid::CCEditBoxImplAndroid(EditBox* pEditText)
+: EditBoxImpl(pEditText)
 , m_pLabel(NULL)
 , m_pLabelPlaceHolder(NULL)
 , m_eEditBoxInputMode(kEditBoxInputModeSingleLine)
@@ -219,7 +218,7 @@ void CCEditBoxImplAndroid::setPlaceHolder(const char* pText)
     }
 }
 
-void CCEditBoxImplAndroid::setPosition(const CCPoint& pos)
+void CCEditBoxImplAndroid::setPosition(const Vec2& pos)
 { // don't need to be implemented on android platform.
 	
 }
@@ -234,7 +233,7 @@ void CCEditBoxImplAndroid::setContentSize(const CCSize& size)
 	
 }
 
-void CCEditBoxImplAndroid::setAnchorPoint(const CCPoint& anchorPoint)
+void CCEditBoxImplAndroid::setAnchorPoint(const Vec2& anchorPoint)
 { // don't need to be implemented on android platform.
 	
 }
@@ -261,7 +260,7 @@ static void editBoxCallbackFunc(const char* pText, void* ctx)
         thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
     }
     
-    CCEditBox* pEditBox = thiz->getCCEditBox();
+    EditBox* pEditBox = thiz->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
@@ -300,7 +299,7 @@ void CCEditBoxImplAndroid::openKeyboard()
     {
         m_pDelegate->editBoxEditingDidBegin(m_pEditBox);
     }
-    CCEditBox* pEditBox = this->getCCEditBox();
+    EditBox* pEditBox = this->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
         CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();

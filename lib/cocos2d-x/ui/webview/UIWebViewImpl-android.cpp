@@ -27,12 +27,12 @@
 #include "UIWebView.h"
 #include "UIWebViewImpl-android.h"
 
+#include <jni.h>
 #include <unordered_map>
 #include <stdlib.h>
 #include <string>
-#include "jni/JniHelper.h"
-#include "IO/FileSystem.h"
-#include <jni.h>
+#include "android/jni/JniHelper.h"
+#include "engine/CCFileSystem.h"
 #include "engine/CCDirector.h"
 #include "CCEGLView.h"
 
@@ -405,8 +405,9 @@ void WebViewImpl::setBackgroundColor(int color)
     setBackgroundColorJNI(_viewTag, color);
 }
 
-void WebViewImpl::evaluateJS(const std::string &js) {
+std::string WebViewImpl::evaluateJS(const std::string &js) {
     evaluateJSJNI(_viewTag, js);
+    return "";
 }
 
 void WebViewImpl::setScalesPageToFit(const bool scalesPageToFit) {
@@ -464,14 +465,12 @@ void WebViewImpl::draw() {
     auto winSize = directorInstance->getWinSize();
 
     auto leftBottom = this->_webView->convertToWorldSpace(cocos2d::CCPointZero);
-    auto rightTop = this->_webView->convertToWorldSpace(cocos2d::CCPoint(_webView->getSize().width, _webView->getSize().height));
+    auto rightTop = this->_webView->convertToWorldSpace(Vec2(_webView->getSize().width, _webView->getSize().height));
 
-    auto uiLeft = frameSize.width / 2 + (leftBottom.x - winSize.width / 2 ) * glView->getScaleX();
-    auto uiTop = frameSize.height /2 - (rightTop.y - winSize.height / 2) * glView->getScaleY();
+    auto uiLeft = frameSize.width / 2 + (leftBottom.x - winSize.width / 2 );
+    auto uiTop = frameSize.height /2 - (rightTop.y - winSize.height / 2);
 
-    setWebViewRectJNI(_viewTag,uiLeft,uiTop,
-        (rightTop.x - leftBottom.x) * glView->getScaleX(),
-        (rightTop.y - leftBottom.y) * glView->getScaleY());
+    setWebViewRectJNI(_viewTag,uiLeft,uiTop, (rightTop.x - leftBottom.x), (rightTop.y - leftBottom.y));
 }
 
 void WebViewImpl::setVisible(bool visible) {

@@ -3,12 +3,10 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 APP_ROOT="$DIR/.."
 APP_ANDROID_ROOT="$DIR"
-COCOS2DX_ROOT=$QUICKX_ROOT/lib/cocos2d-x
 
 echo "- config:"
 echo "  ANDROID_NDK_ROOT    = $ANDROID_NDK_ROOT"
 echo "  QUICKX_ROOT         = $QUICKX_ROOT"
-echo "  COCOS2DX_ROOT       = $COCOS2DX_ROOT"
 echo "  APP_ROOT            = $APP_ROOT"
 echo "  APP_ANDROID_ROOT    = $APP_ANDROID_ROOT"
 
@@ -37,4 +35,4 @@ cp -rf "$APP_ROOT"/res "$APP_ANDROID_ROOT"/assets/
 # build
 echo "Using prebuilt externals"
 "$ANDROID_NDK_ROOT"/ndk-build -j4 $ANDROID_NDK_BUILD_FLAGS NDK_DEBUG=$NDK_DEBUG $NDK_BUILD_FLAGS -C "$APP_ANDROID_ROOT" $* \
-"NDK_MODULE_PATH=${COCOS2DX_ROOT}:${QUICKX_ROOT}/lib/third_party/android/prebuilt"
+"NDK_MODULE_PATH=${QUICKX_ROOT}/lib:${QUICKX_ROOT}/lib/third_party/android/prebuilt"

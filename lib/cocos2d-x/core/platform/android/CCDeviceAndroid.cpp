@@ -110,6 +110,9 @@ TargetPlatform CCDevice::getTargetPlatform()
 }
 
 
+std::string CCDevice::getResourcePath() {
+    return "";
+}
 //  activity indicator
 
 void CCDevice::showActivityIndicator(void)

@@ -26,7 +26,7 @@ extern "C"
 #endif
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include "android/asset_manager_jni.h"
 static AAssetManager* s_assetManager = nullptr;
 #endif

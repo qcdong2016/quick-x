@@ -23,13 +23,13 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "audio/SimpleAudioEngine.h"
-#include "jni/SimpleAudioEngineJni.h"
+#include "SimpleAudioEngineJni.h"
 
 #include <cstring>
-#include <android/log.h>
-#include <jni/JniHelper.h>
-#include <IO/FileSystem.h>
 #include <jni.h>
+#include <android/log.h>
+#include "android/jni/JniHelper.h"
+#include "engine/CCFileSystem.h"
 
 #define  I9100_MODEL "GT-I9100"
 #define  LOG_TAG     "Device Model"

@@ -29,7 +29,7 @@ THE SOFTWARE.
 #include "platform/CCPlatformMacros.h"
 #include "platform/CCImage.h"
 #include "jni/JniHelper.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 
 #include <android/log.h>
 #include <string.h>

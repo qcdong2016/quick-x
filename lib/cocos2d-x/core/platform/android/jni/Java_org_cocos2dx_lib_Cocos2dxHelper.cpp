@@ -4,7 +4,7 @@
 #include <string>
 #include "JniHelper.h"
 #include "cocoa/CCString.h"
-#include "IO/FileSystem.h"
+#include "engine/CCFileSystem.h"
 #include "Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include "android/asset_manager_jni.h"
 
