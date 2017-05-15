@@ -24,7 +24,6 @@
  ****************************************************************************/
 
 #include "UIEditBoxImplMac.h"
-#include "support/CCPointExtension.h"
 #include "CCEGLView.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
@@ -362,7 +361,7 @@ void CCEditBoxImplMac::setPlaceHolder(const char* pText)
     [[m_pSysEdit.textField cell] setPlaceholderString:[NSString stringWithUTF8String:pText]];
 }
 
-NSPoint CCEditBoxImplMac::convertDesignCoordToScreenCoord(const CCPoint& designCoord, bool bInRetinaMode)
+NSPoint CCEditBoxImplMac::convertDesignCoordToScreenCoord(const Vec2& designCoord, bool bInRetinaMode)
 {
     NSRect frame = [m_pSysEdit.textField frame];
     CGFloat height = frame.size.height;
@@ -392,11 +391,11 @@ void CCEditBoxImplMac::adjustTextFieldPosition()
 
     rect = CCRectApplyAffineTransform(rect, m_pEditBox->nodeToWorldTransform());
 	
-	CCPoint designCoord = ccp(rect.origin.x, rect.origin.y + rect.size.height);
+	Vec2 designCoord = ccp(rect.origin.x, rect.origin.y + rect.size.height);
     [m_pSysEdit setPosition:convertDesignCoordToScreenCoord(designCoord, m_bInRetinaMode)];
 }
 
-void CCEditBoxImplMac::setPosition(const CCPoint& pos)
+void CCEditBoxImplMac::setPosition(const Vec2& pos)
 {
     m_obPosition = pos;
     adjustTextFieldPosition();
@@ -413,7 +412,7 @@ void CCEditBoxImplMac::setContentSize(const CCSize& size)
     CCLOG("[Edit text] content size = (%f, %f)", size.width, size.height);
 }
 
-void CCEditBoxImplMac::setAnchorPoint(const CCPoint& anchorPoint)
+void CCEditBoxImplMac::setAnchorPoint(const Vec2& anchorPoint)
 {
     CCLOG("[Edit text] anchor point = (%f, %f)", anchorPoint.x, anchorPoint.y);
 	m_obAnchorPoint = anchorPoint;
