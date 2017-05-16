@@ -561,6 +561,7 @@
 		9FB6DAAE1EB5B93800B5B482 /* UIEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBox.h; sourceTree = "<group>"; };
 		9FB6DAAF1EB5B93800B5B482 /* UIEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImpl.h; sourceTree = "<group>"; };
 		B109C17A1EB9D19F00A01BC7 /* CCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
+		B12B164D1ECAD63C000C674E /* CCMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMain.h; sourceTree = "<group>"; };
 		B159BB821EBD97AF00BB6E5D /* ImGuiDock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImGuiDock.cpp; sourceTree = "<group>"; };
 		B159BB831EBD97AF00BB6E5D /* ImGuiDock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImGuiDock.h; sourceTree = "<group>"; };
 		B159BB871EBDB57600BB6E5D /* CCAttributeAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAttributeAccessor.cpp; sourceTree = "<group>"; };
@@ -1498,6 +1499,7 @@
 				B1A752FB1DEA7968002F0D4C /* CCDebugHud.h */,
 				B1A752FC1DEA7968002F0D4C /* CCDirector.cpp */,
 				B1A752FD1DEA7968002F0D4C /* CCDirector.h */,
+				B12B164D1ECAD63C000C674E /* CCMain.h */,
 				B1A752FE1DEA7968002F0D4C /* CCEngineEvents.cpp */,
 				B1A752FF1DEA7968002F0D4C /* CCEngineEvents.h */,
 				B1A753001DEA7968002F0D4C /* CCEventImpl.h */,

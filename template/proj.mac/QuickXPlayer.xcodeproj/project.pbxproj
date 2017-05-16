@@ -59,7 +59,6 @@
 /* Begin PBXFileReference section */
 		9F0082011DAFD40900D6D370 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../res; sourceTree = "<group>"; };
 		9F0082021DAFD40900D6D370 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../scripts; sourceTree = "<group>"; };
-		B109C16C1EB9BAC800A01BC7 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../lib/third_party/mac/libraries/libSDL2main.a; sourceTree = "<group>"; };
 		B109C16F1EB9BAE200A01BC7 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		B109C1721EB9BCD100A01BC7 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		B109C1741EB9BCE200A01BC7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -154,7 +153,6 @@
 				B109C1741EB9BCE200A01BC7 /* OpenGL.framework */,
 				B109C1721EB9BCD100A01BC7 /* OpenAL.framework */,
 				B109C16F1EB9BAE200A01BC7 /* libiconv.tbd */,
-				B109C16C1EB9BAC800A01BC7 /* libSDL2main.a */,
 				B17848EA1EB9B6A600EA61F5 /* AudioUnit.framework */,
 				B17848E81EB9B69D00EA61F5 /* Carbon.framework */,
 				B17848E61EB9B69400EA61F5 /* IOKit.framework */,

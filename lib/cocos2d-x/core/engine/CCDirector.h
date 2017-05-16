@@ -43,13 +43,7 @@ THE SOFTWARE.
 
 
 NS_CC_BEGIN
-#define QUICKX_APP(APP) \
-	extern "C" { \
-		int SDL_main(int argc, char** argv) {  \
-			SharedPtr<CCDirector> d(new CCDirector(new APP));\
-			return d->run(); \
-		} \
-	} 
+
 
 class CC_DLL CCApplication : public RefCounted
 {

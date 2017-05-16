@@ -1,9 +1,9 @@
 #include "engine/CCDirector.h"
+#include "engine/CCMain.h"
 #include "audio/SimpleAudioEngine.h"
 #include "scripting/CCLuaEngine.h"
 #include <string>
 #include "CCEGLView.h"
-
 #include "spine/spine-cocos2dx.h"
 #include "imgui/PlayerModule.h"
 
