@@ -3,7 +3,7 @@
 #include "CCPlatformDefine.h"
 #include "CCPlatformMacros.h"
 #include <ctype.h>
-#if OS_IS(WIN32)
+#if BUILD_FOR(WIN32)
 #include <winsock.h>
 #endif
 
@@ -45,7 +45,7 @@ long long TimerHiRes::elapsed()
 int CCTime::gettimeofdayCocos2d(struct cc_timeval *tp, void *tzp)
 {
 	CC_UNUSED_PARAM(tzp);
-#if OS_IS(WIN32)
+#if BUILD_FOR(WIN32)
 	if (tp)
 	{
 		LARGE_INTEGER liTime, liFreq;

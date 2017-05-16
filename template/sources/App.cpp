@@ -18,7 +18,7 @@ public:
 		CCDirector *d = CCDirector::sharedDirector();
 
 		d->addModule<SpineModule>();
-#if OS_IS(MAC) || OS_IS(WIN32)
+#if BUILD_FOR(MAC) || BUILD_FOR(WIN32)
 		d->addModule<PlayerModule>();
 #endif
 

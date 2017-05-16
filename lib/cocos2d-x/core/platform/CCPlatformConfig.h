@@ -53,7 +53,7 @@ Config of cocos2d-x project, per target platform.
 
 // Determine target platform by compile environment macro.
 #define CC_TARGET_PLATFORM             CC_PLATFORM_UNKNOWN
-#define OS_IS(OS) CC_TARGET_PLATFORM ==CC_PLATFORM_##OS
+#define BUILD_FOR(OS) CC_TARGET_PLATFORM == CC_PLATFORM_##OS
 
 // mac
 #if defined(CC_TARGET_OS_MAC)
