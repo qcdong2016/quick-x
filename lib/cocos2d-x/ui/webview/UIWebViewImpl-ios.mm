@@ -30,7 +30,6 @@
 #include "engine/CCDirector.h"
 #include "engine/CCFileSystem.h"
 #include "CCEGLView.h"
-#include "support/CCPointExtension.h"
 
 
 
