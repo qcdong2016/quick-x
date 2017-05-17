@@ -25,7 +25,6 @@
 #include "UIEditBoxImplIOS.h"
 #include "CCEGLView.h"
 
-#include "support/CCPointExtension.h"
 #include "nodes/CCLabelTTF.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -541,7 +540,7 @@ void EditBoxImplIOS::setPlaceHolder(const char* pText)
 	m_pLabelPlaceHolder->setString(pText);
 }
 
-static CGPoint convertDesignCoordToScreenCoord(const CCPoint& designCoord)
+static CGPoint convertDesignCoordToScreenCoord(const Vec2& designCoord)
 {
 //    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
 //    float viewH = (float)[[EAGLView sharedEGLView] getHeight];
@@ -560,7 +559,7 @@ static CGPoint convertDesignCoordToScreenCoord(const CCPoint& designCoord)
     return CGPointMake(0, 0);
 }
 
-void EditBoxImplIOS::setPosition(const CCPoint& pos)
+void EditBoxImplIOS::setPosition(const Vec2& pos)
 {
 	m_obPosition = pos;
 	adjustTextFieldPosition();
@@ -591,7 +590,7 @@ void EditBoxImplIOS::setContentSize(const CCSize& size)
 //    m_pLabel->setTextureRect(CCRect(0, 0, size.width, rect.size.height));
 }
 
-void EditBoxImplIOS::setAnchorPoint(const CCPoint& anchorPoint)
+void EditBoxImplIOS::setAnchorPoint(const Vec2& anchorPoint)
 {
     //    CCLOG("[Edit text] anchor point = (%f, %f)", anchorPoint.x, anchorPoint.y);
 	m_obAnchorPoint = anchorPoint;
@@ -623,7 +622,7 @@ void EditBoxImplIOS::adjustTextFieldPosition()
 	CCRect rect = CCRectMake(left, cy, contentSize.width, contentSize.height);
     rect = CCRectApplyAffineTransform(rect, m_pEditBox->nodeToWorldTransform());
 	
-	CCPoint designCoord = ccp(rect.origin.x, rect.origin.y + rect.size.height);
+	Vec2 designCoord = ccp(rect.origin.x, rect.origin.y + rect.size.height);
     [m_systemControl setPosition:convertDesignCoordToScreenCoord(designCoord)];
 }
 
