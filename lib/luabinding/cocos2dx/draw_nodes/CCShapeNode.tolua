@@ -40,9 +40,9 @@ class CCRectShape : public CCShapeNode
     void setFill(bool fill);
 };
 
-class Vec2Shape : public CCShapeNode
+class CCPointShape : public CCShapeNode
 {
-    static Vec2Shape* create(void);
+    static CCPointShape* create(void);
 };
 
 // class CCPolygonShape : public CCShapeNode

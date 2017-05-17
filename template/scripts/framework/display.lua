@@ -189,15 +189,15 @@ display.BOTTOM_RIGHT  = 8; display.RIGHT_BOTTOM  = 8
 display.BOTTOM_CENTER = 9; display.CENTER_BOTTOM = 9
 
 display.ANCHOR_POINTS = {
-    CCPoint(0.5, 0.5),  -- CENTER
-    CCPoint(0, 1),      -- TOP_LEFT
-    CCPoint(0.5, 1),    -- TOP_CENTER
-    CCPoint(1, 1),      -- TOP_RIGHT
-    CCPoint(0, 0.5),    -- CENTER_LEFT
-    CCPoint(1, 0.5),    -- CENTER_RIGHT
-    CCPoint(0, 0),      -- BOTTOM_LEFT
-    CCPoint(1, 0),      -- BOTTOM_RIGHT
-    CCPoint(0.5, 0),    -- BOTTOM_CENTER
+    ccp(0.5, 0.5),  -- CENTER
+    ccp(0, 1),      -- TOP_LEFT
+    ccp(0.5, 1),    -- TOP_CENTER
+    ccp(1, 1),      -- TOP_RIGHT
+    ccp(0, 0.5),    -- CENTER_LEFT
+    ccp(1, 0.5),    -- CENTER_RIGHT
+    ccp(0, 0),      -- BOTTOM_LEFT
+    ccp(1, 0),      -- BOTTOM_RIGHT
+    ccp(0.5, 0),    -- BOTTOM_CENTER
 }
 
 display.TEXTURES_PIXEL_FORMAT = {}

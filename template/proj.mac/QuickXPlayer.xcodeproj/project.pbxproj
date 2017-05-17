@@ -129,8 +129,8 @@
 		F44C956715F49004004D4151 = {
 			isa = PBXGroup;
 			children = (
-				9F0082001DAFD3EE00D6D370 /* Resource */,
 				F4B08151175C89E30029F472 /* quickcocos2dx.xcodeproj */,
+				9F0082001DAFD3EE00D6D370 /* Resource */,
 				F44C957C15F49004004D4151 /* QuickXPlayer */,
 				F44C957515F49004004D4151 /* Frameworks */,
 				F44C957315F49004004D4151 /* Products */,

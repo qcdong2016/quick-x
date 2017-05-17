@@ -147,15 +147,9 @@ public:
     inline CCEGLView* getOpenGLView(void) { return m_pobOpenGLView; }
     void setOpenGLView(CCEGLView *pobOpenGLView);
 
-    inline bool isNextDeltaTimeZero(void) { return m_bNextDeltaTimeZero; }
-    void setNextDeltaTimeZero(bool bNextDeltaTimeZero);
-
     /** Whether or not the Director is paused */
     inline bool isPaused(void) { return m_bPaused; }
 
-    /** How many frames were called since the director started */
-    inline unsigned int getTotalFrames(void) { return m_uTotalFrames; }
-    
     /** Sets an OpenGL projection
      @since v0.8.2
      @js NA
@@ -260,9 +254,6 @@ public:
     float getContentScaleFactor(void);
 
 public:
-
-    /* delta time since last tick to main loop */
-	CC_PROPERTY_READONLY(float, m_fDeltaTime, DeltaTime);
 	
 	template<typename T>
 	T* addSubSystem() 
@@ -289,7 +280,7 @@ public:
 		return (it != _subSystems.end()) ? it->second.Get() : nullptr;
 	}
 
-
+    float getDeltaTime() { return _deltaTime; }
 	int run();
 
 	bool isRunning();
@@ -307,8 +298,6 @@ public:
 protected:
     
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
-    /** calculates delta time since last time it was called */    
-    void calculateDeltaTime();
 	void clear();
 
 protected:
@@ -324,18 +313,9 @@ protected:
     
     /** Whether or not the Director is paused */
     bool m_bPaused;
-
-    /* How many frames were called since the director started */
-    unsigned int m_uTotalFrames;
-     
+    
     /* The running scene */
 	SharedPtr<CCScene> _scene;
-    
-    /* last time the main loop was updated */
-    struct cc_timeval *m_pLastUpdate;
-
-    /* whether or not the next delta time will be zero */
-    bool m_bNextDeltaTimeZero;
     
     /* projection used */
     ccDirectorProjection m_eProjection;
@@ -355,6 +335,7 @@ protected:
 	int _fps;
 	int _pausedFps;
 	bool _running;
+    float _deltaTime;
 	TimerHiRes _frameTimer;
 
 	SharedPtr<CCApplication> _app;

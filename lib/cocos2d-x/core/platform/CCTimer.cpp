@@ -40,39 +40,12 @@ long long TimerHiRes::elapsed()
 
     return (elapsedTime * 1000000LL) / highResolutionFrequency();
 }
-
-
-int CCTime::gettimeofdayCocos2d(struct cc_timeval *tp, void *tzp)
-{
-	CC_UNUSED_PARAM(tzp);
-#if BUILD_FOR(WIN32)
-	if (tp)
-	{
-		LARGE_INTEGER liTime, liFreq;
-		QueryPerformanceFrequency(&liFreq);
-		QueryPerformanceCounter(&liTime);
-		tp->tv_sec = (long)(liTime.QuadPart / liFreq.QuadPart);
-		tp->tv_usec = (long)(liTime.QuadPart * 1000000.0 / liFreq.QuadPart - tp->tv_sec * 1000000.0);
-	}
-#endif
-	return 0;
-}
-
-double CCTime::timersubCocos2d(struct cc_timeval *start, struct cc_timeval *end)
-{
-	if (!start || !end)
-	{
-		return 0;
-	}
-
-	return ((end->tv_sec*1000.0 + end->tv_usec / 1000.0) - (start->tv_sec*1000.0 + start->tv_usec / 1000.0));
-}
-
-
-void CCTime::sleep(unsigned mSec)
+    
+void Time::sleep(unsigned mSec)
 {
 	SDL_Delay(mSec);
-} 
+}
+    
 }
 
 // from 2dx

@@ -19,22 +19,10 @@ protected:
     long long _startTime;
 };
 
-struct CC_DLL cc_timeval
-{
-#ifdef __native_client__
-	time_t    tv_sec;        // seconds
-#else
-	long    tv_sec;        // seconds
-#endif
-	int tv_usec;    // microSeconds
-};
-
-class CC_DLL CCTime
+class CC_DLL Time
 {
 public:
 	static void sleep(unsigned mSec);
-	static int gettimeofdayCocos2d(struct cc_timeval *tp, void *tzp);
-	static double timersubCocos2d(struct cc_timeval *start, struct cc_timeval *end);
 };
 
 }

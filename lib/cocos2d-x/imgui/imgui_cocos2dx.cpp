@@ -6,7 +6,7 @@
 #include "CCEGLView.h"
 #include "PlayerUI.h"
 #include "base/ProcessUtils.h"
-#if OS_IS(MAC)
+#if BUILD_FOR(MAC)
 #import <OpenGL/gl3.h>
 #endif
 

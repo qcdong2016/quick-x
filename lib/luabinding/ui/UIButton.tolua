@@ -20,7 +20,7 @@ class Button : public Widget
     const CCRect& getCapInsetPressedRenderer();
     void setCapInsetsDisabledRenderer(const CCRect &capInsets);  
     const CCRect& getCapInsetDisabledRenderer();
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     virtual void setScale9Enabled(bool able); 
     bool isScale9Enabled();
     void setPressedActionEnabled(bool enabled);

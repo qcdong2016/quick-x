@@ -160,7 +160,7 @@ protected:
     int m_callFromLua;
     int m_debuggerType;
 
-    static struct cc_timeval m_lasttime;
+    static TimerHiRes _timer;
     static CCLuaStackMap s_map;
 
 public:

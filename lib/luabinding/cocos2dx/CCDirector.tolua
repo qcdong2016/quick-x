@@ -30,14 +30,8 @@ class CCDirector : public CCObject
     /** Get the CCEGLView, where everything is rendered */
     CCEGLView* getOpenGLView(void);
 
-    bool isNextDeltaTimeZero(void);
-    void setNextDeltaTimeZero(bool bNextDeltaTimeZero);
-
     /** Whether or not the Director is paused */
     bool isPaused(void);
-
-    /** How many frames were called since the director started */
-    unsigned int getTotalFrames(void);
 
     /** Sets an OpenGL projection
      @since v0.8.2

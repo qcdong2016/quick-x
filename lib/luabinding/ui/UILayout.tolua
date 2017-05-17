@@ -58,9 +58,9 @@ class Layout : public Widget
     
     GLubyte getBackGroundColorOpacity();
     
-    void setBackGroundColorVector(const CCPoint &vector);
+    void setBackGroundColorVector(const Vec2 &vector);
     
-    const CCPoint& getBackGroundColorVector();
+    const Vec2& getBackGroundColorVector();
     
     void setBackGroundImageColor(const ccColor3B& color);
     
@@ -111,5 +111,5 @@ class Layout : public Widget
     virtual void onEnter();
     virtual void onExit();
     
-    virtual bool hitTest(const CCPoint &pt);
+    virtual bool hitTest(const Vec2 &pt);
 };

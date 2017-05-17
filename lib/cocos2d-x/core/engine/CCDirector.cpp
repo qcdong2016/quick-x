@@ -105,10 +105,6 @@ bool CCDirector::init(void)
     // projection delegate if "Custom" projection is used
     m_pProjectionDelegate = NULL;
 
-    // FPS
-	m_uTotalFrames = 0;
-    m_pLastUpdate = new struct cc_timeval();
-
     // paused ?
     m_bPaused = false;
    
@@ -201,14 +197,11 @@ void CCDirector::setGLDefaultValues(void)
 // Draw the Scene
 void CCDirector::mainLoop(void)
 {
-    // calculate "global" dt
-    calculateDeltaTime();
-
     //tick before glClear: issue #533
     if (! m_bPaused)
     {
 		static UpdateEvent data;
-		data[UpdateEvent::timeStep] = m_fDeltaTime;
+		data[UpdateEvent::timeStep] = _deltaTime;
 		sendEvent(data);
     }
 	g_uNumberOfDraws = 0;
@@ -230,8 +223,6 @@ void CCDirector::mainLoop(void)
 
     kmGLPopMatrix();
 
-    m_uTotalFrames++;
-
     // swap buffers
     if (m_pobOpenGLView)
     {
@@ -239,40 +230,6 @@ void CCDirector::mainLoop(void)
     }
 
 	CCPoolManager::sharedPoolManager()->pop();
-}
-
-void CCDirector::calculateDeltaTime(void)
-{
-    struct cc_timeval now;
-
-    if (CCTime::gettimeofdayCocos2d(&now, NULL) != 0)
-    {
-        CCLOG("CCDirector: error in gettimeofday");
-        m_fDeltaTime = 0;
-        return;
-    }
-
-    // new delta time. Re-fixed issue #1277
-    if (m_bNextDeltaTimeZero)
-    {
-        m_fDeltaTime = 0;
-        m_bNextDeltaTimeZero = false;
-    }
-    else
-    {
-        m_fDeltaTime = (now.tv_sec - m_pLastUpdate->tv_sec) + (now.tv_usec - m_pLastUpdate->tv_usec) / 1000000.0f;
-        m_fDeltaTime = Max(0.0f, m_fDeltaTime);
-    }
-
-#ifdef DEBUG
-    // If we are debugging our code, prevent big delta time
-    if(m_fDeltaTime > 0.2f)
-    {
-        m_fDeltaTime = 1 / 60.0f;
-    }
-#endif
-
-    *m_pLastUpdate = now;
 }
 
 void CCDirector::clear()
@@ -303,8 +260,6 @@ void CCDirector::clear()
 	CCPoolManager::sharedPoolManager()->pop();
 	CCPoolManager::purgePoolManager();
 
-	// delete m_pLastUpdate
-	CC_SAFE_DELETE(m_pLastUpdate);
 
 	_modules.clear();
 	_subSystems.clear();
@@ -312,11 +267,6 @@ void CCDirector::clear()
 	// OpenGL view
 	m_pobOpenGLView->end();
 	m_pobOpenGLView = NULL;
-}
-
-float CCDirector::getDeltaTime()
-{
-	return m_fDeltaTime;
 }
 
 void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
@@ -353,11 +303,6 @@ void CCDirector::setViewport()
     {
         m_pobOpenGLView->setViewPortInPoints(0, 0, m_obWinSizeInPoints.width, m_obWinSizeInPoints.height);
     }
-}
-
-void CCDirector::setNextDeltaTimeZero(bool bNextDeltaTimeZero)
-{
-    m_bNextDeltaTimeZero = bNextDeltaTimeZero;
 }
 
 void CCDirector::setProjection(ccDirectorProjection kProjection)
@@ -567,18 +512,9 @@ void CCDirector::pause(void)
 void CCDirector::resume(void)
 {
 	if (!m_bPaused)
-    {
         return;
-    }
 
 	m_bPaused = false;
-
-    if (CCTime::gettimeofdayCocos2d(m_pLastUpdate, NULL) != 0)
-    {
-        CCLOG("CCDirector: Error in gettimeofday");
-    }
-
-	m_fDeltaTime = 0;
 }
 
 // returns the FPS image data pointer and len
@@ -614,16 +550,6 @@ void CCDirector::setDelegate(CCDirectorDelegate* pDelegate)
 
 int CCDirector::run()
 {
-	/*
-	std::string args;
-	for (int i = 1; i < argc; ++i)
-	{
-	args.append((const char*)argv[i]);
-	args.append(" ");
-	}
-
-	parseArguments(args);
-	*/
 	CCEGLView* e = CCEGLView::sharedOpenGLView();
 	e->createWithSize();
 
@@ -670,9 +596,10 @@ void CCDirector::timeLimit()
 		if (targetMax - elapsed >= 1000LL)
 		{
 			unsigned sleepTime = (unsigned)((targetMax - elapsed) / 1000LL);
-			CCTime::sleep(sleepTime);
+			Time::sleep(sleepTime);
 		}
 	}
+    _deltaTime = (float)(elapsed / 1000000.0);
 	_frameTimer.reset();
 }
 
