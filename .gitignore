@@ -40,3 +40,5 @@ lib/debug/*
 /template/proj.android/gen
 template/proj.mac/bin
 build
+template/proj.android/app/assets
+local.properties
