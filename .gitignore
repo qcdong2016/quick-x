@@ -42,3 +42,4 @@ template/proj.mac/bin
 build
 template/proj.android/app/assets
 local.properties
+/template/proj.android/local.properties

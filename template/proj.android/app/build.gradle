@@ -11,6 +11,11 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
 
     sourceSets.main {
@@ -42,6 +47,12 @@ android {
 //            signingConfig signingConfigs.debug
         }
     }
+
+    externalNativeBuild {
+            cmake {
+                path "../../../CMakeLists.txt"
+            }
+        }
 }
 
 repositories {
