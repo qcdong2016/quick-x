@@ -4,14 +4,16 @@ set(CWD ${CMAKE_CURRENT_LIST_DIR})
 
 project(QuickX)
 
+add_subdirectory(${CWD}/lib/third_party/android/prebuilt/SDL2)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 link_directories(
-	${CWD}/lib/third_party/android/prebuilt/libcurl/libs/armeabi/
-	${CWD}/lib/third_party/android/prebuilt/libjpeg/libs/armeabi/
-	${CWD}/lib/third_party/android/prebuilt/libpng/libs/armeabi/
-	${CWD}/lib/third_party/android/prebuilt/libwebp/libs/armeabi/
-	${CWD}/lib/third_party/android/prebuilt/zlib/libs/armeabi/
+	${CWD}/lib/third_party/android/prebuilt/libcurl/libs/${ANDROID_ABI}/
+	${CWD}/lib/third_party/android/prebuilt/libjpeg/libs/${ANDROID_ABI}/
+	${CWD}/lib/third_party/android/prebuilt/libpng/libs/${ANDROID_ABI}/
+	${CWD}/lib/third_party/android/prebuilt/libwebp/libs/${ANDROID_ABI}/
+	${CWD}/lib/third_party/android/prebuilt/zlib/libs/${ANDROID_ABI}/
 )
 
 
@@ -292,14 +294,14 @@ set(QUICKX_SOURCES
 
 add_library(game SHARED template/sources/App.cpp ${QUICKX_SOURCES})
 
-target_link_libraries(
-	GLESv2
+target_link_libraries(game
+	GLESv1_CM GLESv2
 	log
 	android
-
-libcurl
-libjpeg
-libpng
-libwebp
-zlib
+	SDL2-static
+curl
+jpeg
+png
+webp
+z
 )
