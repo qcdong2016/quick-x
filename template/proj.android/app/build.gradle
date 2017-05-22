@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "org.quickx"
@@ -50,11 +50,24 @@ android {
     }
 
     externalNativeBuild {
-            cmake {
-                path "../../../CMakeLists.txt"
-            }
+        cmake {
+            path "../../../CMakeLists.txt"
         }
+    }
 }
+
+task copyScript (type: Sync) {
+    from '../../scripts'
+    into 'assets/scripts'
+}
+
+task copyRes(type: Sync) {
+    from '../../res'
+    into 'assets/res'
+}
+
+assemble.dependsOn(copyRes)
+assemble.dependsOn(copyScript)
 
 repositories {
     flatDir {

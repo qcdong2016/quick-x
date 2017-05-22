@@ -1,13 +1,10 @@
 #include <stdlib.h>
 #include <jni.h>
-#include <android/log.h>
 #include <string>
 #include "JniHelper.h"
 #include "cocoa/CCString.h"
-#include "engine/CCFileSystem.h"
 #include "Java_org_cocos2dx_lib_Cocos2dxHelper.h"
-#include "android/asset_manager_jni.h"
-
+#include "CCDevice.h"
 
 #define  LOG_TAG    "Java_org_cocos2dx_lib_Cocos2dxHelper.cpp"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -29,7 +26,7 @@ extern "C" {
     }
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetContext(JNIEnv*  env, jobject thiz, jobject context, jobject assetManager) {
         JniHelper::setClassLoaderFrom(context);
-        FileSystem::setAssetsManager(AAssetManager_fromJava(env, assetManager));
+//        FileSystem::setAssetsManager(AAssetManager_fromJava(env, assetManager));
     }
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetEditTextDialogResult(JNIEnv * env, jobject obj, jbyteArray text) {
         jsize  size = env->GetArrayLength(text);
@@ -152,7 +149,7 @@ std::string getFileDirectoryJNI() {
 std::string getCurrentLanguageJNI() {
     JniMethodInfo t;
     std::string ret("");
-    
+
     if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCurrentLanguage", "()Ljava/lang/String;")) {
         jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
         t.env->DeleteLocalRef(t.classID);

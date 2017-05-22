@@ -27,6 +27,7 @@ extern "C"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/jni/JniHelper.h"
 #include "android/asset_manager_jni.h"
 static AAssetManager* s_assetManager = nullptr;
 #endif
@@ -67,10 +68,10 @@ MemBuffer::~MemBuffer()
 
 static std::vector<std::string> s_searchPath;
 
-void FileSystem::setAssetsManager(void* assetsManager)
+void FileSystem::init()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	s_assetManager = (AAssetManager*)assetsManager;
+	s_assetManager = (AAssetManager*)JniHelper::getAssetManager();
 #endif
 }
 

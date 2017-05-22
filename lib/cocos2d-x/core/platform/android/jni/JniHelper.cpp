@@ -23,104 +23,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "JniHelper.h"
-#include <android/log.h>
-#include <string.h>
-#include <pthread.h>
+#include "CCDevice.h"
+#include "android/asset_manager_jni.h"
 
-#define  LOG_TAG    "JniHelper"
-#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
-
-static pthread_key_t g_key;
-
-static void _detachCurrentThread(void* a) {
-    cocos2d::JniHelper::getJavaVM()->DetachCurrentThread();
+extern  "C" {
+JNIEnv *Android_JNI_GetEnv(void);
+jclass Android_JNI_GetActivityClass(void);
 }
 
 namespace cocos2d {
 
 
-    JavaVM* JniHelper::_psJavaVM = NULL;
-    jmethodID JniHelper::loadclassMethod_methodID = NULL;
-    jobject JniHelper::classloader = NULL;
-
-    jclass JniHelper::getClassID(const char *className, JNIEnv *env)
-    {
-        if (NULL == className) {
-            return NULL;
-        }
-
-        if (!env)
-            env = getEnv();
-
-        jstring _jstrClassName = env->NewStringUTF(className);
-
-        jclass _clazz = (jclass) env->CallObjectMethod(cocos2d::JniHelper::classloader,
-                                                       cocos2d::JniHelper::loadclassMethod_methodID,
-                                                       _jstrClassName);
-
-        if (NULL == _clazz) {
-            LOGE("Classloader failed to find class of %s", className);
-            env->ExceptionClear();
-        }
-
-        env->DeleteLocalRef(_jstrClassName);
-            
-        return _clazz;
-    }
-
-    JavaVM* JniHelper::getJavaVM() {
-        pthread_t thisthread = pthread_self();
-        LOGD("JniHelper::getJavaVM(), pthread_self() = %ld", thisthread);
-        return _psJavaVM;
-    }
-
-    void JniHelper::setJavaVM(JavaVM *javaVM) {
-        pthread_t thisthread = pthread_self();
-        LOGD("JniHelper::setJavaVM(%p), pthread_self() = %ld", javaVM, thisthread);
-        _psJavaVM = javaVM;
-
-        pthread_key_create(&g_key, _detachCurrentThread);
-    }
-
-    JNIEnv* JniHelper::cacheEnv(JavaVM* jvm) {
-        JNIEnv* _env = NULL;
-        // get jni environment
-        jint ret = jvm->GetEnv((void**)&_env, JNI_VERSION_1_4);
-        
-        switch (ret) {
-        case JNI_OK :
-            // Success!
-            pthread_setspecific(g_key, _env);
-            return _env;
-                
-        case JNI_EDETACHED :
-            // Thread not attached
-            if (jvm->AttachCurrentThread(&_env, NULL) < 0)
-                {
-                    LOGE("Failed to get the environment using AttachCurrentThread()");
-
-                    return NULL;
-                } else {
-                // Success : Attached and obtained JNIEnv!
-                pthread_setspecific(g_key, _env);
-                return _env;
-            }
-                
-        case JNI_EVERSION :
-            // Cannot recover from this error
-            LOGE("JNI interface version 1.4 not supported");
-        default :
-            LOGE("Failed to get the environment using GetEnv()");
-            return NULL;
-        }
-    }
+    static jmethodID loadclassMethod_methodID = NULL;
+    static jobject classloader = NULL;
 
     JNIEnv* JniHelper::getEnv() {
-        JNIEnv *_env = (JNIEnv *)pthread_getspecific(g_key);
-        if (_env == NULL)
-            _env = JniHelper::cacheEnv(_psJavaVM);
-        return _env;
+        return Android_JNI_GetEnv();
+    }
+
+    void* JniHelper::getAssetManager()
+    {
+        JNIEnv* env = getEnv();
+        jclass activity = Android_JNI_GetActivityClass();
+        /* context = SDLActivity.getContext(); */
+        jmethodID mid = env->GetStaticMethodID(activity, "getContext","()Landroid/content/Context;");
+        jobject context = env->CallStaticObjectMethod(activity, mid);
+
+        /* assetManager = context.getAssets(); */
+        mid = env->GetMethodID(env->GetObjectClass(context), "getAssets", "()Landroid/content/res/AssetManager;");
+        jobject assetManager = env->CallObjectMethod(context, mid);
+
+        return AAssetManager_fromJava(env, assetManager);
     }
 
     bool JniHelper::setClassLoaderFrom(jobject activityinstance) {
@@ -147,8 +80,8 @@ namespace cocos2d {
             return false;
         }
 
-        JniHelper::classloader = cocos2d::JniHelper::getEnv()->NewGlobalRef(_c);
-        JniHelper::loadclassMethod_methodID = _m.methodID;
+        classloader = cocos2d::JniHelper::getEnv()->NewGlobalRef(_c);
+        loadclassMethod_methodID = _m.methodID;
 
         return true;
     }
@@ -165,20 +98,20 @@ namespace cocos2d {
 
         JNIEnv *env = JniHelper::getEnv();
         if (!env) {
-            LOGE("Failed to get JNIEnv");
+            CCLog("Failed to get JNIEnv");
             return false;
         }
             
-        jclass classID = getClassID(className);
+        jclass classID = env->FindClass(className);
         if (! classID) {
-            LOGE("Failed to find class %s", className);
+            CCLog("Failed to find class %s", className);
             env->ExceptionClear();
             return false;
         }
 
         jmethodID methodID = env->GetStaticMethodID(classID, methodName, paramCode);
         if (! methodID) {
-            LOGE("Failed to find static method id of %s", methodName);
+            CCLog("Failed to find static method id of %s", methodName);
             env->ExceptionClear();
             return false;
         }
@@ -206,14 +139,14 @@ namespace cocos2d {
 
         jclass classID = env->FindClass(className);
         if (! classID) {
-            LOGE("Failed to find class %s", className);
+            CCLog("Failed to find class %s", className);
             env->ExceptionClear();
             return false;
         }
 
         jmethodID methodID = env->GetMethodID(classID, methodName, paramCode);
         if (! methodID) {
-            LOGE("Failed to find method id of %s", methodName);
+            CCLog("Failed to find method id of %s", methodName);
             env->ExceptionClear();
             return false;
         }
@@ -240,16 +173,16 @@ namespace cocos2d {
             return false;
         }
 
-        jclass classID = getClassID(className);
+        jclass classID = env->FindClass(className);
         if (! classID) {
-            LOGE("Failed to find class %s", className);
+            CCLog("Failed to find class %s", className);
             env->ExceptionClear();
             return false;
         }
 
         jmethodID methodID = env->GetMethodID(classID, methodName, paramCode);
         if (! methodID) {
-            LOGE("Failed to find method id of %s", methodName);
+            CCLog("Failed to find method id of %s", methodName);
             env->ExceptionClear();
             return false;
         }
