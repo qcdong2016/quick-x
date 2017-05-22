@@ -62,6 +62,7 @@ THE SOFTWARE.
 #include "CCDebugHud.h"
 #include "resources/CCSpriteFrame.h"
 #include "resources/CCPlistResource.h"
+#include "CCFileSystem.h"
 
 /**
  Position of the FPS
@@ -555,6 +556,8 @@ int CCDirector::run()
 
 	this->init();
 	this->setOpenGLView(e);
+
+	FileSystem::init();
 
 	if (!_app->applicationDidFinishLaunching())
 		return 1;

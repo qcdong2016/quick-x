@@ -23,18 +23,23 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.quickx;
 
-import org.cocos2dx.lib.Cocos2dxActivity;
-
+import org.cocos2dx.lib.Cocos2dxHelper;
+import org.libsdl.app.SDLActivity;
 import android.os.Bundle;
 
-public class QuickXPlayer extends Cocos2dxActivity {
+public class QuickXPlayer extends SDLActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Cocos2dxHelper.init(this, null);
 	}
 
-    static {
-    	System.loadLibrary("game");
+	@Override
+	protected String[] getLibraries() {
+        return new String[] {
+            "game",
+		};
     }
 }

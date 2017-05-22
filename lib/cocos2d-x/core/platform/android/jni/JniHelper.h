@@ -42,26 +42,19 @@ class CC_DLL JniHelper
 public:
     
     static JNIEnv* getEnv();
-    static JavaVM* getJavaVM();
-    static void setJavaVM(JavaVM *javaVM);
 
-    static jclass getClassID(const char *className, JNIEnv *env=0);
     static bool setClassLoaderFrom(jobject activityInstance);
 
     static bool getStaticMethodInfo(JniMethodInfo &methodinfo, const char *className, const char *methodName, const char *paramCode);
     static bool getMethodInfo(JniMethodInfo &methodinfo, const char *className, const char *methodName, const char *paramCode);
     static std::string jstring2string(jstring str);
 
-    static jmethodID loadclassMethod_methodID;
-    static jobject classloader;
-
+    static void* getAssetManager();
 private:
-    static JNIEnv* cacheEnv(JavaVM* jvm);
     static bool getMethodInfo_DefaultClassLoader(JniMethodInfo &methodinfo,
                                                  const char *className,
                                                  const char *methodName,
                                                  const char *paramCode);
-    static JavaVM* _psJavaVM;
 };
 
 NS_CC_END

@@ -90,7 +90,7 @@ public class Cocos2dxETCLoader {
 			             length);
 			} catch (Exception e)
 			{
-				Log.d("invoke native function error", e.toString());
+				Log.d("Cocos2dxETCLoader", e.toString());
 				ret = false;
 			}
 			

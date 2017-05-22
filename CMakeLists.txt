@@ -298,7 +298,7 @@ target_link_libraries(game
 	GLESv1_CM GLESv2
 	log
 	android
-	SDL2-static
+	SDL2
 curl
 jpeg
 png
