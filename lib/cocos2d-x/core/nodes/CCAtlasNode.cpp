@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include "support/TransformUtils.h"
 
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "engine/CCResourceCache.h"
 #include "textures/CCTexture2D.h"
 

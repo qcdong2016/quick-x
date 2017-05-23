@@ -51,11 +51,11 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 // lua extensions
-#include "scripting/lua_extensions/lua_extensions.h"
+#include "lua_extensions/lua_extensions.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 // debugger
-#include "scripting/lua_extensions/debugger/debugger.h"
+#include "lua_extensions/debugger/debugger.h"
 #endif
 
 #include <string>

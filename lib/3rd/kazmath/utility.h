@@ -23,29 +23,52 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef C_STACK_H_INCLUDED
-#define C_STACK_H_INCLUDED
+#ifndef UTILITY_H_INCLUDED
+#define UTILITY_H_INCLUDED
 
-#include "../mat4.h"
+#include <math.h>
 
-typedef struct km_mat4_stack {
-    int capacity; //The total item capacity
-    int item_count; //The number of items
-    kmMat4* top;
-    kmMat4* stack;
-} km_mat4_stack;
+#ifndef kmScalar
+#define kmScalar float
+#endif
+
+#ifndef kmBool
+#define kmBool unsigned char
+#endif
+
+#ifndef kmEnum
+#define kmEnum unsigned int
+#endif
+
+#ifndef KM_FALSE
+#define KM_FALSE 0
+#endif
+
+#ifndef KM_TRUE
+#define KM_TRUE 1
+#endif
+
+#define kmPI 3.141592f
+#define kmPIOver180 0.017453f //  PI / 180
+#define kmPIUnder180 57.295779f // 180 / PI
+#define kmEpsilon 1.0 / 64.0
+
+#define EXPORT
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void km_mat4_stack_initialize(km_mat4_stack* stack);
-void km_mat4_stack_push(km_mat4_stack* stack, const kmMat4* item);
-void km_mat4_stack_pop(km_mat4_stack* stack, kmMat4* pOut);
-void km_mat4_stack_release(km_mat4_stack* stack);
+EXPORT kmScalar kmSQR(kmScalar s);
+EXPORT kmScalar kmDegreesToRadians(kmScalar degrees);
+EXPORT kmScalar kmRadiansToDegrees(kmScalar radians);
+
+EXPORT kmScalar kmMin(kmScalar lhs, kmScalar rhs);
+EXPORT kmScalar kmMax(kmScalar lhs, kmScalar rhs);
+EXPORT kmBool kmAlmostEqual(kmScalar lhs, kmScalar rhs);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // C_STACK_H_INCLUDED
+#endif /* UTILITY_H_INCLUDED */

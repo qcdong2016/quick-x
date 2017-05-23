@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "engine/CCDirector.h"
 #include "support/TransformUtils.h"
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "engine/CCFileSystem.h"
 #include "textures/CCTexture2D.h"
 #include "cocoa/CCDictionary.h"

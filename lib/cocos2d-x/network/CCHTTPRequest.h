@@ -2,7 +2,7 @@
 #ifndef __CC_HTTP_REQUEST_H_
 #define __CC_HTTP_REQUEST_H_
 
-#include "CCLuaEngine.h"
+#include "scripting/CCLuaEngine.h"
 #include "CCStdC.h"
 
 #ifdef _WINDOWS_

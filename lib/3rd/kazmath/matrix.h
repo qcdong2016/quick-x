@@ -23,53 +23,37 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef UTILITY_H_INCLUDED
-#define UTILITY_H_INCLUDED
-
-#include "platform/CCPlatformMacros.h"
-#include <math.h>
-
-#ifndef kmScalar
-#define kmScalar float
-#endif
-
-#ifndef kmBool
-#define kmBool unsigned char
-#endif
-
-#ifndef kmEnum
-#define kmEnum unsigned int
-#endif
-
-#ifndef KM_FALSE
-#define KM_FALSE 0
-#endif
-
-#ifndef KM_TRUE
-#define KM_TRUE 1
-#endif
-
-#define kmPI 3.141592f
-#define kmPIOver180 0.017453f //  PI / 180
-#define kmPIUnder180 57.295779f // 180 / PI
-#define kmEpsilon 1.0 / 64.0
+#ifndef KM_GL_MATRIX_H_INCLUDED
+#define KM_GL_MATRIX_H_INCLUDED
 
 
+#define KM_GL_MODELVIEW 0x1700
+#define KM_GL_PROJECTION 0x1701
+#define KM_GL_TEXTURE 0x1702
+
+typedef unsigned int kmGLEnum;
+
+#include "mat4.h"
+#include "vec3.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-CC_DLL kmScalar kmSQR(kmScalar s);
-CC_DLL kmScalar kmDegreesToRadians(kmScalar degrees);
-CC_DLL kmScalar kmRadiansToDegrees(kmScalar radians);
-
-CC_DLL kmScalar kmMin(kmScalar lhs, kmScalar rhs);
-CC_DLL kmScalar kmMax(kmScalar lhs, kmScalar rhs);
-CC_DLL kmBool kmAlmostEqual(kmScalar lhs, kmScalar rhs);
+EXPORT void kmGLFreeAll(void);
+EXPORT void kmGLPushMatrix(void);
+EXPORT void kmGLPopMatrix(void);
+EXPORT void kmGLMatrixMode(kmGLEnum mode);
+EXPORT void kmGLLoadIdentity(void);
+EXPORT void kmGLLoadMatrix(const kmMat4* pIn);
+EXPORT void kmGLMultMatrix(const kmMat4* pIn);
+EXPORT void kmGLTranslatef(float x, float y, float z);
+EXPORT void kmGLRotatef(float angle, float x, float y, float z);
+EXPORT void kmGLScalef(float x, float y, float z);
+EXPORT void kmGLGetMatrix(kmGLEnum mode, kmMat4* pOut);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* UTILITY_H_INCLUDED */
+#endif // MATRIX_H_INCLUDED

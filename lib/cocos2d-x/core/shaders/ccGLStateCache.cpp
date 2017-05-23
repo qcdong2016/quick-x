@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "ccConfig.h"
 
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "kazmath/kazmath.h"
 
 NS_CC_BEGIN

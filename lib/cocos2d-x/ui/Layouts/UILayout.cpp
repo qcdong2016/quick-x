@@ -28,7 +28,7 @@
 #include "nodes/CCDrawNode.h"
 #include "cocoa/CCDictionary.h"
 #include "kazmath/kazmath.h"
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "nodes/CCLayer.h"
 #include "CCEGLView.h"
 #include "nodes/CCDrawingPrimitives.h"

@@ -28,12 +28,12 @@
  ****************************************************************************/
 
 extern "C" {
-#include "tolua_fix.h"
+#include "scripting/tolua_fix.h"
 }
 
 #include <map>
 #include <string>
-#include "CCLuaEngine.h"
+#include "scripting/CCLuaEngine.h"
 #include "audio/SimpleAudioEngine.h"
 
 using namespace cocos2d;

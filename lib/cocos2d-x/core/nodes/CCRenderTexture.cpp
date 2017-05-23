@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 #include "CCGL.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "CCEGLView.h"
 #include "engine/CCFileSystem.h"
 

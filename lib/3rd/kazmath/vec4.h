@@ -23,32 +23,46 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef KAZMATH_AABB_H_INCLUDED
-#define KAZMATH_AABB_H_INCLUDED
+#ifndef VEC4_H_INCLUDED
+#define VEC4_H_INCLUDED
 
-#include "platform/CCPlatformMacros.h"
-#include "vec3.h"
 #include "utility.h"
+
+struct kmMat4;
+
+#pragma pack(push)  /* push current alignment to stack */
+#pragma pack(1)     /* set alignment to 1 byte boundary */
+
+typedef struct kmVec4 {
+    kmScalar x;
+    kmScalar y;
+    kmScalar z;
+    kmScalar w;
+} kmVec4;
+
+#pragma pack(pop)
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/**
- * A structure that represents an axis-aligned
- * bounding box.
- */
-typedef struct kmAABB {
-    kmVec3 min; /** The max corner of the box */
-    kmVec3 max; /** The min corner of the box */
-} kmAABB;
-
-CC_DLL const int kmAABBContainsPoint(const kmVec3* pPoint, const kmAABB* pBox);
-CC_DLL kmAABB* const kmAABBAssign(kmAABB* pOut, const kmAABB* pIn);
-CC_DLL kmAABB* const kmAABBScale(kmAABB* pOut, const kmAABB* pIn, kmScalar s);
+EXPORT kmVec4* kmVec4Fill(kmVec4* pOut, kmScalar x, kmScalar y, kmScalar z, kmScalar w);
+EXPORT kmVec4* kmVec4Add(kmVec4* pOut, const kmVec4* pV1, const kmVec4* pV2);
+EXPORT kmScalar kmVec4Dot(const kmVec4* pV1, const kmVec4* pV2);
+EXPORT kmScalar kmVec4Length(const kmVec4* pIn);
+EXPORT kmScalar kmVec4LengthSq(const kmVec4* pIn);
+EXPORT kmVec4* kmVec4Lerp(kmVec4* pOut, const kmVec4* pV1, const kmVec4* pV2, kmScalar t);
+EXPORT kmVec4* kmVec4Normalize(kmVec4* pOut, const kmVec4* pIn);
+EXPORT kmVec4* kmVec4Scale(kmVec4* pOut, const kmVec4* pIn, const kmScalar s); ///< Scales a vector to length s
+EXPORT kmVec4* kmVec4Subtract(kmVec4* pOut, const kmVec4* pV1, const kmVec4* pV2);
+EXPORT kmVec4* kmVec4Transform(kmVec4* pOut, const kmVec4* pV, const struct kmMat4* pM);
+EXPORT kmVec4* kmVec4TransformArray(kmVec4* pOut, unsigned int outStride,
+            const kmVec4* pV, unsigned int vStride, const struct kmMat4* pM, unsigned int count);
+EXPORT int     kmVec4AreEqual(const kmVec4* p1, const kmVec4* p2);
+EXPORT kmVec4* kmVec4Assign(kmVec4* pOut, const kmVec4* pIn);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif // VEC4_H_INCLUDED

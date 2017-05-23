@@ -48,7 +48,7 @@ THE SOFTWARE.
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
 #include "kazmath/kazmath.h"
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "platform/CCImage.h"
 #include "CCEGLView.h"
 #include "CCConfiguration.h"

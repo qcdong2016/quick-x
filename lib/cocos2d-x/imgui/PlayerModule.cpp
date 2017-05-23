@@ -11,7 +11,7 @@
 #include "CCEGLView.h"
 #include "nodes/CCLabelTTF.h"
 #include "nodes/CCScene.h"
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 NS_CC_BEGIN
 

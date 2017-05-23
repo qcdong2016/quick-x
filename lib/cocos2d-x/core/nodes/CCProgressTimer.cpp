@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "support/TransformUtils.h"
 #include "nodes/CCDrawingPrimitives.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 #include <float.h>
 #include "textures/CCTexture2D.h"

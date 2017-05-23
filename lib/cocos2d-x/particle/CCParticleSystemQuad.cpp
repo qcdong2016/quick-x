@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "support/TransformUtils.h"
 
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN

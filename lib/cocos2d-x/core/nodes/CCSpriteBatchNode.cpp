@@ -35,7 +35,7 @@
 #include "engine/CCDirector.h"
 #include "support/TransformUtils.h"
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 NS_CC_BEGIN
 

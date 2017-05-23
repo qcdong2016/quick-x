@@ -65,7 +65,11 @@ elseif (MAC)
         src/power/macosx/*.c src/thread/pthread/*.c src/timer/unix/*.c src/video/cocoa/*.m src/filesystem/cocoa/*.m
     )
 elseif (ANDROID)
-    add_definitions(-DGL_GLEXT_PROTOTYPES)
+    add_definitions(
+        -DGL_GLEXT_PROTOTYPES
+        -D__ANDROID__
+    )
+
     file (GLOB SYS_C_FILES
         src/audio/android/*.c 
         src/audio/dummy/*.c 
@@ -80,46 +84,38 @@ elseif (ANDROID)
         src/haptic/dummy/*.c 
         src/filesystem/dummy/*.c
         src/filesystem/android/*.c
+        src/main/android/*.c
     )
 endif()
-macro (setup_library name)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-    include_directories(${INCLUDE_DIRS})
-    add_library(${name} STATIC ${SOURCE_FILES})
-endmacro()
 
 file (GLOB H_FILES include/*.h)
 
 set (SOURCE_FILES ${C_FILES} ${SYS_C_FILES} ${H_FILES})
-
 set (INCLUDE_DIRS include)
 
-foreach(src_file ${SOURCE_FILES})
-    get_filename_component (PATH ${src_file} PATH)
-    string (REPLACE ${CMAKE_CURRENT_SOURCE_DIR} "" PATH ${PATH})
-    string (REPLACE / \\ PATH ${PATH})
-    source_group ("Source Files\\${PATH}" FILES ${src_file})
-endforeach()
+# foreach(src_file ${SOURCE_FILES})
+#     get_filename_component (PATH ${src_file} PATH)
+#     string (REPLACE ${CMAKE_CURRENT_SOURCE_DIR} "" PATH ${PATH})
+#     string (REPLACE / \\ PATH ${PATH})
+#     source_group ("Source Files\\${PATH}" FILES ${src_file})
+# endforeach()
 
-add_definitions(-DHAVE_LIBC=1)
+add_definitions(
+    -DHAVE_LIBC=1
+    -D_CRT_SECURE_NO_WARNINGS
+)
 
-setup_library (SDL2-static)
+
+include_directories(${INCLUDE_DIRS})
+add_library(SDL2 STATIC ${SOURCE_FILES})
 
 if (WIN32)
-    target_link_libraries(SDL2-static user32 gdi32 winmm imm32 ole32 oleaut32 version uuid)
+    target_link_libraries(SDL2 user32 gdi32 winmm imm32 ole32 oleaut32 version uuid)
 elseif(ANDROID)
-    target_link_libraries(SDL2-static dl log android GLESv1_CM GLESv2)
+    set(EXTRA_LDFLAGS "-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit")
+    target_link_libraries(SDL2 dl log android GLESv1_CM GLESv2 ${EXTRA_LDFLAGS})
 endif()
 
-
-if (ANDROID)
-    set (SOURCE_FILES src/main/android/SDL_android_main.c)
-elseif (WIN32)
-    set (SOURCE_FILES src/main/windows/SDL_windows_main.c)
-endif()
-
-set (INCLUDE_DIRS include)
-setup_library (SDL2main)
 
 
 

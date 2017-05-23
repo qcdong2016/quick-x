@@ -23,38 +23,31 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef KM_GL_MATRIX_H_INCLUDED
-#define KM_GL_MATRIX_H_INCLUDED
+#ifndef KAZMATH_AABB_H_INCLUDED
+#define KAZMATH_AABB_H_INCLUDED
 
-#include "platform/CCPlatformMacros.h"
-
-#define KM_GL_MODELVIEW 0x1700
-#define KM_GL_PROJECTION 0x1701
-#define KM_GL_TEXTURE 0x1702
-
-typedef unsigned int kmGLEnum;
-
-#include "../mat4.h"
-#include "../vec3.h"
+#include "vec3.h"
+#include "utility.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void CC_DLL kmGLFreeAll(void);
-void CC_DLL kmGLPushMatrix(void);
-void CC_DLL kmGLPopMatrix(void);
-void CC_DLL kmGLMatrixMode(kmGLEnum mode);
-void CC_DLL kmGLLoadIdentity(void);
-void CC_DLL kmGLLoadMatrix(const kmMat4* pIn);
-void CC_DLL kmGLMultMatrix(const kmMat4* pIn);
-void CC_DLL kmGLTranslatef(float x, float y, float z);
-void CC_DLL kmGLRotatef(float angle, float x, float y, float z);
-void CC_DLL kmGLScalef(float x, float y, float z);
-void CC_DLL kmGLGetMatrix(kmGLEnum mode, kmMat4* pOut);
+/**
+ * A structure that represents an axis-aligned
+ * bounding box.
+ */
+typedef struct kmAABB {
+    kmVec3 min; /** The max corner of the box */
+    kmVec3 max; /** The min corner of the box */
+} kmAABB;
+
+EXPORT const int kmAABBContainsPoint(const kmVec3* pPoint, const kmAABB* pBox);
+EXPORT kmAABB* const kmAABBAssign(kmAABB* pOut, const kmAABB* pIn);
+EXPORT kmAABB* const kmAABBScale(kmAABB* pOut, const kmAABB* pIn, kmScalar s);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // MATRIX_H_INCLUDED
+#endif

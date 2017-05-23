@@ -41,7 +41,7 @@
 #include "support/TransformUtils.h"
 #include "platform/CCImage.h"
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include <string.h>
 
 using namespace std;

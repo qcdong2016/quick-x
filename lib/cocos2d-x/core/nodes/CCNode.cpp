@@ -36,7 +36,7 @@
 #include "shaders/CCGLProgram.h"
 #include "nodes/CCScene.h"
 // externals
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "support/component/CCComponent.h"
 #include "support/component/CCComponentContainer.h"
 

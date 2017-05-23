@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "support/data_support/uthash.h"
 #include "cocoa/CCString.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "kazmath/kazmath.h"
 #include "engine/CCFileSystem.h"
 

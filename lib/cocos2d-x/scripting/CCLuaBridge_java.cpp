@@ -14,6 +14,48 @@ extern "C" {
 #include "tolua_fix.h"
 }
 
+
+extern "C" {
+
+JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_callLuaFunctionWithString
+  (JNIEnv *env, jclass cls, jint functionId, jstring value)
+{
+    const char *value_ = env->GetStringUTFChars(value, 0);
+    // int ret = CCLuaJavaBridge::callLuaFunctionById(functionId, value_);
+    env->ReleaseStringUTFChars(value, value_);
+    // return ret;
+    return 0;
+}
+
+JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_callLuaGlobalFunctionWithString
+  (JNIEnv *env, jclass cls, jstring luaFunctionName, jstring value)
+{
+    const char *luaFunctionName_ = env->GetStringUTFChars(luaFunctionName, 0);
+    const char *value_ = env->GetStringUTFChars(value, 0);
+    // int ret = CCLuaJavaBridge::callLuaGlobalFunction(luaFunctionName_, value_);
+    env->ReleaseStringUTFChars(luaFunctionName, luaFunctionName_);
+    env->ReleaseStringUTFChars(value, value_);
+    // return ret;
+    return 0;
+}
+
+JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_retainLuaFunction
+  (JNIEnv *env, jclass cls, jint luaFunctionId)
+{
+    // return CCLuaJavaBridge::retainLuaFunctionById(luaFunctionId);
+    return 0;
+}
+
+JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_releaseLuaFunction
+  (JNIEnv *env, jclass cls, jint luaFunctionId)
+{
+    // return CCLuaJavaBridge::releaseLuaFunctionById(luaFunctionId);
+    return 0;
+}
+
+} // extern "C"
+
+
 NS_CC_BEGIN
 
 inline string jString2stdString(JNIEnv* env, jstring jstr)
