@@ -24,7 +24,7 @@
 
 #import "CCUserDefault.h"
 #import <string>
-#import "../tinyxml2/tinyxml2.h"
+#import "tinyxml2/tinyxml2.h"
 #import "platform/CCPlatformConfig.h"
 #import "platform/CCPlatformMacros.h"
 #include "engine/CCFileSystem.h"

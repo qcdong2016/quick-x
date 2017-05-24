@@ -327,12 +327,11 @@
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions/\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/3rd\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/tolua\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				SDKROOT = iphoneos;
@@ -358,12 +357,11 @@
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/ios\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions/\"",
+					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
+					"\"$(QUICKX_ROOT)/lib/3rd\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/tolua\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

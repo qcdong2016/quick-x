@@ -382,13 +382,10 @@
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
-					"\"$(QUICKX_ROOT)/lib/third_party/mac/SLD2\"",
+					"\"$(QUICKX_ROOT)/lib/3rd\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = binary;
@@ -426,13 +423,10 @@
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/kazmath/include\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/tolua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/cocoslua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/lua_extensions\"",
 					"\"$(QUICKX_ROOT)/lib/cocos2d-x\"",
-					"\"$(QUICKX_ROOT)/lib/third_party/mac/SLD2\"",
+					"\"$(QUICKX_ROOT)/lib/3rd\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/tolua\"",
+					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INFOPLIST_OUTPUT_FORMAT = binary;

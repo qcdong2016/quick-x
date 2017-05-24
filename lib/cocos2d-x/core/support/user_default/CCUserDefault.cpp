@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCUserDefault.h"
-#include "../tinyxml2/tinyxml2.h"
+#include "tinyxml2/tinyxml2.h"
 #include "engine/CCFileSystem.h"
 #include "ccMacros.h"
 
