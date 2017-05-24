@@ -1,3 +1,0 @@
-[submodule "lib/third_party"]
-	path = lib/third_party
-	url = https://github.com/qcdong2016/quick-x-libs.git

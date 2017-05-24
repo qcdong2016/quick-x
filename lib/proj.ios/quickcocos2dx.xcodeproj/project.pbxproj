@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F19B8261DB91AA200892C76 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F19B8241DB91AA200892C76 /* libcurl.a */; };
-		9F19B8271DB91AA200892C76 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F19B8251DB91AA200892C76 /* libwebp.a */; };
 		9F1FE6561DAD365D008FE0C7 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE6371DAD365D008FE0C7 /* CDAudioManager.m */; };
 		9F1FE6571DAD365D008FE0C7 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE63A1DAD365D008FE0C7 /* CDOpenALSupport.m */; };
 		9F1FE6581DAD365D008FE0C7 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FE63C1DAD365D008FE0C7 /* CocosDenshion.m */; };
@@ -369,7 +367,6 @@
 		B1A757461DEA79E1002F0D4C /* CCTextureETC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A756901DEA79E1002F0D4C /* CCTextureETC.cpp */; };
 		B1A757471DEA79E1002F0D4C /* CCTexturePVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A756921DEA79E1002F0D4C /* CCTexturePVR.cpp */; };
 		B1A757481DEA79E1002F0D4C /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A756951DEA79E1002F0D4C /* CCTouch.cpp */; };
-		B1ADD6D51EBC795E00D06C19 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6D41EBC795E00D06C19 /* libSDL2.a */; };
 		B1ADD6D71EBC797A00D06C19 /* CCTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1ADD6D61EBC797A00D06C19 /* CCTimer.cpp */; };
 		B1ADD6D91EBC79C200D06C19 /* CCEGLView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1ADD6D81EBC79C200D06C19 /* CCEGLView.cpp */; };
 		B1B896041D8C664C00F80112 /* UIEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1B895D21D8C664C00F80112 /* UIEditBoxImplIOS.mm */; };
@@ -391,10 +388,6 @@
 		B1B896181D8C664C00F80112 /* UITextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895FC1D8C664C00F80112 /* UITextField.cpp */; };
 		B1B896191D8C664C00F80112 /* UITouchGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B895FE1D8C664C00F80112 /* UITouchGroup.cpp */; };
 		B1B8961A1D8C664C00F80112 /* UIWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B896001D8C664C00F80112 /* UIWidget.cpp */; };
-		B1B896281D8C665D00F80112 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B8961D1D8C665D00F80112 /* CCHTTPRequest.cpp */; };
-		B1B8962A1D8C665D00F80112 /* CCNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B896211D8C665D00F80112 /* CCNetwork.cpp */; };
-		B1B8962C1D8C665D00F80112 /* CCNetworkIOSMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1B896241D8C665D00F80112 /* CCNetworkIOSMac.mm */; };
-		B1B8962E1D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B896261D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp */; };
 		B1D371391DBFC54600E591CE /* CCAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3711D1DBFC54600E591CE /* CCAction.cpp */; };
 		B1D3713A1DBFC54600E591CE /* CCActionCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3711F1DBFC54600E591CE /* CCActionCamera.cpp */; };
 		B1D3713B1DBFC54600E591CE /* CCActionCatmullRom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D371211DBFC54600E591CE /* CCActionCatmullRom.cpp */; };
@@ -413,8 +406,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9F19B8241DB91AA200892C76 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
-		9F19B8251DB91AA200892C76 /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../third_party/ios/libraries/libwebp.a; sourceTree = "<group>"; };
 		9F1FE6361DAD365D008FE0C7 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		9F1FE6371DAD365D008FE0C7 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		9F1FE6381DAD365D008FE0C7 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1212,7 +1203,6 @@
 		B1A756951DEA79E1002F0D4C /* CCTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTouch.cpp; sourceTree = "<group>"; };
 		B1A756961DEA79E1002F0D4C /* CCTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTouch.h; sourceTree = "<group>"; };
 		B1ADD6D21EBC779200D06C19 /* CCGL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCGL.h; sourceTree = "<group>"; };
-		B1ADD6D41EBC795E00D06C19 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../third_party/ios/libraries/libSDL2.a; sourceTree = "<group>"; };
 		B1ADD6D61EBC797A00D06C19 /* CCTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTimer.cpp; sourceTree = "<group>"; };
 		B1ADD6D81EBC79C200D06C19 /* CCEGLView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEGLView.cpp; sourceTree = "<group>"; };
 		B1B895C81D8C664C00F80112 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
@@ -1255,14 +1245,6 @@
 		B1B895FF1D8C664C00F80112 /* UITouchGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITouchGroup.h; sourceTree = "<group>"; };
 		B1B896001D8C664C00F80112 /* UIWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWidget.cpp; sourceTree = "<group>"; };
 		B1B896011D8C664C00F80112 /* UIWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidget.h; sourceTree = "<group>"; };
-		B1B8961C1D8C665D00F80112 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
-		B1B8961D1D8C665D00F80112 /* CCHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCHTTPRequest.cpp; sourceTree = "<group>"; };
-		B1B8961E1D8C665D00F80112 /* CCHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHTTPRequest.h; sourceTree = "<group>"; };
-		B1B896211D8C665D00F80112 /* CCNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCNetwork.cpp; sourceTree = "<group>"; };
-		B1B896221D8C665D00F80112 /* CCNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetwork.h; sourceTree = "<group>"; };
-		B1B896241D8C665D00F80112 /* CCNetworkIOSMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNetworkIOSMac.mm; sourceTree = "<group>"; };
-		B1B896261D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_httprequest_luabinding.cpp; sourceTree = "<group>"; };
-		B1B896271D8C665D00F80112 /* cocos2dx_httprequest_luabinding.tolua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cocos2dx_httprequest_luabinding.tolua; sourceTree = "<group>"; };
 		B1D3711D1DBFC54600E591CE /* CCAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAction.cpp; sourceTree = "<group>"; };
 		B1D3711E1DBFC54600E591CE /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		B1D3711F1DBFC54600E591CE /* CCActionCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionCamera.cpp; sourceTree = "<group>"; };
@@ -1298,9 +1280,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1ADD6D51EBC795E00D06C19 /* libSDL2.a in Frameworks */,
-				9F19B8261DB91AA200892C76 /* libcurl.a in Frameworks */,
-				9F19B8271DB91AA200892C76 /* libwebp.a in Frameworks */,
 				F45A2BA1166B07B600760194 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2836,21 +2815,6 @@
 			path = ScrollWidget;
 			sourceTree = "<group>";
 		};
-		B1B8961B1D8C665D00F80112 /* network */ = {
-			isa = PBXGroup;
-			children = (
-				B1B8961C1D8C665D00F80112 /* Android.mk */,
-				B1B8961D1D8C665D00F80112 /* CCHTTPRequest.cpp */,
-				B1B8961E1D8C665D00F80112 /* CCHTTPRequest.h */,
-				B1B896211D8C665D00F80112 /* CCNetwork.cpp */,
-				B1B896221D8C665D00F80112 /* CCNetwork.h */,
-				B1B896241D8C665D00F80112 /* CCNetworkIOSMac.mm */,
-				B1B896261D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp */,
-				B1B896271D8C665D00F80112 /* cocos2dx_httprequest_luabinding.tolua */,
-			);
-			path = network;
-			sourceTree = "<group>";
-		};
 		B1D3711B1DBFC54600E591CE /* actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2927,9 +2891,6 @@
 		F45A2B9F166B07B600760194 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1ADD6D41EBC795E00D06C19 /* libSDL2.a */,
-				9F19B8241DB91AA200892C76 /* libcurl.a */,
-				9F19B8251DB91AA200892C76 /* libwebp.a */,
 				F45A2BA0166B07B600760194 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -2943,7 +2904,6 @@
 				B12BB9461EBC6F8B006B8622 /* zip */,
 				B1A755041DEA79E1002F0D4C /* core */,
 				9F1FE6211DAD365D008FE0C7 /* audio */,
-				B1B8961B1D8C665D00F80112 /* network */,
 				9F1FE6981DAD3905008FE0C7 /* particle */,
 				B1F8703C1D7D796F00AF7173 /* scripting */,
 				B178127C1D6949C90093D282 /* spine */,
@@ -3149,7 +3109,6 @@
 				B1E033E11E10E65200C3E3C1 /* CCLuaBridge_java.cpp in Sources */,
 				B1A756D61DEA79E1002F0D4C /* CCProgressTimer.cpp in Sources */,
 				9F1FE6581DAD365D008FE0C7 /* CocosDenshion.m in Sources */,
-				B1B8962C1D8C665D00F80112 /* CCNetworkIOSMac.mm in Sources */,
 				B1A7572F1DEA79E1002F0D4C /* ccGLStateCache.cpp in Sources */,
 				9F1FE68B1DAD389E008FE0C7 /* CCLuaValue.cpp in Sources */,
 				B1A756DD1DEA79E1002F0D4C /* CCTextFieldTTF.cpp in Sources */,
@@ -3372,10 +3331,8 @@
 				B186B7A71ED43C6C00682326 /* neon_matrix_impl.c in Sources */,
 				B186B9601ED43C6D00682326 /* tolua_map.c in Sources */,
 				B186B83C1ED43C6C00682326 /* SDL_joystick.c in Sources */,
-				B1B8962E1D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp in Sources */,
 				B186B8A31ED43C6C00682326 /* SDL_thread.c in Sources */,
 				B186B8D01ED43C6C00682326 /* SDL_nullframebuffer.c in Sources */,
-				B1B896281D8C665D00F80112 /* CCHTTPRequest.cpp in Sources */,
 				B19756CC1ED53BF700A476F0 /* CCImage.cpp in Sources */,
 				B1A756DB1DEA79E1002F0D4C /* CCSprite.cpp in Sources */,
 				B186B8CF1ED43C6C00682326 /* SDL_nullevents.c in Sources */,
@@ -3390,7 +3347,6 @@
 				B186B8761ED43C6C00682326 /* SDL_blendpoint.c in Sources */,
 				B186B7B21ED43C6C00682326 /* lcode.c in Sources */,
 				B15C9C981D78088F004A5244 /* SkeletonAnimation.cpp in Sources */,
-				B1B8962A1D8C665D00F80112 /* CCNetwork.cpp in Sources */,
 				B186B8921ED43C6C00682326 /* SDL_test_log.c in Sources */,
 				B186B8891ED43C6C00682326 /* SDL_test_crc32.c in Sources */,
 				B1D371391DBFC54600E591CE /* CCAction.cpp in Sources */,

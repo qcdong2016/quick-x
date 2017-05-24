@@ -18,13 +18,6 @@ set(ThirdInc
 	${CWD}/lib/cocos2d-x/
 	${CWD}/lib/cocos2d-x/core
 	${CWD}/lib/cocos2d-x/core/platform
-
-	${CWD}/lib/third_party/android/prebuilt/SDL2/include
-	${CWD}/lib/third_party/android/prebuilt/libcurl/include
-	${CWD}/lib/third_party/android/prebuilt/libjpeg/include
-	${CWD}/lib/third_party/android/prebuilt/libpng/include
-	${CWD}/lib/third_party/android/prebuilt/libwebp/include
-	${CWD}/lib/third_party/android/prebuilt/zlib/include
 )
 
 macro (library name)
@@ -48,17 +41,17 @@ add_subdirectory(lib/cocos2d-x)
 include_directories(${ThirdInc})
 
 
-link_directories(
-	${CWD}/lib/third_party/android/prebuilt/libcurl/libs/${ANDROID_ABI}/
-	${CWD}/lib/third_party/android/prebuilt/libjpeg/libs/${ANDROID_ABI}/
-	${CWD}/lib/third_party/android/prebuilt/libpng/libs/${ANDROID_ABI}/
-	${CWD}/lib/third_party/android/prebuilt/libwebp/libs/${ANDROID_ABI}/
-	${CWD}/lib/third_party/android/prebuilt/zlib/libs/${ANDROID_ABI}/
-)
+# link_directories(
+# 	${CWD}/lib/third_party/android/prebuilt/libcurl/libs/${ANDROID_ABI}/
+# 	${CWD}/lib/third_party/android/prebuilt/libjpeg/libs/${ANDROID_ABI}/
+# 	${CWD}/lib/third_party/android/prebuilt/libpng/libs/${ANDROID_ABI}/
+# 	${CWD}/lib/third_party/android/prebuilt/libwebp/libs/${ANDROID_ABI}/
+# 	${CWD}/lib/third_party/android/prebuilt/zlib/libs/${ANDROID_ABI}/
+# )
 
 
 add_library(game SHARED template/sources/App.cpp)
 
-target_link_libraries(game quickx 
-curl jpeg png webp z
-)
+target_link_libraries(game quickx)
+# curl jpeg png webp z
+# )

@@ -36,11 +36,6 @@
 		9F7366881DAD484700D0B435 /* SkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F73664C1DAD484700D0B435 /* SkeletonAnimation.cpp */; };
 		9F7366A31DAD484700D0B435 /* spine-cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366841DAD484700D0B435 /* spine-cocos2dx.cpp */; };
 		9F7366A41DAD484700D0B435 /* spine_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366861DAD484700D0B435 /* spine_luabinding.cpp */; };
-		9F7366B21DAD491400D0B435 /* CCHTTPRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366A71DAD491400D0B435 /* CCHTTPRequest.cpp */; };
-		9F7366B41DAD491400D0B435 /* CCNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366AB1DAD491400D0B435 /* CCNetwork.cpp */; };
-		9F7366B61DAD491400D0B435 /* CCNetworkIOSMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366AE1DAD491400D0B435 /* CCNetworkIOSMac.mm */; };
-		9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7366B01DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp */; };
-		9F8EE1531DB5FE53007A0DFD /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8EE1521DB5FE53007A0DFD /* libwebp.a */; };
 		9F9A38871DAB88E000236246 /* UIEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A384E1DAB88E000236246 /* UIEditBoxImplMac.mm */; };
 		9F9A388A1DAB88E000236246 /* UILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38541DAB88E000236246 /* UILayout.cpp */; };
 		9F9A388B1DAB88E000236246 /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A38561DAB88E000236246 /* UILayoutDefine.cpp */; };
@@ -80,7 +75,6 @@
 		B17849071EB9B6DD00EA61F5 /* unzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B17849001EB9B6DD00EA61F5 /* unzip.cpp */; };
 		B17849081EB9B6DD00EA61F5 /* ZipUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B17849021EB9B6DD00EA61F5 /* ZipUtils.cpp */; };
 		B178490B1EB9B6F800EA61F5 /* PlayerModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B17849091EB9B6F800EA61F5 /* PlayerModule.cpp */; };
-		B18237281DC8613200E8434B /* ReachabilityIOSMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B18237271DC8613200E8434B /* ReachabilityIOSMac.m */; };
 		B19754FB1ED5180C00A476F0 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19750DE1ED5180B00A476F0 /* imgui.cpp */; };
 		B19754FC1ED5180C00A476F0 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19750E01ED5180B00A476F0 /* imgui_demo.cpp */; };
 		B19754FD1ED5180C00A476F0 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19750E11ED5180B00A476F0 /* imgui_draw.cpp */; };
@@ -211,10 +205,6 @@
 		B19755BE1ED5180C00A476F0 /* SDL_syspower.c in Sources */ = {isa = PBXBuildFile; fileRef = B19752F41ED5180B00A476F0 /* SDL_syspower.c */; };
 		B19755C71ED5180C00A476F0 /* SDL_render_gl.c in Sources */ = {isa = PBXBuildFile; fileRef = B19753091ED5180B00A476F0 /* SDL_render_gl.c */; };
 		B19755C81ED5180C00A476F0 /* SDL_shaders_gl.c in Sources */ = {isa = PBXBuildFile; fileRef = B197530A1ED5180B00A476F0 /* SDL_shaders_gl.c */; };
-		B19755C91ED5180C00A476F0 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = B197530E1ED5180B00A476F0 /* SDL_render_gles.c */; };
-		B19755CA1ED5180C00A476F0 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = B19753111ED5180B00A476F0 /* SDL_render_gles2.c */; };
-		B19755CB1ED5180C00A476F0 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = B19753121ED5180B00A476F0 /* SDL_shaders_gles2.c */; };
-		B19755CD1ED5180C00A476F0 /* SDL_d3dmath.c in Sources */ = {isa = PBXBuildFile; fileRef = B19753161ED5180B00A476F0 /* SDL_d3dmath.c */; };
 		B19755CE1ED5180C00A476F0 /* SDL_render.c in Sources */ = {isa = PBXBuildFile; fileRef = B19753181ED5180B00A476F0 /* SDL_render.c */; };
 		B19755CF1ED5180C00A476F0 /* SDL_yuv_mmx.c in Sources */ = {isa = PBXBuildFile; fileRef = B197531A1ED5180B00A476F0 /* SDL_yuv_mmx.c */; };
 		B19755D01ED5180C00A476F0 /* SDL_yuv_sw.c in Sources */ = {isa = PBXBuildFile; fileRef = B197531B1ED5180B00A476F0 /* SDL_yuv_sw.c */; };
@@ -337,6 +327,15 @@
 		B19756BF1ED5180C00A476F0 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = B19754FA1ED5180C00A476F0 /* tolua_to.c */; };
 		B19756C41ED518D600A476F0 /* SDL_diskaudio.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756C21ED518D600A476F0 /* SDL_diskaudio.c */; };
 		B19756C81ED5202E00A476F0 /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19756C71ED5202E00A476F0 /* CCImage.cpp */; };
+		B19756D31ED555D800A476F0 /* SDL_syshaptic.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756D11ED555D800A476F0 /* SDL_syshaptic.c */; };
+		B19756D51ED555F800A476F0 /* SDL_power.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756D41ED555F800A476F0 /* SDL_power.c */; };
+		B19756E61ED5565D00A476F0 /* SDL_blendfillrect.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756D71ED5565D00A476F0 /* SDL_blendfillrect.c */; };
+		B19756E71ED5565D00A476F0 /* SDL_blendline.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756D91ED5565D00A476F0 /* SDL_blendline.c */; };
+		B19756E81ED5565D00A476F0 /* SDL_blendpoint.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756DB1ED5565D00A476F0 /* SDL_blendpoint.c */; };
+		B19756E91ED5565D00A476F0 /* SDL_drawline.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756DE1ED5565D00A476F0 /* SDL_drawline.c */; };
+		B19756EA1ED5565D00A476F0 /* SDL_drawpoint.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756E01ED5565D00A476F0 /* SDL_drawpoint.c */; };
+		B19756EB1ED5565D00A476F0 /* SDL_render_sw.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756E21ED5565D00A476F0 /* SDL_render_sw.c */; };
+		B19756EC1ED5565D00A476F0 /* SDL_rotate.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756E41ED5565D00A476F0 /* SDL_rotate.c */; };
 		B1A754551DEA7968002F0D4C /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752BE1DEA7968002F0D4C /* ID.cpp */; };
 		B1A754561DEA7968002F0D4C /* MathDefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752C11DEA7968002F0D4C /* MathDefs.cpp */; };
 		B1A754571DEA7968002F0D4C /* ProcessUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752C31DEA7968002F0D4C /* ProcessUtils.cpp */; };
@@ -486,15 +485,6 @@
 		9F7366841DAD484700D0B435 /* spine-cocos2dx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "spine-cocos2dx.cpp"; sourceTree = "<group>"; };
 		9F7366851DAD484700D0B435 /* spine-cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spine-cocos2dx.h"; sourceTree = "<group>"; };
 		9F7366861DAD484700D0B435 /* spine_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spine_luabinding.cpp; sourceTree = "<group>"; };
-		9F7366A61DAD491400D0B435 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
-		9F7366A71DAD491400D0B435 /* CCHTTPRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCHTTPRequest.cpp; sourceTree = "<group>"; };
-		9F7366A81DAD491400D0B435 /* CCHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHTTPRequest.h; sourceTree = "<group>"; };
-		9F7366AB1DAD491400D0B435 /* CCNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCNetwork.cpp; sourceTree = "<group>"; };
-		9F7366AC1DAD491400D0B435 /* CCNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetwork.h; sourceTree = "<group>"; };
-		9F7366AE1DAD491400D0B435 /* CCNetworkIOSMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNetworkIOSMac.mm; sourceTree = "<group>"; };
-		9F7366B01DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_httprequest_luabinding.cpp; sourceTree = "<group>"; };
-		9F7366B11DAD491400D0B435 /* cocos2dx_httprequest_luabinding.tolua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cocos2dx_httprequest_luabinding.tolua; sourceTree = "<group>"; };
-		9F8EE1521DB5FE53007A0DFD /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../third_party/mac/libraries/libwebp.a; sourceTree = "<group>"; };
 		9F9A38441DAB88E000236246 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
 		9F9A384D1DAB88E000236246 /* UIEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplMac.h; sourceTree = "<group>"; };
 		9F9A384E1DAB88E000236246 /* UIEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxImplMac.mm; sourceTree = "<group>"; };
@@ -579,8 +569,6 @@
 		B17849031EB9B6DD00EA61F5 /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		B17849091EB9B6F800EA61F5 /* PlayerModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerModule.cpp; sourceTree = "<group>"; };
 		B178490A1EB9B6F800EA61F5 /* PlayerModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerModule.h; sourceTree = "<group>"; };
-		B18237271DC8613200E8434B /* ReachabilityIOSMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityIOSMac.m; sourceTree = "<group>"; };
-		B18237291DC8613900E8434B /* ReachabilityIOSMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityIOSMac.h; sourceTree = "<group>"; };
 		B19750D91ED5180B00A476F0 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		B19750DB1ED5180B00A476F0 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		B19750DC1ED5180B00A476F0 /* fontstash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontstash.h; sourceTree = "<group>"; };
@@ -916,14 +904,6 @@
 		B19753091ED5180B00A476F0 /* SDL_render_gl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_render_gl.c; sourceTree = "<group>"; };
 		B197530A1ED5180B00A476F0 /* SDL_shaders_gl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_shaders_gl.c; sourceTree = "<group>"; };
 		B197530B1ED5180B00A476F0 /* SDL_shaders_gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_shaders_gl.h; sourceTree = "<group>"; };
-		B197530D1ED5180B00A476F0 /* SDL_glesfuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_glesfuncs.h; sourceTree = "<group>"; };
-		B197530E1ED5180B00A476F0 /* SDL_render_gles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_render_gles.c; sourceTree = "<group>"; };
-		B19753101ED5180B00A476F0 /* SDL_gles2funcs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_gles2funcs.h; sourceTree = "<group>"; };
-		B19753111ED5180B00A476F0 /* SDL_render_gles2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_render_gles2.c; sourceTree = "<group>"; };
-		B19753121ED5180B00A476F0 /* SDL_shaders_gles2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_shaders_gles2.c; sourceTree = "<group>"; };
-		B19753131ED5180B00A476F0 /* SDL_shaders_gles2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_shaders_gles2.h; sourceTree = "<group>"; };
-		B19753161ED5180B00A476F0 /* SDL_d3dmath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_d3dmath.c; sourceTree = "<group>"; };
-		B19753171ED5180B00A476F0 /* SDL_d3dmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_d3dmath.h; sourceTree = "<group>"; };
 		B19753181ED5180B00A476F0 /* SDL_render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_render.c; sourceTree = "<group>"; };
 		B19753191ED5180B00A476F0 /* SDL_sysrender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_sysrender.h; sourceTree = "<group>"; };
 		B197531A1ED5180B00A476F0 /* SDL_yuv_mmx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_yuv_mmx.c; sourceTree = "<group>"; };
@@ -1139,6 +1119,24 @@
 		B19756C31ED518D600A476F0 /* SDL_diskaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_diskaudio.h; sourceTree = "<group>"; };
 		B19756C71ED5202E00A476F0 /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
 		B19756C91ED5287C00A476F0 /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
+		B19756D11ED555D800A476F0 /* SDL_syshaptic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_syshaptic.c; sourceTree = "<group>"; };
+		B19756D21ED555D800A476F0 /* SDL_syshaptic_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_syshaptic_c.h; sourceTree = "<group>"; };
+		B19756D41ED555F800A476F0 /* SDL_power.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_power.c; sourceTree = "<group>"; };
+		B19756D71ED5565D00A476F0 /* SDL_blendfillrect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_blendfillrect.c; sourceTree = "<group>"; };
+		B19756D81ED5565D00A476F0 /* SDL_blendfillrect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_blendfillrect.h; sourceTree = "<group>"; };
+		B19756D91ED5565D00A476F0 /* SDL_blendline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_blendline.c; sourceTree = "<group>"; };
+		B19756DA1ED5565D00A476F0 /* SDL_blendline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_blendline.h; sourceTree = "<group>"; };
+		B19756DB1ED5565D00A476F0 /* SDL_blendpoint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_blendpoint.c; sourceTree = "<group>"; };
+		B19756DC1ED5565D00A476F0 /* SDL_blendpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_blendpoint.h; sourceTree = "<group>"; };
+		B19756DD1ED5565D00A476F0 /* SDL_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_draw.h; sourceTree = "<group>"; };
+		B19756DE1ED5565D00A476F0 /* SDL_drawline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_drawline.c; sourceTree = "<group>"; };
+		B19756DF1ED5565D00A476F0 /* SDL_drawline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_drawline.h; sourceTree = "<group>"; };
+		B19756E01ED5565D00A476F0 /* SDL_drawpoint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_drawpoint.c; sourceTree = "<group>"; };
+		B19756E11ED5565D00A476F0 /* SDL_drawpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_drawpoint.h; sourceTree = "<group>"; };
+		B19756E21ED5565D00A476F0 /* SDL_render_sw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_render_sw.c; sourceTree = "<group>"; };
+		B19756E31ED5565D00A476F0 /* SDL_render_sw_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_render_sw_c.h; sourceTree = "<group>"; };
+		B19756E41ED5565D00A476F0 /* SDL_rotate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_rotate.c; sourceTree = "<group>"; };
+		B19756E51ED5565D00A476F0 /* SDL_rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_rotate.h; sourceTree = "<group>"; };
 		B1A752BE1DEA7968002F0D4C /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		B1A752BF1DEA7968002F0D4C /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
 		B1A752C01DEA7968002F0D4C /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
@@ -1349,7 +1347,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F8EE1531DB5FE53007A0DFD /* libwebp.a in Frameworks */,
 				F4DE082416800061005DB2DB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1437,24 +1434,6 @@
 			);
 			name = spine;
 			path = "cocos2d-x/spine";
-			sourceTree = "<group>";
-		};
-		9F7366A51DAD491400D0B435 /* network */ = {
-			isa = PBXGroup;
-			children = (
-				9F7366A61DAD491400D0B435 /* Android.mk */,
-				B18237291DC8613900E8434B /* ReachabilityIOSMac.h */,
-				B18237271DC8613200E8434B /* ReachabilityIOSMac.m */,
-				9F7366A71DAD491400D0B435 /* CCHTTPRequest.cpp */,
-				9F7366A81DAD491400D0B435 /* CCHTTPRequest.h */,
-				9F7366AB1DAD491400D0B435 /* CCNetwork.cpp */,
-				9F7366AC1DAD491400D0B435 /* CCNetwork.h */,
-				9F7366AE1DAD491400D0B435 /* CCNetworkIOSMac.mm */,
-				9F7366B01DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp */,
-				9F7366B11DAD491400D0B435 /* cocos2dx_httprequest_luabinding.tolua */,
-			);
-			name = network;
-			path = "cocos2d-x/network";
 			sourceTree = "<group>";
 		};
 		9F9A38421DAB88E000236246 /* ui */ = {
@@ -2177,6 +2156,7 @@
 		B19752811ED5180B00A476F0 /* haptic */ = {
 			isa = PBXGroup;
 			children = (
+				B19756D01ED555D800A476F0 /* darwin */,
 				B19752851ED5180B00A476F0 /* dummy */,
 				B19752891ED5180B00A476F0 /* SDL_haptic.c */,
 				B197528A1ED5180B00A476F0 /* SDL_haptic_c.h */,
@@ -2261,6 +2241,7 @@
 		B19752EA1ED5180B00A476F0 /* power */ = {
 			isa = PBXGroup;
 			children = (
+				B19756D41ED555F800A476F0 /* SDL_power.c */,
 				B19752F31ED5180B00A476F0 /* macosx */,
 			);
 			path = power;
@@ -2278,11 +2259,8 @@
 			isa = PBXGroup;
 			children = (
 				B19753061ED5180B00A476F0 /* mmx.h */,
+				B19756D61ED5565D00A476F0 /* software */,
 				B19753071ED5180B00A476F0 /* opengl */,
-				B197530C1ED5180B00A476F0 /* opengles */,
-				B197530F1ED5180B00A476F0 /* opengles2 */,
-				B19753161ED5180B00A476F0 /* SDL_d3dmath.c */,
-				B19753171ED5180B00A476F0 /* SDL_d3dmath.h */,
 				B19753181ED5180B00A476F0 /* SDL_render.c */,
 				B19753191ED5180B00A476F0 /* SDL_sysrender.h */,
 				B197531A1ED5180B00A476F0 /* SDL_yuv_mmx.c */,
@@ -2301,26 +2279,6 @@
 				B197530B1ED5180B00A476F0 /* SDL_shaders_gl.h */,
 			);
 			path = opengl;
-			sourceTree = "<group>";
-		};
-		B197530C1ED5180B00A476F0 /* opengles */ = {
-			isa = PBXGroup;
-			children = (
-				B197530D1ED5180B00A476F0 /* SDL_glesfuncs.h */,
-				B197530E1ED5180B00A476F0 /* SDL_render_gles.c */,
-			);
-			path = opengles;
-			sourceTree = "<group>";
-		};
-		B197530F1ED5180B00A476F0 /* opengles2 */ = {
-			isa = PBXGroup;
-			children = (
-				B19753101ED5180B00A476F0 /* SDL_gles2funcs.h */,
-				B19753111ED5180B00A476F0 /* SDL_render_gles2.c */,
-				B19753121ED5180B00A476F0 /* SDL_shaders_gles2.c */,
-				B19753131ED5180B00A476F0 /* SDL_shaders_gles2.h */,
-			);
-			path = opengles2;
 			sourceTree = "<group>";
 		};
 		B19753351ED5180B00A476F0 /* stdlib */ = {
@@ -2632,6 +2590,37 @@
 				B19756C31ED518D600A476F0 /* SDL_diskaudio.h */,
 			);
 			path = disk;
+			sourceTree = "<group>";
+		};
+		B19756D01ED555D800A476F0 /* darwin */ = {
+			isa = PBXGroup;
+			children = (
+				B19756D11ED555D800A476F0 /* SDL_syshaptic.c */,
+				B19756D21ED555D800A476F0 /* SDL_syshaptic_c.h */,
+			);
+			path = darwin;
+			sourceTree = "<group>";
+		};
+		B19756D61ED5565D00A476F0 /* software */ = {
+			isa = PBXGroup;
+			children = (
+				B19756D71ED5565D00A476F0 /* SDL_blendfillrect.c */,
+				B19756D81ED5565D00A476F0 /* SDL_blendfillrect.h */,
+				B19756D91ED5565D00A476F0 /* SDL_blendline.c */,
+				B19756DA1ED5565D00A476F0 /* SDL_blendline.h */,
+				B19756DB1ED5565D00A476F0 /* SDL_blendpoint.c */,
+				B19756DC1ED5565D00A476F0 /* SDL_blendpoint.h */,
+				B19756DD1ED5565D00A476F0 /* SDL_draw.h */,
+				B19756DE1ED5565D00A476F0 /* SDL_drawline.c */,
+				B19756DF1ED5565D00A476F0 /* SDL_drawline.h */,
+				B19756E01ED5565D00A476F0 /* SDL_drawpoint.c */,
+				B19756E11ED5565D00A476F0 /* SDL_drawpoint.h */,
+				B19756E21ED5565D00A476F0 /* SDL_render_sw.c */,
+				B19756E31ED5565D00A476F0 /* SDL_render_sw_c.h */,
+				B19756E41ED5565D00A476F0 /* SDL_rotate.c */,
+				B19756E51ED5565D00A476F0 /* SDL_rotate.h */,
+			);
+			path = software;
 			sourceTree = "<group>";
 		};
 		B1A752BB1DEA7968002F0D4C /* core */ = {
@@ -3026,7 +3015,6 @@
 		F4DE082216800061005DB2DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9F8EE1521DB5FE53007A0DFD /* libwebp.a */,
 				F4DE082316800061005DB2DB /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -3041,7 +3029,6 @@
 				B1D36E941DBFB76200E591CE /* actions */,
 				B15D375B1DB1053800EE3D22 /* imgui */,
 				9F1FE6B91DAD3A8E008FE0C7 /* audio */,
-				9F7366A51DAD491400D0B435 /* network */,
 				9F1FE6FB1DAD3AA0008FE0C7 /* particle */,
 				9F9A38A01DAB896700236246 /* scripting */,
 				9F7366481DAD484700D0B435 /* spine */,
@@ -3110,6 +3097,7 @@
 				B19756B31ED5180C00A476F0 /* SkeletonData.c in Sources */,
 				B19755DB1ED5180C00A476F0 /* SDL_hints.c in Sources */,
 				B19756C81ED5202E00A476F0 /* CCImage.cpp in Sources */,
+				B19756EB1ED5565D00A476F0 /* SDL_render_sw.c in Sources */,
 				B19755AE1ED5180C00A476F0 /* s_tan.c in Sources */,
 				B19755221ED5180C00A476F0 /* lstrlib.c in Sources */,
 				B19756531ED5180C00A476F0 /* SDL_blit_0.c in Sources */,
@@ -3136,6 +3124,7 @@
 				B197553A1ED5180C00A476F0 /* mime.c in Sources */,
 				B197553C1ED5180C00A476F0 /* select.c in Sources */,
 				B19755CE1ED5180C00A476F0 /* SDL_render.c in Sources */,
+				B19756E71ED5565D00A476F0 /* SDL_blendline.c in Sources */,
 				B17849081EB9B6DD00EA61F5 /* ZipUtils.cpp in Sources */,
 				B1A754ED1DEA7968002F0D4C /* CCComponent.cpp in Sources */,
 				B19756A41ED5180C00A476F0 /* Attachment.c in Sources */,
@@ -3147,7 +3136,6 @@
 				B1A754671DEA7968002F0D4C /* CCString.cpp in Sources */,
 				B19755EE1ED5180C00A476F0 /* SDL_test_imagePrimitivesBlend.c in Sources */,
 				B19755C81ED5180C00A476F0 /* SDL_shaders_gl.c in Sources */,
-				B19755CA1ED5180C00A476F0 /* SDL_render_gles2.c in Sources */,
 				B1A7545B1DEA7968002F0D4C /* CCConfiguration.cpp in Sources */,
 				B1A754561DEA7968002F0D4C /* MathDefs.cpp in Sources */,
 				B1A754FF1DEA7968002F0D4C /* CCTouch.cpp in Sources */,
@@ -3155,6 +3143,7 @@
 				B197550C1ED5180C00A476F0 /* lapi.c in Sources */,
 				B17849051EB9B6DD00EA61F5 /* ioapi.cpp in Sources */,
 				B19755151ED5180C00A476F0 /* lgc.c in Sources */,
+				B19756D31ED555D800A476F0 /* SDL_syshaptic.c in Sources */,
 				9F9A38981DAB88E000236246 /* UIRichText.cpp in Sources */,
 				9F9A389B1DAB88E000236246 /* UITouchGroup.cpp in Sources */,
 				B19755801ED5180C00A476F0 /* SDL_sysfilesystem.m in Sources */,
@@ -3164,7 +3153,6 @@
 				B1A754871DEA7968002F0D4C /* CCDrawNode.cpp in Sources */,
 				B19756B61ED5180C00A476F0 /* SkinnedMeshAttachment.c in Sources */,
 				9F9A38901DAB88E000236246 /* UIButton.cpp in Sources */,
-				B19755CD1ED5180C00A476F0 /* SDL_d3dmath.c in Sources */,
 				B19755421ED5180C00A476F0 /* unix.c in Sources */,
 				9F9A38911DAB88E000236246 /* UICheckBox.cpp in Sources */,
 				B19755791ED5180C00A476F0 /* SDL_mouse.c in Sources */,
@@ -3184,7 +3172,6 @@
 				B197551A1ED5180C00A476F0 /* lmem.c in Sources */,
 				B17848D51EB9B27F00EA61F5 /* CCInput.cpp in Sources */,
 				B19755AA1ED5180C00A476F0 /* s_fabs.c in Sources */,
-				B19755CB1ED5180C00A476F0 /* SDL_shaders_gles2.c in Sources */,
 				B1A754931DEA7968002F0D4C /* CCSpriteBatchNode.cpp in Sources */,
 				B17848F51EB9B6D500EA61F5 /* CCCrypto.cpp in Sources */,
 				9F9A389C1DAB88E000236246 /* UIWidget.cpp in Sources */,
@@ -3205,10 +3192,8 @@
 				B1A754F21DEA7968002F0D4C /* TransformUtils.cpp in Sources */,
 				B19756AE1ED5180C00A476F0 /* Json.c in Sources */,
 				B1A7545F1DEA7968002F0D4C /* CCArray.cpp in Sources */,
-				9F7366B41DAD491400D0B435 /* CCNetwork.cpp in Sources */,
 				B19756521ED5180C00A476F0 /* SDL_blit.c in Sources */,
 				B1A7548E1DEA7968002F0D4C /* CCRenderTexture.cpp in Sources */,
-				9F7366B61DAD491400D0B435 /* CCNetworkIOSMac.mm in Sources */,
 				B197551B1ED5180C00A476F0 /* loadlib.c in Sources */,
 				B19755171ED5180C00A476F0 /* liolib.c in Sources */,
 				B19755071ED5180C00A476F0 /* ray2.c in Sources */,
@@ -3270,6 +3255,7 @@
 				B19756541ED5180C00A476F0 /* SDL_blit_1.c in Sources */,
 				B1A754711DEA7968002F0D4C /* CCFileSystem.cpp in Sources */,
 				B19755FF1ED5180C00A476F0 /* SDL_systls.c in Sources */,
+				B19756D51ED555F800A476F0 /* SDL_power.c in Sources */,
 				B17849061EB9B6DD00EA61F5 /* ioapi_mem.cpp in Sources */,
 				B19755EF1ED5180C00A476F0 /* SDL_test_log.c in Sources */,
 				9F1FE74A1DAD3ACB008FE0C7 /* LuaTable.cpp in Sources */,
@@ -3305,6 +3291,7 @@
 				B197569B1ED5180C00A476F0 /* SDL_x11touch.c in Sources */,
 				B19754FE1ED5180C00A476F0 /* README.md in Sources */,
 				B197550B1ED5180C00A476F0 /* vec4.c in Sources */,
+				B19756EC1ED5565D00A476F0 /* SDL_rotate.c in Sources */,
 				B19756641ED5180C00A476F0 /* SDL_video.c in Sources */,
 				B1D36EB31DBFB76200E591CE /* CCActionCamera.cpp in Sources */,
 				B19756551ED5180C00A476F0 /* SDL_blit_A.c in Sources */,
@@ -3316,7 +3303,6 @@
 				B197551C1ED5180C00A476F0 /* lobject.c in Sources */,
 				B1A754EE1DEA7968002F0D4C /* CCComponentContainer.cpp in Sources */,
 				B1A754F51DEA7968002F0D4C /* CCUserDefaultAndroid.cpp in Sources */,
-				B19755C91ED5180C00A476F0 /* SDL_render_gles.c in Sources */,
 				B1E714461EC9B2FB0001821F /* CCColor.cpp in Sources */,
 				B19755A61ED5180C00A476F0 /* k_tan.c in Sources */,
 				B1D36EBA1DBFB76200E591CE /* CCActionInterval.cpp in Sources */,
@@ -3347,7 +3333,6 @@
 				B1A754D71DEA7968002F0D4C /* CCNativeMac.mm in Sources */,
 				B19755E71ED5180C00A476F0 /* SDL_test_font.c in Sources */,
 				B19756C41ED518D600A476F0 /* SDL_diskaudio.c in Sources */,
-				9F7366B21DAD491400D0B435 /* CCHTTPRequest.cpp in Sources */,
 				B19755341ED5180C00A476F0 /* auxiliar.c in Sources */,
 				B19755331ED5180C00A476F0 /* snapshot.c in Sources */,
 				B197561B1ED5180C00A476F0 /* SDL_cocoamodes.m in Sources */,
@@ -3385,6 +3370,7 @@
 				B19756BC1ED5180C00A476F0 /* tolua_is.c in Sources */,
 				9F1FE6F61DAD3A8E008FE0C7 /* CocosDenshion.m in Sources */,
 				B197554C1ED5180C00A476F0 /* SDL_coreaudio.m in Sources */,
+				B19756EA1ED5565D00A476F0 /* SDL_drawpoint.c in Sources */,
 				B1A754E31DEA7968002F0D4C /* CCPlistResource.cpp in Sources */,
 				B1A754911DEA7968002F0D4C /* CCShapeNode.cpp in Sources */,
 				B19755231ED5180C00A476F0 /* ltable.c in Sources */,
@@ -3436,6 +3422,7 @@
 				B19755E01ED5180C00A476F0 /* SDL_qsort.c in Sources */,
 				B197565C1ED5180C00A476F0 /* SDL_egl.c in Sources */,
 				9F1FE7191DAD3AA0008FE0C7 /* CCTMXObjectGroup.cpp in Sources */,
+				B19756E61ED5565D00A476F0 /* SDL_blendfillrect.c in Sources */,
 				B19755E11ED5180C00A476F0 /* SDL_stdlib.c in Sources */,
 				B19754FC1ED5180C00A476F0 /* imgui_demo.cpp in Sources */,
 				9F1FE6F41DAD3A8E008FE0C7 /* CDOpenALSupport.m in Sources */,
@@ -3498,12 +3485,11 @@
 				B19756A01ED5180C00A476F0 /* AnimationState.c in Sources */,
 				B1A754921DEA7968002F0D4C /* CCSprite.cpp in Sources */,
 				B1D36EBF1DBFB76200E591CE /* CCActionTween.cpp in Sources */,
+				B19756E91ED5565D00A476F0 /* SDL_drawline.c in Sources */,
 				B19755E31ED5180C00A476F0 /* SDL_test_assert.c in Sources */,
 				B1A754E81DEA7968002F0D4C /* CCShaderCache.cpp in Sources */,
 				B197555C1ED5180C00A476F0 /* SDL_audiocvt.c in Sources */,
-				B18237281DC8613200E8434B /* ReachabilityIOSMac.m in Sources */,
 				B19755911ED5180C00A476F0 /* SDL_sysjoystick.c in Sources */,
-				9F7366B81DAD491400D0B435 /* cocos2dx_httprequest_luabinding.cpp in Sources */,
 				B19756B91ED5180C00A476F0 /* stb.c in Sources */,
 				B19755471ED5180C00A476F0 /* SDL_spinlock.c in Sources */,
 				B197552B1ED5180C00A476F0 /* lua_cjson.c in Sources */,
@@ -3512,6 +3498,7 @@
 				B197562E1ED5180C00A476F0 /* SDL_nullvideo.c in Sources */,
 				9F7366871DAD484700D0B435 /* PolygonBatch.cpp in Sources */,
 				B1A754E71DEA7968002F0D4C /* CCRenderState.cpp in Sources */,
+				B19756E81ED5565D00A476F0 /* SDL_blendpoint.c in Sources */,
 				B1A7548A1DEA7968002F0D4C /* CCLabelTTF.cpp in Sources */,
 				B19755E61ED5180C00A476F0 /* SDL_test_crc32.c in Sources */,
 				B19756AF1ED5180C00A476F0 /* MeshAttachment.c in Sources */,

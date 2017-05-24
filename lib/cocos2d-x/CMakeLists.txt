@@ -50,5 +50,5 @@ library(quickx)
 
 target_link_libraries(quickx
 imgui kazmath lua lua_extensions SDL2 spine stb tinyxml2 tolua 
-GLESv1_CM GLESv2 log android
+GLESv1_CM GLESv2 log android z
 )

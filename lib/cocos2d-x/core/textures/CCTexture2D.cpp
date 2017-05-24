@@ -100,7 +100,7 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 	{
 #if CC_ENABLE_CACHE_TEXTURE_DATA
 		// cache the texture file name
-		VolatileTexture::addImageTexture(this, getPath().c_str(), eImageFormat);
+		VolatileTexture::addImageTexture(this, getPath().c_str());
 #endif
 	}
 	else
@@ -944,7 +944,7 @@ VolatileTexture::VolatileTexture(CCTexture2D *t)
 	, m_pTextureData(NULL)
 	, m_PixelFormat(kTexture2DPixelFormat_RGBA8888)
 	, m_strFileName("")
-	, m_FmtImage(kFmtPng)
+	// , m_FmtImage(kFmtPng)
 	, m_alignment(kCCTextAlignmentCenter)
 	, m_vAlignment(kCCVerticalTextAlignmentCenter)
 	, m_strFontName("")
@@ -966,7 +966,7 @@ VolatileTexture::~VolatileTexture()
 	CC_SAFE_RELEASE(uiImage);
 }
 
-void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName, EImageFormat format)
+void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName)
 {
 	if (isReloading)
 	{
@@ -977,7 +977,7 @@ void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName
 
 	vt->m_eCashedImageType = kImageFile;
 	vt->m_strFileName = imageFileName;
-	vt->m_FmtImage = format;
+	// vt->m_FmtImage = format;
 	vt->m_PixelFormat = tt->getPixelFormat();
 }
 
@@ -1108,7 +1108,7 @@ void VolatileTexture::reloadAllTextures()
 				CCImage* pImage = new CCImage();
 				SharedPtr<MemBuffer> bf = FileSystem::readAll(vt->m_strFileName);
 
-				if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize(), vt->m_FmtImage))
+				if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize()))
 				{
 					CCTexture2DPixelFormat oldPixelFormat = CCTexture2D::defaultAlphaPixelFormat();
 					CCTexture2D::setDefaultAlphaPixelFormat(vt->m_PixelFormat);

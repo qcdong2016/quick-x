@@ -15,7 +15,6 @@
 		B109C1771EB9BCEC00A01BC7 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B109C1761EB9BCEC00A01BC7 /* libcurl.tbd */; };
 		B109C1791EB9BCF300A01BC7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B109C1781EB9BCF300A01BC7 /* libz.tbd */; };
 		B17848CA1EB96AB300EA61F5 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B17848C91EB96AB300EA61F5 /* App.cpp */; };
-		B17848DC1EB9B4CA00EA61F5 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B17848DB1EB9B4CA00EA61F5 /* libSDL2.a */; };
 		B17848DF1EB9B66C00EA61F5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17848DE1EB9B66C00EA61F5 /* CoreVideo.framework */; };
 		B17848E11EB9B67C00EA61F5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17848E01EB9B67C00EA61F5 /* CoreAudio.framework */; };
 		B17848E31EB9B68600EA61F5 /* ForceFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17848E21EB9B68600EA61F5 /* ForceFeedback.framework */; };
@@ -65,7 +64,6 @@
 		B109C1761EB9BCEC00A01BC7 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		B109C1781EB9BCF300A01BC7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B17848C91EB96AB300EA61F5 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
-		B17848DB1EB9B4CA00EA61F5 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../lib/third_party/mac/libraries/libSDL2.a; sourceTree = "<group>"; };
 		B17848DE1EB9B66C00EA61F5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B17848E01EB9B67C00EA61F5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B17848E21EB9B68600EA61F5 /* ForceFeedback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForceFeedback.framework; path = System/Library/Frameworks/ForceFeedback.framework; sourceTree = SDKROOT; };
@@ -105,7 +103,6 @@
 				B17848E11EB9B67C00EA61F5 /* CoreAudio.framework in Frameworks */,
 				F44C957715F49004004D4151 /* Cocoa.framework in Frameworks */,
 				B17848DF1EB9B66C00EA61F5 /* CoreVideo.framework in Frameworks */,
-				B17848DC1EB9B4CA00EA61F5 /* libSDL2.a in Frameworks */,
 				F4B08157175C89E90029F472 /* libquickcocos2dx.a in Frameworks */,
 				F4B4EF6616CA2A8B00736FFE /* SystemConfiguration.framework in Frameworks */,
 				F40EE898163F83E000090121 /* AppKit.framework in Frameworks */,
@@ -160,7 +157,6 @@
 				B17848E21EB9B68600EA61F5 /* ForceFeedback.framework */,
 				B17848E01EB9B67C00EA61F5 /* CoreAudio.framework */,
 				B17848DE1EB9B66C00EA61F5 /* CoreVideo.framework */,
-				B17848DB1EB9B4CA00EA61F5 /* libSDL2.a */,
 				F44C957915F49004004D4151 /* AppKit.framework */,
 				F44C957615F49004004D4151 /* Cocoa.framework */,
 				F44C957A15F49004004D4151 /* CoreData.framework */,

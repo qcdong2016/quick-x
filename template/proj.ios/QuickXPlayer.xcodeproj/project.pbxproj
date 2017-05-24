@@ -19,7 +19,6 @@
 		B12BB93B1EBC6F0B006B8622 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12BB93A1EBC6F0B006B8622 /* App.cpp */; };
 		B1ADD6DC1EBC7AE200D06C19 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6DB1EBC7AE200D06C19 /* GameController.framework */; };
 		B1ADD6DE1EBC7AF300D06C19 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6DD1EBC7AF300D06C19 /* CoreMotion.framework */; };
-		B1ADD6E01EBC7BD800D06C19 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6DF1EBC7BD800D06C19 /* libSDL2.a */; };
 		F4323CF716D3298E0072B773 /* libquickcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F48F590816D21F8C000651BE /* libquickcocos2dx.a */; };
 		F452BFC51687EEF900DC5BCC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F452BFC41687EEF900DC5BCC /* CoreText.framework */; };
 		F452BFD01687F0F200DC5BCC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F452BFCF1687F0F200DC5BCC /* UIKit.framework */; };
@@ -61,7 +60,6 @@
 		B12BB93A1EBC6F0B006B8622 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
 		B1ADD6DB1EBC7AE200D06C19 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		B1ADD6DD1EBC7AF300D06C19 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		B1ADD6DF1EBC7BD800D06C19 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../lib/third_party/ios/libraries/libSDL2.a; sourceTree = "<group>"; };
 		F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = lib/proj.ios/quickcocos2dx.xcodeproj; sourceTree = QUICKX_ROOT; };
 		F452BFC41687EEF900DC5BCC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F452BFCF1687F0F200DC5BCC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -91,7 +89,6 @@
 				B12B165F1ECADEA9000C674E /* libz.tbd in Frameworks */,
 				B1ADD6DE1EBC7AF300D06C19 /* CoreMotion.framework in Frameworks */,
 				B1ADD6DC1EBC7AE200D06C19 /* GameController.framework in Frameworks */,
-				B1ADD6E01EBC7BD800D06C19 /* libSDL2.a in Frameworks */,
 				F4323CF716D3298E0072B773 /* libquickcocos2dx.a in Frameworks */,
 				F452BFD01687F0F200DC5BCC /* UIKit.framework in Frameworks */,
 				F456F0FD15EE0CF600FCF3E2 /* SystemConfiguration.framework in Frameworks */,
@@ -177,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				B12B165E1ECADEA9000C674E /* libz.tbd */,
-				B1ADD6DF1EBC7BD800D06C19 /* libSDL2.a */,
 				B1ADD6DD1EBC7AF300D06C19 /* CoreMotion.framework */,
 				B1ADD6DB1EBC7AE200D06C19 /* GameController.framework */,
 				F4949C781699553B00DB561E /* AddressBook.framework */,

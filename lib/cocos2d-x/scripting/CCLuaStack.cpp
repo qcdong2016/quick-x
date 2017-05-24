@@ -169,13 +169,13 @@ bool CCLuaStack::init(void)
     lua_pushcfunction(m_state, CCLuaBridge::callStaticMethod);
     lua_setglobal(m_state, "callStaticMethod");
 
-
+/*
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     luaopen_cocos2dx_httprequest_luabinding(m_state);
 #elif (CC_CURL_ENABLED > 0)
     luaopen_cocos2dx_httprequest_luabinding(m_state);
 #endif
-
+*/
     // lua extensions
     luaopen_lua_extensions(m_state);
 
