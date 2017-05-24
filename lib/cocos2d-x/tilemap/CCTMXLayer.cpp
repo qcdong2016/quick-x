@@ -30,7 +30,7 @@ THE SOFTWARE.
 
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
-#include "support/data_support/ccCArray.h"
+#include "cocoa/data_support/ccCArray.h"
 #include "engine/CCDirector.h"
 
 #include "base/MathDefs.h"

@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
 #include "engine/CCDirector.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 
 // external
 #include "kazmath/matrix.h"

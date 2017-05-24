@@ -44,7 +44,7 @@ THE SOFTWARE.
 #include "actions/CCActionManager.h"
 #include "CCConfiguration.h"
 #include "touch_dispatcher/CCTouch.h"
-#include "support/user_default/CCUserDefault.h"
+#include "misc/CCUserDefault.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
 #include "kazmath/kazmath.h"

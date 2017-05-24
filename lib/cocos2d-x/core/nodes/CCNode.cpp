@@ -26,7 +26,7 @@
  ****************************************************************************/
 #include "cocoa/CCString.h"
 #include "CCNode.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 #include "CCCamera.h"
 #include "engine/CCDirector.h"
 #include "CCScheduler.h"
@@ -37,8 +37,6 @@
 #include "nodes/CCScene.h"
 // externals
 #include "kazmath/matrix.h"
-#include "support/component/CCComponent.h"
-#include "support/component/CCComponentContainer.h"
 
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
@@ -85,8 +83,6 @@ CCNode::CCNode(void)
 , m_bVisible(true)
 , m_bIgnoreAnchorPointForPosition(false)
 , m_bReorderChildDirty(false)
-, m_pComponentContainer(NULL)
-// merge CCNodeRGBA
 , m_displayedOpacity(255)
 , m_realOpacity(255)
 , m_isOpacityModifyRGB(false)
@@ -106,16 +102,12 @@ CCNode::CCNode(void)
 
 	m_pActionManager = director->getSubSystem<CCActionManager>();
 	m_pScheduler = director->getSubSystem<CCScheduler>();
-
-    m_pComponentContainer = new CCComponentContainer(this);
 }
 
 CCNode::~CCNode(void)
 {
     CCLOGINFO( "cocos2d: deallocing" );
     // m_pComsContainer
-    m_pComponentContainer->removeAll();
-    CC_SAFE_DELETE(m_pComponentContainer);
 
     if(m_pChildren && m_pChildren->count() > 0)
     {
@@ -1150,11 +1142,6 @@ void CCNode::update(float fDelta)
     if (m_scriptEventListeners)
     {
     }
-
-    if (m_pComponentContainer && !m_pComponentContainer->isEmpty())
-    {
-        m_pComponentContainer->visit(fDelta);
-    }
 }
 
 CCAffineTransform CCNode::nodeToParentTransform(void)
@@ -1314,32 +1301,6 @@ void CCNode::updateTransform()
     // Recursively iterate over children
     arrayMakeObjectsPerformSelector(m_pChildren, updateTransform, CCNode*);
 }
-
-CCComponent* CCNode::getComponent(const char *pName) const
-{
-    return m_pComponentContainer->get(pName);
-}
-
-bool CCNode::addComponent(CCComponent *pComponent)
-{
-    return m_pComponentContainer->add(pComponent);
-}
-
-bool CCNode::removeComponent(const char *pName)
-{
-    return m_pComponentContainer->remove(pName);
-}
-
-bool CCNode::removeComponent(CCComponent *pComponent)
-{
-    return m_pComponentContainer->remove(pComponent);
-}
-
-void CCNode::removeAllComponents()
-{
-    m_pComponentContainer->removeAll();
-}
-
 // merge CCNodeRGBA to CCNode
 
 GLubyte CCNode::getOpacity(void)

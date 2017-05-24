@@ -38,7 +38,7 @@
 #include "cocoa/CCGeometry.h"
 #include "textures/CCTexture2D.h"
 #include "cocoa/CCAffineTransform.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 #include "platform/CCImage.h"
 // external
 #include "kazmath/matrix.h"

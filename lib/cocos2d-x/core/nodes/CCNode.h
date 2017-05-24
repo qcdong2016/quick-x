@@ -48,9 +48,7 @@ class CCTouch;
 class CCAction;
 class CCScheduler;
 class CCActionManager;
-class CCComponent;
 class CCDictionary;
-class CCComponentContainer;
 class CCScene;
 class CCTexture2D;
 
@@ -1298,34 +1296,6 @@ public:
     /// @} end of Coordinate Converters
 
     /// @{
-    /// @name component functions
-    /**
-     *   gets a component by its name
-     */
-    CCComponent* getComponent(const char *pName) const;
-
-    /**
-     *   adds a component
-     */
-    virtual bool addComponent(CCComponent *pComponent);
-
-    /**
-     *   removes a component by its name
-     */
-    virtual bool removeComponent(const char *pName);
-
-    /**
-     *   removes a component by its pointer
-     */
-    virtual bool removeComponent(CCComponent *pComponent);
-
-    /**
-     *   removes all components
-     */
-    virtual void removeAllComponents();
-    /// @} end of component functions
-
-    /// @{
     /**
      * Changes the color with R,G,B bytes
      *
@@ -1555,8 +1525,6 @@ protected:
 
     bool m_bReorderChildDirty;          ///< children order dirty flag
 
-    CCComponentContainer *m_pComponentContainer;        ///< Dictionary of components
-    
     GLubyte m_displayedOpacity;
     GLubyte m_realOpacity;
     bool m_isOpacityModifyRGB;

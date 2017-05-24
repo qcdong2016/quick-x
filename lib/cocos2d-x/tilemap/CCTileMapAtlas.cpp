@@ -25,7 +25,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCTileMapAtlas.h"
 #include "textures/CCTextureAtlas.h"
-#include "support/image_support/TGAlib.h"
+#include "TGAlib.h"
 #include "ccConfig.h"
 #include "cocoa/CCDictionary.h"
 #include "engine/CCDirector.h"

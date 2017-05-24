@@ -96,11 +96,6 @@ class CCNode : public CCScriptEventDispatcher
     Vec2 convertTouchToNodeSpace(CCTouch * touch);
     Vec2 convertTouchToNodeSpaceAR(CCTouch * touch);
     void setAdditionalTransform(const CCAffineTransform& additionalTransform);
-    CCComponent* getComponent(const char *pName);
-    virtual bool addComponent(CCComponent *pComponent);
-    virtual bool removeComponent(const char *pName);
-    virtual bool removeComponent(CCComponent *pComponent);
-    virtual void removeAllComponents();
     void setColor(const ccColor3B& color);
     const ccColor3B& getColor(void);
     const ccColor3B& getDisplayedColor(void);

@@ -39,7 +39,7 @@
 #include "nodes/CCSprite.h"
 #include "engine/CCDirector.h"
 
-#include "support/ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 #include "engine/CCFileSystem.h"
 #include "textures/CCTexture2D.h"
 

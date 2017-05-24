@@ -29,8 +29,8 @@ THE SOFTWARE.
 #include "nodes/CCNode.h"
 #include "CCScheduler.h"
 #include "ccMacros.h"
-#include "support/data_support/ccCArray.h"
-#include "support/data_support/uthash.h"
+#include "cocoa/data_support/ccCArray.h"
+#include "cocoa/data_support/uthash.h"
 #include "cocoa/CCSet.h"
 #include "engine/CCEngineEvents.h"
 #include <algorithm>

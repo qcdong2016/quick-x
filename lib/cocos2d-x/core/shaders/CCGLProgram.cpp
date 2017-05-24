@@ -29,7 +29,7 @@ THE SOFTWARE.
 #include "CCGLProgram.h"
 #include "ccGLStateCache.h"
 #include "ccMacros.h"
-#include "support/data_support/uthash.h"
+#include "cocoa/data_support/uthash.h"
 #include "cocoa/CCString.h"
 // extern
 #include "kazmath/matrix.h"

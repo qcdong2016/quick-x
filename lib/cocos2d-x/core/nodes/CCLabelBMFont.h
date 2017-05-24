@@ -34,7 +34,7 @@ Use any of these editors to generate BMFonts:
 #define __CCBITMAP_FONT_ATLAS_H__
 
 #include "nodes/CCSpriteBatchNode.h"
-#include "support/data_support/uthash.h"
+#include "cocoa/data_support/uthash.h"
 #include <map>
 #include <sstream>
 #include <iostream>

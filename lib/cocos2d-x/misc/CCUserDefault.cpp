@@ -26,7 +26,6 @@ THE SOFTWARE.
 #include "engine/CCFileSystem.h"
 #include "ccMacros.h"
 
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 
 // root name of xml
 #define USERDEFAULT_ROOT_NAME    "userDefaultRoot"
@@ -445,4 +444,3 @@ void CCUserDefault::flush()
 
 NS_CC_END
 
-#endif // (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_PLATFORM != CC_PLATFORM_ANDROID)

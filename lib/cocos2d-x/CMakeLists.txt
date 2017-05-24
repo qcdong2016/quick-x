@@ -15,11 +15,6 @@ file (GLOB SOURCE_FILES
 	core/text_input_node/*.cpp
 	core/textures/*.cpp
 	core/touch_dispatcher/*.cpp
-	core/support/*.cpp
-	core/support/component/*.cpp
-	core/support/data_support/*.cpp
-	core/support/image_support/*.cpp
-	core/support/user_default/*.cpp
 	core/*.cpp
 	core/*.c
 
@@ -32,6 +27,7 @@ file (GLOB SOURCE_FILES
 	spine/*.cpp
 	tilemap/*.cpp
 	zip/*.cpp
+	misc/*.cpp
 
 	ui/webview/*.cpp 
 	ui/ScrollWidget/*.cpp 
