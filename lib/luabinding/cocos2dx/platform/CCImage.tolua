@@ -22,20 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-/**
- * @addtogroup platform
- * @{
- */
-typedef enum
-{
-    kFmtJpg = 0,
-    kFmtPng,
-    kFmtTiff,
-    kFmtWebp,
-    kFmtRawData,
-    kFmtUnKnown
-} EImageFormat;
-
 class CCImage : public CCObject
 {
     CCImage();
@@ -47,16 +33,7 @@ class CCImage : public CCObject
     @param imageType the type of image, currently only supporting two types.
     @return  true if loaded correctly.
     */
-    bool initWithImageFile(const char * strPath, EImageFormat imageType = kFmtPng);
-
-    /*
-     @brief The same result as with initWithImageFile, but thread safe. It is caused by
-            loadImage() in CCTextureCache.cpp.
-     @param fullpath  full path of the file.
-     @param imageType the type of image, currently only supporting two types.
-     @return  true if loaded correctly.
-     */
-    bool initWithImageFileThreadSafe(const char *fullpath, EImageFormat imageType = kFmtPng);
+    bool initWithImageFile(const char * strPath);
 
     /**
     @brief  Load image from stream buffer.
@@ -67,12 +44,7 @@ class CCImage : public CCObject
     @param nWidth, nHeight, nBitsPerComponent are used for kFmtRawData.
     @return true if loaded correctly.
     */
-    bool initWithImageData(void * pData,
-                           int nDataLen,
-                           EImageFormat eFmt = 5,
-                           int nWidth = 0,
-                           int nHeight = 0,
-                           int nBitsPerComponent = 8);
+    bool initWithImageData(void * pData, int nDataLen);
 
     bool hasAlpha();
     bool isPremultipliedAlpha();
@@ -85,7 +57,7 @@ class CCImage : public CCObject
     @param    pszFilePath        the file's absolute path, including file suffix.
     @param    bIsToRGB        whether the image is saved as RGB format.
     */
-    bool saveToFile(const char *pszFilePath, bool bIsToRGB = true);
+    bool saveToFile(const char *filename);
 
     unsigned short getWidth();
     unsigned short getHeight();

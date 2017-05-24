@@ -296,6 +296,7 @@
 		B18923621DA5430C007EADCE /* UIWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B189235A1DA5430C007EADCE /* UIWebView.cpp */; };
 		B18923651DA5430C007EADCE /* UIWebViewImpl-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = B18923611DA5430C007EADCE /* UIWebViewImpl-ios.mm */; };
 		B1937F8D1E28E9A400B0D134 /* UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1937F8A1E28E9A400B0D134 /* UIEditBox.cpp */; };
+		B19756CC1ED53BF700A476F0 /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19756CB1ED53BF700A476F0 /* CCImage.cpp */; };
 		B1A7569E1DEA79E1002F0D4C /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A755071DEA79E1002F0D4C /* ID.cpp */; };
 		B1A7569F1DEA79E1002F0D4C /* MathDefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7550A1DEA79E1002F0D4C /* MathDefs.cpp */; };
 		B1A756A01DEA79E1002F0D4C /* ProcessUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7550C1DEA79E1002F0D4C /* ProcessUtils.cpp */; };
@@ -1037,6 +1038,7 @@
 		B1937F8A1E28E9A400B0D134 /* UIEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIEditBox.cpp; sourceTree = "<group>"; };
 		B1937F8B1E28E9A400B0D134 /* UIEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBox.h; sourceTree = "<group>"; };
 		B1937F8C1E28E9A400B0D134 /* UIEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImpl.h; sourceTree = "<group>"; };
+		B19756CB1ED53BF700A476F0 /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
 		B1A755071DEA79E1002F0D4C /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		B1A755081DEA79E1002F0D4C /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
 		B1A755091DEA79E1002F0D4C /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
@@ -1133,7 +1135,6 @@
 		B1A755E01DEA79E1002F0D4C /* CCDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDevice.cpp; sourceTree = "<group>"; };
 		B1A755E11DEA79E1002F0D4C /* CCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDevice.h; sourceTree = "<group>"; };
 		B1A755E41DEA79E1002F0D4C /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
-		B1A755E51DEA79E1002F0D4C /* CCImageCommon_cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImageCommon_cpp.h; sourceTree = "<group>"; };
 		B1A755E61DEA79E1002F0D4C /* CCInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCInput.cpp; sourceTree = "<group>"; };
 		B1A755E71DEA79E1002F0D4C /* CCInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCInput.h; sourceTree = "<group>"; };
 		B1A755E81DEA79E1002F0D4C /* CCPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformConfig.h; sourceTree = "<group>"; };
@@ -1214,7 +1215,6 @@
 		B1ADD6D41EBC795E00D06C19 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../third_party/ios/libraries/libSDL2.a; sourceTree = "<group>"; };
 		B1ADD6D61EBC797A00D06C19 /* CCTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTimer.cpp; sourceTree = "<group>"; };
 		B1ADD6D81EBC79C200D06C19 /* CCEGLView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEGLView.cpp; sourceTree = "<group>"; };
-		B1B895C71D8C664C00F80112 /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1B895C81D8C664C00F80112 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
 		B1B895D11D8C664C00F80112 /* UIEditBoxImplIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplIOS.h; sourceTree = "<group>"; };
 		B1B895D21D8C664C00F80112 /* UIEditBoxImplIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxImplIOS.mm; sourceTree = "<group>"; };
@@ -1263,7 +1263,6 @@
 		B1B896241D8C665D00F80112 /* CCNetworkIOSMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNetworkIOSMac.mm; sourceTree = "<group>"; };
 		B1B896261D8C665D00F80112 /* cocos2dx_httprequest_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_httprequest_luabinding.cpp; sourceTree = "<group>"; };
 		B1B896271D8C665D00F80112 /* cocos2dx_httprequest_luabinding.tolua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cocos2dx_httprequest_luabinding.tolua; sourceTree = "<group>"; };
-		B1D3711C1DBFC54600E591CE /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1D3711D1DBFC54600E591CE /* CCAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAction.cpp; sourceTree = "<group>"; };
 		B1D3711E1DBFC54600E591CE /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		B1D3711F1DBFC54600E591CE /* CCActionCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionCamera.cpp; sourceTree = "<group>"; };
@@ -2589,7 +2588,7 @@
 				B1A755E01DEA79E1002F0D4C /* CCDevice.cpp */,
 				B1A755E11DEA79E1002F0D4C /* CCDevice.h */,
 				B1A755E41DEA79E1002F0D4C /* CCImage.h */,
-				B1A755E51DEA79E1002F0D4C /* CCImageCommon_cpp.h */,
+				B19756CB1ED53BF700A476F0 /* CCImage.cpp */,
 				B1FE2F341E0E9B1E00BB0D3D /* CCInput_ios.mm */,
 				B1A755E61DEA79E1002F0D4C /* CCInput.cpp */,
 				B1ADD6D21EBC779200D06C19 /* CCGL.h */,
@@ -2765,7 +2764,6 @@
 		B1B895C61D8C664C00F80112 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				B1B895C71D8C664C00F80112 /* Android.mk */,
 				B1B895C81D8C664C00F80112 /* CocosGUI.h */,
 				B18923581DA5430C007EADCE /* webview */,
 				B1B895CB1D8C664C00F80112 /* EditBox */,
@@ -2856,7 +2854,6 @@
 		B1D3711B1DBFC54600E591CE /* actions */ = {
 			isa = PBXGroup;
 			children = (
-				B1D3711C1DBFC54600E591CE /* Android.mk */,
 				B1D3711D1DBFC54600E591CE /* CCAction.cpp */,
 				B1D3711E1DBFC54600E591CE /* CCAction.h */,
 				B1D3711F1DBFC54600E591CE /* CCActionCamera.cpp */,
@@ -3379,6 +3376,7 @@
 				B186B8A31ED43C6C00682326 /* SDL_thread.c in Sources */,
 				B186B8D01ED43C6C00682326 /* SDL_nullframebuffer.c in Sources */,
 				B1B896281D8C665D00F80112 /* CCHTTPRequest.cpp in Sources */,
+				B19756CC1ED53BF700A476F0 /* CCImage.cpp in Sources */,
 				B1A756DB1DEA79E1002F0D4C /* CCSprite.cpp in Sources */,
 				B186B8CF1ED43C6C00682326 /* SDL_nullevents.c in Sources */,
 				B1A757311DEA79E1002F0D4C /* CCShaderCache.cpp in Sources */,

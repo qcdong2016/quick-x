@@ -1090,7 +1090,7 @@ void CCSprite::setTexture(CCTexture2D *texture)
         if (NULL == texture)
         {
             SharedPtr<CCImage> image(new CCImage());
-            bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), kFmtRawData, 2, 2, 8);
+            bool isOK = image->initWithRawData(cc_2x2_white_image, sizeof(cc_2x2_white_image), 2, 2, 8, false);
             CCAssert(isOK, "The 2x2 empty texture was created unsuccessfully.");
 
 			texture = new CCTexture2D;

@@ -92,33 +92,9 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 	for (unsigned int i = 0; i < lowName.length(); ++i)
 		lowName[i] = tolower(lowName[i]);
 
-	std::string ext = FileSystem::getExtension(lowName);
-	EImageFormat eImageFormat = kFmtUnKnown;
-
-	if (ext == "png")
-		eImageFormat = kFmtPng;
-	else if (ext == "jpg" || ext == "jpeg")
-		eImageFormat = kFmtJpg;
-	else if (ext == "tif" || ext == "tiff")
-		eImageFormat = kFmtTiff;
-	else if (ext == "webp")
-		eImageFormat = kFmtWebp;
-	else {
-// 		if (std::string::npos != lowName.find(".pvr"))
-// 		{
-// 			lowName = this->initWithPVRFile(getPath().c_str());
-// 		}
-// 		else if (std::string::npos != lowerCase.find(".pkm"))
-// 		{
-// 			// ETC1 file format, only supportted on Android
-// 			texture = this->initWithETCFile(getPath().c_str());
-// 		}
-		return;
-	}
-
 	SharedPtr<CCImage> pImage(new CCImage());
 
-	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize(), eImageFormat);
+	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize());
 
 	if (bRet && initWithImage(pImage))
 	{

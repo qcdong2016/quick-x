@@ -39,16 +39,6 @@ class CCFreeTypeFont;
  * @{
  */
 
-typedef enum
-{
-    kFmtJpg = 0,
-    kFmtPng,
-    kFmtTiff,
-    kFmtWebp,
-    kFmtRawData,
-    kFmtUnKnown
-}EImageFormat;
-
 class CC_DLL CCImage : public CCObject
 {
 public:
@@ -81,34 +71,25 @@ public:
     @param imageType the type of image, currently only supporting two types.
     @return  true if loaded correctly.
     */
-    bool initWithImageFile(const char * strPath, EImageFormat imageType = kFmtPng);
-
-    /*
-     @brief The same result as with initWithImageFile, but thread safe. It is caused by
-            loadImage() in CCTextureCache.cpp.
-     @param fullpath  full path of the file.
-     @param imageType the type of image, currently only supporting two types.
-     @return  true if loaded correctly.
-     */
-    bool initWithImageFileThreadSafe(const char *fullpath, EImageFormat imageType = kFmtPng);
-
+    bool initWithImageFile(const char * strPath);
     /**
     @brief  Load image from stream buffer.
 
     @warning kFmtRawData only supports RGBA8888.
     @param pBuffer  stream buffer which holds the image data.
     @param nLength  data length expressed in (number of) bytes.
-    @param nWidth, nHeight, nBitsPerComponent are used for kFmtRawData.
     @return true if loaded correctly.
     @js NA
     */
-    bool initWithImageData(void * pData, 
-                           int nDataLen, 
-                           EImageFormat eFmt = kFmtUnKnown,
-                           int nWidth = 0,
-                           int nHeight = 0,
-                           int nBitsPerComponent = 8);
+    bool initWithImageData(void * pData, int nDataLen);
 
+    bool initWithRawData(void *pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent, bool bPreMulti);
+    /**
+    @brief    Save CCImage data to the specified file, with specified format.
+    @param    pszFilePath        the file's absolute path, including file suffix.
+    */
+    bool saveToFile(const char* filename);
+    
     /**
     @brief    Create image with specified string.
     @param  pText       the text the image will show (cannot be nil).
@@ -189,44 +170,19 @@ public:
     bool isPremultipliedAlpha()         { return m_bPreMulti;   }
 
 
-    /**
-    @brief    Save CCImage data to the specified file, with specified format.
-    @param    pszFilePath        the file's absolute path, including file suffix.
-    @param    bIsToRGB        whether the image is saved as RGB format.
-    */
-    bool saveToFile(const char *pszFilePath, bool bIsToRGB = true);
 
     CC_SYNTHESIZE_READONLY(unsigned short,   m_nWidth,       Width);
     CC_SYNTHESIZE_READONLY(unsigned short,   m_nHeight,      Height);
     CC_SYNTHESIZE_READONLY(int,     m_nBitsPerComponent,   BitsPerComponent);
 
 protected:
-#if CC_JPEG_ENABLED > 0
     bool _initWithJpgData(void *pData, int nDatalen);
-#endif
-
     bool _initWithPngData(void *pData, int nDatalen);
-
-#if CC_WEBP_ENABLED > 0
-    bool _initWithWebpData(void *pData, int nDataLen);
-#endif
-
-    // @warning kFmtRawData only support RGBA8888
-    bool _initWithRawData(void *pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent, bool bPreMulti);
-
     bool _saveImageToPNG(const char *pszFilePath, bool bIsToRGB = true);
-
-#if CC_JPEG_ENABLED > 0
-    bool _saveImageToJPG(const char *pszFilePath);
-#endif
 
     unsigned char *m_pData;
     bool m_bHasAlpha;
     bool m_bPreMulti;
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    CCFreeTypeFont* m_ft;
-#endif
 
 private:
     // noncopyable

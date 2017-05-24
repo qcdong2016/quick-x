@@ -133,7 +133,7 @@ void CCSpriteFrame::paste(CCObject* o)
 void CCSpriteFrame::beginLoad(MemBuffer* buf, void* userdata)
 {
 	SharedPtr<CCImage> image(new CCImage());
-	image->initWithImageData(buf->getData(), buf->getSize(), EImageFormat::kFmtUnKnown);
+	image->initWithImageData(buf->getData(), buf->getSize());
 
 	SharedPtr<CCTexture2D> tex(new CCTexture2D());
 	tex->setPath(this->getPath());

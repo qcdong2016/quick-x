@@ -336,6 +336,7 @@
 		B19756BE1ED5180C00A476F0 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = B19754F91ED5180C00A476F0 /* tolua_push.c */; };
 		B19756BF1ED5180C00A476F0 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = B19754FA1ED5180C00A476F0 /* tolua_to.c */; };
 		B19756C41ED518D600A476F0 /* SDL_diskaudio.c in Sources */ = {isa = PBXBuildFile; fileRef = B19756C21ED518D600A476F0 /* SDL_diskaudio.c */; };
+		B19756C81ED5202E00A476F0 /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B19756C71ED5202E00A476F0 /* CCImage.cpp */; };
 		B1A754551DEA7968002F0D4C /* ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752BE1DEA7968002F0D4C /* ID.cpp */; };
 		B1A754561DEA7968002F0D4C /* MathDefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752C11DEA7968002F0D4C /* MathDefs.cpp */; };
 		B1A754571DEA7968002F0D4C /* ProcessUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A752C31DEA7968002F0D4C /* ProcessUtils.cpp */; };
@@ -1136,6 +1137,8 @@
 		B19754FA1ED5180C00A476F0 /* tolua_to.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tolua_to.c; sourceTree = "<group>"; };
 		B19756C21ED518D600A476F0 /* SDL_diskaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_diskaudio.c; sourceTree = "<group>"; };
 		B19756C31ED518D600A476F0 /* SDL_diskaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_diskaudio.h; sourceTree = "<group>"; };
+		B19756C71ED5202E00A476F0 /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
+		B19756C91ED5287C00A476F0 /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		B1A752BE1DEA7968002F0D4C /* ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ID.cpp; sourceTree = "<group>"; };
 		B1A752BF1DEA7968002F0D4C /* ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ID.h; sourceTree = "<group>"; };
 		B1A752C01DEA7968002F0D4C /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
@@ -1232,7 +1235,6 @@
 		B1A753971DEA7968002F0D4C /* CCDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDevice.cpp; sourceTree = "<group>"; };
 		B1A753981DEA7968002F0D4C /* CCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDevice.h; sourceTree = "<group>"; };
 		B1A7539B1DEA7968002F0D4C /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
-		B1A7539C1DEA7968002F0D4C /* CCImageCommon_cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImageCommon_cpp.h; sourceTree = "<group>"; };
 		B1A7539D1DEA7968002F0D4C /* CCInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCInput.cpp; sourceTree = "<group>"; };
 		B1A7539E1DEA7968002F0D4C /* CCInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCInput.h; sourceTree = "<group>"; };
 		B1A7539F1DEA7968002F0D4C /* CCPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformConfig.h; sourceTree = "<group>"; };
@@ -2590,6 +2592,7 @@
 				B19754E81ED5180C00A476F0 /* CMakeLists.txt */,
 				B19754E91ED5180C00A476F0 /* stb.c */,
 				B19754EA1ED5180C00A476F0 /* stb_image.h */,
+				B19756C91ED5287C00A476F0 /* stb_image_write.h */,
 				B19754EB1ED5180C00A476F0 /* stb_rect_pack.h */,
 				B19754EC1ED5180C00A476F0 /* stb_textedit.h */,
 				B19754ED1ED5180C00A476F0 /* stb_truetype.h */,
@@ -2782,8 +2785,8 @@
 				B17848D81EB9B28700EA61F5 /* CCEGLView.h */,
 				B1A753971DEA7968002F0D4C /* CCDevice.cpp */,
 				B1A753981DEA7968002F0D4C /* CCDevice.h */,
+				B19756C71ED5202E00A476F0 /* CCImage.cpp */,
 				B1A7539B1DEA7968002F0D4C /* CCImage.h */,
-				B1A7539C1DEA7968002F0D4C /* CCImageCommon_cpp.h */,
 				B1A7539D1DEA7968002F0D4C /* CCInput.cpp */,
 				B1A7539E1DEA7968002F0D4C /* CCInput.h */,
 				B109C17A1EB9D19F00A01BC7 /* CCGL.h */,
@@ -3106,6 +3109,7 @@
 				B19756191ED5180C00A476F0 /* SDL_cocoakeyboard.m in Sources */,
 				B19756B31ED5180C00A476F0 /* SkeletonData.c in Sources */,
 				B19755DB1ED5180C00A476F0 /* SDL_hints.c in Sources */,
+				B19756C81ED5202E00A476F0 /* CCImage.cpp in Sources */,
 				B19755AE1ED5180C00A476F0 /* s_tan.c in Sources */,
 				B19755221ED5180C00A476F0 /* lstrlib.c in Sources */,
 				B19756531ED5180C00A476F0 /* SDL_blit_0.c in Sources */,
