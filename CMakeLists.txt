@@ -20,6 +20,13 @@ set(ThirdInc
 	${CWD}/lib/cocos2d-x/core/platform
 )
 
+if (MSVC)
+	list(APPEND ThirdInc
+		${CWD}/lib/3rd/zlib/
+		${CWD}/lib/3rd/glew/
+	)
+endif()
+
 macro (library name)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     include_directories(${INCLUDE_DIRS} ${ThirdInc})
@@ -36,22 +43,12 @@ endmacro()
 add_subdirectory(lib/3rd)
 add_subdirectory(lib/cocos2d-x)
 
-
-
 include_directories(${ThirdInc})
 
-
-# link_directories(
-# 	${CWD}/lib/third_party/android/prebuilt/libcurl/libs/${ANDROID_ABI}/
-# 	${CWD}/lib/third_party/android/prebuilt/libjpeg/libs/${ANDROID_ABI}/
-# 	${CWD}/lib/third_party/android/prebuilt/libpng/libs/${ANDROID_ABI}/
-# 	${CWD}/lib/third_party/android/prebuilt/libwebp/libs/${ANDROID_ABI}/
-# 	${CWD}/lib/third_party/android/prebuilt/zlib/libs/${ANDROID_ABI}/
-# )
-
-
-add_library(game SHARED template/sources/App.cpp)
+if(ANDROID)
+	add_library(game SHARED template/sources/App.cpp)
+else()
+	add_executable(game template/sources/App.cpp)
+endif()
 
 target_link_libraries(game quickx)
-# curl jpeg png webp z
-# )

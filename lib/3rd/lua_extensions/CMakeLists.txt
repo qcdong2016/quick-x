@@ -26,16 +26,26 @@ set(SOURCE_FILES
 	socket/mime.c 
 	socket/options.c 
 	socket/select.c 
-	socket/serial.c 
 	socket/socket_scripts.c 
 	socket/tcp.c 
 	socket/timeout.c 
 	socket/udp.c 
-	socket/unix.c 
-	socket/usocket.c 
+
 
 	lua_extensions.c
 )
+
+if (MSVC)
+	list(APPEND SOURCE_FILES 
+		socket/wsocket.c 
+	)
+else()
+	list(APPEND SOURCE_FILES 
+		socket/unix.c 
+		socket/usocket.c 
+		socket/serial.c 
+	)
+endif()
 
 set(INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR})
 

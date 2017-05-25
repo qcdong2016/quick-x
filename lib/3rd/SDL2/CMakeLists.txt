@@ -16,11 +16,12 @@ file(GLOB C_FILES
     src/video/*.c
     src/joystick/*.c 
     src/haptic/*.c 
+    src/power/*.c
   )
 
 include (CheckIncludeFiles)
 
-if (WIN32)
+if (MSVC)
     # New MinGW versions may evaluate whether to use A or W postfix on functions before SDL gets to define UNICODE on its own,
     # so make sure it is already defined
     if (MINGW)
@@ -41,6 +42,10 @@ if (WIN32)
 
     file (GLOB SYS_C_FILES
         src/audio/directsound/*.c 
+        src/audio/winmm/*.c 
+        src/audio/dummy/*.c 
+        src/audio/xaudio2/*.c 
+        src/audio/disk/*.c 
         src/haptic/${HAPTIC_DRIVER}/*.c 
         src/joystick/windows/*.c 
         src/core/windows/*.c 
@@ -49,6 +54,7 @@ if (WIN32)
         src/thread/windows/*.c 
         src/thread/generic/SDL_syscond.c 
         src/timer/windows/*.c 
+        src/video/dummy/*.c 
         src/video/windows/*.c 
         src/joystick/dummy/*.c
         src/filesystem/windows/*.c
@@ -93,12 +99,12 @@ file (GLOB H_FILES include/*.h)
 set (SOURCE_FILES ${C_FILES} ${SYS_C_FILES} ${H_FILES})
 set (INCLUDE_DIRS include)
 
-# foreach(src_file ${SOURCE_FILES})
-#     get_filename_component (PATH ${src_file} PATH)
-#     string (REPLACE ${CMAKE_CURRENT_SOURCE_DIR} "" PATH ${PATH})
-#     string (REPLACE / \\ PATH ${PATH})
-#     source_group ("Source Files\\${PATH}" FILES ${src_file})
-# endforeach()
+foreach(src_file ${SOURCE_FILES})
+    get_filename_component (PATH ${src_file} PATH)
+    string (REPLACE ${CMAKE_CURRENT_SOURCE_DIR} "" PATH ${PATH})
+    string (REPLACE / \\ PATH ${PATH})
+    source_group ("Source Files\\${PATH}" FILES ${src_file})
+endforeach()
 
 add_definitions(
     -DHAVE_LIBC=1
@@ -109,8 +115,8 @@ add_definitions(
 include_directories(${INCLUDE_DIRS})
 add_library(SDL2 STATIC ${SOURCE_FILES})
 
-if (WIN32)
-    target_link_libraries(SDL2 user32 gdi32 winmm imm32 ole32 oleaut32 version uuid)
+if (MSVC)
+    target_link_libraries(SDL2 opengl32 user32 gdi32 winmm imm32 ole32 oleaut32 version uuid)
 elseif(ANDROID)
     set(EXTRA_LDFLAGS "-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit")
     target_link_libraries(SDL2 dl log android GLESv1_CM GLESv2 ${EXTRA_LDFLAGS})

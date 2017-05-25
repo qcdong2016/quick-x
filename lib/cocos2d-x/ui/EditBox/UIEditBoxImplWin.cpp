@@ -29,7 +29,7 @@
 #include "UIEditBox.h"
 #include "Win32InputBox.h"
 #include "nodes/CCLabelTTF.h"
-#include "ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 
 NS_CC_BEGIN
 namespace ui {

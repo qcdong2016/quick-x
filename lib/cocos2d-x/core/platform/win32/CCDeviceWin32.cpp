@@ -1,7 +1,7 @@
 #include "platform/CCDevice.h"
 #include "CCStdC.h"
 #include "CCEGLView.h"
-#include "ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 #include <io.h>
 #include <WinSock2.h>
 #include <Iphlpapi.h>

@@ -8,4 +8,8 @@ add_subdirectory(stb)
 add_subdirectory(tinyxml2)
 add_subdirectory(tolua)
 
+if (MSVC)
+    add_subdirectory(zlib)
+    add_subdirectory(glew)
+endif()
 
