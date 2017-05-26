@@ -31,8 +31,9 @@
 #include "nodes/CCLabelTTF.h"
 #include "cocoa/ccUTF8.h"
 
-#include "android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h"
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+
+int getFontSizeAccordingHeightJni(int height);
 
 
 NS_CC_BEGIN

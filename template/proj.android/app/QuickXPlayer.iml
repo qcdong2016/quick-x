@@ -246,9 +246,6 @@
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/misc">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/misc" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/network">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/network" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/particle">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/particle" isTestSource="false" />
     </content>

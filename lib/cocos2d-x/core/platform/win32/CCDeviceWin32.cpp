@@ -115,8 +115,6 @@ struct AlertStruct
 {
 	std::string m_alertViewTitle;
 	std::string m_alertViewMessage;
-
-	std::string m_macAddress;
 };
 
 static AlertStruct alertStruct;
@@ -225,19 +223,6 @@ static bool getMacAddress(std::string& macstring)
 
 	free(pAdapterInfo);
 	return ret;
-}
-
-const std::string CCDevice::getOpenUDID(void)
-{
-	if (alertStruct.m_macAddress.length() <= 0)
-	{
-		if (!getMacAddress(alertStruct.m_macAddress))
-		{
-			alertStruct.m_macAddress = "udid-fixed-1234567890";
-		}
-	}
-
-	return alertStruct.m_macAddress;
 }
 
 void CCDevice::openURL(const char* url)

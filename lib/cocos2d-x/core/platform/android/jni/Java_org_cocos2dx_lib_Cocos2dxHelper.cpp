@@ -5,6 +5,9 @@
 #include "cocoa/CCString.h"
 #include "Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include "CCDevice.h"
+#include "engine/CCDirector.h"
+#include "engine/CCSubSystem.h"
+#include "platform/CCInput.h"
 
 #define  LOG_TAG    "Java_org_cocos2dx_lib_Cocos2dxHelper.cpp"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -18,8 +21,155 @@ using namespace cocos2d;
 using namespace std;
 
 string g_apkPath;
+int getFontSizeAccordingHeightJni(int height) {
+    int ret = 0;
 
+    JniMethodInfo t;
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxBitmap", "getFontSizeAccordingHeight", "(I)I")) {
+        ret = t.env->CallStaticIntMethod(t.classID, t.methodID, height);
+        t.env->DeleteLocalRef(t.classID);
+    }
+
+    return ret;
+}
+
+std::string getStringWithEllipsisJni(const char* pszText, float width, float fontSize) {
+    std::string ret;
+    JniMethodInfo t;
+
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxBitmap", "getStringWithEllipsis", "(Ljava/lang/String;FF)Ljava/lang/String;")) {
+        jstring stringArg1;
+
+        if (!pszText) {
+            stringArg1 = t.env->NewStringUTF("");
+        } else {
+            stringArg1 = t.env->NewStringUTF(pszText);
+        }
+
+        jstring retFromJava = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID, stringArg1, width, fontSize);
+        const char* str = t.env->GetStringUTFChars(retFromJava, 0);
+        ret = str;
+
+        t.env->ReleaseStringUTFChars(retFromJava, str);
+        t.env->DeleteLocalRef(stringArg1);
+        t.env->DeleteLocalRef(t.classID);
+    }
+    return ret;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+void openKeyboardJNI() {
+    JniMethodInfo t;
+
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxGLSurfaceView", "openIMEKeyboard", "()V")) {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+    }
+}
+
+void closeKeyboardJNI() {
+    JniMethodInfo t;
+
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxGLSurfaceView", "closeIMEKeyboard", "()V")) {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+    }
+}
+void setKeyboardStateJNI(int bOpen) {
+    if (bOpen) {
+        openKeyboardJNI();
+    } else {
+        closeKeyboardJNI();
+    }
+}
 extern "C" {
+
+
+    
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeTouchesBegin(JNIEnv * env, jobject thiz, jint id, jfloat x, jfloat y) {
+        // cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesBegin(1, &id, &x, &y);
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeTouchesEnd(JNIEnv * env, jobject thiz, jint id, jfloat x, jfloat y) {
+        // cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesEnd(1, &id, &x, &y);
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeTouchesMove(JNIEnv * env, jobject thiz, jintArray ids, jfloatArray xs, jfloatArray ys) {
+        int size = env->GetArrayLength(ids);
+        jint id[size];
+        jfloat x[size];
+        jfloat y[size];
+
+        env->GetIntArrayRegion(ids, 0, size, id);
+        env->GetFloatArrayRegion(xs, 0, size, x);
+        env->GetFloatArrayRegion(ys, 0, size, y);
+
+        // cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesMove(size, id, x, y);
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeTouchesCancel(JNIEnv * env, jobject thiz, jintArray ids, jfloatArray xs, jfloatArray ys) {
+        int size = env->GetArrayLength(ids);
+        jint id[size];
+        jfloat x[size];
+        jfloat y[size];
+
+        env->GetIntArrayRegion(ids, 0, size, id);
+        env->GetFloatArrayRegion(xs, 0, size, x);
+        env->GetFloatArrayRegion(ys, 0, size, y);
+
+        // cocos2d::CCDirector::sharedDirector()->getOpenGLView()->handleTouchesCancel(size, id, x, y);
+    }
+
+    #define KEYCODE_BACK 0x04
+    #define KEYCODE_MENU 0x52
+
+    JNIEXPORT jboolean JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeKeyDown(JNIEnv * env, jobject thiz, jint keyCode) {
+        CCDirector* pDirector = CCDirector::sharedDirector();
+        
+        if (keyCode == KEYCODE_BACK)
+            pDirector->getSubSystem<cocos2d::Input>()->onKeypadBack();
+        else if (keyCode == KEYCODE_MENU)
+            pDirector->getSubSystem<cocos2d::Input>()->onKeypadMenu();
+
+        return JNI_TRUE;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeRender(JNIEnv* env) {
+        cocos2d::CCDirector::sharedDirector()->mainLoop();
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnPause() {
+        // CCApplication::sharedApplication()->applicationDidEnterBackground();
+
+        //CCNotificationCenter::sharedNotificationCenter()->postNotification(EVENT_COME_TO_BACKGROUND, NULL);
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnResume() {
+        if (CCDirector::sharedDirector()->getOpenGLView()) {
+            // CCApplication::sharedApplication()->applicationWillEnterForeground();
+        }
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInsertText(JNIEnv* env, jobject thiz, jstring text) {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+        // cocos2d::CCIMEDispatcher::sharedDispatcher()->dispatchInsertText(pszText, strlen(pszText));
+        env->ReleaseStringUTFChars(text, pszText);
+    }
+
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeDeleteBackward(JNIEnv* env, jobject thiz) {
+        // cocos2d::CCIMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
+    }
+
+    JNIEXPORT jstring JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeGetContentText() {
+        JNIEnv * env = 0;
+        const char * pszText ;
+        // = cocos2d::CCIMEDispatcher::sharedDispatcher()->getContentText();
+        return env->NewStringUTF(pszText);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath) {
         g_apkPath = JniHelper::jstring2string(apkPath);

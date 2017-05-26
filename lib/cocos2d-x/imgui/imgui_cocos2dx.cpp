@@ -252,6 +252,7 @@ void ImGuiCC::init()
 		// Restore modified GL state
 		glBindTexture(GL_TEXTURE_2D, last_texture);
 		glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
+        glBindVertexArray(0);
 	}
 }
 

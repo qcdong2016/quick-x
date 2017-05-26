@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Cocos2d
-** Generated automatically by tolua++-1.0.92 on Wed May 24 16:23:27 2017.
+** Generated automatically by tolua++-1.0.92 on Fri May 26 14:11:08 2017.
 */
 
 /****************************************************************************
@@ -9942,34 +9942,6 @@ static int tolua_Cocos2d_CCDevice_cancelAlert00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'cancelAlert'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getOpenUDID of class  CCDevice */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDevice_getOpenUDID00
-static int tolua_Cocos2d_CCDevice_getOpenUDID00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"CCDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   const std::string tolua_ret = (const std::string)  CCDevice::getOpenUDID();
-   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getOpenUDID'.",&tolua_err);
  return 0;
 #endif
 }
@@ -59825,7 +59797,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
    tolua_function(tolua_S,"hideActivityIndicator",tolua_Cocos2d_CCDevice_hideActivityIndicator00);
    tolua_function(tolua_S,"createAlert",tolua_Cocos2d_CCDevice_createAlert00);
    tolua_function(tolua_S,"cancelAlert",tolua_Cocos2d_CCDevice_cancelAlert00);
-   tolua_function(tolua_S,"getOpenUDID",tolua_Cocos2d_CCDevice_getOpenUDID00);
    tolua_function(tolua_S,"openURL",tolua_Cocos2d_CCDevice_openURL00);
    tolua_function(tolua_S,"getInputText",tolua_Cocos2d_CCDevice_getInputText00);
    tolua_function(tolua_S,"getDeviceName",tolua_Cocos2d_CCDevice_getDeviceName00);

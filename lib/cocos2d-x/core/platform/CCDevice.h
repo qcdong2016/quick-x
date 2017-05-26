@@ -121,12 +121,6 @@ public:
     static void cancelAlert(void);
 
 #pragma mark -
-#pragma mark OpenUDID
-
-    /** @brief Get OpenUDID value */
-    static const std::string getOpenUDID(void);
-
-#pragma mark -
 #pragma mark misc
 
     /** @brief Open a web page in the browser; create an email; or call a phone number. */

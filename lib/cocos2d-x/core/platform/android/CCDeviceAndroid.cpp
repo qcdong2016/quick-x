@@ -207,25 +207,6 @@ const std::string CCDevice::getInputText(const char* title, const char* message,
     return std::string("");
 }
 
-
-//  OpenUDID
-
-const std::string CCDevice::getOpenUDID(void)
-{
-    JniMethodInfo methodInfo;
-    if (JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/utils/PSNative", "getOpenUDID", 
-        "()Ljava/lang/String;"))
-    {
-        jstring judid = (jstring)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID);
-        char* udid = (char*)methodInfo.env->GetStringUTFChars(judid, 0);
-		std::string ret = udid;
-        methodInfo.env->ReleaseStringUTFChars(judid, udid);
-        methodInfo.env->DeleteLocalRef(methodInfo.classID);
-        return ret;
-    }
-    return std::string("");
-}
-
 const std::string CCDevice::getDeviceName(void)
 {
     JniMethodInfo methodInfo;

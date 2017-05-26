@@ -2,9 +2,222 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIAlert.h>
 #import <AudioToolbox/AudioServices.h>
-#import "CCNativeIOS.h"
-#import "openudid/OpenUDIDIOS.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+
+
+
+USING_NS_CC;
+
+@interface CCNativeIOS : NSObject < UIAlertViewDelegate >
+{
+    UIActivityIndicatorView *activityIndicatorView_;
+    
+    UIAlertView *alertView_;
+}
+
++ (CCNativeIOS *)sharedInstance;
+
+
+#pragma mark -
+#pragma mark activity indicator
+
+- (void)showActivityIndicator:(UIActivityIndicatorViewStyle)style;
+- (void)hideActivityIndicator;
+
+
+#pragma mark -
+#pragma mark alert view
+
+- (void)createAlertView:(NSString *)title
+             andMessage:(NSString *)message
+   andCancelButtonTitle:(NSString *)cancelButtonTitle;
+- (NSInteger)addAlertButton:(NSString *)buttonTitle;
+- (void)showAlertView;
+- (void)removeAlertView;
+- (void)cancelAlertView;
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+- (void)showAlertViewWithObjcDelegate:(id<UIAlertViewDelegate>)delegate;
+#endif
+
+
+#pragma mark -
+#pragma mark UIAlertView delegates
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+@end
+
+#ifndef utf8cstr
+#define utf8cstr(nsstr) (nsstr ? [nsstr cStringUsingEncoding:NSUTF8StringEncoding] : "")
+#endif
+
+@implementation CCNativeIOS
+
+static CCNativeIOS *s_sharedInstance;
+
++ (CCNativeIOS *)sharedInstance
+{
+    if (!s_sharedInstance)
+    {
+        s_sharedInstance = [[CCNativeIOS alloc] init];
+    }
+    return s_sharedInstance;
+}
+
+- (void)dealloc
+{
+    [self hideActivityIndicator];
+    [self removeAlertView];
+#if CC_LUA_ENGINE_ENABLED > 0
+    [self removeAlertViewLuaListener];
+#endif
+    [super dealloc];
+    s_sharedInstance = nil;
+}
+
+
+#pragma mark -
+#pragma mark activity indicator
+
+- (void)showActivityIndicator:(UIActivityIndicatorViewStyle)style
+{
+    if (activityIndicatorView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, showActivityIndicator() activity indicator already visible");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] showActivityIndicator()");
+    activityIndicatorView_ = [UIActivityIndicatorView  alloc];
+    [activityIndicatorView_ initWithActivityIndicatorStyle:style];
+    [activityIndicatorView_ autorelease];
+    [activityIndicatorView_ retain];
+    
+    NSInteger count = [UIApplication sharedApplication].windows.count;
+    UIWindow* topWindow = [[UIApplication sharedApplication].windows objectAtIndex:count - 1];
+    [topWindow addSubview: activityIndicatorView_];
+    activityIndicatorView_.center = topWindow.center;
+    [activityIndicatorView_ startAnimating];
+}
+
+- (void)hideActivityIndicator
+{
+    if (!activityIndicatorView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, hideActivityIndicator() activity indicator not visible");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] hideActivityIndicator()");
+    [activityIndicatorView_ removeFromSuperview];
+    [activityIndicatorView_ release];
+    activityIndicatorView_ = nil;
+}
+
+
+#pragma mark -
+#pragma mark alert view
+
+- (void)createAlertView:(NSString *)title
+             andMessage:(NSString *)message
+   andCancelButtonTitle:(NSString *)cancelButtonTitle
+{
+    if (alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, createAlertView() alert view already exists");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] createAlertView() title: %s, message: %s, cancelButtonTitle: %s",
+          utf8cstr(title), utf8cstr(message), utf8cstr(cancelButtonTitle));
+    alertView_ = [[UIAlertView alloc] initWithTitle:title
+                                            message:message
+                                           delegate:self
+                                  cancelButtonTitle:cancelButtonTitle
+                                  otherButtonTitles:nil];
+}
+
+- (NSInteger)addAlertButton:(NSString *)buttonTitle
+{
+    if (!alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, addAlertButton() alert view not exists");
+        return 0;
+    }
+    
+    CCLOG("[CCNativeIOS] addAlertButton() buttonTitle: %s", utf8cstr(buttonTitle));
+    return [alertView_ addButtonWithTitle:buttonTitle];
+}
+
+- (void)showAlertView
+{
+    if (!alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, showAlertViewWithDelegate() alert view not exists");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] showAlertViewWithDelegate()");
+    //    alertViewDelegates_ = delegate;
+    [alertView_ show];
+}
+
+- (void)removeAlertView
+{
+    if (!alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, removeAlertView() alert view not exists");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] removeAlertView()");
+    [alertView_ release];
+    alertView_ = nil;
+
+    //    alertViewDelegates_ = nil;
+}
+
+- (void)cancelAlertView
+{
+    if (!alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, cancelAlertView() alert view not exists");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] cancelAlertView()");
+    [alertView_ dismissWithClickedButtonIndex:0 animated:YES];
+    [self removeAlertView];
+}
+
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+- (void)showAlertViewWithObjcDelegate:(id<UIAlertViewDelegate>)delegate
+{
+    if (!alertView_)
+    {
+        CCLOG("[CCNativeIOS] ERR, showAlertViewWithDelegate() alert view not exists");
+        return;
+    }
+    
+    CCLOG("[CCNativeIOS] showAlertViewWithObjcDelegate()");
+    [alertView_ setDelegate:delegate];
+    [alertView_ show];
+}
+#endif
+
+#pragma mark -
+#pragma mark UIAlertView delegates
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self removeAlertView];
+}
+
+@end
 
 NS_CC_BEGIN
 
@@ -188,14 +401,6 @@ const std::string CCDevice::getInputText(const char* title, const char* message,
 {
     CCLOG("CCDevice::getInputText() - not support this platform.");
     return std::string("");
-}
-
-#pragma mark -
-#pragma mark OpenUDID
-
-const std::string CCDevice::getOpenUDID(void)
-{
-    return std::string([[OpenUDIDIOS value] cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 const std::string CCDevice::getDeviceName(void)

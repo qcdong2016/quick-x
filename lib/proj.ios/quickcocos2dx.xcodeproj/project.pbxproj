@@ -348,8 +348,6 @@
 		B1A757061DEA79E1002F0D4C /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A755EA1DEA79E1002F0D4C /* CCSAXParser.cpp */; };
 		B1A7570B1DEA79E1002F0D4C /* CCDeviceIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A755F61DEA79E1002F0D4C /* CCDeviceIOS.mm */; };
 		B1A7570F1DEA79E1002F0D4C /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A755FF1DEA79E1002F0D4C /* CCImage.mm */; };
-		B1A757101DEA79E1002F0D4C /* CCNativeIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A756011DEA79E1002F0D4C /* CCNativeIOS.mm */; };
-		B1A757171DEA79E1002F0D4C /* OpenUDIDIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A756121DEA79E1002F0D4C /* OpenUDIDIOS.m */; };
 		B1A7572B1DEA79E1002F0D4C /* CCAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A7563F1DEA79E1002F0D4C /* CCAnimation.cpp */; };
 		B1A7572C1DEA79E1002F0D4C /* CCPlistResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A756411DEA79E1002F0D4C /* CCPlistResource.cpp */; };
 		B1A7572D1DEA79E1002F0D4C /* CCSpriteFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A756431DEA79E1002F0D4C /* CCSpriteFrame.cpp */; };
@@ -1143,12 +1141,6 @@
 		B1A755EC1DEA79E1002F0D4C /* CCStdC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStdC.h; sourceTree = "<group>"; };
 		B1A755F61DEA79E1002F0D4C /* CCDeviceIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDeviceIOS.mm; sourceTree = "<group>"; };
 		B1A755FF1DEA79E1002F0D4C /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
-		B1A756001DEA79E1002F0D4C /* CCNativeIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNativeIOS.h; sourceTree = "<group>"; };
-		B1A756011DEA79E1002F0D4C /* CCNativeIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNativeIOS.mm; sourceTree = "<group>"; };
-		B1A756021DEA79E1002F0D4C /* CCPlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformDefine.h; sourceTree = "<group>"; };
-		B1A7560F1DEA79E1002F0D4C /* OpenGL_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGL_Internal.h; sourceTree = "<group>"; };
-		B1A756111DEA79E1002F0D4C /* OpenUDIDIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDIOS.h; sourceTree = "<group>"; };
-		B1A756121DEA79E1002F0D4C /* OpenUDIDIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDIDIOS.m; sourceTree = "<group>"; };
 		B1A7563F1DEA79E1002F0D4C /* CCAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAnimation.cpp; sourceTree = "<group>"; };
 		B1A756401DEA79E1002F0D4C /* CCAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimation.h; sourceTree = "<group>"; };
 		B1A756411DEA79E1002F0D4C /* CCPlistResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPlistResource.cpp; sourceTree = "<group>"; };
@@ -2603,22 +2595,8 @@
 			children = (
 				B1A755F61DEA79E1002F0D4C /* CCDeviceIOS.mm */,
 				B1A755FF1DEA79E1002F0D4C /* CCImage.mm */,
-				B1A756001DEA79E1002F0D4C /* CCNativeIOS.h */,
-				B1A756011DEA79E1002F0D4C /* CCNativeIOS.mm */,
-				B1A756021DEA79E1002F0D4C /* CCPlatformDefine.h */,
-				B1A7560F1DEA79E1002F0D4C /* OpenGL_Internal.h */,
-				B1A756101DEA79E1002F0D4C /* openudid */,
 			);
 			path = ios;
-			sourceTree = "<group>";
-		};
-		B1A756101DEA79E1002F0D4C /* openudid */ = {
-			isa = PBXGroup;
-			children = (
-				B1A756111DEA79E1002F0D4C /* OpenUDIDIOS.h */,
-				B1A756121DEA79E1002F0D4C /* OpenUDIDIOS.m */,
-			);
-			path = openudid;
 			sourceTree = "<group>";
 		};
 		B1A7563E1DEA79E1002F0D4C /* resources */ = {
@@ -3083,7 +3061,6 @@
 				B1A756AE1DEA79E1002F0D4C /* CCScriptSupport.cpp in Sources */,
 				B1A756AA1DEA79E1002F0D4C /* CCDictionary.cpp in Sources */,
 				B186B9081ED43C6C00682326 /* SDL_uikitappdelegate.m in Sources */,
-				B1A757171DEA79E1002F0D4C /* OpenUDIDIOS.m in Sources */,
 				B1A756B91DEA79E1002F0D4C /* CCEngineEvents.cpp in Sources */,
 				B186B9621ED43C6D00682326 /* tolua_to.c in Sources */,
 				B1A756B81DEA79E1002F0D4C /* CCDirector.cpp in Sources */,
@@ -3298,7 +3275,6 @@
 				B186B8471ED43C6C00682326 /* k_rem_pio2.c in Sources */,
 				9F1FE6A31DAD3905008FE0C7 /* CCParticleExamples.cpp in Sources */,
 				B186B8F91ED43C6C00682326 /* SDL_blit_auto.c in Sources */,
-				B1A757101DEA79E1002F0D4C /* CCNativeIOS.mm in Sources */,
 				B186B9541ED43C6C00682326 /* Skeleton.c in Sources */,
 				B186B8761ED43C6C00682326 /* SDL_blendpoint.c in Sources */,
 				B186B7B21ED43C6C00682326 /* lcode.c in Sources */,

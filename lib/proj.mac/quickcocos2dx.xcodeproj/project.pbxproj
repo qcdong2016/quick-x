@@ -389,8 +389,6 @@
 		B1A754BD1DEA7968002F0D4C /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753A11DEA7968002F0D4C /* CCSAXParser.cpp */; };
 		B1A754D21DEA7968002F0D4C /* CCDeviceMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */; };
 		B1A754D61DEA7968002F0D4C /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753DA1DEA7968002F0D4C /* CCImage.mm */; };
-		B1A754D71DEA7968002F0D4C /* CCNativeMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */; };
-		B1A754DB1DEA7968002F0D4C /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A753E51DEA7968002F0D4C /* OpenUDIDMac.m */; };
 		B1A754E21DEA7968002F0D4C /* CCAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753F61DEA7968002F0D4C /* CCAnimation.cpp */; };
 		B1A754E31DEA7968002F0D4C /* CCPlistResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753F81DEA7968002F0D4C /* CCPlistResource.cpp */; };
 		B1A754E41DEA7968002F0D4C /* CCSpriteFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1A753FA1DEA7968002F0D4C /* CCSpriteFrame.cpp */; };
@@ -1250,11 +1248,6 @@
 		B1A753A31DEA7968002F0D4C /* CCStdC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStdC.h; sourceTree = "<group>"; };
 		B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCDeviceMac.mm; sourceTree = "<group>"; };
 		B1A753DA1DEA7968002F0D4C /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
-		B1A753DB1DEA7968002F0D4C /* CCNativeMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNativeMac.h; sourceTree = "<group>"; };
-		B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNativeMac.mm; sourceTree = "<group>"; };
-		B1A753DD1DEA7968002F0D4C /* CCPlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformDefine.h; sourceTree = "<group>"; };
-		B1A753E41DEA7968002F0D4C /* OpenUDIDMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDMac.h; sourceTree = "<group>"; };
-		B1A753E51DEA7968002F0D4C /* OpenUDIDMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDIDMac.m; sourceTree = "<group>"; };
 		B1A753F61DEA7968002F0D4C /* CCAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAnimation.cpp; sourceTree = "<group>"; };
 		B1A753F71DEA7968002F0D4C /* CCAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimation.h; sourceTree = "<group>"; };
 		B1A753F81DEA7968002F0D4C /* CCPlistResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPlistResource.cpp; sourceTree = "<group>"; };
@@ -1298,7 +1291,6 @@
 		B1A7544A1DEA7968002F0D4C /* CCTexturePVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTexturePVR.h; sourceTree = "<group>"; };
 		B1A7544C1DEA7968002F0D4C /* CCTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTouch.cpp; sourceTree = "<group>"; };
 		B1A7544D1DEA7968002F0D4C /* CCTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTouch.h; sourceTree = "<group>"; };
-		B1D36E951DBFB76200E591CE /* Android.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
 		B1D36E961DBFB76200E591CE /* CCAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAction.cpp; sourceTree = "<group>"; };
 		B1D36E971DBFB76200E591CE /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		B1D36E981DBFB76200E591CE /* CCActionCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionCamera.cpp; sourceTree = "<group>"; };
@@ -2815,21 +2807,8 @@
 			children = (
 				B1A753D21DEA7968002F0D4C /* CCDeviceMac.mm */,
 				B1A753DA1DEA7968002F0D4C /* CCImage.mm */,
-				B1A753DB1DEA7968002F0D4C /* CCNativeMac.h */,
-				B1A753DC1DEA7968002F0D4C /* CCNativeMac.mm */,
-				B1A753DD1DEA7968002F0D4C /* CCPlatformDefine.h */,
-				B1A753E31DEA7968002F0D4C /* openudid */,
 			);
 			path = mac;
-			sourceTree = "<group>";
-		};
-		B1A753E31DEA7968002F0D4C /* openudid */ = {
-			isa = PBXGroup;
-			children = (
-				B1A753E41DEA7968002F0D4C /* OpenUDIDMac.h */,
-				B1A753E51DEA7968002F0D4C /* OpenUDIDMac.m */,
-			);
-			path = openudid;
 			sourceTree = "<group>";
 		};
 		B1A753F51DEA7968002F0D4C /* resources */ = {
@@ -2913,7 +2892,6 @@
 		B1D36E941DBFB76200E591CE /* actions */ = {
 			isa = PBXGroup;
 			children = (
-				B1D36E951DBFB76200E591CE /* Android.mk */,
 				B1D36E961DBFB76200E591CE /* CCAction.cpp */,
 				B1D36E971DBFB76200E591CE /* CCAction.h */,
 				B1D36E981DBFB76200E591CE /* CCActionCamera.cpp */,
@@ -3164,7 +3142,6 @@
 				B19755741ED5180C00A476F0 /* SDL_clipboardevents.c in Sources */,
 				B1A754621DEA7968002F0D4C /* CCGeometry.cpp in Sources */,
 				B197552F1ED5180C00A476F0 /* lpack.c in Sources */,
-				B1A754DB1DEA7968002F0D4C /* OpenUDIDMac.m in Sources */,
 				B159BB891EBDB57600BB6E5D /* CCAttributeAccessor.cpp in Sources */,
 				B19755721ED5180C00A476F0 /* SDL_cpuinfo.c in Sources */,
 				9F1FE7131DAD3AA0008FE0C7 /* CCParticleExamples.cpp in Sources */,
@@ -3286,7 +3263,6 @@
 				B197560C1ED5180C00A476F0 /* SDL_systimer.c in Sources */,
 				B197561A1ED5180C00A476F0 /* SDL_cocoamessagebox.m in Sources */,
 				9F1FE74F1DAD3ACC008FE0C7 /* tolua_fix.c in Sources */,
-				B1A754D71DEA7968002F0D4C /* CCNativeMac.mm in Sources */,
 				B19755E71ED5180C00A476F0 /* SDL_test_font.c in Sources */,
 				B19756C41ED518D600A476F0 /* SDL_diskaudio.c in Sources */,
 				B19755341ED5180C00A476F0 /* auxiliar.c in Sources */,
