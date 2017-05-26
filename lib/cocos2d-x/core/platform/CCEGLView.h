@@ -42,7 +42,7 @@ public:
 	virtual void end();
 	virtual void swapBuffers();
 	virtual void setIMEKeyboardState(bool bOpen);
-	virtual const CCSize& getFrameSize() const;
+	virtual const CCSize& getFrameSize();
 	virtual void setFrameSize(const CCSize& size);
 	virtual void setFrameSize(int w, int h) { setFrameSize(CCSize(w, h)); }
 

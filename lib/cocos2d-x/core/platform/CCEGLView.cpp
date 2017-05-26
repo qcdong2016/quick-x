@@ -23,8 +23,12 @@ CCEGLView::~CCEGLView()
 {
 }
 
-const CCSize& CCEGLView::getFrameSize() const
+const CCSize& CCEGLView::getFrameSize()
 {
+	int w, h;
+    SDL_GetWindowSize(_window, &w, &h);
+	m_obScreenSize.width = w;
+	m_obScreenSize.height = h;
 	return m_obScreenSize;
 }
 
@@ -54,8 +58,6 @@ bool CCEGLView::createWithSize()
 	//  flags |= SDL_WINDOW_BORDERLESS;
 
 	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)m_obScreenSize.width, (int)m_obScreenSize.height, flags);
-	//SDL_GL_MakeCurrent(_window, SDL_GL_CreateContext(_window));
-
 
 	SDL_GL_CreateContext(_window);
 

@@ -201,6 +201,9 @@
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/cocoa">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/cocoa" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/cocoa/data_support">
+      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/cocoa/data_support" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/engine">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/engine" isTestSource="false" />
     </content>
@@ -225,21 +228,6 @@
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/shaders">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/shaders" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/component">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/component" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/data_support">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/data_support" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/image_support">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/image_support" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/user_default">
-      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/support/user_default" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/text_input_node">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/core/text_input_node" isTestSource="false" />
     </content>
@@ -254,6 +242,9 @@
     </content>
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/imgui">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/imgui" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/misc">
+      <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/misc" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../../lib/cocos2d-x/network">
       <sourceFolder url="file://$MODULE_DIR$/../../../lib/cocos2d-x/network" isTestSource="false" />
@@ -347,27 +338,19 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/.DS_Store" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/.DS_Store" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/cmake" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-safeguard" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/restart-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />

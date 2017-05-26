@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2012 James Chen
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +29,7 @@
 
 #include "UIEditBox.h"
 #include "nodes/CCLabelTTF.h"
-#include "support/ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h"
 #include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
@@ -54,17 +54,17 @@ CCEditBoxImplAndroid::CCEditBoxImplAndroid(EditBox* pEditText)
 , m_colPlaceHolder(ccGRAY)
 , m_nMaxLength(-1)
 {
-    
+
 }
 
 CCEditBoxImplAndroid::~CCEditBoxImplAndroid()
 {
-	
+
 }
 
 void CCEditBoxImplAndroid::doAnimationWhenKeyboardMove(float duration, float distance)
 { // don't need to be implemented on android platform.
-	
+
 }
 
 static const int CC_EDIT_BOX_PADDING = 5;
@@ -78,7 +78,7 @@ bool CCEditBoxImplAndroid::initWithSize(const CCSize& size)
     m_pLabel->setPosition(ccp(CC_EDIT_BOX_PADDING, size.height / 2.0f));
     m_pLabel->setColor(m_colText);
     m_pEditBox->addChild(m_pLabel);
-	
+
     m_pLabelPlaceHolder = CCLabelTTF::create("", "", size.height-12);
 	// align the text vertically center
     m_pLabelPlaceHolder->setAnchorPoint(ccp(0, 0.5f));
@@ -86,7 +86,7 @@ bool CCEditBoxImplAndroid::initWithSize(const CCSize& size)
     m_pLabelPlaceHolder->setVisible(false);
     m_pLabelPlaceHolder->setColor(m_colPlaceHolder);
     m_pEditBox->addChild(m_pLabelPlaceHolder);
-    
+
     m_EditSize = size;
     return true;
 }
@@ -97,7 +97,7 @@ void CCEditBoxImplAndroid::setFont(const char* pFontName, int fontSize)
 		m_pLabel->setFontName(pFontName);
 		m_pLabel->setFontSize(fontSize);
 	}
-	
+
 	if(m_pLabelPlaceHolder != NULL) {
 		m_pLabelPlaceHolder->setFontName(pFontName);
 		m_pLabelPlaceHolder->setFontSize(fontSize);
@@ -159,13 +159,13 @@ void CCEditBoxImplAndroid::setText(const char* pText)
     if (pText != NULL)
     {
         m_strText = pText;
-		
+
         if (m_strText.length() > 0)
         {
             m_pLabelPlaceHolder->setVisible(false);
-			
+
             std::string strToShow;
-			
+
             if (kEditBoxInputFlagPassword == m_eEditBoxInputFlag)
             {
                 long length = cc_utf8_strlen(m_strText.c_str());
@@ -195,7 +195,7 @@ void CCEditBoxImplAndroid::setText(const char* pText)
             m_pLabelPlaceHolder->setVisible(true);
             m_pLabel->setString("");
         }
-		
+
     }
 }
 
@@ -213,14 +213,14 @@ void CCEditBoxImplAndroid::setPlaceHolder(const char* pText)
         {
             m_pLabelPlaceHolder->setVisible(true);
         }
-		
+
         m_pLabelPlaceHolder->setString(m_strPlaceHolder.c_str());
     }
 }
 
 void CCEditBoxImplAndroid::setPosition(const Vec2& pos)
 { // don't need to be implemented on android platform.
-	
+
 }
 
 void CCEditBoxImplAndroid::setVisible(bool visible)
@@ -230,36 +230,36 @@ void CCEditBoxImplAndroid::setVisible(bool visible)
 
 void CCEditBoxImplAndroid::setContentSize(const CCSize& size)
 { // don't need to be implemented on android platform.
-	
+
 }
 
 void CCEditBoxImplAndroid::setAnchorPoint(const Vec2& anchorPoint)
 { // don't need to be implemented on android platform.
-	
+
 }
 
 void CCEditBoxImplAndroid::visit(void)
 { // don't need to be implemented on android platform.
-    
+
 }
 
 void CCEditBoxImplAndroid::onEnter(void)
 { // don't need to be implemented on android platform.
-    
+
 }
 
 static void editBoxCallbackFunc(const char* pText, void* ctx)
 {
     CCEditBoxImplAndroid* thiz = (CCEditBoxImplAndroid*)ctx;
     thiz->setText(pText);
-	
+
     if (thiz->getDelegate() != NULL)
     {
         thiz->getDelegate()->editBoxTextChanged(thiz->getCCEditBox(), thiz->getText());
         thiz->getDelegate()->editBoxEditingDidEnd(thiz->getCCEditBox());
         thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
     }
-    
+
     EditBox* pEditBox = thiz->getCCEditBox();
     if (NULL != pEditBox && 0 != pEditBox->getScriptEditBoxHandler())
     {
@@ -305,7 +305,7 @@ void CCEditBoxImplAndroid::openKeyboard()
         CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()->getScriptEngine();
         pEngine->executeEvent(pEditBox->getScriptEditBoxHandler(), "began",pEditBox);
     }
-	
+
     showEditTextDialogJNI(  m_strPlaceHolder.c_str(),
 						  m_strText.c_str(),
 						  m_eEditBoxInputMode,
@@ -314,7 +314,7 @@ void CCEditBoxImplAndroid::openKeyboard()
 						  m_nMaxLength,
 						  editBoxCallbackFunc,
 						  (void*)this  );
-	
+
 }
 
 void CCEditBoxImplAndroid::closeKeyboard()
