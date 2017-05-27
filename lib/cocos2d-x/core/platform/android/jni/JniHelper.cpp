@@ -56,36 +56,6 @@ namespace cocos2d {
         return AAssetManager_fromJava(env, assetManager);
     }
 
-    bool JniHelper::setClassLoaderFrom(jobject activityinstance) {
-        JniMethodInfo _getclassloaderMethod;
-        if (!JniHelper::getMethodInfo_DefaultClassLoader(_getclassloaderMethod,
-                                                         "android/content/Context",
-                                                         "getClassLoader",
-                                                         "()Ljava/lang/ClassLoader;")) {
-            return false;
-        }
-
-        jobject _c = cocos2d::JniHelper::getEnv()->CallObjectMethod(activityinstance,
-                                                                    _getclassloaderMethod.methodID);
-
-        if (NULL == _c) {
-            return false;
-        }
-
-        JniMethodInfo _m;
-        if (!JniHelper::getMethodInfo_DefaultClassLoader(_m,
-                                                         "java/lang/ClassLoader",
-                                                         "loadClass",
-                                                         "(Ljava/lang/String;)Ljava/lang/Class;")) {
-            return false;
-        }
-
-        classloader = cocos2d::JniHelper::getEnv()->NewGlobalRef(_c);
-        loadclassMethod_methodID = _m.methodID;
-
-        return true;
-    }
-
     bool JniHelper::getStaticMethodInfo(JniMethodInfo &methodinfo,
                                         const char *className, 
                                         const char *methodName,
@@ -119,78 +89,6 @@ namespace cocos2d {
         methodinfo.classID = classID;
         methodinfo.env = env;
         methodinfo.methodID = methodID;
-        return true;
-    }
-
-    bool JniHelper::getMethodInfo_DefaultClassLoader(JniMethodInfo &methodinfo,
-                                                     const char *className,
-                                                     const char *methodName,
-                                                     const char *paramCode) {
-        if ((NULL == className) ||
-            (NULL == methodName) ||
-            (NULL == paramCode)) {
-            return false;
-        }
-
-        JNIEnv *env = JniHelper::getEnv();
-        if (!env) {
-            return false;
-        }
-
-        jclass classID = env->FindClass(className);
-        if (! classID) {
-            CCLog("Failed to find class %s", className);
-            env->ExceptionClear();
-            return false;
-        }
-
-        jmethodID methodID = env->GetMethodID(classID, methodName, paramCode);
-        if (! methodID) {
-            CCLog("Failed to find method id of %s", methodName);
-            env->ExceptionClear();
-            return false;
-        }
-
-        methodinfo.classID = classID;
-        methodinfo.env = env;
-        methodinfo.methodID = methodID;
-
-        return true;
-    }
-
-    bool JniHelper::getMethodInfo(JniMethodInfo &methodinfo,
-                                  const char *className,
-                                  const char *methodName,
-                                  const char *paramCode) {
-        if ((NULL == className) ||
-            (NULL == methodName) ||
-            (NULL == paramCode)) {
-            return false;
-        }
-
-        JNIEnv *env = JniHelper::getEnv();
-        if (!env) {
-            return false;
-        }
-
-        jclass classID = env->FindClass(className);
-        if (! classID) {
-            CCLog("Failed to find class %s", className);
-            env->ExceptionClear();
-            return false;
-        }
-
-        jmethodID methodID = env->GetMethodID(classID, methodName, paramCode);
-        if (! methodID) {
-            CCLog("Failed to find method id of %s", methodName);
-            env->ExceptionClear();
-            return false;
-        }
-
-        methodinfo.classID = classID;
-        methodinfo.env = env;
-        methodinfo.methodID = methodID;
-
         return true;
     }
 

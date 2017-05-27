@@ -29,9 +29,11 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -50,8 +52,6 @@ public class Cocos2dxHelper {
 	private static Cocos2dxMusic sCocos2dMusic;
 	private static Cocos2dxSound sCocos2dSound;
 	private static AssetManager sAssetManager;
-	private static Cocos2dxAccelerometer sCocos2dxAccelerometer;
-	private static boolean sAccelerometerEnabled;
 	private static String sPackageName;
 	private static String sFileDirectory;
 	private static Context sContext = null;
@@ -69,9 +69,7 @@ public class Cocos2dxHelper {
 
 		Cocos2dxHelper.sPackageName = applicationInfo.packageName;
 		Cocos2dxHelper.sFileDirectory = pContext.getFilesDir().getAbsolutePath();
-		Cocos2dxHelper.nativeSetApkPath(applicationInfo.sourceDir);
 
-		Cocos2dxHelper.sCocos2dxAccelerometer = new Cocos2dxAccelerometer(pContext);
 		Cocos2dxHelper.sCocos2dMusic = new Cocos2dxMusic(pContext);
 		int simultaneousStreams = Cocos2dxSound.MAX_SIMULTANEOUS_STREAMS_DEFAULT;
 		if (Cocos2dxHelper.getDeviceModel().indexOf("GT-I9100") != -1) {
@@ -79,9 +77,7 @@ public class Cocos2dxHelper {
 		}
 		Cocos2dxHelper.sCocos2dSound = new Cocos2dxSound(pContext, simultaneousStreams);
 		Cocos2dxHelper.sAssetManager = pContext.getAssets();
-		Cocos2dxHelper.nativeSetContext((Context)pContext, Cocos2dxHelper.sAssetManager);
 		Cocos2dxBitmap.setContext(pContext);
-		Cocos2dxETCLoader.setContext(pContext);
 	}
 
 	// ===========================================================
@@ -96,12 +92,9 @@ public class Cocos2dxHelper {
 	// Methods
 	// ===========================================================
 
-	private static native void nativeSetApkPath(final String pApkPath);
 
 	private static native void nativeSetEditTextDialogResult(final byte[] pBytes);
 	
-	private static native void nativeSetContext(final Context pContext, final AssetManager mgr);
-
 	public static String getCocos2dxPackageName() {
 		return Cocos2dxHelper.sPackageName;
 	}
@@ -131,21 +124,6 @@ public class Cocos2dxHelper {
 
 	public static AssetManager getAssetManager() {
 		return Cocos2dxHelper.sAssetManager;
-	}
-
-	public static void enableAccelerometer() {
-		Cocos2dxHelper.sAccelerometerEnabled = true;
-		Cocos2dxHelper.sCocos2dxAccelerometer.enable();
-	}
-
-
-	public static void setAccelerometerInterval(float interval) {
-		Cocos2dxHelper.sCocos2dxAccelerometer.setInterval(interval);
-	}
-
-	public static void disableAccelerometer() {
-		Cocos2dxHelper.sAccelerometerEnabled = false;
-		Cocos2dxHelper.sCocos2dxAccelerometer.disable();
 	}
 
 	public static void preloadBackgroundMusic(final String pPath) {
@@ -234,15 +212,10 @@ public class Cocos2dxHelper {
 	}
 
 	public static void onResume() {
-		if (Cocos2dxHelper.sAccelerometerEnabled) {
-			Cocos2dxHelper.sCocos2dxAccelerometer.enable();
-		}
+
 	}
 
 	public static void onPause() {
-		if (Cocos2dxHelper.sAccelerometerEnabled) {
-			Cocos2dxHelper.sCocos2dxAccelerometer.disable();
-		}
 	}
 
 	public static void terminateProcess() {
@@ -272,8 +245,12 @@ public class Cocos2dxHelper {
 		}
 	}
 
-    public static int getDPI()
-    {
+	public static void openURL(String url) {
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		Cocos2dxActivity.getContext().startActivity(browserIntent);
+	}
+
+    public static int getDPI() {
 		if (sContext != null)
 		{
 			DisplayMetrics metrics = new DisplayMetrics();

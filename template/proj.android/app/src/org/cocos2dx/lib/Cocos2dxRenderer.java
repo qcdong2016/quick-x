@@ -69,7 +69,6 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 
 	@Override
 	public void onSurfaceCreated(final GL10 pGL10, final EGLConfig pEGLConfig) {
-		Cocos2dxRenderer.nativeInit(this.mScreenWidth, this.mScreenHeight);
 		this.mLastTickInNanoSeconds = System.nanoTime();
 	}
 
@@ -112,9 +111,6 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	private static native void nativeTouchesCancel(final int[] pIDs, final float[] pXs, final float[] pYs);
 	private static native boolean nativeKeyDown(final int pKeyCode);
 	private static native void nativeRender();
-	private static native void nativeInit(final int pWidth, final int pHeight);
-	private static native void nativeOnPause();
-	private static native void nativeOnResume();
 
 	public void handleActionDown(final int pID, final float pX, final float pY) {
 		Cocos2dxRenderer.nativeTouchesBegin(pID, pX, pY);
@@ -137,16 +133,13 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	}
 
 	public void handleOnPause() {
-		Cocos2dxRenderer.nativeOnPause();
 	}
 
 	public void handleOnResume() {
-		Cocos2dxRenderer.nativeOnResume();
 	}
 
 	private static native void nativeInsertText(final String pText);
 	private static native void nativeDeleteBackward();
-	private static native String nativeGetContentText();
 
 	public void handleInsertText(final String pText) {
 		Cocos2dxRenderer.nativeInsertText(pText);
@@ -157,7 +150,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	}
 
 	public String getContentText() {
-		return Cocos2dxRenderer.nativeGetContentText();
+		return "";
 	}
 
 	// ===========================================================

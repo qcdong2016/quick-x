@@ -40,21 +40,10 @@ typedef struct JniMethodInfo_
 class CC_DLL JniHelper
 {
 public:
-    
     static JNIEnv* getEnv();
-
-    static bool setClassLoaderFrom(jobject activityInstance);
-
     static bool getStaticMethodInfo(JniMethodInfo &methodinfo, const char *className, const char *methodName, const char *paramCode);
-    static bool getMethodInfo(JniMethodInfo &methodinfo, const char *className, const char *methodName, const char *paramCode);
     static std::string jstring2string(jstring str);
-
     static void* getAssetManager();
-private:
-    static bool getMethodInfo_DefaultClassLoader(JniMethodInfo &methodinfo,
-                                                 const char *className,
-                                                 const char *methodName,
-                                                 const char *paramCode);
 };
 
 NS_CC_END
