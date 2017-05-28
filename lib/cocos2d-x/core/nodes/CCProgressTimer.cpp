@@ -111,7 +111,7 @@ void CCProgressTimer::setSprite(CCSprite *pSprite)
         CC_SAFE_RETAIN(pSprite);
         CC_SAFE_RELEASE(m_pSprite);
         m_pSprite = pSprite;
-        setContentSize(m_pSprite->getContentSize());
+        setSize(m_pSprite->getSize());
 
         //    Every time we set a new sprite, we free the current vertex data
         if (m_pVertexData)

@@ -124,7 +124,7 @@ void LoadingBar::loadTexture(const char* texture)
 		static_cast<CCSprite*>(_barRenderer)->initWithFile(texture);
 	}
     updateRGBAToRenderer(_barRenderer);
-    _barRendererTextureSize = _barRenderer->getContentSize();
+    _barRendererTextureSize = _barRenderer->getSize();
     
     switch (_barType)
     {
@@ -244,7 +244,7 @@ void LoadingBar::ignoreContentAdaptWithSize(bool ignore)
     }
 }
 
-const CCSize& LoadingBar::getContentSize() const
+const CCSize& LoadingBar::getSize() const
 {
     return _barRendererTextureSize;
 }

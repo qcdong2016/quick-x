@@ -28,9 +28,9 @@ class CCNode : public CCScriptEventDispatcher
     void setAnchorPoint(Vec2 anchorPoint);
     void setAnchorPoint(float x, float y);
     Vec2 getAnchorPoint();
-    void setContentSize(CCSize contentSize);
-    void setContentSize(float w, float h);
-    CCSize getContentSize();
+    void setSize(CCSize contentSize);
+    void setSize(float w, float h);
+    CCSize getSize();
     void setVisible(bool visible);
     bool isVisible();
     void setRotation(float fRotation);

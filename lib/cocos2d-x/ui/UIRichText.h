@@ -106,7 +106,7 @@ public:
     virtual void visit();
     void setVerticalSpace(float space);
     virtual void setAnchorPoint(const Vec2 &pt);
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     void formatText();
     virtual void ignoreContentAdaptWithSize(bool ignore);
     virtual std::string getDescription() const;

@@ -305,7 +305,7 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
 {
     m_bRectRotated = rotated;
 
-    setContentSize(untrimmedSize);
+    setSize(untrimmedSize);
     setVertexRect(rect);
     setTextureCoords(rect);
 
@@ -321,8 +321,8 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
         relativeOffset.y = -relativeOffset.y;
     }
 
-    m_obOffsetPosition.x = relativeOffset.x + (m_obContentSize.width - m_obRect.size.width) / 2;
-    m_obOffsetPosition.y = relativeOffset.y + (m_obContentSize.height - m_obRect.size.height) / 2;
+    m_obOffsetPosition.x = relativeOffset.x + (_size.width - m_obRect.size.width) / 2;
+    m_obOffsetPosition.y = relativeOffset.y + (_size.height - m_obRect.size.height) / 2;
 
     // rendering using batch node
     if (m_pobBatchNode)
@@ -847,7 +847,7 @@ void CCSprite::setFlipX(bool bFlipX)
     if (m_bFlipX != bFlipX)
     {
         m_bFlipX = bFlipX;
-        setTextureRect(m_obRect, m_bRectRotated, m_obContentSize);
+        setTextureRect(m_obRect, m_bRectRotated, _size);
     }
 }
 
@@ -861,7 +861,7 @@ void CCSprite::setFlipY(bool bFlipY)
     if (m_bFlipY != bFlipY)
     {
         m_bFlipY = bFlipY;
-        setTextureRect(m_obRect, m_bRectRotated, m_obContentSize);
+        setTextureRect(m_obRect, m_bRectRotated, _size);
     }
 }
 
@@ -997,7 +997,7 @@ CCSpriteFrame* CCSprite::displayFrame(void)
                                             CC_RECT_POINTS_TO_PIXELS(m_obRect),
                                             m_bRectRotated,
                                             CC_POINT_POINTS_TO_PIXELS(m_obUnflippedOffsetPositionFromCenter),
-                                            CC_SIZE_POINTS_TO_PIXELS(m_obContentSize));
+                                            CC_SIZE_POINTS_TO_PIXELS(_size));
 }
 
 CCSpriteBatchNode* CCSprite::getBatchNode(void)

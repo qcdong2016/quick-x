@@ -54,7 +54,7 @@ bool CCLayer::init()
         CCDirector * pDirector;
         CC_BREAK_IF(!(pDirector = CCDirector::sharedDirector()));
         const CCSize &winSize = pDirector->getWinSize();
-        setContentSize(winSize);
+        setSize(winSize);
         setCascadeBoundingBox(CCRect(0, 0, winSize.width, winSize.height));
         m_bTouchEnabled = false;
         m_bAccelerometerEnabled = false;
@@ -206,7 +206,7 @@ bool CCLayerColor::initWithColor(const ccColor4B& color, GLfloat w, GLfloat h)
         }
 
         updateColor();
-        setContentSize(CCSizeMake(w, h));
+        setSize(CCSizeMake(w, h));
 
         setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionColor));
     }
@@ -221,29 +221,29 @@ bool CCLayerColor::initWithColor(const ccColor4B& color)
 }
 
 /// override contentSize
-void CCLayerColor::setContentSize(const CCSize & size)
+void CCLayerColor::setSize(const CCSize & size)
 {
     m_pSquareVertices[1].x = size.width;
     m_pSquareVertices[2].y = size.height;
     m_pSquareVertices[3].x = size.width;
     m_pSquareVertices[3].y = size.height;
 
-    CCLayer::setContentSize(size);
+    CCLayer::setSize(size);
 }
 
 void CCLayerColor::changeWidthAndHeight(GLfloat w ,GLfloat h)
 {
-    this->setContentSize(CCSizeMake(w, h));
+    this->setSize(CCSizeMake(w, h));
 }
 
 void CCLayerColor::changeWidth(GLfloat w)
 {
-    this->setContentSize(CCSizeMake(w, m_obContentSize.height));
+    this->setSize(CCSizeMake(w, _size.height));
 }
 
 void CCLayerColor::changeHeight(GLfloat h)
 {
-    this->setContentSize(CCSizeMake(m_obContentSize.width, h));
+    this->setSize(CCSizeMake(_size.width, h));
 }
 
 void CCLayerColor::updateColor()

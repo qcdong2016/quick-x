@@ -197,7 +197,7 @@ void Button::loadTextureNormal(const char* normal)
         CCSprite* normalRenderer = static_cast<CCSprite*>(_buttonNormalRenderer);
 		normalRenderer->initWithFile(normal);
     }
-    _normalTextureSize = _buttonNormalRenderer->getContentSize();
+    _normalTextureSize = _buttonNormalRenderer->getSize();
     normalTextureScaleChangedWithSize();
     updateAnchorPoint();
     updateFlippedX();
@@ -225,7 +225,7 @@ void Button::loadTexturePressed(const char* selected)
 		clickedRenderer->initWithFile(selected);
 		
     }
-    _pressedTextureSize = _buttonClickedRenderer->getContentSize();
+    _pressedTextureSize = _buttonClickedRenderer->getSize();
     pressedTextureScaleChangedWithSize();
     updateAnchorPoint();
     updateFlippedX();
@@ -253,7 +253,7 @@ void Button::loadTextureDisabled(const char* disabled)
 		disabledRenderer->initWithFile(disabled);
 		
     }
-    _disabledTextureSize = _buttonDisableRenderer->getContentSize();
+    _disabledTextureSize = _buttonDisableRenderer->getSize();
     disabledTextureScaleChangedWithSize();
     updateAnchorPoint();
     updateFlippedX();
@@ -457,7 +457,7 @@ void Button::onSizeChanged()
     disabledTextureScaleChangedWithSize();
 }
 
-const CCSize& Button::getContentSize() const
+const CCSize& Button::getSize() const
 {
     return _normalTextureSize;
 }

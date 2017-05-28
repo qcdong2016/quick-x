@@ -728,12 +728,12 @@ void TextField::textfieldRendererScaleChangedWithSize()
     {
         _textFieldRenderer->setDimensions(CCSizeZero);
         _textFieldRenderer->setScale(1.0f);
-        _size = getContentSize();        
+        _size = getSize();        
     }
     else
     {
         _textFieldRenderer->setDimensions(_size);
-        CCSize textureSize = getContentSize();
+        CCSize textureSize = getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _textFieldRenderer->setScale(1.0f);
@@ -746,9 +746,9 @@ void TextField::textfieldRendererScaleChangedWithSize()
     }
 }
 
-const CCSize& TextField::getContentSize() const
+const CCSize& TextField::getSize() const
 {
-    return _textFieldRenderer->getContentSize();
+    return _textFieldRenderer->getSize();
 }
 
 CCNode* TextField::getVirtualRenderer()

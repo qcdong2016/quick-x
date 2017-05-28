@@ -92,6 +92,7 @@ CCDirector* CCDirector::sharedDirector(void)
 }
 
 CCDirector::CCDirector(CCApplication* app)
+	: _deltaTime(0.0f)
 {
 	this->_app = app;
 	s_SharedDirector = this;

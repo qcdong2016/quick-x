@@ -88,7 +88,7 @@ protected:
     virtual void afterDraw(void);
 
     inline const Vec2 getDrawPosition(void) {
-        const CCSize& size = getContentSize();
+        const CCSize& size = getSize();
         return CCPointMake(size.width / 2, size.height / 2);
     }
 };

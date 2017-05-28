@@ -275,7 +275,7 @@ void RichText::formatText()
 void RichText::handleTextRenderer(const char *text, const char *fontName, float fontSize, const ccColor3B &color, GLubyte opacity)
 {
     CCLabelTTF* textRenderer = CCLabelTTF::create(text, fontName, fontSize);
-    float textRendererWidth = textRenderer->getContentSize().width;
+    float textRendererWidth = textRenderer->getSize().width;
     _leftSpaceWidth -= textRendererWidth;
     if (_leftSpaceWidth < 0.0f)
     {
@@ -312,7 +312,7 @@ void RichText::handleImageRenderer(const char *fileParh, const ccColor3B &color,
     
 void RichText::handleCustomRenderer(cocos2d::CCNode *renderer)
 {
-    CCSize imgSize = renderer->getContentSize();
+    CCSize imgSize = renderer->getSize();
     _leftSpaceWidth -= imgSize.width;
     if (_leftSpaceWidth < 0.0f)
     {
@@ -328,7 +328,7 @@ void RichText::handleCustomRenderer(cocos2d::CCNode *renderer)
     
 void RichText::addNewLine()
 {
-    _leftSpaceWidth = _customSize.width;
+    _leftSpaceWidth = _size.width;
     _elementRenders.push_back(CCArray::create());
 }
     
@@ -347,12 +347,12 @@ void RichText::formarRenderers()
             l->setAnchorPoint(CCPointZero);
             l->setPosition(ccp(nextPosX, 0.0f));
             _elementRenderersContainer->addChild(l, 1, j);
-            CCSize iSize = l->getContentSize();
+            CCSize iSize = l->getSize();
             newContentSizeWidth += iSize.width;
             newContentSizeHeight = Max(newContentSizeHeight, iSize.height);
             nextPosX += iSize.width;
         }
-        _elementRenderersContainer->setContentSize(CCSizeMake(newContentSizeWidth, newContentSizeHeight));
+        _elementRenderersContainer->setSize(CCSizeMake(newContentSizeWidth, newContentSizeHeight));
     }
     else
     {
@@ -366,14 +366,14 @@ void RichText::formarRenderers()
             for (unsigned int j=0; j<row->count(); j++)
             {
                 CCNode* l = (CCNode*)(row->objectAtIndex(j));
-                maxHeight = Max(l->getContentSize().height, maxHeight);
+                maxHeight = Max(l->getSize().height, maxHeight);
             }
             maxHeights[i] = maxHeight;
             newContentSizeHeight += maxHeights[i];
         }
         
         
-        float nextPosY = _customSize.height;
+        float nextPosY = _size.height;
         for (unsigned int i=0; i<_elementRenders.size(); i++)
         {
             CCArray* row = (CCArray*)(_elementRenders[i]);
@@ -386,21 +386,17 @@ void RichText::formarRenderers()
                 l->setAnchorPoint(CCPointZero);
                 l->setPosition(ccp(nextPosX, nextPosY));
                 _elementRenderersContainer->addChild(l, 1, i*10 + j);
-                nextPosX += l->getContentSize().width;
+                nextPosX += l->getSize().width;
             }
         }
-        _elementRenderersContainer->setContentSize(_size);
+        _elementRenderersContainer->setSize(_size);
         delete [] maxHeights;
     }
     _elementRenders.clear();
     if (_ignoreSize)
     {
-        CCSize s = getContentSize();
+        CCSize s = getSize();
         _size = s;
-    }
-    else
-    {
-        _size = _customSize;
     }
 }
     
@@ -433,9 +429,9 @@ void RichText::setAnchorPoint(const Vec2 &pt)
     _elementRenderersContainer->setAnchorPoint(pt);
 }
     
-const CCSize& RichText::getContentSize() const
+const CCSize& RichText::getSize() const
 {
-    return _elementRenderersContainer->getContentSize();
+    return _elementRenderersContainer->getSize();
 }
     
 void RichText::ignoreContentAdaptWithSize(bool ignore)

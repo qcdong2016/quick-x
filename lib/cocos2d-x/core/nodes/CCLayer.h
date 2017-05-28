@@ -108,7 +108,7 @@ public:
     virtual ~CCLayerColor();
 
     virtual void draw();
-    virtual void setContentSize(const CCSize & var);
+    virtual void setSize(const CCSize & var);
 
     static CCLayerColor* create();
 

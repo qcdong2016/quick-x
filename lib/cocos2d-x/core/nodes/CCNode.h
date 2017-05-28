@@ -420,8 +420,8 @@ public:
      *
      * @param contentSize   The untransformed size of the node.
      */
-	virtual void setContentSize(const CCSize& contentSize);
-	virtual void setContentSize(float w, float h) { setContentSize(CCSize(w, h)); };
+	virtual void setSize(const CCSize& contentSize);
+	virtual void setSize(float w, float h) { setSize(CCSize(w, h)); };
     /**
      * Returns the untransformed size of the node.
      *
@@ -429,7 +429,7 @@ public:
      *
      * @return The untransformed size of the node.
      */
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
 
 
     /**
@@ -1482,7 +1482,7 @@ protected:
     Vec2 m_obAnchorPointInPoints;    ///< anchor point in points
     Vec2 m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
 
-    CCSize m_obContentSize;             ///< untransformed size of the node
+    CCSize _size;             ///< untransformed size of the node
     CCRect m_cascadeBoundingBox;
 
 

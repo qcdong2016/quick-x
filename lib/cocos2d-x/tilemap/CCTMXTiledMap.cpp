@@ -62,7 +62,7 @@ bool CCTMXTiledMap::initWithTMXFile(const char *tmxFile)
 {
     CCAssert(tmxFile != NULL && strlen(tmxFile)>0, "TMXTiledMap: tmx file should not bi NULL");
     
-    setContentSize(CCSizeZero);
+    setSize(CCSizeZero);
 
     CCTMXMapInfo *mapInfo = CCTMXMapInfo::formatWithTMXFile(tmxFile);
 
@@ -78,7 +78,7 @@ bool CCTMXTiledMap::initWithTMXFile(const char *tmxFile)
 
 bool CCTMXTiledMap::initWithXML(const char* tmxString, const char* resourcePath)
 {
-    setContentSize(CCSizeZero);
+    setSize(CCSizeZero);
 
     CCTMXMapInfo *mapInfo = CCTMXMapInfo::formatWithXML(tmxString, resourcePath);
 
@@ -219,11 +219,11 @@ void CCTMXTiledMap::buildWithMapInfo(CCTMXMapInfo* mapInfo)
                 addChild((CCNode*)child, idx, idx);
 
                 // update content size with the max size
-                const CCSize& childSize = child->getContentSize();
-                CCSize currentSize = this->getContentSize();
+                const CCSize& childSize = child->getSize();
+                CCSize currentSize = this->getSize();
                 currentSize.width = Max( currentSize.width, childSize.width );
                 currentSize.height = Max( currentSize.height, childSize.height );
-                this->setContentSize(currentSize);
+                this->setSize(currentSize);
 
                 idx++;
             }

@@ -8,7 +8,6 @@ class LabelAtlas : public Widget
     void setStringValue(const std::string& value);
     const char* getStringValue() const;
     virtual void setAnchorPoint(const Vec2 &pt);
-    virtual const CCSize& getContentSize() const;
     virtual CCNode* getVirtualRenderer();
     virtual std::string getDescription() const;
 

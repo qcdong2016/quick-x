@@ -256,7 +256,7 @@ void CCLabelAtlas::setString(const char *label)
 
     CCSize s = CCSizeMake(len * m_uItemWidth, m_uItemHeight);
 
-    this->setContentSize(s);
+    this->setSize(s);
 
     m_uQuadsToDraw = len;
 }
@@ -273,7 +273,7 @@ void CCLabelAtlas::draw()
 {
     CCAtlasNode::draw();
 
-    const CCSize& s = this->getContentSize();
+    const CCSize& s = this->getSize();
     Vec2 vertices[4]={
         ccp(0,0),ccp(s.width,0),
         ccp(s.width,s.height),ccp(0,s.height),

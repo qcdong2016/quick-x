@@ -56,7 +56,7 @@ bool CCTileMapAtlas::initWithTileFile(const char *tile, const char *mapFile, int
     if( CCAtlasNode::initWithTileFile(tile, tileWidth, tileHeight, m_nItemsToRender) )
     {
         this->updateAtlasValues();
-        this->setContentSize(CCSizeMake((float)(m_pTGAInfo->width*m_uItemWidth),
+        this->setSize(CCSizeMake((float)(m_pTGAInfo->width*m_uItemWidth),
                                         (float)(m_pTGAInfo->height*m_uItemHeight)));
         return true;
     }

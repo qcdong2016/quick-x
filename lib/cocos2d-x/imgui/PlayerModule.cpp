@@ -56,6 +56,7 @@ void PlayerModule::update(EventData& data)
 		io.MouseDown[0] = false;
 	}
 
+	io.DeltaTime = CCDirector::sharedDirector()->getDeltaTime();
 	io.MousePos = ImVec2(input->getMousePos().x, input->getMousePos().y);
 
 	if (input->isKeyDown(KEY_F5)) {

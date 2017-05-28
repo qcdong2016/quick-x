@@ -491,7 +491,7 @@ const CCRect& Layout::getClippingRect()
 void Layout::onSizeChanged()
 {
     Widget::onSizeChanged();
-    setContentSize(_size);
+    //setSize(_size);
     setStencilClippingSize(_size);
     _doLayoutDirty = true;
     _clippingRectDirty = true;
@@ -505,11 +505,11 @@ void Layout::onSizeChanged()
     }
     if (_colorRender)
     {
-        _colorRender->setContentSize(_size);
+        _colorRender->setSize(_size);
     }
     if (_gradientRender)
     {
-        _gradientRender->setContentSize(_size);
+        _gradientRender->setSize(_size);
     }
 }
 
@@ -563,7 +563,7 @@ void Layout::setBackGroundImage(const char* fileName)
     {
 		static_cast<CCSprite*>(_backGroundImage)->initWithFile(fileName);
     }
-    _backGroundImageTextureSize = _backGroundImage->getContentSize();
+    _backGroundImageTextureSize = _backGroundImage->getSize();
     _backGroundImage->setPosition(Vec2(_size.width/2.0f, _size.height/2.0f));
     updateBackGroundImageRGBA();
 }
@@ -688,14 +688,14 @@ void Layout::setBackGroundColorType(LayoutBackGroundColorType type)
             break;
         case LAYOUT_COLOR_SOLID:
             _colorRender = CCLayerColor::create();
-            _colorRender->setContentSize(_size);
+            _colorRender->setSize(_size);
             _colorRender->setOpacity(_cOpacity);
             _colorRender->setColor(_cColor);
             CCNode::addChild(_colorRender, BACKGROUNDCOLOR_RENDERER_Z, -1);
             break;
         case LAYOUT_COLOR_GRADIENT:
             _gradientRender = CCLayerGradient::create();
-            _gradientRender->setContentSize(_size);
+            _gradientRender->setSize(_size);
             _gradientRender->setOpacity(_cOpacity);
             _gradientRender->setStartColor(_gStartColor);
             _gradientRender->setEndColor(_gEndColor);

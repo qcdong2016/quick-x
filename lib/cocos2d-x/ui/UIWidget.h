@@ -52,12 +52,6 @@ typedef enum
 
 typedef enum
 {
-    SIZE_ABSOLUTE,
-    SIZE_PERCENT
-}SizeType;
-
-typedef enum
-{
     POSITION_ABSOLUTE,
     POSITION_PERCENT
 }PositionType;
@@ -472,49 +466,13 @@ public:
      * @param size that is widget's size
      */
     virtual void setSize(const CCSize &size);
-    
-    /**
-     * Changes the percent that is widget's percent size
-     *
-     * @param percent that is widget's percent size
-     */
-    virtual void setSizePercent(const Vec2 &percent);
-    
-    /**
-     * Changes the size type of widget.
-     *
-     * @see SizeType
-     *
-     * @param type that is widget's size type
-     */
-    void setSizeType(SizeType type);
-
-    /**
-     * Gets the size type of widget.
-     *
-     * @see SizeType
-     *
-     * @param type that is widget's size type
-     */
-    SizeType getSizeType() const;
-    
+   
     /**
      * Returns size of widget
      *
      * @return size
      */
     const CCSize& getSize() const;
-    
-    virtual const CCSize& getLayoutSize() {return _size;};
-    
-    /**
-     * Returns size percent of widget
-     *
-     * @return size percent
-     */
-    const Vec2& getSizePercent() const;
-    
-    const CCSize& getCustomSize() const;
     
     /**
      * Checks a point if is in widget's space
@@ -581,13 +539,6 @@ public:
      * @return Node pointer.
      */
     virtual CCNode* getVirtualRenderer();
-    
-    /**
-     * Gets the content size of widget.
-     *
-     * Content size is widget's texture size.
-     */
-    virtual const CCSize& getContentSize() const;
     
     /**
      * Returns the "class name" of widget.
@@ -675,12 +626,8 @@ protected:
     
     
 	int _actionTag;
-    CCSize _size;
-    CCSize _customSize;
     bool _ignoreSize;
     bool _affectByClipping;
-    SizeType _sizeType;
-    Vec2 _sizePercent;
     PositionType _positionType;
     Vec2 _positionPercent;
     bool _reorderWidgetChildDirty;

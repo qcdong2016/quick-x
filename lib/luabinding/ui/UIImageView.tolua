@@ -21,7 +21,6 @@ class ImageView : public Widget
     virtual void setAnchorPoint(const Vec2 &pt);
     virtual void ignoreContentAdaptWithSize(bool ignore);
     virtual std::string getDescription() const;
-    virtual const CCSize& getContentSize() const;
     virtual CCNode* getVirtualRenderer();
 
 };

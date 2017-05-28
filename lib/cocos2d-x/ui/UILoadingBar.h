@@ -125,7 +125,7 @@ public:
     virtual void ignoreContentAdaptWithSize(bool ignore);
     
     //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     
     //override "getVirtualRenderer" method of widget.
     virtual CCNode* getVirtualRenderer();

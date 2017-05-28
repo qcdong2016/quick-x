@@ -25,7 +25,6 @@ class Button : public Widget
     bool isScale9Enabled();
     void setPressedActionEnabled(bool enabled);
     virtual void ignoreContentAdaptWithSize(bool ignore);
-    virtual const CCSize& getContentSize() const;
     virtual CCNode* getVirtualRenderer();
     virtual std::string getDescription() const;   
     void setTitleText(const std::string& text);

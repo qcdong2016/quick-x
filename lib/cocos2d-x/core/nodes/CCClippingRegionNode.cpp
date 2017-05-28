@@ -23,7 +23,7 @@ CCClippingRegionNode* CCClippingRegionNode::create(void)
 void CCClippingRegionNode::setClippingRegion(const CCRect &clippingRegion)
 {
     m_clippingRegion = clippingRegion;
-    setContentSize(clippingRegion.size);
+    setSize(clippingRegion.size);
 }
 
 void CCClippingRegionNode::visit() 

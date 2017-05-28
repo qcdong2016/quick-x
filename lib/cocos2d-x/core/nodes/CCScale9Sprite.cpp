@@ -363,7 +363,7 @@ bool CCScale9Sprite::updateWithBatchNode(CCSpriteBatchNode* batchnode, CCRect re
         _scale9Image->addChild(_bottomRight, 2, pBottomRight);
     }
 
-    this->setContentSize(rect.size);
+    this->setSize(rect.size);
     this->addChild(_scale9Image);
     
     setCascadeColorEnabled(true);
@@ -382,9 +382,9 @@ bool CCScale9Sprite::updateWithBatchNode(CCSpriteBatchNode* batchnode, CCRect re
     return true;
 }
 
-void CCScale9Sprite::setContentSize(const CCSize &size)
+void CCScale9Sprite::setSize(const CCSize &size)
 {
-    CCNode::setContentSize(size);
+    CCNode::setSize(size);
     this->updatePositions();
     this->m_positionsAreDirty = true;
 }
@@ -401,22 +401,22 @@ void CCScale9Sprite::updatePositions()
         return;
     }
 
-    CCSize size = this->m_obContentSize;
+    CCSize size = this->_size;
 
-    float sizableWidth = size.width - _topLeft->getContentSize().width - _topRight->getContentSize().width;
-    float sizableHeight = size.height - _topLeft->getContentSize().height - _bottomRight->getContentSize().height;
+    float sizableWidth = size.width - _topLeft->getSize().width - _topRight->getSize().width;
+    float sizableHeight = size.height - _topLeft->getSize().height - _bottomRight->getSize().height;
     
-    float horizontalScale = sizableWidth/_centre->getContentSize().width;
-    float verticalScale = sizableHeight/_centre->getContentSize().height;
+    float horizontalScale = sizableWidth/_centre->getSize().width;
+    float verticalScale = sizableHeight/_centre->getSize().height;
 
     _centre->setScaleX(horizontalScale);
     _centre->setScaleY(verticalScale);
 
-    float rescaledWidth = _centre->getContentSize().width * horizontalScale;
-    float rescaledHeight = _centre->getContentSize().height * verticalScale;
+    float rescaledWidth = _centre->getSize().width * horizontalScale;
+    float rescaledHeight = _centre->getSize().height * verticalScale;
 
-    float leftWidth = _bottomLeft->getContentSize().width;
-    float bottomHeight = _bottomLeft->getContentSize().height;
+    float leftWidth = _bottomLeft->getSize().width;
+    float bottomHeight = _bottomLeft->getSize().height;
 
     _bottomLeft->setAnchorPoint(ccp(0,0));
     _bottomRight->setAnchorPoint(ccp(0,0));
@@ -645,7 +645,7 @@ CCScale9Sprite* CCScale9Sprite::create()
 
 void CCScale9Sprite::setPreferredSize(CCSize preferedSize)
 {
-    this->setContentSize(preferedSize);
+    this->setSize(preferedSize);
     this->m_preferredSize = preferedSize;
 }
 
@@ -660,9 +660,9 @@ void CCScale9Sprite::setCapInsets(CCRect capInsets)
     {
         return;
     }
-    CCSize contentSize = this->m_obContentSize;
+    CCSize contentSize = this->_size;
     this->updateWithBatchNode(this->_scale9Image, this->m_spriteRect, m_bSpriteFrameRotated, capInsets);
-    this->setContentSize(contentSize);
+    this->setSize(contentSize);
 }
 
 CCRect CCScale9Sprite::getCapInsets()

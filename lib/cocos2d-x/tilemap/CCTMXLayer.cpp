@@ -90,7 +90,7 @@ bool CCTMXLayer::initWithTilesetInfo(CCTMXTilesetInfo *tilesetInfo, CCTMXLayerIn
 
         m_pAtlasIndexArray = ccCArrayNew((unsigned int)totalNumberOfTiles);
 
-        this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(CCSizeMake(m_tLayerSize.width * m_tMapTileSize.width, m_tLayerSize.height * m_tMapTileSize.height)));
+        this->setSize(CC_SIZE_PIXELS_TO_POINTS(CCSizeMake(m_tLayerSize.width * m_tMapTileSize.width, m_tLayerSize.height * m_tMapTileSize.height)));
 
         m_bUseAutomaticVertexZ = false;
         m_nVertexZvalue = 0;
@@ -255,8 +255,8 @@ void CCTMXLayer::setupTileSprite(CCSprite* sprite, Vec2 pos, unsigned int gid)
     {
         // put the anchor in the middle for ease of rotation.
         sprite->setAnchorPoint(ccp(0.5f,0.5f));
-        sprite->setPosition(ccp(positionAt(pos).x + sprite->getContentSize().height/2,
-           positionAt(pos).y + sprite->getContentSize().width/2 ) );
+        sprite->setPosition(ccp(positionAt(pos).x + sprite->getSize().height/2,
+           positionAt(pos).y + sprite->getSize().width/2 ) );
 
         unsigned int flag = gid & (kCCTMXTileHorizontalFlag | kCCTMXTileVerticalFlag );
 

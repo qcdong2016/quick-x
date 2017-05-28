@@ -436,7 +436,7 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
         m_cascadeOpacityEnabled = true;
         m_cascadeColorEnabled = true;
 
-        m_obContentSize = CCSizeZero;
+        _size = CCSizeZero;
 
         m_isOpacityModifyRGB = m_pobTextureAtlas->getTexture()->hasPremultipliedAlpha();
         m_obAnchorPoint = ccp(0.5f, 0.5f);
@@ -502,7 +502,7 @@ void CCLabelBMFont::createFontChars()
     unsigned int stringLen = m_sString ? cc_wcslen(m_sString) : 0;
     if (stringLen == 0)
     {
-        this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+        this->setSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
         return;
     }
 
@@ -635,7 +635,7 @@ void CCLabelBMFont::createFontChars()
     }
     tmpSize.height = totalHeight;
 
-    this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+    this->setSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
 }
 
 //LabelBMFont - CCLabelProtocol protocol
@@ -913,16 +913,16 @@ void CCLabelBMFont::updateLabel()
                 if ( lastChar == NULL )
                     continue;
 
-                lineWidth = lastChar->getPosition().x + lastChar->getContentSize().width/2.0f;
+                lineWidth = lastChar->getPosition().x + lastChar->getSize().width/2.0f;
 
                 float shift = 0;
                 switch (m_pAlignment)
                 {
                     case kCCTextAlignmentCenter:
-                        shift = getContentSize().width/2.0f - lineWidth/2.0f;
+                        shift = getSize().width/2.0f - lineWidth/2.0f;
                         break;
                     case kCCTextAlignmentRight:
-                        shift = getContentSize().width - lineWidth;
+                        shift = getSize().width - lineWidth;
                         break;
                     default:
                         break;
@@ -994,12 +994,12 @@ void CCLabelBMFont::setScaleY(float scaleY)
 
 float CCLabelBMFont::getLetterPosXLeft( CCSprite* sp )
 {
-    return sp->getPosition().x * m_fScaleX - (sp->getContentSize().width * m_fScaleX * sp->getAnchorPoint().x);
+    return sp->getPosition().x * m_fScaleX - (sp->getSize().width * m_fScaleX * sp->getAnchorPoint().x);
 }
 
 float CCLabelBMFont::getLetterPosXRight( CCSprite* sp )
 {
-    return sp->getPosition().x * m_fScaleX + (sp->getContentSize().width * m_fScaleX * sp->getAnchorPoint().x);
+    return sp->getPosition().x * m_fScaleX + (sp->getSize().width * m_fScaleX * sp->getAnchorPoint().x);
 }
 
 // LabelBMFont - FntFile
@@ -1037,7 +1037,7 @@ CCBMFontConfiguration* CCLabelBMFont::getConfiguration() const
 void CCLabelBMFont::draw()
 {
     CCSpriteBatchNode::draw();
-    const CCSize& s = this->getContentSize();
+    const CCSize& s = this->getSize();
     Vec2 vertices[4]={
         ccp(0,0),ccp(s.width,0),
         ccp(s.width,s.height),ccp(0,s.height),

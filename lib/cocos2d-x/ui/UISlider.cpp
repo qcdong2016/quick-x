@@ -136,7 +136,7 @@ void Slider::loadProgressBarTexture(const char *fileName)
 		static_cast<CCSprite*>(_progressBarRenderer)->initWithFile(fileName);
     updateRGBAToRenderer(_progressBarRenderer);
     _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
-    _progressBarTextureSize = _progressBarRenderer->getContentSize();
+    _progressBarTextureSize = _progressBarRenderer->getSize();
     progressBarRendererScaleChangedWithSize();
 }
 
@@ -362,9 +362,9 @@ void Slider::onSizeChanged()
     progressBarRendererScaleChangedWithSize();
 }
 
-const CCSize& Slider::getContentSize() const
+const CCSize& Slider::getSize() const
 {
-    return _barRenderer->getContentSize();
+    return _barRenderer->getSize();
 }
 
 CCNode* Slider::getVirtualRenderer()
@@ -378,7 +378,7 @@ void Slider::barRendererScaleChangedWithSize()
     {
         
         _barRenderer->setScale(1.0f);
-        _size = _barRenderer->getContentSize();
+        _size = _barRenderer->getSize();
         _barLength = _size.width;
     }
     else
@@ -390,7 +390,7 @@ void Slider::barRendererScaleChangedWithSize()
         }
         else
         {
-            CCSize btextureSize = _barRenderer->getContentSize();
+            CCSize btextureSize = _barRenderer->getSize();
             if (btextureSize.width <= 0.0f || btextureSize.height <= 0.0f)
             {
                 _barRenderer->setScale(1.0f);
@@ -423,7 +423,7 @@ void Slider::progressBarRendererScaleChangedWithSize()
         if (_scale9Enabled)
         {
             static_cast<CCScale9Sprite*>(_progressBarRenderer)->setPreferredSize(_size);
-            _progressBarTextureSize = _progressBarRenderer->getContentSize();
+            _progressBarTextureSize = _progressBarRenderer->getSize();
         }
         else
         {

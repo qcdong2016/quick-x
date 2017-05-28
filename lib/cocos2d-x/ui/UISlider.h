@@ -186,7 +186,7 @@ public:
     virtual void onTouchCancelled(CCTouch *touch, CCEvent *unused_event);
     
     //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     
     //override "getVirtualRenderer" method of widget.
     virtual CCNode* getVirtualRenderer();

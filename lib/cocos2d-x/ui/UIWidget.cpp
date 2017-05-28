@@ -43,12 +43,8 @@ _touchEndPos(CCPointZero),
 _touchEventListener(NULL),
 _touchEventSelector(NULL),
 _actionTag(0),
-_size(CCSizeZero),
-_customSize(CCSizeZero),
 _ignoreSize(false),
 _affectByClipping(false),
-_sizeType(SIZE_ABSOLUTE),
-_sizePercent(CCPointZero),
 _positionType(POSITION_ABSOLUTE),
 _positionPercent(CCPointZero),
 _reorderWidgetChildDirty(true),
@@ -369,67 +365,10 @@ void Widget::removeAllNodes()
 
 void Widget::setSize(const CCSize &size)
 {
-    _customSize = size;
     if (_ignoreSize)
-    {
-        _size = getContentSize();
-    }
+        _size = getSize();
     else
-    {
         _size = size;
-    }
-    if (m_bRunning)
-    {
-        Widget* widgetParent = getWidgetParent();
-        CCSize pSize;
-        if (widgetParent)
-        {
-            pSize = widgetParent->getSize();
-        }
-        else
-        {
-            pSize = m_pParent->getContentSize();
-        }
-        float spx = 0.0f;
-        float spy = 0.0f;
-        if (pSize.width > 0.0f)
-        {
-            spx = _customSize.width / pSize.width;
-        }
-        if (pSize.height > 0.0f)
-        {
-            spy = _customSize.height / pSize.height;
-        }
-        _sizePercent = Vec2(spx, spy);
-    }
-    onSizeChanged();
-}
-
-void Widget::setSizePercent(const Vec2 &percent)
-{
-    _sizePercent = percent;
-    CCSize cSize = _customSize;
-    if (m_bRunning)
-    {
-        Widget* widgetParent = getWidgetParent();
-        if (widgetParent)
-        {
-            cSize = CCSize(widgetParent->getSize().width * percent.x , widgetParent->getSize().height * percent.y);
-        }
-        else
-        {
-            cSize = CCSize(m_pParent->getContentSize().width * percent.x , m_pParent->getContentSize().height * percent.y);
-        }
-    }
-    if (_ignoreSize)
-    {
-        _size = getContentSize();
-    }
-    else
-    {
-        _size = cSize;
-    }
-    _customSize = cSize;
     onSizeChanged();
 }
 
@@ -439,59 +378,36 @@ void Widget::updateSizeAndPosition()
     CCSize pSize;
     if (widgetParent)
     {
-        pSize = widgetParent->getLayoutSize();
+        pSize = widgetParent->getSize();
     }
     else
     {
-        pSize = m_pParent->getContentSize();
+        pSize = m_pParent->getSize();
     }
     updateSizeAndPosition(pSize);
 }
     
 void Widget::updateSizeAndPosition(const cocos2d::CCSize &parentSize)
 {
-    switch (_sizeType)
-    {
-        case SIZE_ABSOLUTE:
-        {
-            if (_ignoreSize)
-            {
-                _size = getContentSize();
-            }
-            else
-            {
-                _size = _customSize;
-            }
-            float spx = 0.0f;
-            float spy = 0.0f;
-            if (parentSize.width > 0.0f)
-            {
-                spx = _customSize.width / parentSize.width;
-            }
-            if (parentSize.height > 0.0f)
-            {
-                spy = _customSize.height / parentSize.height;
-            }
-            _sizePercent = Vec2(spx, spy);
-            break;
-        }
-        case SIZE_PERCENT:
-        {
-            CCSize cSize = CCSize(parentSize.width * _sizePercent.x , parentSize.height * _sizePercent.y);
-            if (_ignoreSize)
-            {
-                _size = getContentSize();
-            }
-            else
-            {
-                _size = cSize;
-            }
-            _customSize = cSize;
-            break;
-        }
-        default:
-            break;
-    }
+	if (_ignoreSize)
+	{
+		_size = getSize();
+	}
+	else
+	{
+		_size = _size;
+	}
+	float spx = 0.0f;
+	float spy = 0.0f;
+	if (parentSize.width > 0.0f)
+	{
+		spx = _size.width / parentSize.width;
+	}
+	if (parentSize.height > 0.0f)
+	{
+		spy = _size.height / parentSize.height;
+	}
+           
     onSizeChanged();
     Vec2 absPos = getPosition();
     switch (_positionType)
@@ -519,16 +435,6 @@ void Widget::updateSizeAndPosition(const cocos2d::CCSize &parentSize)
     setPosition(absPos);
 }
 
-void Widget::setSizeType(SizeType type)
-{
-    _sizeType = type;
-}
-
-SizeType Widget::getSizeType() const
-{
-    return _sizeType;
-}
-
 void Widget::ignoreContentAdaptWithSize(bool ignore)
 {
     if (_ignoreSize == ignore)
@@ -538,12 +444,12 @@ void Widget::ignoreContentAdaptWithSize(bool ignore)
     _ignoreSize = ignore;
     if (_ignoreSize)
     {
-        CCSize s = getContentSize();
+        CCSize s = getSize();
         _size = s;
     }
     else
     {
-        _size = _customSize;
+        _size = _size;
     }
     onSizeChanged();
 }
@@ -556,16 +462,6 @@ bool Widget::isIgnoreContentAdaptWithSize() const
 const CCSize& Widget::getSize() const
 {
     return _size;
-}
-    
-const CCSize& Widget::getCustomSize() const
-{
-    return _customSize;
-}
-
-const Vec2& Widget::getSizePercent() const
-{
-    return _sizePercent;
 }
 
 Vec2 Widget::getWorldPosition()
@@ -590,12 +486,6 @@ void Widget::onSizeChanged()
         }
     }
 }
-
-const CCSize& Widget::getContentSize() const
-{
-    return _size;
-}
-
 void Widget::setTouchEnabled(bool enable)
 {
     if (enable == _touchEnabled)
@@ -1018,10 +908,7 @@ void Widget::copyProperties(Widget *widget)
     setActionTag(widget->getActionTag());
     _ignoreSize = widget->_ignoreSize;
     _size = widget->_size;
-    _customSize = widget->_customSize;
     copySpecialProperties(widget);
-    _sizeType = widget->getSizeType();
-    _sizePercent = widget->_sizePercent;
     _positionType = widget->_positionType;
     _positionPercent = widget->_positionPercent;
     setPosition(widget->getPosition());

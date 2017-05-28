@@ -19,12 +19,6 @@ typedef enum
 
 typedef enum
 {
-    SIZE_ABSOLUTE,
-    SIZE_PERCENT
-}SizeType;
-
-typedef enum
-{
     POSITION_ABSOLUTE,
     POSITION_PERCENT
 }PositionType;
@@ -174,41 +168,8 @@ class Widget : public CCNode
     
     
     const Vec2& getTouchStartPos();
-    
-    
     const Vec2& getTouchMovePos();
-    
-    
     const Vec2& getTouchEndPos();
-    
-    
-    void setName(const char* name);
-    
-    
-    const char* getName() const;
-    
-    
-    
-    virtual void setSize(const CCSize &size);
-    
-    
-    virtual void setSizePercent(const Vec2 &percent);
-    
-    
-    void setSizeType(SizeType type);
-
-    
-    SizeType getSizeType() const;
-    
-    
-    const CCSize& getSize() const;
-
-    virtual const CCSize& getLayoutSize();
-    
-    const Vec2& getSizePercent() const;
-
-    const CCSize& getCustomSize() const;
-    
     
     virtual bool hitTest(const Vec2 &pt);
     
@@ -224,8 +185,6 @@ class Widget : public CCNode
     
     
     virtual void ignoreContentAdaptWithSize(bool ignore);
-    
-    
     bool isIgnoreContentAdaptWithSize() const;
     
     
@@ -234,7 +193,6 @@ class Widget : public CCNode
     
     virtual CCNode* getVirtualRenderer();    
     
-    virtual const CCSize& getContentSize() const;
     
     
     virtual std::string getDescription() const;

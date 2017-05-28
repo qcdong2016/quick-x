@@ -67,7 +67,7 @@ public:
     /** get string value for labelbmfont*/
     const char* getStringValue();
     virtual void setAnchorPoint(const Vec2 &pt);
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     virtual CCNode* getVirtualRenderer();
     /**
      * Returns the "class name" of widget.

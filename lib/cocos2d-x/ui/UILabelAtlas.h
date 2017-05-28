@@ -107,7 +107,7 @@ public:
     virtual void setAnchorPoint(const Vec2 &pt);
     
     //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     
     //override "getVirtualRenderer" method of widget.
     virtual CCNode* getVirtualRenderer();

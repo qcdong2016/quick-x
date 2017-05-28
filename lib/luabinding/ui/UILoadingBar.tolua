@@ -26,7 +26,6 @@ class LoadingBar : public Widget
     void setCapInsets(const CCRect &capInsets);
 
     virtual void ignoreContentAdaptWithSize(bool ignore);
-    virtual const CCSize& getContentSize() const;
     virtual CCNode* getVirtualRenderer();
     virtual std::string getDescription() const;
 };

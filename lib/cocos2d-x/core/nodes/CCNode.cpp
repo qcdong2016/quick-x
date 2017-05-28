@@ -63,7 +63,7 @@ CCNode::CCNode(void)
 , m_fSkewY(0.0f)
 , m_obAnchorPointInPoints(CCPointZero)
 , m_obAnchorPoint(CCPointZero)
-, m_obContentSize(CCSizeZero)
+, _size(CCSizeZero)
 , m_sAdditionalTransform(CCAffineTransformMakeIdentity())
 , m_pCamera(NULL)
 // children (lazy allocs)
@@ -363,24 +363,24 @@ void CCNode::setAnchorPoint(const Vec2& point)
     if( ! point.equals(m_obAnchorPoint))
     {
         m_obAnchorPoint = point;
-        m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y );
+        m_obAnchorPointInPoints = ccp(_size.width * m_obAnchorPoint.x, _size.height * m_obAnchorPoint.y );
         m_bTransformDirty = m_bInverseDirty = true;
     }
 }
 
 /// contentSize getter
-const CCSize& CCNode::getContentSize() const
+const CCSize& CCNode::getSize() const
 {
-    return m_obContentSize;
+    return _size;
 }
 
-void CCNode::setContentSize(const CCSize & size)
+void CCNode::setSize(const CCSize & size)
 {
-    if ( ! size.equals(m_obContentSize))
+    if ( ! size.equals(_size))
     {
-        m_obContentSize = size;
+        _size = size;
 
-        m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y );
+        m_obAnchorPointInPoints = ccp(_size.width * m_obAnchorPoint.x, _size.height * m_obAnchorPoint.y );
         m_bTransformDirty = m_bInverseDirty = true;
     }
 }
@@ -505,7 +505,7 @@ void CCNode::setShaderProgram(CCGLProgram *pShaderProgram)
 
 CCRect CCNode::boundingBox()
 {
-    CCRect rect = CCRectMake(0, 0, m_obContentSize.width, m_obContentSize.height);
+    CCRect rect = CCRectMake(0, 0, _size.width, _size.height);
     return CCRectApplyAffineTransform(rect, nodeToParentTransform());
 }
 
@@ -543,9 +543,9 @@ CCRect CCNode::getCascadeBoundingBox(void)
         }
 
         // merge content size
-        if (m_obContentSize.width > 0 && m_obContentSize.height > 0)
+        if (_size.width > 0 && _size.height > 0)
         {
-            const CCRect box = CCRectApplyAffineTransform(CCRect(0, 0, m_obContentSize.width, m_obContentSize.height), nodeToWorldTransform());
+            const CCRect box = CCRectApplyAffineTransform(CCRect(0, 0, _size.width, _size.height), nodeToWorldTransform());
             if (!merge)
             {
                 cbb = box;

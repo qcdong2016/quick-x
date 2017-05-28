@@ -98,7 +98,7 @@ public:
      */
     virtual std::string getDescription() const;
     
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     virtual CCNode* getVirtualRenderer();
 protected:
     virtual void initRenderer();
