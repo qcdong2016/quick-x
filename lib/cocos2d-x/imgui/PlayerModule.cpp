@@ -70,29 +70,33 @@ void PlayerModule::update(EventData& data)
 
 static void DrawNode(CCNode* node)
 {
+	ImGui::PushID(node);
     CCArray* arr = node->getChildren();
-    if (!arr)
-        return;
-    
-    for (int i = 0; i < arr->count(); i++)
-    {
-        CCNode* child = (CCNode*)arr->objectAtIndex(i);
-		ImGui::PushID(child);
-        if (ImGui::TreeNode(child->getName()))
-        {
-			DrawNode(child);
-			ImGui::TreePop();
-        }
-		ImGui::PopID();
-    }
+
+	bool hasChild = (arr && arr->count() != 0);
+
+	if (ImGui::TreeNodeEx(node->getName(), hasChild ? 0 : ImGuiTreeNodeFlags_Leaf))
+	{
+		if (hasChild)
+		{
+			for (int i = 0; i < arr->count(); i++)
+			{
+				DrawNode((CCNode*)arr->objectAtIndex(i));
+			}
+		}
+		ImGui::TreePop();
+	}
+	ImGui::PopID();
 }
 
 void PlayerModule::hierarchyDraw(ImVec2 area)
 {
-    if (!root)
-        return;
-   
-	DrawNode(root);
+    CCArray* arr = root->getChildren();
+
+	for (int i = 0; i < arr->count(); i++)
+	{
+		DrawNode((CCNode*)arr->objectAtIndex(i));
+	}
 }
 
 void PlayerModule::inspectorDraw(ImVec2 area)
@@ -132,20 +136,20 @@ static CCNode* checkNode(CCNode* root, const Vec2& pos)
 static void drawPoint(const Vec2& pos) 
 {
 	Vec2 p = Vec2(5, 5);
-	ccDrawRect(pos - p, pos + p);
+	ccDrawSolidRect(pos - p, pos + p, ccc4f(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
 void PlayerModule::drawScene(ImVec2 area)
 {
 	ImGuiStyle& st = ImGui::GetStyle();
 
-	area.x -= 2*st.WindowPadding.x;
-	area.y -= 2*st.WindowPadding.y;
+	area.x -= 2 * st.WindowPadding.x;
+	area.y -= 2 * st.WindowPadding.y;
 
 	if (!tex || sceneSize.x != area.x || sceneSize.y != area.y) {
 		tex.Reset();
 		tex = CCRenderTexture::create(area.x, area.y);
-		root->setPosition(Vec2(area.x/2, area.y/2));
+		root->setPosition(Vec2(area.x / 2, area.y / 2));
 		sceneSize.x = area.x;
 		sceneSize.y = area.y;
 	}
@@ -172,14 +176,14 @@ void PlayerModule::drawScene(ImVec2 area)
 		Vec2 destination(origin + size);
 		ccDrawColor4F(0.0f, 1.0f, 0.0f, 1.0f);
 		ccDrawRect(origin, destination);
-		
-		drawPoint(Vec2(size.width * anchor.x, size.height * anchor.y));
-		drawPoint(origin);
-		drawPoint(destination);
-		drawPoint(Vec2(origin.x, destination.y));
-		drawPoint(Vec2(destination.x, origin.y));
 
 		kmGLPopMatrix();
+
+		drawPoint(CCPointApplyAffineTransform(Vec2(size.width * anchor.x, size.height * anchor.y), tmpAffine));
+		drawPoint(CCPointApplyAffineTransform(origin, tmpAffine));
+		drawPoint(CCPointApplyAffineTransform(destination, tmpAffine));
+		drawPoint(CCPointApplyAffineTransform(Vec2(origin.x, destination.y), tmpAffine));
+		drawPoint(CCPointApplyAffineTransform(Vec2(destination.x, origin.y), tmpAffine));
 	}
 
 	tex->end();
@@ -195,9 +199,34 @@ void PlayerModule::drawScene(ImVec2 area)
 	mouse.x = mouse.x - ImGui::GetItemBoxMin().x;
 	mouse.y = ImGui::GetItemBoxMax().y - mouse.y;
 
+	static bool isDown = false;
+	static ImVec2 last;
 	if (ImGui::IsItemClicked(0))
 	{
+		isDown = true;
+		last = ImGui::GetMousePos();
 		selected = checkNode(root, Vec2(mouse.x, mouse.y));
+	}
+
+	if (!ImGui::IsMouseDown(0))
+	{
+		isDown = false;
+	}
+
+	if (isDown && ImGui::IsItemHovered())
+	{
+		ImVec2 cur = ImGui::GetMousePos();
+		ImVec2 dif = cur - last;
+		CCLog("%f %f, %f %f", cur.x, cur.y, last.x, last.y);
+		last = cur;
+		if (selected)
+		{
+			selected->setPosition(selected->getPosition() + Vec2(dif.x, -dif.y));
+		}
+	}
+	else
+	{
+		isDown = false;
 	}
 }
 
