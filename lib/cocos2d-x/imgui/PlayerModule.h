@@ -32,6 +32,7 @@ private:
 
 	SharedPtr<CCRenderTexture> tex;
 	SharedPtr<CCNode> root;
+	WeakPtr<CCNode> selected;
 
 	ImVec2 sceneSize;
 };

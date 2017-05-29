@@ -12,6 +12,10 @@
 #include "nodes/CCLabelTTF.h"
 #include "nodes/CCScene.h"
 #include "kazmath/matrix.h"
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "imgui/imgui_internal.h"
+#include "cocoa/TransformUtils.h"
+#include "nodes/CCDrawingPrimitives.h"
 
 NS_CC_BEGIN
 
@@ -73,11 +77,13 @@ static void DrawNode(CCNode* node)
     for (int i = 0; i < arr->count(); i++)
     {
         CCNode* child = (CCNode*)arr->objectAtIndex(i);
-        if (ImGui::TreeNode(node->getName()))
+		ImGui::PushID(child);
+        if (ImGui::TreeNode(child->getName()))
         {
-            ImGui::TreePop();
+			DrawNode(child);
+			ImGui::TreePop();
         }
-        DrawNode(child);
+		ImGui::PopID();
     }
 }
 
@@ -86,24 +92,47 @@ void PlayerModule::hierarchyDraw(ImVec2 area)
     if (!root)
         return;
    
-    CCArray* arr = root->getChildren();
-    if (!arr)
-        return;
-    
-    for (int i = 0; i < arr->count(); i++)
-    {
-        CCNode* node = (CCNode*)arr->objectAtIndex(i);
-        if (ImGui::TreeNode(node->getName()))
-        {
-            ImGui::TreePop();
-        }
-        DrawNode(node);
-    }
+	DrawNode(root);
 }
 
 void PlayerModule::inspectorDraw(ImVec2 area)
 {
     
+}
+
+static bool testNode(CCNode* node, const Vec2& pos)
+{
+	Vec2 nsp = node->convertToNodeSpaceAR(pos);
+	Vec2 anchor = node->getAnchorPoint();
+	CCSize size = node->getSize();
+
+	CCRect bb = CCRect(-size.width * anchor.x, -size.height * anchor.y, size.width, size.height);
+	return bb.containsPoint(nsp);
+}
+
+static CCNode* checkNode(CCNode* root, const Vec2& pos)
+{
+	CCArray* children = root->getChildren();
+
+	if (children)
+	{
+		for (int i = children->count() - 1; i >= 0; i--)
+		{
+			CCNode* node = checkNode((CCNode*)children->objectAtIndex(i), pos);
+			if (node)
+				return node;
+		}
+	}
+	if (testNode(root, pos))
+		return root;
+
+	return nullptr;
+}
+
+static void drawPoint(const Vec2& pos) 
+{
+	Vec2 p = Vec2(5, 5);
+	ccDrawRect(pos - p, pos + p);
 }
 
 void PlayerModule::drawScene(ImVec2 area)
@@ -125,6 +154,34 @@ void PlayerModule::drawScene(ImVec2 area)
 
 	tex->beginWithClear(0, 0, 0, 1);
 	root->visit();
+	if (selected)
+	{
+		kmGLPushMatrix();
+
+		kmMat4 transfrom4x4;
+
+		CCAffineTransform tmpAffine = selected->nodeToWorldTransform();
+		CGAffineToGL(&tmpAffine, transfrom4x4.mat);
+
+		kmGLMultMatrix(&transfrom4x4);
+
+		const CCSize& size = selected->getSize();
+		const Vec2& anchor = selected->getAnchorPoint();
+
+		Vec2 origin;// (-size.width * anchor.x, -size.height * anchor.y);
+		Vec2 destination(origin + size);
+		ccDrawColor4F(0.0f, 1.0f, 0.0f, 1.0f);
+		ccDrawRect(origin, destination);
+		
+		drawPoint(Vec2(size.width * anchor.x, size.height * anchor.y));
+		drawPoint(origin);
+		drawPoint(destination);
+		drawPoint(Vec2(origin.x, destination.y));
+		drawPoint(Vec2(destination.x, origin.y));
+
+		kmGLPopMatrix();
+	}
+
 	tex->end();
 
 	CCSprite* sp = tex->getSprite();
@@ -133,6 +190,15 @@ void PlayerModule::drawScene(ImVec2 area)
 
 	ImDrawList* list = ImGui::GetWindowDrawList();
 	list->AddImage(id, ImGui::GetItemBoxMin(), ImGui::GetItemBoxMax(), ImVec2(0, 1), ImVec2(1, 0));
+
+	ImVec2 mouse = ImGui::GetMousePos();
+	mouse.x = mouse.x - ImGui::GetItemBoxMin().x;
+	mouse.y = ImGui::GetItemBoxMax().y - mouse.y;
+
+	if (ImGui::IsItemClicked(0))
+	{
+		selected = checkNode(root, Vec2(mouse.x, mouse.y));
+	}
 }
 
 PlayerModule::PlayerModule()
@@ -158,13 +224,48 @@ PlayerModule::PlayerModule()
 
     FileSystem::addResourcePath("res/");
     root = CCNode::create();
+	root->setName("root");
+
 	CCSprite* sp = CCSprite::create("res/HelloWorld.png");
+	sp->setName("sprite");
     root->addChild(sp);
 
 	CCLabelTTF* label = CCLabelTTF::create();
+	label->setZOrder(1);
 	label->setFontSize(100);
 	label->setString("hello world");
+	label->setPosition(Vec2(200, 100));
+	label->setName("label");
 	root->addChild(label);
+
+	{//scale
+		CCLabelTTF* label = CCLabelTTF::create();
+		label->setZOrder(1);
+		label->setFontSize(100);
+		label->setString("hello world");
+		label->setPosition(Vec2(300, 400));
+		label->setName("label2");
+		label->setScale(0.5);
+		sp->addChild(label);
+	}
+	{//rotation
+		CCLabelTTF* label = CCLabelTTF::create();
+		label->setFontSize(100);
+		label->setString("hello world");
+		label->setPosition(Vec2(200, 100));
+		label->setName("label2");
+		label->setRotation(60);
+		sp->addChild(label);
+	}
+	{//anchor
+		CCLabelTTF* label = CCLabelTTF::create();
+		label->setFontSize(100);
+		label->setString("hello world");
+		label->setPosition(Vec2(200, 100));
+		label->setName("label2");
+		label->setAnchorPoint(Vec2(0.5, 1));
+		sp->addChild(label);
+	}
 }
 
 PlayerModule::~PlayerModule()
