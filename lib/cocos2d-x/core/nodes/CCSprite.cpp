@@ -356,8 +356,6 @@ void CCSprite::setVertexRect(const CCRect& rect)
 
 void CCSprite::setTextureCoords(CCRect rect)
 {
-    rect = CC_RECT_POINTS_TO_PIXELS(rect);
-
     CCTexture2D *tex = m_pobBatchNode ? m_pobTextureAtlas->getTexture() : m_pobTexture;
     if (! tex)
     {
@@ -993,11 +991,7 @@ bool CCSprite::isFrameDisplayed(CCSpriteFrame *pFrame)
 
 CCSpriteFrame* CCSprite::displayFrame(void)
 {
-    return CCSpriteFrame::createWithTexture(m_pobTexture,
-                                            CC_RECT_POINTS_TO_PIXELS(m_obRect),
-                                            m_bRectRotated,
-                                            CC_POINT_POINTS_TO_PIXELS(m_obUnflippedOffsetPositionFromCenter),
-                                            CC_SIZE_POINTS_TO_PIXELS(_size));
+    return CCSpriteFrame::createWithTexture(m_pobTexture, (m_obRect), m_bRectRotated, (m_obUnflippedOffsetPositionFromCenter), (_size));
 }
 
 CCSpriteBatchNode* CCSprite::getBatchNode(void)

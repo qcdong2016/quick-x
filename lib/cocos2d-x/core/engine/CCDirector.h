@@ -245,14 +245,6 @@ public:
 
     virtual void mainLoop(void);
 
-    /** The size in pixels of the surface. It could be different than the screen size.
-    High-res devices might have a higher surface size than the screen size.
-    Only available when compiled using SDK >= 4.0.
-    @since v0.99.4
-    */
-    void setContentScaleFactor(float scaleFactor);
-    float getContentScaleFactor(void);
-
 public:
 	
 	template<typename T>
@@ -322,9 +314,6 @@ protected:
 
     /* window size in points */
     CCSize    m_obWinSizeInPoints;
-    
-    /* content scale factor */
-    float    m_fContentScaleFactor;
 
     /* Projection protocol delegate */
     CCDirectorDelegate *m_pProjectionDelegate;

@@ -27,11 +27,22 @@ if (MSVC)
 	)
 endif()
 
+macro (make_source_group)
+	foreach(src_file ${SOURCE_FILES})
+	    get_filename_component (PATH ${src_file} PATH)
+	    string (REPLACE ${CMAKE_CURRENT_SOURCE_DIR} "" PATH ${PATH})
+	    string (REPLACE / \\ PATH ${PATH})
+	    source_group ("Source Files\\${PATH}" FILES ${src_file})
+	endforeach()
+endmacro()
+
 macro (library name)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     include_directories(${INCLUDE_DIRS} ${ThirdInc})
     add_library(${name} STATIC ${SOURCE_FILES})
 endmacro()
+
+
 
 macro (lazy_setup)
 	get_filename_component(BaseName ${CMAKE_CURRENT_LIST_DIR}  NAME_WE)

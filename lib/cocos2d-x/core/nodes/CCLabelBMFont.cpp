@@ -502,7 +502,7 @@ void CCLabelBMFont::createFontChars()
     unsigned int stringLen = m_sString ? cc_wcslen(m_sString) : 0;
     if (stringLen == 0)
     {
-        this->setSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+        this->setSize(tmpSize);
         return;
     }
 
@@ -556,7 +556,6 @@ void CCLabelBMFont::createFontChars()
         fontDef = element->fontDef;
 
         rect = fontDef.rect;
-        rect = CC_RECT_PIXELS_TO_POINTS(rect);
 
         rect.origin.x += m_tImageOffset.x;
         rect.origin.y += m_tImageOffset.y;
@@ -604,8 +603,8 @@ void CCLabelBMFont::createFontChars()
         // See issue 1343. cast( signed short + unsigned integer ) == unsigned integer (sign is lost!)
         int yOffset = _pConfiguration->m_nCommonHeight - fontDef.yOffset;
         Vec2 fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
-                              (float)nextFontPositionY + yOffset - rect.size.height*0.5f * CC_CONTENT_SCALE_FACTOR() );
-        fontChar->setPosition(CC_POINT_PIXELS_TO_POINTS(fontPos));
+                              (float)nextFontPositionY + yOffset - rect.size.height*0.5f );
+        fontChar->setPosition(fontPos);
 
         // update kerning
         nextFontPositionX += fontDef.xAdvance + kerningAmount;
@@ -635,7 +634,7 @@ void CCLabelBMFont::createFontChars()
     }
     tmpSize.height = totalHeight;
 
-    this->setSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+    this->setSize(tmpSize);
 }
 
 //LabelBMFont - CCLabelProtocol protocol

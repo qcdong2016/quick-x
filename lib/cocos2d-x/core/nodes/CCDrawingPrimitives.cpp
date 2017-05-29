@@ -417,7 +417,7 @@ void ccDrawColor4F( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
 void ccPointSize( GLfloat pointSize )
 {
 	lazy_init();
-	s_fPointSize = pointSize * CC_CONTENT_SCALE_FACTOR();
+	s_fPointSize = pointSize;
 	_material->set1f("u_pointSize", s_fPointSize);
 }
 

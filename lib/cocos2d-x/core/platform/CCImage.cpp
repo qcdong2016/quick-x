@@ -85,7 +85,7 @@ bool CCImage::initWithImageData(void * pData, int nDataLen)
     m_nWidth = w;
     m_nHeight = h;
     
-    m_nBitsPerComponent = comp * sizeof(unsigned char);
+    m_nBitsPerComponent = comp * 8;
     if (comp == 4)
         m_bHasAlpha = true;
     m_bPreMulti = false;
@@ -129,7 +129,7 @@ bool CCImage::saveToFile(const char* filename)
     
     std::string ext = FileSystem::getExtension(name);
     
-    int comp = m_nBitsPerComponent / sizeof(unsigned char);
+    int comp = m_nBitsPerComponent / 8;
     if (ext == "bmp") {
         stbi_write_bmp(name.c_str(), m_nWidth, m_nHeight, comp, m_pData);
     } else if (ext == "png") {

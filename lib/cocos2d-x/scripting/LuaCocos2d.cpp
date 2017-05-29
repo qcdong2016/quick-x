@@ -38741,71 +38741,6 @@ static int tolua_Cocos2d_CCDirector_setDepthTest00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setContentScaleFactor of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_setContentScaleFactor00
-static int tolua_Cocos2d_CCDirector_setContentScaleFactor00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
- !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
- !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
- goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-  float scaleFactor = ((float)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setContentScaleFactor'", NULL);
-#endif
- {
-  self->setContentScaleFactor(scaleFactor);
- }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setContentScaleFactor'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getContentScaleFactor of class  CCDirector */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getContentScaleFactor00
-static int tolua_Cocos2d_CCDirector_getContentScaleFactor00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CCDirector",0,&tolua_err) ||
- !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
- goto tolua_lerror;
- else
-#endif
- {
-  CCDirector* self = (CCDirector*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getContentScaleFactor'", NULL);
-#endif
- {
-  float tolua_ret = (float)  self->getContentScaleFactor();
- tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
- }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getContentScaleFactor'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getDeltaTime of class  CCDirector */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_CCDirector_getDeltaTime00
 static int tolua_Cocos2d_CCDirector_getDeltaTime00(lua_State* tolua_S)
@@ -60469,8 +60404,6 @@ TOLUA_API int tolua_Cocos2d_open (lua_State* tolua_S)
   tolua_function(tolua_S,"setGLDefaultValues",tolua_Cocos2d_CCDirector_setGLDefaultValues00);
   tolua_function(tolua_S,"setAlphaBlending",tolua_Cocos2d_CCDirector_setAlphaBlending00);
   tolua_function(tolua_S,"setDepthTest",tolua_Cocos2d_CCDirector_setDepthTest00);
-  tolua_function(tolua_S,"setContentScaleFactor",tolua_Cocos2d_CCDirector_setContentScaleFactor00);
-  tolua_function(tolua_S,"getContentScaleFactor",tolua_Cocos2d_CCDirector_getContentScaleFactor00);
   tolua_function(tolua_S,"getDeltaTime",tolua_Cocos2d_CCDirector_getDeltaTime00);
   tolua_function(tolua_S,"sharedDirector",tolua_Cocos2d_CCDirector_sharedDirector00);
   tolua_function(tolua_S,"getSubSystem",tolua_Cocos2d_CCDirector_getSubSystem00);

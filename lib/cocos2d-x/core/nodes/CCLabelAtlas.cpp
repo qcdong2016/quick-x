@@ -157,8 +157,8 @@ bool CCLabelAtlas::initWithString(const char *theString, const char *fntFile)
     
   std::string texturePathStr = relPathStr + ((CCString*)dict->objectForKey("textureFilename"))->getCString();
   CCString *textureFilename = CCString::create(texturePathStr);
-  unsigned int width = ((CCString*)dict->objectForKey("itemWidth"))->intValue() / CC_CONTENT_SCALE_FACTOR();
-  unsigned int height = ((CCString*)dict->objectForKey("itemHeight"))->intValue() / CC_CONTENT_SCALE_FACTOR();
+  unsigned int width = ((CCString*)dict->objectForKey("itemWidth"))->intValue();
+  unsigned int height = ((CCString*)dict->objectForKey("itemHeight"))->intValue();
   unsigned int startChar = ((CCString*)dict->objectForKey("firstChar"))->intValue();
   
 
@@ -177,8 +177,8 @@ void CCLabelAtlas::updateAtlasValues()
     CCTexture2D *texture = m_pTextureAtlas->getTexture();
     float textureWide = (float) texture->getPixelsWide();
     float textureHigh = (float) texture->getPixelsHigh();
-    float itemWidthInPixels = m_uItemWidth * CC_CONTENT_SCALE_FACTOR();
-    float itemHeightInPixels = m_uItemHeight * CC_CONTENT_SCALE_FACTOR();
+    float itemWidthInPixels = m_uItemWidth;
+    float itemHeightInPixels = m_uItemHeight;
     if (m_bIgnoreContentScaleFactor)
     {
         itemWidthInPixels = m_uItemWidth;

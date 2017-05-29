@@ -239,9 +239,6 @@ bool CCRenderTexture::initWithWidthAndHeight(int w, int h, CCTexture2DPixelForma
     void *data = NULL;
     do 
     {
-        w = (int)(w * CC_CONTENT_SCALE_FACTOR());
-        h = (int)(h * CC_CONTENT_SCALE_FACTOR());
-
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_nOldFBO);
 
         // textures must be power of two squared

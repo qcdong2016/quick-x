@@ -116,20 +116,23 @@ void PlayerModule::drawScene(ImVec2 area)
 	if (!tex || sceneSize.x != area.x || sceneSize.y != area.y) {
 		tex.Reset();
 		tex = CCRenderTexture::create(area.x, area.y);
+		root->setPosition(Vec2(area.x/2, area.y/2));
 		sceneSize.x = area.x;
 		sceneSize.y = area.y;
 	}
 
 	ImGui::InvisibleButton("canvas", area);
 
-	tex->begin();
+	tex->beginWithClear(0, 0, 0, 1);
 	root->visit();
 	tex->end();
-	ImDrawList* list = ImGui::GetWindowDrawList();
+
 	CCSprite* sp = tex->getSprite();
 	CCTexture2D* tex = sp->getTexture();
 	ImTextureID id = (void*)tex->getName();
-	list->AddImage(id, ImGui::GetItemBoxMin(), ImGui::GetItemBoxMax(), ImVec2(0,1), ImVec2(1, 0));
+
+	ImDrawList* list = ImGui::GetWindowDrawList();
+	list->AddImage(id, ImGui::GetItemBoxMin(), ImGui::GetItemBoxMax(), ImVec2(0, 1), ImVec2(1, 0));
 }
 
 PlayerModule::PlayerModule()
@@ -156,12 +159,10 @@ PlayerModule::PlayerModule()
     FileSystem::addResourcePath("res/");
     root = CCNode::create();
 	CCSprite* sp = CCSprite::create("res/HelloWorld.png");
-	sp->setAnchorPoint(Vec2(0, 0));
     root->addChild(sp);
 
 	CCLabelTTF* label = CCLabelTTF::create();
 	label->setFontSize(100);
-	label->setAnchorPoint(Vec2(0, 0));
 	label->setString("hello world");
 	root->addChild(label);
 }

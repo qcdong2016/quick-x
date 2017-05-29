@@ -304,12 +304,7 @@ bool CCLabelTTF::updateTexture()
     
     #else
     
-        tex->initWithString( m_string.c_str(),
-                            m_pFontName->c_str(),
-                            m_fFontSize * CC_CONTENT_SCALE_FACTOR(),
-                            CC_SIZE_POINTS_TO_PIXELS(m_tDimensions),
-                            m_hAlignment,
-                            m_vAlignment);
+        tex->initWithString( m_string.c_str(), m_pFontName->c_str(), m_fFontSize, m_tDimensions, m_hAlignment, m_vAlignment);
     
     #endif
     
@@ -504,7 +499,7 @@ ccFontDefinition CCLabelTTF::_prepareTextDefinition(bool adjustForResolution)
     ccFontDefinition texDef;
     
     if (adjustForResolution)
-        texDef.m_fontSize       =  m_fFontSize * CC_CONTENT_SCALE_FACTOR();
+        texDef.m_fontSize       =  m_fFontSize;
     else
         texDef.m_fontSize       =  m_fFontSize;
     
@@ -514,7 +509,7 @@ ccFontDefinition CCLabelTTF::_prepareTextDefinition(bool adjustForResolution)
     
     
     if (adjustForResolution)
-        texDef.m_dimensions     =  CC_SIZE_POINTS_TO_PIXELS(m_tDimensions);
+        texDef.m_dimensions     =  m_tDimensions;
     else
         texDef.m_dimensions     =  m_tDimensions;
     
@@ -526,7 +521,7 @@ ccFontDefinition CCLabelTTF::_prepareTextDefinition(bool adjustForResolution)
         texDef.m_stroke.m_strokeColor   = m_strokeColor;
         
         if (adjustForResolution)
-            texDef.m_stroke.m_strokeSize = m_strokeSize * CC_CONTENT_SCALE_FACTOR();
+            texDef.m_stroke.m_strokeSize = m_strokeSize;
         else
             texDef.m_stroke.m_strokeSize = m_strokeSize;
         
@@ -546,7 +541,7 @@ ccFontDefinition CCLabelTTF::_prepareTextDefinition(bool adjustForResolution)
         texDef.m_shadow.m_shadowOpacity         = m_shadowOpacity;
         
         if (adjustForResolution)
-            texDef.m_shadow.m_shadowOffset = CC_SIZE_POINTS_TO_PIXELS(m_shadowOffset);
+            texDef.m_shadow.m_shadowOffset = m_shadowOffset;
         else
             texDef.m_shadow.m_shadowOffset = m_shadowOffset;
     }

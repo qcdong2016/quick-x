@@ -19,6 +19,7 @@ public:
 
 		d->addModule<SpineModule>();
 #if BUILD_FOR(MAC) || BUILD_FOR(WIN32)
+		d->addModule<PlayerModule>();
 #endif
 
 		// initialize director

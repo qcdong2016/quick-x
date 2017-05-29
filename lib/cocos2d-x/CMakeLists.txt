@@ -59,6 +59,7 @@ set (INCLUDE_DIRS
 	${CMAKE_CURRENT_LIST_DIR}
 )
 
+make_source_group()
 library(quickx)
 
 target_link_libraries(quickx

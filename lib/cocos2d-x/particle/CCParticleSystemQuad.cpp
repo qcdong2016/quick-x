@@ -137,11 +137,7 @@ void CCParticleSystemQuad::initTexCoordsWithRect(const CCRect& pointRect)
 {
     // convert to Tex coords
 
-    CCRect rect = CCRectMake(
-        pointRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.origin.y * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.size.width * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.size.height * CC_CONTENT_SCALE_FACTOR());
+	CCRect rect = pointRect;
 
     GLfloat wide = (GLfloat) pointRect.size.width;
     GLfloat high = (GLfloat) pointRect.size.height;

@@ -114,8 +114,6 @@ bool CCDirector::init(void)
 
     m_pobOpenGLView = NULL;
 
-    m_fContentScaleFactor = 1.0f;
-
 	ObjectFactoryManager::addFactory<DebugHud>();
 	ObjectFactoryManager::addFactory<ResourceCache>();
 	ObjectFactoryManager::addFactory<CCScheduler>();
@@ -408,8 +406,7 @@ void CCDirector::reshapeProjection(const CCSize& newWindowSize)
 	CC_UNUSED_PARAM(newWindowSize);
 	if (m_pobOpenGLView)
 	{
-		m_obWinSizeInPoints = CCSizeMake(newWindowSize.width * m_fContentScaleFactor,
-			newWindowSize.height * m_fContentScaleFactor);
+		m_obWinSizeInPoints = CCSizeMake(newWindowSize.width, newWindowSize.height);
 		setProjection(m_eProjection);       
 	}
 
@@ -488,7 +485,7 @@ CCSize CCDirector::getWinSize(void)
 
 CCSize CCDirector::getWinSizeInPixels()
 {
-    return CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
+	return m_obWinSizeInPoints;
 }
 
 CCSize CCDirector::getVisibleSize()
@@ -525,19 +522,6 @@ void CCDirector::getFPSImageData(unsigned char** datapointer, unsigned int* leng
     // XXX fixed me if it should be used 
     *datapointer = cc_fps_images_png;
 	*length = cc_fps_images_len();
-}
-
-float CCDirector::getContentScaleFactor(void)
-{
-    return m_fContentScaleFactor;
-}
-
-void CCDirector::setContentScaleFactor(float scaleFactor)
-{
-    if (scaleFactor != m_fContentScaleFactor)
-    {
-        m_fContentScaleFactor = scaleFactor;
-    }
 }
 
 CCDirectorDelegate* CCDirector::getDelegate() const
