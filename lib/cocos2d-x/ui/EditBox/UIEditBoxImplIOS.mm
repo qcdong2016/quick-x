@@ -367,7 +367,7 @@ void EditBoxImplIOS::setInactiveText(const char* pText)
 	else
 		m_pLabel->setString(getText());
     
-    float fMaxWidth = m_pEditBox->getContentSize().width;
+    float fMaxWidth = m_pEditBox->getSize().width;
     CCRect labelSize = m_pLabel->getTextureRect();
     if(labelSize.size.width > fMaxWidth)
     {
