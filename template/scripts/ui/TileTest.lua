@@ -1,5 +1,5 @@
 
-local M = class('SpriteTest', TestUI)
+local M = class('SpriteTest', TestBase)
 
 function M:setup()
     

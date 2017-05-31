@@ -1,4 +1,49 @@
-require('ui.TestUI')
+TestBase = class('TestBase', function()
+    return display.newNode()
+end)
+
+function TestBase:ctor(name)
+    local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
+    self:addChild(touchLayer)
+
+    local root = Widget:create()
+    touchLayer:addWidget(root)
+
+    local listView = ListView:create():addTo(root)
+    listView:setSize(CCSize(200, display.height))
+    listView:setPosition(ccp(display.width - 200, 0))
+    listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
+    listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
+
+    listView:setClippingEnabled(true)
+    listView:setClippingType(LAYOUT_CLIPPING_SCISSOR)
+
+    self.listView = listView;
+    self.touchLayer = touchLayer
+    self.root = root
+
+    local btn = Button:create():addTo(root):scale(0.5)
+    btn:loadTextureNormal('AllSprites/ExitButton.png')
+    btn:setPosition(ccp(40, display.top -40))
+    btn:onClicked(function()
+        UIMgr:close(self)
+    end)
+
+    local label = LabelBMFont:create()
+        :addTo(self, 999)
+        :pos(0, display.cy - 40)
+    label:setFntFile('UIFont.fnt')
+    label:setText(name)
+end
+
+function TestBase:pushButton(name, func)
+    local label = Label:create()
+    label:setFontSize(30)
+    label:setText(name)
+    label:onClicked(func)
+    self.listView:pushBackCustomItem(label)
+end
+--------------------------------------------------
 
 local Menu = class("Menu", function()
     return display.newLayer()
@@ -28,6 +73,7 @@ function Menu:ctor()
         'SpineTest',
         'SpriteTest',
         'TileTest',
+        'EditboxTest',
         'Game2048',
     }
 
@@ -35,25 +81,20 @@ function Menu:ctor()
         local label = Label:create()
         label:setFontSize(30)
         label:setText(v)
-        label:onClicked(function()
-            print(v)
-            self:gotoTest(v)
-        end)
+        label:onClicked(function() self:gotoTest(v) end)
         listView:pushBackCustomItem(label)
     end
-
 end
 
 function Menu:gotoTest(name)
 
     self.touchLayer:hide()
 
-    local ui = UIMgr:open(name, name)
+    local ui = UIMgr:open("ui." .. name)
     ui:setup();
-    ui:onClose(function()
+    ui.onClose = function()
         self.touchLayer:show()
-    end)
+    end
 end
-
 
 return Menu
