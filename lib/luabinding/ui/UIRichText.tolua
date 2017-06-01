@@ -48,8 +48,6 @@ class RichText : public Widget
     void removeElement(RichElement* element);
     virtual void visit();
     void setVerticalSpace(float space);
-    virtual void setAnchorPoint(const CCPoint &pt);
-    virtual const CCSize& getContentSize() const;
+    virtual void setAnchorPoint(const Vec2 &pt);
     void formatText();
-    virtual void ignoreContentAdaptWithSize(bool ignore);
 };

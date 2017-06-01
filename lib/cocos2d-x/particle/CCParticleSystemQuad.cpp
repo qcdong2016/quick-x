@@ -34,10 +34,10 @@ THE SOFTWARE.
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCGLProgram.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "textures/CCTexture2D.h"
 
 NS_CC_BEGIN
@@ -137,11 +137,7 @@ void CCParticleSystemQuad::initTexCoordsWithRect(const CCRect& pointRect)
 {
     // convert to Tex coords
 
-    CCRect rect = CCRectMake(
-        pointRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.origin.y * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.size.width * CC_CONTENT_SCALE_FACTOR(),
-        pointRect.size.height * CC_CONTENT_SCALE_FACTOR());
+	CCRect rect = pointRect;
 
     GLfloat wide = (GLfloat) pointRect.size.width;
     GLfloat high = (GLfloat) pointRect.size.height;
@@ -241,7 +237,7 @@ void CCParticleSystemQuad::initIndices()
     }
 }
 
-void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const CCPoint& newPosition)
+void CCParticleSystemQuad::updateQuadWithParticle(tCCParticle* particle, const Vec2& newPosition)
 {
     ccV3F_C4B_T2F_Quad *quad;
 

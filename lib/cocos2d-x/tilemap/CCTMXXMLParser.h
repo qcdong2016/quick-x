@@ -98,7 +98,7 @@ public:
     bool                m_bOwnTiles;
     unsigned int        m_uMinGID;
     unsigned int        m_uMaxGID;
-    CCPoint             m_tOffset;
+    Vec2             m_tOffset;
 public:
     CCTMXLayerInfo();
     virtual ~CCTMXLayerInfo();

@@ -1,0 +1,2 @@
+include ':QuickXPlayer'
+project(':QuickXPlayer').projectDir = new File(settingsDir, 'app')

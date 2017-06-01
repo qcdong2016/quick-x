@@ -34,7 +34,7 @@ extern "C" {
 }
 
 #include "ccMacros.h"
-#include "platform/CCZipFile.h"
+#include "zip/ZipUtils.h"
 
 #include "CCLuaBridge.h"
 
@@ -51,15 +51,16 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 #endif
 
 // lua extensions
-#include "scripting/lua_extensions/lua_extensions.h"
+#include "lua_extensions/lua_extensions.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 // debugger
-#include "scripting/lua_extensions/debugger/debugger.h"
+#include "lua_extensions/debugger/debugger.h"
 #endif
 
 #include <string>
 #include "engine/CCFileSystem.h"
+#include "zip/CCZipFile.h"
 
 using namespace std;
 
@@ -103,7 +104,7 @@ static int cocos2dx_lua_loader(lua_State *L)
 }
 
 
-struct cc_timeval CCLuaStack::m_lasttime = {0};
+struct TimerHiRes CCLuaStack::_timer;
 CCLuaStackMap CCLuaStack::s_map;
 
 CCLuaStack *CCLuaStack::create(void)
@@ -134,7 +135,7 @@ CCLuaStack::~CCLuaStack(void)
 
 bool CCLuaStack::init(void)
 {
-    CCTime::gettimeofdayCocos2d(&m_lasttime, NULL);
+    _timer.reset();
     m_state = lua_open();
     CCAssert(m_state, "create Lua VM failed");
 
@@ -168,13 +169,13 @@ bool CCLuaStack::init(void)
     lua_pushcfunction(m_state, CCLuaBridge::callStaticMethod);
     lua_setglobal(m_state, "callStaticMethod");
 
-
+/*
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     luaopen_cocos2dx_httprequest_luabinding(m_state);
 #elif (CC_CURL_ENABLED > 0)
     luaopen_cocos2dx_httprequest_luabinding(m_state);
 #endif
-
+*/
     // lua extensions
     luaopen_lua_extensions(m_state);
 
@@ -499,31 +500,13 @@ int CCLuaStack::reallocateScriptHandler(int nHandler)
 
 int CCLuaStack::lua_print(lua_State *L)
 {
-    struct cc_timeval now;
-
-    float deltatime = 0;
-    if (CCTime::gettimeofdayCocos2d(&now, NULL) != 0)
-    {
-        CCLOG("CCLuaStack:lua_print() - error in gettimeofday");
-    }
-    else
-    {
-        if (m_lasttime.tv_sec)
-        {
-            deltatime = now.tv_sec - m_lasttime.tv_sec + (now.tv_usec - m_lasttime.tv_usec) / 1000000.0f;
-        }
-        else
-        {
-            m_lasttime = now;
-            deltatime = 0;
-        }
-    }
+    long long deltatime = _timer.elapsed();
 
     int nargs = lua_gettop(L);
     std::string t("[");
     char timestr[32];
     memset(timestr, 0, sizeof(timestr));
-    sprintf(timestr, "%.4f", deltatime);
+    sprintf(timestr, "%.4f", (float)(deltatime / 1000000.0));
     t += timestr;
     t += "] ";
     for (int i=1; i <= nargs; i++)

@@ -52,12 +52,6 @@ typedef enum
 
 typedef enum
 {
-    SIZE_ABSOLUTE,
-    SIZE_PERCENT
-}SizeType;
-
-typedef enum
-{
     POSITION_ABSOLUTE,
     POSITION_PERCENT
 }PositionType;
@@ -340,7 +334,7 @@ public:
      *
      * @param position  The position (x,y) of the widget in OpenGL coordinates
      */
-    void setPosition(const CCPoint &pos);
+    void setPosition(const Vec2 &pos);
     
     /**
      * Changes the position (x,y) of the widget in OpenGL coordinates
@@ -350,7 +344,7 @@ public:
      *
      * @param percent  The percent (x,y) of the widget in OpenGL coordinates
      */
-    void setPositionPercent(const CCPoint &percent);
+    void setPositionPercent(const Vec2 &percent);
         
     /**
      * Gets the percent (x,y) of the widget in OpenGL coordinates
@@ -359,7 +353,7 @@ public:
      *
      * @return The percent (x,y) of the widget in OpenGL coordinates
      */
-    const CCPoint& getPositionPercent();
+    const Vec2& getPositionPercent();
     
     /**
      * Changes the position type of the widget
@@ -437,49 +431,34 @@ public:
      *
      * @return true if the point is in parent's area, flase otherwise.
      */
-    bool clippingParentAreaContainPoint(const CCPoint &pt);
+    bool clippingParentAreaContainPoint(const Vec2 &pt);
     
     /*
      * Sends the touch event to widget's parent
      */
-    virtual void checkChildInfo(int handleState,Widget* sender,const CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState,Widget* sender,const Vec2 &touchPoint);
     
     /*
      * Gets the touch began point of widget when widget is selected.
      *
      * @return the touch began point.
      */
-    const CCPoint& getTouchStartPos();
+    const Vec2& getTouchStartPos();
     
     /*
      * Gets the touch move point of widget when widget is selected.
      *
      * @return the touch move point.
      */
-    const CCPoint& getTouchMovePos();
+    const Vec2& getTouchMovePos();
     
     /*
      * Gets the touch end point of widget when widget is selected.
      *
      * @return the touch end point.
      */
-    const CCPoint& getTouchEndPos();
+    const Vec2& getTouchEndPos();
     
-    /**
-     * Changes the name that is used to identify the widget easily.
-     *
-     * @param A const char* that indentifies the widget.
-     */
-    void setName(const char* name);
-    
-    /**
-     * Returns a name that is used to identify the widget easily.
-     *
-     * You can set tags to widget then identify them easily.
-     *
-     * @return A const char* that identifies the widget.
-     */
-    const char* getName() const;
     
     /**
      * Changes the size that is widget's size
@@ -487,49 +466,13 @@ public:
      * @param size that is widget's size
      */
     virtual void setSize(const CCSize &size);
-    
-    /**
-     * Changes the percent that is widget's percent size
-     *
-     * @param percent that is widget's percent size
-     */
-    virtual void setSizePercent(const CCPoint &percent);
-    
-    /**
-     * Changes the size type of widget.
-     *
-     * @see SizeType
-     *
-     * @param type that is widget's size type
-     */
-    void setSizeType(SizeType type);
-
-    /**
-     * Gets the size type of widget.
-     *
-     * @see SizeType
-     *
-     * @param type that is widget's size type
-     */
-    SizeType getSizeType() const;
-    
+   
     /**
      * Returns size of widget
      *
      * @return size
      */
     const CCSize& getSize() const;
-    
-    virtual const CCSize& getLayoutSize() {return _size;};
-    
-    /**
-     * Returns size percent of widget
-     *
-     * @return size percent
-     */
-    const CCPoint& getSizePercent() const;
-    
-    const CCSize& getCustomSize() const;
     
     /**
      * Checks a point if is in widget's space
@@ -538,7 +481,7 @@ public:
      *
      * @return true if the point is in widget's space, flase otherwise.
      */
-    virtual bool hitTest(const CCPoint &pt);
+    virtual bool hitTest(const Vec2 &pt);
     
     virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
     virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
@@ -586,7 +529,7 @@ public:
      *
      * @return world position of widget.
      */
-    CCPoint getWorldPosition();
+    Vec2 getWorldPosition();
 
     /**
      * Gets the Virtual Renderer of widget.
@@ -596,13 +539,6 @@ public:
      * @return Node pointer.
      */
     virtual CCNode* getVirtualRenderer();
-    
-    /**
-     * Gets the content size of widget.
-     *
-     * Content size is widget's texture size.
-     */
-    virtual const CCSize& getContentSize() const;
     
     /**
      * Returns the "class name" of widget.
@@ -681,25 +617,19 @@ protected:
     bool _touchPassedEnabled; ///< is the touch event should be passed
     bool _focus;              ///< is the widget on focus
     BrightStyle _brightStyle; ///< bright style
-    CCPoint _touchStartPos;    ///< touch began point
-    CCPoint _touchMovePos;     ///< touch moved point
-    CCPoint _touchEndPos;      ///< touch ended point
+    Vec2 _touchStartPos;    ///< touch began point
+    Vec2 _touchMovePos;     ///< touch moved point
+    Vec2 _touchEndPos;      ///< touch ended point
     
     CCObject*       _touchEventListener;
     SEL_TouchEvent    _touchEventSelector;
     
-
     
-    std::string _name;
 	int _actionTag;
-    CCSize _size;
-    CCSize _customSize;
     bool _ignoreSize;
     bool _affectByClipping;
-    SizeType _sizeType;
-    CCPoint _sizePercent;
     PositionType _positionType;
-    CCPoint _positionPercent;
+    Vec2 _positionPercent;
     bool _reorderWidgetChildDirty;
     bool _hitted;
     CCArray* _widgetChildren;

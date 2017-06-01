@@ -194,7 +194,7 @@ void Label::updateFlippedY()
     _labelRenderer->setFlipY(_flippedY);
 }
 
-void Label::setAnchorPoint(const CCPoint &pt)
+void Label::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _labelRenderer->setAnchorPoint(pt);
@@ -206,9 +206,9 @@ void Label::onSizeChanged()
     labelScaleChangedWithSize();
 }
 
-const CCSize& Label::getContentSize() const
+const CCSize& Label::getSize() const
 {
-    return _labelRenderer->getContentSize();
+    return _labelRenderer->getSize();
 }
 
 CCNode* Label::getVirtualRenderer()
@@ -222,13 +222,13 @@ void Label::labelScaleChangedWithSize()
     {
         _labelRenderer->setDimensions(CCSizeZero);
         _labelRenderer->setScale(1.0f);
-        _size = _labelRenderer->getContentSize();
+        _size = _labelRenderer->getSize();
         _normalScaleValueX = _normalScaleValueY = 1.0f;        
     }
     else
     {
         _labelRenderer->setDimensions(_size);
-        CCSize textureSize = _labelRenderer->getContentSize();
+        CCSize textureSize = _labelRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _labelRenderer->setScale(1.0f);

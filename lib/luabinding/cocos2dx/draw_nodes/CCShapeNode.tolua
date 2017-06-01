@@ -45,11 +45,11 @@ class CCPointShape : public CCShapeNode
     static CCPointShape* create(void);
 };
 
-class CCPolygonShape : public CCShapeNode
-{
-    static CCPolygonShape* create(CCPointArray* vertices);
-    bool isFill(void);
-    void setFill(bool fill);
-    bool isClose(void);
-    void setClose(bool close);
-};
+// class CCPolygonShape : public CCShapeNode
+// {
+//     static CCPolygonShape* create(Vec2Array* vertices);
+//     bool isFill(void);
+//     void setFill(bool fill);
+//     bool isClose(void);
+//     void setClose(bool close);
+// };

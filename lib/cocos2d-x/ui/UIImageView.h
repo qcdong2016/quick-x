@@ -88,7 +88,7 @@ public:
     const CCRect& getCapInsets();
     
     //override "setAnchorPoint" method of widget.
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     //override "ignoreContentAdaptWithSize" method of widget.
     virtual void ignoreContentAdaptWithSize(bool ignore);
@@ -98,7 +98,7 @@ public:
      */
     virtual std::string getDescription() const;
     
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     virtual CCNode* getVirtualRenderer();
 protected:
     virtual void initRenderer();

@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 #include "nodes/CCDrawingPrimitives.h"
 #include "engine/CCDirector.h"
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 using namespace std;
 

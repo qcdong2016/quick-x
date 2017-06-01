@@ -34,7 +34,12 @@ NS_CC_BEGIN
  * @addtogroup input
  * @{
  */
-
+#define CCTOUCHBEGAN        0
+#define CCTOUCHMOVED        1
+#define CCTOUCHENDED        2
+#define CCTOUCHCANCELLED    3
+#define CCTOUCHADDED        4
+#define CCTOUCHREMOVED      5
 class CC_DLL CCTouch : public CCObject
 {
 public:
@@ -48,19 +53,19 @@ public:
     }
 
     /** returns the current touch location in OpenGL coordinates */
-    CCPoint getLocation() const;
+    Vec2 getLocation() const;
     /** returns the previous touch location in OpenGL coordinates */
-    CCPoint getPreviousLocation() const;
+    Vec2 getPreviousLocation() const;
     /** returns the start touch location in OpenGL coordinates */
-    CCPoint getStartLocation() const;
+    Vec2 getStartLocation() const;
     /** returns the delta of 2 current touches locations in screen coordinates */
-    CCPoint getDelta() const;
+    Vec2 getDelta() const;
     /** returns the current touch location in screen coordinates */
-    CCPoint getLocationInView() const;
+    Vec2 getLocationInView() const;
     /** returns the previous touch location in screen coordinates */
-    CCPoint getPreviousLocationInView() const;
+    Vec2 getPreviousLocationInView() const;
     /** returns the start touch location in screen coordinates */
-    CCPoint getStartLocationInView() const;
+    Vec2 getStartLocationInView() const;
 
     void setTouchInfo(int id, float x, float y)
     {
@@ -87,14 +92,42 @@ public:
 private:
     int m_nId;
     bool m_startPointCaptured;
-    CCPoint m_startPoint;
-    CCPoint m_point;
-    CCPoint m_prevPoint;
+    Vec2 m_startPoint;
+    Vec2 m_point;
+    Vec2 m_prevPoint;
 };
 
 class CC_DLL CCEvent : public CCObject
 {
 };
+
+class CCNode;
+class CCSet;
+
+class CC_DLL CCTouchTargetNode : public CCObject
+{
+public:
+	static CCTouchTargetNode *create(CCNode *node);
+	~CCTouchTargetNode();
+
+	CCNode *getNode();
+
+	int getTouchMode();
+
+	int getTouchId();
+	void setTouchId(int touchId);
+
+	CCTouch *findTouch(CCSet *touches);
+	static CCTouch *findTouchFromTouchesSet(CCSet *touches, int touchId);
+
+private:
+	CCTouchTargetNode(CCNode *node);
+
+	CCNode *m_node;
+	int m_touchMode;
+	int m_touchId;
+};
+
 
 // end of input group
 /// @}

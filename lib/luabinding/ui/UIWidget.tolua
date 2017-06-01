@@ -19,12 +19,6 @@ typedef enum
 
 typedef enum
 {
-    SIZE_ABSOLUTE,
-    SIZE_PERCENT
-}SizeType;
-
-typedef enum
-{
     POSITION_ABSOLUTE,
     POSITION_PERCENT
 }PositionType;
@@ -132,10 +126,10 @@ class Widget : public CCNode
     virtual void visit();
     
     
-    void setPositionPercent(const CCPoint &percent);
+    void setPositionPercent(const Vec2 &percent);
         
     
-    const CCPoint& getPositionPercent();
+    const Vec2& getPositionPercent();
     
     
     void setPositionType(PositionType type);
@@ -167,50 +161,17 @@ class Widget : public CCNode
     void didNotSelectSelf();
     
     
-    bool clippingParentAreaContainPoint(const CCPoint &pt);
+    bool clippingParentAreaContainPoint(const Vec2 &pt);
     
     
-    virtual void checkChildInfo(int handleState,Widget* sender,const CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState,Widget* sender,const Vec2 &touchPoint);
     
     
-    const CCPoint& getTouchStartPos();
+    const Vec2& getTouchStartPos();
+    const Vec2& getTouchMovePos();
+    const Vec2& getTouchEndPos();
     
-    
-    const CCPoint& getTouchMovePos();
-    
-    
-    const CCPoint& getTouchEndPos();
-    
-    
-    void setName(const char* name);
-    
-    
-    const char* getName() const;
-    
-    
-    
-    virtual void setSize(const CCSize &size);
-    
-    
-    virtual void setSizePercent(const CCPoint &percent);
-    
-    
-    void setSizeType(SizeType type);
-
-    
-    SizeType getSizeType() const;
-    
-    
-    const CCSize& getSize() const;
-
-    virtual const CCSize& getLayoutSize();
-    
-    const CCPoint& getSizePercent() const;
-
-    const CCSize& getCustomSize() const;
-    
-    
-    virtual bool hitTest(const CCPoint &pt);
+    virtual bool hitTest(const Vec2 &pt);
     
     virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
     virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
@@ -224,17 +185,14 @@ class Widget : public CCNode
     
     
     virtual void ignoreContentAdaptWithSize(bool ignore);
-    
-    
     bool isIgnoreContentAdaptWithSize() const;
     
     
-    CCPoint getWorldPosition();
+    Vec2 getWorldPosition();
 
     
     virtual CCNode* getVirtualRenderer();    
     
-    virtual const CCSize& getContentSize() const;
     
     
     virtual std::string getDescription() const;

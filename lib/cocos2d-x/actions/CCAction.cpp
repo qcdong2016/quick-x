@@ -27,7 +27,6 @@ THE SOFTWARE.
 #include "CCAction.h"
 #include "CCActionInterval.h"
 #include "nodes/CCNode.h"
-#include "support/CCPointExtension.h"
 #include "engine/CCDirector.h"
 
 NS_CC_BEGIN
@@ -62,7 +61,7 @@ const char* CCAction::description()
 void CCAction::paste(CCObject* o)
 {
     Super::paste(o);
-    O->m_nTag = m_nTag;
+    dynamic_cast<SelfType*>(o)->m_nTag = m_nTag;
 }
 
 void CCAction::startWithTarget(CCNode *aTarget)

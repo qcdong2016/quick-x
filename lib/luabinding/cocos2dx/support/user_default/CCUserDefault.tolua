@@ -1,5 +1,5 @@
 
-$#include "support/user_default/CCUserDefault.h"
+$#include "misc/CCUserDefault.h"
 
 class CCUserDefault
 {
@@ -65,7 +65,7 @@ class CCUserDefault
 
     static CCUserDefault* sharedUserDefault();
     static void purgeSharedUserDefault();
-    static string getXMLFilePath();
+    static std::string getXMLFilePath();
     static bool isXMLFileExist();
 };
 

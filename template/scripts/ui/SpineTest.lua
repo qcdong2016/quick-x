@@ -1,5 +1,5 @@
 
-local M = class('ShaderTest', TestUI)
+local M = class('ShaderTest', TestBase)
 
 function M:setup()
     local spine = SkeletonAnimation:create("spineboy.json", "spineboy.atlas", 1)

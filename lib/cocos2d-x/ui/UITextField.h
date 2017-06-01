@@ -112,7 +112,7 @@ public:
     void setTouchSize(const CCSize &size);
     CCSize getTouchSize();
     void setTouchAreaEnabled(bool enable);
-    virtual bool hitTest(const CCPoint &pt);
+    virtual bool hitTest(const Vec2 &pt);
     void setText(const std::string& text);
     void setPlaceHolder(const std::string& value);
     const char* getPlaceHolder();
@@ -142,14 +142,14 @@ public:
     void setDeleteBackward(bool deleteBackward);
     void addEventListenerTextField(CCObject* target, SEL_TextFieldEvent selecor);
 
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     /**
      * Returns the "class name" of widget.
      */
     virtual std::string getDescription() const;
 
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     virtual CCNode* getVirtualRenderer();
     void attachWithIME();
     virtual void onEnter();

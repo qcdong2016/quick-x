@@ -27,18 +27,15 @@
 #include "CCSpriteBatchNode.h"
 #include "ccConfig.h"
 #include "CCSprite.h"
-#include "effects/CCGrid.h"
 #include "nodes/CCDrawingPrimitives.h"
 
-#include "support/CCPointExtension.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "engine/CCDirector.h"
-#include "support/TransformUtils.h"
-#include "support/CCProfiling.h"
+#include "cocoa/TransformUtils.h"
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 NS_CC_BEGIN
 
@@ -144,21 +141,10 @@ void CCSpriteBatchNode::visit(void)
 
     kmGLPushMatrix();
 
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->beforeDraw();
-        transformAncestors();
-    }
-
     sortAllChildren();
     transform();
 
     draw();
-
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->afterDraw(this);
-    }
 
     kmGLPopMatrix();
     setOrderOfArrival(0);

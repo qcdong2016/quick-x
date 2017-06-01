@@ -46,12 +46,10 @@ THE SOFTWARE.
 #include "ccTypes.h"
 
 #include "textures/CCTextureAtlas.h"
-#include "support/CCPointExtension.h"
 #include "platform/CCImage.h"
-#include "platform/platform.h"
-#include "support/zip_support/ZipUtils.h"
+#include "platform/CCTimer.h"
+#include "zip/ZipUtils.h"
 #include "engine/CCDirector.h"
-#include "support/CCProfiling.h"
 // opengl
 #include "CCGL.h"
 
@@ -538,7 +536,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
     // Mode Gravity: A
     if (m_nEmitterMode == kCCParticleModeGravity) 
     {
-        CCPoint v(cosf( a ), sinf( a ));
+        Vec2 v(cosf( a ), sinf( a ));
         float s = modeA.speed + modeA.speedVar * CCRANDOM_MINUS1_1();
 
         // direction
@@ -631,7 +629,7 @@ void CCParticleSystem::update(float dt)
 
     m_uParticleIdx = 0;
 
-    CCPoint currentPosition = CCPointZero;
+    Vec2 currentPosition = CCPointZero;
     if (m_ePositionType == kCCPositionTypeFree)
     {
         currentPosition = this->convertToWorldSpace(CCPointZero);
@@ -655,7 +653,7 @@ void CCParticleSystem::update(float dt)
                 // Mode A: gravity, direction, tangential accel & radial accel
                 if (m_nEmitterMode == kCCParticleModeGravity) 
                 {
-                    CCPoint tmp, radial, tangential;
+                    Vec2 tmp, radial, tangential;
 
                     radial = CCPointZero;
                     // radial acceleration
@@ -708,11 +706,11 @@ void CCParticleSystem::update(float dt)
                 // update values in quad
                 //
 
-                CCPoint    newPos;
+                Vec2    newPos;
 
                 if (m_ePositionType == kCCPositionTypeFree || m_ePositionType == kCCPositionTypeRelative) 
                 {
-                    CCPoint diff = ccpSub( currentPosition, p->startPos );
+                    Vec2 diff = ccpSub( currentPosition, p->startPos );
                     newPos = ccpSub(p->pos, diff);
                 } 
                 else
@@ -777,7 +775,7 @@ void CCParticleSystem::updateWithNoTime(void)
     this->update(0.0f);
 }
 
-void CCParticleSystem::updateQuadWithParticle(tCCParticle* particle, const CCPoint& newPosition)
+void CCParticleSystem::updateQuadWithParticle(tCCParticle* particle, const Vec2& newPosition)
 {
     CC_UNUSED_PARAM(particle);
     CC_UNUSED_PARAM(newPosition);
@@ -920,13 +918,13 @@ bool CCParticleSystem::getRotationIsDir()
     return modeA.rotationIsDir;
 }
 
-void CCParticleSystem::setGravity(const CCPoint& g)
+void CCParticleSystem::setGravity(const Vec2& g)
 {
     CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     modeA.gravity = g;
 }
 
-const CCPoint& CCParticleSystem::getGravity()
+const Vec2& CCParticleSystem::getGravity()
 {
     CCAssert( m_nEmitterMode == kCCParticleModeGravity, "Particle Mode should be Gravity");
     return modeA.gravity;
@@ -1049,22 +1047,22 @@ void CCParticleSystem::setDuration(float var)
     m_fDuration = var;
 }
 
-const CCPoint& CCParticleSystem::getSourcePosition()
+const Vec2& CCParticleSystem::getSourcePosition()
 {
     return m_tSourcePosition;
 }
 
-void CCParticleSystem::setSourcePosition(const CCPoint& var)
+void CCParticleSystem::setSourcePosition(const Vec2& var)
 {
     m_tSourcePosition = var;
 }
 
-const CCPoint& CCParticleSystem::getPosVar()
+const Vec2& CCParticleSystem::getPosVar()
 {
     return m_tPosVar;
 }
 
-void CCParticleSystem::setPosVar(const CCPoint& var)
+void CCParticleSystem::setPosVar(const Vec2& var)
 {
     m_tPosVar = var;
 }

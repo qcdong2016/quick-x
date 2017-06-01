@@ -26,15 +26,14 @@ THE SOFTWARE.
 
 #include "ccMacros.h"
 
-#include "support/CCPointExtension.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/ccGLStateCache.h"
 #include "engine/CCDirector.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 #include "nodes/CCDrawingPrimitives.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 #include <float.h>
 #include "textures/CCTexture2D.h"
@@ -112,7 +111,7 @@ void CCProgressTimer::setSprite(CCSprite *pSprite)
         CC_SAFE_RETAIN(pSprite);
         CC_SAFE_RELEASE(m_pSprite);
         m_pSprite = pSprite;
-        setContentSize(m_pSprite->getContentSize());
+        setSize(m_pSprite->getSize());
 
         //    Every time we set a new sprite, we free the current vertex data
         if (m_pVertexData)
@@ -177,15 +176,15 @@ GLubyte CCProgressTimer::getOpacity() const
 ///
 //    @returns the vertex position from the texture coordinate
 ///
-ccTex2F CCProgressTimer::textureCoordFromAlphaPoint(CCPoint alpha)
+ccTex2F CCProgressTimer::textureCoordFromAlphaPoint(Vec2 alpha)
 {
     ccTex2F ret = {0.0f, 0.0f};
     if (!m_pSprite) {
         return ret;
     }
     ccV3F_C4B_T2F_Quad quad = m_pSprite->getQuad();
-    CCPoint min = ccp(quad.bl.texCoords.u,quad.bl.texCoords.v);
-    CCPoint max = ccp(quad.tr.texCoords.u,quad.tr.texCoords.v);
+    Vec2 min = ccp(quad.bl.texCoords.u,quad.bl.texCoords.v);
+    Vec2 max = ccp(quad.tr.texCoords.u,quad.tr.texCoords.v);
     //  Fix bug #1303 so that progress timer handles sprite frame texture rotation
     if (m_pSprite->isTextureRectRotated()) {
         CC_SWAP(alpha.x, alpha.y, float);
@@ -193,15 +192,15 @@ ccTex2F CCProgressTimer::textureCoordFromAlphaPoint(CCPoint alpha)
     return tex2(min.x * (1.f - alpha.x) + max.x * alpha.x, min.y * (1.f - alpha.y) + max.y * alpha.y);
 }
 
-ccVertex2F CCProgressTimer::vertexFromAlphaPoint(CCPoint alpha)
+ccVertex2F CCProgressTimer::vertexFromAlphaPoint(Vec2 alpha)
 {
     ccVertex2F ret = {0.0f, 0.0f};
     if (!m_pSprite) {
         return ret;
     }
     ccV3F_C4B_T2F_Quad quad = m_pSprite->getQuad();
-    CCPoint min = ccp(quad.bl.vertices.x,quad.bl.vertices.y);
-    CCPoint max = ccp(quad.tr.vertices.x,quad.tr.vertices.y);
+    Vec2 min = ccp(quad.bl.vertices.x,quad.bl.vertices.y);
+    Vec2 max = ccp(quad.tr.vertices.x,quad.tr.vertices.y);
     ret.x = min.x * (1.f - alpha.x) + max.x * alpha.x;
     ret.y = min.y * (1.f - alpha.y) + max.y * alpha.y;
     return ret;
@@ -238,17 +237,17 @@ void CCProgressTimer::updateProgress(void)
     }
 }
 
-void CCProgressTimer::setAnchorPoint(CCPoint anchorPoint)
+void CCProgressTimer::setAnchorPoint(Vec2 anchorPoint)
 {
     CCNode::setAnchorPoint(anchorPoint);
 }
 
-CCPoint CCProgressTimer::getMidpoint(void)
+Vec2 CCProgressTimer::getMidpoint(void)
 {
     return m_tMidpoint;
 }
 
-void CCProgressTimer::setMidpoint(CCPoint midPoint)
+void CCProgressTimer::setMidpoint(Vec2 midPoint)
 {
     m_tMidpoint = ccpClamp(midPoint, CCPointZero, ccp(1,1));
 }
@@ -274,12 +273,12 @@ void CCProgressTimer::updateRadial(void)
     //    We find the vector to do a hit detection based on the percentage
     //    We know the first vector is the one @ 12 o'clock (top,mid) so we rotate
     //    from that by the progress angle around the m_tMidpoint pivot
-    CCPoint topMid = ccp(m_tMidpoint.x, 1.f);
-    CCPoint percentagePt = ccpRotateByAngle(topMid, m_tMidpoint, angle);
+    Vec2 topMid = ccp(m_tMidpoint.x, 1.f);
+    Vec2 percentagePt = ccpRotateByAngle(topMid, m_tMidpoint, angle);
 
 
     int index = 0;
-    CCPoint hit = CCPointZero;
+    Vec2 hit = CCPointZero;
 
     if (alpha == 0.f) {
         //    More efficient since we don't always need to check intersection
@@ -301,8 +300,8 @@ void CCProgressTimer::updateRadial(void)
         for (int i = 0; i <= kProgressTextureCoordsCount; ++i) {
             int pIndex = (i + (kProgressTextureCoordsCount - 1))%kProgressTextureCoordsCount;
 
-            CCPoint edgePtA = boundaryTexCoord(i % kProgressTextureCoordsCount);
-            CCPoint edgePtB = boundaryTexCoord(pIndex);
+            Vec2 edgePtA = boundaryTexCoord(i % kProgressTextureCoordsCount);
+            Vec2 edgePtB = boundaryTexCoord(pIndex);
 
             //    Remember that the top edge is split in half for the 12 o'clock position
             //    Let's deal with that here by finding the correct endpoints
@@ -373,7 +372,7 @@ void CCProgressTimer::updateRadial(void)
         m_pVertexData[1].vertices = vertexFromAlphaPoint(topMid);
 
         for(int i = 0; i < index; ++i){
-            CCPoint alphaPoint = boundaryTexCoord(i);
+            Vec2 alphaPoint = boundaryTexCoord(i);
             m_pVertexData[i+2].texCoords = textureCoordFromAlphaPoint(alphaPoint);
             m_pVertexData[i+2].vertices = vertexFromAlphaPoint(alphaPoint);
         }
@@ -400,9 +399,9 @@ void CCProgressTimer::updateBar(void)
         return;
     }
     float alpha = m_fPercentage / 100.0f;
-    CCPoint alphaOffset = ccpMult(ccp(1.0f * (1.0f - m_tBarChangeRate.x) + alpha * m_tBarChangeRate.x, 1.0f * (1.0f - m_tBarChangeRate.y) + alpha * m_tBarChangeRate.y), 0.5f);
-    CCPoint min = ccpSub(m_tMidpoint, alphaOffset);
-    CCPoint max = ccpAdd(m_tMidpoint, alphaOffset);
+    Vec2 alphaOffset = ccpMult(ccp(1.0f * (1.0f - m_tBarChangeRate.x) + alpha * m_tBarChangeRate.x, 1.0f * (1.0f - m_tBarChangeRate.y) + alpha * m_tBarChangeRate.y), 0.5f);
+    Vec2 min = ccpSub(m_tMidpoint, alphaOffset);
+    Vec2 max = ccpAdd(m_tMidpoint, alphaOffset);
 
     if (min.x < 0.f) {
         max.x += -min.x;
@@ -487,7 +486,7 @@ void CCProgressTimer::updateBar(void)
     updateColor();
 }
 
-CCPoint CCProgressTimer::boundaryTexCoord(char index)
+Vec2 CCProgressTimer::boundaryTexCoord(char index)
 {
     if (index < kProgressTextureCoordsCount) {
         if (m_bReverseDirection) {

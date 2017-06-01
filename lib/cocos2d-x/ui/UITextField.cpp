@@ -426,11 +426,11 @@ void TextField::setTouchAreaEnabled(bool enable)
     _useTouchArea = enable;
 }
 
-bool TextField::hitTest(const CCPoint &pt)
+bool TextField::hitTest(const Vec2 &pt)
 {
     if (_useTouchArea)
     {
-        CCPoint nsp = convertToNodeSpace(pt);
+        Vec2 nsp = convertToNodeSpace(pt);
         CCRect bb = CCRect(-_touchWidth * m_obAnchorPoint.x, -_touchHeight * m_obAnchorPoint.y, _touchWidth, _touchHeight);
         if (nsp.x >= bb.origin.x && nsp.x <= bb.origin.x + bb.size.width && nsp.y >= bb.origin.y && nsp.y <= bb.origin.y + bb.size.height)
         {
@@ -710,7 +710,7 @@ void TextField::addEventListenerTextField(CCObject *target, SEL_TextFieldEvent s
     _textFieldEventSelector = selecor;
 }
 
-void TextField::setAnchorPoint(const CCPoint &pt)
+void TextField::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _textFieldRenderer->setAnchorPoint(pt);
@@ -728,12 +728,12 @@ void TextField::textfieldRendererScaleChangedWithSize()
     {
         _textFieldRenderer->setDimensions(CCSizeZero);
         _textFieldRenderer->setScale(1.0f);
-        _size = getContentSize();        
+        _size = getSize();        
     }
     else
     {
         _textFieldRenderer->setDimensions(_size);
-        CCSize textureSize = getContentSize();
+        CCSize textureSize = getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _textFieldRenderer->setScale(1.0f);
@@ -746,9 +746,9 @@ void TextField::textfieldRendererScaleChangedWithSize()
     }
 }
 
-const CCSize& TextField::getContentSize() const
+const CCSize& TextField::getSize() const
 {
-    return _textFieldRenderer->getContentSize();
+    return _textFieldRenderer->getSize();
 }
 
 CCNode* TextField::getVirtualRenderer()

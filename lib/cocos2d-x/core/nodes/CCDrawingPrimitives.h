@@ -82,60 +82,60 @@ void CC_DLL ccDrawInit();
 void CC_DLL ccDrawFree();
 
 /** draws a point given x and y coordinate measured in points */
-void CC_DLL ccDrawPoint( const CCPoint& point );
+void CC_DLL ccDrawPoint( const Vec2& point );
 
 /** draws an array of points.
  @since v0.7.2
  */
-void CC_DLL ccDrawPoints( const CCPoint *points, unsigned int numberOfPoints );
+void CC_DLL ccDrawPoints( const Vec2 *points, unsigned int numberOfPoints );
 
 /** draws a line given the origin and destination point measured in points */
-void CC_DLL ccDrawLine( const CCPoint& origin, const CCPoint& destination );
+void CC_DLL ccDrawLine( const Vec2& origin, const Vec2& destination );
 
 /** draws a rectangle given the origin and destination point measured in points. */
-void CC_DLL ccDrawRect( CCPoint origin, CCPoint destination );
+void CC_DLL ccDrawRect( Vec2 origin, Vec2 destination );
 
 /** draws a solid rectangle given the origin and destination point measured in points.
     @since 1.1
  */
-void CC_DLL ccDrawSolidRect( CCPoint origin, CCPoint destination, ccColor4F color );
+void CC_DLL ccDrawSolidRect( Vec2 origin, Vec2 destination, ccColor4F color );
 
 /** draws a polygon given a pointer to CCPoint coordinates and the number of vertices measured in points.
 The polygon can be closed or open
 */
-void CC_DLL ccDrawPoly( const CCPoint *vertices, unsigned int numOfVertices, bool closePolygon );
+void CC_DLL ccDrawPoly( const Vec2 *vertices, unsigned int numOfVertices, bool closePolygon );
 
 /** draws a solid polygon given a pointer to CGPoint coordinates, the number of vertices measured in points, and a color.
  */
-void CC_DLL ccDrawSolidPoly( const CCPoint *poli, unsigned int numberOfPoints, ccColor4F color );
+void CC_DLL ccDrawSolidPoly( const Vec2 *poli, unsigned int numberOfPoints, ccColor4F color );
 
 /** draws a circle given the center, radius and number of segments. */
-void CC_DLL ccDrawCircle(const CCPoint& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY,bool fill=false);
-void CC_DLL ccDrawCircle( const CCPoint& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, bool fill=false);
+void CC_DLL ccDrawCircle(const Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY,bool fill=false);
+void CC_DLL ccDrawCircle( const Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, bool fill=false);
 
 /** draws a quad bezier path
  @warning This function could be pretty slow. Use it only for debugging purposes.
  @since v0.8
  */
-void CC_DLL ccDrawQuadBezier(const CCPoint& origin, const CCPoint& control, const CCPoint& destination, unsigned int segments);
+void CC_DLL ccDrawQuadBezier(const Vec2& origin, const Vec2& control, const Vec2& destination, unsigned int segments);
 
 /** draws a cubic bezier path
  @warning This function could be pretty slow. Use it only for debugging purposes.
  @since v0.8
  */
-void CC_DLL ccDrawCubicBezier(const CCPoint& origin, const CCPoint& control1, const CCPoint& control2, const CCPoint& destination, unsigned int segments);
+void CC_DLL ccDrawCubicBezier(const Vec2& origin, const Vec2& control1, const Vec2& control2, const Vec2& destination, unsigned int segments);
 
 /** draws a Catmull Rom path.
  @warning This function could be pretty slow. Use it only for debugging purposes.
  @since v2.0
  */
-void CC_DLL ccDrawCatmullRom( CCPointArray *arrayOfControlPoints, unsigned int segments );
+void CC_DLL ccDrawCatmullRom(const std::vector<Vec2>& points,  unsigned int segments );
 
 /** draws a Cardinal Spline path.
  @warning This function could be pretty slow. Use it only for debugging purposes.
  @since v2.0
  */
-void CC_DLL ccDrawCardinalSpline( CCPointArray *config, float tension,  unsigned int segments );
+void CC_DLL ccDrawCardinalSpline(const std::vector<Vec2>& points, float tension,  unsigned int segments );
 
 /** set the drawing color with 4 unsigned bytes
  @since v2.0

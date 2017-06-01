@@ -1,5 +1,5 @@
 
-local M = class('ShaderTest', TestUI)
+local M = class('ShaderTest', TestBase)
 
 function M:setup()
     local hello = display.newSprite('HelloWorld.png'):addTo(self)

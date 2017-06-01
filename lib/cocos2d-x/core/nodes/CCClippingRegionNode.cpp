@@ -23,7 +23,7 @@ CCClippingRegionNode* CCClippingRegionNode::create(void)
 void CCClippingRegionNode::setClippingRegion(const CCRect &clippingRegion)
 {
     m_clippingRegion = clippingRegion;
-    setContentSize(clippingRegion.size);
+    setSize(clippingRegion.size);
 }
 
 void CCClippingRegionNode::visit() 
@@ -41,7 +41,7 @@ void CCClippingRegionNode::visit()
             parent = parent->getParent();
         }
         
-        const CCPoint pos = convertToWorldSpace(CCPoint(m_clippingRegion.origin.x, m_clippingRegion.origin.y));
+        const Vec2 pos = convertToWorldSpace(Vec2(m_clippingRegion.origin.x, m_clippingRegion.origin.y));
         CCDirector::sharedDirector()->getOpenGLView()->setScissorInPoints(pos.x,
                                                                           pos.y,
                                                                           m_clippingRegion.size.width * scaleX,

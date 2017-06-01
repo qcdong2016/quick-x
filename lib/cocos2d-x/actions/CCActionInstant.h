@@ -265,9 +265,9 @@ public:
     virtual ~CCPlace(){}
 
     /** creates a Place action with a position */
-    static CCPlace * create(const CCPoint& pos);
+    static CCPlace * create(const Vec2& pos);
     /** Initializes a Place action with a position */
-    bool initWithPosition(const CCPoint& pos);
+    bool initWithPosition(const Vec2& pos);
     //super methods
     virtual void update(float time);
     /**
@@ -276,7 +276,7 @@ public:
      */
     virtual void paste(CCObject* o);
 protected:
-    CCPoint m_tPosition;
+    Vec2 m_tPosition;
 };
 
 /** @brief Calls a 'callback'

@@ -184,10 +184,10 @@ const char* LabelAtlas::getStringValue() const
     return _labelAtlasRenderer->getString();
 }
 
-void LabelAtlas::setAnchorPoint(const CCPoint &pt)
+void LabelAtlas::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
-    _labelAtlasRenderer->setAnchorPoint(CCPoint(pt.x, pt.y));
+    _labelAtlasRenderer->setAnchorPoint(Vec2(pt.x, pt.y));
 }
 
 void LabelAtlas::onSizeChanged()
@@ -196,9 +196,9 @@ void LabelAtlas::onSizeChanged()
     labelAtlasScaleChangedWithSize();
 }
 
-const CCSize& LabelAtlas::getContentSize() const
+const CCSize& LabelAtlas::getSize() const
 {
-    return _labelAtlasRenderer->getContentSize();
+    return _labelAtlasRenderer->getSize();
 }
 
 CCNode* LabelAtlas::getVirtualRenderer()
@@ -211,11 +211,11 @@ void LabelAtlas::labelAtlasScaleChangedWithSize()
     if (_ignoreSize)
     {
         _labelAtlasRenderer->setScale(1.0f);
-        _size = _labelAtlasRenderer->getContentSize();
+        _size = _labelAtlasRenderer->getSize();
     }
     else
     {
-        CCSize textureSize = _labelAtlasRenderer->getContentSize();
+        CCSize textureSize = _labelAtlasRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _labelAtlasRenderer->setScale(1.0f);

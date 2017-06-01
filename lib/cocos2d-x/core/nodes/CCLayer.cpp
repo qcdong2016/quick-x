@@ -26,16 +26,14 @@
 
 #include <stdarg.h>
 #include "CCLayer.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 
 NS_CC_BEGIN
 
@@ -56,7 +54,7 @@ bool CCLayer::init()
         CCDirector * pDirector;
         CC_BREAK_IF(!(pDirector = CCDirector::sharedDirector()));
         const CCSize &winSize = pDirector->getWinSize();
-        setContentSize(winSize);
+        setSize(winSize);
         setCascadeBoundingBox(CCRect(0, 0, winSize.width, winSize.height));
         m_bTouchEnabled = false;
         m_bAccelerometerEnabled = false;
@@ -208,7 +206,7 @@ bool CCLayerColor::initWithColor(const ccColor4B& color, GLfloat w, GLfloat h)
         }
 
         updateColor();
-        setContentSize(CCSizeMake(w, h));
+        setSize(CCSizeMake(w, h));
 
         setRenderState(CCShaderCache::sharedShaderCache()->getRenderState(kCCShader_PositionColor));
     }
@@ -223,29 +221,29 @@ bool CCLayerColor::initWithColor(const ccColor4B& color)
 }
 
 /// override contentSize
-void CCLayerColor::setContentSize(const CCSize & size)
+void CCLayerColor::setSize(const CCSize & size)
 {
     m_pSquareVertices[1].x = size.width;
     m_pSquareVertices[2].y = size.height;
     m_pSquareVertices[3].x = size.width;
     m_pSquareVertices[3].y = size.height;
 
-    CCLayer::setContentSize(size);
+    CCLayer::setSize(size);
 }
 
 void CCLayerColor::changeWidthAndHeight(GLfloat w ,GLfloat h)
 {
-    this->setContentSize(CCSizeMake(w, h));
+    this->setSize(CCSizeMake(w, h));
 }
 
 void CCLayerColor::changeWidth(GLfloat w)
 {
-    this->setContentSize(CCSizeMake(w, m_obContentSize.height));
+    this->setSize(CCSizeMake(w, _size.height));
 }
 
 void CCLayerColor::changeHeight(GLfloat h)
 {
-    this->setContentSize(CCSizeMake(m_obContentSize.width, h));
+    this->setSize(CCSizeMake(_size.width, h));
 }
 
 void CCLayerColor::updateColor()
@@ -314,7 +312,7 @@ CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B
     return NULL;
 }
 
-CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B& end, const CCPoint& v)
+CCLayerGradient* CCLayerGradient::create(const ccColor4B& start, const ccColor4B& end, const Vec2& v)
 {
     CCLayerGradient * pLayer = new CCLayerGradient();
     if( pLayer && pLayer->initWithColor(start, end, v))
@@ -350,7 +348,7 @@ bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end
     return initWithColor(start, end, ccp(0, -1));
 }
 
-bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end, const CCPoint& v)
+bool CCLayerGradient::initWithColor(const ccColor4B& start, const ccColor4B& end, const Vec2& v)
 {
     m_endColor.r  = end.r;
     m_endColor.g  = end.g;
@@ -374,7 +372,7 @@ void CCLayerGradient::updateColor()
         return;
 
     float c = sqrtf(2.0f);
-    CCPoint u = ccp(m_AlongVector.x / h, m_AlongVector.y / h);
+    Vec2 u = ccp(m_AlongVector.x / h, m_AlongVector.y / h);
 
     // Compressed Interpolation mode
     if (m_bCompressedInterpolation)
@@ -464,13 +462,13 @@ GLubyte CCLayerGradient::getEndOpacity()
     return m_cEndOpacity;
 }
 
-void CCLayerGradient::setVector(const CCPoint& var)
+void CCLayerGradient::setVector(const Vec2& var)
 {
     m_AlongVector = var;
     updateColor();
 }
 
-const CCPoint& CCLayerGradient::getVector()
+const Vec2& CCLayerGradient::getVector()
 {
     return m_AlongVector;
 }

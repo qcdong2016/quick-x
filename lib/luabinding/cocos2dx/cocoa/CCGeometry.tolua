@@ -27,24 +27,24 @@ THE SOFTWARE.
  * @{
  */
 
-// for CCPoint assignement operator and copy constructor
+// for Vec2 assignement operator and copy constructor
 
-class CCPoint
+class Vec2
 {
     float x;
     float y;
 
-    CCPoint(float x, float y);
-    CCPoint(CCPoint other);
-    CCPoint(CCSize size);
-    CCPoint();
+    Vec2(float x, float y);
+    Vec2(Vec2 other);
+    Vec2(CCSize size);
+    Vec2();
     void setPoint(float x, float y);
-    bool equals(CCPoint target);
+    bool equals(Vec2 target);
 
     /** @returns if points have fuzzy equality which means equal with some degree of variance.
      @since v2.1.4
      */
-    bool fuzzyEquals(CCPoint target, float variance);
+    bool fuzzyEquals(Vec2 target, float variance);
 
     /** Calculates distance between point an origin
      @return float
@@ -52,7 +52,7 @@ class CCPoint
      */
     float getLength();
 
-    /** Calculates the square length of a CCPoint (not calling sqrt() )
+    /** Calculates the square length of a Vec2 (not calling sqrt() )
      @return float
      @since v2.1.4
      */
@@ -62,13 +62,13 @@ class CCPoint
      @return float
      @since v2.1.4
     */
-    float getDistanceSq(CCPoint other);
+    float getDistanceSq(Vec2 other);
 
     /** Calculates the distance between two points
      @return float
      @since v2.1.4
      */
-    float getDistance(CCPoint other);
+    float getDistance(Vec2 other);
 
     /** @returns the angle in radians between this vector and the x axis
      @since v2.1.4
@@ -78,58 +78,58 @@ class CCPoint
     /** @returns the angle in radians between two vector directions
      @since v2.1.4
     */
-    float getAngle(CCPoint other);
+    float getAngle(Vec2 other);
 
     /** Calculates dot product of two points.
      @return float
      @since v2.1.4
      */
-    float dot(CCPoint other);
+    float dot(Vec2 other);
 
     /** Calculates cross product of two points.
      @return float
      @since v2.1.4
      */
-    float cross(CCPoint other);
+    float cross(Vec2 other);
 
     /** Calculates perpendicular of v, rotated 90 degrees counter-clockwise -- cross(v, perp(v)) >= 0
-     @return CCPoint
+     @return Vec2
      @since v2.1.4
      */
-    CCPoint getPerp();
+    Vec2 getPerp();
 
     /** Calculates perpendicular of v, rotated 90 degrees clockwise -- cross(v, rperp(v)) <= 0
-     @return CCPoint
+     @return Vec2
      @since v2.1.4
      */
-    CCPoint getRPerp();
+    Vec2 getRPerp();
 
     /** Calculates the projection of this over other.
-     @return CCPoint
+     @return Vec2
      @since v2.1.4
      */
-    CCPoint project(CCPoint other);
+    Vec2 project(Vec2 other);
 
     /** Complex multiplication of two points ("rotates" two points).
-     @return CCPoint vector with an angle of this.getAngle() + other.getAngle(),
+     @return Vec2 vector with an angle of this.getAngle() + other.getAngle(),
      and a length of this.getLength() * other.getLength().
      @since v2.1.4
      */
-    CCPoint rotate(CCPoint other);
+    Vec2 rotate(Vec2 other);
 
     /** Unrotates two points.
-     @return CCPoint vector with an angle of this.getAngle() - other.getAngle(),
+     @return Vec2 vector with an angle of this.getAngle() - other.getAngle(),
      and a length of this.getLength() * other.getLength().
      @since v2.1.4
      */
-    CCPoint unrotate(CCPoint other);
+    Vec2 unrotate(Vec2 other);
 
     /** Returns point multiplied to a length of 1.
      * If the point is 0, it returns (1, 0)
-     @return CCPoint
+     @return Vec2
      @since v2.1.4
      */
-    CCPoint normalize();
+    Vec2 normalize();
 
     /** Linear Interpolation between two points a and b
      @returns
@@ -138,7 +138,7 @@ class CCPoint
         otherwise a value between a..b
      @since v2.1.4
      */
-    CCPoint lerp(CCPoint other, float alpha);
+    Vec2 lerp(Vec2 other, float alpha);
 
     /** Rotates a point counter clockwise by the angle around a pivot
      @param pivot is the pivot, naturally
@@ -146,13 +146,46 @@ class CCPoint
      @returns the rotated point
      @since v2.1.4
      */
-    CCPoint rotateByAngle(CCPoint pivot, float angle);
+    Vec2 rotateByAngle(Vec2 pivot, float angle);
 
-    CCPoint forAngle(float a);
+    Vec2 forAngle(float a);
 };
 
-CCPoint ccp(float x, float y);
-CCPoint CCPointMake(float x, float y);
+Vec2 ccp(float x, float y);
+// Vec2 CCPointMake(float x, float y);
+
+Vec2 ccpNeg(Vec2 v);
+Vec2 ccpAdd(Vec2 v1, Vec2 v2);
+Vec2 ccpSub(Vec2 v1, Vec2 v2);
+Vec2 ccpMult(Vec2 v, float s);
+Vec2 ccpMidpoint(Vec2 v1, Vec2 v2);
+float ccpDot(Vec2 v1, Vec2 v2);
+float ccpCross(Vec2 v1, Vec2 v2);
+Vec2 ccpPerp(Vec2 v);
+Vec2 ccpRPerp(Vec2 v);
+Vec2 ccpProject(Vec2 v1, Vec2 v2);
+Vec2 ccpRotate(Vec2 v1, Vec2 v2);
+Vec2 ccpUnrotate(Vec2 v1, Vec2 v2);
+float ccpLengthSQ(Vec2 v);
+float ccpDistanceSQ(Vec2 p1, Vec2 p2);
+float ccpLength(Vec2 v);
+float ccpDistance(Vec2 v1, Vec2 v2);
+Vec2 ccpNormalize(Vec2 v);
+Vec2 ccpForAngle(float a);
+float ccpToAngle(Vec2 v);
+float   clampf(float value, float min_inclusive, float max_inclusive);
+Vec2 ccpClamp(Vec2 p, Vec2 from, Vec2 to);
+Vec2 ccpFromSize(CCSize s);
+Vec2  ccpLerp(Vec2 a, Vec2 b, float alpha);
+bool  ccpFuzzyEqual(Vec2 a, Vec2 b, float variance);
+Vec2  ccpCompMult(Vec2 a, Vec2 b);
+float  ccpAngleSigned(Vec2 a, Vec2 b);
+float  ccpAngle(Vec2 a, Vec2 b);
+Vec2  ccpRotateByAngle(Vec2 v, Vec2 pivot, float angle);
+bool  ccpLineIntersect(Vec2 p1, Vec2 p2, Vec2 p3, Vec2 p4, float *s, float *t);
+bool ccpSegmentIntersect(Vec2 A, Vec2 B, Vec2 C, Vec2 D);
+Vec2 ccpIntersectPoint(Vec2 A, Vec2 B, Vec2 C, Vec2 D);
+
 
 class CCSize
 {
@@ -161,7 +194,7 @@ class CCSize
 
     CCSize(float width, float height);
     CCSize(CCSize other);
-    CCSize(CCPoint point);
+    CCSize(Vec2 point);
     CCSize();
     void setSize(float width, float height);
     bool equals(CCSize target);
@@ -171,7 +204,7 @@ CCSize CCSizeMake(float width, float height);
 
 class CCRect
 {
-    CCPoint origin;
+    Vec2 origin;
     CCSize  size;
 
     CCRect(float x, float y, float width, float height);
@@ -185,7 +218,7 @@ class CCRect
     float getMidY(); /// return the midpoint y-value of current rect
     float getMaxY(); /// return the topmost y-value of current rect
     bool equals(CCRect rect);
-    bool containsPoint(CCPoint point);
+    bool containsPoint(Vec2 point);
     bool intersectsRect(CCRect rect);
 };
 

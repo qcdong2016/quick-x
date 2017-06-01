@@ -28,7 +28,6 @@
 #include "CCScheduler.h"
 #include "nodes/CCNode.h"
 
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "engine/CCDirector.h"
 #include "nodes/CCLayer.h"
 
@@ -142,10 +141,10 @@ int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pT
             event["phase"] = CCLuaValue::stringValue("unknown");
     }
 
-    const CCPoint pt = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
+    const Vec2 pt = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
     event["x"] = CCLuaValue::floatValue(pt.x);
     event["y"] = CCLuaValue::floatValue(pt.y);
-    const CCPoint prev = CCDirector::sharedDirector()->convertToGL(pTouch->getPreviousLocationInView());
+    const Vec2 prev = CCDirector::sharedDirector()->convertToGL(pTouch->getPreviousLocationInView());
     event["prevX"] = CCLuaValue::floatValue(prev.x);
     event["prevY"] = CCLuaValue::floatValue(prev.y);
 
@@ -252,10 +251,10 @@ int CCLuaEngine::executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pT
         sprintf(touchId, "%d", pTouch->getID());
         point["id"] = CCLuaValue::stringValue(touchId);
 
-        const CCPoint pt = pDirector->convertToGL(pTouch->getLocationInView());
+        const Vec2 pt = pDirector->convertToGL(pTouch->getLocationInView());
         point["x"] = CCLuaValue::floatValue(pt.x);
         point["y"] = CCLuaValue::floatValue(pt.y);
-        const CCPoint prev = pDirector->convertToGL(pTouch->getPreviousLocationInView());
+        const Vec2 prev = pDirector->convertToGL(pTouch->getPreviousLocationInView());
         point["prevX"] = CCLuaValue::floatValue(prev.x);
         point["prevY"] = CCLuaValue::floatValue(prev.y);
 

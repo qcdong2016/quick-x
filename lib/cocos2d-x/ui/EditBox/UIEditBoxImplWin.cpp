@@ -29,8 +29,7 @@
 #include "UIEditBox.h"
 #include "Win32InputBox.h"
 #include "nodes/CCLabelTTF.h"
-#include "ccUTF8.h"
-#include "CCPointExtension.h"
+#include "cocoa/ccUTF8.h"
 
 NS_CC_BEGIN
 namespace ui {
@@ -70,7 +69,7 @@ bool EditBoxImplWin::initWithSize(const CCSize& size)
     m_pLabel->setAnchorPoint(ccp(0, 0.5f));
     m_pLabel->setPosition(ccp(5, size.height / 2.0f));
     m_pLabel->setColor(m_colText);
-    m_pEditBox->addChild(m_pLabel);
+    m_pEditBox->addNode(m_pLabel);
 
     m_pLabelPlaceHolder = CCLabelTTF::create("", "", size.height-12);
 	// align the text vertically center
@@ -78,7 +77,7 @@ bool EditBoxImplWin::initWithSize(const CCSize& size)
     m_pLabelPlaceHolder->setPosition(ccp(5, size.height / 2.0f));
     m_pLabelPlaceHolder->setVisible(false);
     m_pLabelPlaceHolder->setColor(m_colPlaceHolder);
-    m_pEditBox->addChild(m_pLabelPlaceHolder);
+    m_pEditBox->addNode(m_pLabelPlaceHolder);
     
     m_EditSize = size;
     return true;
@@ -204,7 +203,7 @@ void EditBoxImplWin::setPlaceHolder(const char* pText)
     }
 }
 
-void EditBoxImplWin::setPosition(const CCPoint& pos)
+void EditBoxImplWin::setPosition(const Vec2& pos)
 {
 	//m_pLabel->setPosition(pos);
 	//m_pLabelPlaceHolder->setPosition(pos);
@@ -218,7 +217,7 @@ void EditBoxImplWin::setContentSize(const CCSize& size)
 {
 }
 
-void EditBoxImplWin::setAnchorPoint(const CCPoint& anchorPoint)
+void EditBoxImplWin::setAnchorPoint(const Vec2& anchorPoint)
 { // don't need to be implemented on win32 platform.
 	
 }

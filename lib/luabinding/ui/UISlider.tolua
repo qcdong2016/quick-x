@@ -35,7 +35,6 @@ class Slider : public Widget
     virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
     virtual void onTouchEnded(CCTouch *touch, CCEvent *unused_event);
     virtual void onTouchCancelled(CCTouch *touch, CCEvent *unused_event);
-    virtual const CCSize& getContentSize() const;
     virtual CCNode* getVirtualRenderer();
     virtual void ignoreContentAdaptWithSize(bool ignore);
     virtual std::string getDescription() const;

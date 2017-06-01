@@ -21,8 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-#define __CC_PLATFORM_IMAGE_CPP__
-#include "platform/CCImageCommon_cpp.h"
+
+#include "CCImage.h"
+#include "engine/CCFileSystem.h"
+#include "platform/CCDevice.h"
+#include <Windows.h>
 
 NS_CC_BEGIN
 

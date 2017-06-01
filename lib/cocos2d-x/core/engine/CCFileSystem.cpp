@@ -26,12 +26,13 @@ extern "C"
 #endif
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "android/jni/JniHelper.h"
 #include "android/asset_manager_jni.h"
 static AAssetManager* s_assetManager = nullptr;
 #endif
 
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "CCDevice.h"
 
 NS_CC_BEGIN
@@ -66,24 +67,22 @@ MemBuffer::~MemBuffer()
 }
 
 static std::vector<std::string> s_searchPath;
-static std::string s_searchRoot = ".";
 
-void FileSystem::setAssetsManager(void* assetsManager)
+void FileSystem::init()
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	s_assetManager = (AAssetManager*)assetsManager;
+	s_assetManager = (AAssetManager*)JniHelper::getAssetManager();
 #endif
 }
 
 void FileSystem::setResourceRoot(const std::string& root)
 {
-	s_searchRoot = root;
 }
 
 void FileSystem::addResourcePath(const std::string& path)
 {
 	if (!isAbsolutePath(path))
-		s_searchPath.push_back(join(s_searchRoot, path));
+        s_searchPath.push_back(join(CCDevice::getResourcePath(), path));
 	else
 		s_searchPath.push_back(path);
 }
@@ -220,7 +219,7 @@ std::string FileSystem::fullPathOfFile(const std::string& filename)
     std::string test;
     
     if (!isAbsolutePath(filename))
-        test = join(s_searchRoot, filename);
+        test = join(CCDevice::getResourcePath(), filename);
     else
         test = filename;
     

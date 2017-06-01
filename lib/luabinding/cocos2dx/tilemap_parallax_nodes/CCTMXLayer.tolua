@@ -37,25 +37,25 @@ class CCTMXLayer : public CCSpriteBatchNode
     - layer->removeChild(sprite, cleanup);
     - or layer->removeTileAt(ccp(x,y));
     */
-    CCSprite* tileAt(CCPoint tileCoordinate);
+    CCSprite* tileAt(Vec2 tileCoordinate);
 
     /** returns the tile gid at a given tile coordinate.
     if it returns 0, it means that the tile is empty.
     This method requires the the tile map has not been previously released (eg. don't call layer->releaseMap())
     */
-    unsigned int  tileGIDAt(CCPoint tileCoordinate);
+    unsigned int  tileGIDAt(Vec2 tileCoordinate);
 
     /** sets the tile gid (gid = tile global id) at a given tile coordinate.
     The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
     If a tile is already placed at that position, then it will be removed.
     */
-    void setTileGID(unsigned int gid, CCPoint tileCoordinate);
+    void setTileGID(unsigned int gid, Vec2 tileCoordinate);
 
     /** removes a tile at given tile coordinate */
-    void removeTileAt(CCPoint tileCoordinate);
+    void removeTileAt(Vec2 tileCoordinate);
 
     /** returns the position in points of a given tile coordinate */
-    CCPoint positionAt(CCPoint tileCoordinate);
+    Vec2 positionAt(Vec2 tileCoordinate);
 
     /** return the value for the specific property name */
     CCString *propertyNamed(const char *propertyName);

@@ -194,7 +194,7 @@ protected:
     virtual void copySpecialProperties(Widget* model);
     virtual void copyClonedWidgetChildren(Widget* model);
     void selectedItemEvent(int state);
-    virtual void interceptTouchEvent(int handleState,Widget* sender,const CCPoint &touchPoint);
+    virtual void interceptTouchEvent(int handleState,Widget* sender,const Vec2 &touchPoint);
 protected:
     
     Widget* _model;

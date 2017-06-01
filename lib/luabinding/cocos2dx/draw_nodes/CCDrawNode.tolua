@@ -7,10 +7,10 @@ class CCDrawNode : public CCNode
     static CCDrawNode* create();
 
     /** draw a dot at a position, with a given radius and color */
-    void drawDot(CCPoint pos, float radius, ccColor4F color);
+    void drawDot(Vec2 pos, float radius, ccColor4F color);
 
     /** draw a segment with a radius and color */
-    void drawSegment(CCPoint from, CCPoint to, float radius, ccColor4F color);
+    void drawSegment(Vec2 from, Vec2 to, float radius, ccColor4F color);
 
     /** draw a polygon with a fill color and line color
      * @code
@@ -18,7 +18,7 @@ class CCDrawNode : public CCNode
      * js:var drawPolygon(var verts, var fillColor,var borderWidth,var borderColor)
      * @endcode
      */
-    void drawPolygon(CCPoint *verts, unsigned int count, ccColor4F fillColor, float borderWidth, ccColor4F borderColor);
+    void drawPolygon(Vec2 *verts, unsigned int count, ccColor4F fillColor, float borderWidth, ccColor4F borderColor);
 
     /** Clear the geometry in the node's buffer. */
     void clear();

@@ -93,6 +93,7 @@ public:
      */
     static int getDPI();
     static std::string getWritablePath();
+    static std::string getResourcePath();
 
 #pragma mark -
 #pragma mark activity indicator
@@ -118,12 +119,6 @@ public:
     static void showAlert();
     /** @brief Hide and remove alert view */
     static void cancelAlert(void);
-
-#pragma mark -
-#pragma mark OpenUDID
-
-    /** @brief Get OpenUDID value */
-    static const std::string getOpenUDID(void);
 
 #pragma mark -
 #pragma mark misc

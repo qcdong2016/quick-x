@@ -25,11 +25,9 @@
  ****************************************************************************/
 
 #include "CCScene.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
-#include "touch_dispatcher/CCTouchTargetNode.h"
-#include "support/CCPointExtension.h"
 #include "cocoa/CCScriptSupport.h"
 #include "engine/CCDirector.h"
+#include "CCInputEvent.h"
 
 NS_CC_BEGIN
 
@@ -54,18 +52,48 @@ CCScene::~CCScene()
     CC_SAFE_RELEASE(m_touchingTargets);
 }
 
+void CCScene::handleTouchBegin(EventData& data) {
+	CCSet set;
+	CCTouch* touch = new CCTouch();
+	int id = data[TouchBegin::touchID].GetInt();
+	float x = data[TouchBegin::x].GetFloat();
+	float y = data[TouchBegin::y].GetFloat();
+	touch->setTouchInfo(id, x, y);
+	set.addObject(touch);
+	
+	ccTouchesBegan(&set, nullptr);
+}
+
+void CCScene::handleTouchEnd(EventData& data) {
+	CCSet set;
+	CCTouch* touch = new CCTouch();
+	int id = data[TouchEnd::touchID].GetInt();
+	float x = data[TouchEnd::x].GetFloat();
+	float y = data[TouchEnd::y].GetFloat();
+	touch->setTouchInfo(id, x, y);
+	set.addObject(touch);
+
+	ccTouchesEnded(&set, nullptr);
+}
+
+void CCScene::handleTouchMove(EventData& data) {
+	CCSet set;
+	CCTouch* touch = new CCTouch();
+	int id = data[TouchMove::touchID].GetInt();
+	float x = data[TouchMove::x].GetFloat();
+	float y = data[TouchMove::y].GetFloat();
+	touch->setTouchInfo(id, x, y);
+	set.addObject(touch);
+
+	ccTouchesMoved(&set, nullptr);
+}
+
 bool CCScene::init()
 {
-    bool bRet = false;
-    do
-    {
-        CCDirector *pDirector;
-        CC_BREAK_IF(!(pDirector = CCDirector::sharedDirector()));
-        this->setContentSize(pDirector->getWinSize());
-        // success
-        bRet = true;
-    } while (0);
-    return bRet;
+	subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
+	subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
+	subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
+	return CCLayer::init();
 }
 
 CCScene *CCScene::create()
@@ -164,7 +192,7 @@ void CCScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
         for (CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it)
         {
             touch = (CCTouch*)*it;
-            const CCPoint touchPoint = touch->getLocation();
+            const Vec2 touchPoint = touch->getLocation();
 
             if (boundingBox.containsPoint(touchPoint))
             {
@@ -291,7 +319,6 @@ void CCScene::cleanup(void)
     m_touchRegistered = false;
     m_touchableNodes->removeAllObjects();
     m_touchingTargets->removeAllObjects();
-    SubSystem::get<CCTouchDispatcher>()->removeDelegate(this);
 
     CCLayer::cleanup();
 }
@@ -329,7 +356,6 @@ void CCScene::enableTouchDispatching()
 {
     if (!m_touchRegistered)
     {
-		SubSystem::get<CCTouchDispatcher>()->addStandardDelegate(this, 0);
         m_touchRegistered = true;
     }
     m_touchDispatchingEnabled = true;

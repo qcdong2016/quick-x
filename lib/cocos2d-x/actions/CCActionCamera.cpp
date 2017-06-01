@@ -65,7 +65,7 @@ CCOrbitCamera * CCOrbitCamera::create(float t, float radius, float deltaRadius, 
 void CCOrbitCamera::paste(CCObject* o)
 {
 	Super::paste(o);
-    O->initWithDuration(m_fDuration, m_fRadius, m_fDeltaRadius, m_fAngleZ, m_fDeltaAngleZ, m_fAngleX, m_fDeltaAngleX);
+    dynamic_cast<SelfType*>(o)->initWithDuration(m_fDuration, m_fRadius, m_fDeltaRadius, m_fAngleZ, m_fDeltaAngleZ, m_fAngleX, m_fDeltaAngleX);
 }
 
 bool CCOrbitCamera::initWithDuration(float t, float radius, float deltaRadius, float angleZ, float deltaAngleZ, float angleX, float deltaAngleX)

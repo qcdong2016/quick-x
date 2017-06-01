@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 #include "base/MathDefs.h"
 #include "CCStdC.h"
-#include "support/zip_support/ZipUtils.h"
+#include "zip/ZipUtils.h"
 #include "shaders/ccGLStateCache.h"
 #include <ctype.h>
 #include <cctype>

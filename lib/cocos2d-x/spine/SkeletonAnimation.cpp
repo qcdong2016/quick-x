@@ -39,7 +39,6 @@
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
 #include "nodes/CCDrawingPrimitives.h"
-#include "support/CCPointExtension.h"
 
 namespace cocos2d {
 
@@ -341,7 +340,7 @@ void SkeletonAnimation::draw() {
 		// Slots.
 		ccDrawColor4B(0, 0, 255, 255);
 		glLineWidth(1);
-		CCPoint points[4];
+		Vec2 points[4];
 		for (int i = 0, n = skeleton->slotsCount; i < n; i++) {
 			spSlot* slot = skeleton->drawOrder[i];
 			if (!slot->attachment || slot->attachment->type != SP_ATTACHMENT_REGION) continue;
@@ -419,7 +418,7 @@ CCRect SkeletonAnimation::boundingBox() {
 			maxY = Max(maxY, y);
 		}
 	}
-	CCPoint position = getPosition();
+	Vec2 position = getPosition();
 	return CCRect(position.x + minX, position.y + minY, maxX - minX, maxY - minY);
 }
 

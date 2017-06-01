@@ -164,7 +164,7 @@ class CCTexture2D : public Resource
     /** content size */
     CCSize getContentSize();
 
-	void drawAtPoint(CCPoint point);
+	void drawAtPoint(Vec2 point);
 	void drawInRect(CCRect rect);
 
     /** whether or not the texture has their Alpha premultiplied */

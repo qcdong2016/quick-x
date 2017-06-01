@@ -6,7 +6,7 @@
 #include <consoleapi.h>
 #endif
 #include <sstream>
-#include "support/ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 
 NS_CC_BEGIN
 

@@ -32,15 +32,12 @@
 #include "textures/CCTextureAtlas.h"
 #include "ccConfig.h"
 #include "ccMacros.h"
-#include "effects/CCGrid.h"
-#include "support/CCPointExtension.h"
 #include "CCParticleSystem.h"
 #include "shaders/CCShaderCache.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
-#include "support/zip_support/ZipUtils.h"
-#include "kazmath/GL/matrix.h"
-#include "support/CCProfiling.h"
+#include "zip/ZipUtils.h"
+#include "kazmath/matrix.h"
 
 NS_CC_BEGIN
 
@@ -138,23 +135,12 @@ void CCParticleBatchNode::visit()
 
     kmGLPushMatrix();
 
-    if ( m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->beforeDraw();
-        transformAncestors();
-    }
-
     transform();
 
     draw();
 
     // reset for next frame
     m_uOrderOfArrival = 0;
-
-    if ( m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->afterDraw(this);
-    }
 
     kmGLPopMatrix();
 }

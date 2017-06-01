@@ -24,7 +24,7 @@ class CCParticleSystemQuad : public CCParticleSystem
     // super methods
     bool initWithTotalParticles(unsigned int numberOfParticles);
     void setTexture(CCTexture2D* texture);
-    void updateQuadWithParticle(tCCParticle* particle, const CCPoint& newPosition);
+    void updateQuadWithParticle(tCCParticle* particle, const Vec2& newPosition);
     void setBatchNode(CCParticleBatchNode* batchNode);
     void setTotalParticles(unsigned int tp);
 

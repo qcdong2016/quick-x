@@ -42,7 +42,6 @@
 #include "CCActionInterval.h"
 #include "nodes/CCNode.h"
 #include "cocoa/CCGeometry.h"
-#include "cocoa/CCPointArray.h"
 
 NS_CC_BEGIN;
 
@@ -66,7 +65,7 @@ public:
      *  js:var create(var duration,var pointTable,var tension)
      *  @endcode
      */
-    static CCCardinalSplineTo* create(float duration, CCPointArray* points, float tension);
+    static CCCardinalSplineTo* create(float duration, const std::vector<Vec2>& points, float tension);
     /**
      *  @js NA
      *  @lua NA
@@ -81,7 +80,7 @@ public:
     /** initializes the action with a duration and an array of points 
      *  @lua NA
      */
-    bool initWithDuration(float duration, CCPointArray* points, float tension);
+    bool initWithDuration(float duration, const std::vector<Vec2>& points, float tension);
     
     /**
      *  @js NA
@@ -100,26 +99,23 @@ public:
     /**
      *  @lua NA
      */
-    virtual void updatePosition(CCPoint &newPos);
+    virtual void updatePosition(Vec2 &newPos);
     
-    inline CCPointArray* getPoints() { return m_pPoints; }
+    inline const std::vector<Vec2>& getPoints() { return _points; }
     /**
      *  @js NA
      */
-    inline void  setPoints(CCPointArray* points)
+    inline void  setPoints(const std::vector<Vec2>& points)
     {
-        CC_SAFE_RETAIN(points);
-        CC_SAFE_RELEASE(m_pPoints);
-        m_pPoints = points;
+        _points = points;
     }
     
 protected:
-    /** Array of control points */
-    CCPointArray *m_pPoints;
+	std::vector<Vec2> _points;
     float m_fDeltaT;
     float m_fTension;
-    CCPoint	m_previousPosition;
-    CCPoint	m_accumulatedDiff;
+    Vec2	m_previousPosition;
+    Vec2	m_accumulatedDiff;
 };
 
 /** Cardinal Spline path.
@@ -136,7 +132,7 @@ public:
      *  js:var create(var duration,var pointTable,var tension)
      *  @endcode
      */
-    static CCCardinalSplineBy* create(float duration, CCPointArray* points, float tension);
+    static CCCardinalSplineBy* create(float duration, const std::vector<Vec2>& points, float tension);
     /**
      *  @js NA
      *  @lua NA
@@ -150,9 +146,9 @@ public:
     /**
      *  @lua NA
      */
-    virtual void updatePosition(CCPoint &newPos);
+    virtual void updatePosition(Vec2 &newPos);
 protected:
-    CCPoint m_startPosition;
+    Vec2 m_startPosition;
 };
 
 /** An action that moves the target with a CatmullRom curve to a destination point.
@@ -171,13 +167,13 @@ public:
      *  js:var create(var dt,var pointTable)
      *  @endcode
      */
-    static CCCatmullRomTo* create(float dt, CCPointArray* points);
+    static CCCatmullRomTo* create(float dt, const std::vector<Vec2>& points);
 
     /** initializes the action with a duration and an array of points 
      *  @js NA
      *  @lua NA
      */
-    bool initWithDuration(float dt, CCPointArray* points);
+    bool initWithDuration(float dt, const std::vector<Vec2>& points);
 };
 
 /** An action that moves the target with a CatmullRom curve by a certain distance.
@@ -196,17 +192,17 @@ public:
      *  js:var create(var dt,var pointTable)
      *  @endcode
      */
-    static CCCatmullRomBy* create(float dt, CCPointArray* points);
+    static CCCatmullRomBy* create(float dt, const std::vector<Vec2>& points);
 
     /** initializes the action with a duration and an array of points 
      *  @js NA
      *  @lua NA
      */
-    bool initWithDuration(float dt, CCPointArray* points);
+    bool initWithDuration(float dt, const std::vector<Vec2>& points);
 };
 
 /** Returns the Cardinal Spline position for a given set of control points, tension and time */
-extern CC_DLL CCPoint ccCardinalSplineAt(CCPoint &p0, CCPoint &p1, CCPoint &p2, CCPoint &p3, float tension, float t);
+extern CC_DLL Vec2 ccCardinalSplineAt(Vec2 &p0, Vec2 &p1, Vec2 &p2, Vec2 &p3, float tension, float t);
 
 // end of actions group
 /// @}

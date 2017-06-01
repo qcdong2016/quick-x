@@ -293,7 +293,7 @@ void CheckBox::updateFlippedY()
     _frontCrossDisabledRenderer->setFlipY(_flippedY);
 }
 
-void CheckBox::setAnchorPoint(const CCPoint &pt)
+void CheckBox::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _backGroundBoxRenderer->setAnchorPoint(pt);
@@ -313,9 +313,9 @@ void CheckBox::onSizeChanged()
     frontCrossDisabledTextureScaleChangedWithSize();
 }
 
-const CCSize& CheckBox::getContentSize() const
+const CCSize& CheckBox::getSize() const
 {
-    return _backGroundBoxRenderer->getContentSize();
+    return _backGroundBoxRenderer->getSize();
 }
 
 CCNode* CheckBox::getVirtualRenderer()
@@ -328,11 +328,11 @@ void CheckBox::backGroundTextureScaleChangedWithSize()
     if (_ignoreSize)
     {
         _backGroundBoxRenderer->setScale(1.0f);
-        _size = _backGroundBoxRenderer->getContentSize();
+        _size = _backGroundBoxRenderer->getSize();
     }
     else
     {
-        CCSize textureSize = _backGroundBoxRenderer->getContentSize();
+        CCSize textureSize = _backGroundBoxRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _backGroundBoxRenderer->setScale(1.0f);
@@ -353,7 +353,7 @@ void CheckBox::backGroundSelectedTextureScaleChangedWithSize()
     }
     else
     {
-        CCSize textureSize = _backGroundSelectedBoxRenderer->getContentSize();
+        CCSize textureSize = _backGroundSelectedBoxRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _backGroundSelectedBoxRenderer->setScale(1.0f);
@@ -374,7 +374,7 @@ void CheckBox::frontCrossTextureScaleChangedWithSize()
     }
     else
     {
-        CCSize textureSize = _frontCrossRenderer->getContentSize();
+        CCSize textureSize = _frontCrossRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _frontCrossRenderer->setScale(1.0f);
@@ -395,7 +395,7 @@ void CheckBox::backGroundDisabledTextureScaleChangedWithSize()
     }
     else
     {
-        CCSize textureSize = _backGroundBoxDisabledRenderer->getContentSize();
+        CCSize textureSize = _backGroundBoxDisabledRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _backGroundBoxDisabledRenderer->setScale(1.0f);
@@ -416,7 +416,7 @@ void CheckBox::frontCrossDisabledTextureScaleChangedWithSize()
     }
     else
     {
-        CCSize textureSize = _frontCrossDisabledRenderer->getContentSize();
+        CCSize textureSize = _frontCrossDisabledRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _frontCrossDisabledRenderer->setScale(1.0f);

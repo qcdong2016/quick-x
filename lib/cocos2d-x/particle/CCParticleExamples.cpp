@@ -26,7 +26,6 @@ THE SOFTWARE.
 #include "CCParticleExamples.h"
 #include "engine/CCDirector.h"
 
-#include "support/CCPointExtension.h"
 #include "firePngData.h"
 #include "platform/CCImage.h"
 #include "textures/CCTexture2D.h"
@@ -49,7 +48,7 @@ static CCTexture2D* getDefaultTexture()
 
         pImage = new CCImage();
         CC_BREAK_IF(NULL == pImage);
-        bRet = pImage->initWithImageData((void*)__firePngData, sizeof(__firePngData), kFmtPng);
+        bRet = pImage->initWithImageData((void*)__firePngData, sizeof(__firePngData));
         CC_BREAK_IF(!bRet);
 
 		pTexture = new CCTexture2D();

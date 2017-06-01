@@ -38,10 +38,26 @@ THE SOFTWARE.
 
 #include "engine/CCSubSystem.h"
 #include "base/Ptr.h"
+#include "CCTimer.h"
+#include "nodes/CCScene.h"
 
 
 NS_CC_BEGIN
 
+
+class CC_DLL CCApplication : public RefCounted
+{
+public:
+	virtual void applicationWillEnterForeground() = 0;
+	virtual void applicationDidEnterBackground() = 0;
+	virtual bool applicationDidFinishLaunching() = 0;
+};
+
+class CC_DLL Module : public CCObject
+{
+public:
+	virtual ~Module() {};
+};
 
 class CC_DLL CCDirectorDelegate
 {
@@ -83,6 +99,7 @@ class CCNode;
 class CCScheduler;
 class CCActionManager;
 class CCTouchDispatcher;
+class Input;
 
 /**
 @brief Class that creates and handle the main Window and manages how
@@ -110,7 +127,7 @@ public:
     /**
      *  @js ctor
      */
-    CCDirector(void);
+    CCDirector(CCApplication* app);
     /**
      *  @js NA
      *  @lua NA
@@ -121,12 +138,8 @@ public:
     // attribute
 
     /** Get current running Scene. Director can only run one Scene at the time */
-    inline CCScene* getRunningScene(void) { return m_pRunningScene; }
-
-    /** Get the FPS value */
-    inline double getAnimationInterval(void) { return m_dAnimationInterval; }
-    /** Set the FPS value. */
-    virtual void setAnimationInterval(double dValue);
+    inline CCScene* getScene(void) { return _scene; }
+	void setScene(CCScene* sc) { _scene = sc; }
 
     /** Get the CCEGLView, where everything is rendered
      * @js NA
@@ -134,15 +147,9 @@ public:
     inline CCEGLView* getOpenGLView(void) { return m_pobOpenGLView; }
     void setOpenGLView(CCEGLView *pobOpenGLView);
 
-    inline bool isNextDeltaTimeZero(void) { return m_bNextDeltaTimeZero; }
-    void setNextDeltaTimeZero(bool bNextDeltaTimeZero);
-
     /** Whether or not the Director is paused */
     inline bool isPaused(void) { return m_bPaused; }
 
-    /** How many frames were called since the director started */
-    inline unsigned int getTotalFrames(void) { return m_uTotalFrames; }
-    
     /** Sets an OpenGL projection
      @since v0.8.2
      @js NA
@@ -156,22 +163,6 @@ public:
     void setViewport();
 
     /** How many frames were called since the director started */
-    
-    
-    /** Whether or not the replaced scene will receive the cleanup message.
-     If the new scene is pushed, then the old scene won't receive the "cleanup" message.
-     If the new scene replaces the old one, the it will receive the "cleanup" message.
-     @since v0.99.0
-     */
-    inline bool isSendCleanupToScene(void) { return m_bSendCleanupToScene; }
-
-    /** This object will be visited after the main scene is visited.
-     This object MUST implement the "visit" selector.
-     Useful to hook a notification object, like CCNotifications (http://github.com/manucorporat/CCNotifications)
-     @since v0.99.5
-     */
-    CCNode* getNotificationNode();
-    void setNotificationNode(CCNode *node);
     
     /** CCDirector delegate. It shall implemente the CCDirectorDelegate protocol
      @since v0.99.5
@@ -197,67 +188,25 @@ public:
     
     /** returns visible origin of the OpenGL view in points.
      */
-    CCPoint getVisibleOrigin();
+    Vec2 getVisibleOrigin();
 
     /** converts a UIKit coordinate to an OpenGL coordinate
      Useful to convert (multi) touch coordinates to the current layout (portrait or landscape)
      */
-    CCPoint convertToGL(const CCPoint& obPoint);
+    Vec2 convertToGL(const Vec2& obPoint);
 
     /** converts an OpenGL coordinate to a UIKit coordinate
      Useful to convert node points to window points for calls such as glScissor
      */
-    CCPoint convertToUI(const CCPoint& obPoint);
+    Vec2 convertToUI(const Vec2& obPoint);
 
     /// XXX: missing description 
     float getZEye(void);
 
-    // Scene Management
-
-    /** Enters the Director's main loop with the given Scene.
-     * Call it to run only your FIRST scene.
-     * Don't call it if there is already a running scene.
-     *
-     * It will call pushScene: and then it will call startAnimation
-     */
-    void runWithScene(CCScene *pScene);
-
-    /** Suspends the execution of the running scene, pushing it on the stack of suspended scenes.
-     * The new scene will be executed.
-     * Try to avoid big stacks of pushed scenes to reduce memory allocation. 
-     * ONLY call it if there is a running scene.
-     */
-    void pushScene(CCScene *pScene);
-
-    /** Pops out a scene from the queue.
-     * This scene will replace the running one.
-     * The running scene will be deleted. If there are no more scenes in the stack the execution is terminated.
-     * ONLY call it if there is a running scene.
-     */
-    void popScene(void);
-
-    /** Pops out all scenes from the queue until the root scene in the queue.
-     * This scene will replace the running one.
-     * Internally it will call `popToSceneStackLevel(1)`
-     */
-    void popToRootScene(void);
-
-    /** Pops out all scenes from the queue until it reaches `level`.
-     If level is 0, it will end the director.
-     If level is 1, it will pop all scenes until it reaches to root scene.
-     If level is <= than the current stack level, it won't do anything.
-     */
- 	void popToSceneStackLevel(int level);
-
-    /** Replaces the running scene with a new one. The running scene is terminated.
-     * ONLY call it if there is a running scene.
-     */
-    void replaceScene(CCScene *pScene);
-
     /** Ends the execution, releases the running scene.
      It doesn't remove the OpenGL view from its parent. You have to do it manually.
      */
-    void end(void);
+    void shutdown(void);
 
     /** Pauses the running scene.
      The running scene will be _drawed_ but all scheduled timers will be paused
@@ -271,21 +220,6 @@ public:
      */
     void resume(void);
 
-    /** Stops the animation. Nothing will be drawn. The main loop won't be triggered anymore.
-     If you don't want to pause your animation call [pause] instead.
-     */
-    virtual void stopAnimation(void);
-
-    /** The main loop is triggered again.
-     Call this function only if [stopAnimation] was called earlier
-     @warning Don't call this function to start the main loop. To run the main loop call runWithScene
-     */
-    virtual void startAnimation(void);
-
-    /** Draw the scene.
-    This method is called every frame. Don't call it manually.
-    */
-    void drawScene(void);
 
     // Memory Helper
 
@@ -311,18 +245,7 @@ public:
 
     virtual void mainLoop(void);
 
-    /** The size in pixels of the surface. It could be different than the screen size.
-    High-res devices might have a higher surface size than the screen size.
-    Only available when compiled using SDK >= 4.0.
-    @since v0.99.4
-    */
-    void setContentScaleFactor(float scaleFactor);
-    float getContentScaleFactor(void);
-
 public:
-
-    /* delta time since last tick to main loop */
-	CC_PROPERTY_READONLY(float, m_fDeltaTime, DeltaTime);
 	
 	template<typename T>
 	T* addSubSystem() 
@@ -339,82 +262,58 @@ public:
 	SubSystem* addSubSystem(ID type)
 	{
 		SubSystem* s = ObjectFactoryManager::newObject<SubSystem>(type);
-		_subSustems[type] = s;
+		_subSystems[type] = s;
 		return s;
 	}
 
 	SubSystem* getSubSystem(ID type)
 	{
-		auto it = _subSustems.find(type);
-		return (it != _subSustems.end()) ? it->second.Get() : nullptr;
+		auto it = _subSystems.find(type);
+		return (it != _subSystems.end()) ? it->second.Get() : nullptr;
 	}
 
+    float getDeltaTime() { return _deltaTime; }
+	int run();
+
+	bool isRunning();
+	void runFrame();
+	void timeLimit();
+	void setFps(int fps);
+
+	void addModule(SharedPtr<Module> m) { _modules.push_back(m); }
+	template<typename T>
+	void addModule() { addModule(SharedPtr<Module>(new T));  }
 public:
-    /** returns a shared instance of the director 
-     *  @js getInstance
-     */
+	SharedPtr<Input> input;
     static CCDirector* sharedDirector(void);
 
 protected:
-
-    void purgeDirector();
-    bool m_bPurgeDirecotorInNextLoop; // this flag will be set to true in end()
-    
-    void setNextScene(void);
     
     void getFPSImageData(unsigned char** datapointer, unsigned int* length);
-    
-    /** calculates delta time since last time it was called */    
-    void calculateDeltaTime();
+	void clear();
+
 protected:
 
-	std::map<ID, SharedPtr<SubSystem> > _subSustems;
+	std::map<ID, SharedPtr<SubSystem> > _subSystems;
+	std::vector<SharedPtr<Module> > _modules;
 
     /* The CCEGLView, where everything is rendered */
     CCEGLView    *m_pobOpenGLView;
-
-    double m_dAnimationInterval;
-    double m_dOldAnimationInterval;
 
     /* landscape mode ? */
     bool m_bLandscape;
     
     /** Whether or not the Director is paused */
     bool m_bPaused;
-
-    /* How many frames were called since the director started */
-    unsigned int m_uTotalFrames;
-     
+    
     /* The running scene */
-    CCScene *m_pRunningScene;
-    
-    /* will be the next 'runningScene' in the next frame
-     nextScene is a weak reference. */
-    CCScene *m_pNextScene;
-    
-    /* If YES, then "old" scene will receive the cleanup message */
-    bool    m_bSendCleanupToScene;
-
-    /* scheduled scenes */
-	SharedPtr<CCArray> m_pobScenesStack;
-    
-    /* last time the main loop was updated */
-    struct cc_timeval *m_pLastUpdate;
-
-    /* whether or not the next delta time will be zero */
-    bool m_bNextDeltaTimeZero;
+	SharedPtr<CCScene> _scene;
     
     /* projection used */
     ccDirectorProjection m_eProjection;
 
     /* window size in points */
     CCSize    m_obWinSizeInPoints;
-    
-    /* content scale factor */
-    float    m_fContentScaleFactor;
-
-    /* This object will be visited after the scene. Useful to hook a notification node */
-    CCNode *m_pNotificationNode;
 
     /* Projection protocol delegate */
     CCDirectorDelegate *m_pProjectionDelegate;
@@ -422,7 +321,13 @@ protected:
     // CCEGLViewProtocol will recreate stats labels to fit visible rect
     friend class CCEGLViewProtocol;
 
-	bool m_bInvalid;
+	int _fps;
+	int _pausedFps;
+	bool _running;
+    float _deltaTime;
+	TimerHiRes _frameTimer;
+
+	SharedPtr<CCApplication> _app;
 };
 
 // end of base_node group

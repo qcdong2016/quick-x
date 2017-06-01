@@ -35,15 +35,13 @@
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCGLProgram.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "cocoa/CCGeometry.h"
 #include "textures/CCTexture2D.h"
 #include "cocoa/CCAffineTransform.h"
-#include "support/TransformUtils.h"
-#include "support/CCProfiling.h"
+#include "cocoa/TransformUtils.h"
 #include "platform/CCImage.h"
 // external
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include <string.h>
 
 using namespace std;
@@ -307,11 +305,11 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
 {
     m_bRectRotated = rotated;
 
-    setContentSize(untrimmedSize);
+    setSize(untrimmedSize);
     setVertexRect(rect);
     setTextureCoords(rect);
 
-    CCPoint relativeOffset = m_obUnflippedOffsetPositionFromCenter;
+    Vec2 relativeOffset = m_obUnflippedOffsetPositionFromCenter;
 
     // issue #732
     if (m_bFlipX)
@@ -323,8 +321,8 @@ void CCSprite::setTextureRect(const CCRect& rect, bool rotated, const CCSize& un
         relativeOffset.y = -relativeOffset.y;
     }
 
-    m_obOffsetPosition.x = relativeOffset.x + (m_obContentSize.width - m_obRect.size.width) / 2;
-    m_obOffsetPosition.y = relativeOffset.y + (m_obContentSize.height - m_obRect.size.height) / 2;
+    m_obOffsetPosition.x = relativeOffset.x + (_size.width - m_obRect.size.width) / 2;
+    m_obOffsetPosition.y = relativeOffset.y + (_size.height - m_obRect.size.height) / 2;
 
     // rendering using batch node
     if (m_pobBatchNode)
@@ -358,8 +356,6 @@ void CCSprite::setVertexRect(const CCRect& rect)
 
 void CCSprite::setTextureCoords(CCRect rect)
 {
-    rect = CC_RECT_POINTS_TO_PIXELS(rect);
-
     CCTexture2D *tex = m_pobBatchNode ? m_pobTextureAtlas->getTexture() : m_pobTexture;
     if (! tex)
     {
@@ -524,7 +520,7 @@ void CCSprite::updateTransform(void)
 
 #if CC_SPRITE_DEBUG_DRAW
     // draw bounding box
-    CCPoint vertices[4] = {
+    Vec2 vertices[4] = {
         ccp( m_sQuad.bl.vertices.x, m_sQuad.bl.vertices.y ),
         ccp( m_sQuad.br.vertices.x, m_sQuad.br.vertices.y ),
         ccp( m_sQuad.tr.vertices.x, m_sQuad.tr.vertices.y ),
@@ -577,7 +573,7 @@ void CCSprite::draw(void)
 
 #if CC_SPRITE_DEBUG_DRAW == 1
     // draw bounding box
-    CCPoint vertices[4]={
+    Vec2 vertices[4]={
         ccp(m_sQuad.tl.vertices.x,m_sQuad.tl.vertices.y),
         ccp(m_sQuad.bl.vertices.x,m_sQuad.bl.vertices.y),
         ccp(m_sQuad.br.vertices.x,m_sQuad.br.vertices.y),
@@ -587,8 +583,8 @@ void CCSprite::draw(void)
 #elif CC_SPRITE_DEBUG_DRAW == 2
     // draw texture box
     CCSize s = this->getTextureRect().size;
-    CCPoint offsetPix = this->getOffsetPosition();
-    CCPoint vertices[4] = {
+    Vec2 offsetPix = this->getOffsetPosition();
+    Vec2 vertices[4] = {
         ccp(offsetPix.x,offsetPix.y), ccp(offsetPix.x+s.width,offsetPix.y),
         ccp(offsetPix.x+s.width,offsetPix.y+s.height), ccp(offsetPix.x,offsetPix.y+s.height)
     };
@@ -766,7 +762,7 @@ setDirtyRecursively(true);                \
 }                                            \
 }
 
-void CCSprite::setPosition(const CCPoint& pos)
+void CCSprite::setPosition(const Vec2& pos)
 {
     CCNode::setPosition(pos);
     SET_DIRTY_RECURSIVELY();
@@ -826,7 +822,7 @@ void CCSprite::setVertexZ(float fVertexZ)
     SET_DIRTY_RECURSIVELY();
 }
 
-void CCSprite::setAnchorPoint(const CCPoint& anchor)
+void CCSprite::setAnchorPoint(const Vec2& anchor)
 {
     CCNode::setAnchorPoint(anchor);
     SET_DIRTY_RECURSIVELY();
@@ -849,7 +845,7 @@ void CCSprite::setFlipX(bool bFlipX)
     if (m_bFlipX != bFlipX)
     {
         m_bFlipX = bFlipX;
-        setTextureRect(m_obRect, m_bRectRotated, m_obContentSize);
+        setTextureRect(m_obRect, m_bRectRotated, _size);
     }
 }
 
@@ -863,7 +859,7 @@ void CCSprite::setFlipY(bool bFlipY)
     if (m_bFlipY != bFlipY)
     {
         m_bFlipY = bFlipY;
-        setTextureRect(m_obRect, m_bRectRotated, m_obContentSize);
+        setTextureRect(m_obRect, m_bRectRotated, _size);
     }
 }
 
@@ -995,11 +991,7 @@ bool CCSprite::isFrameDisplayed(CCSpriteFrame *pFrame)
 
 CCSpriteFrame* CCSprite::displayFrame(void)
 {
-    return CCSpriteFrame::createWithTexture(m_pobTexture,
-                                            CC_RECT_POINTS_TO_PIXELS(m_obRect),
-                                            m_bRectRotated,
-                                            CC_POINT_POINTS_TO_PIXELS(m_obUnflippedOffsetPositionFromCenter),
-                                            CC_SIZE_POINTS_TO_PIXELS(m_obContentSize));
+    return CCSpriteFrame::createWithTexture(m_pobTexture, (m_obRect), m_bRectRotated, (m_obUnflippedOffsetPositionFromCenter), (_size));
 }
 
 CCSpriteBatchNode* CCSprite::getBatchNode(void)
@@ -1092,7 +1084,7 @@ void CCSprite::setTexture(CCTexture2D *texture)
         if (NULL == texture)
         {
             SharedPtr<CCImage> image(new CCImage());
-            bool isOK = image->initWithImageData(cc_2x2_white_image, sizeof(cc_2x2_white_image), kFmtRawData, 2, 2, 8);
+            bool isOK = image->initWithRawData(cc_2x2_white_image, sizeof(cc_2x2_white_image), 2, 2, 8, false);
             CCAssert(isOK, "The 2x2 empty texture was created unsuccessfully.");
 
 			texture = new CCTexture2D;

@@ -38,21 +38,17 @@
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCRenderState.h"
 #include "kazmath/kazmath.h"
-#include "touch_dispatcher/CCTouchDelegateProtocol.h"
 #include "cocoa/CCScriptSupport.h"
 
 NS_CC_BEGIN
 
 class CCCamera;
-class CCGridBase;
-class CCPoint;
+class Vec2;
 class CCTouch;
 class CCAction;
 class CCScheduler;
 class CCActionManager;
-class CCComponent;
 class CCDictionary;
-class CCComponentContainer;
 class CCScene;
 class CCTexture2D;
 
@@ -124,7 +120,7 @@ enum {
  - Each node has a camera. By default it points to the center of the CCNode.
  */
 
-class CC_DLL CCNode : public CCScriptEventDispatcher, public CCTouchDelegate
+class CC_DLL CCNode : public CCScriptEventDispatcher
 {
 public:
     /// @{
@@ -301,7 +297,7 @@ public:
      * @param position  The position (x,y) of the node in OpenGL coordinates
      * @js NA
      */
-	virtual void setPosition(const CCPoint &position);
+	virtual void setPosition(const Vec2 &position);
     /**
      * Gets the position (x,y) of the node in OpenGL coordinates
      *
@@ -309,7 +305,7 @@ public:
      *
      * @return The position (x,y) of the node in OpenGL coordinates
      */
-    virtual const CCPoint& getPosition();
+    virtual const Vec2& getPosition();
     /**
      * Sets position in a more efficient way.
      *
@@ -395,8 +391,8 @@ public:
      *
      * @param anchorPoint   The anchor point of node.
      */
-	virtual void setAnchorPoint(const CCPoint& anchorPoint);
-	virtual void setAnchorPoint(float x, float y) { setAnchorPoint(CCPoint(x, y)); }
+	virtual void setAnchorPoint(const Vec2& anchorPoint);
+	virtual void setAnchorPoint(float x, float y) { setAnchorPoint(Vec2(x, y)); }
     /**
      * Returns the anchor point in percent.
      *
@@ -404,7 +400,7 @@ public:
      *
      * @return The anchor point of node.
      */
-    virtual const CCPoint& getAnchorPoint();
+    virtual const Vec2& getAnchorPoint();
     /**
      * Returns the anchorPoint in absolute pixels.
      *
@@ -413,7 +409,7 @@ public:
      *
      * @return The anchor point in absolute pixels.
      */
-    virtual const CCPoint& getAnchorPointInPoints();
+    virtual const Vec2& getAnchorPointInPoints();
 
 
     /**
@@ -424,8 +420,8 @@ public:
      *
      * @param contentSize   The untransformed size of the node.
      */
-	virtual void setContentSize(const CCSize& contentSize);
-	virtual void setContentSize(float w, float h) { setContentSize(CCSize(w, h)); };
+	virtual void setSize(const CCSize& contentSize);
+	virtual void setSize(float w, float h) { setSize(CCSize(w, h)); };
     /**
      * Returns the untransformed size of the node.
      *
@@ -433,7 +429,7 @@ public:
      *
      * @return The untransformed size of the node.
      */
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
 
 
     /**
@@ -730,27 +726,6 @@ public:
     virtual void sortAllChildren();
 
     /// @} end of Children and Parent
-
-
-
-    /// @{
-    /// @name Grid object for effects
-
-    /**
-     * Returns a grid object that is used when applying effects
-     *
-     * @return A CCGrid object that is used when applying effects
-     * @js NA
-     */
-    virtual CCGridBase* getGrid();
-    /**
-     * Changes a grid object that is used when applying effects
-     *
-     * @param A CCGrid object that is used when applying effects
-     */
-    virtual void setGrid(CCGridBase *pGrid);
-
-    /// @} end of Grid
 
 
     /// @{
@@ -1239,34 +1214,34 @@ public:
     /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      */
-    CCPoint convertToNodeSpace(const CCPoint& worldPoint);
+    Vec2 convertToNodeSpace(const Vec2& worldPoint);
 
     /**
      * Converts a Point to world space coordinates. The result is in Points.
      */
-    CCPoint convertToWorldSpace(const CCPoint& nodePoint);
+    Vec2 convertToWorldSpace(const Vec2& nodePoint);
 
     /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
-    CCPoint convertToNodeSpaceAR(const CCPoint& worldPoint);
+    Vec2 convertToNodeSpaceAR(const Vec2& worldPoint);
 
     /**
      * Converts a local Point to world space coordinates.The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
-    CCPoint convertToWorldSpaceAR(const CCPoint& nodePoint);
+    Vec2 convertToWorldSpaceAR(const Vec2& nodePoint);
 
     /**
      * convenience methods which take a CCTouch instead of CCPoint
      */
-    CCPoint convertTouchToNodeSpace(CCTouch * touch);
+    Vec2 convertTouchToNodeSpace(CCTouch * touch);
 
     /**
      * converts a CCTouch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
      */
-    CCPoint convertTouchToNodeSpaceAR(CCTouch * touch);
+    Vec2 convertTouchToNodeSpaceAR(CCTouch * touch);
 
 	/**
      *  Sets the additional transform.
@@ -1319,34 +1294,6 @@ public:
     void setAdditionalTransform(const CCAffineTransform& additionalTransform);
 
     /// @} end of Coordinate Converters
-
-    /// @{
-    /// @name component functions
-    /**
-     *   gets a component by its name
-     */
-    CCComponent* getComponent(const char *pName) const;
-
-    /**
-     *   adds a component
-     */
-    virtual bool addComponent(CCComponent *pComponent);
-
-    /**
-     *   removes a component by its name
-     */
-    virtual bool removeComponent(const char *pName);
-
-    /**
-     *   removes a component by its pointer
-     */
-    virtual bool removeComponent(CCComponent *pComponent);
-
-    /**
-     *   removes all components
-     */
-    virtual void removeAllComponents();
-    /// @} end of component functions
 
     /// @{
     /**
@@ -1485,6 +1432,21 @@ public:
 
     /// @}
 
+    /**
+     * Changes the name that is used to identify the widget easily.
+     *
+     * @param A const char* that indentifies the widget.
+     */
+    void setName(const char* name) { _name = name; }
+    
+    /**
+     * Returns a name that is used to identify the widget easily.
+     *
+     * You can set tags to widget then identify them easily.
+     *
+     * @return A const char* that identifies the widget.
+     */
+    const char* getName() const { return _name.c_str(); }
 private:
     /// lazy allocs
     void childrenAlloc(void);
@@ -1499,9 +1461,11 @@ private:
      * @js NA
      * @lua NA
      */
-    CCPoint convertToWindowSpace(const CCPoint& nodePoint);
+    Vec2 convertToWindowSpace(const Vec2& nodePoint);
 
 protected:
+    std::string _name;
+    
     float m_fRotationX;                 ///< rotation angle on x-axis
     float m_fRotationY;                 ///< rotation angle on y-axis
 
@@ -1510,15 +1474,15 @@ protected:
 
     float m_fVertexZ;                   ///< OpenGL real Z vertex
 
-    CCPoint m_obPosition;               ///< position of the node
+    Vec2 m_obPosition;               ///< position of the node
 
     float m_fSkewX;                     ///< skew angle on x-axis
     float m_fSkewY;                     ///< skew angle on y-axis
 
-    CCPoint m_obAnchorPointInPoints;    ///< anchor point in points
-    CCPoint m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
+    Vec2 m_obAnchorPointInPoints;    ///< anchor point in points
+    Vec2 m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
 
-    CCSize m_obContentSize;             ///< untransformed size of the node
+    CCSize _size;             ///< untransformed size of the node
     CCRect m_cascadeBoundingBox;
 
 
@@ -1527,7 +1491,6 @@ protected:
     CCAffineTransform m_sInverse;       ///< transform
 
 	SharedPtr<CCCamera> m_pCamera;       ///< a camera
-	SharedPtr<CCGridBase> m_pGrid;                ///< a grid
 
     int m_nZOrder;                      ///< z-order value that affects the draw order
 
@@ -1562,8 +1525,6 @@ protected:
 
     bool m_bReorderChildDirty;          ///< children order dirty flag
 
-    CCComponentContainer *m_pComponentContainer;        ///< Dictionary of components
-    
     GLubyte m_displayedOpacity;
     GLubyte m_realOpacity;
     bool m_isOpacityModifyRGB;

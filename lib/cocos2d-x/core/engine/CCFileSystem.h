@@ -56,6 +56,7 @@ protected:
 class CC_DLL FileSystem
 {
 public:
+	static void init();
 	template<typename T> 
 	static void setDecoder() { _dataDecoder = SharedPtr<Decoder>(new T); }
 	static Decoder* getDecoder() { return _dataDecoder; }
@@ -81,9 +82,6 @@ public:
 	static std::string getExtension(const std::string& path);
 	/// replaceExtension('a.jpg', 'png') -> a.png
 	static std::string replaceExtension(const std::string& path, const std::string& newExt);
-
-	/// internal
-	static void setAssetsManager(void* assetsManager);
 private:
 	static SharedPtr<Decoder> _dataDecoder;
 };

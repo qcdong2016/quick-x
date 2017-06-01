@@ -23,8 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CCEditBoxIMPL_H__
-#define __CCEditBoxIMPL_H__
+#ifndef __UIEditBoxIMPL_H__
+#define __UIEditBoxIMPL_H__
 
 #include "CCPlatformMacros.h"
 #include "UIEditBox.h"
@@ -59,10 +59,10 @@ public:
     virtual void openKeyboard() = 0;
     virtual void closeKeyboard() = 0;
     
-    virtual void setPosition(const CCPoint& pos) = 0;
+    virtual void setPosition(const Vec2& pos) = 0;
     virtual void setVisible(bool visible) = 0;
     virtual void setContentSize(const CCSize& size) = 0;
-	virtual void setAnchorPoint(const CCPoint& anchorPoint) = 0;
+	virtual void setAnchorPoint(const Vec2& anchorPoint) = 0;
     /**
      *  @js NA
      */
@@ -87,4 +87,4 @@ extern EditBoxImpl* __createSystemEditBox(EditBox* pEditBox);
 }
 NS_CC_END
 
-#endif /* __CCEditBoxIMPL_H__ */
+#endif /* __UIEditBoxIMPL_H__ */

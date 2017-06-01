@@ -107,7 +107,7 @@ const char* LabelBMFont::getStringValue()
     return _stringValue.c_str();
 }
 
-void LabelBMFont::setAnchorPoint(const CCPoint &pt)
+void LabelBMFont::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _labelBMFontRenderer->setAnchorPoint(pt);
@@ -119,9 +119,9 @@ void LabelBMFont::onSizeChanged()
     labelBMFontScaleChangedWithSize();
 }
 
-const CCSize& LabelBMFont::getContentSize() const
+const CCSize& LabelBMFont::getSize() const
 {
-    return _labelBMFontRenderer->getContentSize();
+    return _labelBMFontRenderer->getSize();
 }
 
 CCNode* LabelBMFont::getVirtualRenderer()
@@ -134,11 +134,11 @@ void LabelBMFont::labelBMFontScaleChangedWithSize()
     if (_ignoreSize)
     {
         _labelBMFontRenderer->setScale(1.0f);
-        _size = _labelBMFontRenderer->getContentSize();
+        _size = _labelBMFontRenderer->getSize();
     }
     else
     {
-        CCSize textureSize = _labelBMFontRenderer->getContentSize();
+        CCSize textureSize = _labelBMFontRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
             _labelBMFontRenderer->setScale(1.0f);

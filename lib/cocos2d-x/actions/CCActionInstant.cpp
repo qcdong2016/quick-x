@@ -152,7 +152,7 @@ CCFiniteTimeAction *CCRemoveSelf::reverse() {
 
 void CCRemoveSelf::paste(CCObject* o) {
     Super::paste(o);
-	O->init(m_bIsNeedCleanUp);
+	dynamic_cast<SelfType*>(o)->init(m_bIsNeedCleanUp);
 }
 
 //
@@ -188,7 +188,7 @@ CCFiniteTimeAction* CCFlipX::reverse() {
 
 void CCFlipX::paste(CCObject* o) {
     Super::paste(o);
-	O->initWithFlipX(m_bFlipX);
+	dynamic_cast<SelfType*>(o)->initWithFlipX(m_bFlipX);
 }
 
 //
@@ -224,14 +224,14 @@ CCFiniteTimeAction* CCFlipY::reverse() {
 
 void CCFlipY::paste(CCObject* o) {
     Super::paste(o);
-	O->initWithFlipY(m_bFlipY);
+	dynamic_cast<SelfType*>(o)->initWithFlipY(m_bFlipY);
 }
 
 //
 // Place
 //
 
-CCPlace* CCPlace::create(const CCPoint& pos)
+CCPlace* CCPlace::create(const Vec2& pos)
 {
     CCPlace *pRet = new CCPlace();
 
@@ -244,14 +244,14 @@ CCPlace* CCPlace::create(const CCPoint& pos)
     return NULL;
 }
 
-bool CCPlace::initWithPosition(const CCPoint& pos) {
+bool CCPlace::initWithPosition(const Vec2& pos) {
     m_tPosition = pos;
     return true;
 }
 
 void CCPlace::paste(CCObject* o) {
     Super::paste(o);
-	O->initWithPosition(m_tPosition);
+	dynamic_cast<SelfType*>(o)->initWithPosition(m_tPosition);
 }
 
 void CCPlace::update(float time) {
@@ -284,7 +284,7 @@ CCCallFunc::~CCCallFunc(void)
 
 void CCCallFunc::paste(CCObject* o) {
     Super::paste(o);
-	CCCallFunc* cf = O;
+	CCCallFunc* cf = static_cast<SelfType*>(o);
 	cf->_handler = _handler->clone();
 }
 

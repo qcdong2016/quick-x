@@ -134,12 +134,6 @@ public:
 			return o;                                              \
 		}
 
-
-#define O dynamic_cast<SelfType*>(o)
-
-/**
- * @js NA
- */
 class CC_DLL CCObject : public RefCounted
 {
     

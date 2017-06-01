@@ -403,7 +403,7 @@ class CC_DLL CCMoveBy : public CCActionInterval
     CCOBJECT(CCMoveBy, CCActionInterval)
 public:
     /** initializes the action */
-    bool initWithDuration(float duration, const CCPoint& deltaPosition);
+    bool initWithDuration(float duration, const Vec2& deltaPosition);
     /**
      *  @js NA
      *  @lua NA
@@ -415,11 +415,11 @@ public:
 
 public:
     /** creates the action */
-    static CCMoveBy* create(float duration, const CCPoint& deltaPosition);
+    static CCMoveBy* create(float duration, const Vec2& deltaPosition);
 protected:
-    CCPoint m_positionDelta;
-    CCPoint m_startPosition;
-    CCPoint m_previousPosition;
+    Vec2 m_positionDelta;
+    Vec2 m_startPosition;
+    Vec2 m_previousPosition;
 };
 
 /** Moves a CCNode object to the position x,y. x and y are absolute coordinates by modifying it's position attribute.
@@ -432,7 +432,7 @@ class CC_DLL CCMoveTo : public CCMoveBy
     CCOBJECT(CCMoveTo, CCMoveBy)
 public:
     /** initializes the action */
-    bool initWithDuration(float duration, const CCPoint& position);
+    bool initWithDuration(float duration, const Vec2& position);
     /**
      *  @js NA
      *  @lua NA
@@ -442,9 +442,9 @@ public:
 
 public:
     /** creates the action */
-    static CCMoveTo* create(float duration, const CCPoint& position);
+    static CCMoveTo* create(float duration, const Vec2& position);
 protected:
-    CCPoint m_endPosition;
+    Vec2 m_endPosition;
 };
 
 /** Skews a CCNode object to given angles by modifying it's skewX and skewY attributes
@@ -506,7 +506,7 @@ class CC_DLL CCJumpBy : public CCActionInterval
     CCOBJECT(CCJumpBy, CCActionInterval)
 public:
     /** initializes the action */
-    bool initWithDuration(float duration, const CCPoint& position, float height, unsigned int jumps);
+    bool initWithDuration(float duration, const Vec2& position, float height, unsigned int jumps);
     /**
      *  @js NA
      *  @lua NA
@@ -518,13 +518,13 @@ public:
 
 public:
     /** creates the action */
-    static CCJumpBy* create(float duration, const CCPoint& position, float height, unsigned int jumps);
+    static CCJumpBy* create(float duration, const Vec2& position, float height, unsigned int jumps);
 protected:
-    CCPoint         m_startPosition;
-    CCPoint         m_delta;
+    Vec2         m_startPosition;
+    Vec2         m_delta;
     float           m_height;
     unsigned int    m_nJumps;
-    CCPoint         m_previousPos;
+    Vec2         m_previousPos;
 };
 
 /** @brief Moves a CCNode object to a parabolic position simulating a jump movement by modifying it's position attribute.
@@ -542,18 +542,18 @@ public:
 
 public:
     /** creates the action */
-    static CCJumpTo* create(float duration, const CCPoint& position, float height, int jumps);
+    static CCJumpTo* create(float duration, const Vec2& position, float height, int jumps);
 };
 
 /** @typedef bezier configuration structure
  */
 typedef struct _ccBezierConfig {
     //! end position of the bezier
-    CCPoint endPosition;
+    Vec2 endPosition;
     //! Bezier control point 1
-    CCPoint controlPoint_1;
+    Vec2 controlPoint_1;
     //! Bezier control point 2
-    CCPoint controlPoint_2;
+    Vec2 controlPoint_2;
 } ccBezierConfig;
 
 /** @brief An action that moves the target with a cubic Bezier curve by a certain distance.
@@ -591,8 +591,8 @@ public:
     static CCBezierBy* create(float t, const ccBezierConfig& c);
 protected:
     ccBezierConfig m_sConfig;
-    CCPoint m_startPosition;
-    CCPoint m_previousPosition;
+    Vec2 m_startPosition;
+    Vec2 m_previousPosition;
 };
 
 /** @brief An action that moves the target with a cubic Bezier curve to a destination point.

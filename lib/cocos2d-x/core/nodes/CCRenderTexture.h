@@ -55,8 +55,10 @@ class CC_DLL CCRenderTexture : public CCNode
     The blending function can be changed in runtime by calling:
     - [[renderTexture sprite] setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
     */
-    CC_PROPERTY(CCSprite*, m_pSprite, Sprite)
+	SharedPtr<CCSprite> _sprite;
 public:
+	void setSprite(CCSprite* sp) { _sprite = sp; }
+	CCSprite* getSprite() { return _sprite; }
     /**
      * @js ctor
      */
@@ -124,10 +126,6 @@ public:
      */
     bool saveToFile(const char *szFilePath);
 
-    /** saves the texture into a file. The format could be JPG or PNG. The file will be saved in the Documents folder.
-        Returns YES if the operation is successful.
-     */
-    bool saveToFile(const char *name, EImageFormat format);
     
     /** Listen "come to background" message, and save render texture.
      It only has effect on Android.

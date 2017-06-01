@@ -32,15 +32,14 @@
  ****************************************************************************/
 #include "CCLabelBMFont.h"
 #include "cocoa/CCString.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "cocoa/CCDictionary.h"
 #include "CCConfiguration.h"
 #include "nodes/CCDrawingPrimitives.h"
 #include "nodes/CCSprite.h"
-#include "support/CCPointExtension.h"
 #include "engine/CCDirector.h"
 
-#include "support/ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 #include "engine/CCFileSystem.h"
 #include "textures/CCTexture2D.h"
 
@@ -377,7 +376,7 @@ CCLabelBMFont * CCLabelBMFont::create(const char *str, const char *fntFile)
 }
 
 //LabelBMFont - Creation & Init
-CCLabelBMFont *CCLabelBMFont::create(const char *str, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, CCPoint imageOffset/* = CCPointZero*/)
+CCLabelBMFont *CCLabelBMFont::create(const char *str, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, Vec2 imageOffset/* = CCPointZero*/)
 {
     CCLabelBMFont *pRet = new CCLabelBMFont();
     if(pRet && pRet->initWithString(str, fntFile, width, alignment, imageOffset))
@@ -394,7 +393,7 @@ bool CCLabelBMFont::init()
     return initWithString(NULL, NULL, kCCLabelAutomaticWidth, kCCTextAlignmentLeft, CCPointZero);
 }
 
-bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, CCPoint imageOffset/* = CCPointZero*/)
+bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, float width/* = kCCLabelAutomaticWidth*/, CCTextAlignment alignment/* = kCCTextAlignmentLeft*/, Vec2 imageOffset/* = CCPointZero*/)
 {
     CCAssert(!_pConfiguration, "re-init is no longer supported");
     CCAssert( (theString && fntFile) || (theString==NULL && fntFile==NULL), "Invalid params for CCLabelBMFont");
@@ -437,7 +436,7 @@ bool CCLabelBMFont::initWithString(const char *theString, const char *fntFile, f
         m_cascadeOpacityEnabled = true;
         m_cascadeColorEnabled = true;
 
-        m_obContentSize = CCSizeZero;
+        _size = CCSizeZero;
 
         m_isOpacityModifyRGB = m_pobTextureAtlas->getTexture()->hasPremultipliedAlpha();
         m_obAnchorPoint = ccp(0.5f, 0.5f);
@@ -503,7 +502,7 @@ void CCLabelBMFont::createFontChars()
     unsigned int stringLen = m_sString ? cc_wcslen(m_sString) : 0;
     if (stringLen == 0)
     {
-        this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+        this->setSize(tmpSize);
         return;
     }
 
@@ -557,7 +556,6 @@ void CCLabelBMFont::createFontChars()
         fontDef = element->fontDef;
 
         rect = fontDef.rect;
-        rect = CC_RECT_PIXELS_TO_POINTS(rect);
 
         rect.origin.x += m_tImageOffset.x;
         rect.origin.y += m_tImageOffset.y;
@@ -604,9 +602,9 @@ void CCLabelBMFont::createFontChars()
 
         // See issue 1343. cast( signed short + unsigned integer ) == unsigned integer (sign is lost!)
         int yOffset = _pConfiguration->m_nCommonHeight - fontDef.yOffset;
-        CCPoint fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
-                              (float)nextFontPositionY + yOffset - rect.size.height*0.5f * CC_CONTENT_SCALE_FACTOR() );
-        fontChar->setPosition(CC_POINT_PIXELS_TO_POINTS(fontPos));
+        Vec2 fontPos = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
+                              (float)nextFontPositionY + yOffset - rect.size.height*0.5f );
+        fontChar->setPosition(fontPos);
 
         // update kerning
         nextFontPositionX += fontDef.xAdvance + kerningAmount;
@@ -636,7 +634,7 @@ void CCLabelBMFont::createFontChars()
     }
     tmpSize.height = totalHeight;
 
-    this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
+    this->setSize(tmpSize);
 }
 
 //LabelBMFont - CCLabelProtocol protocol
@@ -703,7 +701,7 @@ void CCLabelBMFont::setCString(const char *label)
 }
 
 // LabelBMFont - AnchorPoint
-void CCLabelBMFont::setAnchorPoint(const CCPoint& point)
+void CCLabelBMFont::setAnchorPoint(const Vec2& point)
 {
     if( ! point.equals(m_obAnchorPoint))
     {
@@ -914,16 +912,16 @@ void CCLabelBMFont::updateLabel()
                 if ( lastChar == NULL )
                     continue;
 
-                lineWidth = lastChar->getPosition().x + lastChar->getContentSize().width/2.0f;
+                lineWidth = lastChar->getPosition().x + lastChar->getSize().width/2.0f;
 
                 float shift = 0;
                 switch (m_pAlignment)
                 {
                     case kCCTextAlignmentCenter:
-                        shift = getContentSize().width/2.0f - lineWidth/2.0f;
+                        shift = getSize().width/2.0f - lineWidth/2.0f;
                         break;
                     case kCCTextAlignmentRight:
-                        shift = getContentSize().width - lineWidth;
+                        shift = getSize().width - lineWidth;
                         break;
                     default:
                         break;
@@ -995,12 +993,12 @@ void CCLabelBMFont::setScaleY(float scaleY)
 
 float CCLabelBMFont::getLetterPosXLeft( CCSprite* sp )
 {
-    return sp->getPosition().x * m_fScaleX - (sp->getContentSize().width * m_fScaleX * sp->getAnchorPoint().x);
+    return sp->getPosition().x * m_fScaleX - (sp->getSize().width * m_fScaleX * sp->getAnchorPoint().x);
 }
 
 float CCLabelBMFont::getLetterPosXRight( CCSprite* sp )
 {
-    return sp->getPosition().x * m_fScaleX + (sp->getContentSize().width * m_fScaleX * sp->getAnchorPoint().x);
+    return sp->getPosition().x * m_fScaleX + (sp->getSize().width * m_fScaleX * sp->getAnchorPoint().x);
 }
 
 // LabelBMFont - FntFile
@@ -1038,8 +1036,8 @@ CCBMFontConfiguration* CCLabelBMFont::getConfiguration() const
 void CCLabelBMFont::draw()
 {
     CCSpriteBatchNode::draw();
-    const CCSize& s = this->getContentSize();
-    CCPoint vertices[4]={
+    const CCSize& s = this->getSize();
+    Vec2 vertices[4]={
         ccp(0,0),ccp(s.width,0),
         ccp(s.width,s.height),ccp(0,s.height),
     };

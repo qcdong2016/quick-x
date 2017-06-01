@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include "ccMacros.h"
 #include "CCConfiguration.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "platform/CCImage.h"
 #include "CCGL.h"
 #include "base/MathDefs.h"
@@ -92,39 +92,15 @@ void CCTexture2D::beginLoad(MemBuffer* buf, void* userdata)
 	for (unsigned int i = 0; i < lowName.length(); ++i)
 		lowName[i] = tolower(lowName[i]);
 
-	std::string ext = FileSystem::getExtension(lowName);
-	EImageFormat eImageFormat = kFmtUnKnown;
-
-	if (ext == "png")
-		eImageFormat = kFmtPng;
-	else if (ext == "jpg" || ext == "jpeg")
-		eImageFormat = kFmtJpg;
-	else if (ext == "tif" || ext == "tiff")
-		eImageFormat = kFmtTiff;
-	else if (ext == "webp")
-		eImageFormat = kFmtWebp;
-	else {
-// 		if (std::string::npos != lowName.find(".pvr"))
-// 		{
-// 			lowName = this->initWithPVRFile(getPath().c_str());
-// 		}
-// 		else if (std::string::npos != lowerCase.find(".pkm"))
-// 		{
-// 			// ETC1 file format, only supportted on Android
-// 			texture = this->initWithETCFile(getPath().c_str());
-// 		}
-		return;
-	}
-
 	SharedPtr<CCImage> pImage(new CCImage());
 
-	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize(), eImageFormat);
+	bool bRet = pImage->initWithImageData(buf->getData(), buf->getSize());
 
 	if (bRet && initWithImage(pImage))
 	{
 #if CC_ENABLE_CACHE_TEXTURE_DATA
 		// cache the texture file name
-		VolatileTexture::addImageTexture(this, getPath().c_str(), eImageFormat);
+		VolatileTexture::addImageTexture(this, getPath().c_str());
 #endif
 	}
 	else
@@ -155,12 +131,7 @@ GLuint CCTexture2D::getName()
 
 CCSize CCTexture2D::getContentSize()
 {
-
-    CCSize ret;
-    ret.width = m_tContentSize.width / CC_CONTENT_SCALE_FACTOR();
-    ret.height = m_tContentSize.height / CC_CONTENT_SCALE_FACTOR();
-    
-    return ret;
+    return m_tContentSize;
 }
 
 const CCSize& CCTexture2D::getContentSizeInPixels()
@@ -656,7 +627,7 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
 
 // implementation CCTexture2D (Drawing)
 
-void CCTexture2D::drawAtPoint(const CCPoint& point)
+void CCTexture2D::drawAtPoint(const Vec2& point)
 {
     GLfloat    coordinates[] = {    
         0.0f,    m_fMaxT,
@@ -968,7 +939,7 @@ VolatileTexture::VolatileTexture(CCTexture2D *t)
 	, m_pTextureData(NULL)
 	, m_PixelFormat(kTexture2DPixelFormat_RGBA8888)
 	, m_strFileName("")
-	, m_FmtImage(kFmtPng)
+	// , m_FmtImage(kFmtPng)
 	, m_alignment(kCCTextAlignmentCenter)
 	, m_vAlignment(kCCVerticalTextAlignmentCenter)
 	, m_strFontName("")
@@ -990,7 +961,7 @@ VolatileTexture::~VolatileTexture()
 	CC_SAFE_RELEASE(uiImage);
 }
 
-void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName, EImageFormat format)
+void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName)
 {
 	if (isReloading)
 	{
@@ -1001,7 +972,7 @@ void VolatileTexture::addImageTexture(CCTexture2D *tt, const char* imageFileName
 
 	vt->m_eCashedImageType = kImageFile;
 	vt->m_strFileName = imageFileName;
-	vt->m_FmtImage = format;
+	// vt->m_FmtImage = format;
 	vt->m_PixelFormat = tt->getPixelFormat();
 }
 
@@ -1132,7 +1103,7 @@ void VolatileTexture::reloadAllTextures()
 				CCImage* pImage = new CCImage();
 				SharedPtr<MemBuffer> bf = FileSystem::readAll(vt->m_strFileName);
 
-				if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize(), vt->m_FmtImage))
+				if (pImage && pImage->initWithImageData((void*)bf->getData(), bf->getSize()))
 				{
 					CCTexture2DPixelFormat oldPixelFormat = CCTexture2D::defaultAlphaPixelFormat();
 					CCTexture2D::setDefaultAlphaPixelFormat(vt->m_PixelFormat);

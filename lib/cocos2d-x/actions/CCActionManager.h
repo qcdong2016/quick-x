@@ -35,9 +35,6 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class CCSet;
-
-struct _hashElement;
 
 /**
  * @addtogroup actions
@@ -113,27 +110,25 @@ public:
     /** Resumes the target. All queued actions will be resumed.
     */
     void resumeTarget(CCObject *pTarget);
-    
-    /** Pauses all running actions, returning a list of targets whose actions were paused.
-     */
-    CCSet* pauseAllRunningActions();
-    
-    /** Resume a set of targets (convenience function to reverse a pauseAllRunningActions call)
-     */
-    void resumeTargets(CCSet *targetsToResume);
 
 protected:
-    // declared in CCActionManager.m
-
-    void removeActionAtIndex(unsigned int uIndex, struct _hashElement *pElement);
-    void deleteHashElement(struct _hashElement *pElement);
-    void actionAllocWithHashElement(struct _hashElement *pElement);
-
 	void update(EventData& data);
 protected:
-    struct _hashElement    *m_pTargets;
-    struct _hashElement    *m_pCurrentTarget;
-    bool            m_bCurrentTargetSalvaged;
+
+	struct ActionInfo : public RefCounted
+	{
+		ActionInfo() : target(nullptr), currentAction(nullptr), currentActionRemoved(false), pause(false) {}
+		CCObject* target;
+		CCAction* currentAction;
+		std::list<SharedPtr<CCAction> > actions;
+		bool currentActionRemoved;
+		bool pause;
+	};
+
+	ActionInfo* _currentTarget;
+	CCAction* _currentAction;
+	bool _currentTargetRemoved;
+	std::map<CCObject*,  SharedPtr<ActionInfo> > _targetToActions;
 };
 
 // end of actions group

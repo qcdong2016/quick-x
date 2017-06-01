@@ -7,6 +7,7 @@
 #include "PlayerUI.h"
 #include "base/ProcessUtils.h"
 
+
 NS_CC_BEGIN;
 static double       g_Time = 0.0f;
 static bool         g_MousePressed[3] = { false, false, false };
@@ -35,9 +36,9 @@ void ImGui_ImplGlfw_RenderDrawLists(ImDrawData* draw_data)
 	GLint last_active_texture; glGetIntegerv(GL_ACTIVE_TEXTURE, &last_active_texture);
 	GLint last_array_buffer; glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
 	GLint last_element_array_buffer; glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
-	GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
-	GLint last_blend_src; glGetIntegerv(GL_BLEND_SRC, &last_blend_src);
-	GLint last_blend_dst; glGetIntegerv(GL_BLEND_DST, &last_blend_dst);
+	//GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+	// GLint last_blend_src; glGetIntegerv(GL_BLEND_SRC, &last_blend_src);
+	// GLint last_blend_dst; glGetIntegerv(GL_BLEND_DST, &last_blend_dst);
 	GLint last_blend_equation_rgb; glGetIntegerv(GL_BLEND_EQUATION_RGB, &last_blend_equation_rgb);
 	GLint last_blend_equation_alpha; glGetIntegerv(GL_BLEND_EQUATION_ALPHA, &last_blend_equation_alpha);
 	GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
@@ -100,11 +101,11 @@ void ImGui_ImplGlfw_RenderDrawLists(ImDrawData* draw_data)
 	glUseProgram(last_program);
 	glActiveTexture(last_active_texture);
 	glBindTexture(GL_TEXTURE_2D, last_texture);
-	glBindVertexArray(last_vertex_array);
+    glBindVertexArray(0);//last_vertex_array);
 	glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
 	glBlendEquationSeparate(last_blend_equation_rgb, last_blend_equation_alpha);
-	glBlendFunc(last_blend_src, last_blend_dst);
+	// glBlendFunc(last_blend_src, last_blend_dst);
 	if (last_enable_blend) glEnable(GL_BLEND); else glDisable(GL_BLEND);
 	if (last_enable_cull_face) glEnable(GL_CULL_FACE); else glDisable(GL_CULL_FACE);
 	if (last_enable_depth_test) glEnable(GL_DEPTH_TEST); else glDisable(GL_DEPTH_TEST);
@@ -134,9 +135,6 @@ bool ImGui_ImplIOS_CreateFontsTexture()
 
 	// Store our identifier
 	io.Fonts->TexID = (void *)(intptr_t)g_FontTexture;
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-	io.ImeWindowHandle = CCEGLView::sharedOpenGLView()->getHWnd();
-#endif
 	// Restore state
 	glBindTexture(GL_TEXTURE_2D, last_texture);
 
@@ -184,8 +182,6 @@ void ImGuiCC::init()
 {
 	static bool inited = false;
 	if (!inited) {
-		g_visible = getIntArgument("menu") == 1;
-
 		inited = true;
 		ImGui_ImplGlfwGL3_Init(true);
 		//_program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionColor);
@@ -193,7 +189,7 @@ void ImGuiCC::init()
 		GLint last_texture, last_array_buffer, last_vertex_array;
 		glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
 		glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
-		glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+		//glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
 
 		const GLchar *vertex_shader =
 			"uniform mat4 ProjMtx;\n"
@@ -256,7 +252,7 @@ void ImGuiCC::init()
 		// Restore modified GL state
 		glBindTexture(GL_TEXTURE_2D, last_texture);
 		glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
-		glBindVertexArray(last_vertex_array);
+        glBindVertexArray(0);
 	}
 }
 
@@ -357,19 +353,3 @@ void ImGuiCC::setFont(const char* font, float size)
 }
 
 NS_CC_END;
-
-extern "C" {
-    
-void imgui_draw()
-{
-	cocos2d::ImGuiCC::draw();
-}
-
-void imgui_init()
-{
-	cocos2d::ImGuiCC::init();
-	cocos2d::ImGuiCC::add<cocos2d::PlayerUI>();
-	cocos2d::ImGuiCC::add<cocos2d::LuaUI>();
-}
-
-}

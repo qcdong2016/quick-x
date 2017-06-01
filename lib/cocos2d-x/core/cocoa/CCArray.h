@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __CCARRAY_H__
 #define __CCARRAY_H__
 
-#include "support/data_support/ccCArray.h"
+#include "data_support/ccCArray.h"
 
 /**
  * @addtogroup data_structures

@@ -89,7 +89,7 @@ void ImageView::loadTexture(const char *fileName)
 		CCSprite* imageRenderer = STATIC_CAST_CCSPRITE;
 		imageRenderer->initWithFile(fileName);
 	}
-    _imageTextureSize = _imageRenderer->getContentSize();
+    _imageTextureSize = _imageRenderer->getSize();
     imageTextureScaleChangedWithSize();
     updateAnchorPoint();
     updateFlippedX();
@@ -197,7 +197,7 @@ const CCRect& ImageView::getCapInsets()
     return _capInsets;
 }
 
-void ImageView::setAnchorPoint(const CCPoint &pt)
+void ImageView::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _imageRenderer->setAnchorPoint(pt);
@@ -209,7 +209,7 @@ void ImageView::onSizeChanged()
     imageTextureScaleChangedWithSize();
 }
 
-const CCSize& ImageView::getContentSize() const
+const CCSize& ImageView::getSize() const
 {
     return _imageTextureSize;
 }
@@ -237,7 +237,7 @@ void ImageView::imageTextureScaleChangedWithSize()
         }
         else
         {
-            CCSize textureSize = _imageRenderer->getContentSize();
+            CCSize textureSize = _imageRenderer->getSize();
             if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
             {
                 _imageRenderer->setScale(1.0f);

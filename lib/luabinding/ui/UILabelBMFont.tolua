@@ -9,8 +9,7 @@ class LabelBMFont : public Widget
 
     void setText(const char* value);
     const char* getStringValue();
-    virtual void setAnchorPoint(const CCPoint &pt);
-    virtual const CCSize& getContentSize() const;
+    virtual void setAnchorPoint(const Vec2 &pt);
     virtual CCNode* getVirtualRenderer();
     virtual std::string getDescription() const;
 };

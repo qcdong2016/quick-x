@@ -162,6 +162,9 @@ PlayerUI::PlayerUI()
 
 	_landscape = (w > h) ? 1 : 0;
 	_zoom = (getFloatArgument("zoom", 1) == 1) ? 0 : 1;
+
+
+
 }
 
 void PlayerUI::setFrameSize(int w, int h)

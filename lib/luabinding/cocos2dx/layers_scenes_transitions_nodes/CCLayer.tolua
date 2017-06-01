@@ -65,7 +65,7 @@ If ' compressedInterpolation' is enabled (default mode) you will see both the st
 class CCLayerGradient : public CCLayerColor
 {
     /** Creates a full-screen CCLayer with a gradient between start and end in the direction of v. */
-    static CCLayerGradient* create(ccColor4B start, ccColor4B end, CCPoint v);
+    static CCLayerGradient* create(ccColor4B start, ccColor4B end, Vec2 v);
     /** Creates a full-screen CCLayer with a gradient between start and end. */
     static CCLayerGradient* create(ccColor4B start, ccColor4B end);
     static CCLayerGradient* create();
@@ -82,8 +82,8 @@ class CCLayerGradient : public CCLayerColor
     GLubyte getEndOpacity();
     void setEndOpacity(GLubyte opacity);
 
-    CCPoint getVector();
-    void setVector(CCPoint vector);
+    Vec2 getVector();
+    void setVector(Vec2 vector);
 
     void setCompressedInterpolation(bool bCompressedInterpolation);
     bool isCompressedInterpolation();

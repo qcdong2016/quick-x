@@ -34,7 +34,7 @@ Use any of these editors to generate BMFonts:
 #define __CCBITMAP_FONT_ATLAS_H__
 
 #include "nodes/CCSpriteBatchNode.h"
-#include "support/data_support/uthash.h"
+#include "cocoa/data_support/uthash.h"
 #include <map>
 #include <sstream>
 #include <iostream>
@@ -202,7 +202,7 @@ public:
     virtual ~CCLabelBMFont();
 
     /** creates a bitmap font atlas with an initial string and the FNT file */
-    static CCLabelBMFont * create(const char *str, const char *fntFile, float width, CCTextAlignment alignment, CCPoint imageOffset);
+    static CCLabelBMFont * create(const char *str, const char *fntFile, float width, CCTextAlignment alignment, Vec2 imageOffset);
     
 	static CCLabelBMFont * create(const char *str, const char *fntFile, float width, CCTextAlignment alignment);
 
@@ -216,7 +216,7 @@ public:
 
     bool init();
     /** init a bitmap font atlas with an initial string and the FNT file */
-    bool initWithString(const char *str, const char *fntFile, float width = kCCLabelAutomaticWidth, CCTextAlignment alignment = kCCTextAlignmentLeft, CCPoint imageOffset = CCPointZero);
+    bool initWithString(const char *str, const char *fntFile, float width = kCCLabelAutomaticWidth, CCTextAlignment alignment = kCCTextAlignmentLeft, Vec2 imageOffset = CCPointZero);
 
     /** updates the font chars based on the string to render */
     void createFontChars();
@@ -226,7 +226,7 @@ public:
 
     virtual const char* getString(void);
     virtual void setCString(const char *label);
-    virtual void setAnchorPoint(const CCPoint& var);
+    virtual void setAnchorPoint(const Vec2& var);
     virtual void updateLabel();
     virtual void setAlignment(CCTextAlignment alignment);
     virtual void setWidth(float width);
@@ -268,7 +268,7 @@ protected:
     
     bool m_bLineBreakWithoutSpaces;
     // offset of the texture atlas
-    CCPoint    m_tImageOffset;
+    Vec2    m_tImageOffset;
     
     // reused char
     SharedPtr<CCSprite> m_pReusedChar;

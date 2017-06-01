@@ -31,7 +31,7 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
 #include "CCPlatformMacros.h"
-#include "CCEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
 
 NS_CC_BEGIN
 
@@ -41,10 +41,10 @@ namespace ui {
 
 class CCEditBox;
 
-class CCEditBoxImplAndroid : public CCEditBoxImpl
+class CCEditBoxImplAndroid : public EditBoxImpl
 {
 public:
-    CCEditBoxImplAndroid(CCEditBox* pEditText);
+    CCEditBoxImplAndroid(EditBox* pEditText);
     virtual ~CCEditBoxImplAndroid();
     
     virtual bool initWithSize(const CCSize& size);
@@ -62,10 +62,10 @@ public:
     virtual void setText(const char* pText);
     virtual const char* getText(void);
     virtual void setPlaceHolder(const char* pText);
-    virtual void setPosition(const CCPoint& pos);
+    virtual void setPosition(const Vec2& pos);
     virtual void setVisible(bool visible);
     virtual void setContentSize(const CCSize& size);
-	virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(const Vec2& anchorPoint);
     /**
      *  @js NA
      */

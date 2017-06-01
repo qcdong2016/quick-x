@@ -133,7 +133,7 @@ public:
     const CCRect& getCapInsetDisabledRenderer();
     
     //override "setAnchorPoint" of widget.
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     /**
      * Sets if button is using scale9 renderer.
@@ -155,7 +155,7 @@ public:
     virtual void ignoreContentAdaptWithSize(bool ignore);
     
     //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     
     //override "getVirtualRenderer" method of widget.
     virtual CCNode* getVirtualRenderer();

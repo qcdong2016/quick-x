@@ -1,7 +1,7 @@
 #include "platform/CCDevice.h"
 #include "CCStdC.h"
 #include "CCEGLView.h"
-#include "ccUTF8.h"
+#include "cocoa/ccUTF8.h"
 #include <io.h>
 #include <WinSock2.h>
 #include <Iphlpapi.h>
@@ -115,8 +115,6 @@ struct AlertStruct
 {
 	std::string m_alertViewTitle;
 	std::string m_alertViewMessage;
-
-	std::string m_macAddress;
 };
 
 static AlertStruct alertStruct;
@@ -227,19 +225,6 @@ static bool getMacAddress(std::string& macstring)
 	return ret;
 }
 
-const std::string CCDevice::getOpenUDID(void)
-{
-	if (alertStruct.m_macAddress.length() <= 0)
-	{
-		if (!getMacAddress(alertStruct.m_macAddress))
-		{
-			alertStruct.m_macAddress = "udid-fixed-1234567890";
-		}
-	}
-
-	return alertStruct.m_macAddress;
-}
-
 void CCDevice::openURL(const char* url)
 {
 	if (url == NULL || *url == '\0')
@@ -262,7 +247,7 @@ typedef struct {
 
 const std::string CCDevice::getInputText(const char* title, const char* message, const char* defaultValue)
 {
-	HWND handle = CCEGLView::sharedOpenGLView()->getHWnd();
+	HWND handle;// = CCEGLView::sharedOpenGLView()->getHWnd();
 
 	CCNativeWin32InputBoxStruct inputbox;
 	inputbox.title = std::string(title ? title : "INPUT TEXT");
@@ -279,6 +264,10 @@ const std::string CCDevice::getDeviceName(void)
 
 void CCDevice::vibrate()
 {
+}
+
+std::string CCDevice::getResourcePath() {
+	return "";
 }
 
 

@@ -26,7 +26,7 @@ THE SOFTWARE.
 #include "CCConfiguration.h"
 #include "nodes/CCRenderTexture.h"
 #include "engine/CCDirector.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 #include "platform/CCImage.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
@@ -34,9 +34,8 @@ THE SOFTWARE.
 #include "base/MathDefs.h"
 
 #include "CCGL.h"
-#include "effects/CCGrid.h"
 // extern
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "CCEGLView.h"
 #include "engine/CCFileSystem.h"
 
@@ -44,8 +43,7 @@ NS_CC_BEGIN
 
 // implementation CCRenderTexture
 CCRenderTexture::CCRenderTexture()
-: m_pSprite(NULL)
-, m_uFBO(0)
+: m_uFBO(0)
 , m_uDepthRenderBufffer(0)
 , m_nOldFBO(0)
 , m_pTexture(0)
@@ -75,7 +73,6 @@ CCRenderTexture::CCRenderTexture()
 
 CCRenderTexture::~CCRenderTexture()
 {
-    CC_SAFE_RELEASE(m_pSprite);
     CC_SAFE_RELEASE(m_pTextureCopy);
     
     glDeleteFramebuffers(1, &m_uFBO);
@@ -138,18 +135,6 @@ void CCRenderTexture::listenToForeground(cocos2d::CCObject *obj)
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_pTexture->getName(), 0);
     glBindFramebuffer(GL_FRAMEBUFFER, m_nOldFBO);
 #endif
-}
-
-CCSprite * CCRenderTexture::getSprite()
-{
-    return m_pSprite;
-}
-
-void CCRenderTexture::setSprite(CCSprite* var)
-{
-    CC_SAFE_RELEASE(m_pSprite);
-    m_pSprite = var;
-    CC_SAFE_RETAIN(m_pSprite);
 }
 
 unsigned int CCRenderTexture::getClearFlags() const
@@ -254,9 +239,6 @@ bool CCRenderTexture::initWithWidthAndHeight(int w, int h, CCTexture2DPixelForma
     void *data = NULL;
     do 
     {
-        w = (int)(w * CC_CONTENT_SCALE_FACTOR());
-        h = (int)(h * CC_CONTENT_SCALE_FACTOR());
-
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_nOldFBO);
 
         // textures must be power of two squared
@@ -335,11 +317,10 @@ bool CCRenderTexture::initWithWidthAndHeight(int w, int h, CCTexture2DPixelForma
         // retained
         setSprite(CCSprite::createWithTexture(m_pTexture));
 
-        m_pTexture->release();
-        m_pSprite->setScaleY(-1);
+        _sprite->setScaleY(-1);
 
         ccBlendFunc tBlendFunc = {GL_ONE, GL_ONE_MINUS_SRC_ALPHA };
-        m_pSprite->setBlendFunc(tBlendFunc);
+		_sprite->setBlendFunc(tBlendFunc);
 
         glBindRenderbuffer(GL_RENDERBUFFER, oldRBO);
         glBindFramebuffer(GL_FRAMEBUFFER, m_nOldFBO);
@@ -348,7 +329,7 @@ bool CCRenderTexture::initWithWidthAndHeight(int w, int h, CCTexture2DPixelForma
         m_bAutoDraw = false;
         
         // add sprite for backward compatibility
-        addChild(m_pSprite);
+        addChild(_sprite);
         
         bRet = true;
     } while (0);
@@ -529,24 +510,13 @@ void CCRenderTexture::visit()
 	
 	kmGLPushMatrix();
 	
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->beforeDraw();
-        transformAncestors();
-    }
-    
     transform();
-    m_pSprite->visit();
+	_sprite->visit();
     draw();
 	
     // reset for next frame
     m_uOrderOfArrival = 0;
 
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->afterDraw(this);
-    }
-	
 	kmGLPopMatrix();
 }
 
@@ -607,7 +577,7 @@ void CCRenderTexture::draw()
         {
             CCNode *pChild = (CCNode*)pElement;
 
-            if (pChild != m_pSprite)
+            if (pChild != _sprite)
             {
                 pChild->visit();
             }
@@ -624,30 +594,13 @@ bool CCRenderTexture::saveToFile(const char *szFilePath)
     CCImage *pImage = newCCImage(true);
     if (pImage)
     {
-        bRet = pImage->saveToFile(szFilePath, kFmtJpg);
+        bRet = pImage->saveToFile(szFilePath);
     }
 
     CC_SAFE_DELETE(pImage);
     return bRet;
 }
-bool CCRenderTexture::saveToFile(const char *fileName, EImageFormat format)
-{
-    bool bRet = false;
-    CCAssert(format == kFmtJpg || format == kFmtPng,
-             "the image can only be saved as JPG or PNG format");
 
-    CCImage *pImage = newCCImage(true);
-    if (pImage)
-    {
-        std::string fullpath = FileSystem::getWritablePath() + fileName;
-        
-        bRet = pImage->saveToFile(fullpath.c_str(), true);
-    }
-
-    CC_SAFE_DELETE(pImage);
-
-    return bRet;
-}
 
 /* get buffer as CCImage */
 CCImage* CCRenderTexture::newCCImage(bool flipImage)
@@ -698,11 +651,11 @@ CCImage* CCRenderTexture::newCCImage(bool flipImage)
                        nSavedBufferWidth * 4);
             }
 
-            pImage->initWithImageData(pBuffer, nSavedBufferWidth * nSavedBufferHeight * 4, kFmtRawData, nSavedBufferWidth, nSavedBufferHeight, 8);
+            pImage->initWithRawData(pBuffer, nSavedBufferWidth * nSavedBufferHeight * 4, nSavedBufferWidth, nSavedBufferHeight, 8, false);
         }
         else
         {
-            pImage->initWithImageData(pTempData, nSavedBufferWidth * nSavedBufferHeight * 4, kFmtRawData, nSavedBufferWidth, nSavedBufferHeight, 8);
+            pImage->initWithRawData(pTempData, nSavedBufferWidth * nSavedBufferHeight * 4, nSavedBufferWidth, nSavedBufferHeight, 8, false);
         }
         
     } while (0);

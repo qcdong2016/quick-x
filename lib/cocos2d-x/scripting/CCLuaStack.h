@@ -35,7 +35,7 @@ extern "C" {
 #include "engine/CCObject.h"
 #include "cocoa/CCArray.h"
 #include "CCLuaValue.h"
-#include "platform/platform.h"
+#include "platform/CCTimer.h"
 
 NS_CC_BEGIN
 
@@ -160,7 +160,7 @@ protected:
     int m_callFromLua;
     int m_debuggerType;
 
-    static struct cc_timeval m_lasttime;
+    static TimerHiRes _timer;
     static CCLuaStackMap s_map;
 
 public:

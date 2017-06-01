@@ -69,7 +69,7 @@ class CCFlipY : public CCActionInstant
 class CCPlace : public CCActionInstant //<NSCopying>
 {
     /** creates a Place action with a position */
-    static CCPlace * create(CCPoint pos);
+    static CCPlace * create(Vec2 pos);
 };
 
 /** @brief Calls a 'callback'

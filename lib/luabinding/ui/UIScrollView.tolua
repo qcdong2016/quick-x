@@ -38,7 +38,7 @@ class ScrollView:public Layout,public UIScrollInterface
     void scrollToBottomRight(float time, bool attenuated);
     void scrollToPercentVertical(float percent, float time, bool attenuated);
     void scrollToPercentHorizontal(float percent, float time, bool attenuated);
-    void scrollToPercentBothDirection(const CCPoint& percent, float time, bool attenuated);
+    void scrollToPercentBothDirection(const Vec2& percent, float time, bool attenuated);
     void jumpToBottom();
     void jumpToTop();
     void jumpToLeft();
@@ -49,7 +49,7 @@ class ScrollView:public Layout,public UIScrollInterface
     void jumpToBottomRight();
     void jumpToPercentVertical(float percent);
     void jumpToPercentHorizontal(float percent);
-    void jumpToPercentBothDirection(const CCPoint& percent);
+    void jumpToPercentBothDirection(const Vec2& percent);
     void setInnerContainerSize(const CCSize &size);
     const CCSize& getInnerContainerSize() const;
     virtual void addChild(CCNode * child);

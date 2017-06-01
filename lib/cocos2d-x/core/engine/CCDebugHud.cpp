@@ -3,7 +3,6 @@
 #include "ccFPSImages.h"
 #include "CCImage.h"
 #include "CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "CCEngineEvents.h"
 
 NS_CC_BEGIN

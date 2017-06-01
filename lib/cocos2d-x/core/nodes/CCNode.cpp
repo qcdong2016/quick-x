@@ -26,22 +26,17 @@
  ****************************************************************************/
 #include "cocoa/CCString.h"
 #include "CCNode.h"
-#include "support/CCPointExtension.h"
-#include "support/TransformUtils.h"
+#include "cocoa/TransformUtils.h"
 #include "CCCamera.h"
-#include "effects/CCGrid.h"
 #include "engine/CCDirector.h"
 #include "CCScheduler.h"
 #include "touch_dispatcher/CCTouch.h"
-#include "touch_dispatcher/CCTouchDispatcher.h"
 #include "actions/CCActionManager.h"
 #include "cocoa/CCScriptSupport.h"
 #include "shaders/CCGLProgram.h"
 #include "nodes/CCScene.h"
 // externals
-#include "kazmath/GL/matrix.h"
-#include "support/component/CCComponent.h"
-#include "support/component/CCComponentContainer.h"
+#include "kazmath/matrix.h"
 
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
@@ -59,6 +54,7 @@ unsigned int CCNode::g_drawOrder = 0;
 CCNode::CCNode(void)
 : m_fRotationX(0.0f)
 , m_fRotationY(0.0f)
+, _name("node")
 , m_fScaleX(1.0f)
 , m_fScaleY(1.0f)
 , m_fVertexZ(0.0f)
@@ -67,7 +63,7 @@ CCNode::CCNode(void)
 , m_fSkewY(0.0f)
 , m_obAnchorPointInPoints(CCPointZero)
 , m_obAnchorPoint(CCPointZero)
-, m_obContentSize(CCSizeZero)
+, _size(CCSizeZero)
 , m_sAdditionalTransform(CCAffineTransformMakeIdentity())
 , m_pCamera(NULL)
 // children (lazy allocs)
@@ -87,8 +83,6 @@ CCNode::CCNode(void)
 , m_bVisible(true)
 , m_bIgnoreAnchorPointForPosition(false)
 , m_bReorderChildDirty(false)
-, m_pComponentContainer(NULL)
-// merge CCNodeRGBA
 , m_displayedOpacity(255)
 , m_realOpacity(255)
 , m_isOpacityModifyRGB(false)
@@ -108,16 +102,12 @@ CCNode::CCNode(void)
 
 	m_pActionManager = director->getSubSystem<CCActionManager>();
 	m_pScheduler = director->getSubSystem<CCScheduler>();
-
-    m_pComponentContainer = new CCComponentContainer(this);
 }
 
 CCNode::~CCNode(void)
 {
     CCLOGINFO( "cocos2d: deallocing" );
     // m_pComsContainer
-    m_pComponentContainer->removeAll();
-    CC_SAFE_DELETE(m_pComponentContainer);
 
     if(m_pChildren && m_pChildren->count() > 0)
     {
@@ -282,13 +272,13 @@ void CCNode::setScaleY(float newScaleY)
 }
 
 /// position getter
-const CCPoint& CCNode::getPosition()
+const Vec2& CCNode::getPosition()
 {
     return m_obPosition;
 }
 
 /// position setter
-void CCNode::setPosition(const CCPoint& newPosition)
+void CCNode::setPosition(const Vec2& newPosition)
 {
     m_obPosition = newPosition;
     m_bTransformDirty = m_bInverseDirty = true;
@@ -345,20 +335,6 @@ CCCamera* CCNode::getCamera()
     return m_pCamera;
 }
 
-
-/// grid getter
-CCGridBase* CCNode::getGrid()
-{
-    return m_pGrid;
-}
-
-/// grid setter
-void CCNode::setGrid(CCGridBase* pGrid)
-{
-    m_pGrid = pGrid;
-}
-
-
 /// isVisible getter
 bool CCNode::isVisible()
 {
@@ -371,40 +347,40 @@ void CCNode::setVisible(bool var)
     m_bVisible = var;
 }
 
-const CCPoint& CCNode::getAnchorPointInPoints()
+const Vec2& CCNode::getAnchorPointInPoints()
 {
     return m_obAnchorPointInPoints;
 }
 
 /// anchorPoint getter
-const CCPoint& CCNode::getAnchorPoint()
+const Vec2& CCNode::getAnchorPoint()
 {
     return m_obAnchorPoint;
 }
 
-void CCNode::setAnchorPoint(const CCPoint& point)
+void CCNode::setAnchorPoint(const Vec2& point)
 {
     if( ! point.equals(m_obAnchorPoint))
     {
         m_obAnchorPoint = point;
-        m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y );
+        m_obAnchorPointInPoints = ccp(_size.width * m_obAnchorPoint.x, _size.height * m_obAnchorPoint.y );
         m_bTransformDirty = m_bInverseDirty = true;
     }
 }
 
 /// contentSize getter
-const CCSize& CCNode::getContentSize() const
+const CCSize& CCNode::getSize() const
 {
-    return m_obContentSize;
+    return _size;
 }
 
-void CCNode::setContentSize(const CCSize & size)
+void CCNode::setSize(const CCSize & size)
 {
-    if ( ! size.equals(m_obContentSize))
+    if ( ! size.equals(_size))
     {
-        m_obContentSize = size;
+        _size = size;
 
-        m_obAnchorPointInPoints = ccp(m_obContentSize.width * m_obAnchorPoint.x, m_obContentSize.height * m_obAnchorPoint.y );
+        m_obAnchorPointInPoints = ccp(_size.width * m_obAnchorPoint.x, _size.height * m_obAnchorPoint.y );
         m_bTransformDirty = m_bInverseDirty = true;
     }
 }
@@ -529,7 +505,7 @@ void CCNode::setShaderProgram(CCGLProgram *pShaderProgram)
 
 CCRect CCNode::boundingBox()
 {
-    CCRect rect = CCRectMake(0, 0, m_obContentSize.width, m_obContentSize.height);
+    CCRect rect = CCRectMake(0, 0, _size.width, _size.height);
     return CCRectApplyAffineTransform(rect, nodeToParentTransform());
 }
 
@@ -567,9 +543,9 @@ CCRect CCNode::getCascadeBoundingBox(void)
         }
 
         // merge content size
-        if (m_obContentSize.width > 0 && m_obContentSize.height > 0)
+        if (_size.width > 0 && _size.height > 0)
         {
-            const CCRect box = CCRectApplyAffineTransform(CCRect(0, 0, m_obContentSize.width, m_obContentSize.height), nodeToWorldTransform());
+            const CCRect box = CCRectApplyAffineTransform(CCRect(0, 0, _size.width, _size.height), nodeToWorldTransform());
             if (!merge)
             {
                 cbb = box;
@@ -880,11 +856,6 @@ void CCNode::visit()
     }
     kmGLPushMatrix();
 
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->beforeDraw();
-    }
-
     this->transform();
 
     CCNode* pNode = NULL;
@@ -928,11 +899,6 @@ void CCNode::visit()
     // reset for next frame
     m_uOrderOfArrival = 0;
 
-    if (m_pGrid && m_pGrid->isActive())
-    {
-        m_pGrid->afterDraw(this);
-    }
-
     kmGLPopMatrix();
 }
 
@@ -960,7 +926,7 @@ void CCNode::transform()
 
 
     // XXX: Expensive calls. Camera should be integrated into the cached affine matrix
-    if ( m_pCamera != NULL && !(m_pGrid != NULL && m_pGrid->isActive()) )
+    if ( m_pCamera != NULL)
     {
         bool translate = (m_obAnchorPointInPoints.x != 0.0f || m_obAnchorPointInPoints.y != 0.0f);
 
@@ -1176,11 +1142,6 @@ void CCNode::update(float fDelta)
     if (m_scriptEventListeners)
     {
     }
-
-    if (m_pComponentContainer && !m_pComponentContainer->isEmpty())
-    {
-        m_pComponentContainer->visit(fDelta);
-    }
 }
 
 CCAffineTransform CCNode::nodeToParentTransform(void)
@@ -1291,46 +1252,46 @@ CCAffineTransform CCNode::worldToNodeTransform(void)
     return CCAffineTransformInvert(this->nodeToWorldTransform());
 }
 
-CCPoint CCNode::convertToNodeSpace(const CCPoint& worldPoint)
+Vec2 CCNode::convertToNodeSpace(const Vec2& worldPoint)
 {
-    CCPoint ret = CCPointApplyAffineTransform(worldPoint, worldToNodeTransform());
+    Vec2 ret = CCPointApplyAffineTransform(worldPoint, worldToNodeTransform());
     return ret;
 }
 
-CCPoint CCNode::convertToWorldSpace(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWorldSpace(const Vec2& nodePoint)
 {
-    CCPoint ret = CCPointApplyAffineTransform(nodePoint, nodeToWorldTransform());
+    Vec2 ret = CCPointApplyAffineTransform(nodePoint, nodeToWorldTransform());
     return ret;
 }
 
-CCPoint CCNode::convertToNodeSpaceAR(const CCPoint& worldPoint)
+Vec2 CCNode::convertToNodeSpaceAR(const Vec2& worldPoint)
 {
-    CCPoint nodePoint = convertToNodeSpace(worldPoint);
+    Vec2 nodePoint = convertToNodeSpace(worldPoint);
     return ccpSub(nodePoint, m_obAnchorPointInPoints);
 }
 
-CCPoint CCNode::convertToWorldSpaceAR(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWorldSpaceAR(const Vec2& nodePoint)
 {
-    CCPoint pt = ccpAdd(nodePoint, m_obAnchorPointInPoints);
+    Vec2 pt = ccpAdd(nodePoint, m_obAnchorPointInPoints);
     return convertToWorldSpace(pt);
 }
 
-CCPoint CCNode::convertToWindowSpace(const CCPoint& nodePoint)
+Vec2 CCNode::convertToWindowSpace(const Vec2& nodePoint)
 {
-    CCPoint worldPoint = this->convertToWorldSpace(nodePoint);
+    Vec2 worldPoint = this->convertToWorldSpace(nodePoint);
     return CCDirector::sharedDirector()->convertToUI(worldPoint);
 }
 
 // convenience methods which take a CCTouch instead of CCPoint
-CCPoint CCNode::convertTouchToNodeSpace(CCTouch *touch)
+Vec2 CCNode::convertTouchToNodeSpace(CCTouch *touch)
 {
-    CCPoint point = touch->getLocation();
+    Vec2 point = touch->getLocation();
     return this->convertToNodeSpace(point);
 }
 
-CCPoint CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
+Vec2 CCNode::convertTouchToNodeSpaceAR(CCTouch *touch)
 {
-    CCPoint point = touch->getLocation();
+    Vec2 point = touch->getLocation();
     return this->convertToNodeSpaceAR(point);
 }
 
@@ -1340,32 +1301,6 @@ void CCNode::updateTransform()
     // Recursively iterate over children
     arrayMakeObjectsPerformSelector(m_pChildren, updateTransform, CCNode*);
 }
-
-CCComponent* CCNode::getComponent(const char *pName) const
-{
-    return m_pComponentContainer->get(pName);
-}
-
-bool CCNode::addComponent(CCComponent *pComponent)
-{
-    return m_pComponentContainer->add(pComponent);
-}
-
-bool CCNode::removeComponent(const char *pName)
-{
-    return m_pComponentContainer->remove(pName);
-}
-
-bool CCNode::removeComponent(CCComponent *pComponent)
-{
-    return m_pComponentContainer->remove(pComponent);
-}
-
-void CCNode::removeAllComponents()
-{
-    m_pComponentContainer->removeAll();
-}
-
 // merge CCNodeRGBA to CCNode
 
 GLubyte CCNode::getOpacity(void)

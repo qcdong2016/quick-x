@@ -430,7 +430,7 @@ void ListView::selectedItemEvent(int state)
     }
 }
     
-void ListView::interceptTouchEvent(int handleState, Widget *sender, const CCPoint &touchPoint)
+void ListView::interceptTouchEvent(int handleState, Widget *sender, const Vec2 &touchPoint)
 {
     ScrollView::interceptTouchEvent(handleState, sender, touchPoint);
     if (handleState != 1)

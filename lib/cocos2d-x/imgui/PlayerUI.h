@@ -3,7 +3,7 @@
 
 #include "imgui_cocos2dx.h"
 #include <vector>
-#include "LuaFunction.h"
+#include "scripting/LuaFunction.h"
 
 NS_CC_BEGIN
 

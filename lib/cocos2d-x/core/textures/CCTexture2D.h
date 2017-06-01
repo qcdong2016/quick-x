@@ -149,7 +149,7 @@ public:
     These functions require GL_TEXTURE_2D and both GL_VERTEX_ARRAY and GL_TEXTURE_COORD_ARRAY client states to be enabled.
     */
     /** draws a texture at a given point */
-    void drawAtPoint(const CCPoint& point);
+    void drawAtPoint(const Vec2& point);
     /** draws a texture inside a rect */
     void drawInRect(const CCRect& rect);
 
@@ -317,7 +317,7 @@ public:
 	VolatileTexture(CCTexture2D *t);
 	~VolatileTexture();
 
-	static void addImageTexture(CCTexture2D *tt, const char* imageFileName, EImageFormat format);
+	static void addImageTexture(CCTexture2D *tt, const char* imageFileName);
 	static void addStringTexture(CCTexture2D *tt, const char* text, const CCSize& dimensions, CCTextAlignment alignment,
 		CCVerticalTextAlignment vAlignment, const char *fontName, float fontSize);
 	static void addDataTexture(CCTexture2D *tt, void* data, CCTexture2DPixelFormat pixelFormat, const CCSize& contentSize);
@@ -348,7 +348,7 @@ protected:
 	CCTexture2DPixelFormat m_PixelFormat;
 
 	std::string m_strFileName;
-	EImageFormat m_FmtImage;
+	// EImageFormat m_FmtImage;
 
 	ccTexParams     m_texParams;
 	CCSize          m_size;

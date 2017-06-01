@@ -14,8 +14,8 @@ class CCTMXObjectGroup : public CCObject
     CCDictionary* objectNamed(const char *objectName);
 
     /** offset position of child objects */
-    CCPoint getPositionOffset();
-    void setPositionOffset(CCPoint p);
+    Vec2 getPositionOffset();
+    void setPositionOffset(Vec2 p);
 
     /** list of properties stored in a dictionary */
     CCDictionary* getProperties();

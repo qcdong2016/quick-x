@@ -108,7 +108,7 @@ public:
     virtual ~CCLayerColor();
 
     virtual void draw();
-    virtual void setContentSize(const CCSize & var);
+    virtual void setSize(const CCSize & var);
 
     static CCLayerColor* create();
 
@@ -174,7 +174,7 @@ public:
     static CCLayerGradient* create(const ccColor4B& start, const ccColor4B& end);
 
     /** Creates a full-screen CCLayer with a gradient between start and end in the direction of v. */
-    static CCLayerGradient* create(const ccColor4B& start, const ccColor4B& end, const CCPoint& v);
+    static CCLayerGradient* create(const ccColor4B& start, const ccColor4B& end, const Vec2& v);
 
     virtual bool init();
     /** Initializes the CCLayer with a gradient between start and end.
@@ -185,13 +185,13 @@ public:
     /** Initializes the CCLayer with a gradient between start and end in the direction of v.
      *  @js init
      */
-    virtual bool initWithColor(const ccColor4B& start, const ccColor4B& end, const CCPoint& v);
+    virtual bool initWithColor(const ccColor4B& start, const ccColor4B& end, const Vec2& v);
 
     CC_PROPERTY_PASS_BY_REF(ccColor3B, m_startColor, StartColor)
     CC_PROPERTY_PASS_BY_REF(ccColor3B, m_endColor, EndColor)
     CC_PROPERTY(GLubyte, m_cStartOpacity, StartOpacity)
     CC_PROPERTY(GLubyte, m_cEndOpacity, EndOpacity)
-    CC_PROPERTY_PASS_BY_REF(CCPoint, m_AlongVector, Vector)
+    CC_PROPERTY_PASS_BY_REF(Vec2, m_AlongVector, Vector)
 
     /** Whether or not the interpolation will be compressed in order to display all the colors of the gradient both in canonical and non canonical vectors
     Default: YES

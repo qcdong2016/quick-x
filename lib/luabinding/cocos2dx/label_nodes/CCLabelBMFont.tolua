@@ -12,10 +12,10 @@ class CCLabelBMFont : public CCSpriteBatchNode
 
     bool init();
     /** init a bitmap font atlas with an initial string and the FNT file */
-    bool initWithString(const char *str, const char *fntFile, float width = kCCLabelAutomaticWidth, CCTextAlignment alignment = kCCTextAlignmentLeft, CCPoint imageOffset = ccp(0, 0));
+    bool initWithString(const char *str, const char *fntFile, float width = kCCLabelAutomaticWidth, CCTextAlignment alignment = kCCTextAlignmentLeft, Vec2 imageOffset = ccp(0, 0));
 
     /** creates a bitmap font atlas with an initial string and the FNT file */
-    static CCLabelBMFont * create(const char *text, const char *fntFile, float width, CCTextAlignment alignment, CCPoint imageOffset);
+    static CCLabelBMFont * create(const char *text, const char *fntFile, float width, CCTextAlignment alignment, Vec2 imageOffset);
     static CCLabelBMFont * create(const char *text, const char *fntFile, float width, CCTextAlignment alignment);
     static CCLabelBMFont * create(const char *text, const char *fntFile, float width);
     static CCLabelBMFont * create(const char *text, const char *fntFile);

@@ -1,0 +1,15 @@
+add_subdirectory(imgui)
+add_subdirectory(kazmath)
+add_subdirectory(lua)
+add_subdirectory(lua_extensions)
+add_subdirectory(SDL2)
+add_subdirectory(spine)
+add_subdirectory(stb)
+add_subdirectory(tinyxml2)
+add_subdirectory(tolua)
+
+if (MSVC)
+    add_subdirectory(zlib)
+    add_subdirectory(glew)
+endif()
+

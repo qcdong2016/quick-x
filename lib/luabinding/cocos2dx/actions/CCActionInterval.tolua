@@ -72,14 +72,14 @@ class CCRotateBy : public CCActionInterval
 class CCMoveBy : public CCActionInterval
 {
 
-    static CCMoveBy* create(float duration, CCPoint deltaPosition);
+    static CCMoveBy* create(float duration, Vec2 deltaPosition);
 };
 
 
 class CCMoveTo : public CCMoveBy
 {
 
-    static CCMoveTo* create(float duration, CCPoint position);
+    static CCMoveTo* create(float duration, Vec2 position);
 };
 
 
@@ -100,14 +100,14 @@ class CCSkewBy : public CCSkewTo
 class CCJumpBy : public CCActionInterval
 {
 
-    static CCJumpBy* create(float duration, CCPoint position, float height, unsigned int jumps);
+    static CCJumpBy* create(float duration, Vec2 position, float height, unsigned int jumps);
 };
 
 
 class CCJumpTo : public CCJumpBy
 {
 
-    static CCJumpTo* create(float duration, CCPoint position, float height, int jumps);
+    static CCJumpTo* create(float duration, Vec2 position, float height, int jumps);
 };
 
 
@@ -116,11 +116,11 @@ class ccBezierConfig
     ccBezierConfig();
     ~ccBezierConfig();
     //! end position of the bezier
-    CCPoint endPosition;
+    Vec2 endPosition;
     //! Bezier control point 1
-    CCPoint controlPoint_1;
+    Vec2 controlPoint_1;
     //! Bezier control point 2
-    CCPoint controlPoint_2;
+    Vec2 controlPoint_2;
 };
 
 

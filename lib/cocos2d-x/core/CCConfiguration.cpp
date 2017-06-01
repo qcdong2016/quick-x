@@ -117,8 +117,8 @@ void CCConfiguration::gatherGPUInfo()
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_nMaxTextureSize);
 	m_pValueDict->setObject( CCString::createWithFormat("%d", (int)m_nMaxTextureSize), "gl.max_texture_size");
 
-    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &m_nMaxTextureUnits);
-	m_pValueDict->setObject(CCString::createWithFormat("%d", (int)m_nMaxTextureUnits), "gl.max_texture_units");
+//    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &m_nMaxTextureUnits);
+//	m_pValueDict->setObject(CCString::createWithFormat("%d", (int)m_nMaxTextureUnits), "gl.max_texture_units");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     glGetIntegerv(GL_MAX_SAMPLES_APPLE, &m_nMaxSamplesAllowed);

@@ -1,6 +1,5 @@
 
 #include "nodes/CCShapeNode.h"
-#include "support/CCPointExtension.h"
 
 NS_CC_BEGIN
 
@@ -66,7 +65,7 @@ CCRectShape* CCRectShape::create(const cocos2d::CCSize &size)
 
 void CCRectShape::drawProc(void)
 {
-    const CCPoint center = getDrawPosition();
+    const Vec2 center = getDrawPosition();
     float w = m_size.width / 2;
     float h = m_size.height / 2;
     
@@ -94,16 +93,7 @@ void CCPointShape::drawProc(void)
     ccDrawPoint(getDrawPosition());
 }
 
-
-CCPolygonShape* CCPolygonShape::create(CCPoint* vertices, unsigned int numVertices)
-{
-    CCPolygonShape* polygon = new CCPolygonShape();
-    polygon->initWithVertices(vertices, numVertices);
-    polygon->autorelease();
-    return polygon;
-}
-
-CCPolygonShape* CCPolygonShape::create(CCPointArray* vertices)
+CCPolygonShape* CCPolygonShape::create(const std::vector<Vec2>& vertices)
 {
     CCPolygonShape* polygon = new CCPolygonShape();
     polygon->initWithVertices(vertices);
@@ -111,49 +101,34 @@ CCPolygonShape* CCPolygonShape::create(CCPointArray* vertices)
     return polygon;
 }
 
-bool CCPolygonShape::initWithVertices(CCPoint* vertices, unsigned int numVertices)
+bool CCPolygonShape::initWithVertices(const std::vector<Vec2>& vertices)
 {
-    m_numberOfVertices = numVertices;
-    m_vertices = new CCPoint[m_numberOfVertices];
-    m_verticesDraw = new CCPoint[m_numberOfVertices];
-    for (unsigned int i = 0; i < m_numberOfVertices; ++i)
-    {
-        m_verticesDraw[i] = m_vertices[i] = vertices[i];
-    }
+	_vertices = vertices;
+	_drawVertives = vertices;
     return true;
-}
-
-bool CCPolygonShape::initWithVertices(CCPointArray* vertices)
-{
-    CCPoint* points = vertices->fetchPoints();
-    bool ret = initWithVertices(points, vertices->count());
-    delete []points;
-    return ret;
 }
 
 CCPolygonShape::~CCPolygonShape(void)
 {
-    delete[] m_vertices;
-    delete[] m_verticesDraw;
 }
 
 void CCPolygonShape::drawProc(void)
 {
-    const CCPoint center = getDrawPosition();
-    for (unsigned int i = 0; i < m_numberOfVertices; ++i)
+    const Vec2 center = getDrawPosition();
+    for (unsigned int i = 0; i < _vertices.size(); ++i)
     {
-        m_verticesDraw[i].x = m_vertices[i].x + center.x;
-        m_verticesDraw[i].y = m_vertices[i].y + center.y;
+		_drawVertives[i].x = _vertices[i].x + center.x;
+		_drawVertives[i].y = _vertices[i].y + center.y;
     }
     
     if (m_fill)
     {
-        ccDrawSolidPoly(m_verticesDraw, m_numberOfVertices, m_color);
+        ccDrawSolidPoly(&_drawVertives[0], _drawVertives.size(), m_color);
     }
     else
     {
         ccDrawColor4F(m_color.r, m_color.g, m_color.b, m_color.a);
-        ccDrawPoly(m_verticesDraw, m_numberOfVertices, m_close);
+        ccDrawPoly(&_drawVertives[0], _drawVertives.size(), m_close);
     }
 }
 

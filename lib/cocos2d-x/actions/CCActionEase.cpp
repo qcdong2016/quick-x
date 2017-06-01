@@ -78,7 +78,7 @@ bool CCActionEase::initWithAction(CCActionInterval *pAction)
 void CCActionEase::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 CCActionEase::~CCActionEase(void)
@@ -149,7 +149,7 @@ bool CCEaseRateAction::initWithAction(CCActionInterval *pAction, float fRate)
 void CCEaseRateAction::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
 }
 
 CCEaseRateAction::~CCEaseRateAction(void)
@@ -186,7 +186,7 @@ CCEaseIn* CCEaseIn::create(CCActionInterval *pAction, float fRate)
 void CCEaseIn::paste(CCObject* o)
 {
     Super::paste(o);
-	O->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
+	dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
 }
 
 void CCEaseIn::update(float time)
@@ -223,7 +223,7 @@ CCEaseOut* CCEaseOut::create(CCActionInterval *pAction, float fRate)
 void CCEaseOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
 }
 
 void CCEaseOut::update(float time)
@@ -260,7 +260,7 @@ CCEaseInOut* CCEaseInOut::create(CCActionInterval *pAction, float fRate)
 void CCEaseInOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval*)(m_pInner->copy()), m_fRate);
 }
 
 void CCEaseInOut::update(float time)
@@ -306,7 +306,7 @@ CCEaseExponentialIn* CCEaseExponentialIn::create(CCActionInterval* pAction)
 void CCEaseExponentialIn::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseExponentialIn::update(float time)
@@ -343,7 +343,7 @@ CCEaseExponentialOut* CCEaseExponentialOut::create(CCActionInterval* pAction)
 void CCEaseExponentialOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseExponentialOut::update(float time)
@@ -381,7 +381,7 @@ CCEaseExponentialInOut* CCEaseExponentialInOut::create(CCActionInterval *pAction
 void CCEaseExponentialInOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseExponentialInOut::update(float time)
@@ -429,7 +429,7 @@ CCEaseSineIn* CCEaseSineIn::create(CCActionInterval* pAction)
 void CCEaseSineIn::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseSineIn::update(float time)
@@ -467,7 +467,7 @@ CCEaseSineOut* CCEaseSineOut::create(CCActionInterval* pAction)
 void CCEaseSineOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseSineOut::update(float time)
@@ -505,7 +505,7 @@ CCEaseSineInOut* CCEaseSineInOut::create(CCActionInterval* pAction)
 void CCEaseSineInOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseSineInOut::update(float time)
@@ -559,7 +559,7 @@ bool CCEaseElastic::initWithAction(CCActionInterval *pAction, float fPeriod/* = 
 void CCEaseElastic::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
 }
 
 CCActionInterval* CCEaseElastic::reverse(void)
@@ -599,7 +599,7 @@ CCEaseElasticIn* CCEaseElasticIn::create(CCActionInterval *pAction, float fPerio
 void CCEaseElasticIn::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
 }
 
 void CCEaseElasticIn::update(float time)
@@ -654,7 +654,7 @@ CCEaseElasticOut* CCEaseElasticOut::create(CCActionInterval *pAction, float fPer
 void CCEaseElasticOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
 }
 
 void CCEaseElasticOut::update(float time)
@@ -708,7 +708,7 @@ CCEaseElasticInOut* CCEaseElasticInOut::create(CCActionInterval *pAction, float 
 void CCEaseElasticInOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()), m_fPeriod);
 }
 
 void CCEaseElasticInOut::update(float time)
@@ -772,7 +772,7 @@ CCEaseBounce* CCEaseBounce::create(CCActionInterval* pAction)
 void CCEaseBounce::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 float CCEaseBounce::bounceTime(float time)
@@ -826,7 +826,7 @@ CCEaseBounceIn* CCEaseBounceIn::create(CCActionInterval* pAction)
 void CCEaseBounceIn::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBounceIn::update(float time)
@@ -865,7 +865,7 @@ CCEaseBounceOut* CCEaseBounceOut::create(CCActionInterval* pAction)
 void CCEaseBounceOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBounceOut::update(float time)
@@ -904,7 +904,7 @@ CCEaseBounceInOut* CCEaseBounceInOut::create(CCActionInterval* pAction)
 void CCEaseBounceInOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBounceInOut::update(float time)
@@ -953,7 +953,7 @@ CCEaseBackIn* CCEaseBackIn::create(CCActionInterval *pAction)
 void CCEaseBackIn::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBackIn::update(float time)
@@ -992,7 +992,7 @@ CCEaseBackOut* CCEaseBackOut::create(CCActionInterval* pAction)
 void CCEaseBackOut::paste(CCObject* o)
 {
     Super::paste(o);
-    O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+    dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBackOut::update(float time)
@@ -1033,7 +1033,7 @@ CCEaseBackInOut* CCEaseBackInOut::create(CCActionInterval* pAction)
 void CCEaseBackInOut::paste(CCObject* o)
 {
 	Super::paste(o);
-	O->initWithAction((CCActionInterval *)(m_pInner->copy()));
+	dynamic_cast<SelfType*>(o)->initWithAction((CCActionInterval *)(m_pInner->copy()));
 }
 
 void CCEaseBackInOut::update(float time)

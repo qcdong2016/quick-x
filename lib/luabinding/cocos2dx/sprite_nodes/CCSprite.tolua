@@ -177,7 +177,7 @@ class CCSprite : public CCNode
     /**
      * Gets the offset position of the sprite. Calculated automatically by editors like Zwoptex.
      */
-    CCPoint getOffsetPosition(void);
+    Vec2 getOffsetPosition(void);
 
     /**
      * Returns the flag which indicates whether the sprite is flipped horizontally or not.

@@ -17,11 +17,11 @@ class CCTileMapAtlas : public CCAtlasNode
     /** returns a tile from position x,y.
     For the moment only channel R is used
     */
-    ccColor3B tileAt(CCPoint position);
+    ccColor3B tileAt(Vec2 position);
     /** sets a tile at position x,y.
     For the moment only channel R is used
     */
-    void setTile(ccColor3B tile, CCPoint position);
+    void setTile(ccColor3B tile, Vec2 position);
     /** dealloc the map from memory */
     void releaseMap();
 

@@ -29,7 +29,6 @@
 
 #include "nodes/CCDrawingPrimitives.h"
 #include "nodes/CCNode.h"
-#include "cocoa/CCPointArray.h"
 
 NS_CC_BEGIN
 
@@ -88,8 +87,8 @@ protected:
     virtual void drawProc(void) = 0;
     virtual void afterDraw(void);
 
-    inline const CCPoint getDrawPosition(void) {
-        const CCSize& size = getContentSize();
+    inline const Vec2 getDrawPosition(void) {
+        const CCSize& size = getSize();
         return CCPointMake(size.width / 2, size.height / 2);
     }
 };
@@ -236,8 +235,7 @@ protected:
 class CCPolygonShape : public CCShapeNode
 {
 public:
-    static CCPolygonShape* create(CCPoint* vertices, unsigned int numVertices);
-    static CCPolygonShape* create(CCPointArray* vertices);
+	static CCPolygonShape* create(const std::vector<Vec2>& vertices);
     ~CCPolygonShape(void);
 
     bool isFill(void) {
@@ -258,19 +256,14 @@ public:
 
 protected:
     CCPolygonShape(void)
-    : m_vertices(NULL)
-    , m_verticesDraw(NULL)
-    , m_numberOfVertices(0)
-    , m_fill(false)
+    : m_fill(false)
     , m_close(false)
     {
     }
-    bool initWithVertices(CCPoint* vertices, unsigned int numVertices);
-    bool initWithVertices(CCPointArray* vertices);
+    bool initWithVertices(const std::vector<Vec2>& vertices);
 
-    CCPoint* m_vertices;
-    CCPoint* m_verticesDraw;
-    unsigned int m_numberOfVertices;
+	std::vector<Vec2> _vertices;
+	std::vector<Vec2> _drawVertives;
     bool m_fill;
     bool m_close;
 

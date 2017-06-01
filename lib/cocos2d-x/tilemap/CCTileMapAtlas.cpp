@@ -25,11 +25,10 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCTileMapAtlas.h"
 #include "textures/CCTextureAtlas.h"
-#include "support/image_support/TGAlib.h"
+#include "TGAlib.h"
 #include "ccConfig.h"
 #include "cocoa/CCDictionary.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "textures/CCTexture2D.h"
 #include "engine/CCFileSystem.h"
 
@@ -57,7 +56,7 @@ bool CCTileMapAtlas::initWithTileFile(const char *tile, const char *mapFile, int
     if( CCAtlasNode::initWithTileFile(tile, tileWidth, tileHeight, m_nItemsToRender) )
     {
         this->updateAtlasValues();
-        this->setContentSize(CCSizeMake((float)(m_pTGAInfo->width*m_uItemWidth),
+        this->setSize(CCSizeMake((float)(m_pTGAInfo->width*m_uItemWidth),
                                         (float)(m_pTGAInfo->height*m_uItemHeight)));
         return true;
     }
@@ -127,7 +126,7 @@ void CCTileMapAtlas::loadTGAfile(const char *file)
 }
 
 // CCTileMapAtlas - Atlas generation / updates
-void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
+void CCTileMapAtlas::setTile(const ccColor3B& tile, const Vec2& position)
 {
     CCAssert(m_pTGAInfo != NULL, "tgaInfo must not be nil");
     CCAssert(position.x < m_pTGAInfo->width, "Invalid position.x");
@@ -153,7 +152,7 @@ void CCTileMapAtlas::setTile(const ccColor3B& tile, const CCPoint& position)
     }    
 }
 
-ccColor3B CCTileMapAtlas::tileAt(const CCPoint& position)
+ccColor3B CCTileMapAtlas::tileAt(const Vec2& position)
 {
     CCAssert( m_pTGAInfo != NULL, "tgaInfo must not be nil");
     CCAssert( position.x < m_pTGAInfo->width, "Invalid position.x");
@@ -165,7 +164,7 @@ ccColor3B CCTileMapAtlas::tileAt(const CCPoint& position)
     return value;    
 }
 
-void CCTileMapAtlas::updateAtlasValueAt(const CCPoint& pos, const ccColor3B& value, unsigned int index)
+void CCTileMapAtlas::updateAtlasValueAt(const Vec2& pos, const ccColor3B& value, unsigned int index)
 {
     CCAssert( index >= 0 && index < m_pTextureAtlas->getCapacity(), "updateAtlasValueAt: Invalid index");
 
@@ -179,8 +178,8 @@ void CCTileMapAtlas::updateAtlasValueAt(const CCPoint& pos, const ccColor3B& val
     float textureWide = (float) (m_pTextureAtlas->getTexture()->getPixelsWide());
     float textureHigh = (float) (m_pTextureAtlas->getTexture()->getPixelsHigh());
 
-    float itemWidthInPixels = m_uItemWidth * CC_CONTENT_SCALE_FACTOR();
-    float itemHeightInPixels = m_uItemHeight * CC_CONTENT_SCALE_FACTOR();
+    float itemWidthInPixels = m_uItemWidth;
+    float itemHeightInPixels = m_uItemHeight;
 
 #if CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
     float left        = (2 * row * itemWidthInPixels + 1) / (2 * textureWide);

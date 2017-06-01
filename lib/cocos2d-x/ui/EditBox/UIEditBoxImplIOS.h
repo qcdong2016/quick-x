@@ -93,10 +93,10 @@ public:
     virtual void setText(const char* pText);
     virtual const char* getText(void);
     virtual void setPlaceHolder(const char* pText);
-    virtual void setPosition(const CCPoint& pos);
+    virtual void setPosition(const Vec2& pos);
     virtual void setVisible(bool visible);
     virtual void setContentSize(const CCSize& size);
-	virtual void setAnchorPoint(const CCPoint& anchorPoint);
+	virtual void setAnchorPoint(const Vec2& anchorPoint);
     virtual void visit(void);
 	virtual void onEnter(void);
     virtual void doAnimationWhenKeyboardMove(float duration, float distance);
@@ -114,8 +114,8 @@ private:
     CCLabelTTF*     m_pLabel;
     CCLabelTTF*     m_pLabelPlaceHolder;
     CCSize          m_tContentSize;
-    CCPoint         m_obPosition;
-    CCPoint         m_obAnchorPoint;
+    Vec2         m_obPosition;
+    Vec2         m_obAnchorPoint;
     EditBoxImplIOSInternal* m_systemControl;
     int             m_nMaxTextLength;
 };

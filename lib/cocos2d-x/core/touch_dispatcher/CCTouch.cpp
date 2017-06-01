@@ -22,50 +22,49 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "support/CCPointExtension.h"
 #include "CCTouch.h"
 #include "engine/CCDirector.h"
 
 NS_CC_BEGIN
 
 // returns the current touch location in screen coordinates
-CCPoint CCTouch::getLocationInView() const 
+Vec2 CCTouch::getLocationInView() const 
 { 
     return m_point; 
 }
 
 // returns the previous touch location in screen coordinates
-CCPoint CCTouch::getPreviousLocationInView() const 
+Vec2 CCTouch::getPreviousLocationInView() const 
 { 
     return m_prevPoint; 
 }
 
 // returns the start touch location in screen coordinates
-CCPoint CCTouch::getStartLocationInView() const 
+Vec2 CCTouch::getStartLocationInView() const 
 { 
     return m_startPoint; 
 }
 
 // returns the current touch location in OpenGL coordinates
-CCPoint CCTouch::getLocation() const
+Vec2 CCTouch::getLocation() const
 { 
     return CCDirector::sharedDirector()->convertToGL(m_point); 
 }
 
 // returns the previous touch location in OpenGL coordinates
-CCPoint CCTouch::getPreviousLocation() const
+Vec2 CCTouch::getPreviousLocation() const
 { 
     return CCDirector::sharedDirector()->convertToGL(m_prevPoint);  
 }
 
 // returns the start touch location in OpenGL coordinates
-CCPoint CCTouch::getStartLocation() const
+Vec2 CCTouch::getStartLocation() const
 { 
     return CCDirector::sharedDirector()->convertToGL(m_startPoint);  
 }
 
 // returns the delta position between the current location and the previous location in OpenGL coordinates
-CCPoint CCTouch::getDelta() const
+Vec2 CCTouch::getDelta() const
 {     
     return ccpSub(getLocation(), getPreviousLocation()); 
 }
@@ -75,6 +74,64 @@ CCTouch *CCTouch::copy()
     CCTouch *copy = new CCTouch();
     copy->setTouchInfo(getID(), m_point.x, m_point.y);
     return copy;
+}
+
+
+
+CCTouchTargetNode *CCTouchTargetNode::create(CCNode *node)
+{
+	CCTouchTargetNode *touchableNode = new CCTouchTargetNode(node);
+	touchableNode->autorelease();
+	return touchableNode;
+}
+
+CCTouchTargetNode::CCTouchTargetNode(CCNode *node)
+	: m_touchId(0)
+{
+	m_node = node;
+	m_node->retain();
+	m_touchMode = node->getTouchMode();
+}
+
+CCTouchTargetNode::~CCTouchTargetNode()
+{
+	CC_SAFE_RELEASE(m_node);
+}
+
+CCNode *CCTouchTargetNode::getNode()
+{
+	return  m_node;
+}
+
+int CCTouchTargetNode::getTouchMode()
+{
+	return m_touchMode;
+}
+
+int CCTouchTargetNode::getTouchId()
+{
+	return m_touchId;
+}
+
+void CCTouchTargetNode::setTouchId(int touchId)
+{
+	m_touchId = touchId;
+}
+
+CCTouch *CCTouchTargetNode::findTouch(CCSet *touches)
+{
+	return findTouchFromTouchesSet(touches, getTouchId());
+}
+
+CCTouch *CCTouchTargetNode::findTouchFromTouchesSet(CCSet *touches, int touchId)
+{
+	CCTouch *touch = NULL;
+	for (CCSetIterator it = touches->begin(); it != touches->end(); ++it)
+	{
+		touch = (CCTouch*)*it;
+		if (touch->getID() == touchId) return touch;
+	}
+	return NULL;
 }
 
 NS_CC_END

@@ -145,7 +145,7 @@ public:
     bool getSelectedState();
     
     //override "setAnchorPoint" method of widget.
-    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setAnchorPoint(const Vec2 &pt);
     
     //add a call back function would called when checkbox is selected or unselected.
     void addEventListenerCheckBox(CCObject* target,SEL_SelectedStateEvent selector);
@@ -154,7 +154,7 @@ public:
     virtual void onTouchEnded(CCTouch *touch, CCEvent *unused_event);
     
     //override "getContentSize" method of widget.
-    virtual const CCSize& getContentSize() const;
+    virtual const CCSize& getSize() const;
     
     //override "getVirtualRenderer" method of widget.
     virtual CCNode* getVirtualRenderer();

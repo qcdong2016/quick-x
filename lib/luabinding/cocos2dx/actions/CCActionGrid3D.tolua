@@ -25,18 +25,18 @@ class CCFlipY3D : public CCFlipX3D
 class CCLens3D : public CCGrid3DAction
 {
     void setPosition(float x, float y);
-    void setPosition(const CCPoint& position);
+    void setPosition(const Vec2& position);
     /** creates the action with center position, radius, a grid size and duration */
-    static CCLens3D* create(float duration, CCSize gridSize, CCPoint position, float radius);
+    static CCLens3D* create(float duration, CCSize gridSize, Vec2 position, float radius);
 };
 
 /** @brief CCRipple3D action */
 class CCRipple3D : public CCGrid3DAction
 {
     void setPosition(float x, float y);
-    void setPosition(const CCPoint& position);
+    void setPosition(const Vec2& position);
     /** creates the action with radius, number of waves, amplitude, a grid size and duration */
-    static CCRipple3D* create(float duration, CCSize gridSize, CCPoint position, float radius, unsigned int waves, float amplitude);
+    static CCRipple3D* create(float duration, CCSize gridSize, Vec2 position, float radius, unsigned int waves, float amplitude);
 };
 
 /** @brief CCShaky3D action */
@@ -64,10 +64,10 @@ class CCWaves : public CCGrid3DAction
 class CCTwirl : public CCGrid3DAction
 {
     void setPosition(float x, float y);
-    void setPosition(const CCPoint& position);
+    void setPosition(const Vec2& position);
 
     /** creates the action with center position, number of twirls, amplitude, a grid size and duration */
-    static CCTwirl* create(float duration, CCSize gridSize, CCPoint position, unsigned int twirls, float amplitude);
+    static CCTwirl* create(float duration, CCSize gridSize, Vec2 position, unsigned int twirls, float amplitude);
 };
 
 // end of actions group

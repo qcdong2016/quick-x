@@ -26,11 +26,10 @@
  */
 
 #include "CCClippingNode.h"
-#include "kazmath/GL/matrix.h"
+#include "kazmath/matrix.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "engine/CCDirector.h"
-#include "support/CCPointExtension.h"
 #include "nodes/CCDrawingPrimitives.h"
 
 NS_CC_BEGIN
