@@ -2,6 +2,8 @@
 #define kCCTouchesOneByOne                  1
 class CCNode : public CCScriptEventDispatcher
 {
+    void setName(const char* name);
+    const char* getName();
     static CCNode * create(void);
     void setZOrder(int zOrder);
     int getZOrder();

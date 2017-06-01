@@ -49,16 +49,10 @@ end
 
 function App:screenFit(CONFIG_SCREEN_WIDTH, CONFIG_SCREEN_HEIGHT, CONFIG_SCREEN_AUTOSCALE)
 
-    local sharedDirector = director
-    local resourceCache  = sharedDirector.resourceCache
+    local size = director:getOpenGLView():getFrameSize()
 
-    -- check device screen size
-    local glview = sharedDirector:getOpenGLView()
-    local size = glview:getFrameSize()
-    display.sizeInPixels = {width = size.width, height = size.height}
-
-    local w = display.sizeInPixels.width
-    local h = display.sizeInPixels.height
+    local w = size.width
+    local h = size.height
 
     if CONFIG_SCREEN_WIDTH == nil or CONFIG_SCREEN_HEIGHT == nil then
         CONFIG_SCREEN_WIDTH = w
@@ -102,42 +96,25 @@ function App:screenFit(CONFIG_SCREEN_WIDTH, CONFIG_SCREEN_HEIGHT, CONFIG_SCREEN_
         self.canvas:setScale(scale)
     end
 
-    local winSize = sharedDirector:getWinSize()
     display.contentScaleFactor = scale
-    display.size               = {width = winSize.width, height = winSize.height}
-    display.width              = display.size.width
-    display.height             = display.size.height
+    display.width              = CONFIG_SCREEN_WIDTH
+    display.height             = CONFIG_SCREEN_HEIGHT
     display.cx                 = display.width / 2
     display.cy                 = display.height / 2
-    display.c_left             = -display.width / 2
-    display.c_right            = display.width / 2
-    display.c_top              = display.height / 2
-    display.c_bottom           = -display.height / 2
     display.left               = 0
     display.right              = display.width
     display.top                = display.height
     display.bottom             = 0
-    display.widthInPixels      = display.sizeInPixels.width
-    display.heightInPixels     = display.sizeInPixels.height
+    display.widthInPixels      = w
+    display.heightInPixels     = h
 
     printInfo(string.format("# CONFIG_SCREEN_AUTOSCALE      = %s", CONFIG_SCREEN_AUTOSCALE))
-    printInfo(string.format("# CONFIG_SCREEN_WIDTH          = %0.2f", CONFIG_SCREEN_WIDTH))
-    printInfo(string.format("# CONFIG_SCREEN_HEIGHT         = %0.2f", CONFIG_SCREEN_HEIGHT))
     printInfo(string.format("# display.widthInPixels        = %0.2f", display.widthInPixels))
     printInfo(string.format("# display.heightInPixels       = %0.2f", display.heightInPixels))
     printInfo(string.format("# display.contentScaleFactor   = %0.2f", display.contentScaleFactor))
     printInfo(string.format("# display.width                = %0.2f", display.width))
     printInfo(string.format("# display.height               = %0.2f", display.height))
-    printInfo(string.format("# display.cx                   = %0.2f", display.cx))
-    printInfo(string.format("# display.cy                   = %0.2f", display.cy))
-    printInfo(string.format("# display.left                 = %0.2f", display.left))
-    printInfo(string.format("# display.right                = %0.2f", display.right))
-    printInfo(string.format("# display.top                  = %0.2f", display.top))
-    printInfo(string.format("# display.bottom               = %0.2f", display.bottom))
-    printInfo(string.format("# display.c_left               = %0.2f", display.c_left))
-    printInfo(string.format("# display.c_right              = %0.2f", display.c_right))
-    printInfo(string.format("# display.c_top                = %0.2f", display.c_top))
-    printInfo(string.format("# display.c_bottom             = %0.2f", display.c_bottom))
+
     printInfo("#")
 end
 

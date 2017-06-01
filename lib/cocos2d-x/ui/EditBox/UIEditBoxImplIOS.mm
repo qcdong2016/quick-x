@@ -32,6 +32,7 @@
 #define kLabelZOrder  9999
 
 #include "UIEditBox.h"
+#include "platform/CCEGLView.h"
 //#import "EAGLView.h"
 
 #define getEditBoxImplIOS() ((cocos2d::ui::EditBoxImplIOS*)editBox_)
@@ -307,21 +308,17 @@ bool EditBoxImplIOS::initWithSize(const CCSize& size)
 {
     do 
     {
-//        CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-//
-//        CGRect rect = CGRectMake(0, 0, size.width * eglView->getScaleX(),size.height * eglView->getScaleY());
-//
-//        float factor = [[EAGLView sharedEGLView] contentScaleFactor];
-//        rect.size.width /= factor;
-//        rect.size.height /= factor;
-//        
-//        m_systemControl = [[EditBoxImplIOSInternal alloc] initWithFrame:rect editBox:this];
-//        if (!m_systemControl) break;
-//        
-//		initInactiveLabels(size);
-//        setContentSize(size);
-//		
-//        return true;
+        using namespace cocos2d;
+        CCEGLView* eglView = CCEGLView::sharedOpenGLView();
+        CGRect rect = CGRectMake(0, 0, size.width, size.height);
+        
+        m_systemControl = [[EditBoxImplIOSInternal alloc] initWithFrame:rect editBox:this];
+        if (!m_systemControl) break;
+        
+		initInactiveLabels(size);
+        setContentSize(size);
+        
+        return true;
     }while (0);
     
     return false;
@@ -542,21 +539,17 @@ void EditBoxImplIOS::setPlaceHolder(const char* pText)
 
 static CGPoint convertDesignCoordToScreenCoord(const Vec2& designCoord)
 {
-//    CCEGLViewProtocol* eglView = CCEGLView::sharedOpenGLView();
-//    float viewH = (float)[[EAGLView sharedEGLView] getHeight];
+    CCEGLView* eglView = CCEGLView::sharedOpenGLView();
+    
+    float viewH = eglView->getFrameSize().height;// = (float)[[EAGLView sharedEGLView] getHeight];
+    
 //    
-//    CCPoint visiblePos = ccp(designCoord.x * eglView->getScaleX(), designCoord.y * eglView->getScaleY());
-//    CCPoint screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
-//    
-//    CGPoint screenPos = CGPointMake(screenGLPos.x, viewH - screenGLPos.y);
-//    
-//    float scaleFactor = [[EAGLView sharedEGLView] contentScaleFactor];
-//    screenPos.x = screenPos.x / scaleFactor;
-//    screenPos.y = screenPos.y / scaleFactor;
-//    
-//    //    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
-//    return screenPos;
-    return CGPointMake(0, 0);
+    Vec2 visiblePos = ccp(designCoord.x, designCoord.y);
+    Vec2 screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
+//
+    CGPoint screenPos = CGPointMake(screenGLPos.x, viewH - screenGLPos.y);
+    //    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
+    return screenPos;
 }
 
 void EditBoxImplIOS::setPosition(const Vec2& pos)

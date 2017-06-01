@@ -19,7 +19,7 @@
 		B12BB93B1EBC6F0B006B8622 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12BB93A1EBC6F0B006B8622 /* App.cpp */; };
 		B1ADD6DC1EBC7AE200D06C19 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6DB1EBC7AE200D06C19 /* GameController.framework */; };
 		B1ADD6DE1EBC7AF300D06C19 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADD6DD1EBC7AF300D06C19 /* CoreMotion.framework */; };
-		F4323CF716D3298E0072B773 /* libquickcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F48F590816D21F8C000651BE /* libquickcocos2dx.a */; };
+		B1D1FC691EE00C1100353306 /* libquickcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D1FC681EE00C0800353306 /* libquickcocos2dx.a */; };
 		F452BFC51687EEF900DC5BCC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F452BFC41687EEF900DC5BCC /* CoreText.framework */; };
 		F452BFD01687F0F200DC5BCC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F452BFCF1687F0F200DC5BCC /* UIKit.framework */; };
 		F456ECC615EE018E00FCF3E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F456ECC515EE018E00FCF3E2 /* QuartzCore.framework */; };
@@ -37,9 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F48F590716D21F8C000651BE /* PBXContainerItemProxy */ = {
+		B1D1FC671EE00C0800353306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */;
+			containerPortal = B1D1FC631EE00C0700353306 /* quickcocos2dx.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F45A2B9D166B07B600760194;
 			remoteInfo = quickcocos2dx;
@@ -60,7 +60,7 @@
 		B12BB93A1EBC6F0B006B8622 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = App.cpp; sourceTree = "<group>"; };
 		B1ADD6DB1EBC7AE200D06C19 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		B1ADD6DD1EBC7AF300D06C19 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = lib/proj.ios/quickcocos2dx.xcodeproj; sourceTree = QUICKX_ROOT; };
+		B1D1FC631EE00C0700353306 /* quickcocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = quickcocos2dx.xcodeproj; path = ../../lib/proj.ios/quickcocos2dx.xcodeproj; sourceTree = "<group>"; };
 		F452BFC41687EEF900DC5BCC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F452BFCF1687F0F200DC5BCC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F456ECC115EE018E00FCF3E2 /* QuickXPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickXPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,10 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D1FC691EE00C1100353306 /* libquickcocos2dx.a in Frameworks */,
 				B12B165F1ECADEA9000C674E /* libz.tbd in Frameworks */,
 				B1ADD6DE1EBC7AF300D06C19 /* CoreMotion.framework in Frameworks */,
 				B1ADD6DC1EBC7AE200D06C19 /* GameController.framework in Frameworks */,
-				F4323CF716D3298E0072B773 /* libquickcocos2dx.a in Frameworks */,
 				F452BFD01687F0F200DC5BCC /* UIKit.framework in Frameworks */,
 				F456F0FD15EE0CF600FCF3E2 /* SystemConfiguration.framework in Frameworks */,
 				F456ECC615EE018E00FCF3E2 /* QuartzCore.framework in Frameworks */,
@@ -150,10 +150,18 @@
 			name = ios;
 			sourceTree = "<group>";
 		};
+		B1D1FC641EE00C0700353306 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1D1FC681EE00C0800353306 /* libquickcocos2dx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F456ECB615EE018E00FCF3E2 = {
 			isa = PBXGroup;
 			children = (
-				F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */,
+				B1D1FC631EE00C0700353306 /* quickcocos2dx.xcodeproj */,
 				2EDD2792191B6392004F9539 /* ios */,
 				2EDD2769191B6258004F9539 /* sources */,
 				2EDD277F191B62CA004F9539 /* Resources */,
@@ -195,14 +203,6 @@
 				F452BFCF1687F0F200DC5BCC /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F48F590416D21F8C000651BE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F48F590816D21F8C000651BE /* libquickcocos2dx.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +251,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F48F590416D21F8C000651BE /* Products */;
-					ProjectRef = F4499C7116C7CDE20059FF37 /* quickcocos2dx.xcodeproj */;
+					ProductGroup = B1D1FC641EE00C0700353306 /* Products */;
+					ProjectRef = B1D1FC631EE00C0700353306 /* quickcocos2dx.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -263,11 +263,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F48F590816D21F8C000651BE /* libquickcocos2dx.a */ = {
+		B1D1FC681EE00C0800353306 /* libquickcocos2dx.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libquickcocos2dx.a;
-			remoteRef = F48F590716D21F8C000651BE /* PBXContainerItemProxy */;
+			remoteRef = B1D1FC671EE00C0800353306 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -396,10 +396,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/third_party/ios/libraries\"",
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.quick.player;
 				PRODUCT_NAME = QuickXPlayer;
@@ -439,10 +436,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(QUICKX_ROOT)/lib/third_party/ios/libraries\"",
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.quick.player;
 				PRODUCT_NAME = QuickXPlayer;

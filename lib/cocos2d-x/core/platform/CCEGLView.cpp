@@ -25,10 +25,10 @@ CCEGLView::~CCEGLView()
 
 const CCSize& CCEGLView::getFrameSize()
 {
-	int w, h;
-    SDL_GetWindowSize(_window, &w, &h);
-	m_obScreenSize.width = w;
-	m_obScreenSize.height = h;
+	int gl_w, gl_h;
+    SDL_GL_GetDrawableSize(_window, &gl_w, &gl_h);
+	m_obScreenSize.width = gl_w;
+	m_obScreenSize.height = gl_h;
 	return m_obScreenSize;
 }
 
@@ -53,11 +53,16 @@ bool CCEGLView::createWithSize()
 
 	unsigned flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 
-	//  flags |= SDL_WINDOW_FULLSCREEN;
-	  flags |= SDL_WINDOW_RESIZABLE;
+	  flags |= SDL_WINDOW_FULLSCREEN;
+//	  flags |= SDL_WINDOW_RESIZABLE;
 	//  flags |= SDL_WINDOW_BORDERLESS;
+    flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
 	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)m_obScreenSize.width, (int)m_obScreenSize.height, flags);
+    
+    if (!_window) {
+        CCLog("%s", SDL_GetError());
+    }
 
 	SDL_GL_CreateContext(_window);
 
