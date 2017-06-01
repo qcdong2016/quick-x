@@ -3525,17 +3525,17 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/\"",
-					"\"$(QUICKX_ROOT)/lib/third_party/mac\"",
-					"\"$(QUICKX_ROOT)/lib/3rd\"",
-					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
-					"\"$(QUICKX_ROOT)/lib/3rd/SDL2/include\"",
+					"\"../cocos2d-x/\"",
+					"\"../cocos2d-x/core\"",
+					"\"../cocos2d-x/core/platform\"",
+					"\"../cocos2d-x/core/platform/mac\"",
+					"\"../cocos2d-x/scripting/\"",
+					"\"../third_party/mac\"",
+					"\"../3rd\"",
+					"\"../3rd/lua\"",
+					"\"../3rd/SDL2/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/mac/libraries\"";
+				LIBRARY_SEARCH_PATHS = "\"../third_party/mac/libraries\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3572,17 +3572,17 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/core/platform/mac\"",
-					"\"$(QUICKX_ROOT)/lib/cocos2d-x/scripting/\"",
-					"\"$(QUICKX_ROOT)/lib/third_party/mac\"",
-					"\"$(QUICKX_ROOT)/lib/3rd\"",
-					"\"$(QUICKX_ROOT)/lib/3rd/lua\"",
-					"\"$(QUICKX_ROOT)/lib/3rd/SDL2/include\"",
+					"\"../cocos2d-x/\"",
+					"\"../cocos2d-x/core\"",
+					"\"../cocos2d-x/core/platform\"",
+					"\"../cocos2d-x/core/platform/mac\"",
+					"\"../cocos2d-x/scripting/\"",
+					"\"../third_party/mac\"",
+					"\"../3rd\"",
+					"\"../3rd/lua\"",
+					"\"../3rd/SDL2/include\"",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(QUICKX_ROOT)/lib/third_party/mac/libraries\"";
+				LIBRARY_SEARCH_PATHS = "\"../third_party/mac/libraries\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
