@@ -90,7 +90,6 @@ CCTouchTargetNode::CCTouchTargetNode(CCNode *node)
 {
 	m_node = node;
 	m_node->retain();
-	m_touchMode = node->getTouchMode();
 }
 
 CCTouchTargetNode::~CCTouchTargetNode()

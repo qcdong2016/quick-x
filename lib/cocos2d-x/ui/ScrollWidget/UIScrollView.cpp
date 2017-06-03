@@ -1495,9 +1495,9 @@ void ScrollView::handleReleaseLogic(const Vec2 &touchPoint)
     _bePressed = false;
 }    
 
-bool ScrollView::onTouchBegan(CCTouch *touch, CCEvent *unusedEvent)
+bool ScrollView::onTouchBegan(int id, const Vec2& pos)
 {
-    bool pass = Layout::onTouchBegan(touch, unusedEvent);
+    bool pass = Layout::onTouchBegan(id, pos);
     if (_hitted)
     {
         handlePressLogic(_touchStartPos);
@@ -1505,22 +1505,16 @@ bool ScrollView::onTouchBegan(CCTouch *touch, CCEvent *unusedEvent)
     return pass;
 }
 
-void ScrollView::onTouchMoved(CCTouch *touch, CCEvent *unusedEvent)
+void ScrollView::onTouchMoved(int id, const Vec2& pos)
 {
-    Layout::onTouchMoved(touch, unusedEvent);
+    Layout::onTouchMoved(id, pos);
     handleMoveLogic(_touchMovePos);
 }
 
-void ScrollView::onTouchEnded(CCTouch *touch, CCEvent *unusedEvent)
+void ScrollView::onTouchEnded(int id, const Vec2& pos)
 {
-    Layout::onTouchEnded(touch, unusedEvent);
+    Layout::onTouchEnded(id, pos);
     handleReleaseLogic(_touchEndPos);
-}
-
-void ScrollView::onTouchCancelled(CCTouch *touch, CCEvent *unusedEvent)
-{
-    Layout::onTouchCancelled(touch, unusedEvent);
-    handleReleaseLogic(touch->getLocation());
 }
 
 void ScrollView::update(float dt)

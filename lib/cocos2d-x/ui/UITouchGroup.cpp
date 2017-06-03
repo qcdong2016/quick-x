@@ -66,49 +66,17 @@ TouchGroup* TouchGroup::create(void)
 
 void TouchGroup::onEnter()
 {
-    setTouchMode(kCCTouchesOneByOne);
-    setTouchEnabled(true);
     CCLayer::onEnter();
 }
 
 void TouchGroup::onExit()
 {
-    setTouchEnabled(false);
     CCLayer::onExit();
-}
-
-void TouchGroup::onEnterTransitionDidFinish()
-{
-    CCLayer::onEnterTransitionDidFinish();
 }
     
 bool TouchGroup::checkEventWidget(CCTouch* touch, CCEvent *pEvent)
 {
-    checkTouchEvent(m_pRootWidget,touch, pEvent);
     return (m_pSelectedWidgets->count() > 0);
-}
-    
-bool TouchGroup::checkTouchEvent(Widget *root, CCTouch* touch, CCEvent* pEvent)
-{
-    if (!root->isVisible()) return false;
-
-    ccArray* arrayRootChildren = root->getChildren()->data;
-    int length = arrayRootChildren->num;
-    for (int i=length-1; i >= 0; i--)
-    {
-        Widget* widget = (Widget*)(arrayRootChildren->arr[i]);
-        if (checkTouchEvent(widget, touch, pEvent))
-        {
-            return true;
-        }
-    }
-    bool pass = root->onTouchBegan(touch, pEvent);
-    if (root->_hitted)
-    {
-        m_pSelectedWidgets->addObject(root);
-        return true;
-    }
-    return pass;
 }
 
 void TouchGroup::addWidget(Widget* widget)
@@ -129,46 +97,6 @@ Widget* TouchGroup::getRootWidget()
 void TouchGroup::clear()
 {
     m_pRootWidget->removeAllChildren();
-}
-
-bool TouchGroup::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
-{
-    return checkEventWidget(pTouch, pEvent);
-}
-
-void TouchGroup::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
-{
-    ccArray* selectedWidgetArray = m_pSelectedWidgets->data;
-    int length = selectedWidgetArray->num;
-    for (int i=0; i<length; ++i)
-    {
-        Widget* hitWidget = (Widget*)(selectedWidgetArray->arr[i]);
-        hitWidget->onTouchMoved(pTouch, pEvent);
-    }
-}
-
-void TouchGroup::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
-{
-    ccArray* selectedWidgetArray = m_pSelectedWidgets->data;
-    int length = selectedWidgetArray->num;
-    for (int i=0; i<length; ++i)
-    {
-        Widget* hitWidget = (Widget*)(selectedWidgetArray->arr[0]);
-		hitWidget->onTouchEnded(pTouch, pEvent);
-		m_pSelectedWidgets->removeObject(hitWidget);
-    }
-}
-
-void TouchGroup::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
-{
-    ccArray* selectedWidgetArray = m_pSelectedWidgets->data;
-    int length = selectedWidgetArray->num;
-    for (int i=0; i<length; ++i)
-    {
-        Widget* hitWidget = (Widget*)(selectedWidgetArray->arr[0]);
-        m_pSelectedWidgets->removeObject(hitWidget);
-        hitWidget->onTouchCancelled(pTouch, pEvent);
-    }
 }
     
 }

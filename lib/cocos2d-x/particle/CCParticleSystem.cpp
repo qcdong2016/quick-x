@@ -755,7 +755,7 @@ void CCParticleSystem::update(float dt)
                 if( m_uParticleCount == 0 && m_bIsAutoRemoveOnFinish )
                 {
                     this->unscheduleUpdate();
-                    m_pParent->removeChild(this, true);
+                    _parent->removeChild(this, true);
                     return;
                 }
             }

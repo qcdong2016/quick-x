@@ -594,6 +594,7 @@ function MainScene:restartGame()
 end
 
 function MainScene:ctor()
+    display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self)
     WINSTR = ""
     grid = initGrid(4,4)
 
@@ -605,19 +606,15 @@ function MainScene:ctor()
         self:restartGame()
     end
 
-    local layer = display.newLayer():addTo(self)
-    layer:setTouchEnabled(true)
-    layer:setTouchSwallowEnabled(false)
-    layer:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
+    self:setTouchEnabled(true)
+    self:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
         return self:onTouch(event.name, event.x, event.y)
     end)
-
 end
 
 local M = class('ShaderTest', TestBase)
 
 function M:setup()
-    display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self, -1):pos(-display.cx, -display.cy)
     self.game = MainScene:new():addTo(self):pos(-display.cx, -display.cy)
 
     local btn = Button:create():addTo(self.root):scale(0.5)

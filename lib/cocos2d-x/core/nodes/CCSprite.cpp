@@ -443,7 +443,7 @@ void CCSprite::updateTransform(void)
     if( isDirty() ) {
 
         // If it is not visible, or one of its ancestors is not visible, then do nothing:
-        if( !m_bVisible || ( m_pParent && m_pParent != m_pobBatchNode && ((CCSprite*)m_pParent)->m_bShouldBeHidden) )
+        if( !m_bVisible || (_parent && _parent != m_pobBatchNode && ((CCSprite*)_parent.Get())->m_bShouldBeHidden) )
         {
             m_sQuad.br.vertices = m_sQuad.tl.vertices = m_sQuad.tr.vertices = m_sQuad.bl.vertices = vertex3(0,0,0);
             m_bShouldBeHidden = true;
@@ -452,14 +452,14 @@ void CCSprite::updateTransform(void)
         {
             m_bShouldBeHidden = false;
 
-            if( ! m_pParent || m_pParent == m_pobBatchNode )
+            if( !_parent || _parent == m_pobBatchNode )
             {
                 m_transformToBatch = nodeToParentTransform();
             }
             else
             {
-                CCAssert( dynamic_cast<CCSprite*>(m_pParent), "Logic error in CCSprite. Parent must be a CCSprite");
-                m_transformToBatch = CCAffineTransformConcat( nodeToParentTransform() , ((CCSprite*)m_pParent)->m_transformToBatch );
+                CCAssert( dynamic_cast<CCSprite*>(_parent.Get()), "Logic error in CCSprite. Parent must be a CCSprite");
+                m_transformToBatch = CCAffineTransformConcat( nodeToParentTransform() , ((CCSprite*)_parent.Get())->m_transformToBatch );
             }
 
             //
@@ -723,7 +723,7 @@ void CCSprite::setReorderChildDirtyRecursively(void)
     if ( ! m_bReorderChildDirty )
     {
         m_bReorderChildDirty = true;
-        CCNode* pNode = (CCNode*)m_pParent;
+        CCNode* pNode = (CCNode*)_parent;
         while (pNode && pNode != m_pobBatchNode)
         {
             ((CCSprite*)pNode)->setReorderChildDirtyRecursively();

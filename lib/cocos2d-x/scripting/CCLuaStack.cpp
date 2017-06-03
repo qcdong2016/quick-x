@@ -104,7 +104,7 @@ static int cocos2dx_lua_loader(lua_State *L)
 }
 
 
-struct TimerHiRes CCLuaStack::_timer;
+class TimerHiRes CCLuaStack::_timer;
 CCLuaStackMap CCLuaStack::s_map;
 
 CCLuaStack *CCLuaStack::create(void)

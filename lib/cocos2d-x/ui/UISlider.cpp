@@ -300,9 +300,9 @@ void Slider::setPercent(int percent)
     }
 }
 
-bool Slider::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
+bool Slider::onTouchBegan(int id, const Vec2& pos)
 {
-    bool pass = Widget::onTouchBegan(touch, unused_event);
+    bool pass = Widget::onTouchBegan(id, pos);
     if (_hitted)
     {
         Vec2 nsp = convertToNodeSpace(_touchStartPos);
@@ -312,23 +312,18 @@ bool Slider::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
     return pass;
 }
 
-void Slider::onTouchMoved(CCTouch *touch, CCEvent *unused_event)
+void Slider::onTouchMoved(int id, const Vec2& pos)
 {
-    _touchMovePos = touch->getLocation();
+	_touchMovePos = pos;
     Vec2 nsp = convertToNodeSpace(_touchMovePos);
     _slidBallRenderer->setPosition(Vec2(nsp.x,0));
     setPercent(getPercentWithBallPos(nsp.x));
     percentChangedEvent();
 }
 
-void Slider::onTouchEnded(CCTouch *touch, CCEvent *unused_event)
+void Slider::onTouchEnded(int id, const Vec2& pos)
 {
-    Widget::onTouchEnded(touch, unused_event);
-}
-
-void Slider::onTouchCancelled(CCTouch *touch, CCEvent *unused_event)
-{
-    Widget::onTouchCancelled(touch, unused_event);
+    Widget::onTouchEnded(id, pos);
 }
 
 float Slider::getPercentWithBallPos(float px)

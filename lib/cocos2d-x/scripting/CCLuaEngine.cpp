@@ -99,7 +99,7 @@ int CCLuaEngine::executeGlobalFunction(const char* functionName, int numArgs /* 
     return ret;
 }
 
-int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase)
+int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, const Vec2& pos, int phase)
 {
     m_stack->clean();
     CCLuaValueDict event;
@@ -126,7 +126,6 @@ int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pT
             return 0;
     }
 
-    event["mode"] = CCLuaValue::intValue(kCCTouchesOneByOne);
     switch (phase)
     {
         case NODE_TOUCH_CAPTURING_PHASE:
@@ -141,16 +140,12 @@ int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pT
             event["phase"] = CCLuaValue::stringValue("unknown");
     }
 
-    const Vec2 pt = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
-    event["x"] = CCLuaValue::floatValue(pt.x);
-    event["y"] = CCLuaValue::floatValue(pt.y);
-    const Vec2 prev = CCDirector::sharedDirector()->convertToGL(pTouch->getPreviousLocationInView());
-    event["prevX"] = CCLuaValue::floatValue(prev.x);
-    event["prevY"] = CCLuaValue::floatValue(prev.y);
+    event["x"] = CCLuaValue::floatValue(pos.x);
+    event["y"] = CCLuaValue::floatValue(pos.y);
 
     m_stack->pushCCLuaValueDict(event);
 
-    int eventInt = (phase == NODE_TOUCH_CAPTURING_PHASE) ? NODE_TOUCH_CAPTURE_EVENT : NODE_TOUCH_EVENT;
+    int eventInt = NODE_TOUCH_EVENT;
     CCArray *listeners = pNode->getAllScriptEventListeners();
     CCScriptHandlePair *p;
     int ret = 1;
@@ -190,94 +185,6 @@ int CCLuaEngine::executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pT
     m_stack->clean();
 
     return ret;
-}
-
-int CCLuaEngine::executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase)
-{
-    m_stack->clean();
-    CCLuaValueDict event;
-    switch (eventType)
-    {
-        case CCTOUCHBEGAN:
-            event["name"] = CCLuaValue::stringValue("began");
-            break;
-
-        case CCTOUCHMOVED:
-            event["name"] = CCLuaValue::stringValue("moved");
-            break;
-
-        case CCTOUCHENDED:
-            event["name"] = CCLuaValue::stringValue("ended");
-            break;
-
-        case CCTOUCHCANCELLED:
-            event["name"] = CCLuaValue::stringValue("cancelled");
-            break;
-
-        case CCTOUCHADDED:
-            event["name"] = CCLuaValue::stringValue("added");
-            break;
-
-        case CCTOUCHREMOVED:
-            event["name"] = CCLuaValue::stringValue("removed");
-            break;
-
-        default:
-            return 0;
-    }
-
-    event["mode"] = CCLuaValue::intValue(kCCTouchesAllAtOnce);
-    switch (phase)
-    {
-        case NODE_TOUCH_CAPTURING_PHASE:
-            event["phase"] = CCLuaValue::stringValue("capturing");
-            break;
-
-        case NODE_TOUCH_TARGETING_PHASE:
-            event["phase"] = CCLuaValue::stringValue("targeting");
-            break;
-
-        default:
-            event["phase"] = CCLuaValue::stringValue("unknown");
-    }
-
-    CCLuaValueDict points;
-    CCDirector* pDirector = CCDirector::sharedDirector();
-    char touchId[16];
-    for (CCSetIterator touchIt = pTouches->begin(); touchIt != pTouches->end(); ++touchIt)
-    {
-        CCLuaValueDict point;
-        CCTouch* pTouch = (CCTouch*)*touchIt;
-        sprintf(touchId, "%d", pTouch->getID());
-        point["id"] = CCLuaValue::stringValue(touchId);
-
-        const Vec2 pt = pDirector->convertToGL(pTouch->getLocationInView());
-        point["x"] = CCLuaValue::floatValue(pt.x);
-        point["y"] = CCLuaValue::floatValue(pt.y);
-        const Vec2 prev = pDirector->convertToGL(pTouch->getPreviousLocationInView());
-        point["prevX"] = CCLuaValue::floatValue(prev.x);
-        point["prevY"] = CCLuaValue::floatValue(prev.y);
-
-        points[touchId] = CCLuaValue::dictValue(point);
-    }
-    event["points"] = CCLuaValue::dictValue(points);
-    m_stack->pushCCLuaValueDict(event);
-
-    int eventInt = (phase == NODE_TOUCH_CAPTURING_PHASE) ? NODE_TOUCH_CAPTURE_EVENT : NODE_TOUCH_EVENT;
-    CCArray *listeners = pNode->getAllScriptEventListeners();
-    CCScriptHandlePair *p;
-    for (int i = listeners->count() - 1; i >= 0; --i)
-    {
-        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
-        if (p->event != eventInt || p->removed) continue;
-        m_stack->copyValue(1);
-        m_stack->executeFunctionByHandler(p->listener, 1);
-        m_stack->settop(1);
-    }
-
-    m_stack->clean();
-    
-    return 1;
 }
 
 int CCLuaEngine::executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource /* = NULL*/, const char* pEventSourceClassName /* = NULL*/)

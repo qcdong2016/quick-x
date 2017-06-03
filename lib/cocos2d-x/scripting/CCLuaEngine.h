@@ -112,9 +112,8 @@ public:
      */
     virtual int executeGlobalFunction(const char* functionName, int numArgs = 0);
 
-    virtual int executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase);
-    virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase);
-    virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL);
+	virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, const Vec2& pos, int phase);
+	virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL);
 
     virtual bool handleAssert(const char *msg);
     virtual bool parseConfig(CCScriptEngineProtocol::ConfigType type, const std::string& str);

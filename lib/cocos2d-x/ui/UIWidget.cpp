@@ -33,7 +33,6 @@ namespace ui {
 Widget::Widget():
 _enabled(true),
 _bright(true),
-_touchEnabled(false),
 _touchPassedEnabled(false),
 _focus(false),
 _brightStyle(BRIGHT_NONE),
@@ -382,7 +381,7 @@ void Widget::updateSizeAndPosition()
     }
     else
     {
-        pSize = m_pParent->getSize();
+        pSize = _parent->getSize();
     }
     updateSizeAndPosition(pSize);
 }
@@ -486,19 +485,6 @@ void Widget::onSizeChanged()
         }
     }
 }
-void Widget::setTouchEnabled(bool enable)
-{
-    if (enable == _touchEnabled)
-    {
-        return;
-    }
-    _touchEnabled = enable;
-}
-
-bool Widget::isTouchEnabled() const
-{
-    return _touchEnabled;
-}
 
 bool Widget::isFocused() const
 {
@@ -582,68 +568,61 @@ void Widget::didNotSelectSelf()
 {
     
 }
-
-bool Widget::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
+bool Widget::onTouchBegan(int id, const Vec2& pos)
 {
-    _hitted = false;
-    if (isEnabled() && isTouchEnabled())
-    {
-        _touchStartPos = touch->getLocation();
-        if(hitTest(_touchStartPos) && clippingParentAreaContainPoint(_touchStartPos))
-        {
-            _hitted = true;
-        }
-    }
-    if (!_hitted)
-    {
-        return false;
-    }
-    setFocused(true);
-    Widget* widgetParent = getWidgetParent();
-    if (widgetParent)
-    {
-        widgetParent->checkChildInfo(0,this,_touchStartPos);
-    }
-    pushDownEvent();
-    return !_touchPassedEnabled;
+	_hitted = false;
+	if (isEnabled() && isTouchEnabled())
+	{
+		_touchStartPos = pos;
+		if (hitTest(_touchStartPos) && clippingParentAreaContainPoint(_touchStartPos))
+		{
+			_hitted = true;
+		}
+	}
+	if (!_hitted)
+	{
+		return false;
+	}
+	setFocused(true);
+	Widget* widgetParent = getWidgetParent();
+	if (widgetParent)
+	{
+		widgetParent->checkChildInfo(0, this, _touchStartPos);
+	}
+	pushDownEvent();
+	return !_touchPassedEnabled;
 }
 
-void Widget::onTouchMoved(CCTouch *touch, CCEvent *unused_event)
+void Widget::onTouchMoved(int id, const Vec2& pos)
 {
-    _touchMovePos = touch->getLocation();
-    setFocused(hitTest(_touchMovePos));
-    Widget* widgetParent = getWidgetParent();
-    if (widgetParent)
-    {
-        widgetParent->checkChildInfo(1,this,_touchMovePos);
-    }
-    moveEvent();
+	_touchMovePos = pos;
+	setFocused(hitTest(_touchMovePos));
+	Widget* widgetParent = getWidgetParent();
+	if (widgetParent)
+	{
+		widgetParent->checkChildInfo(1, this, _touchMovePos);
+	}
+	moveEvent();
 }
 
-void Widget::onTouchEnded(CCTouch *touch, CCEvent *unused_event)
+void Widget::onTouchEnded(int id, const Vec2& pos)
 {
-    _touchEndPos = touch->getLocation();
-    bool focus = _focus;
-    setFocused(false);
-    Widget* widgetParent = getWidgetParent();
-    if (widgetParent)
-    {
-        widgetParent->checkChildInfo(2,this,_touchEndPos);
-    }
-    if (focus)
-    {
-        releaseUpEvent();
-    }
-    else
-    {
-        cancelUpEvent();
-    }
-}
-
-void Widget::onTouchCancelled(CCTouch *touch, CCEvent *unused_event)
-{
-    setFocused(false);
-    cancelUpEvent();
+	_touchEndPos = pos;
+	bool focus = _focus;
+	setFocused(false);
+	Widget* widgetParent = getWidgetParent();
+	if (widgetParent)
+	{
+		widgetParent->checkChildInfo(2, this, _touchEndPos);
+	}
+	if (focus)
+	{
+		releaseUpEvent();
+	}
+	else
+	{
+		cancelUpEvent();
+	}
 }
 
 void Widget::pushDownEvent()

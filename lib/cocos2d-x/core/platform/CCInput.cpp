@@ -268,7 +268,7 @@ void Input::handleEvent(void* evt)
 			
 			TouchState& state = _touches[touchID];
 			state.touchid = touchID;
-			state.lastPosition = Vec2((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
+			state.lastPosition = CCDirector::sharedDirector()->convertToGL(Vec2((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height)));
 			state.positon = state.lastPosition;
 			state.delta = CCPointZero;
 			state.pressure = e.tfinger.pressure;
@@ -308,7 +308,7 @@ void Input::handleEvent(void* evt)
 
 			TouchState& state = _touches[touchID];
 			state.touchid = touchID;
-			state.positon = Vec2((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height));
+			state.positon = CCDirector::sharedDirector()->convertToGL(Vec2((int)(e.tfinger.x * size.width), (int)(e.tfinger.y * size.height)));
 			state.delta = state.positon - state.lastPosition;
 			state.pressure = e.tfinger.pressure;
 

@@ -301,11 +301,9 @@ public:
         
     virtual void removeAllNodes();
 
-    
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unusedEvent);
-    virtual void onTouchMoved(CCTouch *touch, CCEvent *unusedEvent);
-    virtual void onTouchEnded(CCTouch *touch, CCEvent *unusedEvent);
-    virtual void onTouchCancelled(CCTouch *touch, CCEvent *unusedEvent);
+	virtual bool onTouchBegan(int id, const Vec2& pos);
+	virtual void onTouchMoved(int id, const Vec2& pos);
+	virtual void onTouchEnded(int id, const Vec2& pos);
         
     virtual void update(float dt);
     

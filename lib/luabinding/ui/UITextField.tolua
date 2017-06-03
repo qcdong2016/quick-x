@@ -25,7 +25,6 @@ class TextField : public Widget
     const char* getFontName();
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
     void setMaxLengthEnabled(bool enable);
     bool isMaxLengthEnabled();
     void setMaxLength(int length);

@@ -71,11 +71,6 @@ public:
      *  @lua NA
      */
     virtual void onExit();
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual void onEnterTransitionDidFinish();
 
 protected:
     bool m_bAccelerometerEnabled;

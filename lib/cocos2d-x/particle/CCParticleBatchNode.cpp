@@ -221,7 +221,6 @@ unsigned int CCParticleBatchNode::addChildHelper(CCParticleSystem* child, int z,
     if( m_bRunning ) 
     {
         child->onEnter();
-        child->onEnterTransitionDidFinish();
     }
     return pos;
 }

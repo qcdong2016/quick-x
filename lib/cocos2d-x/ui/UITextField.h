@@ -122,7 +122,6 @@ public:
     const char* getFontName();
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
     void setMaxLengthEnabled(bool enable);
     bool isMaxLengthEnabled();
     void setMaxLength(int length);
@@ -143,7 +142,8 @@ public:
     void addEventListenerTextField(CCObject* target, SEL_TextFieldEvent selecor);
 
     virtual void setAnchorPoint(const Vec2 &pt);
-    
+	virtual bool onTouchBegan(int id, const Vec2& pos);
+
     /**
      * Returns the "class name" of widget.
      */

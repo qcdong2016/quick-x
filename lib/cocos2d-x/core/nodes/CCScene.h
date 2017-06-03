@@ -47,14 +47,7 @@ class CCTouchTargetNode;
 class CC_DLL CCScene : public CCLayer
 {
 public:
-    /**
-     *  @js ctor
-     */
     CCScene();
-    /**
-     *  @js NA
-     *  @lua NA
-     */
     virtual ~CCScene();
     bool init();
 
@@ -62,65 +55,14 @@ public:
 
     virtual CCScene *getScene();
 
-    void addTouchableNode(CCNode *node);
-    void removeTouchableNode(CCNode *node);
-
     virtual void registerWithTouchDispatcher(void) {}
     virtual void unregisterWithTouchDispatcher(void) {}
-
-    virtual bool isTouchEnabled() { return true; }
-    virtual void setTouchEnabled(bool value) { CC_UNUSED_PARAM(value); }
-
-    virtual void setTouchMode(int mode) { CC_UNUSED_PARAM(mode); }
-    virtual int getTouchMode() { return kCCTouchesAllAtOnce; }
-
-    virtual bool isTouchCaptureEnabled() { return true; }
-    virtual void setTouchCaptureEnabled(bool value) { CC_UNUSED_PARAM(value); }
-    virtual bool isTouchSwallowEnabled() { return false; };
-    virtual void setTouchSwallowEnabled(bool value) { CC_UNUSED_PARAM(value); }
-
-    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent) {
-        CC_UNUSED_PARAM(pTouch);
-        CC_UNUSED_PARAM(pEvent);
-        return true;
-    };
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent) {
-        CC_UNUSED_PARAM(pTouch);
-        CC_UNUSED_PARAM(pEvent);
-    };
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent) {
-        CC_UNUSED_PARAM(pTouch);
-        CC_UNUSED_PARAM(pEvent);
-    };
-    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent) {
-        CC_UNUSED_PARAM(pTouch);
-        CC_UNUSED_PARAM(pEvent);
-    };
-
-    virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
 
 	void handleTouchBegin(EventData& data);
 	void handleTouchEnd(EventData& data);
 	void handleTouchMove(EventData& data);
-
-    virtual void visit();
-    virtual void cleanup(void);
-
 protected:
-    std::set<int> m_touchingIds;
-    CCArray *m_touchableNodes;
-    CCArray *m_touchingTargets;
-    bool m_touchDispatchingEnabled;
-    bool m_touchRegistered;
-
-    void sortAllTouchableNodes(CCArray *nodes);
-    void enableTouchDispatching();
-    void disableTouchDispatching();
-
-    void dispatchingTouchEvent(CCSet *pTouches, CCEvent *pEvent, int event);
+	std::map<int, WeakPtr<CCNode> > _touchingNodes;
 };
 
 // end of scene group

@@ -46,14 +46,10 @@ class Widget : public CCNode
     bool isBright() const;
     
     
-    virtual void setTouchEnabled(bool enabled);
+
     
     
     void setBrightStyle(BrightStyle style);
-    
-    
-    bool isTouchEnabled() const;
-    
     
     bool isFocused() const;
 
@@ -173,10 +169,6 @@ class Widget : public CCNode
     
     virtual bool hitTest(const Vec2 &pt);
     
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchEnded(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchCancelled(CCTouch *touch, CCEvent *unused_event);    
     
     void setLayoutParameter(LayoutParameter* parameter);
     

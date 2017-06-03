@@ -180,10 +180,9 @@ public:
      */
     void addEventListenerSlider(CCObject* target,SEL_SlidPercentChangedEvent selector);
     
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchEnded(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchCancelled(CCTouch *touch, CCEvent *unused_event);
+	virtual bool onTouchBegan(int id, const Vec2& pos);
+	virtual void onTouchMoved(int id, const Vec2& pos);
+	virtual void onTouchEnded(int id, const Vec2& pos);
     
     //override "getContentSize" method of widget.
     virtual const CCSize& getSize() const;

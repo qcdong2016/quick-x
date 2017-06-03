@@ -73,16 +73,7 @@ public:
      *  @lua NA
      */
     virtual void onEnter();
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual void onEnterTransitionDidFinish();
-    /**
-     *  @js NA
-     *  @lua NA
-     */
-    virtual void onExitTransitionDidStart();
+  
     /**
      *  @js NA
      *  @lua NA

@@ -397,19 +397,19 @@ void PageView::update(float dt)
     }
 }
 
-bool PageView::onTouchBegan(CCTouch *touch, CCEvent *unusedEvent)
+bool PageView::onTouchBegan(int id, const Vec2& pos)
 {
-    bool pass = Layout::onTouchBegan(touch, unusedEvent);
+    bool pass = Layout::onTouchBegan(id, pos);
 	if (_hitted)
     {
-        handlePressLogic(touch->getLocation());
+        handlePressLogic(pos);
     }
     return pass;
 }
 
-void PageView::onTouchMoved(CCTouch *touch, CCEvent *unusedEvent)
+void PageView::onTouchMoved(int id, const Vec2& pos)
 {
-    _touchMovePos = touch->getLocation();
+	_touchMovePos = pos;
     handleMoveLogic(_touchMovePos);
 	Widget* widgetParent = getWidgetParent();
     if (widgetParent)
@@ -419,16 +419,10 @@ void PageView::onTouchMoved(CCTouch *touch, CCEvent *unusedEvent)
     moveEvent();
 }
 
-void PageView::onTouchEnded(CCTouch *touch, CCEvent *unusedEvent)
+void PageView::onTouchEnded(int id, const Vec2& pos)
 {
-    Layout::onTouchEnded(touch, unusedEvent);
+    Layout::onTouchEnded(id, pos);
     handleReleaseLogic(_touchEndPos);
-}
-    
-void PageView::onTouchCancelled(CCTouch *touch, CCEvent *unusedEvent)
-{
-    Layout::onTouchCancelled(touch, unusedEvent);
-    handleReleaseLogic(touch->getLocation());
 }
 
 void PageView::movePages(float offset)

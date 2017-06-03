@@ -53,7 +53,7 @@ bool CCEGLView::createWithSize()
 
 	unsigned flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 
-	  flags |= SDL_WINDOW_FULLSCREEN;
+	  //flags |= SDL_WINDOW_FULLSCREEN;
 //	  flags |= SDL_WINDOW_RESIZABLE;
 	//  flags |= SDL_WINDOW_BORDERLESS;
     flags |= SDL_WINDOW_ALLOW_HIGHDPI;

@@ -547,9 +547,9 @@ const char* TextField::getStringValue()
     return _textFieldRenderer->getString();
 }
 
-bool TextField::onTouchBegan(CCTouch *touch, CCEvent *unused_event)
+bool TextField::onTouchBegan(int id, const Vec2& pos)
 {
-    bool pass = Widget::onTouchBegan(touch, unused_event);
+    bool pass = Widget::onTouchBegan(id, pos);
     if (_hitted)
     {
         _textFieldRenderer->attachWithIME();

@@ -1735,7 +1735,9 @@ static int addDrawFunction(lua_State* L)
 {
 	SharedPtr<LuaFunction> func(new LuaFunction(L, 1));
 
-	ImGuiCC::get<LuaUI>()->addFunction(func);
+	LuaUI* ui = ImGuiCC::get<LuaUI>();
+	if (ui)
+		ui->addFunction(func);
 
 	return 0;
 }

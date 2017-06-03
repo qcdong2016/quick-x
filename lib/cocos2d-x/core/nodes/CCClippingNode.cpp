@@ -123,18 +123,6 @@ void CCClippingNode::onEnter()
     m_pStencil->onEnter();
 }
 
-void CCClippingNode::onEnterTransitionDidFinish()
-{
-    CCNode::onEnterTransitionDidFinish();
-    m_pStencil->onEnterTransitionDidFinish();
-}
-
-void CCClippingNode::onExitTransitionDidStart()
-{
-    m_pStencil->onExitTransitionDidStart();
-    CCNode::onExitTransitionDidStart();
-}
-
 void CCClippingNode::onExit()
 {
     m_pStencil->onExit();

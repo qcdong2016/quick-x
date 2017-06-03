@@ -114,15 +114,6 @@ public:
     bool isBright() const;
     
     /**
-     * Sets whether the widget is touch enabled
-     *
-     * The default value is false, a widget is default to touch disabled
-     *
-     * @param visible   true if the widget is touch enabled, false if the widget is touch disabled.
-     */
-    virtual void setTouchEnabled(bool enabled);
-    
-    /**
      * To set the bright style of widget.
      *
      * @see BrightStyle
@@ -130,13 +121,6 @@ public:
      * @param style   BRIGHT_NORMAL the widget is normal state, BRIGHT_HIGHLIGHT the widget is height light state.
      */
     void setBrightStyle(BrightStyle style);
-    
-    /**
-     * Determines if the widget is touch enabled
-     *
-     * @return true if the widget is touch enabled, false if the widget is touch disabled.
-     */
-    bool isTouchEnabled() const;
     
     /**
      * Determines if the widget is on focused
@@ -483,11 +467,9 @@ public:
      */
     virtual bool hitTest(const Vec2 &pt);
     
-    virtual bool onTouchBegan(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchMoved(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchEnded(CCTouch *touch, CCEvent *unused_event);
-    virtual void onTouchCancelled(CCTouch *touch, CCEvent *unused_event);
-    
+	virtual bool onTouchBegan(int id, const Vec2& pos);
+	virtual void onTouchMoved(int id, const Vec2& pos);
+	virtual void onTouchEnded(int id, const Vec2& pos);
     /**
      * Sets a LayoutParameter to widget. 
      *
@@ -613,7 +595,6 @@ protected:
 protected:
     bool _enabled;            ///< Highest control of widget
     bool _bright;             ///< is this widget bright
-    bool _touchEnabled;       ///< is this widget touch endabled
     bool _touchPassedEnabled; ///< is the touch event should be passed
     bool _focus;              ///< is the widget on focus
     BrightStyle _brightStyle; ///< bright style

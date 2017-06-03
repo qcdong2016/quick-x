@@ -61,10 +61,6 @@ enum {
     kCCNodeTagInvalid = -1,
 };
 
-#define kCCTouchesAllAtOnce                 0
-#define kCCTouchesOneByOne                  1
-
-
 /** @brief CCNode is the main element. Anything that gets drawn or contains things that get drawn is a CCNode.
  The most popular CCNodes are: CCScene, CCLayer, CCSprite, CCMenu.
 
@@ -879,14 +875,6 @@ public:
      */
     virtual void onEnter();
 
-    /** Event callback that is invoked when the CCNode enters in the 'stage'.
-     * If the CCNode enters the 'stage' with a transition, this event is called when the transition finishes.
-     * If you override onEnterTransitionDidFinish, you shall call its parent's one, e.g. CCNode::onEnterTransitionDidFinish()
-     * @js NA
-     * @lua NA
-     */
-    virtual void onEnterTransitionDidFinish();
-
     /**
      * Event callback that is invoked every time the CCNode leaves the 'stage'.
      * If the CCNode leaves the 'stage' with a transition, this event is called when the transition finishes.
@@ -896,14 +884,6 @@ public:
      * @lua NA
      */
     virtual void onExit();
-
-    /**
-     * Event callback that is called every time the CCNode leaves the 'stage'.
-     * If the CCNode leaves the 'stage' with a transition, this callback is called when the transition starts.
-     * @js NA
-     * @lua NA
-     */
-    virtual void onExitTransitionDidStart();
 
     /// @} end of event callbacks.
 
@@ -1387,49 +1367,12 @@ public:
 
     virtual CCScene *getScene();
 
-    virtual void registerWithTouchDispatcher(void);
-    virtual void unregisterWithTouchDispatcher(void);
-
-    /** whether or not it will receive Touch events.
-     You can enable / disable touch events with this property.
-     Only the touches of this node will be affected. This "method" is not propagated to it's children.
-     @since v0.8.1
-     */
-    virtual bool isTouchCaptureEnabled();
-    virtual void setTouchCaptureEnabled(bool value);
-    virtual bool isTouchSwallowEnabled();
-    virtual void setTouchSwallowEnabled(bool value);
-
-    virtual bool ccTouchCaptureBegan(CCTouch *pTouch, CCNode *pTarget);
-    virtual bool ccTouchCaptureMoved(CCTouch *pTouch, CCNode *pTarget);
-    virtual void ccTouchCaptureEnded(CCTouch *pTouch, CCNode *pTarget);
-    virtual void ccTouchCaptureCancelled(CCTouch *pTouch, CCNode *pTarget);
-
-    virtual void ccTouchesCaptureBegan(CCSet *pTouches, CCNode *pTarget);
-    virtual void ccTouchesCaptureMoved(CCSet *pTouches, CCNode *pTarget);
-    virtual void ccTouchesCaptureEnded(CCSet *pTouches, CCNode *pTarget);
-    virtual void ccTouchesCaptureCancelled(CCSet *pTouches, CCNode *pTarget);
-    virtual void ccTouchesCaptureAdded(CCSet *pTouches, CCNode *pTarget);
-    virtual void ccTouchesCaptureRemoved(CCSet *pTouches, CCNode *pTarget);
-
     virtual bool isTouchEnabled();
     virtual void setTouchEnabled(bool value);
 
-    virtual void setTouchMode(int mode);
-    virtual int getTouchMode();
-
-    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-
-    virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesCancelled(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesAdded(CCSet *pTouches, CCEvent *pEvent);
-    virtual void ccTouchesRemoved(CCSet *pTouches, CCEvent *pEvent);
-
+	virtual bool onTouchBegan(int id, const Vec2& pos);
+	virtual void onTouchMoved(int id, const Vec2& pos);
+	virtual void onTouchEnded(int id, const Vec2& pos);
     /// @}
 
     /**
@@ -1494,8 +1437,8 @@ protected:
 
     int m_nZOrder;                      ///< z-order value that affects the draw order
 
-	SharedPtr<CCArray> m_pChildren;               ///< array of children nodes
-    CCNode *m_pParent;                  ///< weak reference to parent node
+	SharedPtr<CCArray> m_pChildren;     ///< array of children nodes
+	WeakPtr<CCNode> _parent;             ///< weak reference to parent node
 
     int m_nTag;                         ///< a tag. Can be any number you assigned just to identify this node
 
@@ -1536,17 +1479,10 @@ protected:
     unsigned int m_drawOrder;
     static unsigned int g_drawOrder;
     
-    // touch events
-    bool m_bTouchCaptureEnabled;
-    bool m_bTouchSwallowEnabled;
-    bool m_bTouchEnabled;
-    int m_nTouchPriority;
-    int m_eTouchMode;
+    bool _touchEnabled;
     
-    virtual int executeScriptTouchHandler(int nEventType, CCTouch *pTouch, int phase = NODE_TOUCH_TARGETING_PHASE);
-    virtual int executeScriptTouchHandler(int nEventType, CCSet *pTouches, int phase = NODE_TOUCH_TARGETING_PHASE);
-
-    friend class CCScene;
+	virtual int executeScriptTouchHandler(int nEventType, const Vec2& pos);
+	friend class CCScene;
 };
 
 // end of base_node group

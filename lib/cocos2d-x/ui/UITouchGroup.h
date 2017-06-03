@@ -63,12 +63,7 @@ public:
     
     virtual void onEnter();
     virtual void onExit();
-    virtual void onEnterTransitionDidFinish();
     
-    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
     /**
      * Add a widget to UILayer, for drawing.
@@ -99,7 +94,6 @@ public:
     Widget* getRootWidget();
 protected:
     bool checkEventWidget(CCTouch* touch, CCEvent *pEvent);
-    bool checkTouchEvent(Widget* root, CCTouch* touch, CCEvent* pEvent);
 protected:
     Vec2 touchBeganedPoint;
     Vec2 touchMovedPoint;

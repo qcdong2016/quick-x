@@ -4,7 +4,7 @@ end)
 
 function TestBase:ctor(name)
     local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
-    self:addChild(touchLayer)
+    self:addChild(touchLayer, 1)
 
     local root = Widget:create()
     touchLayer:addWidget(root)
@@ -40,6 +40,7 @@ function TestBase:pushButton(name, func)
     local label = Label:create()
     label:setFontSize(30)
     label:setText(name)
+    label:setName(name)
     label:onClicked(func)
     self.listView:pushBackCustomItem(label)
 end
@@ -55,7 +56,6 @@ function Menu:ctor()
     self:addChild(touchLayer)
 
     self.touchLayer = touchLayer;
-
 
     local root = Widget:create()
     touchLayer:addWidget(root)
@@ -81,6 +81,7 @@ function Menu:ctor()
         local label = Label:create()
         label:setFontSize(30)
         label:setText(v)
+    label:setName(v)
         label:onClicked(function() self:gotoTest(v) end)
         listView:pushBackCustomItem(label)
     end

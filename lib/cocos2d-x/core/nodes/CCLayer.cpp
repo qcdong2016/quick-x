@@ -42,7 +42,6 @@ CCLayer::CCLayer()
 : m_bAccelerometerEnabled(false)
 {
     m_bIgnoreAnchorPointForPosition = true;
-    m_eTouchMode = kCCTouchesOneByOne;
     setAnchorPoint(ccp(0.5f, 0.5f));
 }
 
@@ -56,7 +55,7 @@ bool CCLayer::init()
         const CCSize &winSize = pDirector->getWinSize();
         setSize(winSize);
         setCascadeBoundingBox(CCRect(0, 0, winSize.width, winSize.height));
-        m_bTouchEnabled = false;
+        _touchEnabled = false;
         m_bAccelerometerEnabled = false;
         // success
         bRet = true;
@@ -106,18 +105,6 @@ void CCLayer::onExit()
 
     CCNode::onExit();
 }
-
-void CCLayer::onEnterTransitionDidFinish()
-{
-    if (m_bAccelerometerEnabled)
-    {
-        CCDirector* pDirector = CCDirector::sharedDirector();
-		//pDirector->getSubSystem<CCAccelerometer>()->setDelegate(this);
-    }
-
-    CCNode::onEnterTransitionDidFinish();
-}
-
 
 /// CCLayerColor
 

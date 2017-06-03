@@ -143,8 +143,7 @@ public:
     virtual int executeGlobalFunction(const char* functionName, int numArgs = 0) = 0;
 
     /** functions for executing touch event */
-    virtual int executeNodeTouchesEvent(CCNode* pNode, int eventType, CCSet *pTouches, int phase) = 0;
-    virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, CCTouch *pTouch, int phase) = 0;
+	virtual int executeNodeTouchEvent(CCNode* pNode, int eventType, const Vec2& pos, int phase) = 0;
 
     /** function for common event */
     virtual int executeEvent(int nHandler, const char* pEventName, CCObject* pEventSource = NULL, const char* pEventSourceClassName = NULL) = 0;
