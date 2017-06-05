@@ -23,6 +23,11 @@
  ****************************************************************************/
 
 #include "platform/CCPlatformConfig.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIWebView.h>
+
 
 #include "UIWebViewImpl-ios.h"
 #include "UIWebView.h"
@@ -391,3 +396,5 @@ void WebViewImpl::setVisible(bool visible){
 }
 
 }}
+
+#endif
