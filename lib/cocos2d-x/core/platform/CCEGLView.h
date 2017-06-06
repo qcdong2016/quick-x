@@ -42,9 +42,10 @@ public:
 	virtual void end();
 	virtual void swapBuffers();
 	virtual void setIMEKeyboardState(bool bOpen);
-	virtual const CCSize& getFrameSize();
 	virtual void setFrameSize(const CCSize& size);
 	virtual void setFrameSize(int w, int h) { setFrameSize(CCSize(w, h)); }
+	virtual const CCSize& getFrameSize();
+	virtual const CCSize& getDrawableSize();
 
     
     void onWindowResized();
@@ -64,26 +65,16 @@ public:
 	*/
 	virtual bool isScissorEnabled();
 
-	/**
-	* Get the current scissor rectangle
-	* @lua NA
-	*/
-	virtual CCRect getScissorRect();
-
-	/**
-	* Get the opengl view port rectangle.
-	*/
-	const CCRect& getViewPortRect() const;
 	static CCEGLView* sharedOpenGLView();
 
 private:
 
 	void resize(int width, int height);
 	bool createWithSize();
-	// real screen size
-	CCSize m_obScreenSize;
-	// the view port size
-	CCRect m_obViewPortRect;
+    
+    CCSize _windowSize;
+    CCSize _glSize;
+    
 	friend class CCDirector;
 };
 

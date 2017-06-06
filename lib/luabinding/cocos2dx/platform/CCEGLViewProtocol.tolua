@@ -36,16 +36,6 @@ class CCEGLView
      * Get whether GL_SCISSOR_TEST is enable
      */
     bool isScissorEnabled();
-
-    /**
-     * Get the current scissor rectangle
-     */
-    CCRect getScissorRect();
-
-    /**
-     * Get the opengl view port rectangle.
-     */
-    CCRect getViewPortRect();
 };
 
 // end of platform group

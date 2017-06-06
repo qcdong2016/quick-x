@@ -301,15 +301,16 @@ void CCDirector::setViewport()
 {
     if (m_pobOpenGLView)
     {
-        m_pobOpenGLView->setViewPortInPoints(0, 0, m_obWinSizeInPoints.width, m_obWinSizeInPoints.height);
+        CCSize glSize = m_pobOpenGLView->getDrawableSize();
+        m_pobOpenGLView->setViewPortInPoints(0, 0, glSize.width, glSize.height);
     }
 }
 
 void CCDirector::setProjection(ccDirectorProjection kProjection)
 {
-    CCSize size = m_obWinSizeInPoints;
-
-    setViewport();
+    CCSize size = m_pobOpenGLView->getFrameSize();
+    
+    this->setViewport();
 
     switch (kProjection)
     {
@@ -317,9 +318,7 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
         {
             kmGLMatrixMode(KM_GL_PROJECTION);
             kmGLLoadIdentity();
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-            kmGLMultMatrix(CCEGLView::sharedOpenGLView()->getOrientationMatrix());
-#endif
+            
             kmMat4 orthoMatrix;
             kmMat4OrthographicProjection(&orthoMatrix, 0, size.width, 0, size.height, -1024, 1024 );
             kmGLMultMatrix(&orthoMatrix);
@@ -337,14 +336,8 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
             kmGLMatrixMode(KM_GL_PROJECTION);
             kmGLLoadIdentity();
             
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-            //if needed, we need to add a rotation for Landscape orientations on Windows Phone 8 since it is always in Portrait Mode
-            kmGLMultMatrix(CCEGLView::sharedOpenGLView()->getOrientationMatrix());
-#endif
             // issue #1334
             kmMat4PerspectiveProjection( &matrixPerspective, 60, (GLfloat)size.width/size.height, 0.1f, zeye*2);
-            // kmMat4PerspectiveProjection( &matrixPerspective, 60, (GLfloat)size.width/size.height, 0.1f, 1500);
-
             kmGLMultMatrix(&matrixPerspective);
 
             kmGLMatrixMode(KM_GL_MODELVIEW);

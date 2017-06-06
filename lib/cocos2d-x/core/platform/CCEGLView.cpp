@@ -15,7 +15,8 @@ SDL_Window* _window = nullptr;
 static CCEGLView* _instance = nullptr;
 
 CCEGLView::CCEGLView()
-	: m_obScreenSize(960, 640)
+	: _windowSize(960, 640)
+    , _glSize(960, 640)
 {
 }
 
@@ -23,18 +24,18 @@ CCEGLView::~CCEGLView()
 {
 }
 
+const CCSize& CCEGLView::getDrawableSize()
+{
+    return _glSize;
+}
+
 const CCSize& CCEGLView::getFrameSize()
 {
-	int gl_w, gl_h;
-    SDL_GL_GetDrawableSize(_window, &gl_w, &gl_h);
-	m_obScreenSize.width = gl_w;
-	m_obScreenSize.height = gl_h;
-	return m_obScreenSize;
+    return _windowSize;
 }
 
 void CCEGLView::setFrameSize(const CCSize& size)
 {
-	m_obScreenSize = size;
 	if (_window)
 		SDL_SetWindowSize(_window, (int)size.width, (int)size.height);
 }
@@ -53,16 +54,22 @@ bool CCEGLView::createWithSize()
 
 	unsigned flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 
-	  //flags |= SDL_WINDOW_FULLSCREEN;
 //	  flags |= SDL_WINDOW_RESIZABLE;
-	//  flags |= SDL_WINDOW_BORDERLESS;
     flags |= SDL_WINDOW_ALLOW_HIGHDPI;
+    
+#if BUILD_FOR(IOS) || BUILD_FOR(ANDROID)
+	flags |= SDL_WINDOW_FULLSCREEN;
+	flags |= SDL_WINDOW_BORDERLESS;
+#endif
 
-	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)m_obScreenSize.width, (int)m_obScreenSize.height, flags);
+	_window = SDL_CreateWindow("Cocos2d SDL ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)_windowSize.width, (int)_windowSize.height, flags);
     
     if (!_window) {
         CCLog("%s", SDL_GetError());
     }
+    
+    flags = SDL_GetWindowFlags(_window);
+    
 
 	SDL_GL_CreateContext(_window);
 
@@ -87,12 +94,15 @@ bool CCEGLView::createWithSize()
         CCLog("OpenGL 2.0 not supported");
     }
 #endif
+    
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 && CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif 
     SDL_GL_SetSwapInterval(1);
-
+    
+    onWindowResized();
+    
 	return true;
 }
 
@@ -131,18 +141,18 @@ CCEGLView* CCEGLView::sharedOpenGLView()
 
 void CCEGLView::setViewPortInPoints(float x, float y, float w, float h)
 {
-	glViewport((GLint)(x + m_obViewPortRect.origin.x),
-		(GLint)(y + m_obViewPortRect.origin.y),
-		(GLsizei)(w),
-		(GLsizei)(h));
+	glViewport((GLint)x, (GLint)y, (GLsizei)w, (GLsizei)h);
 }
 
 void CCEGLView::setScissorInPoints(float x, float y, float w, float h)
 {
-	glScissor((GLint)(x + m_obViewPortRect.origin.x),
-		(GLint)(y + m_obViewPortRect.origin.y),
-		(GLsizei)(w),
-		(GLsizei)(h));
+    float sx = _glSize.width / _windowSize.width;
+    float sy = _glSize.height / _windowSize.height;
+    x *= sx;
+    y *= sy;
+    w *= sx;
+    h *= sy;
+	glScissor((GLint)x, (GLint)y, (GLsizei)w, (GLsizei)h);
 }
 
 bool CCEGLView::isScissorEnabled()
@@ -150,27 +160,15 @@ bool CCEGLView::isScissorEnabled()
 	return (GL_FALSE == glIsEnabled(GL_SCISSOR_TEST)) ? false : true;
 }
 
-CCRect CCEGLView::getScissorRect()
-{
-	GLfloat params[4];
-	glGetFloatv(GL_SCISSOR_BOX, params);
-	float x = (params[0] - m_obViewPortRect.origin.x);
-	float y = (params[1] - m_obViewPortRect.origin.y);
-	float w = params[2];
-	float h = params[3];
-	return CCRectMake(x, y, w, h);
-}
-
-const CCRect& CCEGLView::getViewPortRect() const
-{
-	return m_obViewPortRect;
-}
-
 void CCEGLView::onWindowResized()
 {
     int w, h;
+    
     SDL_GetWindowSize(_window, &w, &h);
-    m_obScreenSize = CCSize((float)w, (float)h);
+    _windowSize = CCSize((float)w, (float)h);
+    
+    SDL_GL_GetDrawableSize(_window, &w, &h);
+    _glSize = CCSize((float)w, (float)h);
 }
 
 NS_CC_END

@@ -594,7 +594,8 @@ function MainScene:restartGame()
 end
 
 function MainScene:ctor()
-    display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self)
+    local layer = display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self)
+    layer:setSize(CCSize(display.width, display.height))
     WINSTR = ""
     grid = initGrid(4,4)
 

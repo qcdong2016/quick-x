@@ -545,7 +545,7 @@ static CGPoint convertDesignCoordToScreenCoord(const Vec2& designCoord)
     
 //    
     Vec2 visiblePos = ccp(designCoord.x, designCoord.y);
-    Vec2 screenGLPos = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
+    Vec2 screenGLPos;// = ccpAdd(visiblePos, eglView->getViewPortRect().origin);
 //
     CGPoint screenPos = CGPointMake(screenGLPos.x, viewH - screenGLPos.y);
     //    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);

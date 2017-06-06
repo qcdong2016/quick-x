@@ -24,16 +24,15 @@ void PlayerModule::draw(EventData& data)
 	
 	//glUseProgram(0);
 	ImGuiIO& io = ImGui::GetIO();
+    CCEGLView* view = CCDirector::sharedDirector()->getOpenGLView();
 	io.DeltaTime = CCDirector::sharedDirector()->getDeltaTime();
 
 	// Setup display size (every frame to accommodate for window resizing)
-	CCSize sz = CCEGLView::sharedOpenGLView()->getFrameSize();
-	int w = sz.width;
-	int h = sz.height;
-	int display_w = w, display_h = h;
+	CCSize sz = view->getFrameSize();
+    CCSize drawableSize = view->getDrawableSize();
 
-	io.DisplaySize = ImVec2((float)w, (float)h);
-	io.DisplayFramebufferScale = ImVec2(w > 0 ? ((float)display_w / w) : 0, h > 0 ? ((float)display_h / h) : 0);
+	io.DisplaySize = ImVec2(sz.width, sz.height);
+	io.DisplayFramebufferScale = ImVec2(sz.width > 0 ? (drawableSize.width/ sz.width) : 0, sz.height > 0 ? (drawableSize.height / sz.height) : 0);
 
 	// Start the frame
 	ImGui::NewFrame();
