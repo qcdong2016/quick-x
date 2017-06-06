@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.4.1)
 
 project(QuickX)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 set(CWD ${CMAKE_CURRENT_LIST_DIR})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
@@ -57,9 +59,9 @@ add_subdirectory(lib/cocos2d-x)
 include_directories(${ThirdInc})
 
 if(ANDROID)
-	add_library(game SHARED template/sources/App.cpp)
+	add_library(game SHARED lib/App.cpp)
 else()
-	add_executable(game template/sources/App.cpp)
+	add_executable(game lib/App.cpp)
 endif()
 
 target_link_libraries(game quickx)

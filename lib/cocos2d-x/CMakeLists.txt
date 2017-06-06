@@ -67,7 +67,7 @@ imgui kazmath lua lua_extensions SDL2 spine stb tinyxml2 tolua
 )
 
 if (MSVC)#win32
-	target_link_libraries(quickx GLEW zlib
+	target_link_libraries(quickx glew zlib
 		ws2_32
 		wsock32
 		winmm

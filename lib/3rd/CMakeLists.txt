@@ -1,3 +1,4 @@
+
 add_subdirectory(imgui)
 add_subdirectory(kazmath)
 add_subdirectory(lua)
@@ -13,3 +14,17 @@ if (MSVC)
     add_subdirectory(glew)
 endif()
 
+set(ThirdLib 
+    imgui
+    kazmath
+    lua
+    lua_extensions
+    SDL2
+    spine
+    stb
+    tinyxml2
+    tolua
+    zlib
+    glew
+)
+set_target_properties(${ThirdLib} PROPERTIES FOLDER "3rd")
