@@ -126,8 +126,9 @@ protected:
     void labelAtlasScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
-    UICCLabelAtlas* _labelAtlasRenderer;
+    SharedPtr<UICCLabelAtlas> _labelAtlasRenderer;
     std::string _stringValue;
     std::string _charMapFileName;
     int _itemWidth;

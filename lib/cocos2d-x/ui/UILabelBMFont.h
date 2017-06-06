@@ -82,8 +82,9 @@ protected:
     void labelBMFontScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
-    CCLabelBMFont* _labelBMFontRenderer;
+    SharedPtr<CCLabelBMFont> _labelBMFontRenderer;
     bool _fntFileHasInit;
     std::string _fntFileName;
     std::string _stringValue;

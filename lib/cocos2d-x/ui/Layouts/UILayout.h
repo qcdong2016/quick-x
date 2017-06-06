@@ -36,13 +36,6 @@ namespace ui {
 
 typedef enum
 {
-    LAYOUT_COLOR_NONE,
-    LAYOUT_COLOR_SOLID,
-    LAYOUT_COLOR_GRADIENT
-}LayoutBackGroundColorType;
-
-typedef enum
-{
     LAYOUT_ABSOLUTE,
     LAYOUT_LINEAR_VERTICAL,
     LAYOUT_LINEAR_HORIZONTAL,
@@ -76,105 +69,7 @@ public:
      * Allocates and initializes a layout.
      */
     static Layout* create();
-        
-    //background
-    /**
-     * Sets a background image for layout
-     *
-     * @param fileName image file path.
-     *
-     * @param texType @see TextureResType. UI_TEX_TYPE_LOCAL means local file, UI_TEX_TYPE_PLIST means sprite frame.
-     */
-    void setBackGroundImage(const char* fileName);
-    std::string getBackGroundImage() { return _backGroundImageFileName; }
-
-    /**
-     * Sets a background image capinsets for layout, if the background image is a scale9 render.
-     *
-     * @param capinsets of background image.
-     *
-     */
-    void setBackGroundImageCapInsets(const CCRect& capInsets);
     
-    const CCRect& getBackGroundImageCapInsets();
-    
-    /**
-     * Sets Color Type for layout.
-     *
-     * @param type   @see LayoutBackGroundColorType.
-     */
-    void setBackGroundColorType(LayoutBackGroundColorType type);
-    
-    LayoutBackGroundColorType getBackGroundColorType();
-    
-    /**
-     * Sets background iamge use scale9 renderer.
-     *
-     * @param enabled   true that use scale9 renderer, false otherwise.
-     */
-    void setBackGroundImageScale9Enabled(bool enabled);
-    
-    bool isBackGroundImageScale9Enabled();
-    
-    /**
-     * Sets background color for layout, if color type is LAYOUT_COLOR_SOLID
-     *
-     * @param color
-     */
-    void setBackGroundColor(const ccColor3B &color);
-    
-    const ccColor3B& getBackGroundColor();
-    
-    /**
-     * Sets background color for layout, if color type is LAYOUT_COLOR_GRADIENT
-     *
-     * @param start color
-     *
-     * @param end color
-     */
-    void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
-    
-    const ccColor3B& getBackGroundStartColor();
-    
-    const ccColor3B& getBackGroundEndColor();
-    
-    /**
-     * Sets background opacity layout.
-     *
-     * @param opacity
-     */
-    void setBackGroundColorOpacity(GLubyte opacity);
-    
-    GLubyte getBackGroundColorOpacity();
-    
-    /**
-     * Sets background color vector for layout, if color type is LAYOUT_COLOR_GRADIENT
-     *
-     * @param vector
-     */
-    void setBackGroundColorVector(const Vec2 &vector);
-    
-    const Vec2& getBackGroundColorVector();
-    
-    void setBackGroundImageColor(const ccColor3B& color);
-    
-    void setBackGroundImageOpacity(GLubyte opacity);
-    
-    const ccColor3B& getBackGroundImageColor();
-    
-    GLubyte getBackGroundImageOpacity();
-    
-    /**
-     * Remove the background image of layout.
-     */
-    void removeBackGroundImage();
-    
-    /**
-     * Gets background image texture size.
-     *
-     * @return background image texture size.
-     */
-    const CCSize& getBackGroundImageTextureSize() const;
     
     /**
      * Changes if layout can clip it's content and child.
@@ -265,9 +160,6 @@ protected:
     //override "onSizeChanged" method of widget.
     virtual void onSizeChanged();
     
-    //init background image renderer.
-    void addBackGroundImage();
-    
     void supplyTheLayoutParameterLackToChild(Widget* child);
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
@@ -279,26 +171,14 @@ protected:
     void setStencilClippingSize(const CCSize& size);
     const CCRect& getClippingRect();
     virtual void doLayout();
-    void updateBackGroundImageColor();
-    void updateBackGroundImageOpacity();
-    void updateBackGroundImageRGBA();
+
 protected:
     bool _clippingEnabled;
     
     //background
-    bool _backGroundScale9Enabled;
-    CCNode* _backGroundImage;
-    std::string _backGroundImageFileName;
-    CCRect _backGroundImageCapInsets;
-    LayoutBackGroundColorType _colorType;
-    CCLayerColor* _colorRender;
-    CCLayerGradient* _gradientRender;
     ccColor3B _cColor;
-    ccColor3B _gStartColor;
-    ccColor3B _gEndColor;
     Vec2 _alongVector;
     GLubyte _cOpacity;
-    CCSize _backGroundImageTextureSize;
     LayoutType _layoutType;
     LayoutClippingType _clippingType;
     CCDrawNode* _clippingStencil;

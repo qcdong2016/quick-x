@@ -185,12 +185,13 @@ protected:
     void frontCrossDisabledTextureScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
-    CCSprite* _backGroundBoxRenderer;
-    CCSprite* _backGroundSelectedBoxRenderer;
-    CCSprite* _frontCrossRenderer;
-    CCSprite* _backGroundBoxDisabledRenderer;
-    CCSprite* _frontCrossDisabledRenderer;
+    SharedPtr<CCSprite> _backGroundBoxRenderer;
+    SharedPtr<CCSprite> _backGroundSelectedBoxRenderer;
+    SharedPtr<CCSprite> _frontCrossRenderer;
+    SharedPtr<CCSprite> _backGroundBoxDisabledRenderer;
+    SharedPtr<CCSprite> _frontCrossDisabledRenderer;
     bool _isSelected;
 
     CCObject*       _checkBoxEventListener;

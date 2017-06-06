@@ -284,22 +284,6 @@ public:
      */
     virtual Widget* getChildByName(const char* name);
     
-    virtual void addNode(CCNode* node);
-    
-    virtual void addNode(CCNode * node, int zOrder);
-    
-    virtual void addNode(CCNode* node, int zOrder, int tag);
-    
-    virtual CCNode * getNodeByTag(int tag);
-    
-    virtual CCArray* getNodes();
-    
-    virtual void removeNode(CCNode* node);
-    
-    virtual void removeNodeByTag(int tag);
-    
-    virtual void removeAllNodes();
-    
     virtual void visit();
     
     /**

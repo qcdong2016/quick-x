@@ -111,11 +111,12 @@ protected:
     void imageTextureScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
     bool _scale9Enabled;
     bool _prevIgnoreSize;
     CCRect _capInsets;
-    CCNode* _imageRenderer;
+    SharedPtr<CCNode> _imageRenderer;
     std::string _textureFile;
     CCSize _imageTextureSize;
 };

@@ -1,13 +1,6 @@
 
 typedef enum
 {
-    LAYOUT_COLOR_NONE,
-    LAYOUT_COLOR_SOLID,
-    LAYOUT_COLOR_GRADIENT
-}LayoutBackGroundColorType;
-
-typedef enum
-{
     LAYOUT_ABSOLUTE,
     LAYOUT_LINEAR_VERTICAL,
     LAYOUT_LINEAR_HORIZONTAL,
@@ -28,51 +21,6 @@ class Layout : public Widget
     virtual ~Layout();
 
     static Layout* create();
-        
-    void setBackGroundImage(const char* fileName);
-    std::string getBackGroundImage();
-    
-    void setBackGroundImageCapInsets(const CCRect& capInsets);
-    
-    const CCRect& getBackGroundImageCapInsets();
-    
-    void setBackGroundColorType(LayoutBackGroundColorType type);
-    
-    LayoutBackGroundColorType getBackGroundColorType();
-    
-    void setBackGroundImageScale9Enabled(bool enabled);
-    
-    bool isBackGroundImageScale9Enabled();
-    
-    void setBackGroundColor(const ccColor3B &color);
-    
-    const ccColor3B& getBackGroundColor();
-    
-    void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
-    
-    const ccColor3B& getBackGroundStartColor();
-    
-    const ccColor3B& getBackGroundEndColor();
-    
-    void setBackGroundColorOpacity(GLubyte opacity);
-    
-    GLubyte getBackGroundColorOpacity();
-    
-    void setBackGroundColorVector(const Vec2 &vector);
-    
-    const Vec2& getBackGroundColorVector();
-    
-    void setBackGroundImageColor(const ccColor3B& color);
-    
-    void setBackGroundImageOpacity(GLubyte opacity);
-    
-    const ccColor3B& getBackGroundImageColor();
-    
-    GLubyte getBackGroundImageOpacity();
-    
-    void removeBackGroundImage();
-    
-    const CCSize& getBackGroundImageTextureSize() const;
     
     virtual void setClippingEnabled(bool enabled);
     
@@ -88,28 +36,9 @@ class Layout : public Widget
     
     virtual LayoutType getLayoutType() const;
 
-    virtual void addChild(CCNode * child);
-
-    virtual void addChild(CCNode * child, int zOrder);
-
-    virtual void addChild(CCNode* child, int zOrder, int tag);
-    
-    virtual void removeChild(CCNode* child);
-    
-    virtual void removeChild(CCNode* widget, bool cleanup);
-    
-    virtual void removeAllChildren();
-    
-    virtual void removeAllChildrenWithCleanup(bool cleanup);
-    
-    virtual void visit();
-    
     virtual void sortAllChildren();
     
     void requestDoLayout();
-    
-    virtual void onEnter();
-    virtual void onExit();
     
     virtual bool hitTest(const Vec2 &pt);
 };

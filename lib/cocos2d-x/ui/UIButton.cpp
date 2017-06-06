@@ -33,18 +33,7 @@ NS_CC_BEGIN
 
 namespace ui {
 
-static const int NORMAL_RENDERER_Z = (-2);
-static const int PRESSED_RENDERER_Z = (-2);
-static const int DISABLED_RENDERER_Z = (-2);
-static const int TITLE_RENDERER_Z = (-1);
-    
-
-    
 Button::Button():
-_buttonNormalRenderer(NULL),
-_buttonClickedRenderer(NULL),
-_buttonDisableRenderer(NULL),
-_titleRenderer(NULL),
 _normalFileName(""),
 _clickedFileName(""),
 _disabledFileName(""),
@@ -100,12 +89,6 @@ void Button::initRenderer()
     _buttonNormalRenderer = CCSprite::create();
     _buttonClickedRenderer = CCSprite::create();
     _buttonDisableRenderer = CCSprite::create();
-    _titleRenderer = CCLabelTTF::create();
-    
-    CCNode::addChild(_buttonNormalRenderer, NORMAL_RENDERER_Z, -1);
-    CCNode::addChild(_buttonClickedRenderer,PRESSED_RENDERER_Z, -1);
-    CCNode::addChild(_buttonDisableRenderer,DISABLED_RENDERER_Z, -1);
-    CCNode::addChild(_titleRenderer,TITLE_RENDERER_Z, -1);
 }
 
 void Button::setScale9Enabled(bool able)
@@ -116,12 +99,7 @@ void Button::setScale9Enabled(bool able)
     }
     _brightStyle = BRIGHT_NONE;
     _scale9Enabled = able;
-    CCNode::removeChild(_buttonNormalRenderer, true);
-    CCNode::removeChild(_buttonClickedRenderer, true);
-    CCNode::removeChild(_buttonDisableRenderer, true);
-    _buttonNormalRenderer = NULL;
-    _buttonClickedRenderer = NULL;
-    _buttonDisableRenderer = NULL;
+
     if (_scale9Enabled)
     {
         _buttonNormalRenderer = CCScale9Sprite::create();
@@ -138,9 +116,7 @@ void Button::setScale9Enabled(bool able)
     loadTextureNormal(_normalFileName.c_str());
     loadTexturePressed(_clickedFileName.c_str());
     loadTextureDisabled(_disabledFileName.c_str());
-    CCNode::addChild(_buttonNormalRenderer, NORMAL_RENDERER_Z, -1);
-    CCNode::addChild(_buttonClickedRenderer,PRESSED_RENDERER_Z, -1);
-    CCNode::addChild(_buttonDisableRenderer,DISABLED_RENDERER_Z, -1);
+
     if (_scale9Enabled)
     {
         bool ignoreBefore = _ignoreSize;
@@ -187,14 +163,14 @@ void Button::loadTextureNormal(const char* normal)
     _normalFileName = normal;
     if (_scale9Enabled)
     {
-        CCScale9Sprite* normalRendererScale9 = static_cast<CCScale9Sprite*>(_buttonNormalRenderer);
+		CCScale9Sprite* normalRendererScale9 = static_cast<CCScale9Sprite*>(_buttonDisableRenderer.Get());
 		normalRendererScale9->initWithFile(normal);
 		
         normalRendererScale9->setCapInsets(_capInsetsNormal);
     }
     else
     {
-        CCSprite* normalRenderer = static_cast<CCSprite*>(_buttonNormalRenderer);
+        CCSprite* normalRenderer = static_cast<CCSprite*>(_buttonNormalRenderer.Get());
 		normalRenderer->initWithFile(normal);
     }
     _normalTextureSize = _buttonNormalRenderer->getSize();
@@ -215,13 +191,13 @@ void Button::loadTexturePressed(const char* selected)
     _clickedFileName = selected;
     if (_scale9Enabled)
     {
-        CCScale9Sprite* clickedRendererScale9 = static_cast<CCScale9Sprite*>(_buttonClickedRenderer);
+        CCScale9Sprite* clickedRendererScale9 = static_cast<CCScale9Sprite*>(_buttonClickedRenderer.Get());
 		clickedRendererScale9->initWithFile(selected);
         clickedRendererScale9->setCapInsets(_capInsetsPressed);
     }
     else
     {
-		CCSprite* clickedRenderer = static_cast<CCSprite*>(_buttonClickedRenderer);
+		CCSprite* clickedRenderer = static_cast<CCSprite*>(_buttonClickedRenderer.Get());
 		clickedRenderer->initWithFile(selected);
 		
     }
@@ -243,13 +219,13 @@ void Button::loadTextureDisabled(const char* disabled)
     _disabledFileName = disabled;
     if (_scale9Enabled)
     {
-        CCScale9Sprite* disabledScale9 = static_cast<CCScale9Sprite*>(_buttonDisableRenderer);
+        CCScale9Sprite* disabledScale9 = static_cast<CCScale9Sprite*>(_buttonDisableRenderer.Get());
 		disabledScale9->initWithFile(disabled);
         disabledScale9->setCapInsets(_capInsetsDisabled);
     }
     else
     {
-        CCSprite* disabledRenderer = static_cast<CCSprite*>(_buttonDisableRenderer);
+        CCSprite* disabledRenderer = static_cast<CCSprite*>(_buttonDisableRenderer.Get());
 		disabledRenderer->initWithFile(disabled);
 		
     }
@@ -276,7 +252,7 @@ void Button::setCapInsetsNormalRenderer(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_buttonNormalRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_buttonNormalRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& Button::getCapInsetNormalRenderer()
@@ -291,7 +267,7 @@ void Button::setCapInsetsPressedRenderer(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_buttonClickedRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_buttonClickedRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& Button::getCapInsetPressedRenderer()
@@ -306,7 +282,7 @@ void Button::setCapInsetsDisabledRenderer(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_buttonDisableRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_buttonDisableRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& Button::getCapInsetDisabledRenderer()
@@ -388,7 +364,6 @@ void Button::onPressStateChangedToDisabled()
     
 void Button::updateFlippedX()
 {
-    _titleRenderer->setFlipX(_flippedX);
     if (_scale9Enabled)
     {
         if (_flippedX)
@@ -407,15 +382,14 @@ void Button::updateFlippedX()
     }
     else
     {
-        static_cast<CCSprite*>(_buttonNormalRenderer)->setFlipX(_flippedX);
-        static_cast<CCSprite*>(_buttonClickedRenderer)->setFlipX(_flippedX);
-        static_cast<CCSprite*>(_buttonDisableRenderer)->setFlipX(_flippedX);
+        static_cast<CCSprite*>(_buttonNormalRenderer.Get())->setFlipX(_flippedX);
+        static_cast<CCSprite*>(_buttonClickedRenderer.Get())->setFlipX(_flippedX);
+        static_cast<CCSprite*>(_buttonDisableRenderer.Get())->setFlipX(_flippedX);
     }
 }
     
 void Button::updateFlippedY()
 {
-    _titleRenderer->setFlipY(_flippedY);
     if (_scale9Enabled)
     {
         if (_flippedY)
@@ -434,9 +408,9 @@ void Button::updateFlippedY()
     }
     else
     {
-        static_cast<CCSprite*>(_buttonNormalRenderer)->setFlipY(_flippedY);
-        static_cast<CCSprite*>(_buttonClickedRenderer)->setFlipY(_flippedY);
-        static_cast<CCSprite*>(_buttonDisableRenderer)->setFlipY(_flippedY);
+        static_cast<CCSprite*>(_buttonNormalRenderer.Get())->setFlipY(_flippedY);
+        static_cast<CCSprite*>(_buttonClickedRenderer.Get())->setFlipY(_flippedY);
+        static_cast<CCSprite*>(_buttonDisableRenderer.Get())->setFlipY(_flippedY);
     }
 }
 
@@ -446,7 +420,6 @@ void Button::setAnchorPoint(const Vec2 &pt)
     _buttonNormalRenderer->setAnchorPoint(pt);
     _buttonClickedRenderer->setAnchorPoint(pt);
     _buttonDisableRenderer->setAnchorPoint(pt);
-    _titleRenderer->setPosition(Vec2(_size.width*(0.5f-m_obAnchorPoint.x), _size.height*(0.5f-m_obAnchorPoint.y)));
 }
 
 void Button::onSizeChanged()
@@ -460,6 +433,13 @@ void Button::onSizeChanged()
 const CCSize& Button::getSize() const
 {
     return _normalTextureSize;
+}
+
+void Button::draw()
+{
+	_buttonNormalRenderer->visit();
+	_buttonClickedRenderer->visit();
+	_buttonDisableRenderer->visit();
 }
 
 CCNode* Button::getVirtualRenderer()
@@ -497,7 +477,7 @@ void Button::normalTextureScaleChangedWithSize()
     {
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_buttonNormalRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_buttonNormalRenderer.Get())->setPreferredSize(_size);
             _normalTextureScaleXInSize = _normalTextureScaleYInSize = 1.0f;
         }
         else
@@ -532,7 +512,7 @@ void Button::pressedTextureScaleChangedWithSize()
     {
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_buttonClickedRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_buttonClickedRenderer.Get())->setPreferredSize(_size);
             _pressedTextureScaleXInSize = _pressedTextureScaleYInSize = 1.0f;
         }
         else
@@ -566,7 +546,7 @@ void Button::disabledTextureScaleChangedWithSize()
     {
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_buttonDisableRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_buttonDisableRenderer.Get())->setPreferredSize(_size);
         }
         else
         {
@@ -589,47 +569,6 @@ void Button::setPressedActionEnabled(bool enabled)
     _pressedActionEnabled = enabled;
 }
 
-void Button::setTitleText(const std::string& text)
-{
-    _titleRenderer->setString(text.c_str());
-}
-
-const char* Button::getTitleText() const
-{
-    return _titleRenderer->getString();
-}
-
-void Button::setTitleColor(const ccColor3B& color)
-{
-    _titleColor = color;
-    _titleRenderer->setColor(color);
-}
-
-const ccColor3B& Button::getTitleColor() const
-{
-    return _titleRenderer->getColor();
-}
-
-void Button::setTitleFontSize(float size)
-{
-    _titleRenderer->setFontSize(size);
-}
-
-float Button::getTitleFontSize() const
-{
-    return _titleRenderer->getFontSize();
-}
-
-void Button::setTitleFontName(const char* fontName)
-{
-    _titleRenderer->setFontName(fontName);
-}
-
-const char* Button::getTitleFontName() const
-{
-    return _titleRenderer->getFontName();
-}
-    
 void Button::updateTextureColor()
 {
     updateColorToRenderer(_buttonNormalRenderer);
@@ -674,10 +613,6 @@ void Button::copySpecialProperties(Widget *widget)
         setCapInsetsNormalRenderer(button->_capInsetsNormal);
         setCapInsetsPressedRenderer(button->_capInsetsPressed);
         setCapInsetsDisabledRenderer(button->_capInsetsDisabled);
-        setTitleText(button->getTitleText());
-        setTitleFontName(button->getTitleFontName());
-        setTitleFontSize(button->getTitleFontSize());
-        setTitleColor(button->getTitleColor());
         setPressedActionEnabled(button->_pressedActionEnabled);
     }
 }

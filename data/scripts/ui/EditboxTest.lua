@@ -1,10 +1,10 @@
 local M = class("TestEditbox", TestBase)
 
 function M:setup()
-    local c = CCLayerColor:create(ccc4(255, 255, 255, 255))
+    local c = CCLayerColor:create(ccc4(122, 122, 122, 255))
     c:setSize(CCSize(150, 50))
     c:setPosition(ccp(300, 300))
-    self.root:addNode(c)
+    self.root:addChild(c)
 
     local edit = EditBox:create()
     edit:setFontSize(30)

@@ -125,7 +125,7 @@ protected:
     std::vector<CCArray*> _elementRenders;
     float _leftSpaceWidth;
     float _verticalSpace;
-    CCNode* _elementRenderersContainer;
+    SharedPtr<CCNode> _elementRenderersContainer;
 };
     
 }

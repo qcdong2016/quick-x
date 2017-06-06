@@ -29,13 +29,7 @@ NS_CC_BEGIN
 
 namespace ui {
     
-static const int LABELBMFONT_RENDERER_Z = (-1);
-    
-    
-
-    
 LabelBMFont::LabelBMFont():
-_labelBMFontRenderer(NULL),
 _fntFileHasInit(false),
 _fntFileName(""),
 _stringValue("")
@@ -62,7 +56,11 @@ LabelBMFont* LabelBMFont::create()
 void LabelBMFont::initRenderer()
 {
     _labelBMFontRenderer = cocos2d::CCLabelBMFont::create();
-    CCNode::addChild(_labelBMFontRenderer, LABELBMFONT_RENDERER_Z, -1);
+}
+
+void LabelBMFont::draw()
+{
+	_labelBMFontRenderer->draw();
 }
 
 void LabelBMFont::setFntFile(const char *fileName)

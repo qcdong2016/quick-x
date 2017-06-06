@@ -72,8 +72,8 @@ public:
     virtual void onEnter(void);
 private:
 
-    CCLabelTTF* m_pLabel;
-    CCLabelTTF* m_pLabelPlaceHolder;
+    SharedPtr<CCLabelTTF> m_pLabel;
+    SharedPtr<CCLabelTTF> m_pLabelPlaceHolder;
     EditBoxInputMode    m_eEditBoxInputMode;
     EditBoxInputFlag    m_eEditBoxInputFlag;
     KeyboardReturnType  m_eKeyboardReturnType;

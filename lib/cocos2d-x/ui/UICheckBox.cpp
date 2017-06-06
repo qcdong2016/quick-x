@@ -29,20 +29,7 @@ NS_CC_BEGIN
 
 namespace ui {
 
-static const int BACKGROUNDBOX_RENDERER_Z = (-1);
-static const int BACKGROUNDBOXSELECTED_RENDERER_Z = (-1);
-static const int FRONTCROSS_RENDERER_Z = (-1);
-static const int BACKGROUNDBOXDISABLED_RENDERER_Z = (-1);
-static const int FRONTCROSSDISABLED_RENDERER_Z = (-1);
-    
-
-
 CheckBox::CheckBox():
-_backGroundBoxRenderer(NULL),
-_backGroundSelectedBoxRenderer(NULL),
-_frontCrossRenderer(NULL),
-_backGroundBoxDisabledRenderer(NULL),
-_frontCrossDisabledRenderer(NULL),
 _isSelected(true),
 _checkBoxEventListener(NULL),
 _checkBoxEventSelector(NULL),
@@ -90,12 +77,6 @@ void CheckBox::initRenderer()
     _frontCrossRenderer = CCSprite::create();
     _backGroundBoxDisabledRenderer = CCSprite::create();
     _frontCrossDisabledRenderer = CCSprite::create();
-    
-    CCNode::addChild(_backGroundBoxRenderer, BACKGROUNDBOX_RENDERER_Z, -1);
-    CCNode::addChild(_backGroundSelectedBoxRenderer, BACKGROUNDBOXSELECTED_RENDERER_Z, -1);
-    CCNode::addChild(_frontCrossRenderer, FRONTCROSS_RENDERER_Z, -1);
-    CCNode::addChild(_backGroundBoxDisabledRenderer, BACKGROUNDBOXDISABLED_RENDERER_Z, -1);
-    CCNode::addChild(_frontCrossDisabledRenderer, FRONTCROSSDISABLED_RENDERER_Z, -1);
 }
 
 void CheckBox::loadTextures(const char *backGround, const char *backGroundSelected, const char *cross,const char* backGroundDisabled,const char* frontCrossDisabled)
@@ -321,6 +302,15 @@ const CCSize& CheckBox::getSize() const
 CCNode* CheckBox::getVirtualRenderer()
 {
     return _backGroundBoxRenderer;
+}
+
+void CheckBox::draw()
+{
+	_backGroundBoxRenderer->draw();
+	_backGroundSelectedBoxRenderer->visit();
+	_frontCrossRenderer->visit();
+	_backGroundBoxDisabledRenderer->visit();
+	_frontCrossDisabledRenderer->visit();
 }
 
 void CheckBox::backGroundTextureScaleChangedWithSize()

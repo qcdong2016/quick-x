@@ -29,21 +29,9 @@
 NS_CC_BEGIN
 
 namespace ui {
-    
-static const int BASEBAR_RENDERER_Z = (-3);
-static const int PROGRESSBAR_RENDERER_Z = (-2);
-static const int SLIDBALL_RENDERER_Z = (-1);
-    
-
 
 Slider::Slider():
-_barRenderer(NULL),
-_progressBarRenderer(NULL),
 _progressBarTextureSize(CCSizeZero),
-_slidBallNormalRenderer(NULL),
-_slidBallPressedRenderer(NULL),
-_slidBallDisabledRenderer(NULL),
-_slidBallRenderer(NULL),
 _barLength(0.0),
 _percent(0),
 _scale9Enabled(false),
@@ -93,8 +81,6 @@ void Slider::initRenderer()
     _barRenderer = CCSprite::create();
     _progressBarRenderer = CCSprite::create();
     _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
-    CCNode::addChild(_barRenderer, BASEBAR_RENDERER_Z, -1);
-    CCNode::addChild(_progressBarRenderer, PROGRESSBAR_RENDERER_Z, -1);
     _slidBallNormalRenderer = CCSprite::create();
     _slidBallPressedRenderer = CCSprite::create();
     _slidBallPressedRenderer->setVisible(false);
@@ -104,7 +90,6 @@ void Slider::initRenderer()
     _slidBallRenderer->addChild(_slidBallNormalRenderer);
     _slidBallRenderer->addChild(_slidBallPressedRenderer);
     _slidBallRenderer->addChild(_slidBallDisabledRenderer);
-    CCNode::addChild(_slidBallRenderer, SLIDBALL_RENDERER_Z, -1);
 }
 
 void Slider::loadBarTexture(const char* fileName)
@@ -115,9 +100,9 @@ void Slider::loadBarTexture(const char* fileName)
     }
     _textureFile = fileName;
 	if (_scale9Enabled)
-		static_cast<CCScale9Sprite*>(_barRenderer)->initWithFile(fileName);
+		static_cast<CCScale9Sprite*>(_barRenderer.Get())->initWithFile(fileName);
 	else
-		static_cast<CCSprite*>(_barRenderer)->initWithFile(fileName);
+		static_cast<CCSprite*>(_barRenderer.Get())->initWithFile(fileName);
     updateRGBAToRenderer(_barRenderer);
     barRendererScaleChangedWithSize();
     progressBarRendererScaleChangedWithSize();
@@ -131,9 +116,9 @@ void Slider::loadProgressBarTexture(const char *fileName)
     }
 	_progressBarTextureFile = fileName;
 	if (_scale9Enabled)
-		static_cast<CCScale9Sprite*>(_progressBarRenderer)->initWithFile(fileName);
+		static_cast<CCScale9Sprite*>(_progressBarRenderer.Get())->initWithFile(fileName);
 	else
-		static_cast<CCSprite*>(_progressBarRenderer)->initWithFile(fileName);
+		static_cast<CCSprite*>(_progressBarRenderer.Get())->initWithFile(fileName);
     updateRGBAToRenderer(_progressBarRenderer);
     _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
     _progressBarTextureSize = _progressBarRenderer->getSize();
@@ -164,8 +149,6 @@ void Slider::setScale9Enabled(bool able)
     }
     loadBarTexture(_textureFile.c_str());
     loadProgressBarTexture(_progressBarTextureFile.c_str());
-    CCNode::addChild(_barRenderer, BASEBAR_RENDERER_Z, -1);
-    CCNode::addChild(_progressBarRenderer, PROGRESSBAR_RENDERER_Z, -1);
     if (_scale9Enabled)
     {
         bool ignoreBefore = _ignoreSize;
@@ -178,6 +161,13 @@ void Slider::setScale9Enabled(bool able)
     }
     setCapInsetsBarRenderer(_capInsetsBarRenderer);
     setCapInsetProgressBarRebderer(_capInsetsProgressBarRenderer);
+}
+
+void Slider::draw()
+{
+	_barRenderer->visit();
+	_progressBarRenderer->visit();
+	_slidBallRenderer->visit();
 }
     
 bool Slider::isScale9Enabled()
@@ -207,7 +197,7 @@ void Slider::setCapInsetsBarRenderer(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_barRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_barRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& Slider::getCapInsetBarRenderer()
@@ -222,7 +212,7 @@ void Slider::setCapInsetProgressBarRebderer(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_progressBarRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_progressBarRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& Slider::getCapInsetProgressBarRebderer()
@@ -289,11 +279,11 @@ void Slider::setPercent(int percent)
     _slidBallRenderer->setPosition(Vec2(-_barLength/2.0f + dis, 0.0f));
     if (_scale9Enabled)
     {
-        static_cast<CCScale9Sprite*>(_progressBarRenderer)->setPreferredSize(CCSize(dis,_progressBarTextureSize.height));
+        static_cast<CCScale9Sprite*>(_progressBarRenderer.Get())->setPreferredSize(CCSize(dis,_progressBarTextureSize.height));
     }
     else
     {
-        CCSprite* spriteRenderer = static_cast<CCSprite*>(_progressBarRenderer);
+        CCSprite* spriteRenderer = static_cast<CCSprite*>(_progressBarRenderer.Get());
         CCRect rect = spriteRenderer->getTextureRect();
         rect.size.width = _progressBarTextureSize.width * res;
         spriteRenderer->setTextureRect(rect, spriteRenderer->isTextureRectRotated(), rect.size);
@@ -381,7 +371,7 @@ void Slider::barRendererScaleChangedWithSize()
         _barLength = _size.width;
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_barRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_barRenderer.Get())->setPreferredSize(_size);
         }
         else
         {
@@ -417,7 +407,7 @@ void Slider::progressBarRendererScaleChangedWithSize()
     {
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_progressBarRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_progressBarRenderer.Get())->setPreferredSize(_size);
             _progressBarTextureSize = _progressBarRenderer->getSize();
         }
         else

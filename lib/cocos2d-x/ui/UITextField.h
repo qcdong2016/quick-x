@@ -182,8 +182,9 @@ protected:
     void textfieldRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
-    UICCTextField* _textFieldRenderer;
+    SharedPtr<UICCTextField> _textFieldRenderer;
 
     float _touchWidth;
     float _touchHeight;

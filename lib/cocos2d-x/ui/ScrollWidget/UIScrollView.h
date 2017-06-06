@@ -284,22 +284,6 @@ public:
     virtual CCNode * getChildByTag(int tag);
     
     virtual Widget* getChildByName(const char* name);
-    
-    virtual void addNode(CCNode* node);
-    
-    virtual void addNode(CCNode * node, int zOrder);
-    
-    virtual void addNode(CCNode* node, int zOrder, int tag);
-    
-    virtual CCNode * getNodeByTag(int tag);
-    
-    virtual void removeNodeByTag(int tag);
-    
-    virtual CCArray* getNodes();
-    
-    virtual void removeNode(CCNode* node);
-        
-    virtual void removeAllNodes();
 
 	virtual bool onTouchBegan(int id, const Vec2& pos);
 	virtual void onTouchMoved(int id, const Vec2& pos);
@@ -379,8 +363,9 @@ protected:
     virtual void copyClonedWidgetChildren(Widget* model);
     virtual void setClippingEnabled(bool able) {Layout::setClippingEnabled(able);};
     virtual void doLayout();
+	virtual void draw();
 protected:
-    ScrollInnerContainer* _innerContainer;
+    SharedPtr<ScrollInnerContainer> _innerContainer;
     
     SCROLLVIEW_DIR _direction;
 

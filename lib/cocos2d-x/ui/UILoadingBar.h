@@ -144,11 +144,12 @@ protected:
     void barRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
     LoadingBarType _barType;
     int _percent;
     float _totalLength;
-    CCNode* _barRenderer;
+    SharedPtr<CCNode> _barRenderer;
     CCSize _barRendererTextureSize;
     bool _scale9Enabled;
     bool _prevIgnoreSize;

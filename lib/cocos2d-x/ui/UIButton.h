@@ -165,15 +165,7 @@ public:
      */
     virtual std::string getDescription() const;
     
-    void setTitleText(const std::string& text);
-    const char* getTitleText() const;
-    void setTitleColor(const ccColor3B& color);
-    const ccColor3B& getTitleColor() const;
-    void setTitleFontSize(float size);
-    float getTitleFontSize() const;
-    void setTitleFontName(const char* fontName);
-    const char* getTitleFontName() const;
-
+	virtual void draw();
 protected:
     virtual bool init();
     virtual void initRenderer();
@@ -192,10 +184,10 @@ protected:
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
 protected:
-    CCNode* _buttonNormalRenderer;
-    CCNode* _buttonClickedRenderer;
-    CCNode* _buttonDisableRenderer;
-    CCLabelTTF* _titleRenderer;
+    SharedPtr<CCNode> _buttonNormalRenderer;
+    SharedPtr<CCNode> _buttonClickedRenderer;
+    SharedPtr<CCNode> _buttonDisableRenderer;
+
     std::string _normalFileName;
     std::string _clickedFileName;
     std::string _disabledFileName;

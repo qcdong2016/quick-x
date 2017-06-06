@@ -44,8 +44,6 @@ class Widget : public CCNode
     
     
     bool isBright() const;
-    
-    
 
     
     
@@ -69,94 +67,32 @@ class Widget : public CCNode
     float getTopInParent();
 
     
-    virtual void addChild(CCNode * child);
-    
-    virtual void addChild(CCNode * child, int zOrder);
-    
-    virtual void addChild(CCNode* child, int zOrder, int tag);
-    
-    virtual CCNode * getChildByTag(int tag);
-    
-    virtual void sortAllChildren();
-    
-    virtual CCArray* getChildren();
-    
-    
-    virtual unsigned int getChildrenCount() const;
-    
-    
-    virtual void removeFromParent();
-    
-    virtual void removeFromParentAndCleanup(bool cleanup);
-    
-    virtual void removeChild(CCNode* child);
-    
-    virtual void removeChild(CCNode* child, bool cleanup);
-    
-    
-    virtual void removeChildByTag(int tag, bool cleanup);
-    
-    virtual void removeAllChildren();
-    
-    virtual void removeAllChildrenWithCleanup(bool cleanup);
-    
-    
     virtual Widget* getChildByName(const char* name);
 
-    virtual void addNode(CCNode* node);
-    
-    virtual void addNode(CCNode * node, int zOrder);
-    
-    virtual void addNode(CCNode* node, int zOrder, int tag);
-
-    virtual CCNode * getNodeByTag(int tag);
-    
-    virtual CCArray* getNodes();
-    
-    virtual void removeNode(CCNode* node);
-    
-    virtual void removeNodeByTag(int tag);
-    
-    virtual void removeAllNodes();
-    
-    virtual void visit();
-    
     
     void setPositionPercent(const Vec2 &percent);
-        
-    
     const Vec2& getPositionPercent();
     
     
     void setPositionType(PositionType type);
-
-    
     PositionType getPositionType() const;
     
     
     virtual void setFlipX(bool flipX);
-    
-    
     virtual bool isFlipX();
     
     
     virtual void setFlipY(bool flipY);
-    
-    
     virtual bool isFlipY();
 
     virtual void setColor(const ccColor3B& color);
-    
     virtual void setOpacity(GLubyte opacity);
     
     const ccColor3B& getColor();
-
     GLubyte getOpacity();
     
     
     void didNotSelectSelf();
-    
-    
     bool clippingParentAreaContainPoint(const Vec2 &pt);
     
     
@@ -190,15 +126,10 @@ class Widget : public CCNode
     virtual std::string getDescription() const;
     
     Widget* clone();
-
-    virtual void onEnter();
-    virtual void onExit();
     
     void updateSizeAndPosition();
-    
     void updateSizeAndPosition(const CCSize& parentSize);
 
     void setActionTag(int tag);
 	int getActionTag();
-
 };

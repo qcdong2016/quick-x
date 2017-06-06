@@ -214,15 +214,16 @@ protected:
     void progressBarRendererScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+	virtual void draw();
 protected:
-    CCNode*  _barRenderer;
-    CCNode* _progressBarRenderer;
+    SharedPtr<CCNode>  _barRenderer;
+    SharedPtr<CCNode> _progressBarRenderer;
     CCSize _progressBarTextureSize;
     
-    CCSprite* _slidBallNormalRenderer;
-    CCSprite* _slidBallPressedRenderer;
-    CCSprite* _slidBallDisabledRenderer;
-    CCNode* _slidBallRenderer;
+    WeakPtr<CCSprite> _slidBallNormalRenderer;
+    WeakPtr<CCSprite> _slidBallPressedRenderer;
+    WeakPtr<CCSprite> _slidBallDisabledRenderer;
+    SharedPtr<CCNode> _slidBallRenderer;
     
     float _barLength;
     int _percent;

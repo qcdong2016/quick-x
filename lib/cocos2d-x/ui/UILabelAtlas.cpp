@@ -28,8 +28,6 @@ NS_CC_BEGIN
 
 namespace ui {
 
-static const int LABELATLAS_RENDERER_Z = (-1);
-
 UICCLabelAtlas::UICCLabelAtlas()
 {
     
@@ -85,7 +83,6 @@ void UICCLabelAtlas::updateDisplayedOpacity(GLubyte opacity)
     
 
 LabelAtlas::LabelAtlas():
-_labelAtlasRenderer(NULL),
 _stringValue(""),
 _charMapFileName(""),
 _itemWidth(0),
@@ -112,10 +109,14 @@ LabelAtlas* LabelAtlas::create()
     return NULL;
 }
 
+void LabelAtlas::draw()
+{
+	_labelAtlasRenderer->visit();
+}
+
 void LabelAtlas::initRenderer()
 {
     _labelAtlasRenderer = UICCLabelAtlas::create();
-    CCNode::addChild(_labelAtlasRenderer, LABELATLAS_RENDERER_Z, -1);
 }
 
 void LabelAtlas::setTexture(const std::string& filename)

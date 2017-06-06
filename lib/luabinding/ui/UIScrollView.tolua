@@ -64,15 +64,6 @@ class ScrollView:public Layout,public UIScrollInterface
     virtual unsigned int getChildrenCount() const;
     virtual CCNode * getChildByTag(int tag);
     virtual Widget* getChildByName(const char* name);
-
-    virtual void addNode(CCNode* node);
-    virtual void addNode(CCNode * node, int zOrder);
-    virtual void addNode(CCNode* node, int zOrder, int tag);
-    virtual CCNode * getNodeByTag(int tag);
-    virtual void removeNodeByTag(int tag);
-    virtual CCArray* getNodes();
-    virtual void removeNode(CCNode* node);
-    virtual void removeAllNodes();
         
     virtual void update(float dt);
     void setBounceEnabled(bool enabled);

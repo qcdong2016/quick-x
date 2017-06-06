@@ -69,7 +69,6 @@ bool EditBoxImplWin::initWithSize(const CCSize& size)
     m_pLabel->setAnchorPoint(ccp(0, 0.5f));
     m_pLabel->setPosition(ccp(5, size.height / 2.0f));
     m_pLabel->setColor(m_colText);
-    m_pEditBox->addNode(m_pLabel);
 
     m_pLabelPlaceHolder = CCLabelTTF::create("", "", size.height-12);
 	// align the text vertically center
@@ -77,7 +76,6 @@ bool EditBoxImplWin::initWithSize(const CCSize& size)
     m_pLabelPlaceHolder->setPosition(ccp(5, size.height / 2.0f));
     m_pLabelPlaceHolder->setVisible(false);
     m_pLabelPlaceHolder->setColor(m_colPlaceHolder);
-    m_pEditBox->addNode(m_pLabelPlaceHolder);
     
     m_EditSize = size;
     return true;

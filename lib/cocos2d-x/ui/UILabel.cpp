@@ -29,9 +29,6 @@ NS_CC_BEGIN
 
 namespace ui {
 
-static const int LABEL_RENDERER_Z = (-1);
-    
-
 
 Label::Label():
 _touchScaleChangeEnabled(false),
@@ -73,7 +70,6 @@ bool Label::init()
 void Label::initRenderer()
 {
     _labelRenderer = CCLabelTTF::create();
-    CCNode::addChild(_labelRenderer, LABEL_RENDERER_Z, -1);
 }
 
 void Label::setText(const std::string& text)
@@ -281,6 +277,11 @@ void Label::copySpecialProperties(Widget *widget)
         setTextVerticalAlignment(label->_labelRenderer->getVerticalAlignment());
         setTextAreaSize(label->_labelRenderer->getDimensions());
     }
+}
+
+void Label::draw()
+{
+	_labelRenderer->visit();
 }
 
 }

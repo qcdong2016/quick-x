@@ -31,15 +31,11 @@ NS_CC_BEGIN
 
 namespace ui {
     
-static const int BAR_RENDERER_Z = (-1);
-    
-
     
 LoadingBar::LoadingBar():
 _barType(LoadingBarTypeLeft),
 _percent(100),
 _totalLength(0),
-_barRenderer(NULL),
 _barRendererTextureSize(CCSizeZero),
 _scale9Enabled(false),
 _prevIgnoreSize(true),
@@ -68,7 +64,6 @@ LoadingBar* LoadingBar::create()
 void LoadingBar::initRenderer()
 {
     _barRenderer = CCSprite::create();
-    CCNode::addChild(_barRenderer, BAR_RENDERER_Z, -1);
     _barRenderer->setAnchorPoint(Vec2(0.0,0.5));
 }
 
@@ -87,7 +82,7 @@ void LoadingBar::setDirection(LoadingBarType dir)
             _barRenderer->setPosition(Vec2(-_totalLength*0.5f,0.0f));
             if (!_scale9Enabled)
             {
-                static_cast<CCSprite*>(_barRenderer)->setFlipX(false);
+                static_cast<CCSprite*>(_barRenderer.Get())->setFlipX(false);
             }
             break;
         case LoadingBarTypeRight:
@@ -95,7 +90,7 @@ void LoadingBar::setDirection(LoadingBarType dir)
             _barRenderer->setPosition(Vec2(_totalLength*0.5f,0.0f));
             if (!_scale9Enabled)
             {
-                static_cast<CCSprite*>(_barRenderer)->setFlipX(true);
+                static_cast<CCSprite*>(_barRenderer.Get())->setFlipX(true);
             }
             break;
     }
@@ -115,13 +110,13 @@ void LoadingBar::loadTexture(const char* texture)
     _textureFile = texture;
 	if (_scale9Enabled)
 	{
-		CCScale9Sprite* barRendererScale9 = static_cast<CCScale9Sprite*>(_barRenderer);
+		CCScale9Sprite* barRendererScale9 = static_cast<CCScale9Sprite*>(_barRenderer.Get());
 		barRendererScale9->initWithFile(texture);
 		barRendererScale9->setCapInsets(_capInsets);
 	}
 	else
 	{
-		static_cast<CCSprite*>(_barRenderer)->initWithFile(texture);
+		static_cast<CCSprite*>(_barRenderer.Get())->initWithFile(texture);
 	}
     updateRGBAToRenderer(_barRenderer);
     _barRendererTextureSize = _barRenderer->getSize();
@@ -132,14 +127,14 @@ void LoadingBar::loadTexture(const char* texture)
         _barRenderer->setAnchorPoint(Vec2(0.0f,0.5f));
         if (!_scale9Enabled)
         {
-            static_cast<CCSprite*>(_barRenderer)->setFlipX(false);
+            static_cast<CCSprite*>(_barRenderer.Get())->setFlipX(false);
         }
         break;
     case LoadingBarTypeRight:
         _barRenderer->setAnchorPoint(Vec2(1.0f,0.5f));
         if (!_scale9Enabled)
         {
-            static_cast<CCSprite*>(_barRenderer)->setFlipX(true);
+            static_cast<CCSprite*>(_barRenderer.Get())->setFlipX(true);
         }
         break;
     }
@@ -164,7 +159,6 @@ void LoadingBar::setScale9Enabled(bool enabled)
         _barRenderer = CCSprite::create();
     }
     loadTexture(_textureFile.c_str());
-    CCNode::addChild(_barRenderer, BAR_RENDERER_Z, -1);
     if (_scale9Enabled)
     {
         bool ignoreBefore = _ignoreSize;
@@ -191,12 +185,17 @@ void LoadingBar::setCapInsets(const CCRect &capInsets)
     {
         return;
     }
-    static_cast<CCScale9Sprite*>(_barRenderer)->setCapInsets(capInsets);
+    static_cast<CCScale9Sprite*>(_barRenderer.Get())->setCapInsets(capInsets);
 }
     
 const CCRect& LoadingBar::getCapInsets()
 {
     return _capInsets;
+}
+
+void LoadingBar::draw()
+{
+	_barRenderer->visit();
 }
 
 void LoadingBar::setPercent(int percent)
@@ -217,7 +216,7 @@ void LoadingBar::setPercent(int percent)
     }
     else
     {
-        CCSprite* spriteRenderer = static_cast<CCSprite*>(_barRenderer);
+        CCSprite* spriteRenderer = static_cast<CCSprite*>(_barRenderer.Get());
         CCRect rect = spriteRenderer->getTextureRect();
         rect.size.width = _barRendererTextureSize.width * res;
         spriteRenderer->setTextureRect(rect, spriteRenderer->isTextureRectRotated(), rect.size);
@@ -303,7 +302,7 @@ void LoadingBar::barRendererScaleChangedWithSize()
 void LoadingBar::setScale9Scale()
 {
     float width = (float)(_percent) / 100.0f * _totalLength;
-    static_cast<CCScale9Sprite*>(_barRenderer)->setPreferredSize(CCSize(width, _size.height));
+    static_cast<CCScale9Sprite*>(_barRenderer.Get())->setPreferredSize(CCSize(width, _size.height));
 }
 
 void LoadingBar::updateTextureColor()

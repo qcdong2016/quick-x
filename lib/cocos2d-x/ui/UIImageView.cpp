@@ -30,11 +30,8 @@ NS_CC_BEGIN
 namespace ui {
 
 
-#define STATIC_CAST_CCSPRITE static_cast<CCSprite*>(_imageRenderer)
-#define STATIC_CAST_SCALE9SPRITE static_cast<CCScale9Sprite*>(_imageRenderer)
-    
-static const int IMAGE_RENDERER_Z = (-1);
-    
+#define STATIC_CAST_CCSPRITE static_cast<CCSprite*>(_imageRenderer.Get())
+#define STATIC_CAST_SCALE9SPRITE static_cast<CCScale9Sprite*>(_imageRenderer.Get())
     
 
 ImageView::ImageView():
@@ -68,7 +65,6 @@ ImageView* ImageView::create()
 void ImageView::initRenderer()
 {
     _imageRenderer = CCSprite::create();
-    CCNode::addChild(_imageRenderer, IMAGE_RENDERER_Z, -1);
 }
 
 void ImageView::loadTexture(const char *fileName)
@@ -154,7 +150,6 @@ void ImageView::setScale9Enabled(bool able)
         _imageRenderer = CCSprite::create();
     }
     loadTexture(_textureFile.c_str());
-    CCNode::addChild(_imageRenderer, IMAGE_RENDERER_Z, -1);
     if (_scale9Enabled)
     {
         bool ignoreBefore = _ignoreSize;
@@ -166,6 +161,11 @@ void ImageView::setScale9Enabled(bool able)
         ignoreContentAdaptWithSize(_prevIgnoreSize);
     }
     setCapInsets(_capInsets);
+}
+
+void ImageView::draw()
+{
+	_imageRenderer->visit();
 }
     
 bool ImageView::isScale9Enabled()
@@ -233,7 +233,7 @@ void ImageView::imageTextureScaleChangedWithSize()
     {
         if (_scale9Enabled)
         {
-            static_cast<CCScale9Sprite*>(_imageRenderer)->setPreferredSize(_size);
+            static_cast<CCScale9Sprite*>(_imageRenderer.Get())->setPreferredSize(_size);
         }
         else
         {

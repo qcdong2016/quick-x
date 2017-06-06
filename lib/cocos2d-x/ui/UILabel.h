@@ -147,6 +147,8 @@ protected:
     void labelScaleChangedWithSize();
     virtual Widget* createCloneInstance();
     virtual void copySpecialProperties(Widget* model);
+
+	virtual void draw();
 protected:
     bool _touchScaleChangeEnabled;
     float _normalScaleValueX;
@@ -154,7 +156,7 @@ protected:
     std::string _fontName;
     int _fontSize;
     float _onSelectedScaleOffset;
-    CCLabelTTF* _labelRenderer;
+    SharedPtr<CCLabelTTF> _labelRenderer;
 };
 
 }
