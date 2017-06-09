@@ -24,6 +24,12 @@ CCEGLView::~CCEGLView()
 {
 }
 
+
+void* CCEGLView::getSDLWindow()
+{
+    return _window;
+}
+
 const CCSize& CCEGLView::getDrawableSize()
 {
     return _glSize;

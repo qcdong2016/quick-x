@@ -30,7 +30,8 @@ function App:run()
 
     FileSystem:addResourcePath("res/")
 
-    self:screenFit(960, 640, "FIXED_HEIGHT")
+    -- self:screenFit(960, 640, "FIXED_HEIGHT")
+    self:screenFit(720, 1280, "FIXED_WIDTH")
     self:enterState("Menu")
 end
 

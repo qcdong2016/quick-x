@@ -334,8 +334,20 @@ void Input::handleEvent(void* evt)
 	}
 	case SDL_TEXTINPUT:
 	{
+        TextInput eventData;
+        eventData[TextInput::text] = &e.text.text[0];
+        sendEvent(eventData);
 		break;
 	}
+    case SDL_TEXTEDITING:
+    {
+        TextEditing eventData;
+        eventData[TextEditing::composition] = &e.edit.text[0];
+        eventData[TextEditing::cursor] = e.edit.start;
+        eventData[TextEditing::selectionLength] = e.edit.length;
+        sendEvent(eventData);
+        break;
+    }
     case SDL_WINDOWEVENT:
     {
         switch (e.window.event)

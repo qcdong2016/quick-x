@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10834C21EEA43F300896112 /* UIEditBoxIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */; };
+		B10834C31EEA43F300896112 /* UIEditBoxIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */; };
 		B108E7831EE52F91004BA1E2 /* CCAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E5DB1EE52F91004BA1E2 /* CCAction.cpp */; };
 		B108E7841EE52F91004BA1E2 /* CCAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E5DB1EE52F91004BA1E2 /* CCAction.cpp */; };
 		B108E7851EE52F91004BA1E2 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E5DC1EE52F91004BA1E2 /* CCAction.h */; };
@@ -389,25 +391,9 @@
 		B108E9531EE52F92004BA1E2 /* TGAlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7371EE52F91004BA1E2 /* TGAlib.cpp */; };
 		B108E9541EE52F92004BA1E2 /* TGAlib.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7381EE52F91004BA1E2 /* TGAlib.h */; };
 		B108E9551EE52F92004BA1E2 /* CocosGUI.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E73A1EE52F91004BA1E2 /* CocosGUI.h */; };
-		B108E9561EE52F92004BA1E2 /* CCEditBoxImplAndroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E73C1EE52F91004BA1E2 /* CCEditBoxImplAndroid.cpp */; };
-		B108E9571EE52F92004BA1E2 /* CCEditBoxImplAndroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E73C1EE52F91004BA1E2 /* CCEditBoxImplAndroid.cpp */; };
-		B108E9581EE52F92004BA1E2 /* CCEditBoxImplAndroid.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E73D1EE52F91004BA1E2 /* CCEditBoxImplAndroid.h */; };
 		B108E9591EE52F92004BA1E2 /* UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E73E1EE52F91004BA1E2 /* UIEditBox.cpp */; };
 		B108E95A1EE52F92004BA1E2 /* UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E73E1EE52F91004BA1E2 /* UIEditBox.cpp */; };
 		B108E95B1EE52F92004BA1E2 /* UIEditBox.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E73F1EE52F91004BA1E2 /* UIEditBox.h */; };
-		B108E95C1EE52F92004BA1E2 /* UIEditBoxImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7401EE52F91004BA1E2 /* UIEditBoxImpl.h */; };
-		B108E95D1EE52F92004BA1E2 /* UIEditBoxImplIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7411EE52F91004BA1E2 /* UIEditBoxImplIOS.h */; };
-		B108E95E1EE52F92004BA1E2 /* UIEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B108E7421EE52F91004BA1E2 /* UIEditBoxImplIOS.mm */; };
-		B108E95F1EE52F92004BA1E2 /* UIEditBoxImplIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B108E7421EE52F91004BA1E2 /* UIEditBoxImplIOS.mm */; };
-		B108E9601EE52F92004BA1E2 /* UIEditBoxImplMac.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7431EE52F91004BA1E2 /* UIEditBoxImplMac.h */; };
-		B108E9611EE52F92004BA1E2 /* UIEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B108E7441EE52F91004BA1E2 /* UIEditBoxImplMac.mm */; };
-		B108E9621EE52F92004BA1E2 /* UIEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = B108E7441EE52F91004BA1E2 /* UIEditBoxImplMac.mm */; };
-		B108E9631EE52F92004BA1E2 /* UIEditBoxImplWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7451EE52F91004BA1E2 /* UIEditBoxImplWin.cpp */; };
-		B108E9641EE52F92004BA1E2 /* UIEditBoxImplWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7451EE52F91004BA1E2 /* UIEditBoxImplWin.cpp */; };
-		B108E9651EE52F92004BA1E2 /* UIEditBoxImplWin.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7461EE52F91004BA1E2 /* UIEditBoxImplWin.h */; };
-		B108E9661EE52F92004BA1E2 /* Win32InputBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7471EE52F91004BA1E2 /* Win32InputBox.cpp */; };
-		B108E9671EE52F92004BA1E2 /* Win32InputBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7471EE52F91004BA1E2 /* Win32InputBox.cpp */; };
-		B108E9681EE52F92004BA1E2 /* Win32InputBox.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E7481EE52F91004BA1E2 /* Win32InputBox.h */; };
 		B108E9691EE52F92004BA1E2 /* UILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E74A1EE52F91004BA1E2 /* UILayout.cpp */; };
 		B108E96A1EE52F92004BA1E2 /* UILayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E74A1EE52F91004BA1E2 /* UILayout.cpp */; };
 		B108E96B1EE52F92004BA1E2 /* UILayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E74B1EE52F91004BA1E2 /* UILayout.h */; };
@@ -1297,6 +1283,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxIOS.mm; sourceTree = "<group>"; };
 		B108E5C31EE52F43004BA1E2 /* libquickxIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickxIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B108E5D01EE52F67004BA1E2 /* libquickxMAC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickxMAC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B108E5DB1EE52F91004BA1E2 /* CCAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCAction.cpp; sourceTree = "<group>"; };
@@ -1566,19 +1553,8 @@
 		B108E7371EE52F91004BA1E2 /* TGAlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TGAlib.cpp; sourceTree = "<group>"; };
 		B108E7381EE52F91004BA1E2 /* TGAlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGAlib.h; sourceTree = "<group>"; };
 		B108E73A1EE52F91004BA1E2 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
-		B108E73C1EE52F91004BA1E2 /* CCEditBoxImplAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEditBoxImplAndroid.cpp; sourceTree = "<group>"; };
-		B108E73D1EE52F91004BA1E2 /* CCEditBoxImplAndroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEditBoxImplAndroid.h; sourceTree = "<group>"; };
 		B108E73E1EE52F91004BA1E2 /* UIEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIEditBox.cpp; sourceTree = "<group>"; };
 		B108E73F1EE52F91004BA1E2 /* UIEditBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBox.h; sourceTree = "<group>"; };
-		B108E7401EE52F91004BA1E2 /* UIEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImpl.h; sourceTree = "<group>"; };
-		B108E7411EE52F91004BA1E2 /* UIEditBoxImplIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplIOS.h; sourceTree = "<group>"; };
-		B108E7421EE52F91004BA1E2 /* UIEditBoxImplIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxImplIOS.mm; sourceTree = "<group>"; };
-		B108E7431EE52F91004BA1E2 /* UIEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplMac.h; sourceTree = "<group>"; };
-		B108E7441EE52F91004BA1E2 /* UIEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxImplMac.mm; sourceTree = "<group>"; };
-		B108E7451EE52F91004BA1E2 /* UIEditBoxImplWin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIEditBoxImplWin.cpp; sourceTree = "<group>"; };
-		B108E7461EE52F91004BA1E2 /* UIEditBoxImplWin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEditBoxImplWin.h; sourceTree = "<group>"; };
-		B108E7471EE52F91004BA1E2 /* Win32InputBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Win32InputBox.cpp; sourceTree = "<group>"; };
-		B108E7481EE52F91004BA1E2 /* Win32InputBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Win32InputBox.h; sourceTree = "<group>"; };
 		B108E74A1EE52F91004BA1E2 /* UILayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayout.cpp; sourceTree = "<group>"; };
 		B108E74B1EE52F91004BA1E2 /* UILayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayout.h; sourceTree = "<group>"; };
 		B108E74C1EE52F91004BA1E2 /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
@@ -2748,19 +2724,9 @@
 		B108E73B1EE52F91004BA1E2 /* EditBox */ = {
 			isa = PBXGroup;
 			children = (
-				B108E73C1EE52F91004BA1E2 /* CCEditBoxImplAndroid.cpp */,
-				B108E73D1EE52F91004BA1E2 /* CCEditBoxImplAndroid.h */,
+				B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */,
 				B108E73E1EE52F91004BA1E2 /* UIEditBox.cpp */,
 				B108E73F1EE52F91004BA1E2 /* UIEditBox.h */,
-				B108E7401EE52F91004BA1E2 /* UIEditBoxImpl.h */,
-				B108E7411EE52F91004BA1E2 /* UIEditBoxImplIOS.h */,
-				B108E7421EE52F91004BA1E2 /* UIEditBoxImplIOS.mm */,
-				B108E7431EE52F91004BA1E2 /* UIEditBoxImplMac.h */,
-				B108E7441EE52F91004BA1E2 /* UIEditBoxImplMac.mm */,
-				B108E7451EE52F91004BA1E2 /* UIEditBoxImplWin.cpp */,
-				B108E7461EE52F91004BA1E2 /* UIEditBoxImplWin.h */,
-				B108E7471EE52F91004BA1E2 /* Win32InputBox.cpp */,
-				B108E7481EE52F91004BA1E2 /* Win32InputBox.h */,
 			);
 			path = EditBox;
 			sourceTree = "<group>";
@@ -4148,7 +4114,6 @@
 				B108E83C1EE52F92004BA1E2 /* CCAtlasNode.h in Headers */,
 				B108E8541EE52F92004BA1E2 /* CCLayer.h in Headers */,
 				B108EF161EE52FA0004BA1E2 /* SDL_power.h in Headers */,
-				B108E9581EE52F92004BA1E2 /* CCEditBoxImplAndroid.h in Headers */,
 				B108F0211EE52FA1004BA1E2 /* SDL_gamecontrollerdb.h in Headers */,
 				B108EF071EE52FA0004BA1E2 /* SDL_main.h in Headers */,
 				B108E8CC1EE52F92004BA1E2 /* CCTexture2D.h in Headers */,
@@ -4185,7 +4150,6 @@
 				B108E8201EE52F91004BA1E2 /* CCEventImpl.h in Headers */,
 				B108EE691EE52FA0004BA1E2 /* lobject.h in Headers */,
 				B108E8BA1EE52F92004BA1E2 /* ccShader_PositionTexture_uColor_frag.h in Headers */,
-				B108E9651EE52F92004BA1E2 /* UIEditBoxImplWin.h in Headers */,
 				B108F1321EE52FA1004BA1E2 /* SDL_timer_c.h in Headers */,
 				B108E8911EE52F92004BA1E2 /* CCStdC.h in Headers */,
 				B108E8891EE52F92004BA1E2 /* CCInputEvent.h in Headers */,
@@ -4319,14 +4283,12 @@
 				B108EFD91EE52FA1004BA1E2 /* SDL_touch_c.h in Headers */,
 				B108E9991EE52F92004BA1E2 /* UITextField.h in Headers */,
 				B108EE5E1EE52FA0004BA1E2 /* llex.h in Headers */,
-				B108E9681EE52F92004BA1E2 /* Win32InputBox.h in Headers */,
 				B108EF041EE52FA0004BA1E2 /* SDL_keycode.h in Headers */,
 				B108EE821EE52FA0004BA1E2 /* lua.h in Headers */,
 				B108E86C1EE52F92004BA1E2 /* CCSpriteBatchNode.h in Headers */,
 				B108E7CF1EE52F91004BA1E2 /* ID.h in Headers */,
 				B108F3201EE52FA2004BA1E2 /* SkeletonBounds.h in Headers */,
 				B108E80F1EE52F91004BA1E2 /* uthash.h in Headers */,
-				B108E9601EE52F92004BA1E2 /* UIEditBoxImplMac.h in Headers */,
 				B108EEE61EE52FA0004BA1E2 /* SDL.h in Headers */,
 				B108E7EF1EE52F91004BA1E2 /* CCAffineTransform.h in Headers */,
 				B108E99F1EE52F92004BA1E2 /* UIWidget.h in Headers */,
@@ -4360,7 +4322,6 @@
 				B108F2221EE52FA2004BA1E2 /* SDL_pixels_c.h in Headers */,
 				B108EED41EE52FA0004BA1E2 /* timeout.h in Headers */,
 				B108F3831EE5301E004BA1E2 /* SDL_dummyaudio.h in Headers */,
-				B108E95D1EE52F92004BA1E2 /* UIEditBoxImplIOS.h in Headers */,
 				B108E9871EE52F92004BA1E2 /* UILabel.h in Headers */,
 				B108E9B21EE52F92004BA1E2 /* ioapi_mem.h in Headers */,
 				B108EEF81EE52FA0004BA1E2 /* SDL_cpuinfo.h in Headers */,
@@ -4410,7 +4371,6 @@
 				B108E7E41EE52F91004BA1E2 /* CCConfiguration.h in Headers */,
 				B108E7E11EE52F91004BA1E2 /* ccConfig.h in Headers */,
 				B108E92D1EE52F92004BA1E2 /* LuaFunction.h in Headers */,
-				B108E95C1EE52F92004BA1E2 /* UIEditBoxImpl.h in Headers */,
 				B108F0891EE52FA1004BA1E2 /* mmx.h in Headers */,
 				B108EE921EE52FA0004BA1E2 /* fpconv.h in Headers */,
 				B108EE471EE52FA0004BA1E2 /* lcode.h in Headers */,
@@ -4608,7 +4568,6 @@
 				B108EFB51EE52FA1004BA1E2 /* SDL_cpuinfo.c in Sources */,
 				B108E7DE1EE52F91004BA1E2 /* CCCamera.cpp in Sources */,
 				B108EE6A1EE52FA0004BA1E2 /* lopcodes.c in Sources */,
-				B108E95E1EE52F92004BA1E2 /* UIEditBoxImplIOS.mm in Sources */,
 				B108EE371EE52FA0004BA1E2 /* vec3.c in Sources */,
 				B1D020791EE53450002A3D0F /* SDL_render_sw.c in Sources */,
 				B108E8061EE52F91004BA1E2 /* CCString.cpp in Sources */,
@@ -4631,7 +4590,6 @@
 				B108EFE61EE52FA1004BA1E2 /* SDL_sysfilesystem.c in Sources */,
 				B108E9721EE52F92004BA1E2 /* UIListView.cpp in Sources */,
 				B108F0E71EE52FA1004BA1E2 /* SDL_test_imageFace.c in Sources */,
-				B108E9631EE52F92004BA1E2 /* UIEditBoxImplWin.cpp in Sources */,
 				B108F04F1EE52FA1004BA1E2 /* s_scalbn.c in Sources */,
 				B108EE7D1EE52FA0004BA1E2 /* ltablib.c in Sources */,
 				B108EEDB1EE52FA0004BA1E2 /* usocket.c in Sources */,
@@ -4679,13 +4637,13 @@
 				B108E7F01EE52F91004BA1E2 /* CCArray.cpp in Sources */,
 				B108EFDA1EE52FA1004BA1E2 /* SDL_windowevents.c in Sources */,
 				B108E8AD1EE52F92004BA1E2 /* ccGLStateCache.cpp in Sources */,
-				B108E9561EE52F92004BA1E2 /* CCEditBoxImplAndroid.cpp in Sources */,
 				B108EFE01EE52FA1004BA1E2 /* SDL_rwops.c in Sources */,
 				B108E84C1EE52F92004BA1E2 /* CCLabelBMFont.cpp in Sources */,
 				B108EEC31EE52FA0004BA1E2 /* options.c in Sources */,
 				B108EE151EE52FA0004BA1E2 /* aabb.c in Sources */,
 				B108E79B1EE52F91004BA1E2 /* CCActionProgressTimer.cpp in Sources */,
 				B108E96C1EE52F92004BA1E2 /* UILayoutDefine.cpp in Sources */,
+				B10834C21EEA43F300896112 /* UIEditBoxIOS.mm in Sources */,
 				B108E81A1EE52F91004BA1E2 /* CCDirector.cpp in Sources */,
 				B108E8401EE52F92004BA1E2 /* CCClippingRegionNode.cpp in Sources */,
 				B108EFF01EE52FA1004BA1E2 /* SDL_sysfilesystem.c in Sources */,
@@ -4866,8 +4824,6 @@
 				B108E7E51EE52F91004BA1E2 /* ccFPSImages.c in Sources */,
 				B108F40C1EE53231004BA1E2 /* SimpleAudioEngine_objc.m in Sources */,
 				B108E90B1EE52F92004BA1E2 /* CCParticleExamples.cpp in Sources */,
-				B108E9661EE52F92004BA1E2 /* Win32InputBox.cpp in Sources */,
-				B108E9611EE52F92004BA1E2 /* UIEditBoxImplMac.mm in Sources */,
 				B108EE481EE52FA0004BA1E2 /* ldblib.c in Sources */,
 				B108EFE81EE52FA1004BA1E2 /* SDL_sysfilesystem.c in Sources */,
 				B108F42A1EE5327D004BA1E2 /* CCImage.mm in Sources */,
@@ -5020,7 +4976,6 @@
 				B108EFB61EE52FA1004BA1E2 /* SDL_cpuinfo.c in Sources */,
 				B108E7DF1EE52F91004BA1E2 /* CCCamera.cpp in Sources */,
 				B108EE6B1EE52FA0004BA1E2 /* lopcodes.c in Sources */,
-				B108E95F1EE52F92004BA1E2 /* UIEditBoxImplIOS.mm in Sources */,
 				B108EE381EE52FA0004BA1E2 /* vec3.c in Sources */,
 				B108E8071EE52F91004BA1E2 /* CCString.cpp in Sources */,
 				B108E8681EE52F92004BA1E2 /* CCSprite.cpp in Sources */,
@@ -5044,7 +4999,6 @@
 				B108EFE71EE52FA1004BA1E2 /* SDL_sysfilesystem.c in Sources */,
 				B108E9731EE52F92004BA1E2 /* UIListView.cpp in Sources */,
 				B108F0E81EE52FA1004BA1E2 /* SDL_test_imageFace.c in Sources */,
-				B108E9641EE52F92004BA1E2 /* UIEditBoxImplWin.cpp in Sources */,
 				B108F0501EE52FA1004BA1E2 /* s_scalbn.c in Sources */,
 				B108EE7E1EE52FA0004BA1E2 /* ltablib.c in Sources */,
 				B108EEDC1EE52FA0004BA1E2 /* usocket.c in Sources */,
@@ -5092,7 +5046,6 @@
 				B108E7F11EE52F91004BA1E2 /* CCArray.cpp in Sources */,
 				B108EFDB1EE52FA1004BA1E2 /* SDL_windowevents.c in Sources */,
 				B108E8AE1EE52F92004BA1E2 /* ccGLStateCache.cpp in Sources */,
-				B108E9571EE52F92004BA1E2 /* CCEditBoxImplAndroid.cpp in Sources */,
 				B108EFE11EE52FA1004BA1E2 /* SDL_rwops.c in Sources */,
 				B108E84D1EE52F92004BA1E2 /* CCLabelBMFont.cpp in Sources */,
 				B108EEC41EE52FA0004BA1E2 /* options.c in Sources */,
@@ -5230,6 +5183,7 @@
 				B108EF7C1EE52FA1004BA1E2 /* SDL_mixer.c in Sources */,
 				B108E9951EE52F92004BA1E2 /* UISlider.cpp in Sources */,
 				B108E8A51EE52F92004BA1E2 /* CCPlistResource.cpp in Sources */,
+				B10834C31EEA43F300896112 /* UIEditBoxIOS.mm in Sources */,
 				B108EE791EE52FA0004BA1E2 /* lstrlib.c in Sources */,
 				B108F03E1EE52FA1004BA1E2 /* k_rem_pio2.c in Sources */,
 				B108E78A1EE52F91004BA1E2 /* CCActionCatmullRom.cpp in Sources */,
@@ -5274,8 +5228,6 @@
 				B108F2241EE52FA2004BA1E2 /* SDL_rect.c in Sources */,
 				B108E7E61EE52F91004BA1E2 /* ccFPSImages.c in Sources */,
 				B108E90C1EE52F92004BA1E2 /* CCParticleExamples.cpp in Sources */,
-				B108E9671EE52F92004BA1E2 /* Win32InputBox.cpp in Sources */,
-				B108E9621EE52F92004BA1E2 /* UIEditBoxImplMac.mm in Sources */,
 				B108EE491EE52FA0004BA1E2 /* ldblib.c in Sources */,
 				B108EFE91EE52FA1004BA1E2 /* SDL_sysfilesystem.c in Sources */,
 				B108F0D41EE52FA1004BA1E2 /* SDL_string.c in Sources */,
