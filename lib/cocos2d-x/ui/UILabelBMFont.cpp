@@ -60,7 +60,7 @@ void LabelBMFont::initRenderer()
 
 void LabelBMFont::draw()
 {
-	_labelBMFontRenderer->draw();
+	_labelBMFontRenderer->visit();
 }
 
 void LabelBMFont::setFntFile(const char *fileName)
@@ -73,7 +73,6 @@ void LabelBMFont::setFntFile(const char *fileName)
     
     if (_labelBMFontRenderer)
     {
-        CCNode::removeChild(_labelBMFontRenderer, true);
         initRenderer();
     }
     

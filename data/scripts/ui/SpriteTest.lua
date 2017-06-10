@@ -2,7 +2,7 @@
 local M = class('SpriteTest', TestBase)
 
 function M:setup()
-    
+
     local frames = display.newFrames('AllSprites/CoinSpin%02d.png', 1, 8)
     local anim = display.newAnimation(frames, 0.03)
 
@@ -26,11 +26,11 @@ function M:setup()
 
     end
 
-    local btn = Button:create():addTo(self.root):scale(0.5):pos(display.cx - 100, 40)
+    local btn = Button:create():addTo(self):scale(0.5):pos(-display.cx + 40, -display.cy + 40)
     btn:loadTextureNormal('AllSprites/AddCoinButton.png')
     btn:onClicked(function() add(10) end)
 
-    local btn = Button:create():addTo(self.root):scale(0.5):pos(display.cx + 100, 40)
+    local btn = Button:create():addTo(self):scale(0.5):pos(display.cx - 40, -display.cy + 40)
     btn:loadTextureNormal('AllSprites/RemoveCoinButton.png')
     btn:onClicked(function() add(-10) end)
 end

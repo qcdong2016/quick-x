@@ -78,12 +78,13 @@ void CCActionManager::addAction(CCAction *pAction, CCNode *pTarget, bool paused)
 		info = (_targetToActions[pTarget] = SharedPtr<ActionInfo>(new ActionInfo()));
 		info->target = pTarget;
 		info->pause = paused;
-		info->actions.push_back(SharedPtr<CCAction>(pAction));
 	}
 	else
 	{
 		info = it->second;
 	}
+
+	info->actions.push_back(SharedPtr<CCAction>(pAction));
 
 	pAction->startWithTarget(pTarget);
 }

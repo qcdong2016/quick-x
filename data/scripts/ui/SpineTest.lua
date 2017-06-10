@@ -2,6 +2,8 @@
 local M = class('ShaderTest', TestBase)
 
 function M:setup()
+    self:setupListView()
+    
     local spine = SkeletonAnimation:create("spineboy.json", "spineboy.atlas", 1)
         :addTo(self)
         :pos(-100, -display.cy)

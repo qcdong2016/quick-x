@@ -2,6 +2,8 @@
 local M = class('ShaderTest', TestBase)
 
 function M:setup()
+    self:setupListView()
+
     local hello = display.newSprite('HelloWorld.png'):addTo(self)
 
     local filters = require "shaders"

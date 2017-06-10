@@ -3,13 +3,22 @@ TestBase = class('TestBase', function()
 end)
 
 function TestBase:ctor(name)
-    local touchLayer = TouchGroup:create():pos(-display.cx, -display.cy)
-    self:addChild(touchLayer, 1)
+    local btn = Button:create():addTo(self, 999):scale(0.5)
+    btn:loadTextureNormal('AllSprites/ExitButton.png')
+    btn:setPosition(ccp(-display.cx + 40, display.cy -40))
+    btn:onClicked(function()
+        UIMgr:close(self)
+    end)
 
-    local root = Widget:create()
-    touchLayer:addWidget(root)
+    local label = LabelBMFont:create():addTo(self, 999):pos(0, display.cy - 40)
+    label:setFntFile('UIFont.fnt')
+    label:setText(name)
+end
 
-    local listView = ListView:create():addTo(root)
+function TestBase:setupListView()
+    local root = Widget:create():addTo(self)
+
+    local listView = ListView:create():addTo(self)
     listView:setSize(CCSize(200, display.height))
     listView:setPosition(ccp(display.width - 200, 0))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
@@ -19,21 +28,6 @@ function TestBase:ctor(name)
     listView:setClippingType(LAYOUT_CLIPPING_SCISSOR)
 
     self.listView = listView;
-    self.touchLayer = touchLayer
-    self.root = root
-
-    local btn = Button:create():addTo(root):scale(0.5)
-    btn:loadTextureNormal('AllSprites/ExitButton.png')
-    btn:setPosition(ccp(40, display.top -40))
-    btn:onClicked(function()
-        UIMgr:close(self)
-    end)
-
-    local label = LabelBMFont:create()
-        :addTo(self, 999)
-        :pos(0, display.cy - 40)
-    label:setFntFile('UIFont.fnt')
-    label:setText(name)
 end
 
 function TestBase:pushButton(name, func)
@@ -80,9 +74,9 @@ function Menu:ctor()
 
     for i, v in ipairs(tests) do
         local label = Label:create()
-        label:setFontSize(30)
+        label:setFontSize(50)
         label:setText(v)
-    label:setName(v)
+        label:setName(v)
         label:onClicked(function() self:gotoTest(v) end)
         listView:pushBackCustomItem(label)
     end
@@ -92,7 +86,8 @@ function Menu:gotoTest(name)
 
     self.touchLayer:hide()
 
-    local ui = UIMgr:open("ui." .. name)
+    local ui = require("ui."..name).new(name)
+    UIMgr:push(ui)
     ui:setup();
     ui.onClose = function()
         self.touchLayer:show()

@@ -54,8 +54,8 @@ local function genStarRemoveEffect(color, pos)
 end
 
 function GameLogic:ctor(stars_image)
-    self:setSize(CCSize(star_size *mx, star_size * my))
-
+    local size = CCSize(star_size *mx, star_size * my)
+    self:setSize(size)
     self:setUpEvent()
     self.runner = display.newNode():addTo(self)
     self.batchnode = display.newBatchNode(stars_image):addTo(self, 9)
@@ -134,7 +134,7 @@ end
 
 function GameLogic:setUpEvent()
     self:setTouchEnabled(true)
-
+    self:setName("gamelogic")
     self:addNodeEventListener(cc.NODE_TOUCH_EVENT, function(event)
         local pos = self:convertToNodeSpace(ccp(event.x, event.y))
         if event.name == 'began' then
@@ -438,6 +438,7 @@ function GameLogic:onTouchStar(x, y)
     local i = math.ceil(x / star_size)
     local j = math.ceil(y / star_size)
 
+    print(i,j)
     local touched_star = self.starTable[i][j]
 
     if touched_star then
@@ -743,7 +744,7 @@ function GamePopstar:startWithMode(map)
     self.game = GameLogic.new("popstar/stars.png"):addTo(self)
     local sz = self.game:getSize()
     local x = - sz.width /2
-    local y = - sz.height / 2
+    local y = -display.cy + 100
     self.game:setPosition(ccp(x, y))
     self:setCascadeBoundingBox(CCRect(x, y, sz.width, sz.height))
 
@@ -769,7 +770,10 @@ function GamePopstar:nextLevel(map)
         self.score_label:setText(string.format("%d/%d", 0, self.target_score))
         self.game:startWithMode(map)
     else
-        -- failed
+        self.failed_node = display.newNode():addTo(self)
+        local label = CCLabelTTF:create():addTo(self.failed_node)
+        label:setFontSize(50)
+        label:setString("failed")
     end
 end
 
@@ -829,16 +833,22 @@ function GamePopstar:onGameOver()
 end
 
 function GamePopstar:calculateScore()
-    self:enableButtons(false)
 
     local aliveStars = self.game:getAliveStars()
-    local node = display.newNode():addTo(self, 9999):pos( display.right + 150, display.cy)
+    local node = display.newNode():addTo(self, 9999):pos(-display.width, 0)
 
-    node.label_top = Label(tostring(string.format(TEXT.LEFT_STARS_FORMAT, #aliveStars))):pos(0, 50):addTo(node)
-    node.label_bottom = Label(tostring(string.format(TEXT.REWARD_FORMAT, '2000'))):addTo(node)
+    local label = CCLabelTTF:create():addTo(node):pos(0, 50)
+    label:setFontSize(50)
+    label:setString("left " .. #aliveStars)
+    node.label_top = label
+
+    local label = CCLabelTTF:create():addTo(node)
+    label:setFontSize(50)
+    label:setString("reward 2000")
+    node.label_bottom = label
 
     node:runAction(sequence({
-        CCMoveTo:create(0.5, ccp(display.cx, display.cy)),
+        CCMoveTo:create(0.5, ccp(0, 0)),
         CCCallFunc:create(function()
             local actions = {}
             local max = math.min(10, #aliveStars)
@@ -849,10 +859,8 @@ function GamePopstar:calculateScore()
                 local str = tostring((loot>=0) and loot or 0)
 
                 table.insert(actions, CCCallFunc:create(function()
-                    node.label_bottom:setString(string.format(TEXT.REWARD_FORMAT, str))
-                    audio.playSound(sound.pop)
+                    node.label_bottom:setString("reward " .. str)
                     self.loot_socre = loot
-
                     self.game:KillStar(st)
                 end))
                 table.insert(actions, CCDelayTime:create(0.2))
@@ -862,12 +870,11 @@ function GamePopstar:calculateScore()
             table.insert(actions, CCCallFunc:create(function()
 
                 if #aliveStars >= 10 then
-                    node.label_bottom:setString(string.format(TEXT.REWARD_FORMAT, '0'))
+                    node.label_bottom:setString("reward 0")
                 end
 
                 if #aliveStars > 0 then
                     self.game:burnAll()
-                    audio.playSound(sound.pop)
                 end
 
                 local pos_world = self.score_label:convertToWorldSpace(ccp(0,0))
@@ -881,10 +888,8 @@ function GamePopstar:calculateScore()
 
                         node:runAction(sequence({
                             CCDelayTime:create(1),
-                            CCMoveTo:create(0.5, ccp(display.left - 150, display.cy)), 
+                            CCMoveTo:create(0.5, ccp(display.width, 0)), 
                             CCCallFunc:create(function()
-                                self:enableButtons(true)
-
                                 node:removeSelf()
                                 self:nextLevel()
                             end),

@@ -395,21 +395,11 @@ local function doOpList(op_list)
     end
 end
 
-function getPosFormIdx(mx,my)
+function getPosFormIdx(i,j)
     local cellsize=110   -- cell size
-    local cdis = 2*cellsize-cellsize/2
-    local origin = {x=display.cx-cdis,y=display.cy+cdis}
-    local x = (my-1)*cellsize+origin.x
-    local y = -(mx-1)*cellsize+origin.y - 50
-    return x,y
-end
-
-function MainScene:showGird(cell,mx,my)
-    local x,y = getPosFormIdx(mx,my)
-    local bsz = cell.backgroundsize/2
-    cell.background:setPosition(ccp(x-bsz,y-bsz))
-    self:addChild(cell.background)
-    cell.num:align(display.CENTER,x,y):addTo(self)
+    local x = display.cx - cellsize * 2
+    local y = display.cy + cellsize * 2
+    return x + j * cellsize, y -i * cellsize
 end
 
 local colors = {
@@ -564,7 +554,12 @@ function MainScene:createGridShow()
             }),
         }
         gridShow[i][j] = cell
-        self:showGird(gridShow[i][j],i,j)
+
+        local x,y = getPosFormIdx(i,j)
+        local bsz = cell.backgroundsize/2
+        cell.background:setPosition(ccp(x-bsz,y-bsz))
+        cell.num:addTo(cell.background)
+        self:addChild(cell.background)
     end
 
 end
@@ -594,7 +589,7 @@ function MainScene:restartGame()
 end
 
 function MainScene:ctor()
-    local layer = display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self)
+    local layer = display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self):center()
     layer:setSize(CCSize(display.width, display.height))
     WINSTR = ""
     grid = initGrid(4,4)
@@ -618,7 +613,7 @@ local M = class('ShaderTest', TestBase)
 function M:setup()
     self.game = MainScene:new():addTo(self):pos(-display.cx, -display.cy)
 
-    local btn = Button:create():addTo(self.root):scale(0.5)
+    local btn = Button:create():addTo(self):scale(0.5)
     btn:loadTextureNormal('AllSprites/AddCoinButton.png')
     btn:setPosition(ccp(display.right - 40, display.top -40))
     btn:onClicked(function()

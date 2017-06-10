@@ -49,7 +49,9 @@ EditBox::EditBox(void)
 
 EditBox::~EditBox(void)
 {
+#if BUILD_FOR(IOS)
     closeKeyboard(this);
+#endif
 }
 bool EditBox::init()
 {
