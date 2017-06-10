@@ -18,9 +18,9 @@ end
 function TestBase:setupListView()
     local root = Widget:create():addTo(self)
 
-    local listView = ListView:create():addTo(self)
+    local listView = ListView:create():addTo(self, 10)
     listView:setSize(CCSize(200, display.height))
-    listView:setPosition(ccp(display.width - 200, 0))
+    listView:setPosition(ccp(display.cx - 200, -display.cy))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
     listView:setLayoutType(LAYOUT_LINEAR_VERTICAL)
 
@@ -45,16 +45,9 @@ local Menu = class("Menu", function()
 end)
 
 function Menu:ctor()
+    self.root = Widget:create():addTo(self)
 
-    local touchLayer = TouchGroup:create()
-    self:addChild(touchLayer)
-
-    self.touchLayer = touchLayer;
-
-    local root = Widget:create()
-    touchLayer:addWidget(root)
-
-    local listView = ListView:create():addTo(root)
+    local listView = ListView:create():addTo(self.root)
     listView:setSize(CCSize(300, display.height))
     listView:setPosition(ccp(display.cx - 150, 0))
     listView:setDirection(SCROLLVIEW_DIR_VERTICAL)
@@ -84,13 +77,13 @@ end
 
 function Menu:gotoTest(name)
 
-    self.touchLayer:hide()
+    self.root:hide()
 
     local ui = require("ui."..name).new(name)
     UIMgr:push(ui)
     ui:setup();
     ui.onClose = function()
-        self.touchLayer:show()
+        self.root:show()
     end
 end
 
