@@ -75,6 +75,7 @@ function Menu:ctor()
         'TileTest',
         'EditboxTest',
         'Game2048',
+        'GamePopstar',
     }
 
     for i, v in ipairs(tests) do

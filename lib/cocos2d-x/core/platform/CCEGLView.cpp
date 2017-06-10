@@ -38,6 +38,7 @@ void CCEGLView::setFrameSize(const CCSize& size)
 {
 	if (_window)
 		SDL_SetWindowSize(_window, (int)size.width, (int)size.height);
+	onWindowResized();
 }
 
 

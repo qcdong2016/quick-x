@@ -23,7 +23,7 @@ public:
 
 		// initialize director
 		CCEGLView* view = CCEGLView::sharedOpenGLView();
-		view->setFrameSize(CCSize(960, 640));
+		view->setFrameSize(CCSize(640, 960));
 		d->setOpenGLView(view);
 		d->setProjection(kCCDirectorProjection2D);
 
