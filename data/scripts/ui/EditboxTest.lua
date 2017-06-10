@@ -2,21 +2,25 @@ local M = class("TestEditbox", TestBase)
 
 function M:setup()
     local c = CCLayerColor:create(ccc4(122, 122, 122, 255))
-    c:setSize(CCSize(150, 50))
-    c:setPosition(ccp(300, 300))
+    c:setSize(CCSize(400, 400))
+    c:setAnchorPoint(ccp(0.5, 0.5))
+    c:setPosition(ccp(display.cx, display.cy))
     self.root:addChild(c)
 
-    local edit = EditBox:create()
-    edit:setFontSize(30)
-    edit:setPlaceHolder("input text")
-    edit:setSize(CCSize(150, 50))
-    edit:setPosition(ccp(300, 300))
+    self:createEditBox():addTo(c):pos(-150, 100)
+    self:createEditBox():addTo(c):pos(-150, -100)
+end
 
-    edit:onClicked(function()
-        print("touched") 
-    end)
+function M:createEditBox()
+    local bg = CCLayerColor:create(ccc4(100, 255, 100, 255))
+    bg:setSize(CCSize(300, 80))
+    bg:setAnchorPoint(0, 0.5)
 
-    self.root:addChild(edit)
+    local edit = EditBox:create():addTo(bg)
+    edit:setAnchorPoint(ccp(0, 0.5))
+    edit:setSize(CCSize(300, 80))
+
+    return bg
 end
 
 return M

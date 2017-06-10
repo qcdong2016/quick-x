@@ -210,12 +210,26 @@ bool CCLayerColor::initWithColor(const ccColor4B& color)
 /// override contentSize
 void CCLayerColor::setSize(const CCSize & size)
 {
-    m_pSquareVertices[1].x = size.width;
-    m_pSquareVertices[2].y = size.height;
-    m_pSquareVertices[3].x = size.width;
-    m_pSquareVertices[3].y = size.height;
+    float left   = -size.width * m_obAnchorPoint.x;
+    float bottom = -size.height * m_obAnchorPoint.y;
+    float top    = bottom + size.height;
+    float right  = left + size.width;
+    
+    m_pSquareVertices[0].x = left;
+    m_pSquareVertices[0].y = bottom;
+    m_pSquareVertices[1].x = right;
+    m_pSquareVertices[1].y = bottom;
+    m_pSquareVertices[2].x = left;
+    m_pSquareVertices[2].y = top;
+    m_pSquareVertices[3].x = right;
+    m_pSquareVertices[3].y = top;
 
     CCLayer::setSize(size);
+}
+void CCLayerColor::setAnchorPoint(const Vec2& pos)
+{
+    CCLayer::setAnchorPoint(pos);
+    setSize(_size);
 }
 
 void CCLayerColor::changeWidthAndHeight(GLfloat w ,GLfloat h)

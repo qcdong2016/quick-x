@@ -57,12 +57,12 @@ android {
 }
 
 task copyScript (type: Sync) {
-    from '../../scripts'
+    from '../../../data/scripts'
     into 'assets/scripts'
 }
 
 task copyRes(type: Sync) {
-    from '../../res'
+    from '../../../data/res'
     into 'assets/res'
 }
 

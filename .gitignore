@@ -45,3 +45,4 @@ local.properties
 /template/proj.android/local.properties
 lib/proj.mac/bin
 lib/proj_xcode/bin
+lib/proj_android/app/assets

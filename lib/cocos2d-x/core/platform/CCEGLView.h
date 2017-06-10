@@ -67,6 +67,7 @@ public:
 
 	static CCEGLView* sharedOpenGLView();
 
+    void* getSDLWindow();
 private:
 
 	void resize(int width, int height);

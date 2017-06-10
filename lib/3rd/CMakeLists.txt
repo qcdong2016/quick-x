@@ -12,19 +12,19 @@ add_subdirectory(tolua)
 if (MSVC)
     add_subdirectory(zlib)
     add_subdirectory(glew)
-endif()
 
-set(ThirdLib 
-    imgui
-    kazmath
-    lua
-    lua_extensions
-    SDL2
-    spine
-    stb
-    tinyxml2
-    tolua
-    zlib
-    glew
-)
-set_target_properties(${ThirdLib} PROPERTIES FOLDER "3rd")
+    set(ThirdLib 
+        imgui
+        kazmath
+        lua
+        lua_extensions
+        SDL2
+        spine
+        stb
+        tinyxml2
+        tolua
+        zlib
+        glew
+    )
+    set_target_properties(${ThirdLib} PROPERTIES FOLDER "3rd")
+endif()

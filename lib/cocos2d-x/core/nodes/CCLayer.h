@@ -134,6 +134,7 @@ public:
     virtual bool isOpacityModifyRGB(void) { return false;}
     virtual void setColor(const ccColor3B &color);
     virtual void setOpacity(GLubyte opacity);
+    virtual void setAnchorPoint(const Vec2& pos);
 
 protected:
     virtual void updateColor();
