@@ -38,6 +38,7 @@ NS_CC_BEGIN
 
 class CCObject;
 class EventHandler;
+class AttributeInfo;
 
 typedef ID EventID;
 
@@ -114,6 +115,8 @@ public:
 	static T* newObject(ID type) {
 		return static_cast<T*>(createObject(type));
 	}
+
+	static void registerAttribute(ID type, const AttributeInfo& attr);
 };
 
 #define CCOBJECT(typeName, superTypeName)                       \

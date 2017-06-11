@@ -31,6 +31,7 @@ THE SOFTWARE.
 
 #include "CCDirector.h"
 #include "CCEngineEvents.h"
+#include "CCAttributeAccessor.h"
 
 NS_CC_BEGIN
 
@@ -513,6 +514,7 @@ CCObject* CCObject::copy()
 }
 
 static std::map<ID, SharedPtr<ObjectFactoryBase> > factorys;
+static std::map<ID, std::vector<AttributeInfo> > attributes;
 
 void ObjectFactoryManager::addFactory(ID type, ObjectFactoryBase* factory)
 {
@@ -528,7 +530,10 @@ CCObject* ObjectFactoryManager::createObject(ID type)
 	return iter->second->newObject();
 }
 
-
+void ObjectFactoryManager::registerAttribute(ID type, const AttributeInfo& attr)
+{
+	attributes[type].push_back(attr);
+}
 
 void EventHandler::invoke()
 {

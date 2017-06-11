@@ -26,6 +26,8 @@
 #include "RefCounted.h"
 #include "Ptr.h"
 #include <string>
+#include "graphics/CCVec2.h"
+#include "graphics/CCColor.h"
 
 namespace cocos2d
 {
@@ -38,6 +40,8 @@ enum VariantType
     VAR_FLOAT,
 	VAR_DOUBLE,
 	VAR_STRING,
+	VAR_VECTOR2,
+	VAR_COLOR,
 
 	VAR_PTR,
 	VAR_VOIDPTR,
@@ -137,6 +141,18 @@ public:
     {
         *this = value;
     }
+
+	Variant(const Vec2& value) :
+		type_(VAR_NONE)
+	{
+		*this = value;
+	}
+
+	Variant(const Color& value) :
+		type_(VAR_NONE)
+	{
+		*this = value;
+	}
 
 	/// Construct from a pointer.
     Variant(void* value) :
@@ -258,6 +274,22 @@ public:
         return *this;
     }
 
+	/// Assign from a Vector2.
+	Variant& operator =(const Vec2& rhs)
+	{
+		SetType(VAR_VECTOR2);
+		*(reinterpret_cast<Vec2*>(&value_)) = rhs;
+		return *this;
+	}
+	
+	/// Assign from a color.
+	Variant& operator =(const Color& rhs)
+	{
+		SetType(VAR_COLOR);
+		*(reinterpret_cast<Color*>(&value_)) = rhs;
+		return *this;
+	}
+
     /// Assign from a void pointer.
     Variant& operator =(void* rhs)
     {
@@ -297,6 +329,18 @@ public:
     {
         return type_ == VAR_STRING ? *(reinterpret_cast<const std::string*>(&value_)) == rhs : false;
     }
+
+	/// Test for equality with an Vector2. To return true, both the type and value must match.
+	bool operator ==(const Vec2& rhs) const
+	{
+		return type_ == VAR_VECTOR2? *(reinterpret_cast<const Vec2*>(&value_)) == rhs : false;
+	}
+
+	/// Test for equality with an Color. To return true, both the type and value must match.
+	bool operator ==(const Color& rhs) const
+	{
+		return type_ == VAR_COLOR? *(reinterpret_cast<const Color*>(&value_)) == rhs : false;
+	}
 
     /// Test for equality with a void pointer. To return true, both the type and value must match, with the exception that a RefCounted pointer is also allowed.
     bool operator ==(void* rhs) const
@@ -339,6 +383,12 @@ public:
 
     /// Test for inequality with a string.
     bool operator !=(const std::string& rhs) const { return !(*this == rhs); }
+
+	/// Test for inequality with a Vector2.
+	bool operator !=(const Vec2& rhs) const { return !(*this == rhs); }
+
+	/// Test for inequality with a Vector2.
+	bool operator !=(const Color& rhs) const { return !(*this == rhs); }
 
     /// Test for inequality with a %VectorBuffer.
     //bool operator !=(const VectorBuffer& rhs) const { return !(*this == rhs); }
@@ -421,6 +471,12 @@ public:
 
     /// Return %VectorBuffer containing the buffer or empty on type mismatch.
     //VectorBuffer GetVectorBuffer() const;
+
+	/// Return Vector2 or zero on type mismatch.
+	const Vec2& GetVec2() const { return type_ == VAR_VECTOR2 ? *reinterpret_cast<const Vec2*>(&value_) : Vec2(); }
+
+	/// Return Color or zero on type mismatch.
+	const Color& GetColor() const { return type_ == VAR_COLOR ? *reinterpret_cast<const Color*>(&value_) : Color(); }
 
     /// Return void pointer or null on type mismatch. RefCounted pointer will be converted.
     void* GetVoidPtr() const
@@ -509,4 +565,6 @@ template <> CC_DLL void* Variant::Get<void*>() const;
 template <> CC_DLL RefCounted* Variant::Get<RefCounted*>() const;
 template <> CC_DLL std::string Variant::Get<std::string>() const;
 
+template <> CC_DLL Vec2 Variant::Get<Vec2>() const;
+template <> CC_DLL Color Variant::Get<Color>() const;
 }

@@ -1,8 +1,8 @@
 
 class CCNode : public CCScriptEventDispatcher
 {
-    void setName(const char* name);
-    const char* getName();
+    void setName(const std::string& name);
+    const std::string& getName();
     static CCNode * create(void);
     void setZOrder(int zOrder);
     int getZOrder();

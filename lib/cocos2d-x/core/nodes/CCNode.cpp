@@ -37,6 +37,7 @@
 #include "nodes/CCScene.h"
 // externals
 #include "kazmath/matrix.h"
+#include "engine/CCAttributeAccessor.h"
 
 #if CC_NODE_RENDER_SUBPIXEL
 #define RENDER_IN_SUBPIXEL
@@ -54,7 +55,7 @@ unsigned int CCNode::g_drawOrder = 0;
 CCNode::CCNode(void)
 : m_fRotationX(0.0f)
 , m_fRotationY(0.0f)
-, _name("node")
+, _name("")
 , m_fScaleX(1.0f)
 , m_fScaleY(1.0f)
 , m_fVertexZ(0.0f)
@@ -170,7 +171,7 @@ void CCNode::setVertexZ(float var)
 
 
 /// rotation getter
-float CCNode::getRotation()
+float CCNode::getRotation() const 
 {
     CCAssert(m_fRotationX == m_fRotationY, "CCNode#rotation. RotationX != RotationY. Don't know which one to return");
     return m_fRotationX;
@@ -318,7 +319,7 @@ CCCamera* CCNode::getCamera()
 }
 
 /// isVisible getter
-bool CCNode::isVisible()
+bool CCNode::isVisible() const
 {
     return m_bVisible;
 }
@@ -335,7 +336,7 @@ const Vec2& CCNode::getAnchorPointInPoints()
 }
 
 /// anchorPoint getter
-const Vec2& CCNode::getAnchorPoint()
+const Vec2& CCNode::getAnchorPoint() const 
 {
     return m_obAnchorPoint;
 }
@@ -1419,6 +1420,13 @@ void CCNode::setTouchEnabled(bool enabled)
 int CCNode::executeScriptTouchHandler(int nEventType, const Vec2& pos)
 {
     return CCScriptEngineManager::sharedManager()->getScriptEngine()->executeNodeTouchEvent(this, nEventType, pos, 0);
+}
+
+void CCNode::registAttribute()
+{
+	ATTR("Name", getName, setName, std::string, "");
+	ATTR("Tag", getTag, setTag, int, 0);
+	ATTR("Rotation", getRotation, setRotation, float, 0.0f);
 }
 
 NS_CC_END

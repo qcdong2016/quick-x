@@ -39,6 +39,8 @@ static const char* typeNames[] =
     "Float",
 	"Double",
 	"String",
+	"Vec2",
+	"Color",
 	"Ptr",
 	"VoidPtr",
 
@@ -353,6 +355,16 @@ template <> RefCounted* Variant::Get<RefCounted*>() const
 template <> std::string Variant::Get<std::string>() const
 {
     return GetString();
+}
+
+template <> Vec2 Variant::Get<Vec2>() const
+{
+	return GetVec2();
+}
+
+template <> Color Variant::Get<Color>() const
+{
+	return GetColor();
 }
 
 std::string Variant::GetTypeName(VariantType type)

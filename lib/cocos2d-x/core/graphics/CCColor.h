@@ -3,6 +3,8 @@
 #include "CCPlatformDefine.h"
 #include "CCPlatformMacros.h"
 
+#undef TRANSPARENT
+
 NS_CC_BEGIN
 
 class CC_DLL Color

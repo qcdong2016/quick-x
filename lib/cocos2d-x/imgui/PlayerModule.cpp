@@ -74,7 +74,7 @@ static void DrawNode(CCNode* node)
 
 	bool hasChild = (arr && arr->count() != 0);
 
-	if (ImGui::TreeNodeEx(node->getName(), hasChild ? 0 : ImGuiTreeNodeFlags_Leaf))
+	if (ImGui::TreeNodeEx(node->getName().c_str(), hasChild ? 0 : ImGuiTreeNodeFlags_Leaf))
 	{
 		if (hasChild)
 		{

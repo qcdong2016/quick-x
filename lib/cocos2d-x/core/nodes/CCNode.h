@@ -51,7 +51,6 @@ class CCActionManager;
 class CCDictionary;
 class CCScene;
 class CCTexture2D;
-
 /**
  * @addtogroup base_nodes
  * @{
@@ -118,6 +117,7 @@ enum {
 
 class CC_DLL CCNode : public CCScriptEventDispatcher
 {
+	CCOBJECT(CCNode, CCObject);
 public:
     /// @{
     /// @name Constructor, Distructor and Initializers
@@ -396,7 +396,7 @@ public:
      *
      * @return The anchor point of node.
      */
-    virtual const Vec2& getAnchorPoint();
+    virtual const Vec2& getAnchorPoint() const;
     /**
      * Returns the anchorPoint in absolute pixels.
      *
@@ -443,7 +443,7 @@ public:
      *
      * @return true if the node is visible, false if the node is hidden.
      */
-    virtual bool isVisible();
+    virtual bool isVisible() const;
 
 
     /**
@@ -462,7 +462,7 @@ public:
      *
      * @return The rotation of the node in degrees.
      */
-    virtual float getRotation();
+    virtual float getRotation() const;
 
 
     /**
@@ -1380,7 +1380,7 @@ public:
      *
      * @param A const char* that indentifies the widget.
      */
-    void setName(const char* name) { _name = name; }
+    void setName(const std::string& name) { _name = name; }
     
     /**
      * Returns a name that is used to identify the widget easily.
@@ -1389,7 +1389,7 @@ public:
      *
      * @return A const char* that identifies the widget.
      */
-    const char* getName() const { return _name.c_str(); }
+    const std::string& getName() const { return _name; }
 private:
     /// lazy allocs
     void childrenAlloc(void);
@@ -1405,6 +1405,9 @@ private:
      * @lua NA
      */
     Vec2 convertToWindowSpace(const Vec2& nodePoint);
+
+
+	void registAttribute();
 
 protected:
     std::string _name;

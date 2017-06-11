@@ -49,6 +49,7 @@ public:
 	* @lua NA
 	*/
 	Vec2 operator*(float a) const;
+	bool operator ==(const Vec2& rhs) const { return x == rhs.x && y == rhs.y; }
 	/**
 	* @lua NA
 	*/

@@ -280,7 +280,7 @@ Widget* Widget::getChildByName(const char *name)
         CCARRAY_FOREACH(_widgetChildren, child)
         {
             Widget* pNode = (Widget*) child;
-            if(pNode && strcmp(pNode->getName(), name) == 0)
+            if(pNode && pNode->getName().compare(name) == 0)
                 return pNode;
         }
     }

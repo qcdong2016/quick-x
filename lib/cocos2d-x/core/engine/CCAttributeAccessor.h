@@ -75,7 +75,7 @@ public:
 	{}
 
 	/// Invoke getter function.
-	virtual void get(const Node* ptr, Variant& dest) const
+	virtual void get(const CCNode* ptr, Variant& dest) const
 	{
 		assert(ptr);
 		const T* classPtr = static_cast<const T*>(ptr);
@@ -84,11 +84,11 @@ public:
 	}
 
 	/// Invoke setter function.
-	virtual void set(Node* ptr, const Variant& value)
+	virtual void set(CCNode* ptr, const Variant& value)
 	{
 		assert(ptr);
 		T* classPtr = static_cast<T*>(ptr);
-		(classPtr->*_setFunc)(value.value<U>());
+		(classPtr->*_setFunc)(value.Get<U>());
 	}
 
 	getFunctionPtr _getFunc;
@@ -111,7 +111,7 @@ public:
 	{}
 
 	/// Invoke getter function.
-	virtual void get(const Node* ptr, Variant& dest) const
+	virtual void get(const CCNode* ptr, Variant& dest) const
 	{
 		assert(ptr);
 		const T* classPtr = static_cast<const T*>(ptr);
@@ -120,11 +120,11 @@ public:
 	}
 
 	/// Invoke setter function.
-	virtual void set(Node* ptr, const Variant& value)
+	virtual void set(CCNode* ptr, const Variant& value)
 	{
 		assert(ptr);
 		T* classPtr = static_cast<T*>(ptr);
-		_setFunc(classPtr, value.value<U>());
+		_setFunc(classPtr, value.Get<U>());
 	}
 	getFunctionPtr _getFunc;
 	setFunctionPtr _setFunc;
@@ -145,7 +145,7 @@ public:
 	{}
 
 	/// Invoke getter function.
-	virtual void get(const Node* ptr, Variant& dest) const
+	virtual void get(const CCNode* ptr, Variant& dest) const
 	{
 		assert(ptr);
 		const T* classPtr = static_cast<const T*>(ptr);
@@ -154,11 +154,11 @@ public:
 	}
 
 	/// Invoke setter function.
-	virtual void set(Node* ptr, const Variant& value)
+	virtual void set(CCNode* ptr, const Variant& value)
 	{
 		assert(ptr);
 		T* classPtr = static_cast<T*>(ptr);
-		(classPtr->*_setFunc)((U)value.value<int>());
+		(classPtr->*_setFunc)((U)value.Get<int>());
 	}
 
 	getFunctionPtr _getFunc;
@@ -171,8 +171,9 @@ struct EnumInfo
 	int value;
 };
 
-struct AttributeInfo
+class AttributeInfo
 {
+public:
 	VariantType type;
 
 	SharedPtr<AttributeAccessor> accessor;
@@ -209,6 +210,11 @@ struct AttributeInfo
 
 	bool isEnum() { return enuminfo != nullptr; }
 };
+
+#define ATTR_(trait, attributeName, get, set, typeName, defaultValue) \
+	ObjectFactoryManager::registerAttribute(getTypeStatic(), AttributeInfo(new AttributeAccessorImpl<SelfType, typeName, trait<typeName> >(attributeName, &SelfType::##get, &SelfType::##set), defaultValue))
+
+#define ATTR(attributeName, get, set, typeName, defaultValue) ATTR_(AttributeTrait, attributeName, get, set, typeName, defaultValue)
 
 }
 #endif//_ATTRIBUTEACCESSOR_H_
