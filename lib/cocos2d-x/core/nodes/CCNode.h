@@ -187,7 +187,7 @@ public:
      *
      * @return The Z order.
      */
-    virtual int getZOrder();
+    virtual int getZOrder() const;
 
 
     /**
@@ -265,7 +265,7 @@ public:
      *
      * @return The scale factor of the node.
      */
-    virtual float getScale();
+    virtual float getScale() const;
 
 
     /**
@@ -301,7 +301,7 @@ public:
      *
      * @return The position (x,y) of the node in OpenGL coordinates
      */
-    virtual const Vec2& getPosition();
+    virtual const Vec2& getPosition() const;
     /**
      * Sets position in a more efficient way.
      *

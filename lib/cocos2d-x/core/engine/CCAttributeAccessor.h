@@ -212,7 +212,7 @@ public:
 };
 
 #define ATTR_(trait, attributeName, get, set, typeName, defaultValue) \
-	ObjectFactoryManager::registerAttribute(getTypeStatic(), AttributeInfo(new AttributeAccessorImpl<SelfType, typeName, trait<typeName> >(attributeName, &SelfType::##get, &SelfType::##set), defaultValue))
+	ObjectFactoryManager::registerAttribute(getTypeStatic(), AttributeInfo(new AttributeAccessorImpl<SelfType, typeName, trait<typeName> >(attributeName, &SelfType::get, &SelfType::set), defaultValue))
 
 #define ATTR(attributeName, get, set, typeName, defaultValue) ATTR_(AttributeTrait, attributeName, get, set, typeName, defaultValue)
 

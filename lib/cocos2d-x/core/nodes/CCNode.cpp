@@ -135,7 +135,7 @@ void CCNode::setSkewY(float newSkewY)
 }
 
 /// zOrder getter
-int CCNode::getZOrder()
+int CCNode::getZOrder() const
 {
     return m_nZOrder;
 }
@@ -207,7 +207,7 @@ void CCNode::setRotationY(float fRotationY)
 }
 
 /// scale getter
-float CCNode::getScale(void)
+float CCNode::getScale(void) const
 {
     CCAssert( m_fScaleX == m_fScaleY, "CCNode#scale. ScaleX != ScaleY. Don't know which one to return");
     return m_fScaleX;
@@ -255,7 +255,7 @@ void CCNode::setScaleY(float newScaleY)
 }
 
 /// position getter
-const Vec2& CCNode::getPosition()
+const Vec2& CCNode::getPosition() const
 {
     return m_obPosition;
 }
@@ -1424,9 +1424,14 @@ int CCNode::executeScriptTouchHandler(int nEventType, const Vec2& pos)
 
 void CCNode::registAttribute()
 {
-	ATTR("Name", getName, setName, std::string, "");
-	ATTR("Tag", getTag, setTag, int, 0);
-	ATTR("Rotation", getRotation, setRotation, float, 0.0f);
+	ATTR("Name",   getName,     setName, std::string, "");
+	ATTR("Tag",    getTag,      setTag, int, 0);
+	ATTR("Rotate", getRotation, setRotation, float, 0.0f);
+    ATTR("Scale",  getScale,    setScale,   float, 1.0f);
+    ATTR("Pos",    getPosition, setPosition, Vec2,  CCPointZero);
+    ATTR("Anchor", getAnchorPoint, setAnchorPoint, Vec2, Vec2(0.5f, 0.5f));
+    ATTR("ZOrder", getZOrder,   setZOrder, int, 0);
+    ATTR("Visible",isVisible,   setVisible, bool, true);
 }
 
 NS_CC_END
