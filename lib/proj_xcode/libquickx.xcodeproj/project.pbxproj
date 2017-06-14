@@ -326,9 +326,6 @@
 		B108E9121EE52F92004BA1E2 /* CCParticleSystemQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E7091EE52F91004BA1E2 /* CCParticleSystemQuad.cpp */; };
 		B108E9131EE52F92004BA1E2 /* CCParticleSystemQuad.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E70A1EE52F91004BA1E2 /* CCParticleSystemQuad.h */; };
 		B108E9141EE52F92004BA1E2 /* firePngData.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E70B1EE52F91004BA1E2 /* firePngData.h */; };
-		B108E9151EE52F92004BA1E2 /* CCLuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E70D1EE52F91004BA1E2 /* CCLuaBridge.cpp */; };
-		B108E9161EE52F92004BA1E2 /* CCLuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E70D1EE52F91004BA1E2 /* CCLuaBridge.cpp */; };
-		B108E9171EE52F92004BA1E2 /* CCLuaBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = B108E70E1EE52F91004BA1E2 /* CCLuaBridge.h */; };
 		B108E9181EE52F92004BA1E2 /* CCLuaBridge_java.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E70F1EE52F91004BA1E2 /* CCLuaBridge_java.cpp */; };
 		B108E9191EE52F92004BA1E2 /* CCLuaBridge_java.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E70F1EE52F91004BA1E2 /* CCLuaBridge_java.cpp */; };
 		B108E91A1EE52F92004BA1E2 /* CCLuaBridge_oc.mm in Sources */ = {isa = PBXBuildFile; fileRef = B108E7101EE52F91004BA1E2 /* CCLuaBridge_oc.mm */; };
@@ -1510,8 +1507,6 @@
 		B108E7091EE52F91004BA1E2 /* CCParticleSystemQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCParticleSystemQuad.cpp; sourceTree = "<group>"; };
 		B108E70A1EE52F91004BA1E2 /* CCParticleSystemQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCParticleSystemQuad.h; sourceTree = "<group>"; };
 		B108E70B1EE52F91004BA1E2 /* firePngData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firePngData.h; sourceTree = "<group>"; };
-		B108E70D1EE52F91004BA1E2 /* CCLuaBridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLuaBridge.cpp; sourceTree = "<group>"; };
-		B108E70E1EE52F91004BA1E2 /* CCLuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLuaBridge.h; sourceTree = "<group>"; };
 		B108E70F1EE52F91004BA1E2 /* CCLuaBridge_java.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLuaBridge_java.cpp; sourceTree = "<group>"; };
 		B108E7101EE52F91004BA1E2 /* CCLuaBridge_oc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCLuaBridge_oc.mm; sourceTree = "<group>"; };
 		B108E7111EE52F91004BA1E2 /* CCLuaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLuaEngine.cpp; sourceTree = "<group>"; };
@@ -2625,8 +2620,6 @@
 		B108E70C1EE52F91004BA1E2 /* scripting */ = {
 			isa = PBXGroup;
 			children = (
-				B108E70D1EE52F91004BA1E2 /* CCLuaBridge.cpp */,
-				B108E70E1EE52F91004BA1E2 /* CCLuaBridge.h */,
 				B108E70F1EE52F91004BA1E2 /* CCLuaBridge_java.cpp */,
 				B108E7101EE52F91004BA1E2 /* CCLuaBridge_oc.mm */,
 				B108E7111EE52F91004BA1E2 /* CCLuaEngine.cpp */,
@@ -4328,7 +4321,6 @@
 				B108EE421EE52FA0004BA1E2 /* lauxlib.h in Headers */,
 				B108EF221EE52FA0004BA1E2 /* SDL_test.h in Headers */,
 				B108EF051EE52FA0004BA1E2 /* SDL_loadso.h in Headers */,
-				B108E9171EE52F92004BA1E2 /* CCLuaBridge.h in Headers */,
 				B108EE241EE52FA0004BA1E2 /* matrix.h in Headers */,
 				B108E8861EE52F92004BA1E2 /* CCInput.h in Headers */,
 				B108E8A61EE52F92004BA1E2 /* CCPlistResource.h in Headers */,
@@ -4922,7 +4914,6 @@
 				B108EE8E1EE52FA0004BA1E2 /* print.c in Sources */,
 				B108F2141EE52FA2004BA1E2 /* SDL_blit_slow.c in Sources */,
 				B108F2F71EE52FA2004BA1E2 /* AttachmentLoader.c in Sources */,
-				B108E9151EE52F92004BA1E2 /* CCLuaBridge.cpp in Sources */,
 				B108E7921EE52F91004BA1E2 /* CCActionInstant.cpp in Sources */,
 				B108E8E21EE52F92004BA1E2 /* xxtea.c in Sources */,
 				B108E7DB1EE52F91004BA1E2 /* Variant.cpp in Sources */,
@@ -5334,7 +5325,6 @@
 				B108EE8F1EE52FA0004BA1E2 /* print.c in Sources */,
 				B108F2151EE52FA2004BA1E2 /* SDL_blit_slow.c in Sources */,
 				B108F2F81EE52FA2004BA1E2 /* AttachmentLoader.c in Sources */,
-				B108E9161EE52F92004BA1E2 /* CCLuaBridge.cpp in Sources */,
 				B108E7931EE52F91004BA1E2 /* CCActionInstant.cpp in Sources */,
 				B108E8E31EE52F92004BA1E2 /* xxtea.c in Sources */,
 				B108E7DC1EE52F91004BA1E2 /* Variant.cpp in Sources */,

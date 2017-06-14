@@ -54,20 +54,16 @@ android {
             path "../../../CMakeLists.txt"
         }
     }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn 'copyScript'
+    }
 }
 
 task copyScript (type: Sync) {
-    from '../../../data/scripts'
-    into 'assets/scripts'
+    from '../../../data/'
+    into 'assets/'
 }
-
-task copyRes(type: Sync) {
-    from '../../../data/res'
-    into 'assets/res'
-}
-
-assemble.dependsOn(copyRes)
-assemble.dependsOn(copyScript)
 
 repositories {
     flatDir {

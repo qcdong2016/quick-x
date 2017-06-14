@@ -36,7 +36,6 @@ extern "C" {
 #include "ccMacros.h"
 #include "zip/ZipUtils.h"
 
-#include "CCLuaBridge.h"
 
 // cocos2d-x luabinding
 #include "LuaCocos2d.h"
@@ -65,7 +64,8 @@ TOLUA_API int luaopen_cocos2dx_httprequest_luabinding(lua_State* tolua_S);
 using namespace std;
 
 
-TOLUA_API int  tolua_spine_open(lua_State* tolua_S);
+TOLUA_API int callStaticMethod(lua_State* L);
+TOLUA_API int tolua_spine_open(lua_State* tolua_S);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 TOLUA_API int luaopen_imgui(lua_State *L);
@@ -74,7 +74,8 @@ TOLUA_API int luaopen_imgui(lua_State *L);
 
 NS_CC_BEGIN
 
-static int cocos2dx_lua_loader(lua_State *L)
+
+static int cocos2dx_lua_loader(lua_State* L)
 {
 	std::string filename(luaL_checkstring(L, 1));
 
@@ -166,7 +167,7 @@ bool CCLuaStack::init(void)
     lua_pushcfunction(m_state, lua_loadChunksFromZIP);
     lua_setglobal(m_state, "loadChunksFromZIP");
     
-    lua_pushcfunction(m_state, CCLuaBridge::callStaticMethod);
+    lua_pushcfunction(m_state, callStaticMethod);
     lua_setglobal(m_state, "callStaticMethod");
 
 /*

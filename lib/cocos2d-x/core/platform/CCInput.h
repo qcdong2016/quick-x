@@ -6,8 +6,19 @@
 #include <set>
 #include <list>
 #include <map>
+#include <functional>
 
 NS_CC_BEGIN;
+
+struct EventCallFuncData
+{
+    std::function<void()> func;
+};
+
+enum UserEventType
+{
+    CALL_FUNC
+};
 
 struct TouchState {
 	int touchid;
@@ -42,6 +53,9 @@ public:
 	bool isKeyDown(int key);
 	bool isMouseButtonDown(int button);
 	const Vec2& getMousePos() { return _mousePos; }
+    
+    // thread safe
+    bool pushUserEvent(int code, void* data);
 
 private:
 	void handleEvent(void* evt);

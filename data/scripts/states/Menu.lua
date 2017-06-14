@@ -60,6 +60,7 @@ function Menu:ctor()
         'SpineTest',
         'SpriteTest',
         'TileTest',
+        'CallNativeTest',
         'EditboxTest',
         'Game2048',
         'GamePopstar',

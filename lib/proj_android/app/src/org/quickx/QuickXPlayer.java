@@ -24,8 +24,12 @@ THE SOFTWARE.
 package org.quickx;
 
 import org.cocos2dx.lib.Cocos2dxHelper;
+import org.cocos2dx.lib.Cocos2dxLuaJavaBridge;
 import org.libsdl.app.SDLActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.HashMap;
 
 public class QuickXPlayer extends SDLActivity {
 
@@ -42,4 +46,16 @@ public class QuickXPlayer extends SDLActivity {
             "game",
 		};
     }
+
+    // for test
+    public static void sayHello() {
+		Log.e("QuickX", "hello world");
+	}
+	public static void sayHelloMap(HashMap map) {
+		Log.e("QuickX", map.toString());
+
+		int funcId = (int)map.get("testFunc");
+		Cocos2dxLuaJavaBridge.callLuaFunctionWithString(funcId, "hello from java");
+		Cocos2dxLuaJavaBridge.releaseLuaFunction(funcId);
+	}
 }

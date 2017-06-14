@@ -6,4 +6,4 @@ function __G__TRACKBACK__(errorMessage)
     print("----------------------------------------")
 end
 
-require("App").new():run()
+xpcall(function() require("App").new():run() end, __G__TRACKBACK__)

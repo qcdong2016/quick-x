@@ -1,6 +1,6 @@
 
-#include "CCLuaBridge.h"
 
+#include "scripting/CCLuaStack.h"
 #import <Foundation/Foundation.h>
 
 extern "C"{
@@ -75,7 +75,7 @@ static void* copyToObjc(lua_State *L)
             
         case LUA_TFUNCTION:
         {
-            int functionId = CCLuaBridge::retainLuaFunction(L, -1, NULL);
+            int functionId = lua_ref(L, LUA_REGISTRYINDEX);
             return [NSNumber numberWithInt:functionId];
         }
             
@@ -165,7 +165,7 @@ static void pushValue(lua_State *L, void *val)
     }
 }
 
-
+/*
 
 static int callObjcStaticMethod(lua_State *L)
 {
@@ -341,9 +341,10 @@ static int callObjcStaticMethod(lua_State *L)
     }
 }
 
-int CCLuaBridge::callStaticMethod(lua_State* L)
-{
-    return callObjcStaticMethod(L);
-}
-
+*/
 NS_CC_END
+
+int callStaticMethod(lua_State* L)
+{
+    return 0;//callObjcStaticMethod(L);
+}

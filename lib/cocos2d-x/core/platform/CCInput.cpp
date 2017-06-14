@@ -16,6 +16,7 @@ const unsigned TOUCHID_MAX = 32;
 
 extern "C" {
 
+    
 	JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxAccelerometer_onSensorChanged(JNIEnv*  env, jobject thiz, jfloat x, jfloat y, jfloat z, jfloat timeStamp) {
 		// SubSystem::get<Input>()->onAcceleration(x, y, z, timeStamp);
 	}
@@ -360,11 +361,34 @@ void Input::handleEvent(void* evt)
         }
         break;
     }
+        case SDL_USEREVENT:
+        {
+            switch (e.user.code)
+            {
+                case CALL_FUNC:
+                {
+                    ((EventCallFuncData*)e.user.data1)->func();
+                    break;
+                };
+            }
+            CC_SAFE_FREE(e.user.data1);
+        }
 	default:
 		break;
 	}
 }
 
-NS_CC_END;
+bool Input::pushUserEvent(int code, void* data)
+{
+    SDL_Event event;
+    SDL_memset(&event, 0, sizeof(event)); /* or SDL_zero(event) */
+    event.type = SDL_USEREVENT;
+    event.user.code = code;
+    event.user.data1 = data;
+    event.user.data2 = 0;
+    return !!SDL_PushEvent(&event);
+}
+
+NS_CC_END
 #include "engine/CCEventImpl.h"
 #include "CCInputEvent.h"
