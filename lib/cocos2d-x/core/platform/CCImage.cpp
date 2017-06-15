@@ -89,7 +89,7 @@ bool CCImage::initWithImageData(void * pData, int nDataLen)
         m_bHasAlpha = true;
     m_bPreMulti = false;
 
-    size_t size = w * h * m_nBitsPerComponent;
+    size_t size = w * h * comp;
     m_pData = new unsigned char[size];
     memcpy(m_pData, decoded, size);
     stbi_image_free(decoded);

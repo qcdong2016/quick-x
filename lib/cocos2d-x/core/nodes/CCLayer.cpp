@@ -34,6 +34,7 @@
 #include "cocoa/TransformUtils.h"
 // extern
 #include "kazmath/matrix.h"
+#include "platform/CCEGLView.h"
 
 NS_CC_BEGIN
 
@@ -42,7 +43,6 @@ CCLayer::CCLayer()
 : m_bAccelerometerEnabled(false)
 {
     m_bIgnoreAnchorPointForPosition = true;
-    setAnchorPoint(ccp(0.5f, 0.5f));
 }
 
 bool CCLayer::init()
@@ -52,9 +52,10 @@ bool CCLayer::init()
     {
         CCDirector * pDirector;
         CC_BREAK_IF(!(pDirector = CCDirector::sharedDirector()));
-        const CCSize &winSize = pDirector->getWinSize();
+        const CCSize &winSize = pDirector->getOpenGLView()->getFrameSize();
         setSize(winSize);
         setCascadeBoundingBox(CCRect(0, 0, winSize.width, winSize.height));
+        setAnchorPoint(CCPointZero);
         _touchEnabled = false;
         m_bAccelerometerEnabled = false;
         // success
