@@ -557,6 +557,7 @@ function MainScene:createGridShow()
 
         local x,y = getPosFormIdx(i,j)
         local bsz = cell.backgroundsize/2
+        cell.background:setAnchorPoint(ccp(0.5, 0.5))
         cell.background:setPosition(ccp(x-bsz,y-bsz))
         cell.num:addTo(cell.background)
         self:addChild(cell.background)
@@ -591,6 +592,7 @@ end
 function MainScene:ctor()
     local layer = display.newColorLayer(ccc4(0xfa,0xf8,0xef, 255)):addTo(self):center()
     layer:setSize(CCSize(display.width, display.height))
+    layer:setAnchorPoint(ccp(0.5, 0.5))
     WINSTR = ""
     grid = initGrid(4,4)
 
