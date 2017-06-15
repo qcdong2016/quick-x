@@ -180,5 +180,10 @@ int callStaticMethod(lua_State* L)
     return 1;
 }
 
+#elif CC_TARGET_PLATFORM != CC_PLATFORM_IOS
+int callStaticMethod(lua_State* L)
+{
+	return 0;
+}
 
 #endif

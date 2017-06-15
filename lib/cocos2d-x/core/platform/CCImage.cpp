@@ -84,12 +84,25 @@ bool CCImage::initWithImageData(void * pData, int nDataLen)
     
     m_nWidth = w;
     m_nHeight = h;
-    
-    m_nBitsPerComponent = comp * 8;
-    if (comp == 4)
-        m_bHasAlpha = true;
-    m_bPreMulti = false;
-    m_pData = decoded;
+
+	m_pData = decoded;
+	m_nBitsPerComponent = comp * 8;
+	if (comp == 4)
+	{
+		m_bHasAlpha = true;
+		m_bPreMulti = true;
+		int rowbytes = m_nWidth * comp;
+		unsigned int *tmp = (unsigned int*)m_pData;
+		for (int i = 0; i < m_nHeight; i++) {
+			for (int j = 0; j < rowbytes; j += 4) {
+				*tmp++ = CC_RGB_PREMULTIPLY_ALPHA(m_pData[i*rowbytes + j], m_pData[i*rowbytes + j + 1], m_pData[i*rowbytes + j + 2], m_pData[i*rowbytes + j + 3]);
+			}
+		}
+	}
+	else 
+	{
+		m_bPreMulti = false;
+	}
     
     return true;
 }
