@@ -48,6 +48,10 @@ USING_NS_CC;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
+
++ (void)sayHello;
++ (void)sayHelloMap:(NSDictionary*)args;
+
 @end
 
 #ifndef utf8cstr
@@ -57,6 +61,16 @@ USING_NS_CC;
 @implementation CCNativeIOS
 
 static CCNativeIOS *s_sharedInstance;
+
++ (void)sayHello
+{
+    CCLog("hello");
+}
+
++ (void)sayHelloMap:(NSDictionary *)args
+{
+    NSLog(@"%@", args);
+}
 
 + (CCNativeIOS *)sharedInstance
 {

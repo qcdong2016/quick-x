@@ -66,6 +66,20 @@ JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_releaseLuaFun
         luaL_unref(stack->getLuaState(), LUA_REGISTRYINDEX, value);
     });
 }
+
+JNIEXPORT jint JNICALL Java_org_cocos2dx_lib_Cocos2dxLuaJavaBridge_executeString
+        (JNIEnv *env, jclass cls, jstring str)
+{
+    const char* str_ = env->GetStringUTFChars(str, 0);
+    std::string cppStr(str_);
+    env->ReleaseStringUTFChars(str, str_);
+
+    return queryInGLThread([=]() {
+        CCLuaStack* stack = CCLuaEngine::defaultEngine()->getLuaStack();
+        stack->executeString(cppStr.c_str());
+    });
+}
+
 } // extern "C"
 
 class AutoReleaseJni
@@ -85,21 +99,26 @@ public:
     JNIEnv* env;
 };
 
-int callStaticMethod(lua_State* L)
-{
-    if (!(lua_isstring(L, 1) && lua_isstring(L, 2)))
-    {
+int callStaticMethod(lua_State* L) {
+    if (!(lua_isstring(L, 1) && lua_isstring(L, 2))) {
         lua_pushboolean(L, false);
         lua_pushstring(L, "invalid param.");
         return 2;
     }
 
-    const char* className = lua_tostring(L, 1);
-    const char* methodName = lua_tostring(L, 2);
-    JNIEnv* env = JniHelper::getEnv();
+    const char *className = lua_tostring(L, 1);
+    const char *methodName = lua_tostring(L, 2);
+    JNIEnv *env = JniHelper::getEnv();
 
     AutoReleaseJni r(env);
     jclass jclassId = env->FindClass(className);
+
+    if (!jclassId)
+    {
+        lua_pushboolean(L, false);
+        lua_pushstring(L, "class not found.");
+        return 2;
+    }
 
     if (lua_istable(L, 3)) {
         jmethodID methodId = env->GetStaticMethodID(jclassId, methodName, "(Ljava/util/HashMap;)V");

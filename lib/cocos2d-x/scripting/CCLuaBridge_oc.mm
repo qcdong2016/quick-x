@@ -3,108 +3,6 @@
 #include "scripting/CCLuaStack.h"
 #import <Foundation/Foundation.h>
 
-extern "C"{
-#include "tolua++.h"
-#include "tolua_fix.h"
-};
-
-NS_CC_BEGIN
-
-static void* copyToObjc(lua_State *L);
-
-static void* checkArray(lua_State *L)
-{
-    NSMutableArray *array = [NSMutableArray array];
-    lua_pushnil(L);  /* first key */
-    while (lua_next(L, -2)) {
-        int index = lua_tonumber(L, -2) - 1;
-        NSObject *value = (NSObject*)copyToObjc(L);
-        [array insertObject:value atIndex:index];
-        lua_pop(L, 1);
-    }
-    return array;
-}
-
-static void* checkDictionary(lua_State *L)
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    lua_pushnil(L);
-    while (lua_next(L, -2))
-    {
-        NSString *key = [NSString stringWithCString:lua_tostring(L, -2) encoding:NSUTF8StringEncoding];
-        NSObject *value = (NSObject*)copyToObjc(L);
-        [dict setObject:value forKey:key];
-        lua_pop(L, 1);
-    }
-    return dict;
-}
-
-
-static void* copyToObjc(lua_State *L)
-{
-    switch (lua_type(L, -1))
-    {
-        case LUA_TNIL:
-        {
-            return [[[NSNull alloc] init] autorelease];
-        }
-        case LUA_TNUMBER:
-        {
-            lua_Number number = lua_tonumber(L, -1);
-            int value1 = (int)number;
-            float value2 = (float)number;
-            if (value1 == value2) {
-                return [NSNumber numberWithInt:value1];
-            } else {
-                return [NSNumber numberWithFloat:value2];
-            }
-        }
-            
-        case LUA_TBOOLEAN:
-        {
-            return [NSNumber numberWithBool:lua_toboolean(L, -1)];
-        }
-            
-        case LUA_TSTRING:
-        {
-            NSString *str = [NSString stringWithCString:lua_tostring(L, -1) encoding:NSUTF8StringEncoding];
-            if ([str isEqualToString:@"__nil__"])
-                return [[[NSNull alloc] init] autorelease];
-            return str;
-        }
-            
-        case LUA_TFUNCTION:
-        {
-            int functionId = lua_ref(L, LUA_REGISTRYINDEX);
-            return [NSNumber numberWithInt:functionId];
-        }
-            
-        case LUA_TTABLE:
-        {
-            BOOL bDictionary = NO;
-            
-            lua_pushnil(L);  /* first key */
-            while (!bDictionary && lua_next(L, -2)) {
-                if (lua_type(L, -2) != LUA_TNUMBER) {
-                    bDictionary = YES;
-                    lua_pop(L, 2); // pop key and value off the stack
-                }
-                else {
-                    lua_pop(L, 1);
-                }
-            }
-            
-            if (bDictionary) {
-                return checkDictionary(L);
-            }
-            else {
-                return checkArray(L);
-            }
-        }
-    }
-    return nil;
-}
-
 static void pushValue(lua_State *L, void *val)
 {
     id oval = (id)val;
@@ -165,36 +63,30 @@ static void pushValue(lua_State *L, void *val)
     }
 }
 
-/*
 
-static int callObjcStaticMethod(lua_State *L)
+int callStaticMethod(lua_State* L)
 {
-    if (lua_gettop(L) != 3 || !lua_isstring(L, -3) || !lua_isstring(L, -2))
+    if (!(lua_isstring(L, 1) && lua_isstring(L, 2)))
     {
-    	lua_pushboolean(L, 0);
-    	lua_pushinteger(L, kCCLuaBridgeErrorInvalidParameters);
-    	return 2;
-    }
-    
-    const char *className  = lua_tostring(L, -3);
-    const char *methodName = lua_tostring(L, -2);
-    if (!className || !methodName)
-    {
-        lua_pushboolean(L, 0);
-        lua_pushinteger(L, kCCLuaBridgeErrorInvalidParameters);
+        lua_pushboolean(L, false);
+        lua_pushstring(L, "invalid param.");
         return 2;
     }
+    
+    const char *className  = lua_tostring(L, 1);
+    const char *methodName = lua_tostring(L, 2);
+    
     
     Class targetClass = NSClassFromString([NSString stringWithCString:className encoding:NSUTF8StringEncoding]);
     if (!targetClass)
     {
-        lua_pushboolean(L, 0);
-        lua_pushinteger(L, kCCLuaBridgeErrorClassNotFound);
+        lua_pushboolean(L, false);
+        lua_pushstring(L, "class not found.");
         return 2;
     }
     
     SEL methodSel;
-    bool hasArguments = lua_istable(L, -1);
+    bool hasArguments = lua_istable(L, 3);
     if (hasArguments)
     {
         NSString *methodName_ = [NSString stringWithCString:methodName encoding:NSUTF8StringEncoding];
@@ -205,18 +97,19 @@ static int callObjcStaticMethod(lua_State *L)
     {
         methodSel = NSSelectorFromString([NSString stringWithCString:methodName encoding:NSUTF8StringEncoding]);
     }
+    
     if (methodSel == (SEL)0)
     {
-        lua_pushboolean(L, 0);
-        lua_pushinteger(L, kCCLuaBridgeErrorMethodNotFound);
+        lua_pushboolean(L, false);
+        lua_pushstring(L, "method not found.");
         return 2;
     }
     
     NSMethodSignature *methodSig = [targetClass methodSignatureForSelector:(SEL)methodSel];
     if (methodSig == nil)
     {
-        lua_pushboolean(L, 0);
-        lua_pushinteger(L, kCCLuaBridgeErrorMethodSignature);
+        lua_pushboolean(L, false);
+        lua_pushstring(L, "cound not get method signature.");
         return 2;
     }
     
@@ -229,69 +122,58 @@ static int callObjcStaticMethod(lua_State *L)
         
         if (hasArguments)
         {
-            NSObject *obj = (NSObject *)copyToObjc(L);
+            NSMutableDictionary* d = [[NSMutableDictionary alloc] init];
             
-            if ([obj isKindOfClass:[NSArray class]]) {
-                NSArray *array = (NSArray *)obj;
-                NSString *methodName_ = [NSString stringWithCString:methodName encoding:NSUTF8StringEncoding];
-                NSArray *argNames = [methodName_ componentsSeparatedByString:@":"];
-                int argCount = [argNames count];
-                if (argCount > [array count]) {
-                    lua_pushboolean(L, 0);
-                    lua_pushinteger(L, kCCLuaBridgeErrorInvalidParameters);
-                    NSLog(@"Arguments are too much in %@~", methodName_);
-                    return 2;
-                } else if (argCount < [array count]) {
-                    lua_pushboolean(L, 0);
-                    lua_pushinteger(L, kCCLuaBridgeErrorInvalidParameters);
-                    NSLog(@"Arguments are too less in %@~", methodName_);
-                    return 2;
-                }
-                
-                for(int i=0; i<argCount; ++i)
-                {
-                    NSObject *arg = [array objectAtIndex:i];
-                    if([arg isKindOfClass:[NSNull class]])
-                    {
-                        arg = nil;
-                    }
-                    else if([arg isKindOfClass:[NSNumber class]])
-                    {
-                        NSNumber *number = (NSNumber *)arg;
-                        const char *numberType = [number objCType];
-                        if (strcmp(numberType, @encode(BOOL)) == 0)
-                        {
-                            bool value = [(NSNumber *)arg boolValue];
-                            [invocation setArgument:&value atIndex:2+i];
-                        }
-                        else if (strcmp(numberType, @encode(int)) == 0)
-                        {
-                            int value = [(NSNumber *)arg intValue];
-                            [invocation setArgument:&value atIndex:2+i];
-                        }
-                        else
-                        {
-                            float value = [(NSNumber *)arg floatValue];
-                            [invocation setArgument:&value atIndex:2+i];
-                        }
-                        continue;
-                    }
-                    [invocation setArgument:&arg atIndex:2+i];
-                }
-                
-                [invocation invoke];
-                
-            }
-            else
+            lua_pushnil(L);
+            while (lua_next(L, -2))
             {
-                [invocation setArgument:&obj atIndex:2];
-                [invocation invoke];
+                NSString* key = [NSString stringWithCString:lua_tostring(L, -2) encoding:NSUTF8StringEncoding];
+                switch (lua_type(L, -1))
+                {
+                    case LUA_TNUMBER:
+                    {
+                        lua_Number value = lua_tonumber(L, -1);
+                        [d setValue:[NSNumber numberWithDouble:value] forKey:key];
+                        break;
+                    }
+                    case LUA_TBOOLEAN:
+                    {
+                        bool value = !!lua_toboolean(L, -1);
+                        [d setValue:[NSNumber numberWithDouble:value] forKey:key];
+                        break;
+                    }
+                    case LUA_TSTRING:
+                    {
+                        const char* value = lua_tostring(L, -1);
+                        NSString* str = [NSString stringWithCString:value encoding:NSUTF8StringEncoding];
+                        [d setValue:str forKey:key];
+                        break;
+                    }
+                    case LUA_TFUNCTION:
+                    {
+                        lua_pushvalue(L, -1);
+                        int funcId = luaL_ref(L, LUA_REGISTRYINDEX);
+                        [d setValue:[NSNumber numberWithInteger:funcId] forKey:key];
+                        break;
+                    }
+                    case LUA_TNIL:
+                    {
+                        [d setValue:[[NSNull alloc] init] forKey:key];
+                        break;
+                    }
+                    default:
+                    {
+                        cocos2d::CCLog("value type `%s` not support.", lua_typename(L, -1));
+                        break;
+                    }
+                }
+                lua_pop(L, 1);
             }
+            
+            [invocation setArgument:&d atIndex:2];
         }
-        else
-        {
-            [invocation invoke];
-        }
+        
+        [invocation invoke];
         
         lua_pushboolean(L, 1);
         if (returnLength > 0)
@@ -336,15 +218,7 @@ static int callObjcStaticMethod(lua_State *L)
     {
         NSLog(@"EXCEPTION THROW: %@", exception);
         lua_pushboolean(L, 0);
-        lua_pushinteger(L, kCCLuaBridgeErrorExceptionOccurred);
+        lua_pushstring(L, [[exception description] UTF8String]);
         return 2; 
     }
-}
-
-*/
-NS_CC_END
-
-int callStaticMethod(lua_State* L)
-{
-    return 0;//callObjcStaticMethod(L);
 }
