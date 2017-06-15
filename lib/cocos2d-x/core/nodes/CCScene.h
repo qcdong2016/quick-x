@@ -44,7 +44,7 @@ class CCTouchTargetNode;
 
  It is a good practice to use and CCScene as the parent of all your nodes.
  */
-class CC_DLL CCScene : public CCLayer
+class CC_DLL CCScene : public CCNode
 {
 public:
     CCScene();

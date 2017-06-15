@@ -23,15 +23,15 @@ end
 
 function App:run()
     self.scene_ = director:getScene()
-
     self.canvas = display.newNode():addTo(self.scene_)
-        
-    UIMgr = require('UIMgr').new():addTo(self.canvas, 2)
-
+    
     FileSystem:addResourcePath("res/")
-
+        
     -- self:screenFit(960, 640, "FIXED_HEIGHT")
     self:screenFit(640, 960, "FIXED_WIDTH")
+
+    UIMgr = require('UIMgr').new():addTo(self.canvas, 2)
+
     self:enterState("Menu")
 end
 

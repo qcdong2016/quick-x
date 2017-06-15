@@ -60,8 +60,7 @@ CCImage::CCImage()
 
 CCImage::~CCImage()
 {
-    if (m_pData)
-        stbi_image_free(m_pData);
+    CC_SAFE_DELETE_ARRAY(m_pData);
 }
 
 bool CCImage::initWithImageFile(const char * strPath)
@@ -84,9 +83,13 @@ bool CCImage::initWithImageData(void * pData, int nDataLen)
     
     m_nWidth = w;
     m_nHeight = h;
-
-	m_pData = decoded;
 	m_nBitsPerComponent = comp * 8;
+	
+	size_t size = w * h * comp;
+    m_pData = new unsigned char[size];
+    memcpy(m_pData, decoded, size);
+    stbi_image_free(decoded);
+	
 	if (comp == 4)
 	{
 		m_bHasAlpha = true;
@@ -102,7 +105,7 @@ bool CCImage::initWithImageData(void * pData, int nDataLen)
 	else 
 	{
 		m_bPreMulti = false;
-	}
+    }
     
     return true;
 }

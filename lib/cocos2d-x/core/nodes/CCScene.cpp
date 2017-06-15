@@ -34,7 +34,6 @@ NS_CC_BEGIN
 CCScene::CCScene()
 {
     m_bIgnoreAnchorPointForPosition = true;
-    setAnchorPoint(ccp(0.5f, 0.5f));
 }
 
 CCScene::~CCScene()
@@ -119,10 +118,13 @@ void CCScene::handleTouchMove(EventData& data) {
 
 bool CCScene::init()
 {
-	subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
-	subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
-	subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
-	return CCLayer::init();
+	if (CCNode::init()) {
+		subscribeToEvent<TouchBegin>(Handler(this, &CCScene::handleTouchBegin));
+		subscribeToEvent<TouchEnd>(Handler(this, &CCScene::handleTouchEnd));
+		subscribeToEvent<TouchMove>(Handler(this, &CCScene::handleTouchMove));
+		return true;
+	}
+	return false;
 }
 
 CCScene *CCScene::create()
