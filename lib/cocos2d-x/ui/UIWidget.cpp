@@ -405,8 +405,9 @@ void Widget::onSizeChanged()
         CCObject* child;
         CCARRAY_FOREACH(_widgetChildren, child)
         {
-            Widget* pNode = (Widget*) child;
-            pNode->updateSizeAndPosition();
+            Widget* pNode = dynamic_cast<Widget*>(child);
+            if (pNode)
+                pNode->updateSizeAndPosition();
         }
     }
 }

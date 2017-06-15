@@ -136,6 +136,9 @@ const char* EditBox::getText(void)
     
 void EditBox::onSizeChanged()
 {
+    if (_size.width == 0.0f || _size.height == 0.0f)
+        return;
+
     float left = - _size.width * m_obAnchorPoint.x;
     
     _labelRender->setFontSize(_size.height * 0.75);
