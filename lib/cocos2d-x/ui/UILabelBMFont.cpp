@@ -146,6 +146,7 @@ void LabelBMFont::labelBMFontScaleChangedWithSize()
         _labelBMFontRenderer->setScaleX(scaleX);
         _labelBMFontRenderer->setScaleY(scaleY);
     }
+    _labelBMFontRenderer->setPosition(getAnchorPointInPoints());
 }
     
 void LabelBMFont::updateTextureColor()

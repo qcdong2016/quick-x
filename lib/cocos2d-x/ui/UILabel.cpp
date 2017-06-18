@@ -194,6 +194,7 @@ void Label::setAnchorPoint(const Vec2 &pt)
 {
     Widget::setAnchorPoint(pt);
     _labelRenderer->setAnchorPoint(pt);
+    labelScaleChangedWithSize();
 }
 
 void Label::onSizeChanged()
@@ -217,13 +218,10 @@ void Label::labelScaleChangedWithSize()
     if (_ignoreSize)
     {
         _labelRenderer->setDimensions(CCSizeZero);
-        _labelRenderer->setScale(1.0f);
         _size = _labelRenderer->getSize();
-        _normalScaleValueX = _normalScaleValueY = 1.0f;        
     }
     else
     {
-        _labelRenderer->setDimensions(_size);
         CCSize textureSize = _labelRenderer->getSize();
         if (textureSize.width <= 0.0f || textureSize.height <= 0.0f)
         {
@@ -234,9 +232,9 @@ void Label::labelScaleChangedWithSize()
         float scaleY = _size.height / textureSize.height;
         _labelRenderer->setScaleX(scaleX);
         _labelRenderer->setScaleY(scaleY);
-        _normalScaleValueX = scaleX;
-        _normalScaleValueY = scaleY;
+        _labelRenderer->setDimensions(_size);
     }
+    _labelRenderer->setPosition(getAnchorPointInPoints());
 }
     
 void Label::updateTextureColor()
@@ -281,7 +279,7 @@ void Label::copySpecialProperties(Widget *widget)
 
 void Label::draw()
 {
-	_labelRenderer->visit();
+    _labelRenderer->visit();
 }
 
 }
