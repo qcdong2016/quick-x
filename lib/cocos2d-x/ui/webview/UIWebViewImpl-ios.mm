@@ -36,7 +36,9 @@
 #include "engine/CCFileSystem.h"
 #include "CCEGLView.h"
 
-
+#include "SDL.h"
+#include "SDL_syswm.h"
+#include "nodes/CCDrawingPrimitives.h"
 
 static std::string getFixedBaseUrl(const std::string& baseUrl)
 {
@@ -62,7 +64,7 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
     return fixedBaseUrl;
 }
 
-@interface UIWebViewWrapper : NSObject
+@interface UIWebViewWrapper : NSObject<UIWebViewDelegate>
 @property (nonatomic) std::function<bool(std::string url)> shouldStartLoading;
 @property (nonatomic) std::function<void(std::string url)> didFinishLoading;
 @property (nonatomic) std::function<void(std::string url)> didFailLoading;
@@ -70,6 +72,9 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 
 @property(nonatomic, readonly, getter=canGoBack) BOOL canGoBack;
 @property(nonatomic, readonly, getter=canGoForward) BOOL canGoForward;
+
+@property(nonatomic, retain) UIWebView *uiWebView;
+@property(nonatomic, copy) NSString *jsScheme;
 
 + (instancetype)webViewWrapper;
 
@@ -103,17 +108,12 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 @end
 
 
-@interface UIWebViewWrapper () <UIWebViewDelegate>
-@property(nonatomic, retain) UIWebView *uiWebView;
-@property(nonatomic, copy) NSString *jsScheme;
-@end
-
 @implementation UIWebViewWrapper {
     
 }
 
 + (instancetype)webViewWrapper {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init] ;
 }
 
 - (instancetype)init {
@@ -142,6 +142,19 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
         self.uiWebView.detectsPhoneNumbers = NO;
     }
     if (!self.uiWebView.superview) {
+        SDL_Window* window = (SDL_Window*)cocos2d::CCEGLView::sharedOpenGLView()->getSDLWindow();
+        SDL_SysWMinfo wmi;
+        SDL_VERSION(&wmi.version);
+        if (!SDL_GetWindowWMInfo(window, &wmi) )
+        {
+            return;
+        }
+        
+        [wmi.info.uikit.window addSubview: self.uiWebView];
+        [wmi.info.uikit.window bringSubviewToFront:  self.uiWebView];
+        
+        //    [[EAGLView sharedEGLView] addSubview:textField_];
+        //[textField_ becomeFirstResponder];
 //        EAGLView* eaglview = [EAGLView sharedEGLView];
 //        [eaglview addSubview:self.uiWebView];
     }
@@ -266,11 +279,13 @@ namespace cocos2d {
     namespace ui {
         
 WebViewImpl::WebViewImpl(WebView *webView)
-        : _uiWebViewWrapper([UIWebViewWrapper webViewWrapper]),
-        _webView(webView) {
-    [_uiWebViewWrapper retain];
-            
-            UIWebViewWrapper* webview = (UIWebViewWrapper*)_uiWebViewWrapper;
+        : _webView(webView)
+{
+    
+    id ww = [UIWebViewWrapper webViewWrapper];
+    _uiWebViewWrapper = (void*)ww;
+    
+    UIWebViewWrapper* webview = (UIWebViewWrapper*)_uiWebViewWrapper;
             
     webview.shouldStartLoading = [this](std::string url) {
         if (this->_webView->_onShouldStartLoading) {
@@ -296,12 +311,12 @@ WebViewImpl::WebViewImpl(WebView *webView)
 }
 
 WebViewImpl::~WebViewImpl(){
-    [_uiWebViewWrapper release];
+    [(id)_uiWebViewWrapper release];
     _uiWebViewWrapper = nullptr;
 }
 
 void WebViewImpl::setJavascriptInterfaceScheme(const std::string &scheme) {
-    [_uiWebViewWrapper setJavascriptInterfaceScheme:scheme];
+    [(id)_uiWebViewWrapper setJavascriptInterfaceScheme:scheme];
 }
 
 void WebViewImpl::loadData(const std::string &dataString,
@@ -309,28 +324,28 @@ void WebViewImpl::loadData(const std::string &dataString,
                            const std::string &encoding,
                            const std::string &baseURL) {
     
-    [_uiWebViewWrapper loadData:dataString MIMEType:MIMEType textEncodingName:encoding baseURL:baseURL];
+    [(id)_uiWebViewWrapper loadData:dataString MIMEType:MIMEType textEncodingName:encoding baseURL:baseURL];
 }
 
 void WebViewImpl::loadHTMLString(const std::string &string, const std::string &baseURL) {
-    [_uiWebViewWrapper loadHTMLString:string baseURL:baseURL];
+    [(id)_uiWebViewWrapper loadHTMLString:string baseURL:baseURL];
 }
 
 void WebViewImpl::loadURL(const std::string &url) {
-    [_uiWebViewWrapper loadUrl:url];
+    [(id)_uiWebViewWrapper loadUrl:url];
 }
 
 void WebViewImpl::loadFile(const std::string &fileName) {
     auto fullPath = FileSystem::fullPathOfFile(fileName);
-    [_uiWebViewWrapper loadFile:fullPath];
+    [(id)_uiWebViewWrapper loadFile:fullPath];
 }
 
 void WebViewImpl::stopLoading() {
-    [_uiWebViewWrapper stopLoading];
+    [(id)_uiWebViewWrapper stopLoading];
 }
 
 void WebViewImpl::reload() {
-    [_uiWebViewWrapper reload];
+    [(id)_uiWebViewWrapper reload];
 }
 
 bool WebViewImpl::canGoBack() {
@@ -344,55 +359,57 @@ bool WebViewImpl::canGoForward() {
 }
 
 void WebViewImpl::goBack() {
-    [_uiWebViewWrapper goBack];
+    [(id)_uiWebViewWrapper goBack];
 }
 
 void WebViewImpl::goForward() {
-    [_uiWebViewWrapper goForward];
+    [(id)_uiWebViewWrapper goForward];
 }
 
 std::string WebViewImpl::evaluateJS(const std::string &js) {
-    return [[_uiWebViewWrapper evaluateJS:js] UTF8String];
+    return [[(id)_uiWebViewWrapper evaluateJS:js] UTF8String];
 }
 
 void WebViewImpl::setScalesPageToFit(const bool scalesPageToFit) {
-    [_uiWebViewWrapper setScalesPageToFit:scalesPageToFit];
+    [(id)_uiWebViewWrapper setScalesPageToFit:scalesPageToFit];
 }
 
 void WebViewImpl::setOpaque(bool yes)
 {
-    [_uiWebViewWrapper setOpaque : yes];
+    [(id)_uiWebViewWrapper setOpaque : yes];
 }
-
-void WebViewImpl::draw() {
         
-    CCDirector* direcrot = CCDirector::sharedDirector();
-    CCEGLView* glView = direcrot->getOpenGLView();
-    auto frameSize = glView->getFrameSize();
+static Vec2 convertDesignCoordToScreenCoord(const Vec2& designCoord)
+{
+    CCEGLView* eglView = CCEGLView::sharedOpenGLView();
     
-//    
-//    EAGLView* eagview = [EAGLView sharedEGLView];
-//        
-//    auto scaleFactor = [eagview contentScaleFactor];
-//
-//    auto winSize = direcrot->getWinSize();
-//
-//    auto leftBottom = this->_webView->convertToWorldSpace(CCPointZero);
-//    auto rightTop = this->_webView->convertToWorldSpace(ccp(this->_webView->getContentSize().width, this->_webView->getContentSize().height));
-//
-//    auto x = (frameSize.width / 2 + (leftBottom.x - winSize.width / 2) * glView->getScaleX()) / scaleFactor;
-//    auto y = (frameSize.height / 2 - (rightTop.y - winSize.height / 2) * glView->getScaleY()) / scaleFactor;
-//    auto width = (rightTop.x - leftBottom.x) * glView->getScaleX() / scaleFactor;
-//    auto height = (rightTop.y - leftBottom.y) * glView->getScaleY() / scaleFactor;
-//
-//    [_uiWebViewWrapper setFrameWithX:x
-//                                    y:y
-//                                width:width
-//                                height:height];
+    float viewH = eglView->getFrameSize().height;// = (float)[[EAGLView sharedEGLView] getHeight];
+    
+    Vec2 screenGLPos = ccp(designCoord.x, designCoord.y);
+    return Vec2(screenGLPos.x, viewH - screenGLPos.y);
+}
+        
+void WebViewImpl::draw()
+{
+    CCSize size = this->_webView->getSize();
+    
+    Vec2 anchor = Vec2(0, 0);
+    float left = -size.width * anchor.x;
+    float cy   = size.height * (0.5 - anchor.y) -size.height / 2;
+    CCRect rect = CCRect(left, cy, size.width, size.height);
+    
+    rect = CCRectApplyAffineTransform(rect, this->_webView->nodeToWorldTransform());
+    
+    Vec2 pos = convertDesignCoordToScreenCoord(Vec2(rect.origin.x, rect.origin.y + rect.size.height));
+    
+    [_uiWebViewWrapper setFrameWithX: pos.x
+                                   y: pos.y
+                               width: rect.size.width
+                              height: rect.size.height];
 }
 
 void WebViewImpl::setVisible(bool visible){
-    [_uiWebViewWrapper setVisible:visible];
+    [(id)_uiWebViewWrapper setVisible:visible];
 }
 
 }}
