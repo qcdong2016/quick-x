@@ -206,6 +206,7 @@ void Input::handleEvent(void* evt)
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 	{
+#if BUILD_FOR(WIN32) || BUILD_FOR(MAC)
 		setMouseButton(true, 1 << (e.button.button - 1));
 
 		int x, y;
@@ -221,10 +222,12 @@ void Input::handleEvent(void* evt)
 		event.tfinger.dx = 0;
 		event.tfinger.dy = 0;
 		SDL_PushEvent(&event);
+#endif
 		break;
 	}
 	case SDL_MOUSEBUTTONUP:
 	{
+#if BUILD_FOR(WIN32) || BUILD_FOR(MAC)
 		setMouseButton(false, 1 << (e.button.button - 1));
 
 		int x, y;
@@ -240,10 +243,12 @@ void Input::handleEvent(void* evt)
 		event.tfinger.dx = 0;
 		event.tfinger.dy = 0;
 		SDL_PushEvent(&event);
+#endif
 		break;
 	}
 	case SDL_MOUSEMOTION:
 	{
+#if BUILD_FOR(WIN32) || BUILD_FOR(MAC)
 		_mousePos.x += e.motion.xrel;
 		_mousePos.y += e.motion.yrel;
 
@@ -260,6 +265,7 @@ void Input::handleEvent(void* evt)
 		event.tfinger.dx = (float)e.motion.xrel / size.width;
 		event.tfinger.dy = (float)e.motion.yrel / size.height;
 		SDL_PushEvent(&event);
+#endif
 		break;
 	}
 	case SDL_FINGERDOWN:
