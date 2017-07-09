@@ -17,20 +17,26 @@ set(SOURCE_FILES
 
 	zlib/lua_zlib.c
 
-	socket/auxiliar.c 
-	socket/luasocket_buffer.c 
-	socket/except.c 
-	socket/inet.c 
-	socket/luasocket_io.c 
-	socket/luasocket.c 
-	socket/mime.c 
-	socket/options.c 
-	socket/select.c 
-	socket/socket_scripts.c 
-	socket/tcp.c 
-	socket/timeout.c 
-	socket/udp.c 
-
+	socket/auxiliar.c
+	socket/buffer.c
+	socket/compat.c
+	socket/except.c
+	socket/inet.c
+	socket/io.c
+	socket/luasocket.c
+	socket/mime.c
+	socket/options.c
+	socket/select.c
+	# socket/serial.c
+	socket/tcp.c
+	socket/timeout.c
+	socket/udp.c
+	# socket/unix.c
+	# socket/unixdgram.c
+	# socket/unixstream.c
+	# socket/usocket.c
+	socket/wsocket.c
+	socket/socket_scripts.c
 
 	lua_extensions.c
 )
