@@ -35,21 +35,21 @@ set(SOURCE_FILES
 	# socket/unixdgram.c
 	# socket/unixstream.c
 	# socket/usocket.c
-	socket/wsocket.c
+	# socket/wsocket.c
 	socket/socket_scripts.c
 
 	lua_extensions.c
 )
 
 if (MSVC)
-	list(APPEND SOURCE_FILES 
-		socket/wsocket.c 
+	list(APPEND SOURCE_FILES
+		socket/wsocket.c
 	)
 else()
-	list(APPEND SOURCE_FILES 
-		socket/unix.c 
-		socket/usocket.c 
-		socket/serial.c 
+	list(APPEND SOURCE_FILES
+		socket/unix.c
+		socket/usocket.c
+		# socket/serial.c
 	)
 endif()
 
