@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190EFE8A1F17A89800EBCE16 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE881F17A89800EBCE16 /* io.c */; };
+		190EFE8B1F17A89800EBCE16 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE881F17A89800EBCE16 /* io.c */; };
+		190EFE8C1F17A89800EBCE16 /* io.h in Headers */ = {isa = PBXBuildFile; fileRef = 190EFE891F17A89800EBCE16 /* io.h */; };
+		190EFE8F1F17A8B700EBCE16 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE8D1F17A8B700EBCE16 /* buffer.c */; };
+		190EFE901F17A8B700EBCE16 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE8D1F17A8B700EBCE16 /* buffer.c */; };
+		190EFE911F17A8B700EBCE16 /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 190EFE8E1F17A8B700EBCE16 /* buffer.h */; };
+		190EFE931F17AA9E00EBCE16 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE921F17AA9E00EBCE16 /* compat.c */; };
+		190EFE941F17AA9E00EBCE16 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 190EFE921F17AA9E00EBCE16 /* compat.c */; };
 		B10834C21EEA43F300896112 /* UIEditBoxIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */; };
 		B10834C31EEA43F300896112 /* UIEditBoxIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */; };
 		B108E7831EE52F91004BA1E2 /* CCAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B108E5DB1EE52F91004BA1E2 /* CCAction.cpp */; };
@@ -646,12 +654,6 @@
 		B108EEB71EE52FA0004BA1E2 /* luasocket.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4A1EE52F9F004BA1E2 /* luasocket.c */; };
 		B108EEB81EE52FA0004BA1E2 /* luasocket.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4A1EE52F9F004BA1E2 /* luasocket.c */; };
 		B108EEB91EE52FA0004BA1E2 /* luasocket.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA4B1EE52F9F004BA1E2 /* luasocket.h */; };
-		B108EEBA1EE52FA0004BA1E2 /* luasocket_buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4C1EE52F9F004BA1E2 /* luasocket_buffer.c */; };
-		B108EEBB1EE52FA0004BA1E2 /* luasocket_buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4C1EE52F9F004BA1E2 /* luasocket_buffer.c */; };
-		B108EEBC1EE52FA0004BA1E2 /* luasocket_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA4D1EE52F9F004BA1E2 /* luasocket_buffer.h */; };
-		B108EEBD1EE52FA0004BA1E2 /* luasocket_io.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4E1EE52F9F004BA1E2 /* luasocket_io.c */; };
-		B108EEBE1EE52FA0004BA1E2 /* luasocket_io.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA4E1EE52F9F004BA1E2 /* luasocket_io.c */; };
-		B108EEBF1EE52FA0004BA1E2 /* luasocket_io.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA4F1EE52F9F004BA1E2 /* luasocket_io.h */; };
 		B108EEC01EE52FA0004BA1E2 /* mime.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA501EE52F9F004BA1E2 /* mime.c */; };
 		B108EEC11EE52FA0004BA1E2 /* mime.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA501EE52F9F004BA1E2 /* mime.c */; };
 		B108EEC21EE52FA0004BA1E2 /* mime.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA511EE52F9F004BA1E2 /* mime.h */; };
@@ -661,8 +663,6 @@
 		B108EEC61EE52FA0004BA1E2 /* select.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA541EE52F9F004BA1E2 /* select.c */; };
 		B108EEC71EE52FA0004BA1E2 /* select.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA541EE52F9F004BA1E2 /* select.c */; };
 		B108EEC81EE52FA0004BA1E2 /* select.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA551EE52F9F004BA1E2 /* select.h */; };
-		B108EEC91EE52FA0004BA1E2 /* serial.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA561EE52F9F004BA1E2 /* serial.c */; };
-		B108EECA1EE52FA0004BA1E2 /* serial.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA561EE52F9F004BA1E2 /* serial.c */; };
 		B108EECB1EE52FA0004BA1E2 /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = B108EA571EE52F9F004BA1E2 /* socket.h */; };
 		B108EECC1EE52FA0004BA1E2 /* socket_scripts.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA581EE52F9F004BA1E2 /* socket_scripts.c */; };
 		B108EECD1EE52FA0004BA1E2 /* socket_scripts.c in Sources */ = {isa = PBXBuildFile; fileRef = B108EA581EE52F9F004BA1E2 /* socket_scripts.c */; };
@@ -1280,6 +1280,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		190EFE881F17A89800EBCE16 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		190EFE891F17A89800EBCE16 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
+		190EFE8D1F17A8B700EBCE16 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		190EFE8E1F17A8B700EBCE16 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		190EFE921F17AA9E00EBCE16 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
 		B10834C11EEA43F300896112 /* UIEditBoxIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIEditBoxIOS.mm; sourceTree = "<group>"; };
 		B108E5C31EE52F43004BA1E2 /* libquickxIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickxIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B108E5D01EE52F67004BA1E2 /* libquickxMAC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickxMAC.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1727,10 +1732,6 @@
 		B108EA491EE52F9F004BA1E2 /* inet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inet.h; sourceTree = "<group>"; };
 		B108EA4A1EE52F9F004BA1E2 /* luasocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luasocket.c; sourceTree = "<group>"; };
 		B108EA4B1EE52F9F004BA1E2 /* luasocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luasocket.h; sourceTree = "<group>"; };
-		B108EA4C1EE52F9F004BA1E2 /* luasocket_buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luasocket_buffer.c; sourceTree = "<group>"; };
-		B108EA4D1EE52F9F004BA1E2 /* luasocket_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luasocket_buffer.h; sourceTree = "<group>"; };
-		B108EA4E1EE52F9F004BA1E2 /* luasocket_io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luasocket_io.c; sourceTree = "<group>"; };
-		B108EA4F1EE52F9F004BA1E2 /* luasocket_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luasocket_io.h; sourceTree = "<group>"; };
 		B108EA501EE52F9F004BA1E2 /* mime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mime.c; sourceTree = "<group>"; };
 		B108EA511EE52F9F004BA1E2 /* mime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mime.h; sourceTree = "<group>"; };
 		B108EA521EE52F9F004BA1E2 /* options.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = options.c; sourceTree = "<group>"; };
@@ -2995,18 +2996,19 @@
 		B108EA431EE52F9F004BA1E2 /* socket */ = {
 			isa = PBXGroup;
 			children = (
+				190EFE921F17AA9E00EBCE16 /* compat.c */,
 				B108EA441EE52F9F004BA1E2 /* auxiliar.c */,
 				B108EA451EE52F9F004BA1E2 /* auxiliar.h */,
+				190EFE8D1F17A8B700EBCE16 /* buffer.c */,
+				190EFE8E1F17A8B700EBCE16 /* buffer.h */,
 				B108EA461EE52F9F004BA1E2 /* except.c */,
 				B108EA471EE52F9F004BA1E2 /* except.h */,
 				B108EA481EE52F9F004BA1E2 /* inet.c */,
 				B108EA491EE52F9F004BA1E2 /* inet.h */,
+				190EFE881F17A89800EBCE16 /* io.c */,
+				190EFE891F17A89800EBCE16 /* io.h */,
 				B108EA4A1EE52F9F004BA1E2 /* luasocket.c */,
 				B108EA4B1EE52F9F004BA1E2 /* luasocket.h */,
-				B108EA4C1EE52F9F004BA1E2 /* luasocket_buffer.c */,
-				B108EA4D1EE52F9F004BA1E2 /* luasocket_buffer.h */,
-				B108EA4E1EE52F9F004BA1E2 /* luasocket_io.c */,
-				B108EA4F1EE52F9F004BA1E2 /* luasocket_io.h */,
 				B108EA501EE52F9F004BA1E2 /* mime.c */,
 				B108EA511EE52F9F004BA1E2 /* mime.h */,
 				B108EA521EE52F9F004BA1E2 /* options.c */,
@@ -4069,6 +4071,7 @@
 				B108E80B1EE52F91004BA1E2 /* ccUTF8.h in Headers */,
 				B108E87C1EE52F92004BA1E2 /* CCDevice.h in Headers */,
 				B108EE2D1EE52FA0004BA1E2 /* quaternion.h in Headers */,
+				190EFE911F17A8B700EBCE16 /* buffer.h in Headers */,
 				B108E7D61EE52F91004BA1E2 /* ProcessUtils.h in Headers */,
 				B108F2301EE52FA2004BA1E2 /* SDL_sysvideo.h in Headers */,
 				B108EFC71EE52FA1004BA1E2 /* SDL_dropevents_c.h in Headers */,
@@ -4099,7 +4102,6 @@
 				B108E8C51EE52F92004BA1E2 /* CCShaderCache.h in Headers */,
 				B108E93C1EE52F92004BA1E2 /* spine-cocos2dx.h in Headers */,
 				B108F3291EE52FA2004BA1E2 /* Skin.h in Headers */,
-				B108EEBC1EE52FA0004BA1E2 /* luasocket_buffer.h in Headers */,
 				B108E79D1EE52F91004BA1E2 /* CCActionProgressTimer.h in Headers */,
 				B108E9241EE52F92004BA1E2 /* CCLuaValue.h in Headers */,
 				B108E9771EE52F92004BA1E2 /* UIPageView.h in Headers */,
@@ -4224,7 +4226,6 @@
 				B108F1151EE52FA1004BA1E2 /* SDL_systhread.h in Headers */,
 				B108EF241EE52FA0004BA1E2 /* SDL_test_common.h in Headers */,
 				B108E8B71EE52F92004BA1E2 /* ccShader_PositionColorLengthTexture_frag.h in Headers */,
-				B108EEBF1EE52FA0004BA1E2 /* luasocket_io.h in Headers */,
 				B108EF781EE52FA1004BA1E2 /* SDL_audiodev_c.h in Headers */,
 				B108E8161EE52F91004BA1E2 /* CCAttributeAccessor.h in Headers */,
 				B108EEF61EE52FA0004BA1E2 /* SDL_config_wiz.h in Headers */,
@@ -4255,6 +4256,7 @@
 				B108E8C91EE52F92004BA1E2 /* CCIMEDispatcher.h in Headers */,
 				B108E8801EE52F92004BA1E2 /* CCGL.h in Headers */,
 				B108EF951EE52FA1004BA1E2 /* SDL_dbus.h in Headers */,
+				190EFE8C1F17A89800EBCE16 /* io.h in Headers */,
 				B108E8B21EE52F92004BA1E2 /* CCRenderState.h in Headers */,
 				B108E9101EE52F92004BA1E2 /* CCParticleSystem.h in Headers */,
 				B108E8C61EE52F92004BA1E2 /* CCIMEDelegate.h in Headers */,
@@ -4644,6 +4646,7 @@
 				B108F40B1EE53231004BA1E2 /* SimpleAudioEngine.mm in Sources */,
 				B108F2201EE52FA2004BA1E2 /* SDL_pixels.c in Sources */,
 				B108E82B1EE52F92004BA1E2 /* CCResourceCache.cpp in Sources */,
+				190EFE8A1F17A89800EBCE16 /* io.c in Sources */,
 				B108F09E1EE52FA1004BA1E2 /* SDL_render.c in Sources */,
 				B108F20F1EE52FA2004BA1E2 /* SDL_blit_copy.c in Sources */,
 				B108E9281EE52F92004BA1E2 /* LuaCocos2d.cpp in Sources */,
@@ -4719,7 +4722,6 @@
 				B108F1331EE52FA1004BA1E2 /* SDL_systimer.c in Sources */,
 				B108EE311EE52FA0004BA1E2 /* utility.c in Sources */,
 				B108EE4D1EE52FA0004BA1E2 /* ldo.c in Sources */,
-				B108EEC91EE52FA0004BA1E2 /* serial.c in Sources */,
 				B108E82E1EE52F92004BA1E2 /* CCSubSystem.cpp in Sources */,
 				B108E7E91EE52F91004BA1E2 /* CCScheduler.cpp in Sources */,
 				B108F21B1EE52FA2004BA1E2 /* SDL_egl.c in Sources */,
@@ -4822,7 +4824,6 @@
 				B108F0D31EE52FA1004BA1E2 /* SDL_string.c in Sources */,
 				B108E8251EE52F91004BA1E2 /* CCObject.cpp in Sources */,
 				B108F0D11EE52FA1004BA1E2 /* SDL_stdlib.c in Sources */,
-				B108EEBD1EE52FA0004BA1E2 /* luasocket_io.c in Sources */,
 				B108F3421EE52FA2004BA1E2 /* tolua_is.c in Sources */,
 				B108E7D11EE52F91004BA1E2 /* MathDefs.cpp in Sources */,
 				B108F0D51EE52FA1004BA1E2 /* SDL_test_assert.c in Sources */,
@@ -4842,6 +4843,7 @@
 				B108EFD11EE52FA1004BA1E2 /* SDL_mouse.c in Sources */,
 				B108E8031EE52F91004BA1E2 /* CCSet.cpp in Sources */,
 				B108E9181EE52F92004BA1E2 /* CCLuaBridge_java.cpp in Sources */,
+				190EFE931F17AA9E00EBCE16 /* compat.c in Sources */,
 				B108F2191EE52FA2004BA1E2 /* SDL_clipboard.c in Sources */,
 				B108F0C11EE52FA1004BA1E2 /* SDL_error.c in Sources */,
 				B108F3271EE52FA2004BA1E2 /* Skin.c in Sources */,
@@ -4871,6 +4873,7 @@
 				B108E78C1EE52F91004BA1E2 /* CCActionEase.cpp in Sources */,
 				B108E8371EE52F92004BA1E2 /* CCVec2.cpp in Sources */,
 				B108E9AA1EE52F92004BA1E2 /* CCZipFile.cpp in Sources */,
+				190EFE8F1F17A8B700EBCE16 /* buffer.c in Sources */,
 				B108E8551EE52F92004BA1E2 /* CCNode.cpp in Sources */,
 				B108E7F31EE52F91004BA1E2 /* CCAutoreleasePool.cpp in Sources */,
 				B108F20C1EE52FA2004BA1E2 /* SDL_blit_auto.c in Sources */,
@@ -4905,7 +4908,6 @@
 				B108E91C1EE52F92004BA1E2 /* CCLuaEngine.cpp in Sources */,
 				B108EE721EE52FA0004BA1E2 /* lstate.c in Sources */,
 				B108F30C1EE52FA2004BA1E2 /* IkConstraint.c in Sources */,
-				B108EEBA1EE52FA0004BA1E2 /* luasocket_buffer.c in Sources */,
 				B108F0C91EE52FA1004BA1E2 /* SDL_getenv.c in Sources */,
 				B108F22C1EE52FA2004BA1E2 /* SDL_stretch.c in Sources */,
 				B108EE6F1EE52FA0004BA1E2 /* lparser.c in Sources */,
@@ -5007,6 +5009,7 @@
 				B108E9381EE52F92004BA1E2 /* SkeletonAnimation.cpp in Sources */,
 				B108EE111EE52FA0004BA1E2 /* imgui_draw.cpp in Sources */,
 				B108EE261EE52FA0004BA1E2 /* neon_matrix_impl.c in Sources */,
+				190EFE941F17AA9E00EBCE16 /* compat.c in Sources */,
 				B108F04A1EE52FA1004BA1E2 /* s_cos.c in Sources */,
 				B108F0E41EE52FA1004BA1E2 /* SDL_test_imageBlit.c in Sources */,
 				B108E93E1EE52F92004BA1E2 /* spine_luabinding.cpp in Sources */,
@@ -5122,7 +5125,6 @@
 				B108F1341EE52FA1004BA1E2 /* SDL_systimer.c in Sources */,
 				B108EE321EE52FA0004BA1E2 /* utility.c in Sources */,
 				B108EE4E1EE52FA0004BA1E2 /* ldo.c in Sources */,
-				B108EECA1EE52FA0004BA1E2 /* serial.c in Sources */,
 				B108E82F1EE52F92004BA1E2 /* CCSubSystem.cpp in Sources */,
 				B108E7EA1EE52F91004BA1E2 /* CCScheduler.cpp in Sources */,
 				B108F21C1EE52FA2004BA1E2 /* SDL_egl.c in Sources */,
@@ -5149,6 +5151,7 @@
 				B108EEE21EE52FA0004BA1E2 /* lua_zlib.c in Sources */,
 				B108F0BF1EE52FA1004BA1E2 /* SDL_assert.c in Sources */,
 				B108F0D01EE52FA1004BA1E2 /* SDL_qsort.c in Sources */,
+				190EFE901F17A8B700EBCE16 /* buffer.c in Sources */,
 				B108F3101EE52FA2004BA1E2 /* IkConstraintData.c in Sources */,
 				B108F20B1EE52FA2004BA1E2 /* SDL_blit_A.c in Sources */,
 				B108E8A21EE52F92004BA1E2 /* CCAnimation.cpp in Sources */,
@@ -5227,7 +5230,6 @@
 				B108F0D21EE52FA1004BA1E2 /* SDL_stdlib.c in Sources */,
 				B108F4201EE53236004BA1E2 /* CDXMacOSXSupport.mm in Sources */,
 				B108F3CB1EE5311D004BA1E2 /* SDL_cocoamessagebox.m in Sources */,
-				B108EEBE1EE52FA0004BA1E2 /* luasocket_io.c in Sources */,
 				B108F3431EE52FA2004BA1E2 /* tolua_is.c in Sources */,
 				B108E7D21EE52F91004BA1E2 /* MathDefs.cpp in Sources */,
 				B108F0D61EE52FA1004BA1E2 /* SDL_test_assert.c in Sources */,
@@ -5277,6 +5279,7 @@
 				B1D0207A1EE53450002A3D0F /* SDL_render_sw.c in Sources */,
 				B108EEAF1EE52FA0004BA1E2 /* auxiliar.c in Sources */,
 				B108E8DA1EE52F92004BA1E2 /* CCCrypto.cpp in Sources */,
+				190EFE8B1F17A89800EBCE16 /* io.c in Sources */,
 				B108EEB81EE52FA0004BA1E2 /* luasocket.c in Sources */,
 				B1D020571EE53423002A3D0F /* SDL_nullvideo.c in Sources */,
 				B108E78D1EE52F91004BA1E2 /* CCActionEase.cpp in Sources */,
@@ -5316,7 +5319,6 @@
 				B108E91D1EE52F92004BA1E2 /* CCLuaEngine.cpp in Sources */,
 				B108EE731EE52FA0004BA1E2 /* lstate.c in Sources */,
 				B108F30D1EE52FA2004BA1E2 /* IkConstraint.c in Sources */,
-				B108EEBB1EE52FA0004BA1E2 /* luasocket_buffer.c in Sources */,
 				B108F0CA1EE52FA1004BA1E2 /* SDL_getenv.c in Sources */,
 				B108F22D1EE52FA2004BA1E2 /* SDL_stretch.c in Sources */,
 				B108EE701EE52FA0004BA1E2 /* lparser.c in Sources */,
